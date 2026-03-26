@@ -116,6 +116,35 @@ document.addEventListener("DOMContentLoaded", () => {
     forceClearPageScrollLocks();
   }
 
+  function installScrollRecoveryGuards() {
+    let rafId = 0;
+    const scheduleRecover = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = 0;
+        recoverScrollIfNoOverlayOpen();
+      });
+    };
+
+    document.addEventListener("wheel", scheduleRecover, { passive: true, capture: true });
+    document.addEventListener("touchmove", scheduleRecover, { passive: true, capture: true });
+    document.addEventListener("pointerdown", scheduleRecover, { passive: true, capture: true });
+    document.addEventListener("keydown", scheduleRecover, { passive: true, capture: true });
+    document.addEventListener("visibilitychange", scheduleRecover, { passive: true });
+
+    if (typeof MutationObserver === "function") {
+      const observer = new MutationObserver(() => scheduleRecover());
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class", "style"],
+      });
+      observer.observe(document.body, {
+        attributes: true,
+        attributeFilter: ["class", "style"],
+      });
+    }
+  }
+
   function clamp(value, min, max) {
     if (max < min) return (min + max) * 0.5;
     return Math.min(max, Math.max(min, value));
@@ -3980,6 +4009,7 @@ document.addEventListener("DOMContentLoaded", () => {
   hydrateTryCavaiRows();
 
   recoverScrollIfNoOverlayOpen();
+  installScrollRecoveryGuards();
   window.setTimeout(recoverScrollIfNoOverlayOpen, 0);
   window.setTimeout(recoverScrollIfNoOverlayOpen, 220);
   window.addEventListener("pageshow", recoverScrollIfNoOverlayOpen, { passive: true });
