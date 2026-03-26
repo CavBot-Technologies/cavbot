@@ -80,6 +80,18 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(pageScrollLockState.scrollX, pageScrollLockState.scrollY);
   }
 
+  function isVisibleScrollLockOverlay(node) {
+    if (!(node instanceof Element)) return false;
+    if (!node.isConnected) return false;
+    if (node.getAttribute("aria-hidden") === "true") return false;
+    const style = window.getComputedStyle(node);
+    if (!style) return false;
+    if (style.display === "none" || style.visibility === "hidden") return false;
+    if (style.pointerEvents === "none") return false;
+    const rect = node.getBoundingClientRect();
+    return rect.width > 0 && rect.height > 0;
+  }
+
   function hasAnyOpenScrollLockOverlay() {
     const selectors = [
       ".nav-overlay.is-open",
@@ -89,10 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ".topic-modal.is-open",
       ".faq-modal.is-open",
       ".lightbox.is-open",
-      ".modal.is-open",
+      ".modal.is-open[aria-hidden='false']",
       ".cavai-auth-modal.is-open",
     ];
-    return selectors.some((selector) => Boolean(document.querySelector(selector)));
+    return selectors.some((selector) =>
+      Array.from(document.querySelectorAll(selector)).some((node) => isVisibleScrollLockOverlay(node))
+    );
   }
 
   function forceClearPageScrollLocks() {
@@ -130,6 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("touchmove", scheduleRecover, { passive: true, capture: true });
     document.addEventListener("pointerdown", scheduleRecover, { passive: true, capture: true });
     document.addEventListener("keydown", scheduleRecover, { passive: true, capture: true });
+    window.addEventListener("scroll", scheduleRecover, { passive: true, capture: true });
+    window.addEventListener("resize", scheduleRecover, { passive: true });
     document.addEventListener("visibilitychange", scheduleRecover, { passive: true });
 
     if (typeof MutationObserver === "function") {
