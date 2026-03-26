@@ -127,3 +127,79 @@
     if (track.scrollLeft >= half) track.scrollLeft -= half;
   }, { passive: true });
 })();
+
+// Home desktop Chrome fallback:
+// Keep vertical wheel scroll moving the page even when horizontal-only layers intercept input.
+(function () {
+  const body = document.body;
+  if (!body || body.dataset.cavbotPageType !== 'home-page') return;
+
+  const LOCKED_SELECTORS = [
+    '.nav-overlay.is-open',
+    '.cb-cavguard-overlay[data-open="true"]',
+    '.cb-demo-request-overlay[data-open="true"]',
+    '.cb-caverify-overlay[data-open="true"]',
+    '.topic-modal.is-open',
+    '.faq-modal.is-open',
+    '.lightbox.is-open',
+    '.modal.is-open[aria-hidden="false"]',
+    '.cavai-auth-modal.is-open'
+  ].join(', ');
+
+  function isPageScrollLocked() {
+    const docEl = document.documentElement;
+    if (!docEl || !body) return false;
+    if (
+      docEl.classList.contains('nav-open') ||
+      body.classList.contains('nav-open') ||
+      docEl.classList.contains('modal-open') ||
+      body.classList.contains('modal-open') ||
+      docEl.classList.contains('modal-lock') ||
+      body.classList.contains('modal-lock')
+    ) {
+      return true;
+    }
+    return Boolean(document.querySelector(LOCKED_SELECTORS));
+  }
+
+  function canScrollVertically(node, deltaY) {
+    if (!(node instanceof HTMLElement)) return false;
+    const style = window.getComputedStyle(node);
+    if (!style) return false;
+    if (!/(auto|scroll|overlay)/.test(style.overflowY)) return false;
+    if (node.scrollHeight <= node.clientHeight + 1) return false;
+    if (deltaY < 0) return node.scrollTop > 0;
+    return node.scrollTop + node.clientHeight < node.scrollHeight - 1;
+  }
+
+  function hasNestedVerticalScrollHost(startNode, deltaY) {
+    let node = startNode;
+    while (node && node !== document.body && node !== document.documentElement) {
+      if (canScrollVertically(node, deltaY)) return true;
+      node = node.parentElement;
+    }
+    return false;
+  }
+
+  document.addEventListener('wheel', (event) => {
+    if (event.defaultPrevented || event.ctrlKey || !Number.isFinite(event.deltaY)) return;
+    if (Math.abs(event.deltaY) < 0.5) return;
+    if (isPageScrollLocked()) return;
+
+    const target = event.target instanceof HTMLElement ? event.target : null;
+    if (target && hasNestedVerticalScrollHost(target, event.deltaY)) return;
+
+    const scroller = document.scrollingElement || document.documentElement;
+    if (!scroller) return;
+
+    const currentY = window.scrollY || window.pageYOffset || scroller.scrollTop || 0;
+    const maxY = Math.max(0, scroller.scrollHeight - window.innerHeight);
+    if (maxY <= 0) return;
+
+    const nextY = Math.max(0, Math.min(maxY, currentY + event.deltaY));
+    if (Math.abs(nextY - currentY) < 0.5) return;
+
+    event.preventDefault();
+    window.scrollTo({ top: nextY, left: window.scrollX || window.pageXOffset || 0, behavior: 'auto' });
+  }, { passive: false, capture: true });
+})();
