@@ -176,6 +176,7 @@ a{ color:inherit; text-decoration:none; }
 }
 
 .story-media--tablet{
+  width: 100%;
   max-width:1160px;
   margin: 0 auto;
 }
@@ -1594,11 +1595,42 @@ a{ color:inherit; text-decoration:none; }
 
 @media (max-width: 720px){
   .page-inner{
-    padding: 44px 16px 64px;
-    gap: 56px;
+    padding: 44px 16px 72px;
+    gap: var(--space-xl);
+  }
+  .section{
+    display: grid;
+    gap: var(--space-md);
+  }
+  .story-media--video{
+    aspect-ratio: 16 / 10;
+    min-height: clamp(260px, 62vw, 380px);
   }
   .section-header{
     margin-bottom: 18px;
+  }
+  .media-hero{
+    gap: var(--space-md);
+  }
+  .hero-left{
+    display: grid;
+    gap: 14px;
+  }
+  .media-hero-lede,
+  .media-hero-meta,
+  .hero-cta-row{
+    margin-top: 0;
+  }
+  .media-grid-2,
+  .charter-grid,
+  .charter-aside,
+  .logo-grid,
+  .color-lab,
+  .type-specimen-grid,
+  .usage-grid,
+  .presslove-grid,
+  .press-contact-grid{
+    gap: var(--space-md);
   }
   .section-title{
     font-size: 20px;
