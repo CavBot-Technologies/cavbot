@@ -1,0 +1,535 @@
+:root {
+  --navy-950: #01030f;
+  --navy-900: #020616;
+  --navy-860: #040a1c;
+  --navy-820: #06102a;
+  --lime: #b9c85a;
+  --violet: #8b5cff;
+  --ink: #f7fbff;
+  --ink-soft: #c5cee7;
+  --ink-subtle: #8890aa;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --space-xxl: 88px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--ink-soft);
+  background:
+    radial-gradient(circle at top, #071025 0, var(--navy-900) 34%, var(--navy-950) 100%);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-inner.cavai-demo-main {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  padding: 54px 20px 96px;
+  display: grid;
+  grid-template-columns: minmax(210px, 240px) minmax(0, 1fr);
+  gap: 18px;
+}
+
+.cavai-demo-sidebar {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(2, 6, 18, 0.86);
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  align-self: start;
+  position: sticky;
+  top: 98px;
+}
+
+.cavai-demo-sidebar-title {
+  margin: 0 0 4px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(197, 206, 231, 0.66);
+}
+
+.cavai-demo-sidebar-link {
+  min-height: 34px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(7, 13, 32, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 12px;
+  color: rgba(232, 238, 250, 0.9);
+}
+
+.cavai-demo-sidebar-link:hover {
+  border-color: rgba(185, 200, 90, 0.45);
+  background: rgba(185, 200, 90, 0.12);
+}
+
+.cavai-demo-sidebar-link.is-active {
+  border-color: rgba(185, 200, 90, 0.55);
+  background: rgba(185, 200, 90, 0.16);
+  color: #f3f8d7;
+}
+
+.cavai-demo-sidebar-meta {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(136, 144, 170, 0.9);
+}
+
+.cavai-demo-stage {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(2, 6, 18, 0.9);
+  border-radius: 10px;
+  min-height: 640px;
+  display: grid;
+  grid-template-rows: auto minmax(300px, 1fr) auto;
+  overflow: hidden;
+}
+
+.cavai-demo-head {
+  padding: 18px 18px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: grid;
+  gap: 10px;
+}
+
+.cavai-demo-badge-slot {
+  min-height: 30px;
+  width: max-content;
+}
+
+.cavai-demo-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(24px, 4vw, 36px);
+  letter-spacing: 0.02em;
+}
+
+.cavai-demo-subtitle {
+  margin: 0;
+  max-width: 64ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(197, 206, 231, 0.9);
+}
+
+.cavai-demo-thread {
+  padding: 18px;
+  overflow-y: auto;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.cavai-message {
+  width: min(92%, 760px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 12px;
+  line-height: 1.7;
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+.cavai-message p {
+  margin: 0;
+}
+
+.cavai-message-user {
+  margin-left: auto;
+  background: rgba(139, 92, 255, 0.16);
+  border-color: rgba(139, 92, 255, 0.36);
+  color: rgba(245, 248, 255, 0.95);
+}
+
+.cavai-message-assistant {
+  margin-right: auto;
+  background: rgba(7, 13, 32, 0.9);
+  color: rgba(226, 232, 238, 0.94);
+}
+
+.cavai-message-system {
+  margin-right: auto;
+  border-style: dashed;
+  background: rgba(185, 200, 90, 0.08);
+  border-color: rgba(185, 200, 90, 0.42);
+  color: rgba(232, 238, 214, 0.9);
+}
+
+.cavai-message.is-loading {
+  opacity: 0.85;
+}
+
+.cavai-message-loading-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  margin-right: 4px;
+  background: rgba(185, 200, 90, 0.9);
+  animation: cavaiPulse 1s infinite ease-in-out;
+}
+
+.cavai-message-loading-dot:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.cavai-message-loading-dot:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+@keyframes cavaiPulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cavai-compose {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  background: rgba(1, 4, 14, 0.94);
+}
+
+.cavai-compose-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cavai-model-shell {
+  position: relative;
+}
+
+.cavai-model-trigger {
+  min-height: 32px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 10, 26, 0.88);
+  color: rgba(232, 238, 250, 0.9);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cavai-model-trigger:hover {
+  border-color: rgba(185, 200, 90, 0.46);
+}
+
+.cavai-model-trigger-caret {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.cavai-model-menu {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  min-width: 290px;
+  max-width: min(92vw, 360px);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(2, 6, 18, 0.98);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  padding: 8px;
+  display: grid;
+  gap: 6px;
+  z-index: 30;
+}
+
+.cavai-model-menu[hidden] {
+  display: none;
+}
+
+.cavai-model-menu-title {
+  margin: 0;
+  padding: 2px 6px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(136, 144, 170, 0.95);
+}
+
+.cavai-model-item {
+  min-height: 31px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(7, 13, 32, 0.92);
+  color: rgba(226, 232, 238, 0.95);
+  font-size: 12px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cavai-model-item.is-active {
+  border-color: rgba(185, 200, 90, 0.56);
+  background: rgba(185, 200, 90, 0.12);
+  color: rgba(242, 248, 220, 0.97);
+}
+
+.cavai-model-item.is-locked {
+  opacity: 0.75;
+}
+
+.cavai-lock-pill,
+.cavai-model-lock-pill {
+  min-height: 19px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(226, 232, 238, 0.87);
+  padding: 0 7px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cavai-lock-actions {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cavai-lock-action {
+  min-height: 30px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(7, 13, 32, 0.86);
+  color: rgba(226, 232, 238, 0.9);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cavai-lock-action:hover {
+  border-color: rgba(185, 200, 90, 0.44);
+  background: rgba(185, 200, 90, 0.1);
+}
+
+.cavai-compose-input {
+  width: 100%;
+  min-height: 108px;
+  max-height: 300px;
+  resize: vertical;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(4, 10, 26, 0.95);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 12px;
+}
+
+.cavai-compose-input:focus {
+  outline: none;
+  border-color: rgba(185, 200, 90, 0.56);
+  box-shadow: 0 0 0 3px rgba(185, 200, 90, 0.13);
+}
+
+.cavai-compose-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.resource-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cavai-compose-hint {
+  margin: 0;
+  font-size: 11px;
+  color: rgba(136, 144, 170, 0.96);
+  letter-spacing: 0.04em;
+}
+
+.cavai-auth-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 120;
+  padding:
+    max(16px, calc(env(safe-area-inset-top) + 16px))
+    20px
+    max(14px, calc(env(safe-area-inset-bottom) + 14px))
+    20px;
+}
+
+.cavai-auth-modal.is-open {
+  display: flex;
+}
+
+.cavai-auth-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(1, 4, 14, 0.72);
+}
+
+.cavai-auth-modal-panel {
+  position: relative;
+  width: min(460px, 100%);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(2, 6, 18, 0.98);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.cavai-auth-modal-title {
+  margin: 0;
+  font-size: 22px;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.cavai-auth-modal-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(197, 206, 231, 0.9);
+}
+
+.cavai-auth-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cavai-auth-modal-close {
+  justify-self: end;
+  min-height: 30px;
+  min-width: 30px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(7, 13, 32, 0.86);
+  color: rgba(226, 232, 238, 0.94);
+  font-size: 16px;
+  line-height: 1;
+}
+
+@media (max-width: 1080px) {
+  .page-inner.cavai-demo-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cavai-demo-sidebar {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cavai-demo-sidebar-title {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-inner.cavai-demo-main {
+    padding: 38px 14px 72px;
+  }
+
+  .cavai-demo-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cavai-demo-head {
+    padding: 14px 14px 10px;
+  }
+
+  .cavai-demo-thread {
+    padding: 14px;
+  }
+
+  .cavai-compose {
+    padding: 10px;
+  }
+
+  .cavai-lock-actions {
+    width: 100%;
+  }
+
+  .cavai-lock-action {
+    flex: 1 1 calc(50% - 4px);
+    justify-content: center;
+  }
+
+  .cavai-compose-actions {
+    flex-wrap: wrap;
+  }
+}

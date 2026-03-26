@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "kind": "404",
+  "game": {
+    "id": "cavbot-imposter",
+    "displayName": "CavBot Imposter",
+    "version": "v1"
+  },
+  "entry": {
+    "html": "index.html",
+    "css": ["files/cavbot-imposter.css"],
+    "js": ["files/cavbot-imposter.js"]
+  },
+  "assets": {
+    "basePath": "files/assets/",
+    "files": ["thumbnail.png"]
+  },
+  "runtime": {
+    "requires": ["analytics", "brain", "badge", "head"],
+    "preferredEmbed": "iframe",
+    "sandbox": "allow-scripts allow-same-origin"
+  },
+  "meta": {
+    "thumbnail": "files/assets/thumbnail.png",
+    "description": "CavBot 404 control room experience.",
+    "tags": ["404", "cavbot"]
+  }
+}

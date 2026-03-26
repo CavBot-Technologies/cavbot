@@ -1,0 +1,297 @@
+.page-privacy-policy {
+  background: #01030f;
+}
+
+.page-privacy-policy .page-ethics-main {
+  padding: 24px 16px 84px;
+}
+
+.page-privacy-policy .ethics-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.page-privacy-policy .privacy-pagehead {
+  margin: 0;
+  padding: 56px 0 56px;
+}
+
+.page-privacy-policy .privacy-page-title {
+  margin: 0;
+  font-family: var(--font-display, "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #f7fbff;
+  font-weight: 500;
+}
+
+.page-privacy-policy .ethics-body-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 40px);
+  align-items: flex-start;
+}
+
+.page-privacy-policy .ethics-toc {
+  position: sticky;
+  top: 96px;
+  align-self: flex-start;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(3, 7, 22, 0.92);
+  box-shadow: none;
+  padding: 18px 18px 16px;
+}
+
+.page-privacy-policy .ethics-toc-title {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8890aa;
+  text-align: center;
+}
+
+.page-privacy-policy .ethics-toc-list {
+  gap: 0;
+}
+
+.page-privacy-policy .ethics-toc-list a {
+  display: block;
+  padding: 8px 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(197, 206, 231, 0.9);
+}
+
+.page-privacy-policy .ethics-toc-list a span:first-child {
+  display: inline;
+  margin-right: 4px;
+  font-size: 13px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: inherit;
+}
+
+.page-privacy-policy .ethics-toc-list a span:last-child {
+  display: inline;
+}
+
+.page-privacy-policy .ethics-toc-list a:hover {
+  color: #4ea8ff;
+}
+
+.page-privacy-policy .ethics-toc-list a:focus-visible,
+.page-privacy-policy .ethics-toc-list a:active,
+.page-privacy-policy .ethics-toc-list a.is-active,
+.page-privacy-policy .ethics-toc-list a[aria-current="true"],
+.page-privacy-policy .ethics-toc-list a[aria-current="page"] {
+  color: #4ea8ff;
+}
+
+.page-privacy-policy .ethics-content {
+  position: sticky;
+  top: 96px;
+  align-self: flex-start;
+  min-height: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+.page-privacy-policy .ethics-scroll-sections {
+  max-height: calc(100vh - 112px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 0 6px 0 0;
+  margin-right: -6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(137, 155, 209, 0.55) transparent;
+}
+
+.page-privacy-policy .ethics-scroll-sections::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page-privacy-policy .ethics-scroll-sections::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page-privacy-policy .ethics-scroll-sections::-webkit-scrollbar-thumb {
+  background: rgba(137, 155, 209, 0.45);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.page-privacy-policy .ethics-scroll-sections::-webkit-scrollbar-thumb:hover {
+  background: rgba(137, 155, 209, 0.68);
+  background-clip: padding-box;
+}
+
+.page-privacy-policy .privacy-intro {
+  margin: 0;
+  padding: 18px 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(3, 7, 22, 0.92);
+  box-shadow: none;
+}
+
+.page-privacy-policy .privacy-intro p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.82;
+  color: rgba(197, 206, 231, 0.95);
+}
+
+.page-privacy-policy .privacy-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.page-privacy-policy .privacy-intro a {
+  color: #4ea8ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(78, 168, 255, 0.65);
+}
+
+.page-privacy-policy .privacy-intro a:hover {
+  color: #8ecbff;
+}
+
+.page-privacy-policy .ethics-section {
+  margin: 0;
+  padding: 18px 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(3, 7, 22, 0.92);
+  box-shadow: none;
+}
+
+.page-privacy-policy .ethics-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-privacy-policy .ethics-section-header {
+  margin-bottom: 10px;
+}
+
+.page-privacy-policy .ethics-section-title {
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.page-privacy-policy .privacy-subheading {
+  margin: 16px 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f7fbff;
+  font-weight: 600;
+}
+
+.page-privacy-policy .ethics-section-body {
+  font-size: 13px;
+  line-height: 1.82;
+  color: rgba(197, 206, 231, 0.95);
+}
+
+.page-privacy-policy .ethics-section-body p,
+.page-privacy-policy .ethics-section-body li {
+  color: rgba(197, 206, 231, 0.95);
+}
+
+.page-privacy-policy .ethics-section-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(247, 251, 255, 0.95);
+}
+
+.page-privacy-policy .ethics-section-body a {
+  color: #4ea8ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(78, 168, 255, 0.65);
+}
+
+.page-privacy-policy .ethics-section-body a:hover {
+  color: #8ecbff;
+}
+
+.page-privacy-policy a[href^="mailto:"] {
+  color: #4ea8ff;
+  text-decoration-color: rgba(78, 168, 255, 0.65);
+}
+
+.page-privacy-policy a[href^="mailto:"]:hover {
+  color: #8ecbff;
+  text-decoration-color: rgba(142, 203, 255, 0.72);
+}
+
+.page-privacy-policy .ethics-highlight {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(3, 7, 22, 0.92);
+  box-shadow: none;
+}
+
+@media (max-width: 1024px) {
+  .page-privacy-policy .ethics-body-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-privacy-policy .ethics-toc {
+    position: static;
+    margin-bottom: 10px;
+    border-radius: 16px;
+  }
+
+  .page-privacy-policy .ethics-content {
+    position: static;
+    top: auto;
+  }
+
+  .page-privacy-policy .ethics-scroll-sections {
+    max-height: 72vh;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-privacy-policy .page-ethics-main {
+    padding: 22px 14px 72px;
+  }
+
+  .page-privacy-policy .privacy-pagehead {
+    padding: 40px 0 40px;
+  }
+
+  .page-privacy-policy .privacy-page-title {
+    font-size: 20px;
+    letter-spacing: 0;
+  }
+
+  .page-privacy-policy .privacy-subheading {
+    font-size: 10.5px;
+  }
+
+  .page-privacy-policy .ethics-scroll-sections {
+    max-height: 68vh;
+  }
+}

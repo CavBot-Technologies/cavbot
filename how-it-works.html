@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" >
+  <title>How It Works — CavBot Signals, Intelligence, and Execution</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
+
+  <!-- Primary SEO -->
+  <meta name="description" content="Learn how CavBot works: install Analytics v5 and the CavAi Brain script, stream structured events, and execute through CavAi workflows across app surfaces." >
+  <meta name="keywords" content="how CavBot works, CavBot Analytics v5, Command Center, structured events, diagnostics workflows, recovery telemetry, privacy-first analytics" >
+  <meta name="robots" content="index, follow" >
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" >
+  <link rel="canonical" href="https://cavbot.io/how-it-works.html" >
+
+  <!-- Theme / PWA -->
+  <meta name="theme-color" content="#01030f" >
+  <link rel="manifest" href="site.webmanifest" >
+  <meta name="msapplication-TileColor" content="#01030f" >
+  <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png" >
+
+  <!-- UNIVERSAL FAVICONS  -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png" >
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png" >
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png" >
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png" >
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico" >
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png" >
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png" >
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png" >
+
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png" >
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png" >
+
+  <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d" >
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How It Works — CavBot Signals, Intelligence, and Execution" >
+  <meta property="og:description" content="Install Analytics v5 and the CavAi Brain script, stream structured events, and execute through CavAi workflows across CavBot surfaces." >
+  <meta property="og:url" content="https://cavbot.io/how-it-works.html" >
+  <meta property="og:site_name" content="CavBot" >
+  <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png" >
+  <meta property="og:type" content="website" >
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" >
+  <meta name="twitter:title" content="How It Works — CavBot" >
+  <meta name="twitter:description" content="Install Analytics v5 and the CavAi Brain script, capture structured signal, and execute through CavAi workflows across CavBot surfaces." >
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png" >
+
+  <!-- TYPEFACE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin >
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" >
+
+  <!-- Global CavBot styles (KEEP) -->
+  <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260325l" >
+  <!-- Unified CavBot head + brain styles -->
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css" >
+  <!-- Page Styles -->
+  <link rel="stylesheet" href="files/css/pages/how-it-works.css" >
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"How It Works — CavBot",
+    "description":"Learn how CavBot works: install Analytics v5 and the CavAi Brain script, stream structured events, and execute through CavAi workflows across CavBot surfaces.",
+    "url":"https://cavbot.io/how-it-works.html",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"CavBot",
+      "url":"https://cavbot.io/"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"CavBot",
+      "url":"https://cavbot.io/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+      }
+    }
+  }
+  </script>
+
+</head>
+
+<body class="page-shell"
+  data-cavbot-page-type="how-it-works-page"
+  data-cavbot-component="how-it-works-shell">
+
+  <!-- HEADER / NAV (unified) -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="brand-lockup">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/logo/cavbot-wordmark.svg" alt="CavBot" class="brand-logo-img">
+        </a>
+      </div>
+
+      <button class="nav-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-overlay">
+        <span class="nav-menu-icon">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
+      <!-- Desktop nav -->
+    <nav class="nav-main">
+      <div class="nav-links">
+        <a href="product.html" class="nav-overlay-link--active">Product</a>
+        <a href="how-it-works.html" class="nav-overlay-link--violet">How it Works</a>
+        <a href="pricing.html" class="nav-overlay-link--active">Pricing</a>
+        <a href="cavbot-arcade.html" class="nav-overlay-link--active">404 Arcade</a>
+        <a href="https://app.cavbot.io/" class="nav-overlay-link--active">Platform</a>
+      </div>
+      <div class="nav-cta-row">
+        <a href="https://app.cavbot.io/auth?mode=login" class="nav-overlay-login">Log In</a>
+        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Mobile menu toggle -->
+    <button class="nav-menu-toggle" type="button" aria-label="Open navigation">
+      <span class="sr-only">Open navigation</span>
+      <span class="nav-menu-icon">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-backdrop"></div>
+  <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+    </div>
+    <div class="nav-overlay-body">
+      <a href="product.html" class="nav-overlay-link">Product</a>
+      <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+      <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+      <a href="cavbot-arcade.html" class="nav-overlay-link">404 Arcade</a>
+      <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+       <div class="nav-cta-row">
+         <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+         <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+       </div>
+    </div>
+  </div>
+</div>
+
+  <main class="page-inner">
+
+    <!-- HERO -->
+    <section class="how-hero" aria-labelledby="how-hero-title" id="top">
+      <div class="product-hero-copy">
+       <br><br><br><br>   <h1 id="how-hero-title" class="hero-title">One snippet. Structured <br><br> signal.</h1><br><br><br><br>
+        <p class="hero-body">
+          CavBot starts with two scripts in your stack: Analytics v5 for typed runtime signal, and the CavAi Brain for reasoning and assist workflows. Together they power one operating model: signals, intelligence, and execution, without requiring user-level identity data.
+        </p><br>
+        <p class="hero-body">
+          This page shows the full loop: what you install, what each layer does, what is collected, and how execution surfaces run from real signal.
+        </p>
+<br><br>
+        <div class="hero-cta-row">
+          <a href="pricing.html" class="btn btn-primary">Choose a Plan</a>
+          <a href="product.html" class="btn btn-ghost">View Product</a>
+        </div>
+<br><br>
+      </div>
+
+      <aside class="toc-card" aria-label="On this page">
+        <div class="toc-title">
+          <span>ON THIS PAGE</span>
+        </div>
+<br>
+        <div class="toc-links" role="navigation" aria-label="How it works sections">
+          <a class="toc-link" href="#overview" data-toc>
+            <div class="toc-left">
+              <div class="toc-kicker">System</div>
+              <div class="toc-name">Overview</div>
+            </div>
+            <span class="toc-dot" aria-hidden="true"></span>
+          </a>
+
+          <a class="toc-link" href="#install" data-toc>
+            <div class="toc-left">
+              <div class="toc-kicker">Step 1</div>
+              <div class="toc-name">Install</div>
+            </div>
+            <span class="toc-dot" aria-hidden="true"></span>
+          </a>
+
+          <a class="toc-link" href="#surfaces" data-toc>
+            <div class="toc-left">
+              <div class="toc-kicker">Step 2</div>
+              <div class="toc-name">Surfaces</div>
+            </div>
+            <span class="toc-dot" aria-hidden="true"></span>
+          </a>
+
+          <a class="toc-link" href="#model" data-toc>
+            <div class="toc-left">
+              <div class="toc-kicker">Step 3</div>
+              <div class="toc-name">Data model</div>
+            </div>
+            <span class="toc-dot" aria-hidden="true"></span>
+          </a>
+
+          <a class="toc-link" href="#privacy" data-toc>
+            <div class="toc-left">
+              <div class="toc-kicker">Step 4</div>
+              <div class="toc-name">Privacy</div>
+            </div>
+            <span class="toc-dot" aria-hidden="true"></span>
+          </a>
+
+          <a class="toc-link" href="#help" data-toc>
+            <div class="toc-left">
+              <div class="toc-kicker">Support</div>
+              <div class="toc-name">Help Center</div>
+            </div>
+            <span class="toc-dot" aria-hidden="true"></span>
+          </a>
+        </div>
+      </aside>
+    </section>
+<br><br>
+    <!-- OVERVIEW -->
+    <section class="section" aria-labelledby="overview-title" id="overview">
+      <header class="section-header">
+        <div class="eyebrow">System overview</div>
+      <br>  <h2 id="overview-title" class="section-title">What becomes available after install</h2>
+        <p class="section-body">
+          CavBot is a clear operating pipeline: Analytics v5 captures structured signal, and the CavAi Brain turns that signal into usable intelligence.
+        </p><br>
+      </header>
+<br><br>
+      <div class="overview-rail" role="group" aria-label="CavBot system overview">
+        <div class="eyebrow" style="margin:0;">Analytics + Brain · multiple surfaces</div>
+<br>
+        <div class="overview-grid">
+          <article class="overview-card">
+            <div class="overview-top">
+              <h3 class="overview-name">Install layer</h3>
+              <span class="pill is-lime">Install</span>
+            </div>
+           <br> <p class="overview-desc">Two script tags: Analytics v5 writes typed route and recovery events, while the CavAi Brain enables reasoning workflows.</p>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-top">
+              <h3 class="overview-name">Events</h3>
+              <span class="pill is-violet">Typed</span>
+            </div>
+           <br> <p class="overview-desc">Append-only rows: <span class="code-inline">eventName</span>, <span class="code-inline">route</span>, timestamp, and a compact properties map.</p>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-top">
+              <h3 class="overview-name">Derived views</h3>
+              <span class="pill is-blue">Rollups</span>
+           </div>
+         <br>   <p class="overview-desc">Aggregation turns raw signal into route health, diagnostic trends, structure insights, and escalation-ready context.</p>
+          </article>
+
+          <article class="overview-card">
+            <div class="overview-top">
+              <h3 class="overview-name">Surfaces</h3>
+              <span class="pill is-lime">Command Center</span>
+            </div>
+         <br>   <p class="overview-desc">Dashboard views, CavAi workflows, the site badge, and arcade recovery all read from the same schema.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+<br><br>
+    <!-- INSTALL -->
+    <section class="section" aria-labelledby="install-title" id="install">
+      <header class="section-header">
+        <div class="eyebrow">Step 1 · Installation</div>
+      <br>  <h2 id="install-title" class="section-title">Install Analytics v5 + CavAi Brain</h2>
+        <p class="section-body">
+          CavBot starts with two scripts. No build step, no SDK ceremony. Place both in your layout, template, or HTML shell so they load across the routes you want under guard.
+        </p><br><br>
+      </header>
+
+      <div class="install-grid">
+        <article class="panel install-card">
+          <h3 style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Tracker snippet panel</h3>
+          <p class="install-note">
+            Required attributes: <span class="code-inline">data-project-key</span> and <span class="code-inline">data-site</span>.
+            Add the CavAi Brain script after Analytics v5. Optional: <span class="code-inline">data-badge="true"</span> to mount the badge.
+          </p>
+<br>
+          <div>
+            <div class="eyebrow" style="margin-bottom:6px;">Analytics + Brain snippet</div>
+            <pre class="code-block" id="snippetBlock">&lt;script
+  src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js"
+  data-project-key="YOUR_PROJECT_KEY"
+  data-site="YOUR_SITE_ID"
+  data-badge="true"
+  defer
+&gt;&lt;/script&gt;
+&lt;script
+  src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js"
+  defer
+&gt;&lt;/script&gt;</pre>
+          </div>
+<br>
+          <ul class="mini-list" style="margin-top:10px;">
+            <li><strong>Placement:</strong> in <span class="code-inline">&lt;head&gt;</span> with <span class="code-inline">defer</span> (recommended) or before <span class="code-inline">&lt;/body&gt;</span>.</li>
+            <li><strong>IDs:</strong> <span class="code-inline">anonymousId</span> is project-scoped; <span class="code-inline">sessionKey</span> groups activity windows.</li>
+            <li><strong>Defaults:</strong> no emails, names, or account identifiers required to operate.</li>
+          </ul>
+<br>
+          <div class="hero-cta-row" style="margin-top:12px;">
+            <button type="button" class="btn btn-soft btn-copy-icon" data-copy-snippet aria-label="Copy snippet">
+              <img src="assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" class="copy-btn-icon">
+            </button>
+        <br>  </div>
+        </article>
+
+        <aside class="guide-card" aria-label="Installation guide card">
+          <div class="guide-top">
+            <div>
+              <h3 class="guide-title">Installation guide</h3><br>
+              <div class="guide-meta">
+                An ebook-style walkthrough (swipe or use arrows). Includes framework notes and the event names CavBot expects.
+              </div>
+            </div>
+            <span class="pill is-violet">5 steps</span>
+          </div>
+<br>
+          <div class="guide-cta">
+            <button type="button" class="btn btn-primary" data-open-guide>Open guide</button>
+            <a class="btn btn-ghost" href="help-center.html">Help Center</a>
+          </div>
+<br>
+          <div class="guide-meta">
+            Tip: after install, open Command Center and confirm events appear in <span class="code-inline">events</span> and <span class="code-inline">sessions</span>.
+          </div>
+        </aside>
+      </div>
+    </section>
+<br><br>
+    <!-- SURFACES (UNIQUE · ICON-LED, NO GRID PREVIEW / BADGE IMAGE BLOCKS) -->
+    <section class="section" aria-labelledby="surfaces-title" id="surfaces">
+      <header class="section-header">
+        <div class="eyebrow">Step 2 · Surfaces</div>
+      <br><br>  <h2 id="surfaces-title" class="section-title">How CavBot surfaces connect in production</h2>
+        <p class="section-body">
+          CavBot stays visible where it should and quiet where it should. Teams review priorities in Command Center, visitors see clear guard signals, and recovery moments stay measurable.
+        </p><br>
+      </header>
+
+      <div class="surface-stack" role="group" aria-label="CavBot production surfaces">
+       <!-- Surfaces · Passport Cards (Swipe) -->
+<div class="surfaces-shell" data-surfaces>
+  <div class="surfaces-rail" data-surfaces-rail role="region" aria-label="CavBot surfaces (swipe left and right)">
+    <!-- Surface 01 -->
+    <article class="surface-card" aria-label="Surface 01 — Live Telemetry">
+      <div class="surface-card-icon" aria-hidden="true">
+        <img src="assets/icons/page/graph-svgrepo-com.svg" alt="" class="surface-icon-asset">
+      </div>
+
+      <div class="surface-top">
+        <div class="surface-id">
+          <div class="surface-kicker">Surface 01</div>
+       <br><br>    <h3 class="surface-title">Command Center signal view</h3>
+        </div>
+        <span class="pill is-blue">Operations</span>
+      </div>
+<br>
+      <p class="surface-text">
+        A calm view of operational signal — diagnostic drift, recovery behavior, structure health, and runtime quality — pulled from the event stream.
+        Built to answer: “Where do journeys break?” and “What changed?”
+      </p>
+<br>
+      <div class="surface-meta">
+        <span class="pill is-lime">Route health</span>
+        <span class="pill is-violet">SEO snapshots</span>
+      <br>   <span class="pill is-blue">Runtime feel</span>
+      </div>
+<br>
+      <div class="surface-events" role="group" aria-label="Command Center event signals">
+        <span class="code-inline">cavbot_route_view</span>
+        <span class="code-inline">cavbot_seo_snapshot</span>
+        <span class="code-inline">cavbot_perf_sample</span>
+      </div>
+<br><br>
+      <div class="surface-actions">
+        <a href="https://app.cavbot.io/" class="btn btn-pill btn-pill--blue">Command Center</a><br>
+      </div>
+    </article>
+<br><br>
+    <!-- Surface 02 -->
+    <article class="surface-card" aria-label="Surface 02 — CavBot Badge">
+      <div class="surface-card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z"></path>
+          <path d="M9 12l2 2 4-5"></path>
+        </svg>
+      </div>
+
+      <div class="surface-top">
+        <div class="surface-id">
+          <div class="surface-kicker">Surface 02</div>
+       <br><br>    <h3 class="surface-title">CavBot Badge</h3>
+        </div>
+        <span class="pill is-lime">Optional</span>
+      </div>
+<br>
+      <p class="surface-text">
+        A fixed, minimal guard presence that signals a session is under protection. It has its own interaction stream so it stays useful
+        without becoming distracting.
+      </p>
+<br>
+      <div class="surface-meta">
+        <span class="pill is-violet">Configurable</span>
+        <span class="pill is-blue">Non-intrusive</span>
+        <span class="pill is-lime">Guard signal</span>
+      </div>
+<br>
+      <div class="surface-events" role="group" aria-label="Badge event signals">
+        <span class="code-inline">cavbot_badge_impression</span>
+        <span class="code-inline">cavbot_badge_hover</span>
+        <span class="code-inline">cavbot_badge_click</span>
+      </div>
+<br><br> 
+      <div class="surface-actions">
+        <button type="button" class="btn btn-pill btn-pill--blue" data-open-badge>Badge details</button>
+      </div>
+    </article>
+<br><br>
+    <!-- Surface 03 -->
+    <article class="surface-card" aria-label="Surface 03 — 404 Arcade Recovery">
+      <div class="surface-card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3v3"></path>
+          <path d="M12 18v3"></path>
+          <path d="M3 12h3"></path>
+          <path d="M18 12h3"></path>
+          <circle cx="12" cy="12" r="5"></circle>
+          <circle cx="12" cy="12" r="1.6"></circle>
+        </svg>
+      </div>
+
+      <div class="surface-top">
+        <div class="surface-id">
+          <div class="surface-kicker">Surface 03</div>
+         <br><br>  <h3 class="surface-title">Arcade recovery surface</h3>
+        </div>
+        <span class="pill is-violet">Recovery</span>
+      </div>
+<br>
+      <p class="surface-text">
+        A designed 404 surface that converts dead routes into measurable recovery signal — visibility into abandonment, referrers,
+        and where the journey breaks.
+      </p>
+<br>
+      <div class="surface-meta">
+        <span class="pill is-blue">Catch / miss</span>
+        <span class="pill is-violet">Idle telemetry</span>
+        <span class="pill is-lime">Recovery rate</span>
+      </div>
+<br>
+      <div class="surface-events" role="group" aria-label="404 event signals">
+        <span class="code-inline">cavbot_404_view</span>
+        <span class="code-inline">cavbot_catch</span>
+        <span class="code-inline">cavbot_miss</span>
+        <span class="code-inline">cavbot_idle</span>
+      </div>
+<br><br>
+      <div class="surface-actions">
+        <button type="button" class="btn btn-pill btn-pill--violet" data-open-impl>Implementation notes</button>
+      </div>
+    </article>
+  </div>
+</div>
+      </div>
+    </section>
+<br>
+    <!-- DATA MODEL -->
+    <section class="section" aria-labelledby="model-title" id="model">
+      <header class="section-header">
+        <div class="eyebrow">Step 3 · Data model</div>
+     <br><br>   <h2 id="model-title" class="section-title">From structured events to coordinated action</h2>
+        <p class="section-body">
+          CavBot keeps the schema small on purpose. Most of the value comes from derived tables and typed insights — not from large payloads.
+          The pipeline below mirrors how Command Center stays consistent across projects.
+        </p>
+      </header>
+<br><br>
+      <div class="model-rail" role="group" aria-label="CavBot data pipeline">
+        <div class="eyebrow" style="margin:0;">Pipeline</div>
+<br>
+        <div class="model-grid">
+          <article class="model-card">
+            <h3 class="model-name">Layer 1 · Events</h3><br>
+            <p class="model-desc">Append-only event stream keyed by <span class="code-inline">anonymousId</span>, <span class="code-inline">sessionKey</span>, route, and time.</p><br>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="pill is-violet">events</span>
+              <span class="pill is-blue">sessions</span>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <h3 class="model-name">Layer 2 · Aggregates</h3><br>
+            <p class="model-desc">Rollups for daily route counts, referrer breakdowns, SEO snapshots, and performance samples.</p><br>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="pill is-lime">daily_page_aggregates</span>
+              <span class="pill is-blue">referrer_aggregates</span>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <h3 class="model-name">Layer 3 · Insights</h3><br>
+            <p class="model-desc">Typed findings: 404 spikes, SEO regressions, and slow critical pages — designed for action.</p><br>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="pill is-violet">404_spike</span>
+              <span class="pill is-blue">slow_critical_page</span>
+            </div>
+          </article>
+
+          <article class="model-card">
+            <h3 class="model-name">Layer 4 · Surfaces</h3><br>
+            <p class="model-desc">Dashboard views read the same tables; CavAi workflows can reason over <span class="code-inline">insights</span>.</p><br>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <span class="pill is-lime">Command Center</span>
+              <span class="pill is-violet">/v1/assist</span>
+            </div>
+          </article>
+        </div>
+<br>
+        <div style="margin-top:14px;">
+          <div class="eyebrow" style="margin-bottom:6px;">Example event (minimal payload)</div><br>
+          <pre class="code-block">{
+  "timestamp": "2025-01-01T12:34:56Z",
+  "anonymousId": "a6d0…",
+  "sessionKey": "s3…",
+  "eventName": "cavbot_route_view",
+  "route": "/pricing",
+  "properties": { "pageType": "marketing" }
+}</pre>
+        </div>
+      </div>
+    </section>
+<br>
+    <!-- PRIVACY -->
+    <section class="section" aria-labelledby="privacy-title" id="privacy">
+      <header class="section-header">
+        <div class="eyebrow">Step 4 · Privacy & retention</div>
+       <br> <h2 id="privacy-title" class="section-title">Production-safe defaults</h2>
+        <p class="section-body">
+          CavBot is built for operational signal. IDs are anonymous and project-scoped. Payloads are intentionally small.
+          Retention can be configured per project to match your data posture.
+        </p><br>
+      </header>
+<br>
+      <div class="privacy-grid">
+        <article class="privacy-card">
+          <h3 class="privacy-title">IDs & identifiers</h3><br>
+          <ul class="privacy-list">
+            <li><strong>Project-scoped</strong> <span class="code-inline">anonymousId</span> (UUID) per visitor.</li>
+            <li><span class="code-inline">sessionKey</span> groups events by activity window.</li>
+            <li>No names, emails, or account identifiers required by default.</li>
+          </ul>
+        </article>
+
+        <article class="privacy-card">
+          <h3 class="privacy-title">IP & location</h3><br>
+          <ul class="privacy-list">
+            <li>Optional IP handling; when enabled, truncation occurs before storage.</li>
+            <li>Coarse geography only for routing and anomaly detection.</li>
+            <li>No long-term storage of raw IPs as a default posture.</li>
+          </ul>
+        </article>
+
+        <article class="privacy-card">
+          <h3 class="privacy-title">Retention controls</h3><br>
+          <ul class="privacy-list">
+            <li>Raw events retained for an operational window (example: 90 days).</li>
+            <li>Aggregates can be retained longer for trends.</li>
+            <li>Project toggles can disable event types or performance sampling.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+<br>
+    <!-- HELP CENTER CTA -->
+    <section class="section" aria-labelledby="help-title" id="help">
+      <header class="section-header">
+        <div class="eyebrow">Support</div><br><br>
+        <h2 id="help-title" class="section-title">Need rollout guidance?</h2>
+        <p class="section-body">
+          The Help Center includes setup notes, troubleshooting, and a clear escalation path — built to match the same CavBot system language.
+        </p><br><br>
+      </header>
+
+      <div role="group" aria-label="Help Center call to action">
+        <a href="help-center.html" class="btn btn-primary">HELP CENTER</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (unified) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <section class="footer-column">
+          <h2 class="footer-column-title">Resources</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Resources</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
+            <li><a href="/faqs.html" class="footer-link">FAQs</a></li>
+            <li><a href="/cavbot-research.html" class="footer-link">CavBot Research</a></li>
+            <li><a href="/cavbot-biography.html" class="footer-link">CavBot Biography</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-column">
+          <h2 class="footer-column-title">Platform</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Platform</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/cavtools.html" class="footer-link">CavTools</a></li>
+            <li><a href="/cavcloud.html" class="footer-link">CavCloud</a></li>
+            <li><a href="/cavsafe.html" class="footer-link">CavSafe</a></li>
+            <li><a href="/cavcode.html" class="footer-link">CavCode</a></li>
+            <li><a href="/cavcode-viewer.html" class="footer-link">CavCode Viewer</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-column">
+          <h2 class="footer-column-title">Company</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Company</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="code-of-ethics.html" class="footer-link">Code of Ethics</a></li>
+            <li><a href="careers.html" class="footer-link">Careers</a></li>
+            <li><a href="media-kit.html" class="footer-link">Media Kit</a></li>
+            <li><a href="newsroom.html" class="footer-link">News &amp; Press</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-column">
+          <h2 class="footer-column-title">Legal Notices</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Legal</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/terms-of-use.html" class="footer-link">Terms of Use</a></li>
+            <li><a href="/data-security.html" class="footer-link">Data &amp; Security</a></li>
+          </ul>
+        </section>
+      </div>
+<br><br><br><br>
+      <div class="footer-bottom">
+        <div class="footer-copy">&copy; 2026 CavBot · All right reserved</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX · CAVBOT BADGE PASSPORT -->
+  <div class="lightbox" id="badgePassport" aria-hidden="true">
+    <div class="lightbox-backdrop" data-badge-close></div>
+
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="badgeTitle">
+      <div class="lightbox-header">
+        <div class="lightbox-title">
+          <strong id="badgeTitle">CavBot Badge Passport</strong>
+          <span>Session guard · visitor-safe signal</span>
+        </div>
+        <button type="button" class="lightbox-close" aria-label="Close badge passport" data-badge-close>&times;</button>
+      </div>
+
+      <div class="lightbox-body">
+        <div class="passport-wrap">
+          <div class="passport-top">
+            <!-- CavBot badge via official slot -->
+            <div class="cavbot-cdn-slot" data-cavbot-cdn-slot="badge" aria-hidden="true"></div>
+
+            <h3 class="passport-name">Hi 👋🏽 I’m CavBot.</h3>
+            <p class="passport-sub">
+              I’m the on-site guard signal — a calm badge that tells visitors and teams this session is protected, instrumented, and measurable.
+              I help build the modern web by converting real journeys into structured signal — without requiring user-level identity.
+            </p>
+
+            <div class="passport-tags" role="group" aria-label="CavBot passport tags">
+              <span class="pill is-lime">Guard signal</span>
+              <span class="pill is-violet">Typed events</span>
+              <span class="pill is-blue">Derived views</span>
+            </div>
+          </div>
+
+          <div class="passport-grid">
+            <section class="passport-card" aria-label="Identity">
+              <h4 class="passport-card-title">
+                Identity
+                <span class="pill is-violet">Passport</span>
+              </h4>
+
+              <div class="passport-rows">
+                <div class="passport-row">
+                  <div class="passport-key">Designation</div>
+                  <div class="passport-val">CavBot Badge · On-site guard presence</div>
+                </div>
+                <div class="passport-row">
+                  <div class="passport-key">Primary role</div>
+                  <div class="passport-val">Signal trust + log useful interactions (impression / hover / click)</div>
+                </div>
+                <div class="passport-row">
+                  <div class="passport-key">Presence</div>
+                  <div class="passport-val">Optional, fixed, minimal — never intrusive</div>
+                </div>
+                <div class="passport-row">
+                  <div class="passport-key">Mounting</div>
+                  <div class="passport-val">Enable with <span class="code-inline">data-badge="true"</span> or init flag</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="passport-card" aria-label="What I collect">
+              <h4 class="passport-card-title">
+                What I collect
+                <span class="pill is-blue">Minimal</span>
+              </h4>
+
+              <p class="passport-bio">
+                I emit tiny, typed events so your team can measure what matters — and ignore what doesn’t.
+              </p>
+
+              <div class="passport-tags" style="margin-top:6px;">
+                <span class="code-inline">cavbot_badge_impression</span>
+                <span class="code-inline">cavbot_badge_hover</span>
+                <span class="code-inline">cavbot_badge_click</span>
+              </div>
+
+              <p class="passport-bio" style="margin-top:10px; color: rgba(197,206,231,0.84);">
+                Default posture: no names, no emails, no account identifiers required — just operational signal.
+              </p>
+            </section>
+
+            <section class="passport-card" aria-label="How I help">
+              <h4 class="passport-card-title">
+                How I help
+                <span class="pill is-lime">Production</span>
+              </h4>
+
+              <ul class="mini-list" style="margin:0;">
+                <li><strong>Trust:</strong> a clean guard mark that reads as “under care.”</li>
+                <li><strong>Signal:</strong> captures helpful micro-interactions without distraction.</li>
+                <li><strong>Consistency:</strong> the badge speaks the same language as Command Center + Arcade recovery surface.</li>
+                <li><strong>Clarity:</strong> operational visibility, not surveillance.</li>
+              </ul>
+            </section>
+
+            <section class="passport-card" aria-label="Controls">
+              <h4 class="passport-card-title">
+                Controls
+                <span class="pill is-violet">Config</span>
+              </h4>
+
+              <div class="passport-rows">
+                <div class="passport-row">
+                  <div class="passport-key">Badge on/off</div>
+                  <div class="passport-val">Project toggle (or remove <span class="code-inline">data-badge</span>)</div>
+                </div>
+                <div class="passport-row">
+                  <div class="passport-key">Events</div>
+                  <div class="passport-val">Disable event types if needed (privacy-first defaults)</div>
+                </div>
+                <div class="passport-row">
+                  <div class="passport-key">Retention</div>
+                  <div class="passport-val">Operational window for raw events + longer aggregates for trends</div>
+                </div>
+              </div>
+
+              <div class="passport-tags" style="margin-top:10px;">
+                <a href="cavbot-biography.html" class="btn btn-pill btn-pill--lime">Biography</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div class="lightbox-footer">
+        <div class="dots" role="group" aria-label="Passport status">
+          <span class="pill is-lime">Active surface</span>
+          <span class="pill is-violet">Optional</span>
+          <span class="pill is-blue">Visitor-safe</span>
+        </div>
+        <div class="pager">
+          <button type="button" class="btn btn-soft" data-badge-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX · 404 IMPLEMENTATION NOTES (INSTALL PROCESS ONLY) -->
+  <div class="lightbox" id="implNotes" aria-hidden="true">
+    <div class="lightbox-backdrop" data-impl-close></div>
+
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="implTitle">
+      <div class="lightbox-header">
+        <div class="lightbox-title">
+          <strong id="implTitle">404 Arcade Recovery · Implementation Notes</strong>
+          <span>Install + wire events</span>
+        </div>
+        <button type="button" class="lightbox-close" aria-label="Close implementation notes" data-impl-close>&times;</button>
+      </div>
+
+      <div class="lightbox-body">
+        <div class="passport-wrap">
+          <div class="eyebrow">Install path</div>
+          <h3 class="guide-h" style="margin-top:2px;">Add the 404 surface and emit typed events</h3>
+          <p class="guide-p">
+            This is the minimal installation process. The goal: your 404 becomes a recovery surface — and CavBot receives clean, typed telemetry.
+          </p>
+
+          <section class="passport-card" aria-label="Step 1">
+            <h4 class="passport-card-title">Step 1 · Ensure the tracker is present <span class="pill is-lime">Required</span></h4>
+            <p class="passport-bio">
+              The 404 surface assumes the CavBot tracker exists on the site (global layout / template).
+            </p>
+            <pre class="code-block">&lt;script
+  src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js"
+  data-project-key="YOUR_PROJECT_KEY"
+  data-site="YOUR_SITE_ID"
+  data-badge="true"
+  defer
+&gt;&lt;/script&gt;</pre>
+          </section>
+
+          <section class="passport-card" aria-label="Step 2">
+            <h4 class="passport-card-title">Step 2 · Route your 404 to the arcade recovery surface <span class="pill is-violet">Surface</span></h4>
+            <p class="passport-bio">
+              Render the arcade recovery experience on your 404 route (framework or static 404). Emit <span class="code-inline">cavbot_404_view</span> on entry.
+            </p>
+            <pre class="code-block">// Example: Next.js (pages router)
+// pages/404.js
+import CavBotArcadeRecovery from "../components/CavBotControlRoom";
+
+export default function NotFoundPage() {
+  if (typeof window !== "undefined" && window.cavbotAnalytics) {
+    window.cavbotAnalytics.track("cavbot_404_view", {
+      route: window.location.pathname,
+      pageType: "404-arcade-recovery"
+    });
+  }
+
+  return (
+    &lt;CavBotArcadeRecovery difficulty="standard" theme="grid-lab" /&gt;
+  );
+}</pre>
+          </section>
+
+          <section class="passport-card" aria-label="Step 3">
+            <h4 class="passport-card-title">Step 3 · Wire interaction events <span class="pill is-blue">Signal</span></h4>
+            <p class="passport-bio">
+              When the visitor plays / interacts, emit clean, typed outcomes. Keep payloads small.
+            </p>
+            <div class="passport-tags" style="margin:0;">
+              <span class="code-inline">cavbot_catch</span>
+              <span class="code-inline">cavbot_miss</span>
+              <span class="code-inline">cavbot_idle</span>
+            </div>
+      
+          </section>
+
+          <section class="passport-card" aria-label="Step 4">
+            <h4 class="passport-card-title">Step 4 · Verify in Command Center <span class="pill is-violet">Confirm</span></h4>
+            <ul class="mini-list" style="margin:0;">
+              <li>Open Command Center → confirm rows in <span class="code-inline">events</span>.</li>
+              <li>Check 404 density + recovery rate after deployment.</li>
+              <li>Use deploy markers so spikes are explainable.</li>
+            </ul>
+            <div class="passport-tags" style="margin-top:10px;">
+              <a href="https://app.cavbot.io/" class="btn btn-primary">Command Center</a>
+
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="lightbox-footer">
+        <div class="dots" role="group" aria-label="Notes status">
+          <span class="pill is-lime">Install</span>
+          <span class="pill is-blue">Events</span>
+          <span class="pill is-violet">Verify</span>
+        </div>
+        <div class="pager">
+          <button type="button" class="btn btn-soft" data-impl-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX · INSTALLATION GUIDE -->
+  <div class="lightbox" id="installGuide" aria-hidden="true">
+    <div class="lightbox-backdrop" data-guide-close></div>
+
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+      <div class="lightbox-header">
+        <div class="lightbox-title">
+          <strong id="guideTitle">Installation guide</strong>
+          <span id="guideCounter">Step 1 of 5</span>
+        </div>
+        <button type="button" class="lightbox-close" aria-label="Close installation guide" data-guide-close>&times;</button>
+      </div>
+
+      <div class="guide-viewport" id="guideViewport">
+        <div class="copy-toast" id="copyToast">Copied</div>
+
+        <div class="guide-track" id="guideTrack">
+          <!-- PAGE 1 -->
+          <section class="guide-page" aria-label="Step 1">
+            <div class="guide-page-top">
+              <span class="guide-step">Step 1 · Add Analytics + Brain</span>
+              <span class="pill is-lime">Two scripts</span>
+            </div>
+            <h3 class="guide-h">Place both scripts in your layout</h3>
+            <p class="guide-p">
+              Add Analytics v5 and the CavAi Brain to the template that renders across routes. Use <span class="code-inline">defer</span> for early,
+              non-blocking loading.
+            </p>
+            <pre class="code-block" id="guideSnippet">&lt;script
+  src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js"
+  data-project-key="YOUR_PROJECT_KEY"
+  data-site="YOUR_SITE_ID"
+  data-badge="true"
+  defer
+&gt;&lt;/script&gt;
+&lt;script
+  src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js"
+  defer
+&gt;&lt;/script&gt;</pre>
+
+            <div class="guide-actions">
+              <button type="button" class="btn btn-soft btn-copy-icon" data-guide-copy aria-label="Copy snippet">
+                <img src="assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" class="copy-btn-icon">
+              </button>
+              <span class="pill is-violet">head or body</span>
+            </div>
+          </section>
+
+          <!-- PAGE 2 -->
+          <section class="guide-page" aria-label="Step 2">
+            <div class="guide-page-top">
+              <span class="guide-step">Step 2 · Set keys</span>
+              <span class="pill is-violet">Required</span>
+            </div>
+            <h3 class="guide-h">Configure project key and site id</h3>
+            <p class="guide-p">
+              <span class="code-inline">data-project-key</span> maps to your project. <span class="code-inline">data-site</span> keeps production and staging cleanly separated.
+            </p>
+            <ul class="mini-list">
+              <li><span class="code-inline">production</span> — live traffic</li>
+              <li><span class="code-inline">staging</span> — pre-release validation</li>
+              <li><span class="code-inline">preview</span> — ephemeral builds</li>
+            </ul>
+            <p class="guide-p" style="margin-top:6px;">
+              IDs are anonymous and project-scoped. CavBot is designed for route-level operational insight.
+            </p>
+          </section>
+
+          <!-- PAGE 3 -->
+          <section class="guide-page" aria-label="Step 3">
+            <div class="guide-page-top">
+              <span class="guide-step">Step 3 · Enable the badge</span>
+              <span class="pill is-lime">Optional</span>
+            </div>
+            <h3 class="guide-h">Mount the on-site badge</h3>
+            <p class="guide-p">
+              Enable the badge via snippet attribute (<span class="code-inline">data-badge="true"</span>) or through an explicit init call.
+            </p>
+            <pre class="code-block">window.cavbotAnalytics.init({
+  projectKey: "YOUR_PROJECT_KEY",
+  environment: "production",
+  cavbotBadge: true
+});</pre>
+            <p class="guide-p" style="margin-top:6px;">
+              Badge interactions can be tracked (impression, hover, click) without collecting personal identifiers.
+            </p>
+          </section>
+
+          <!-- PAGE 4 -->
+          <section class="guide-page" aria-label="Step 4">
+            <div class="guide-page-top">
+              <span class="guide-step">Step 4 · Wire your 404 surface</span>
+              <span class="pill is-blue">Signal</span>
+            </div>
+            <h3 class="guide-h">Convert 404s into structured events</h3>
+            <p class="guide-p">
+              Route your 404 experience through the arcade recovery component and emit typed events. Example: Next.js.
+            </p>
+            <pre class="code-block">// pages/404.js
+import CavBotArcadeRecovery from "../components/CavBotControlRoom";
+
+export default function NotFoundPage() {
+  if (typeof window !== "undefined" && window.cavbotAnalytics) {
+    window.cavbotAnalytics.track("cavbot_404_view", {
+      route: window.location.pathname,
+      pageType: "404-arcade-recovery"
+    });
+  }
+
+  return (
+    &lt;CavBotArcadeRecovery difficulty="standard" theme="grid-lab" /&gt;
+  );
+}</pre>
+
+            <ul class="mini-list" style="margin-top:10px;">
+              <li><span class="code-inline">cavbot_404_view</span> — entry event</li>
+              <li><span class="code-inline">cavbot_catch</span>, <span class="code-inline">cavbot_miss</span>, <span class="code-inline">cavbot_idle</span> — interaction signal</li>
+            </ul>
+          </section>
+
+          <!-- PAGE 5 -->
+          <section class="guide-page guide-page--verify" aria-label="Step 5">
+            <div class="guide-page-top">
+              <span class="guide-step">Step 5 · Verify in Command Center</span>
+              <span class="pill is-violet">Confirm</span>
+            </div>
+            <h3 class="guide-h">Confirm events are flowing</h3>
+            <p class="guide-p">
+              Open Command Center and confirm you see new rows in <span class="code-inline">events</span> and <span class="code-inline">sessions</span>.
+              From there, verify 404 density, SEO snapshots, and performance samples.
+            </p>
+
+            <div class="guide-actions">
+              <a href="https://app.cavbot.io/" class="btn btn-primary">View in Command Center</a>
+              <a href="help-center.html" class="btn btn-ghost">Help Center</a>
+            </div>
+
+            <p class="guide-p guide-p--tip">
+              Tip: deploy markers make trends readable. Add markers whenever you ship changes that affect routes, SEO, or performance.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <div class="lightbox-footer">
+        <div class="dots" role="group" aria-label="Guide pages">
+          <button class="dot is-active" type="button" aria-label="Step 1" data-dot="0"></button>
+          <button class="dot" type="button" aria-label="Step 2" data-dot="1"></button>
+          <button class="dot" type="button" aria-label="Step 3" data-dot="2"></button>
+          <button class="dot" type="button" aria-label="Step 4" data-dot="3"></button>
+          <button class="dot" type="button" aria-label="Step 5" data-dot="4"></button>
+        </div>
+
+        <div class="pager">
+          <button type="button" class="btn btn-soft" data-prev>Previous</button>
+          <button type="button" class="btn btn-primary" data-next>Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics bridge (window.cavbotAnalytics.track) -->
+  <script>
+  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+  window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_main_01J9X0ZK3P";
+  window.CAVBOT_SITE = "cavbot.io";
+  window.CAVBOT_SITE_ID = "cavbot.io";
+  window.CAVBOT_SITE_PUBLIC_ID = "cavbot.io";
+</script>
+<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js" defer></script>
+  <!-- CavBot brain + nav toggle -->
+  <script src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js" defer></script>
+  <!-- CavBot header-footer + nav toggle -->
+  <script src="files/js/globals/header-footer.js?v=brainfix-20260325studio"></script>
+  <!-- Page Js -->
+  <script src="files/js/pages/how-it-works.js"></script>
+
+</body>
+</html>

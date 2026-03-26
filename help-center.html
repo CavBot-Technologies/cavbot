@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" >
+  <title>CavBot · Help Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
+  <meta name="description" content="CavBot Help Center — guides, troubleshooting, account support, and escalations for CavBot’s multi-surface operational intelligence platform." >
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  
+  
+   <!-- SEO (sharp weapon) -->
+  <link rel="canonical" href="https://cavbot.io/help-center.html">
+
+  <!-- UNIVERSAL FAVICONS  -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+  <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+  <link rel="manifest" href="site.webmanifest">
+
+<meta name="theme-color" content="#01030f">
+<meta name="msapplication-TileColor" content="#01030f">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CavBot">
+  <meta property="og:title" content="CavBot · Help Center">
+  <meta property="og:description" content="CavBot Help Center — guides, troubleshooting, account support, and escalations for CavBot’s multi-surface operational intelligence platform.">
+  <meta property="og:url" content="https://cavbot.io/help-center">
+
+  <!-- OPTIONAL: replace with  real image -->
+  <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CavBot · Media Kit & Brand Assets">
+  <meta name="twitter:description" content="CavBot Help Center — guides, troubleshooting, account support, and escalations for CavBot’s multi-surface operational intelligence platform.">
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+  <!-- TYPEFACE -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CavBot header-footer styles  -->
+  <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260325l" >
+  <!-- Page Style -->
+  <link rel="stylesheet" href="files/css/pages/help-center.css" >
+<!-- Structured data  -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"CavBot · Help Center",
+    "description":"CavBot Help Center — guides, troubleshooting, account support, and escalations for CavBot’s multi-surface operational intelligence platform.",
+    "url":"https://cavbot.io/help-center.html",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"CavBot",
+      "url":"https://cavbot.io/"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"CavBot",
+      "url":"https://cavbot.io/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+      }
+    }
+  }
+  </script>
+</head>
+
+<body class="page-shell"
+      data-cavbot-page-type="help-center"
+      data-cavbot-component="support-shell">
+
+  <!-- ===========================
+       HEADER / NAV (exact system hooks)
+       =========================== -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="brand-lockup">
+        <a href="index.html" class="brand-logo">
+          <img src="assets/logo/cavbot-wordmark.svg" alt="CavBot" class="brand-logo-img">
+        </a>
+      </div>
+
+      <!-- Mobile / tablet menu toggle (console-style dot grid) -->
+      <button
+        type="button"
+        class="nav-menu-toggle"
+        aria-label="Open navigation"
+        aria-expanded="false">
+        <span class="nav-menu-icon" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+
+      <!-- Desktop nav -->
+    <nav class="nav-main">
+      <div class="nav-links">
+        <a href="product.html" class="nav-overlay-link--active">Product</a>
+        <a href="how-it-works.html" class="nav-overlay-link--active">How it Works</a>
+        <a href="pricing.html" class="nav-overlay-link--active">Pricing</a>
+        <a href="cavbot-arcade.html" class="nav-overlay-link--active">404 Arcade</a>
+        <a href="https://app.cavbot.io/" class="nav-overlay-link--active">Platform</a>
+      </div>
+      <div class="nav-cta-row">
+        <a href="https://app.cavbot.io/auth?mode=login" class="nav-overlay-login">Log In</a>
+        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+      </div>
+    </nav>
+
+    <!-- Mobile menu toggle -->
+    <button class="nav-menu-toggle" type="button" aria-label="Open navigation">
+      <span class="sr-only">Open navigation</span>
+      <span class="nav-menu-icon">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-backdrop"></div>
+  <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+    </div>
+    <div class="nav-overlay-body">
+      <a href="product.html" class="nav-overlay-link">Product</a>
+      <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+      <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+      <a href="cavbot-arcade.html" class="nav-overlay-link">404 Arcade</a>
+      <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+       <div class="nav-cta-row">
+         <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+         <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+       </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br>
+  <!-- ===========================
+       MAIN
+       =========================== -->
+  <main class="page-inner">
+
+    <!-- HERO -->
+    <section class="section help-hero" aria-label="CavBot Help Center overview">
+      <div>
+    <br><br><br><h1 class="help-hero-title">Find answers fast. <br> <br> Operate with clarity.</h1> <br> <br>
+    <br>    <p class="help-hero-lede">
+          This is the operational surface for CavBot: guides, troubleshooting, account help, and structured escalation.
+          Search first, then use filters to move into the right lane.
+        </p>
+<br><br>
+        <div class="help-search" role="search" aria-label="Search CavBot help">
+
+          <div class="help-search-field">
+            <span class="help-search-icon" aria-hidden="true"></span>
+            <input
+              id="help-search-input"
+              class="help-search-input"
+              type="search"
+              aria-haspopup="listbox"
+              placeholder="Search topics like: onboarding, 404 pilots, SEO structure, invoices, incidents…"
+              autocomplete="off"
+              aria-autocomplete="list"
+              aria-controls="search-suggestions"
+            >
+            <div id="search-suggestions" class="search-suggestions" role="listbox" aria-label="Search suggestions"></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+<br>
+    <!-- FEATURED: ROADMAP -->
+    <section class="section" id="getting-started" aria-label="Featured guides">
+      <header class="section-header">
+    <br><br> <h2 class="section-title">A real path through support</h2>
+        <p class="section-body">
+          A Help Center should feel like an operating map, not a wall of emails. Start with the guided path below.
+        </p>
+      </header>
+<br><br><br>
+      <div class="help-featured" style="margin-top:16px;">
+        <div class="roadmap" role="region" aria-label="Onboarding roadmap">
+          <div class="eyebrow">Getting started</div>
+      <br>  <br>  <h3 class="section-title" style="font-size:16px; margin-top:6px;">Onboard CavBot in three steps</h3><br>
+          <p class="section-body" style="font-size:12px; max-width:none; margin-top:6px;">
+            This is the “first-success” loop: connect → mark routes → review signals. Keep it calm and measurable.
+          </p>
+<br> <br>
+          <ol class="roadmap-steps">
+            <li class="roadmap-step" data-help-search="onboarding connect install instrumentation">
+              <div class="step-top">
+                <div class="step-kicker">Step 01</div>
+                <span class="pill is-violet">Guide</span>
+              </div>
+            <br>  <p class="step-title">Connect your first project surface</p>
+              <p class="step-desc">Add CavBot to a single high-value flow so signals land in Command Center cleanly.</p><br><br>
+              <div class="topic-actions">
+                <button type="button" class="help-btn help-btn-primary is-violet" data-help-modal="connect-guide">Open guide</button>
+              </div>
+<br>
+            </li>
+
+            <li class="roadmap-step" data-help-search="watchlist routes high value flows 404 monitoring">
+              <div class="step-top">
+                <div class="step-kicker">Step 02</div>
+                <span class="pill is-lime">Routes</span>
+              </div>
+            <br>  <p class="step-title">Build your route watchlist</p>
+              <p class="step-desc">Mark journeys that can’t fail: checkout, sign-up, and campaign landing routes.</p><br>
+              <div class="topic-actions">
+                <button type="button" class="help-btn help-btn-primary" data-help-modal="watchlist-guide">Open guide</button>
+              </div>
+            </li>
+
+            <li class="roadmap-step" data-help-search="review signals alerts seo structure runtime feel">
+              <div class="step-top">
+                <div class="step-kicker">Step 03</div>
+                <span class="pill is-blue">Signals</span>
+              </div>
+            <br>  <p class="step-title">Read signals, set escalation rules</p>
+              <p class="step-desc">Confirm what “good” looks like, then set alert thresholds that match your risk.</p><br>
+              <div class="topic-actions">
+                <button type="button" class="help-btn help-btn-primary" data-help-modal="signals-guide">Open guide</button>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+<br>
+    <!-- FILTERS + TOPIC GRID -->
+    <section class="section" id="topic-grid" aria-label="Browse help topics">
+      <header class="section-header" style="max-width:36rem;">
+        <div class="eyebrow">Browse topics</div>
+        <h2 class="section-title">Topic routes</h2>
+        <p class="section-body">
+          Open a card to get docs, examples, and the right support path.
+        </p>
+      </header>
+<br>
+      <!-- Topic grid -->
+      <div class="help-grid" id="help-grid">
+        <!-- Getting started -->
+        <article class="topic-card"
+          data-help-category="getting-started"
+          data-help-search="onboarding connect install instrumentation first route project setup"
+          data-accent="violet">
+          <div class="topic-top">
+            <div class="topic-label">Getting started</div>
+            <span class="pill is-violet">Guide</span>
+          </div>
+      <br>    <h3 class="topic-title">Onboarding: first project → first signals</h3>
+          <p class="topic-desc">
+            The minimal setup that gets CavBot watching real user journeys without over-instrumentation.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-violet">connect</span>
+            <span class="pill is-lime">watchlist</span>
+            <span class="pill is-blue">signals</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-primary" data-help-modal="onboarding-overview">Open guide</button>
+            <a href="#contact" class="help-btn help-btn-ghost is-blue">Ask a question</a>
+          </div>
+        </article>
+
+        <!-- Routes / 404 -->
+        <article class="topic-card"
+          data-help-category="routes"
+          data-help-search="routes 404 dead links campaigns landing pages broken links redirect"
+          data-accent="lime">
+          <div class="topic-top">
+            <div class="topic-label">Routes &amp; 404s</div>
+            <span class="pill is-lime">Surface</span>
+          </div>
+       <br>   <h3 class="topic-title">404s as a product surface</h3>
+          <p class="topic-desc">
+            How CavBot treats dead ends: route severity, referrers, and what “critical” means in production.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-lime">severity</span>
+            <span class="pill is-blue">referrers</span>
+            <span class="pill is-violet">journeys</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-primary" data-help-modal="routes-404-docs">Open docs</button>
+          </div>
+        </article>
+
+        <!-- SEO -->
+        <article class="topic-card"
+          data-help-category="seo"
+          data-help-search="seo structure meta titles descriptions indexing sitemap canonical"
+          data-accent="blue">
+          <div class="topic-top">
+            <div class="topic-label">SEO structure</div>
+            <span class="pill is-blue">Signals</span>
+          </div>
+        <br> <h3 class="topic-title">Structure alerts: what CavBot flags first</h3>
+          <p class="topic-desc">
+            Title/description drift, canonical issues, crawl traps, and how CavBot summarizes structure risk.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-blue">indexing</span>
+            <span class="pill is-violet">structure</span>
+            <span class="pill is-lime">health</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-primary" data-help-modal="seo-structure-docs">Open docs</button>
+            <button type="button" class="help-btn help-btn-ghost is-blue" data-help-modal="seo-examples">Examples</button>
+          </div>
+        </article>
+
+        <!-- Billing -->
+        <article class="topic-card"
+          data-help-category="billing"
+          data-help-search="billing invoices receipts plan change subscription limits payments"
+          data-accent="violet"
+           id="billing">
+          
+           <div class="topic-top">
+            <div class="topic-label">Accounts &amp; billing</div>
+            <span class="pill is-violet">Support</span>
+          </div>
+       <br>  <h3 class="topic-title">Invoices, receipts, and plan changes</h3>
+          <p class="topic-desc">
+            Clean billing workflows for finance teams: receipts, invoices, PO notes, and subscription adjustments.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-violet">invoices</span>
+            <span class="pill is-blue">limits</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-ghost is-blue" data-help-modal="billing-faq">Support</button>
+          </div>
+        </article>
+
+        <!-- Security -->
+        <article class="topic-card"
+          data-help-category="security"
+          data-help-search="security vulnerability incident report abuse bug bounty responsible disclosure"
+          data-accent="lime"
+          id="security">
+          <div class="topic-top">
+            <div class="topic-label">Security</div>
+            <span class="pill is-lime">Critical</span>
+          </div>
+       <br>  <h3 class="topic-title">Report a security concern</h3>
+          <p class="topic-desc">
+            Responsible disclosure guidance: what to include, how to reproduce, and how we coordinate fixes.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-violet">disclosure</span>
+            <span class="pill is-blue">repro</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-ghost is-lime" data-help-modal="security-template">template</button>
+          </div>
+        </article>
+
+        <!-- Legal & Privacy -->
+        <article class="topic-card"
+          data-help-category="legal"
+          data-help-search="legal privacy dpa gdpr ccpa data processing agreement deletion export"
+          data-accent="blue"
+          id="privacy">
+          <div class="topic-top">
+            <div class="topic-label">Legal &amp; privacy</div>
+            <span class="pill is-blue">Policy</span>
+          </div>
+       <br>  <h3 class="topic-title">Data requests &amp; compliance</h3>
+          <p class="topic-desc">
+            DPAs, privacy rights, and structured data requests (export / deletion). Keep it jurisdiction-clear.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-blue">privacy</span>
+            <span class="pill is-violet">contracts</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-ghost is-violet" data-help-modal="policy-faq">Support</button>
+          </div>
+        </article>
+
+        <!-- Incidents -->
+        <article class="topic-card"
+          data-help-category="routes"
+          data-help-search="incident outage production critical flow downtime escalation"
+          data-accent="lime"
+          id="incidents">
+          <div class="topic-top">
+            <div class="topic-label">Incidents</div>
+            <span class="pill is-lime">Escalation</span>
+          </div>
+       <br>  <h3 class="topic-title">Report a production incident cleanly</h3>
+          <p class="topic-desc">
+            The fastest way to get help: route description, timestamps, what changed, and how to reproduce.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-lime">timestamps</span>
+            <span class="pill is-blue">repro</span>
+            <span class="pill is-violet">impact</span>
+          </div><br>
+          <div class="topic-actions">
+            <a href="#contact" class="help-btn help-btn-primary">Incident lane</a>
+            <button type="button" class="help-btn help-btn-ghost is-lime" data-help-modal="status-page">status</button>
+          </div>
+        </article>
+
+        <!-- FAQs -->
+        <article class="topic-card"
+          data-help-category="faqs"
+          data-help-search="faq frequently asked questions plans limits onboarding troubleshooting"
+          data-accent="violet">
+          <div class="topic-top">
+            <div class="topic-label">FAQs</div>
+            <span class="pill is-violet">Preview</span>
+          </div>
+       <br>  <h3 class="topic-title">Frequently asked questions</h3>
+          <p class="topic-desc">
+            The FAQ is designed as a high-speed reference surface: short questions, precise answers, and language that maps directly to CavBot’s operating model (routes, watchlists, signals, and escalation thresholds).
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-violet">limits</span>
+            <span class="pill is-blue">pricing</span>
+            <span class="pill is-lime">pilots</span>
+          </div><br>
+          <div class="topic-actions">
+            <button type="button" class="help-btn help-btn-primary" id="open-faqs-btn-2">FAQ PREVIEW</button>
+            <a href="faqs.html" class="help-btn help-btn-ghost is-blue">FAQ</a>
+          </div>
+        </article>
+
+        <!-- “Need help choosing?” -->
+        <article class="topic-card"
+          data-help-category="getting-started"
+          data-help-search="contact support choose lane routing map who do i email"
+          data-accent="blue">
+          <div class="topic-top">
+            <div class="topic-label">Routing</div>
+            <span class="pill is-blue">Map</span>
+          </div>
+       <br>  <h3 class="topic-title">Not sure where it belongs?</h3>
+          <p class="topic-desc">
+            Use the contact roadmap. It routes your message once, correctly — without duplicating emails across the page.
+          </p>
+          <div class="topic-meta">
+            <span class="pill is-blue">lanes</span>
+            <span class="pill is-violet">escalation</span>
+          </div><br>
+          <div class="topic-actions">
+            <a href="#contact" class="help-btn help-btn-ghost is-lime">roadmap</a>
+            <a href="#getting-started" class="help-btn help-btn-ghost is-blue">Help onboarding</a>
+          </div>
+        </article>
+      </div>
+    </section>
+<br>
+    <!-- CONTACT MAP -->
+    <section class="section" id="contact" aria-label="Contact roadmap">
+      <header class="section-header">
+        <div class="eyebrow">Contact roadmap</div>
+      <br><br>    <h2 class="section-title">One map. Clean escalation. No duplicate loops.</h2>
+        <p class="section-body">
+          This is where emails belong: a single routing surface at the bottom. Pick the lane once and move on.
+        </p> <br><br>
+      </header>
+
+      <div class="contact-map" style="margin-top:16px;">
+        <details class="map-item" open>
+          <summary>
+            <span class="map-summary-left">
+              <span class="map-title">General support</span>
+              <span class="map-sub">Account access, console behavior, day-to-day questions.</span>
+            </span>
+            <span class="map-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="map-body">
+            <div class="map-row">
+              <div class="map-email"><a href="mailto:support@cavbot.io">support@cavbot.io</a></div>
+              <p class="map-hint">Include: route (if relevant), timestamps, and a short “expected vs actual”.</p>
+            </div>
+          </div>
+        </details>
+<br>
+        <details class="map-item">
+          <summary>
+            <span class="map-summary-left">
+              <span class="map-title">Billing</span>
+              <span class="map-sub">Invoices, receipts, plan changes, finance notes.</span>
+            </span>
+            <span class="map-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="map-body">
+            <div class="map-row">
+              <div class="map-email"><a href="mailto:billing@cavbot.io">billing@cavbot.io</a></div>
+              <p class="map-hint">Include: org/workspace name, invoice ID (if available), and what you need (receipt, PO note, plan change).</p>
+            </div>
+          </div>
+        </details>
+<br>
+        <details class="map-item">
+          <summary>
+            <span class="map-summary-left">
+              <span class="map-title">Incidents</span>
+              <span class="map-sub">Production issue on a critical flow. Escalation lane.</span>
+            </span>
+            <span class="map-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="map-body">
+            <div class="map-row">
+              <div class="map-email"><a href="mailto:support@cavbot.io">support@cavbot.io</a></div>
+              <p class="map-hint">Include: route, time window, what changed, and reproduction steps. Keep it short and factual.</p>
+            </div>
+          </div>
+        </details>
+<br>
+        <details class="map-item">
+          <summary>
+            <span class="map-summary-left">
+              <span class="map-title">Pilots &amp; engineering</span>
+              <span class="map-sub">Structured pilots, rollout plans, instrumentation reviews.</span>
+            </span>
+            <span class="map-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="map-body">
+            <div class="map-row">
+              <div class="map-email"><a href="mailto:pilots@cavbot.io">pilots@cavbot.io</a></div>
+              <p class="map-hint">Include: goal, route list, expected signals, timeline, and constraints.</p>
+            </div>
+          </div>
+        </details>
+<br>
+        <details class="map-item">
+          <summary>
+            <span class="map-summary-left">
+              <span class="map-title">Security</span>
+              <span class="map-sub">Vulnerabilities, abuse, responsible disclosure.</span>
+            </span>
+            <span class="map-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="map-body">
+            <div class="map-row">
+              <div class="map-email"><a href="mailto:security@cavbot.io">security@cavbot.io</a></div>
+              <p class="map-hint">Include: reproduction steps, affected surfaces, and any logs/screenshots you can safely share.</p>
+            </div>
+          </div>
+        </details>
+<br>
+        <details class="map-item">
+          <summary>
+            <span class="map-summary-left">
+              <span class="map-title">Privacy &amp; legal</span>
+              <span class="map-sub">Data rights requests, DPAs, contracts, compliance questions.</span>
+            </span>
+            <span class="map-chevron" aria-hidden="true">▾</span>
+          </summary>
+          <div class="map-body">
+            <div class="map-row">
+              <div class="map-email"><a href="mailto:privacy@cavbot.io">privacy@cavbot.io</a></div>
+              <p class="map-hint">Include: jurisdiction (GDPR/CCPA), org name, and the exact request (export/deletion/DPA).</p>
+            </div>
+          </div>
+        </details>
+      </div>
+<br><br><br><br>
+      <div class="panel-roomy" style="margin-top:16px;">
+        <div class="eyebrow">FAQs</div>
+      <br>  <h2 class="section-title" style="font-size:16px; margin-top:6px;">CavBot FAQ preview</h2>
+        <p class="section-body" style="font-size:12px; max-width:none; margin-top:6px;">
+          The FAQ is designed as a high-speed reference surface: short questions, precise answers, and language that maps 
+          directly to CavBot’s operating model (routes, watchlists, signals, and escalation thresholds). If a question requires 
+          account-specific review, security handling, or legal verification, route it through the contact map so it lands 
+          correctly once.
+        </p><br><br>
+        <div class="topic-actions" style="margin-top:10px;">
+          <button type="button" class="help-btn help-btn-primary" id="open-faqs-btn-3">FAQ PREVIEW</button>
+          <a href="faqs.html" class="help-btn help-btn-ghost is-lime">FAQ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (system hooks) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <!-- RESOURCES -->
+        <section class="footer-column">
+          <h2 class="footer-column-title">Resources</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Resources</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
+            <li><a href="/faqs.html" class="footer-link">FAQs</a></li>
+            <li><a href="/cavbot-research.html" class="footer-link">CavBot Research</a></li>
+            <li><a href="/cavbot-biography.html" class="footer-link">CavBot Biography</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-column">
+          <h2 class="footer-column-title">Platform</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Platform</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/cavtools.html" class="footer-link">CavTools</a></li>
+            <li><a href="/cavcloud.html" class="footer-link">CavCloud</a></li>
+            <li><a href="/cavsafe.html" class="footer-link">CavSafe</a></li>
+            <li><a href="/cavcode.html" class="footer-link">CavCode</a></li>
+            <li><a href="/cavcode-viewer.html" class="footer-link">CavCode Viewer</a></li>
+          </ul>
+        </section>
+
+        <!-- COMPANY -->
+        <section class="footer-column">
+          <h2 class="footer-column-title">Company</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Company</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="code-of-ethics.html" class="footer-link">Code of Ethics</a></li>
+            <li><a href="careers.html" class="footer-link">Careers</a></li>
+            <li><a href="media-kit.html" class="footer-link">Media Kit</a></li>
+            <li><a href="newsroom.html" class="footer-link">News &amp; Press</a></li>
+          </ul>
+        </section>
+
+        <!-- LEGAL -->
+        <section class="footer-column">
+          <h2 class="footer-column-title">Legal Notices</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Legal</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="/terms-of-use.html" class="footer-link">Terms of Use</a></li>
+            <li><a href="/data-security.html" class="footer-link">Data &amp; Security</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <br><br><br><br>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026 CavBot · All right reserved
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOPIC MODAL (mini-epub reader) -->
+  <div class="topic-modal" id="topic-modal" aria-hidden="true">
+    <div class="topic-modal-backdrop"></div>
+    <section class="topic-modal-panel" role="dialog" aria-modal="true" aria-labelledby="topic-modal-title">
+      <header class="topic-modal-header">
+        <div>
+          <h2 id="topic-modal-title" class="topic-modal-title">Topic</h2>
+          <p id="topic-modal-subtitle" class="topic-modal-subtitle">A structured guide built to be read end-to-end.</p>
+          <div class="topic-modal-progress" aria-hidden="true">
+            <div class="topic-modal-progress-bar" id="topic-modal-progress-bar"></div>
+          </div>
+        </div>
+        <button type="button" class="topic-modal-close" aria-label="Close topic">&times;</button>
+      </header>
+
+      <div id="topic-modal-content" class="topic-modal-content"></div>
+
+    </section>
+  </div>
+
+  <!-- FAQ MODAL (preview) -->
+  <div class="faq-modal" id="faq-modal" aria-hidden="true">
+    <div class="faq-modal-backdrop"></div>
+    <section class="faq-modal-panel" role="dialog" aria-modal="true" aria-labelledby="faq-modal-title">
+      <header class="faq-modal-header">
+        <div class="faq-modal-heading">
+          <h2 id="faq-modal-title" class="faq-modal-title">CavBot FAQ preview</h2>
+        </div>
+        <button type="button" class="faq-modal-close" aria-label="Close FAQs"></button>
+      </header>
+      <ul class="faq-list">
+        <li>
+          <details class="faq-item">
+            <summary>
+              <span class="faq-q">How does CavBot choose what to watch first?</span>
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="faq-a">
+              CavBot starts with routes you label as high-value: checkouts, sign-ups, campaign landings, and flows with real cost.
+              You choose the journeys; CavBot tracks 404s, structure, and runtime feel.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="faq-item">
+            <summary>
+              <span class="faq-q">What makes a 404 “critical”?</span>
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="faq-a">
+              A critical 404 is one that breaks a primary journey (revenue, onboarding, or key navigation) or appears as a new spike
+              from meaningful referrers. Severity comes from context, not just volume.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="faq-item">
+            <summary>
+              <span class="faq-q">Where do invoices and receipts go?</span>
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="faq-a">
+              Route finance requests through the Billing lane. Include org/workspace name and the invoice ID if you have it.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="faq-item">
+            <summary>
+              <span class="faq-q">How do I report an incident?</span>
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="faq-a">
+              Use the Incident lane: route + timestamps + what changed + reproduction steps. Keep it short and measurable.
+            </div>
+          </details>
+        </li>
+        <li>
+          <details class="faq-item">
+            <summary>
+              <span class="faq-q">How do privacy requests work?</span>
+              <span class="faq-chevron" aria-hidden="true">▾</span>
+            </summary>
+            <div class="faq-a">
+              Include jurisdiction (GDPR/CCPA), org name, and the exact request (export/deletion). Use the Privacy lane in the contact map.
+            </div>
+          </details>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+ <script>
+  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+  window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_main_01J9X0ZK3P";
+  window.CAVBOT_SITE = "cavbot.io";
+  window.CAVBOT_SITE_ID = "cavbot.io";
+  window.CAVBOT_SITE_PUBLIC_ID = "cavbot.io";
+</script>
+<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js" defer></script>
+  <!-- CavBot brain + nav toggle -->
+  <script src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js" defer></script>
+<!-- Help Center Footer -->
+<script src="files/js/globals/header-footer.js?v=brainfix-20260325studio"></script>
+<!-- Help Center -->
+<script src="files/js/pages/help-center.js"></script>
+</body>
+</html>

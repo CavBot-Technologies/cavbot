@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>404 Recovery Field Guide · CavBot Research</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="A CavBot research guide to 404 design: trust, recovery, SEO posture, and example surfaces from broken to elite.">
+ <meta name="robots" content="index, follow">
+ <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+ <link rel="canonical" href="https://cavbot.io/404-recovery-field-guide.html">
+
+ <!-- UNIVERSAL FAVICONS -->
+ <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+ <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+ <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+ <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+
+ <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+ <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+ <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+ <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+ <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+ <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+ <link rel="manifest" href="site.webmanifest">
+
+ <meta name="theme-color" content="#01030f">
+ <meta name="msapplication-TileColor" content="#01030f">
+ <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+ <!-- Open Graph -->
+ <meta property="og:title" content="404 Recovery Field Guide · CavBot Research">
+ <meta property="og:description" content="A CavBot research guide to 404 design: trust, recovery, SEO posture, and example surfaces from broken to elite.">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://cavbot.io/404-recovery-field-guide.html">
+ <meta property="og:site_name" content="CavBot">
+ <meta property="og:image" content="https://cavbot.io/assets/cavbot-research/assets/images/404-field-guide.png">
+
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="404 Recovery Field Guide · CavBot Research">
+ <meta name="twitter:description" content="A CavBot research guide to 404 design: trust, recovery, SEO posture, and example surfaces from broken to elite.">
+ <meta name="twitter:image" content="https://cavbot.io/assets/cavbot-research/assets/images/404-field-guide.png">
+
+ <!-- TYPEFACE -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+ <!-- Global CavBot styles (KEEP) -->
+ <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260325l">
+ <!-- The 404 Experience -->
+ <link rel="stylesheet" href="files/css/pages/404-recovery-field-guide.css">
+
+ <!-- Structured data -->
+ <script type="application/ld+json">
+ {
+   "@context":"https://schema.org",
+   "@type":"WebPage",
+   "name":"404 Recovery Field Guide · CavBot Research",
+   "description":"A CavBot research guide to 404 design: trust, recovery, SEO posture, and example surfaces from broken to elite.",
+   "url":"https://cavbot.io/404-recovery-field-guide.html",
+   "isPartOf":{
+     "@type":"WebSite",
+     "name":"CavBot",
+     "url":"https://cavbot.io/"
+   },
+   "publisher":{
+     "@type":"Organization",
+     "name":"CavBot",
+     "url":"https://cavbot.io/",
+     "logo":{
+       "@type":"ImageObject",
+       "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+     }
+   }
+ }
+ </script>
+</head>
+
+<body class="page-shell"
+ data-cavbot-page-type="404-field-guide"
+ data-cavbot-component="research-shell"
+ data-cavbot-disable-floating-badge="1">
+
+ <!-- HEADER / NAV (unified) -->
+ <header class="site-header">
+   <div class="site-header-inner">
+     <div class="brand-lockup">
+       <a href="index.html" class="brand-logo">
+         <img src="assets/logo/cavbot-wordmark.svg" alt="CavBot" class="brand-logo-img">
+       </a>
+     </div>
+
+     <button class="nav-menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-overlay">
+       <span class="nav-menu-icon">
+         <span></span><span></span><span></span>
+         <span></span><span></span><span></span>
+         <span></span><span></span><span></span>
+       </span>
+     </button>
+
+     <!-- Desktop nav -->
+    <nav class="nav-main">
+      <div class="nav-links">
+        <a href="product.html" class="nav-overlay-link--active">Product</a>
+        <a href="how-it-works.html" class="nav-overlay-link--active">How it Works</a>
+        <a href="pricing.html" class="nav-overlay-link--active">Pricing</a>
+        <a href="cavbot-arcade.html" class="nav-overlay-link--active">404 Arcade</a>
+        <a href="https://app.cavbot.io/" class="nav-overlay-link--active">Platform</a>
+      </div>
+      <div class="nav-cta-row">
+        <a href="https://app.cavbot.io/auth?mode=login" class="nav-overlay-login">Log In</a>
+        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+      </div>
+    </nav>
+
+   <!-- Mobile menu toggle -->
+   <button class="nav-menu-toggle" type="button" aria-label="Open navigation">
+     <span class="sr-only">Open navigation</span>
+     <span class="nav-menu-icon">
+       <span></span><span></span><span></span>
+       <span></span><span></span><span></span>
+       <span></span><span></span><span></span>
+     </span>
+   </button>
+ </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+ <div class="nav-overlay-backdrop"></div>
+ <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+   <div class="nav-overlay-header">
+     <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+   </div>
+   <div class="nav-overlay-body">
+     <a href="product.html" class="nav-overlay-link">Product</a>
+     <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+     <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+     <a href="cavbot-arcade.html" class="nav-overlay-link">404 Arcade</a>
+     <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+      <div class="nav-cta-row">
+        <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+      </div>
+   </div>
+ </div>
+</div>
+
+ <main class="page-inner">
+
+   <!-- HERO -->
+   <section class="guide-hero" aria-labelledby="heroTitle" id="top">
+     <div>
+    <br><br><br><br>   <h1 id="heroTitle" class="hero-title">404s: <br><br>Design, SEO, Recovery</h1><br><br><br>
+
+       <p class="hero-body" style="margin-top:10px;">
+         A 404 page is not a dead end — it’s a trust moment. Done wrong, it reads as “the site is broken.”
+         Done right, it becomes a recovery surface: clear exits, calm design, and measurable signal.
+     </p><br>
+       <p class="hero-body" style="margin-top:8px;">
+         This guide explains what a 404 communicates, why it affects sessions, how search engines interpret broken routes,
+         and what “bad → okay → good → elite” looks like across real production-ready surfaces.
+       </p>
+<br><br>
+       <div class="hero-cta-row">
+         <a href="cavbot-research.html" class="btn btn-primary">CavBot Research</a>
+           <a href="newsroom.html" class="btn btn-ghost">Explore Further</a>
+       </div>
+     </div>
+
+     <aside class="toc-card" aria-label="On this page">
+       <div class="toc-title">
+         <span>ON THIS PAGE</span>
+         <span>RESEARCH</span>
+       </div>
+<br>
+       <div class="toc-links" role="navigation" aria-label="Field guide sections">
+         <a class="toc-link" href="#why" data-toc>
+           <div class="toc-left">
+             <div class="toc-kicker">Foundation</div>
+             <div class="toc-name">Why 404 matters</div>
+           </div>
+           <span class="toc-dot" aria-hidden="true"></span>
+         </a>
+
+         <a class="toc-link" href="#seo" data-toc>
+           <div class="toc-left">
+             <div class="toc-kicker">Search</div>
+             <div class="toc-name">How Google reads it</div>
+           </div>
+           <span class="toc-dot" aria-hidden="true"></span>
+         </a>
+
+         <a class="toc-link" href="#patterns" data-toc>
+           <div class="toc-left">
+             <div class="toc-kicker">Design</div>
+             <div class="toc-name">Patterns</div>
+           </div>
+           <span class="toc-dot" aria-hidden="true"></span>
+         </a>
+
+         <a class="toc-link" href="#examples" data-toc>
+           <div class="toc-left">
+             <div class="toc-kicker">Visual</div>
+             <div class="toc-name">Bad → Elite</div>
+           </div>
+           <span class="toc-dot" aria-hidden="true"></span>
+         </a>
+
+         <a class="toc-link" href="#checklist" data-toc>
+           <div class="toc-left">
+             <div class="toc-kicker">Ship</div>
+             <div class="toc-name">Checklist</div>
+           </div>
+           <span class="toc-dot" aria-hidden="true"></span>
+         </a>
+       </div>
+     </aside>
+   </section>
+<br>
+   <!-- WHY -->
+   <section class="section" aria-labelledby="whyTitle" id="why">
+     <header class="section-header">
+       <div class="eyebrow">Foundation</div>
+    <br><br>   <h2 id="whyTitle" class="section-title">Why a 404 can make or break a session</h2>
+       <p class="section-body">
+         Most 404s happen when a visitor is already trying. They clicked a link, trusted a page, and expected continuity.
+         Your job is to keep the session alive — and prove the site is under control.
+       </p><br><br>
+     </header>
+
+     <div class="rail" role="group" aria-label="404 impact areas">
+     <br>  <div class="eyebrow" style="margin:0; text-align: center;">Three outcomes</div>
+<br>
+       <div class="rail-grid">
+         <article class="rail-card">
+         <br>  <h3 class="rail-name">Trust</h3>
+         <br>  <p class="rail-desc">A messy 404 reads like downtime. A calm 404 reads like intention — and the visitor stays.</p><br><br>
+           <div style="display:contents; gap:8px; content-visibility:auto;">
+             <span class="pill is-lime">Clarity</span>
+             <span class="pill is-blue">Stability</span>
+           </div>
+         </article>
+
+         <article class="rail-card">
+          <br> <h3 class="rail-name">Recovery</h3>
+          <br> <p class="rail-desc">The best 404s give exits: home, search, categories, and the nearest “good” route to continue.</p><br><br>
+          <div style="display:contents; gap:8px; content-visibility:auto;">
+             <span class="pill is-violet">Navigation</span>
+             <span class="pill is-lime">Momentum</span>
+           </div>
+         </article>
+
+         <article class="rail-card">
+          <br> <h3 class="rail-name">Signal</h3>
+        <br>   <p class="rail-desc">A 404 is real data: broken referrers, outdated pages, campaign leaks, and route regressions.</p><br><br>
+           <div style="display:contents; gap:8px; content-visibility:auto;">
+             <span class="pill is-blue">Telemetry</span>
+             <span class="pill is-violet">Insights</span>
+           </div>
+         </article>
+       </div>
+     </div>
+   </section>
+<br>
+   <!-- SEO -->
+   <section class="section" aria-labelledby="seoTitle" id="seo">
+     <header class="section-header">
+       <div class="eyebrow">Search</div>
+    <br><br>   <h2 id="seoTitle" class="section-title">How search engines interpret 404 behavior</h2>
+       <p class="section-body">
+         You don’t need to panic about a single 404 — but you do need a clean posture.
+         The goal is simple: return accurate status codes, avoid confusing “soft 404” pages, and keep internal linking disciplined.
+       </p><br><br>
+     </header>
+<br>
+     <div class="pattern-grid">
+       <article class="pattern-card" aria-label="Good posture">
+         <h3 class="pattern-title">Good posture <span class="pill is-lime">Recommended</span></h3><br>
+         <ul class="mini-list">
+           <li>Return a real <strong>404</strong> for missing content (or <strong>410</strong> if permanently removed).</li>
+           <li>Make the page helpful: clear message + strong exits (home, search, top routes).</li>
+           <li>Fix internal links that point to 404s (navigation, footer, sitemap, templates).</li>
+           <li>If content moved, use a <strong>relevant</strong> redirect (not a blanket redirect to home).</li>
+         </ul>
+       </article>
+
+       <article class="pattern-card" aria-label="Bad posture">
+         <h3 class="pattern-title">Bad posture <span class="pill is-violet">Avoid</span></h3><br>
+         <ul class="mini-list">
+           <li>Returning <strong>200 OK</strong> on a “not found” page (soft 404 behavior).</li>
+           <li>Redirecting all missing pages to the homepage (confusing + destroys debugging).</li>
+           <li>Hiding the problem: no message, no exits, no clue what happened.</li>
+           <li>Heavy 404 pages that load slowly or break on mobile.</li>
+         </ul>
+       </article>
+     </div>
+   </section>
+<br>
+   <!-- PATTERNS -->
+   <section class="section" aria-labelledby="patternsTitle" id="patterns">
+     <header class="section-header">
+       <div class="eyebrow">Design</div>
+     <br><br>  <h2 id="patternsTitle" class="section-title">CavBot-grade 404 design patterns</h2>
+       <p class="section-body">
+         This is the “CavBot” philosophy applied to a 404: calm surface, strong structure, and a clear next step.
+         A visitor should never feel the site is down — only that the route is missing.
+       </p><br><br>
+     </header>
+<br>
+     <div class="pattern-grid">
+       <article class="pattern-card">
+         <h3 class="pattern-title">Pattern 01 · Confirm state <span class="pill is-blue">Clarity</span></h3><br>
+         <p class="pattern-text">
+           Say it plainly: the page doesn’t exist (or moved). Keep the message short and confident.
+           Avoid panic language. Avoid humor that feels careless.
+         </p><br>
+         <ul class="mini-list">
+           <li>Short title (one line)</li>
+           <li>One calm paragraph</li>
+           <li>Show the attempted path (optional)</li>
+         </ul>
+       </article>
+
+       <article class="pattern-card">
+         <h3 class="pattern-title">Pattern 02 · Give exits <span class="pill is-lime">Recovery</span></h3><br>
+         <p class="pattern-text">
+           Provide the next move immediately: Home, Product, Pricing, Command Center, Search, or “most visited” routes.
+         </p><br>
+         <ul class="mini-list">
+           <li>Primary CTA: return to a safe route</li>
+           <li>Secondary CTA: browse / search</li>
+           <li>One “support” link if needed</li>
+         </ul>
+       </article>
+
+       <article class="pattern-card">
+         <h3 class="pattern-title">Pattern 03 · Keep it fast <span class="pill is-violet">Performance</span></h3><br>
+         <p class="pattern-text">
+           A 404 should load instantly, even on weak connections. Heavy animation is optional — never required.
+         </p><br>
+         <ul class="mini-list">
+           <li>No layout shift</li>
+           <li>Stable on mobile</li>
+           <li>Respect reduced-motion</li>
+         </ul>
+       </article>
+
+       <article class="pattern-card">
+         <h3 class="pattern-title">Pattern 04 · Measure it <span class="pill is-blue">Signal</span></h3><br>
+         <p class="pattern-text">
+           Track the session moment: the view, the referrer, and whether the visitor recovered or left.
+           This turns “random broken links” into actionable insight.
+         </p><br>
+         <ul class="mini-list">
+           <li><strong>View:</strong> cavbot_404_view</li>
+           <li><strong>Recovery:</strong> cavbot_recover_click</li>
+           <li><strong>Exit/idle:</strong> cavbot_idle / cavbot_bounce</li>
+         </ul>
+       </article>
+     </div>
+   </section>
+<br>
+   <!-- EXAMPLES -->
+   <section class="section" aria-labelledby="examplesTitle" id="examples">
+     <header class="section-header">
+      <div class="eyebrow">Visual examples</div>
+     <br> <h2 id="examplesTitle" class="section-title">Bad → okay → good → elite 404 surfaces</h2>
+       <p class="section-body">
+         A side-by-side visual framework showing what each 404 quality tier communicates, what it breaks,
+         and what creates a reliable, memorable recovery experience.
+       </p><br>
+     </header>
+<br><br>
+     <div class="examples-grid" role="group" aria-label="404 example surfaces">
+
+       <!-- BAD -->
+       <article class="example">
+         <div class="example-top">
+           <h3 class="example-title">Broken 404</h3>
+           <span class="pill is-violet">Bad</span>
+         </div>
+         <div class="example-body">
+           <div class="example-frame">
+            <div class="svg-slot" role="img" aria-label="Broken 404 visual concept">
+              <img
+                src="assets/cavbot-research/assets/images/bad-404.webp"
+                alt="Broken 404 visual concept"
+                loading="lazy"
+                decoding="async">
+            </div><br>
+             <div class="example-frame-note">
+               Looks like downtime. No exits. No structure. The user assumes the site is broken <br>and leaves.
+             </div><br>
+           </div><br>
+           <ul class="mini-list">
+             <li>No primary CTA (dead end)</li>
+             <li>Confusing copy or error spam</li>
+             <li>Mobile layout breaks / horizontal scroll</li>
+           </ul>
+         </div>
+       </article>
+
+       <!-- EHH -->
+       <article class="example">
+         <div class="example-top">
+           <h3 class="example-title">Acceptable 404</h3>
+           <span class="pill is-blue">Okay</span>
+         </div>
+         <div class="example-body">
+           <div class="example-frame">
+            <div class="svg-slot" role="img" aria-label="Acceptable 404 visual concept">
+              <img
+                src="assets/cavbot-research/assets/images/ok-404.png"
+                alt="Acceptable 404 visual concept"
+                loading="lazy"
+                decoding="async">
+            </div><br>
+             <div class="example-frame-note">
+               It’s readable, but it’s not guiding. The visitor understands the issue, yet recovery is <br>weak.
+             </div><br>
+           </div><br>
+           <ul class="mini-list">
+             <li>Message is clear</li>
+             <li>One exit link, but not strong</li>
+             <li>No “you are safe” signal</li>
+           </ul>
+         </div>
+       </article>
+
+       <!-- GOOD -->
+       <article class="example">
+         <div class="example-top">
+           <h3 class="example-title">Strong 404</h3>
+           <span class="pill is-lime">Good</span>
+         </div>
+         <div class="example-body">
+           <div class="example-frame">
+            <div class="svg-slot" role="img" aria-label="Strong 404 visual concept">
+              <img
+                src="assets/cavbot-research/assets/images/awesome-404.webp"
+                alt="Strong 404 visual concept"
+                loading="lazy"
+                decoding="async">
+            </div><br>
+             <div class="example-frame-note">
+               Calm design, obvious exits, and a clear recovery path. The session stays<br> alive.
+             </div><br>
+           </div><br>
+           <ul class="mini-list">
+             <li>Primary CTA + secondary options</li>
+             <li>Matches site branding perfectly</li>
+             <li>Fast, stable, and accessible</li>
+           </ul>
+         </div>
+       </article>
+
+       <!-- ELITE -->
+       <article class="example">
+         <div class="example-top">
+           <h3 class="example-title">Elite 404 Surface</h3>
+           <span class="pill is-violet">Exceptional</span>
+         </div>
+         <div class="example-body">
+           <div class="example-frame">
+            <div class="svg-slot svg-slot--elite" role="img" aria-label="Elite 404 visual concept">
+              <img
+                src="assets/cavbot-research/assets/images/elite.png"
+                alt="Elite 404 visual concept"
+                loading="lazy"
+                decoding="async">
+            </div><br>
+             <div class="example-frame-note">
+               Turns the mistake into an experience: recovery + memory + telemetry. This is where CavBot’s arcade recovery surface lives.
+             </div><br>
+           </div><br>
+           <ul class="mini-list">
+             <li>Recovery-first UI (browse, search, return)</li>
+             <li>Optional “game / interaction” without clutter</li>
+             <li>Clean event stream: view → interact → recover</li>
+           </ul>
+         </div>
+       </article>
+
+     </div>
+   </section>
+<br>
+   <!-- CHECKLIST -->
+   <section class="section" aria-labelledby="checkTitle" id="checklist">
+     <header class="section-header">
+       <div class="eyebrow">Ship checklist</div><br>
+       <h2 id="checkTitle" class="section-title">The CavBot 404 release checklist</h2>
+       <p class="section-body">
+         If these are true, your 404 is “production-grade.” If any are false, fix them before you scale traffic.
+       </p><br><br>
+     </header>
+
+    <div class="check-wrap">
+      <article class="check-card check-card--ux">
+        <div class="check-head">
+          <h3 class="check-title">Design + UX</h3>
+        </div><br>
+        <ul class="check-list">
+          <li>No horizontal scroll on mobile.</li>
+          <li>Primary CTA visible without scrolling.</li>
+          <li>Layout matches your real product pages (same identity).</li>
+          <li>Loads fast; no heavy dependencies required.</li>
+          <li>Reduced-motion respected.</li>
+        </ul>
+      </article>
+
+      <article class="check-card check-card--tech">
+        <div class="check-head">
+          <h3 class="check-title">Technical posture</h3>
+        </div><br>
+        <ul class="check-list">
+          <li>Returns a real <strong>404</strong> status for missing routes.</li>
+          <li>No blanket redirect-to-home for missing pages.</li>
+          <li>Internal links do not point to missing routes.</li>
+          <li>Telemetry exists (view + recover + exit/idle).</li>
+          <li>Command Center can surface top referrers causing 404s.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+<br>
+   <!-- FINAL CTA -->
+   <section class="end-cta" role="group" aria-label="Next steps">
+     <div class="end-left">
+       <h3 class="end-title">Turn 404s into a recovery surface</h3><br>
+       <p class="end-text">
+         If your 404 is already a designed experience, CavBot can instrument it as a clean signal stream and map what broke:
+         referrers, missing routes, recovery actions, and session outcome.
+       </p><br><br>
+     </div>
+     <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+       <a href="product.html" class="btn btn-primary">Our Product</a>
+       <a href="https://app.cavbot.io/cavbot-arcade" class="btn btn-primary-blue">CavBot Arcade</a>
+     </div>
+   </section>
+
+ </main>
+
+ <!-- FOOTER (unified) -->
+ <footer class="site-footer">
+   <div class="footer-inner">
+     <div class="footer-grid">
+        <section class="footer-column">
+          <h2 class="footer-column-title">Resources</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Resources</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
+            <li><a href="/faqs.html" class="footer-link">FAQs</a></li>
+            <li><a href="/cavbot-research.html" class="footer-link">CavBot Research</a></li>
+            <li><a href="/cavbot-biography.html" class="footer-link">CavBot Biography</a></li>
+          </ul>
+        </section>
+
+        <section class="footer-column">
+          <h2 class="footer-column-title">Platform</h2>
+          <button class="footer-column-toggle" type="button">
+            <span>Platform</span>
+            <span class="footer-toggle-icon">▾</span>
+          </button>
+          <ul class="footer-column-list">
+            <li><a href="/cavtools.html" class="footer-link">CavTools</a></li>
+            <li><a href="/cavcloud.html" class="footer-link">CavCloud</a></li>
+            <li><a href="/cavsafe.html" class="footer-link">CavSafe</a></li>
+            <li><a href="/cavcode.html" class="footer-link">CavCode</a></li>
+            <li><a href="/cavcode-viewer.html" class="footer-link">CavCode Viewer</a></li>
+          </ul>
+        </section>
+
+       <section class="footer-column">
+         <h2 class="footer-column-title">Company</h2>
+         <button class="footer-column-toggle" type="button">
+           <span>Company</span>
+           <span class="footer-toggle-icon">▾</span>
+         </button>
+         <ul class="footer-column-list">
+           <li><a href="about.html" class="footer-link">About</a></li>
+           <li><a href="code-of-ethics.html" class="footer-link">Code of Ethics</a></li>
+           <li><a href="careers.html" class="footer-link">Careers</a></li>
+           <li><a href="media-kit.html" class="footer-link">Media Kit</a></li>
+           <li><a href="newsroom.html" class="footer-link">News &amp; Press</a></li>
+         </ul>
+       </section>
+
+       <section class="footer-column">
+         <h2 class="footer-column-title">Legal Notices</h2>
+         <button class="footer-column-toggle" type="button">
+           <span>Legal</span>
+           <span class="footer-toggle-icon">▾</span>
+         </button>
+         <ul class="footer-column-list">
+           <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+           <li><a href="/terms-of-use.html" class="footer-link">Terms of Use</a></li>
+           <li><a href="/data-security.html" class="footer-link">Data &amp; Security</a></li>
+         </ul>
+       </section>
+     </div>
+<br><br><br><br>
+     <div class="footer-bottom">
+       <div class="footer-copy">&copy; 2026 CavBot · All right reserved</div>
+     </div>
+   </div>
+ </footer>
+
+ <script>
+  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+  window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_main_01J9X0ZK3P";
+  window.CAVBOT_SITE = "cavbot.io";
+  window.CAVBOT_SITE_ID = "cavbot.io";
+  window.CAVBOT_SITE_PUBLIC_ID = "cavbot.io";
+</script>
+<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js" defer></script>
+  <!-- CavBot brain + nav toggle -->
+  <script src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js" defer></script>
+ <!-- CavBot header-footer + nav toggle -->
+ <script src="files/js/globals/header-footer.js?v=brainfix-20260325studio"></script>
+ <!-- The 404 Experience -->
+ <script src="files/js/pages/404-recovery-field-guide.js"></script>
+</body>
+</html>

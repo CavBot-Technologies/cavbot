@@ -1,0 +1,727 @@
+/* ======================================================================
+   Global shared CSS for CavBot News/Press article pages (one source of truth)
+   ====================================================================== */
+
+/* ==========================
+   TOKENS
+   ========================== */
+:root{
+  /* Core CavBot palette (match site) */
+  --navy-950:#01030f;
+  --navy-900:#020616;
+  --navy-800:#050a1b;
+
+  --lime:#b9c85a;
+  --lime-soft: rgba(185,200,90,0.14);
+  --lime-soft-strong: rgba(185,200,90,0.22);
+
+  --violet:#8b5cff;
+  --violet-soft: rgba(139,92,255,0.20);
+
+  --blue:#4ea8ff;
+  --blue-soft: rgba(78,168,255,0.18);
+
+  --ink:#f7fbff;
+  --ink-soft:#c5cee7;
+  --ink-subtle:#8890aa;
+  --border-subtle: rgba(255,255,255,0.08);
+
+  --panel-radius-lg:22px;
+  --panel-radius-md:18px;
+
+  --font-sans:"Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: var(--font-sans);
+
+  --space-xxl:80px;
+  --space-xl:56px;
+  --space-lg:40px;
+  --space-md:28px;
+  --space-sm:18px;
+  --space-xs:10px;
+
+  /* Page-tunable variables (overridden per-page) */
+  --hero-glow-a: rgba(139,92,255,0.20);
+  --hero-glow-b: rgba(185,200,90,0.14);
+
+  --callout-border: rgba(78,168,255,0.28);
+  --callout-glow: rgba(78,168,255,0.10);
+
+  --hero-sub-max: 66ch;
+}
+
+/* ==========================
+   BASE
+   ========================== */
+*, *::before, *::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:var(--font-sans);
+  color:var(--ink-soft);
+    background:
+        radial-gradient(circle at top, #071025 0, var(--navy-900) 32%, var(--navy-950) 100%);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+}
+
+a{ color:inherit; text-decoration:none; }
+
+/* Page fade */
+.page-shell{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  opacity:0;
+  animation: pageFadeIn 340ms ease-out forwards;
+}
+@keyframes pageFadeIn{
+  0%{ opacity:0; transform: translateY(4px); }
+  100%{ opacity:1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce){
+  .page-shell{ animation:none; opacity:1; }
+}
+
+/* ==========================
+   BUTTONS (site match)
+   ========================== */
+.btn{
+  border-radius:8px;
+  border:1px solid transparent;
+  padding:8px 18px;
+  font-size:11px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+  font-family:var(--font-sans);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  background:transparent;
+  color:var(--ink);
+  white-space:nowrap;
+  transition: transform 140ms ease;
+}
+.btn-primary{
+  background:
+    radial-gradient(circle at top left, rgba(185,200,90,0.22), transparent 55%),
+    linear-gradient(135deg, #f7ffe1 0%, #dde98b 28%, var(--lime) 100%);
+  color:#050509;
+  border-color: rgba(0,0,0,0.85);
+}
+.btn-primary:hover{ transform: translateY(-1px); }
+
+.btn-ghost{
+  border-color: rgba(185,200,90,0.55);
+  background:
+    radial-gradient(circle at top left, rgba(185,200,90,0.14), transparent 60%)
+    rgba(3,7,22,0.98);
+  color:var(--ink-soft);
+}
+.btn-ghost:hover{
+  border-color: rgba(255,255,255,0.22);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.07), transparent 60%)
+    rgba(5,8,26,0.98);
+}
+
+/* ==========================
+   ARTICLE LAYOUT
+   ========================== */
+.page-article-main{
+  flex:1;
+  padding: var(--space-xl) 20px var(--space-xxl);
+}
+.article-inner{
+  max-width: 980px;
+  margin: 0 auto;
+  display:flex;
+  flex-direction:column;
+  gap: 18px;
+}
+
+/* Breadcrumb chips */
+.crumbs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  color: var(--ink-subtle);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.crumbs a,
+.crumbs span[aria-current="page"]{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:8px;
+  background: rgba(3,8,18,0.52);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  line-height:1;
+  color: var(--ink-soft);
+  white-space:nowrap;
+}
+.crumbs a{
+  text-decoration:none;
+}
+.crumbs a:hover{
+  color: var(--ink);
+  border-color: rgba(185,200,90,0.52);
+  background:
+    radial-gradient(circle at top left, rgba(185,200,90,0.14), transparent 70%),
+    rgba(3,7,22,0.84);
+}
+.crumbs span[aria-current="page"]{
+  color: var(--ink);
+  border-color: rgba(185,200,90,0.68);
+  background:
+    radial-gradient(circle at top left, rgba(185,200,90,0.18), transparent 70%),
+    rgba(3,7,22,0.88);
+}
+
+@media (max-width: 560px){
+  .crumbs{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+  .crumbs::-webkit-scrollbar{ display:none; }
+}
+
+/* ==========================
+   HERO
+   ========================== */
+.article-hero{
+  border-radius: 28px;
+  border: 1px solid var(--border-subtle);
+  overflow:hidden;
+  background:
+    radial-gradient(circle at top left, var(--hero-glow-a), transparent 60%),
+    radial-gradient(circle at bottom right, var(--hero-glow-b), transparent 50%);
+   
+}
+
+.hero-media{
+  position: relative;
+  aspect-ratio: auto;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 60%);
+    
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+/* Images -> no crop (contain) */
+.hero-media img{
+  width:100%;
+  height:100%;
+  object-fit: fill;
+  object-position:center;
+  display:block;
+  opacity:0.98;
+}
+.hero-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.hero-body{
+  padding: 20px 20px 22px;
+  display:grid;
+  gap: 12px;
+}
+.hero-top{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+.hero-kicker{
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.hero-kicker span{
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 8px;
+  background: rgba(3,8,18,0.66);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1;
+  white-space: nowrap;
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  font-size: 12px;
+  color: var(--ink-subtle);
+  line-height: 1.8;
+}
+.hero-title{
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.hero-sub{
+  margin:0;
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--ink-soft);
+  max-width: var(--hero-sub-max);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top: 2px;
+}
+
+/* ==========================
+   SHARE ROW
+   ========================== */
+.share-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 60%),
+}
+.share-left{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  align-items:center;
+  color: var(--ink-subtle);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.share-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  align-items:center;
+}
+.mini{
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(3,8,18,0.55);
+  color: var(--ink-soft);
+  padding: 8px 12px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: transform 140ms ease, border-color 140ms ease;
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.mini:hover{
+  transform: translateY(-1px);
+  border-color: rgba(185,200,90,0.35);
+}
+.mini[disabled]{ opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.mini.mini-icon{
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+}
+
+.copy-icon{
+  width: 16px;
+  height: 16px;
+  display:inline-block;
+  flex: 0 0 auto;
+  opacity: 0.92;
+  filter: brightness(0) invert(0.92);
+}
+
+.mini.is-copied{
+  border-color: rgba(185,200,90,0.62);
+  background:
+    radial-gradient(circle at top left, rgba(185,200,90,0.16), transparent 70%),
+    rgba(3,8,18,0.8);
+}
+
+/* ==========================
+   BODY PANEL + PROSE
+   ========================== */
+.article-panel{
+  border-radius: var(--panel-radius-lg);
+  border: 1px solid var(--border-subtle);
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 255, 0.16), transparent 60%);
+  padding: 18px 18px 20px;
+}
+
+.prose{
+  display:grid;
+  gap: 14px;
+  font-size: 14px;
+  line-height: 2.00;
+  color: var(--ink-soft);
+}
+.prose h2{
+  margin: 12px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.prose p{ margin:0; }
+.prose ul{
+  margin: 0;
+  padding-left: 18px;
+  display:grid;
+  gap: 8px;
+}
+
+/* Callout (page-variable accent) */
+.callout{
+  border-radius: 18px;
+  border: 1px solid var(--callout-border);
+  background:
+    radial-gradient(circle at top left, var(--callout-glow), transparent 60%);
+   
+  padding: 14px;
+  color: var(--ink-soft);
+  line-height: 1.9;
+  font-size: 13px;
+}
+
+/* Inline images */
+figure{
+  margin: 0;
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 60%);
+    
+}
+figure .media{
+  aspect-ratio: 16 / 9;
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 60%);
+  
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+figure img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  object-position:center;
+  display:block;
+}
+figcaption{
+  padding: 10px 12px 12px;
+  color: var(--ink-subtle);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* ==========================
+   LATEST / RELATED GRID
+   ========================== */
+.related-wrap{
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 60%);
+  padding: 16px;
+  display:grid;
+  gap: 12px;
+}
+.related-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 12px;
+  flex-wrap:wrap;
+}
+.related-title{
+  margin:0;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.related-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  border-radius:8px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(3,8,18,0.55);
+  color: var(--ink-soft);
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  line-height:1;
+  white-space:nowrap;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+.related-link:hover{
+  transform: translateY(-1px);
+  border-color: rgba(185,200,90,0.35);
+  background:
+    radial-gradient(circle at top left, rgba(185,200,90,0.10), transparent 60%);
+  color: var(--ink);
+}
+
+.related-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.related-card{
+  border-radius: 18px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: transform 160ms ease, border-color 160ms ease;
+  height: 100%;
+}
+.related-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(185, 200, 90, 0.14);
+}
+.related-card a{
+  display:grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+}
+.related-media{
+  aspect-ratio: auto;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 60%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.related-media img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  object-position:center;
+  display:block;
+}
+.related-body{
+  padding: 12px 12px 14px;
+  display:grid;
+  gap: 8px;
+  align-content:start;
+}
+.related-kicker{
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+.related-h3{
+  margin:0;
+  font-size: 13px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.related-meta{
+  font-size: 12px;
+  color: var(--ink-subtle);
+  line-height: 1.8;
+}
+/* =========================================================
+   RELATED: equal height cards + consistent media frame
+   ========================================================= */
+
+.related-grid{
+  align-items: stretch;
+}
+
+.related-card{
+  height: 100%;
+}
+
+.related-card a{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Lock media height */
+.related-media{
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/* Make img/video fill the same way */
+.related-media img,
+.related-media video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Make body fill and align */
+.related-body{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.related-body .cta-row{
+  margin-top: auto;
+}
+
+/* Ensure media frame is identical for img + video */
+.story-media{
+  flex: 0 0 auto;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.story-media img,
+.story-media video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+/* ==========================
+   RESPONSIVE
+   ========================== */
+@media (max-width: 960px){
+  .page-article-main{ padding-top: var(--space-lg); }
+  .hero-body{ padding: 16px 16px 18px; }
+  .hero-title{ font-size: 20px; }
+  .article-panel{ padding: 16px 16px 18px; }
+}
+@media (max-width: 720px){
+  .page-article-main{ padding-left: 16px; padding-right: 16px; }
+  .hero-title{ font-size: 18px; }
+  .related-grid{ grid-template-columns: 1fr; }
+}
+/* If your header-footer.css creates a mobile overlay, this keeps it desktop-hidden here too */
+@media (min-width: 961px){
+  .nav-overlay{ display:none !important; }
+}
+/* ==========================================================
+   CavBot News Grid
+   ========================================================== */
+
+/* 1) Ensure cards can’t grow because of intrinsic media height */
+.newsroom-grid{
+  align-items: stretch;
+}
+
+/* Keep each card a clean, equal-height column */
+.story-card{
+  height: 100%;
+}
+
+/* Make the link a true column so media + body stack predictably */
+.story-card > .story-link,
+.story-link{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* 2) Lock the media frame (this is the key) */
+.story-media,
+.story-media--video{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;         
+  overflow: hidden;              
+  flex: 0 0 auto;                
+  min-height: 0;                  
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.story-media{ height: auto !important; }
+
+/* 3) Force BOTH img + video to fill the frame identically */
+.story-media img,
+.story-media video,
+.story-media--video video,
+.story-video{
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  object-fit: cover;              /* matches your image behavior */
+  object-position: center;
+}
+
+/* 4) Keep the body from changing card height wildly */
+.story-body{
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Clamp text so one card can’t become taller than the rest */
+.story-title{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.story-excerpt{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Anchor CTA to bottom so rhythm is consistent */
+.story-body .cta-row{
+  margin-top: auto;
+}

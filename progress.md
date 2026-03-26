@@ -1,0 +1,142 @@
+Original prompt: delete all box shadows from CONTROL ROOM / ARCADE LIBRARY cards, remove harsh hover contour from cards, and make the lower CavBot Arcade sections match cavbot-app exactly (Coverage, FAQ/Support, Next CTA), effectively pasting the cavbot-app section styling/layout/content into the website.
+
+- Inspected website files: cavbot-arcade.html, files/css/pages/cavbot-arcade.css.
+- Inspected app references: cavbot-app/app/cavbot-arcade/page.tsx and arcade.css.
+- Next: replace bottom HTML sections, remove telemetry section, and align CSS to app styles while stripping gallery/card shadows.
+
+- Updated `cavbot-arcade.html`:
+  - Replaced old Coverage/Support/Telemetry/Next blocks with app-matched bottom structure: `devices`, `faq`, `cta`.
+  - Removed standalone `Telemetry flavor` section to match app section flow.
+  - Updated copy/content to app-equivalent text and CTA (`Install on your site`).
+- Updated `files/css/pages/cavbot-arcade.css`:
+  - Removed gallery/card shadows and harsh card hover contour (`.gallery-surface`, `.game-card`, `.game-card:hover`, `.preview-frame`).
+  - Switched bottom section styles to app-equivalent classes (`.device-icon`, `.faq-list`, `.section-description`, `.btn-cta`).
+  - Removed stale late-file "tablet/iPad frame fix" overrides that were reintroducing card/preview shadows.
+- Validation:
+  - Confirmed removed telemetry markup and stale class references (`signals`, `device-ico`, etc.) via `rg`.
+  - Did not run browser visual test in this pass.
+
+TODOs / follow-up:
+- Quick visual check in browser to confirm spacing/typography alignment against cavbot-app section.
+- Follow-up UI tweak requested: make mini iPad preview screens bigger and remove big background behind them.
+- Updated card preview sizing in `files/css/pages/cavbot-arcade.css`:
+  - `.game-card` now full-width in grid (removed max-width cap and internal padding).
+  - `.preview-frame` enlarged (`aspect-ratio: 16/10`, larger min-height across breakpoints).
+  - `.preview-frame` background set transparent and preview media switched to `object-fit: cover` (fills screen, removes dark block/letterboxing).
+- Follow-up tweak: reduced oversized game preview screens to medium.
+  - `.game-card` max-width set to 360px.
+  - `.preview-frame` min-height reduced to 220/205/190 (desktop/tablet/mobile).
+- Removed tablet container/background rendering so only screen remains:
+  - `.tablet` now transparent with no border/shadow.
+  - `.tablet::before` removed.
+  - `.tablet-topbar` hidden.
+  - `.tablet-screen` padding removed.
+  - `.gallery-surface` background/border removed.
+- Disabled bottom-right floating badge on arcade page by adding:
+  - `data-cavbot-disable-floating-badge="1"` to `<body>` in `cavbot-arcade.html`.
+- Restored hero tablet shell styling in `files/css/pages/cavbot-arcade.css` after accidental flattening:
+  - `.tablet` border/gradient/shadow/rounded shell restored.
+  - `.tablet::before` overlay restored.
+  - `.tablet-topbar` visible again.
+  - `.tablet-screen` inner padding restored.
+- Improved 6-game gallery spacing (each tablet card has more breathing room):
+  - `.grid` gap increased (desktop/tablet/mobile: 26/22/16).
+  - `.gallery-surface` now adds light inner padding.
+  - `.game-card` max-width reduced to 332px to keep spacing between cards.
+- User requested icon swap on CavBot WEBSITE (not app).
+- Updated website arcade device icons:
+  - `cavbot-arcade.html`: replaced inline phone/tablet/desktop SVG markup with icon glyph spans.
+  - `files/css/pages/cavbot-arcade.css`: added white mask-based glyph classes using:
+    - `/assets/icons/cavbot-arcade/phone-svgrepo-com.svg`
+    - `/assets/icons/cavbot-arcade/tablet-svgrepo-com.svg`
+    - `/assets/icons/cavbot-arcade/desktop-svgrepo-com.svg`
+- Result: website device icons render as light white and use requested assets.
+- Fixed big hero tablet media fill regression in website arcade CSS.
+- Root cause: `.hero-preview-media` inherited `object-fit: contain` from shared preview rule, preventing full screen fill.
+- Patch added explicit override:
+  - `.hero-preview-media { left:0; top:0; transform:none; object-fit:cover; }`
+- Scope limited to hero tablet media only; bottom sections and game-card spacing untouched.
+- New request: make 6 lower game tablets smaller with more spacing, and play hero `main-preview.mp4` on hover.
+- Updated `cavbot-arcade.html` hero preview source:
+  - `data-video` set to `assets/cavbot-arcade/videos/main-preview.mp4`.
+- Updated `files/js/pages/cavbot-arcade.js` `initHeroPreview()`:
+  - Hero video now arms on hover/focus (`mouseenter`/`pointerenter`/`focusin`).
+  - Added disarm on leave/blur to reset thumbnail (`mouseleave`/`pointerleave`/`focusout`).
+  - Kept a touch fallback via `pointerdown` for coarse pointers.
+- Updated `files/css/pages/cavbot-arcade.css` for lower 6 cards:
+  - Increased grid gaps (30 / 24 / 18).
+  - Reduced game card max width to 296px.
+  - Reduced preview-frame heights to 184 / 176 / 168.
+- Updated website arcade hero `Play Now` button link to official gallery URL:
+  - `https://app.cavbot.io/cavbot-arcade/gallery`
+- New request: put 6 lower game screens into a real iPad frame while keeping everything else unchanged.
+- Updated only `files/css/pages/cavbot-arcade.css` preview card styles:
+  - `.preview` now has tablet-bezel shell (rounded frame, subtle metallic gradients, inner stroke, top sensor slit pseudo-element).
+  - `.preview-frame` now acts as inner screen with stronger border and screen background.
+  - Added responsive bezel adjustments for tablet/mobile breakpoints.
+- No HTML structure changes for this request.
+- Removed all 6 lime game-name buttons from the arcade game-card section in `cavbot-arcade.html`.
+- Kept only the `How to Play` ghost buttons per card.
+- Modal cleanup request addressed (How-to-Play modals):
+  - Removed modal gradients/radial/linear styling from `.modal-backdrop`, `.reader`, `.reader-head`, progress fill, chapter active state, passport cards, callouts, and badges.
+  - Removed circular background/chrome behind close `X` (`.icon-close` now transparent, no circle).
+  - Removed pill look in modal context (`.reader .pill` flattened; `.secure-badge`, `.kbd`, chips flattened).
+- Scope: CSS-only modal styling in `files/css/pages/cavbot-arcade.css`; tutorial content/structure untouched.
+- New user request: update tutorial version line to `Build v1.0.0 · Powered by CavBot · Built on CavAi.` and remove pill look from tutorial footer game/progress badges (e.g., `FÚTBOL CAVBOT`, `0%`).
+- Updated `files/js/pages/cavbot-arcade.js`:
+  - Replaced all tutorial version lines from `Built on CavBot.` to `Built on CavAi.` (6 occurrences).
+- Updated `cavbot-arcade.html`:
+  - Reader footer badges now use `reader-status-tag` instead of `.pill is-blue`.
+- Updated `files/css/pages/cavbot-arcade.css`:
+  - Removed reader footer dependence on pill styling and added `.reader-status-tag` as a compact rounded-rectangle badge (6px radius, bordered, mini height).
+- Validation:
+  - Confirmed no remaining `Built on CavBot.` strings in tutorial version lines.
+  - Confirmed reader footer uses `reader-status-tag` and old `.reader .pill`/`.reader-foot-left .pill` modal footer rules are no longer active.
+
+TODOs / follow-up:
+- Visual pass in browser: open any tutorial (especially Fútbol CavBot) and confirm footer chips read as compact rounded rectangles at desktop + mobile widths.
+- Follow-up request: change remaining tutorial passport `Built on` values from `CavBot` to `CavAi`.
+- Updated `files/js/pages/cavbot-arcade.js`:
+  - Replaced all six `Built on` meta values in passport cards to `CavAi`.
+- Validation:
+  - Confirmed zero `Built on CavBot` matches remain in `files/js/pages/cavbot-arcade.js` and `cavbot-arcade.html`.
+- Follow-up request: keep page visible when tutorial modal is open (no heavy darkening), while still locking background scroll.
+- Updated `files/css/pages/cavbot-arcade.css` modal overlay treatment:
+  - `.modal` background changed from dark opaque layer to `transparent`.
+  - `.modal-backdrop` reduced to a very light tint (`rgba(1,3,10,0.14)`) and blur removed.
+- Result:
+  - Underlying page remains visible with modal open.
+  - Existing `modal-lock` behavior still locks page scroll.
+- Resumed global badge standardization (match How It Works behavior): one fixed right-side CDN floating badge across pages.
+- Updated `files/js/globals/header-footer.js`:
+  - Added `pageType` detection and `allowInlineBadgeSlot` gate.
+  - Inline `data-cavbot-cdn-slot="badge"` mounts are now allowed only on `how-it-works` (or explicit `data-cavbot-allow-inline-badge="1"`).
+  - Floating badge fallback now mounts on every page by default (unless `data-cavbot-disable-floating-badge="1"`).
+- Removed temporary per-page force flags from:
+  - `product.html`, `how-it-works.html`, `pricing.html`, `cavbot-arcade.html`.
+- Validation:
+  - Confirmed no remaining `data-cavbot-force-floating-badge` flags.
+  - Confirmed JS syntax via `node --check files/js/globals/header-footer.js`.
+- Help Center content/layout update per request:
+  - Removed the full right-side Quick Actions panel from hero (`Quick actions`, `Start here`, action buttons, `Operational`, and supporting paragraph).
+  - Removed the full `Top Routes / Frequently visited` sidebar block (including all listed route/link items).
+  - Updated featured section copy to remove references to popular answers.
+- Updated `help-center.html`:
+  - `#getting-started` section is now roadmap-only.
+  - Kept heading/copy: `Getting started`, `Onboard CavBot in three steps`, and first-success loop text.
+- Updated `files/css/pages/help-center.css`:
+  - `.help-hero` now single-column after Quick Actions removal.
+  - `.help-featured` now single-column after Popular sidebar removal.
+  - `.roadmap-steps` now 3 columns on desktop; responsive fallbacks: 2 columns <=960px, 1 column <=720px.
+- Fixed global badge regression where non-`how-it-works` pages were not rendering the floating badge.
+- Root cause: inline badge-slot gate also blocked the floating fallback host in `header-footer.js`.
+- Patch: allow `slotType=badge` when slot has `data-cavbot-cdn-floating-badge`.
+- Result: all pages now use the same fixed right-side floating CDN badge behavior; non-How-It-Works inline badge duplicates remain blocked.
+- Help Center polish update:
+  - Center-aligned hero block (`Help Center · CavBot support`, title, lead copy, and search field) for cleaner Webflow-like composition.
+  - Converted topic filters to dropdown-only UI across breakpoints; removed desktop chip row markup.
+  - Updated dropdown labels to uppercase exactly as requested (`ALL TOPICS`, `GETTING STARTED`, etc.).
+  - Updated `files/js/pages/help-center.js` filter source logic to always read active filter from dropdown when present.
+- Removed entire Help Center Submit-a-request section as requested (both boxes): lane card and template card.
+- Deleted corresponding unused CSS blocks in `files/css/pages/help-center.css` for request-grid/lane styles.
+- Contact map section now follows topic grid directly.
