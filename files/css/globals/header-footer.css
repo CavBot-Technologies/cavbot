@@ -623,16 +623,23 @@ a.cb-try-cavai-menu-link:hover::after {
   inset: 0;
   z-index: 60;
   display: none;
+  pointer-events: none;
 }
 
 .nav-overlay.is-open {
   display: block;
+  pointer-events: auto;
 }
 
 .nav-overlay-backdrop {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.52);
+}
+
+.nav-overlay:not(.is-open) .nav-overlay-backdrop,
+.nav-overlay:not(.is-open) .nav-overlay-panel {
+  pointer-events: none !important;
 }
 
 /* Lock page scroll when mobile nav is open */
@@ -1168,6 +1175,14 @@ body.nav-open {
   }
 }
 
+@media (min-width: 1161px) {
+  /* Desktop never needs the mobile overlay sheet. */
+  .nav-overlay {
+    display: none !important;
+    pointer-events: none !important;
+  }
+}
+
 /* ==============================
   LAUNCH SWEEP OVERRIDES (2026)
   =============================== */
@@ -1179,6 +1194,11 @@ body,
   background-image: none !important;
   background: #01030f !important;
   overflow-x: hidden !important;
+}
+
+/* Prevent body-level transform side effects on Chrome scroll/fixed behavior. */
+body.page-shell {
+  transform: none !important;
 }
 
 body {

@@ -125,7 +125,54 @@ document.addEventListener("DOMContentLoaded", () => {
     body.style.width = "";
   }
 
+  function neutralizeHiddenOverlayInterceptors() {
+    const hiddenSelectors = [
+      ".nav-overlay:not(.is-open)",
+      ".nav-overlay[aria-hidden='true']",
+      ".cb-cavguard-overlay[data-open='false']",
+      ".cb-demo-request-overlay[data-open='false']",
+      ".cb-caverify-overlay[data-open='false']",
+      ".topic-modal[aria-hidden='true']",
+      ".faq-modal[aria-hidden='true']",
+      ".lightbox[aria-hidden='true']",
+      ".modal[aria-hidden='true']",
+      ".cavai-auth-modal[aria-hidden='true']",
+    ];
+    hiddenSelectors.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        node.style.pointerEvents = "none";
+      });
+    });
+
+    const openSelectors = [
+      ".nav-overlay.is-open",
+      ".cb-cavguard-overlay[data-open='true']",
+      ".cb-demo-request-overlay[data-open='true']",
+      ".cb-caverify-overlay[data-open='true']",
+      ".topic-modal.is-open",
+      ".faq-modal.is-open",
+      ".lightbox.is-open",
+      ".modal.is-open[aria-hidden='false']",
+      ".cavai-auth-modal.is-open",
+    ];
+    openSelectors.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        node.style.pointerEvents = "auto";
+      });
+    });
+  }
+
   function recoverScrollIfNoOverlayOpen() {
+    neutralizeHiddenOverlayInterceptors();
+    if (window.innerWidth > 1160 && navOverlay?.classList.contains("is-open")) {
+      navOverlay.classList.remove("is-open");
+      navOverlay.setAttribute("aria-hidden", "true");
+      navToggle?.setAttribute("aria-expanded", "false");
+      document.documentElement.classList.remove("nav-open");
+      document.body.classList.remove("nav-open");
+    }
     if (hasAnyOpenScrollLockOverlay()) return;
     forceClearPageScrollLocks();
   }
