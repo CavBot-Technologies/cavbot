@@ -129,7 +129,7 @@
 })();
 
 // Home desktop Chrome fallback:
-// Keep vertical wheel scroll moving the page even when horizontal-only layers intercept input.
+// Only assist wheel scrolling when native vertical scroll did not move.
 (function () {
   const body = document.body;
   if (!body || body.dataset.cavbotPageType !== 'home-page') return;
@@ -181,25 +181,42 @@
     return false;
   }
 
+  function normalizeWheelDeltaY(event) {
+    if (!Number.isFinite(event.deltaY)) return 0;
+    if (event.deltaMode === 1) return event.deltaY * 16;
+    if (event.deltaMode === 2) return event.deltaY * window.innerHeight;
+    return event.deltaY;
+  }
+
   document.addEventListener('wheel', (event) => {
-    if (event.defaultPrevented || event.ctrlKey || !Number.isFinite(event.deltaY)) return;
-    if (Math.abs(event.deltaY) < 0.5) return;
+    if (event.defaultPrevented || event.ctrlKey) return;
     if (isPageScrollLocked()) return;
 
+    const deltaY = normalizeWheelDeltaY(event);
+    if (Math.abs(deltaY) < 0.5) return;
+
     const target = event.target instanceof HTMLElement ? event.target : null;
-    if (target && hasNestedVerticalScrollHost(target, event.deltaY)) return;
+    if (target && hasNestedVerticalScrollHost(target, deltaY)) return;
 
     const scroller = document.scrollingElement || document.documentElement;
     if (!scroller) return;
 
-    const currentY = window.scrollY || window.pageYOffset || scroller.scrollTop || 0;
-    const maxY = Math.max(0, scroller.scrollHeight - window.innerHeight);
-    if (maxY <= 0) return;
+    const startY = window.scrollY || window.pageYOffset || scroller.scrollTop || 0;
 
-    const nextY = Math.max(0, Math.min(maxY, currentY + event.deltaY));
-    if (Math.abs(nextY - currentY) < 0.5) return;
+    window.requestAnimationFrame(() => {
+      if (isPageScrollLocked()) return;
+      const currentY = window.scrollY || window.pageYOffset || scroller.scrollTop || 0;
 
-    event.preventDefault();
-    window.scrollTo({ top: nextY, left: window.scrollX || window.pageXOffset || 0, behavior: 'auto' });
-  }, { passive: false, capture: true });
+      // Native scroll worked: do nothing.
+      if (Math.abs(currentY - startY) > 0.75) return;
+
+      const maxY = Math.max(0, scroller.scrollHeight - window.innerHeight);
+      if (maxY <= 0) return;
+
+      const nextY = Math.max(0, Math.min(maxY, currentY + deltaY));
+      if (Math.abs(nextY - currentY) < 0.5) return;
+
+      window.scrollTo({ top: nextY, left: window.scrollX || window.pageXOffset || 0, behavior: 'auto' });
+    });
+  }, { passive: true, capture: true });
 })();
