@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const LOGOTYPE_SRC = "/assets/logo/official-logotype-light.svg";
+  const LOGOMARK_SRC = "/assets/logo/cavbot-logomark.svg";
+  const HEADER_SCROLL_SWITCH_Y = 12;
   const WORKSPACE_HOME_PATH = "/";
   const TRY_CAVAI_URL = "https://app.cavbot.io/cavai";
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
@@ -362,13 +364,82 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function applyBrandLogotype() {
     document.querySelectorAll(".brand-logo-img").forEach((img) => {
-      const currentSrc = String(img.getAttribute("src") || "").trim().toLowerCase();
-      if (!currentSrc || currentSrc.includes("wordmark") || currentSrc.includes("official-logotype")) {
+      const currentSrc = String(img.getAttribute("src") || "").trim();
+      const currentSrcLower = currentSrc.toLowerCase();
+      let logotypeSrc = currentSrc;
+      if (!currentSrcLower || currentSrcLower.includes("wordmark") || currentSrcLower.includes("official-logotype")) {
+        logotypeSrc = LOGOTYPE_SRC;
         img.setAttribute("src", LOGOTYPE_SRC);
       }
+      if (!logotypeSrc) logotypeSrc = LOGOTYPE_SRC;
+      img.dataset.logotypeSrc = logotypeSrc;
+      img.dataset.logomarkSrc = LOGOMARK_SRC;
       if (!img.getAttribute("alt")) img.setAttribute("alt", "CavBot");
       img.setAttribute("decoding", "async");
+      img.classList.remove("is-logomark");
     });
+  }
+
+  function installStickyHeaderBrandSwap() {
+    const header = document.querySelector(".site-header");
+    if (!(header instanceof HTMLElement)) return;
+
+    const brandImages = Array.from(document.querySelectorAll(".brand-logo-img"));
+    if (!brandImages.length) return;
+
+    let rafId = 0;
+    let lastCompact = null;
+
+    const syncHeaderOffset = () => {
+      const headerHeight = Math.max(0, Math.ceil(header.getBoundingClientRect().height || 0));
+      document.documentElement.style.setProperty("--cb-header-offset", `${headerHeight}px`);
+      document.body.classList.add("cb-has-fixed-header");
+    };
+
+    const setBrandState = (compact) => {
+      if (lastCompact === compact) return;
+      lastCompact = compact;
+      header.classList.toggle("is-scrolled", compact);
+      brandImages.forEach((img) => {
+        if (!(img instanceof HTMLImageElement)) return;
+        const logotypeSrc = String(img.dataset.logotypeSrc || LOGOTYPE_SRC);
+        const logomarkSrc = String(img.dataset.logomarkSrc || LOGOMARK_SRC);
+        const nextSrc = compact ? logomarkSrc : logotypeSrc;
+        if (String(img.getAttribute("src") || "") !== nextSrc) {
+          img.setAttribute("src", nextSrc);
+        }
+        img.classList.toggle("is-logomark", compact);
+      });
+      syncHeaderOffset();
+    };
+
+    const run = () => {
+      rafId = 0;
+      const y = window.scrollY || window.pageYOffset || 0;
+      setBrandState(y > HEADER_SCROLL_SWITCH_Y);
+    };
+
+    const schedule = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(run);
+    };
+
+    syncHeaderOffset();
+    run();
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", () => {
+      syncHeaderOffset();
+      schedule();
+    }, { passive: true });
+    window.addEventListener("orientationchange", () => {
+      syncHeaderOffset();
+      schedule();
+    }, { passive: true });
+    window.addEventListener("pageshow", () => {
+      syncHeaderOffset();
+      schedule();
+    }, { passive: true });
   }
 
   function firstInitialChar(value) {
@@ -3869,5 +3940,6 @@ document.addEventListener("DOMContentLoaded", () => {
   installDemoRequestModal();
   installStudioMarketingSystem();
   applyBrandLogotype();
+  installStickyHeaderBrandSwap();
   hydrateTryCavaiRows();
 });
