@@ -80,6 +80,42 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(pageScrollLockState.scrollX, pageScrollLockState.scrollY);
   }
 
+  function hasAnyOpenScrollLockOverlay() {
+    const selectors = [
+      ".nav-overlay.is-open",
+      ".cb-cavguard-overlay[data-open='true']",
+      ".cb-demo-request-overlay[data-open='true']",
+      ".cb-caverify-overlay[data-open='true']",
+      ".topic-modal.is-open",
+      ".faq-modal.is-open",
+      ".lightbox.is-open",
+      ".modal.is-open",
+      ".cavai-auth-modal.is-open",
+    ];
+    return selectors.some((selector) => Boolean(document.querySelector(selector)));
+  }
+
+  function forceClearPageScrollLocks() {
+    const docEl = document.documentElement;
+    const body = document.body;
+    if (!docEl || !body) return;
+    pageScrollLockState.depth = 0;
+    docEl.classList.remove("nav-open", "modal-open", "modal-lock");
+    body.classList.remove("nav-open", "modal-open", "modal-lock");
+    docEl.style.overflow = "";
+    body.style.overflow = "";
+    body.style.position = "";
+    body.style.top = "";
+    body.style.left = "";
+    body.style.right = "";
+    body.style.width = "";
+  }
+
+  function recoverScrollIfNoOverlayOpen() {
+    if (hasAnyOpenScrollLockOverlay()) return;
+    forceClearPageScrollLocks();
+  }
+
   function clamp(value, min, max) {
     if (max < min) return (min + max) * 0.5;
     return Math.min(max, Math.max(min, value));
@@ -3942,4 +3978,10 @@ document.addEventListener("DOMContentLoaded", () => {
   applyBrandLogotype();
   installStickyHeaderBrandSwap();
   hydrateTryCavaiRows();
+
+  recoverScrollIfNoOverlayOpen();
+  window.setTimeout(recoverScrollIfNoOverlayOpen, 0);
+  window.setTimeout(recoverScrollIfNoOverlayOpen, 220);
+  window.addEventListener("pageshow", recoverScrollIfNoOverlayOpen, { passive: true });
+  window.addEventListener("focus", recoverScrollIfNoOverlayOpen, { passive: true });
 });
