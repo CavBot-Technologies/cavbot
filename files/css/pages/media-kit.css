@@ -1192,6 +1192,7 @@ a{ color:inherit; text-decoration:none; }
   padding: 6px 10px;
   border-radius: 999px;
   text-align:right;
+  white-space: nowrap;
 }
 
 .type-display-line{
@@ -1701,6 +1702,12 @@ a{ color:inherit; text-decoration:none; }
     grid-template-columns: 1fr;
   }
 
+  .spec-pill{
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 5px 8px;
+  }
+
   .usage-grid{
     grid-template-columns: 1fr;
   }
@@ -1731,6 +1738,11 @@ a{ color:inherit; text-decoration:none; }
   .section-title{
     font-size: 18px;
     letter-spacing: 0.08em;
+  }
+  .spec-pill{
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    padding: 4px 7px;
   }
   .shot{ flex-basis: 240px; }
 }
