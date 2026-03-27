@@ -915,6 +915,7 @@
     /* Responsive */
     @media (max-width: 980px){
       .product-hero{ grid-template-columns: minmax(0,1fr); }
+      .hero-snapshot{ order: -1; }
       .hero-snapshot{ max-width: 520px; margin-inline:auto; }
       .pillars-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .surfaces-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
