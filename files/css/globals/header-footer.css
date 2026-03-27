@@ -1096,6 +1096,10 @@ body.nav-open {
 }
 
 @media (max-width: 720px) {
+  .site-footer {
+    border-top: 0;
+  }
+
   .footer-inner {
     gap: 8px;
   }
@@ -1106,13 +1110,9 @@ body.nav-open {
   }
 
   .footer-column {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 0;
     border-radius: 0 !important;
     padding: 0;
-  }
-
-  .footer-column:last-child {
-    border-bottom: 0;
   }
 
   /* Hide static titles, show accordion toggles */

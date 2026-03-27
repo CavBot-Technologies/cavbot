@@ -66,7 +66,6 @@ const ASSET_MANIFEST = {
     
 
     /* video */
-    "/assets/brand-media-kit/cavbot-brand-guidelines/videos/cavbot-brand-guidelines.mp4",
     "/assets/brand-media-kit/cavbot-brand-guidelines/videos/cavbot-brand-guidelines-1080p.mp4",
     "/assets/brand-media-kit/cavbot-brand-guidelines/videos/cavbot-brand-guidelines-4k.mp4"
   ],
