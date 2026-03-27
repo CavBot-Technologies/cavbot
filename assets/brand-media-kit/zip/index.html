@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CavBot Media ZIP Parts</title>
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #05091b;
+      color: #e8ecff;
+      line-height: 1.5;
+      padding: 24px;
+    }
+    .card {
+      max-width: 860px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 20px;
+      background: rgba(9,16,40,0.76);
+    }
+    h1, h2 { margin: 0 0 10px; }
+    h2 { margin-top: 20px; }
+    ul { margin: 0 0 14px 18px; padding: 0; }
+    a { color: #c8d4ff; }
+    code {
+      display: block;
+      white-space: pre-wrap;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>CavBot Media ZIP Parts</h1>
+    <p>Large archive files were split into sub-25 MiB parts for deployment compatibility.</p>
+
+    <h2>Brand Guidelines parts</h2>
+    <ul>
+      <li><a href="./brand-guidelines-parts/cavbot-brand-guidelines.zip.part-00">part-00</a></li>
+      <li><a href="./brand-guidelines-parts/cavbot-brand-guidelines.zip.part-01">part-01</a></li>
+      <li><a href="./brand-guidelines-parts/cavbot-brand-guidelines.zip.part-02">part-02</a></li>
+    </ul>
+    <code>cat cavbot-brand-guidelines.zip.part-* > cavbot-brand-guidelines.zip</code>
+
+    <h2>Product parts</h2>
+    <ul>
+      <li><a href="./product-parts/product.zip.part-00">part-00</a></li>
+      <li><a href="./product-parts/product.zip.part-01">part-01</a></li>
+      <li><a href="./product-parts/product.zip.part-02">part-02</a></li>
+    </ul>
+    <code>cat product.zip.part-* > product.zip</code>
+
+    <h2>Other bundles</h2>
+    <ul>
+      <li><a href="./logo.zip">logo.zip</a></li>
+    </ul>
+  </main>
+</body>
+</html>
