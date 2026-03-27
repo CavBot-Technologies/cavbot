@@ -1154,6 +1154,73 @@
       margin-top: 2px;
     }
 
+    /* Badge passport needs a looser vertical rhythm than the implementation notes modal. */
+    #badgePassport .lightbox-body{
+      padding: 22px 22px 20px;
+    }
+    #badgePassport .passport-wrap{
+      gap: 20px;
+    }
+    #badgePassport .passport-top{
+      gap: 14px;
+      padding-top: 8px;
+    }
+    #badgePassport .passport-sub{
+      line-height: 1.9;
+      max-width: 48rem;
+    }
+    #badgePassport .passport-tags{
+      gap: 10px;
+      margin-top: 8px;
+    }
+    #badgePassport .passport-grid{
+      gap: 16px;
+      margin-top: 4px;
+    }
+    #badgePassport .passport-card{
+      padding: 16px 16px 14px;
+      gap: 12px;
+    }
+    #badgePassport .passport-card-title{
+      margin-bottom: 2px;
+    }
+    #badgePassport .passport-rows{
+      gap: 12px;
+    }
+    #badgePassport .passport-row{
+      gap: 12px;
+    }
+    #badgePassport .passport-key{
+      line-height: 1.5;
+    }
+    #badgePassport .passport-val{
+      line-height: 1.9;
+    }
+    #badgePassport .passport-bio{
+      margin: 0;
+      line-height: 2;
+    }
+    #badgePassport .passport-bio--note{
+      margin-top: 12px;
+      color: rgba(197,206,231,0.84);
+    }
+    #badgePassport .passport-list{
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+    #badgePassport .passport-tags--events{
+      margin-top: 12px;
+    }
+    #badgePassport .passport-tags--biocta{
+      margin-top: 14px;
+    }
+    #badgePassport .lightbox-footer{
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
     /* =========================
        RESPONSIVE
        ========================= */
@@ -1224,6 +1291,26 @@
         overflow: visible;
         text-overflow: clip;
         overflow-wrap: anywhere;
+      }
+
+      #badgePassport .lightbox-body{
+        padding: 18px 14px 18px;
+      }
+      #badgePassport .passport-wrap{
+        gap: 16px;
+      }
+      #badgePassport .passport-grid{
+        gap: 12px;
+      }
+      #badgePassport .passport-card{
+        padding: 14px 12px;
+      }
+      #badgePassport .passport-row{
+        grid-template-columns: 110px minmax(0,1fr);
+        gap: 10px;
+      }
+      #badgePassport .passport-tags{
+        gap: 8px;
       }
     }
 
