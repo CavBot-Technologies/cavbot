@@ -1183,6 +1183,25 @@ body.nav-open {
   .nav-menu-toggle {
     display: inline-flex;
     flex: 0 0 auto;
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  }
+
+  .nav-menu-toggle:hover,
+  .nav-menu-toggle:active,
+  .nav-menu-toggle:focus,
+  .nav-menu-toggle:focus-visible,
+  .nav-menu-toggle[aria-expanded="true"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
   }
 
   .nav-main {
