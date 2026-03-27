@@ -3721,8 +3721,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectKey = String(window.CAVBOT_PROJECT_KEY || "").trim();
     const siteId =
       String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
-    const disableFloatingBadge =
-      String(document.body?.getAttribute("data-cavbot-disable-floating-badge") || "").trim() === "1";
+    const disableFloatingBadge = false;
 
     const ensureScript = (src, attrs = {}) => {
       if (!src) return null;
@@ -3829,22 +3828,25 @@ document.addEventListener("DOMContentLoaded", () => {
     window.__cavbotMountCdnSlots = mountCdnSlots;
     window.__cavbotMountCdnSlot = mountSnippetIntoSlot;
 
-    const hasInlineBadgeHost = () =>
-      !!document.querySelector(
-        '[data-cavbot-cdn-slot="badge"]:not([data-cavbot-cdn-floating-badge])',
-      );
+    const applyFloatingBadgeHostStyle = (host) => {
+      if (!(host instanceof HTMLElement)) return;
+      host.style.position = "fixed";
+      host.style.right = "max(16px, calc(env(safe-area-inset-right) + 12px))";
+      host.style.bottom = "max(16px, calc(env(safe-area-inset-bottom) + 12px))";
+      host.style.zIndex = "9999";
+      host.style.pointerEvents = "auto";
+    };
 
     const mountFloatingBadgeFallback = async () => {
-      if (document.querySelector("[data-cavbot-cdn-floating-badge]")) return;
-      if (hasInlineBadgeHost()) return;
-      const host = document.createElement("div");
-      host.setAttribute("data-cavbot-cdn-floating-badge", "1");
-      host.setAttribute("data-cavbot-cdn-slot", "badge");
-      host.style.position = "fixed";
-      host.style.right = "24px";
-      host.style.bottom = "24px";
-      host.style.zIndex = "9999";
-      document.body.appendChild(host);
+      let host = document.querySelector("[data-cavbot-cdn-floating-badge]");
+      if (!(host instanceof HTMLElement)) {
+        host = document.createElement("div");
+        host.setAttribute("data-cavbot-cdn-floating-badge", "1");
+        host.setAttribute("data-cavbot-cdn-slot", "badge");
+        host.setAttribute("aria-hidden", "true");
+        document.body.appendChild(host);
+      }
+      applyFloatingBadgeHostStyle(host);
       await mountSnippetIntoSlot(host);
     };
 
