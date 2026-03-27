@@ -1394,3 +1394,29 @@ body.page-shell :is(main, .page-inner, .page-main, .page-content, .page-article-
   background-color: rgba(2, 5, 16, 0.93) !important;
   border-color: rgba(139, 92, 255, 0.16) !important;
 }
+
+/* Badge eye ring normalization: remove blue halo/ring around badge eyes site-wide. */
+.cavbot-dm-avatar .cavbot-eye,
+.cavbot-dm-avatar .cavbot-dm-eye,
+.cavbot-widget-root[data-widget="badge"] .cavbot-eye,
+.cavbot-widget-root[data-widget="badge"] .cavbot-dm-eye {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  border: 0 !important;
+  outline: 0 !important;
+  filter: none !important;
+}
+
+.cavbot-dm-avatar .cavbot-eye-glow,
+.cavbot-dm-avatar .cavbot-dm-eye-glow,
+.cavbot-widget-root[data-widget="badge"] .cavbot-eye-glow,
+.cavbot-widget-root[data-widget="badge"] .cavbot-dm-eye-glow {
+  opacity: 0 !important;
+  background: none !important;
+}
+
+.cavbot-dm-avatar .cavbot-eye-pupil,
+.cavbot-dm-avatar .cavbot-dm-eye-pupil,
+.cavbot-widget-root[data-widget="badge"] .cavbot-eye-pupil,
+.cavbot-widget-root[data-widget="badge"] .cavbot-dm-eye-pupil {
+  box-shadow: none !important;
+}
