@@ -1600,14 +1600,15 @@ a{ color:inherit; text-decoration:none; }
   }
   .section{
     display: grid;
-    gap: var(--space-md);
+    gap: var(--space-lg);
   }
   .story-media--video{
     aspect-ratio: 16 / 10;
     min-height: clamp(260px, 62vw, 380px);
   }
   .section-header{
-    margin-bottom: 18px;
+    margin-bottom: 24px;
+    gap: 14px;
   }
   .media-hero{
     gap: var(--space-md);
@@ -1620,6 +1621,43 @@ a{ color:inherit; text-decoration:none; }
   .media-hero-meta,
   .hero-cta-row{
     margin-top: 0;
+  }
+  .hero-cta-row,
+  .logo-btn-row,
+  .shots-actions,
+  .press-actions,
+  .btn-row,
+  .story-controls{
+    row-gap: 14px;
+    column-gap: 14px;
+  }
+  .hero-left,
+  .brand-dashboard,
+  .dash-mini,
+  .logo-card,
+  .charter-doc,
+  .charter-aside,
+  .charter-aside-card,
+  .type-specimen,
+  .type-console,
+  .console-body,
+  .usage-card,
+  .usage-list,
+  .press-contact-block,
+  .press-facts{
+    gap: 14px;
+  }
+  .dash-pill-row,
+  .dash-contents-list,
+  .charter-list,
+  .charter-aside-list,
+  .type-scale-list,
+  .console-row{
+    gap: 12px;
+  }
+  .page-inner .btn{
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
   .media-grid-2,
   .charter-grid,
