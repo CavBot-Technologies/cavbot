@@ -1801,8 +1801,14 @@
 
 /* Optional: makes the pill row feel intentional */
 .console-pill-row {
+  margin-top: 0;
+  margin-left: -14px;
+  margin-right: -14px;
   padding-top: 10px;
+  padding-left: 14px;
+  padding-right: 14px;
   border-top: 1px solid rgba(255,255,255,0.10);
+  border-radius: 0;
 }
 
 /* Responsive: stack cleanly on small screens */
@@ -1812,6 +1818,12 @@
   }
   .console-card {
     padding: 14px 13px 12px;
+  }
+  .console-pill-row {
+    margin-left: -13px;
+    margin-right: -13px;
+    padding-left: 13px;
+    padding-right: 13px;
   }
 }
 
