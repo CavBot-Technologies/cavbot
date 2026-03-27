@@ -3729,6 +3729,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const badgePassportOverlayId = "cb-badge-passport-overlay";
     const badgePassportStyleId = "cb-badge-passport-style";
     let badgePassportEscBound = false;
+    let floatingBadgeDocTriggerBound = false;
 
     const ensureBadgePassportStyle = () => {
       if (document.getElementById(badgePassportStyleId)) return;
@@ -4072,7 +4073,13 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const openGlobalBadgePassport = async () => {
-      closeNavOverlayIfOpen();
+      if (navOverlay && navToggle && navOverlay.classList.contains("is-open")) {
+        navOverlay.classList.remove("is-open");
+        document.documentElement.classList.remove("nav-open");
+        document.body.classList.remove("nav-open");
+        navOverlay.setAttribute("aria-hidden", "true");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
       const overlay = ensureBadgePassportOverlay();
       if (overlay.getAttribute("data-open") !== "true") {
         lockPageScroll();
@@ -4128,6 +4135,24 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
+    const bindFloatingBadgeDocumentTrigger = () => {
+      if (floatingBadgeDocTriggerBound) return;
+      floatingBadgeDocTriggerBound = true;
+      document.addEventListener(
+        "click",
+        (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const host = target.closest(floatingBadgeSelector);
+          if (!(host instanceof HTMLElement)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          void openBadgePassport();
+        },
+        true,
+      );
+    };
+
     const mountCdnSlots = async () => {
       const slots = Array.from(document.querySelectorAll(slotSelector));
       if (!slots.length) return false;
@@ -4163,6 +4188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       applyFloatingBadgeHostStyle(host);
       bindFloatingBadgeTrigger(host);
+      bindFloatingBadgeDocumentTrigger();
       await mountSnippetIntoSlot(host);
     };
 
