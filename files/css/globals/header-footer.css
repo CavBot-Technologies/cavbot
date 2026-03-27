@@ -1400,7 +1400,7 @@ body.page-shell :is(main, .page-inner, .page-main, .page-content, .page-article-
 .cavbot-dm-avatar .cavbot-dm-eye,
 .cavbot-widget-root[data-widget="badge"] .cavbot-eye,
 .cavbot-widget-root[data-widget="badge"] .cavbot-dm-eye {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
   border: 0 !important;
   outline: 0 !important;
   filter: none !important;
@@ -1419,4 +1419,5 @@ body.page-shell :is(main, .page-inner, .page-main, .page-content, .page-article-
 .cavbot-widget-root[data-widget="badge"] .cavbot-eye-pupil,
 .cavbot-widget-root[data-widget="badge"] .cavbot-dm-eye-pupil {
   box-shadow: none !important;
+  background: #58b7ff !important;
 }
