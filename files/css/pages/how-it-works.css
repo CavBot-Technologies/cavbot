@@ -1178,6 +1178,19 @@
         padding-right: 16px;
         gap: var(--space-xl);
       }
+      .surfaces-rail{
+        display: grid;
+        grid-template-columns: minmax(0,1fr);
+        gap: 14px;
+        overflow: visible;
+        padding: 0;
+        scroll-snap-type: none;
+        scroll-padding: 0;
+        touch-action: auto;
+      }
+      .surface-card{
+        width: 100%;
+      }
       .guide-viewport{
         height: min(68vh, calc(100vh - 210px));
         max-height: none;

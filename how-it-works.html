@@ -356,136 +356,136 @@
     <section class="section" aria-labelledby="surfaces-title" id="surfaces">
       <header class="section-header">
         <div class="eyebrow">Step 2 · Surfaces</div>
-      <br><br>  <h2 id="surfaces-title" class="section-title">How CavBot surfaces connect in production</h2>
+        <h2 id="surfaces-title" class="section-title">How CavBot surfaces connect in production</h2>
         <p class="section-body">
           CavBot stays visible where it should and quiet where it should. Teams review priorities in Command Center, visitors see clear guard signals, and recovery moments stay measurable.
-        </p><br>
+        </p>
       </header>
 
       <div class="surface-stack" role="group" aria-label="CavBot production surfaces">
        <!-- Surfaces · Passport Cards (Swipe) -->
-<div class="surfaces-shell" data-surfaces>
-  <div class="surfaces-rail" data-surfaces-rail role="region" aria-label="CavBot surfaces (swipe left and right)">
-    <!-- Surface 01 -->
-    <article class="surface-card" aria-label="Surface 01 — Live Telemetry">
-      <div class="surface-card-icon" aria-hidden="true">
-        <img src="assets/icons/page/graph-svgrepo-com.svg" alt="" class="surface-icon-asset">
-      </div>
+        <div class="surfaces-shell" data-surfaces>
+          <div class="surfaces-rail" data-surfaces-rail role="region" aria-label="CavBot surfaces (swipe left and right)">
+            <!-- Surface 01 -->
+            <article class="surface-card" aria-label="Surface 01 — Live Telemetry">
+              <div class="surface-card-icon" aria-hidden="true">
+                <img src="assets/icons/page/graph-svgrepo-com.svg" alt="" class="surface-icon-asset">
+              </div>
 
-      <div class="surface-top">
-        <div class="surface-id">
-          <div class="surface-kicker">Surface 01</div>
-       <br><br>    <h3 class="surface-title">Command Center signal view</h3>
-        </div>
-        <span class="pill is-blue">Operations</span>
-      </div>
-<br>
-      <p class="surface-text">
-        A calm view of operational signal — diagnostic drift, recovery behavior, structure health, and runtime quality — pulled from the event stream.
-        Built to answer: “Where do journeys break?” and “What changed?”
-      </p>
-<br>
-      <div class="surface-meta">
-        <span class="pill is-lime">Route health</span>
-        <span class="pill is-violet">SEO snapshots</span>
-      <br>   <span class="pill is-blue">Runtime feel</span>
-      </div>
-<br>
-      <div class="surface-events" role="group" aria-label="Command Center event signals">
-        <span class="code-inline">cavbot_route_view</span>
-        <span class="code-inline">cavbot_seo_snapshot</span>
-        <span class="code-inline">cavbot_perf_sample</span>
-      </div>
-<br><br>
-      <div class="surface-actions">
-        <a href="https://app.cavbot.io/" class="btn btn-pill btn-pill--blue">Command Center</a><br>
-      </div>
-    </article>
-<br><br>
-    <!-- Surface 02 -->
-    <article class="surface-card" aria-label="Surface 02 — CavBot Badge">
-      <div class="surface-card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z"></path>
-          <path d="M9 12l2 2 4-5"></path>
-        </svg>
-      </div>
+              <div class="surface-top">
+                <div class="surface-id">
+                  <div class="surface-kicker">Surface 01</div>
+                  <h3 class="surface-title">Command Center signal view</h3>
+                </div>
+                <span class="pill is-blue">Operations</span>
+              </div>
 
-      <div class="surface-top">
-        <div class="surface-id">
-          <div class="surface-kicker">Surface 02</div>
-       <br><br>    <h3 class="surface-title">CavBot Badge</h3>
-        </div>
-        <span class="pill is-lime">Optional</span>
-      </div>
-<br>
-      <p class="surface-text">
-        A fixed, minimal guard presence that signals a session is under protection. It has its own interaction stream so it stays useful
-        without becoming distracting.
-      </p>
-<br>
-      <div class="surface-meta">
-        <span class="pill is-violet">Configurable</span>
-        <span class="pill is-blue">Non-intrusive</span>
-        <span class="pill is-lime">Guard signal</span>
-      </div>
-<br>
-      <div class="surface-events" role="group" aria-label="Badge event signals">
-        <span class="code-inline">cavbot_badge_impression</span>
-        <span class="code-inline">cavbot_badge_hover</span>
-        <span class="code-inline">cavbot_badge_click</span>
-      </div>
-<br><br> 
-      <div class="surface-actions">
-        <button type="button" class="btn btn-pill btn-pill--blue" data-open-badge>Badge details</button>
-      </div>
-    </article>
-<br><br>
-    <!-- Surface 03 -->
-    <article class="surface-card" aria-label="Surface 03 — 404 Arcade Recovery">
-      <div class="surface-card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 3v3"></path>
-          <path d="M12 18v3"></path>
-          <path d="M3 12h3"></path>
-          <path d="M18 12h3"></path>
-          <circle cx="12" cy="12" r="5"></circle>
-          <circle cx="12" cy="12" r="1.6"></circle>
-        </svg>
-      </div>
+              <p class="surface-text">
+                A calm view of operational signal — diagnostic drift, recovery behavior, structure health, and runtime quality — pulled from the event stream.
+                Built to answer: “Where do journeys break?” and “What changed?”
+              </p>
 
-      <div class="surface-top">
-        <div class="surface-id">
-          <div class="surface-kicker">Surface 03</div>
-         <br><br>  <h3 class="surface-title">Arcade recovery surface</h3>
+              <div class="surface-meta">
+                <span class="pill is-lime">Route health</span>
+                <span class="pill is-violet">SEO snapshots</span>
+                <span class="pill is-blue">Runtime feel</span>
+              </div>
+
+              <div class="surface-events" role="group" aria-label="Command Center event signals">
+                <span class="code-inline">cavbot_route_view</span>
+                <span class="code-inline">cavbot_seo_snapshot</span>
+                <span class="code-inline">cavbot_perf_sample</span>
+              </div>
+
+              <div class="surface-actions">
+                <a href="https://app.cavbot.io/" class="btn btn-pill btn-pill--blue">Command Center</a>
+              </div>
+            </article>
+
+            <!-- Surface 02 -->
+            <article class="surface-card" aria-label="Surface 02 — CavBot Badge">
+              <div class="surface-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z"></path>
+                  <path d="M9 12l2 2 4-5"></path>
+                </svg>
+              </div>
+
+              <div class="surface-top">
+                <div class="surface-id">
+                  <div class="surface-kicker">Surface 02</div>
+                  <h3 class="surface-title">CavBot Badge</h3>
+                </div>
+                <span class="pill is-lime">Optional</span>
+              </div>
+
+              <p class="surface-text">
+                A fixed, minimal guard presence that signals a session is under protection. It has its own interaction stream so it stays useful
+                without becoming distracting.
+              </p>
+
+              <div class="surface-meta">
+                <span class="pill is-violet">Configurable</span>
+                <span class="pill is-blue">Non-intrusive</span>
+                <span class="pill is-lime">Guard signal</span>
+              </div>
+
+              <div class="surface-events" role="group" aria-label="Badge event signals">
+                <span class="code-inline">cavbot_badge_impression</span>
+                <span class="code-inline">cavbot_badge_hover</span>
+                <span class="code-inline">cavbot_badge_click</span>
+              </div>
+
+              <div class="surface-actions">
+                <button type="button" class="btn btn-pill btn-pill--blue" data-open-badge>Badge details</button>
+              </div>
+            </article>
+
+            <!-- Surface 03 -->
+            <article class="surface-card" aria-label="Surface 03 — 404 Arcade Recovery">
+              <div class="surface-card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 3v3"></path>
+                  <path d="M12 18v3"></path>
+                  <path d="M3 12h3"></path>
+                  <path d="M18 12h3"></path>
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <circle cx="12" cy="12" r="1.6"></circle>
+                </svg>
+              </div>
+
+              <div class="surface-top">
+                <div class="surface-id">
+                  <div class="surface-kicker">Surface 03</div>
+                  <h3 class="surface-title">Arcade recovery surface</h3>
+                </div>
+                <span class="pill is-violet">Recovery</span>
+              </div>
+
+              <p class="surface-text">
+                A designed 404 surface that converts dead routes into measurable recovery signal — visibility into abandonment, referrers,
+                and where the journey breaks.
+              </p>
+
+              <div class="surface-meta">
+                <span class="pill is-blue">Catch / miss</span>
+                <span class="pill is-violet">Idle telemetry</span>
+                <span class="pill is-lime">Recovery rate</span>
+              </div>
+
+              <div class="surface-events" role="group" aria-label="404 event signals">
+                <span class="code-inline">cavbot_404_view</span>
+                <span class="code-inline">cavbot_catch</span>
+                <span class="code-inline">cavbot_miss</span>
+                <span class="code-inline">cavbot_idle</span>
+              </div>
+
+              <div class="surface-actions">
+                <button type="button" class="btn btn-pill btn-pill--violet" data-open-impl>Implementation notes</button>
+              </div>
+            </article>
+          </div>
         </div>
-        <span class="pill is-violet">Recovery</span>
-      </div>
-<br>
-      <p class="surface-text">
-        A designed 404 surface that converts dead routes into measurable recovery signal — visibility into abandonment, referrers,
-        and where the journey breaks.
-      </p>
-<br>
-      <div class="surface-meta">
-        <span class="pill is-blue">Catch / miss</span>
-        <span class="pill is-violet">Idle telemetry</span>
-        <span class="pill is-lime">Recovery rate</span>
-      </div>
-<br>
-      <div class="surface-events" role="group" aria-label="404 event signals">
-        <span class="code-inline">cavbot_404_view</span>
-        <span class="code-inline">cavbot_catch</span>
-        <span class="code-inline">cavbot_miss</span>
-        <span class="code-inline">cavbot_idle</span>
-      </div>
-<br><br>
-      <div class="surface-actions">
-        <button type="button" class="btn btn-pill btn-pill--violet" data-open-impl>Implementation notes</button>
-      </div>
-    </article>
-  </div>
-</div>
       </div>
     </section>
 <br>
