@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".cb-cavguard-overlay[data-open='true']",
       ".cb-demo-request-overlay[data-open='true']",
       ".cb-caverify-overlay[data-open='true']",
+      ".cb-badge-passport-overlay[data-open='true']",
       ".topic-modal.is-open",
       ".faq-modal.is-open",
       ".lightbox.is-open",
@@ -132,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".cb-cavguard-overlay[data-open='false']",
       ".cb-demo-request-overlay[data-open='false']",
       ".cb-caverify-overlay[data-open='false']",
+      ".cb-badge-passport-overlay[data-open='false']",
       ".topic-modal[aria-hidden='true']",
       ".faq-modal[aria-hidden='true']",
       ".lightbox[aria-hidden='true']",
@@ -150,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".cb-cavguard-overlay[data-open='true']",
       ".cb-demo-request-overlay[data-open='true']",
       ".cb-caverify-overlay[data-open='true']",
+      ".cb-badge-passport-overlay[data-open='true']",
       ".topic-modal.is-open",
       ".faq-modal.is-open",
       ".lightbox.is-open",
@@ -3722,6 +3725,183 @@ document.addEventListener("DOMContentLoaded", () => {
     const siteId =
       String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
     const disableFloatingBadge = false;
+    const floatingBadgeSelector = "[data-cavbot-cdn-floating-badge]";
+    const badgePassportOverlayId = "cb-badge-passport-overlay";
+    const badgePassportStyleId = "cb-badge-passport-style";
+    let badgePassportEscBound = false;
+
+    const ensureBadgePassportStyle = () => {
+      if (document.getElementById(badgePassportStyleId)) return;
+      const style = document.createElement("style");
+      style.id = badgePassportStyleId;
+      style.textContent = `
+        .cb-badge-passport-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 10060;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          padding: clamp(14px, 3vw, 24px);
+          pointer-events: none;
+        }
+        .cb-badge-passport-overlay[data-open="true"] {
+          display: flex;
+          pointer-events: auto;
+        }
+        .cb-badge-passport-backdrop {
+          position: absolute;
+          inset: 0;
+          background: rgba(1, 4, 18, 0.82);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+        }
+        .cb-badge-passport-dialog {
+          position: relative;
+          width: min(940px, 100%);
+          max-height: min(86vh, 760px);
+          overflow: auto;
+          border-radius: 18px;
+          border: 1px solid rgba(130, 162, 255, 0.22);
+          background: rgba(2, 7, 23, 0.96);
+          box-shadow: 0 28px 80px rgba(0, 0, 0, 0.52);
+          padding: clamp(16px, 2.5vw, 24px);
+          color: rgba(235, 241, 255, 0.95);
+        }
+        .cb-badge-passport-close {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+        .cb-badge-passport-eyebrow {
+          margin: 0 0 8px;
+          font-size: 10px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(157, 184, 255, 0.86);
+        }
+        .cb-badge-passport-title {
+          margin: 0;
+          font-size: clamp(19px, 2.8vw, 28px);
+          line-height: 1.2;
+          color: rgba(247, 251, 255, 0.98);
+        }
+        .cb-badge-passport-top {
+          margin-top: 14px;
+          display: grid;
+          grid-template-columns: auto minmax(0, 1fr);
+          gap: 14px;
+          align-items: center;
+        }
+        .cb-badge-passport-robot {
+          width: 98px;
+          height: 58px;
+          border-radius: 18px;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          background: rgba(7, 16, 40, 0.94);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .cb-badge-passport-robot .cavbot-cdn-slot {
+          width: 100%;
+          height: 100%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .cb-badge-passport-robot .cavbot-cdn-slot [id^="cavbot-widget-root-"] {
+          transform: scale(0.88);
+          transform-origin: center;
+        }
+        .cb-badge-passport-copy {
+          margin: 0;
+          font-size: 14px;
+          line-height: 1.62;
+          color: rgba(216, 227, 252, 0.9);
+        }
+        .cb-badge-passport-grid {
+          margin-top: 16px;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+        .cb-badge-passport-card {
+          border: 1px solid rgba(157, 184, 255, 0.18);
+          border-radius: 12px;
+          background: rgba(9, 17, 43, 0.72);
+          padding: 12px;
+        }
+        .cb-badge-passport-card h4 {
+          margin: 0 0 7px;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(189, 209, 255, 0.92);
+        }
+        .cb-badge-passport-card p {
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.58;
+          color: rgba(222, 233, 255, 0.9);
+        }
+        .cb-badge-passport-actions {
+          margin-top: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+        }
+        .cb-badge-passport-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          text-decoration: none;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(194, 214, 255, 0.95);
+          border: 1px solid rgba(157, 184, 255, 0.28);
+          border-radius: 999px;
+          padding: 8px 12px;
+          background: rgba(6, 14, 36, 0.72);
+        }
+        .cb-badge-passport-link:hover {
+          border-color: rgba(194, 214, 255, 0.48);
+          color: rgba(236, 243, 255, 0.98);
+        }
+        .cb-badge-passport-close-btn {
+          border: 1px solid rgba(157, 184, 255, 0.26);
+          border-radius: 999px;
+          padding: 8px 14px;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: rgba(237, 243, 255, 0.96);
+          background: rgba(6, 14, 36, 0.74);
+          cursor: pointer;
+        }
+        @media (max-width: 720px) {
+          .cb-badge-passport-dialog {
+            width: 100%;
+            max-height: 88vh;
+            border-radius: 14px;
+            padding: 16px 14px;
+          }
+          .cb-badge-passport-top {
+            grid-template-columns: minmax(0, 1fr);
+            justify-items: start;
+            gap: 10px;
+          }
+          .cb-badge-passport-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 9px;
+          }
+        }
+      `;
+      (document.head || document.documentElement).appendChild(style);
+    };
 
     const ensureScript = (src, attrs = {}) => {
       if (!src) return null;
@@ -3813,6 +3993,141 @@ document.addEventListener("DOMContentLoaded", () => {
       return true;
     };
 
+    const ensureBadgePassportOverlay = () => {
+      ensureBadgePassportStyle();
+      let overlay = document.getElementById(badgePassportOverlayId);
+      if (!(overlay instanceof HTMLElement)) {
+        overlay = document.createElement("div");
+        overlay.id = badgePassportOverlayId;
+        overlay.className = "cb-badge-passport-overlay";
+        overlay.setAttribute("data-open", "false");
+        overlay.setAttribute("aria-hidden", "true");
+        overlay.innerHTML = `
+          <div class="cb-badge-passport-backdrop" data-cb-badge-passport-close></div>
+          <section class="cb-badge-passport-dialog" role="dialog" aria-modal="true" aria-labelledby="cbBadgePassportTitle">
+            <button type="button" class="cb-badge-passport-close icon-close" aria-label="Close badge passport" data-cb-badge-passport-close></button>
+            <p class="cb-badge-passport-eyebrow">CAVBOT BADGE PASSPORT</p>
+            <h2 id="cbBadgePassportTitle" class="cb-badge-passport-title">On-site Guard Identity</h2>
+            <div class="cb-badge-passport-top">
+              <span class="cb-badge-passport-robot" aria-hidden="true">
+                <span class="cavbot-cdn-slot" data-cavbot-cdn-slot="badge" data-cavbot-cdn-modal-badge="1" aria-hidden="true"></span>
+              </span>
+              <p class="cb-badge-passport-copy">
+                A visible guardian on your site that communicates "under guard" and records useful operational interactions.
+              </p>
+            </div>
+            <div class="cb-badge-passport-grid">
+              <article class="cb-badge-passport-card">
+                <h4>Designation</h4>
+                <p>CavBot Badge · fixed corner presence with minimal visual footprint.</p>
+              </article>
+              <article class="cb-badge-passport-card">
+                <h4>Signal</h4>
+                <p>Tracks impression, hover, and click so visibility and trust can be measured over time.</p>
+              </article>
+              <article class="cb-badge-passport-card">
+                <h4>Behavior</h4>
+                <p>Calm by default, always present, and never blocks navigation or page content.</p>
+              </article>
+              <article class="cb-badge-passport-card">
+                <h4>Control</h4>
+                <p>Mounted via project configuration, with privacy-first operational defaults.</p>
+              </article>
+            </div>
+            <div class="cb-badge-passport-actions">
+              <a class="cb-badge-passport-link" href="/how-it-works.html#surfaces">How It Works</a>
+              <button type="button" class="cb-badge-passport-close-btn" data-cb-badge-passport-close>Close</button>
+            </div>
+          </section>
+        `;
+        document.body.appendChild(overlay);
+      }
+
+      if (overlay.getAttribute("data-cb-bound") !== "1") {
+        overlay.setAttribute("data-cb-bound", "1");
+        overlay.addEventListener("click", (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          if (!target.closest("[data-cb-badge-passport-close]")) return;
+          event.preventDefault();
+          if (overlay.getAttribute("data-open") !== "true") return;
+          overlay.setAttribute("data-open", "false");
+          overlay.setAttribute("aria-hidden", "true");
+          unlockPageScroll();
+        });
+      }
+
+      if (!badgePassportEscBound) {
+        badgePassportEscBound = true;
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape") return;
+          if (overlay.getAttribute("data-open") !== "true") return;
+          overlay.setAttribute("data-open", "false");
+          overlay.setAttribute("aria-hidden", "true");
+          unlockPageScroll();
+        });
+      }
+
+      return overlay;
+    };
+
+    const openGlobalBadgePassport = async () => {
+      closeNavOverlayIfOpen();
+      const overlay = ensureBadgePassportOverlay();
+      if (overlay.getAttribute("data-open") !== "true") {
+        lockPageScroll();
+      }
+      overlay.setAttribute("data-open", "true");
+      overlay.setAttribute("aria-hidden", "false");
+      const slot = overlay.querySelector('[data-cavbot-cdn-slot="badge"][data-cavbot-cdn-modal-badge="1"]');
+      if (slot instanceof HTMLElement) {
+        void mountSnippetIntoSlot(slot);
+      }
+      const closeBtn = overlay.querySelector(".cb-badge-passport-close");
+      if (closeBtn instanceof HTMLElement && typeof closeBtn.focus === "function") {
+        closeBtn.focus({ preventScroll: true });
+      }
+    };
+
+    const openBadgePassport = async () => {
+      const nativeModal = document.getElementById("badgePassport");
+      if (nativeModal instanceof HTMLElement) {
+        if (!nativeModal.classList.contains("is-open")) {
+          nativeModal.classList.add("is-open");
+          nativeModal.setAttribute("aria-hidden", "false");
+          document.documentElement.classList.add("modal-lock");
+          document.body.classList.add("modal-lock");
+        }
+        const closeBtn = nativeModal.querySelector("[data-badge-close], .lightbox-close");
+        if (closeBtn instanceof HTMLElement && typeof closeBtn.focus === "function") {
+          closeBtn.focus({ preventScroll: true });
+        }
+        return;
+      }
+      await openGlobalBadgePassport();
+    };
+
+    const bindFloatingBadgeTrigger = (host) => {
+      if (!(host instanceof HTMLElement)) return;
+      if (host.getAttribute("data-cb-badge-passport-bound") === "1") return;
+      host.setAttribute("data-cb-badge-passport-bound", "1");
+      host.setAttribute("role", "button");
+      host.setAttribute("tabindex", "0");
+      host.setAttribute("aria-label", "Open CavBot Badge Passport");
+      host.removeAttribute("aria-hidden");
+      host.style.cursor = "pointer";
+
+      host.addEventListener("click", () => {
+        void openBadgePassport();
+      });
+
+      host.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        void openBadgePassport();
+      });
+    };
+
     const mountCdnSlots = async () => {
       const slots = Array.from(document.querySelectorAll(slotSelector));
       if (!slots.length) return false;
@@ -3838,7 +4153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const mountFloatingBadgeFallback = async () => {
-      let host = document.querySelector("[data-cavbot-cdn-floating-badge]");
+      let host = document.querySelector(floatingBadgeSelector);
       if (!(host instanceof HTMLElement)) {
         host = document.createElement("div");
         host.setAttribute("data-cavbot-cdn-floating-badge", "1");
@@ -3847,6 +4162,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(host);
       }
       applyFloatingBadgeHostStyle(host);
+      bindFloatingBadgeTrigger(host);
       await mountSnippetIntoSlot(host);
     };
 
