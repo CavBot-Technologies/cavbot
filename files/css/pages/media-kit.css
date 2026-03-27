@@ -1611,16 +1611,19 @@ a{ color:inherit; text-decoration:none; }
     gap: 14px;
   }
   .media-hero{
-    gap: var(--space-md);
+    gap: var(--space-lg);
   }
   .hero-left{
     display: grid;
-    gap: 14px;
+    gap: 20px;
   }
   .media-hero-lede,
   .media-hero-meta,
   .hero-cta-row{
     margin-top: 0;
+  }
+  .hero-cta-row{
+    margin-top: 12px;
   }
   .hero-cta-row,
   .logo-btn-row,
