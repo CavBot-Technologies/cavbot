@@ -1042,6 +1042,9 @@
       gap: 8px;
       align-items:center;
     }
+    .dots--spacer{
+      min-height: 26px;
+    }
     .dot{
       width: 7px; height: 7px;
       border-radius: 999px;
@@ -1152,6 +1155,9 @@
       gap: 8px;
       align-items:center;
       margin-top: 2px;
+    }
+    .passport-tags--empty{
+      min-height: 26px;
     }
 
     /* Badge passport needs a looser vertical rhythm than the implementation notes modal. */
@@ -1311,6 +1317,10 @@
       }
       #badgePassport .passport-tags{
         gap: 8px;
+      }
+      .dots--spacer,
+      .passport-tags--empty{
+        min-height: 22px;
       }
     }
 
