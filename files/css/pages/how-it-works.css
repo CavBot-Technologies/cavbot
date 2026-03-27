@@ -1156,6 +1156,24 @@
       align-items:center;
       margin-top: 2px;
     }
+    .passport-mark-spot{
+      width: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top: 6px;
+    }
+    .passport-mark-spot--footer{
+      margin-top: 0;
+      min-height: 34px;
+    }
+    .passport-mark-asset{
+      width: clamp(58px, 8.2vw, 76px);
+      height: auto;
+      display:block;
+      opacity: 0.98;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.34));
+    }
     .passport-tags--empty{
       min-height: 26px;
     }
@@ -1182,6 +1200,13 @@
     #badgePassport .passport-grid{
       gap: 16px;
       margin-top: 4px;
+    }
+    #badgePassport .passport-mark-spot{
+      margin-top: 10px;
+    }
+    #badgePassport .passport-mark-spot--footer{
+      margin-top: 0;
+      min-height: 30px;
     }
     #badgePassport .passport-card{
       padding: 16px 16px 14px;
@@ -1317,6 +1342,12 @@
       }
       #badgePassport .passport-tags{
         gap: 8px;
+      }
+      #badgePassport .passport-mark-spot{
+        margin-top: 8px;
+      }
+      .passport-mark-asset{
+        width: clamp(54px, 18vw, 68px);
       }
       .dots--spacer,
       .passport-tags--empty{
