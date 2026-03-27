@@ -2210,6 +2210,16 @@
         padding-top: var(--space-lg);
       }
 
+      .brain-card {
+        padding: 16px 14px 14px;
+        gap: 12px;
+      }
+
+      .brain-era,
+      .brain-text {
+        margin-top: 4px;
+      }
+
       .brain-grid,
       .pff-grid,
       .seo-grid,
