@@ -1189,6 +1189,9 @@
       gap: 14px;
       padding-top: 8px;
     }
+    #badgePassport .passport-top > .cavbot-cdn-slot{
+      margin-bottom: 10px;
+    }
     #badgePassport .passport-sub{
       line-height: 1.9;
       max-width: 48rem;
@@ -1329,6 +1332,9 @@
       }
       #badgePassport .passport-wrap{
         gap: 16px;
+      }
+      #badgePassport .passport-top > .cavbot-cdn-slot{
+        margin-bottom: 8px;
       }
       #badgePassport .passport-grid{
         gap: 12px;
