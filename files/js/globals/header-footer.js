@@ -3791,72 +3791,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    const enforceBadgeEyeRinglessStyle = (scope) => {
-      const root = scope && typeof scope.querySelectorAll === "function" ? scope : document;
-      const eyeSelector = [
-        ".cavbot-dm-avatar .cavbot-eye",
-        ".cavbot-dm-avatar .cavbot-dm-eye",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-eye",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-dm-eye",
-      ].join(", ");
-      const pupilSelector = [
-        ".cavbot-dm-avatar .cavbot-eye-pupil",
-        ".cavbot-dm-avatar .cavbot-dm-eye-pupil",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-eye-pupil",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-dm-eye-pupil",
-      ].join(", ");
-      const eyeInnerSelector = [
-        ".cavbot-dm-avatar .cavbot-eye-inner",
-        ".cavbot-dm-avatar .cavbot-dm-eye-inner",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-eye-inner",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-dm-eye-inner",
-      ].join(", ");
-      const glowSelector = [
-        ".cavbot-dm-avatar .cavbot-eye-glow",
-        ".cavbot-dm-avatar .cavbot-dm-eye-glow",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-eye-glow",
-        ".cavbot-widget-root[data-widget='badge'] .cavbot-dm-eye-glow",
-      ].join(", ");
-
-      const eyes = root.querySelectorAll(eyeSelector);
-      eyes.forEach((eye) => {
-        if (!(eye instanceof HTMLElement)) return;
-        eye.style.setProperty("box-shadow", "none", "important");
-        eye.style.setProperty("border", "0", "important");
-        eye.style.setProperty("outline", "0", "important");
-        eye.style.setProperty("filter", "none", "important");
-        eye.style.setProperty(
-          "background",
-          "radial-gradient(circle at 50% 52%, rgba(6,10,20,0.98) 0%, rgba(2,3,7,1) 76%, rgba(1,2,6,1) 100%)",
-          "important",
-        );
-      });
-
-      const eyeInners = root.querySelectorAll(eyeInnerSelector);
-      eyeInners.forEach((eyeInner) => {
-        if (!(eyeInner instanceof HTMLElement)) return;
-        eyeInner.style.setProperty(
-          "background",
-          "radial-gradient(circle at 50% 50%, rgba(2,3,8,1) 0%, rgba(2,3,8,1) 100%)",
-          "important",
-        );
-      });
-
-      const pupils = root.querySelectorAll(pupilSelector);
-      pupils.forEach((pupil) => {
-        if (!(pupil instanceof HTMLElement)) return;
-        pupil.style.setProperty("box-shadow", "none", "important");
-        pupil.style.setProperty("background", "#58b7ff", "important");
-      });
-
-      const glows = root.querySelectorAll(glowSelector);
-      glows.forEach((glow) => {
-        if (!(glow instanceof HTMLElement)) return;
-        glow.style.setProperty("opacity", "0", "important");
-        glow.style.setProperty("background", "none", "important");
-      });
-    };
-
     const mountSnippetIntoSlot = async (slot) => {
       if (!slot) return false;
       const slotType = String(slot.getAttribute("data-cavbot-cdn-slot") || "")
@@ -3875,9 +3809,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       slot.innerHTML = html;
       slot.setAttribute("data-cavbot-cdn-ready", "1");
-      if (slotType === "badge") {
-        enforceBadgeEyeRinglessStyle(slot);
-      }
       refreshTracking();
       return true;
     };
@@ -3923,30 +3854,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!disableFloatingBadge) {
         void mountFloatingBadgeFallback();
       }
-      enforceBadgeEyeRinglessStyle(document);
     });
-
-    const observeBadgeMutations = () => {
-      if (!("MutationObserver" in window)) return;
-      const host = document.body || document.documentElement;
-      if (!(host instanceof HTMLElement)) return;
-      let rafId = 0;
-      const schedule = () => {
-        if (rafId) return;
-        rafId = window.requestAnimationFrame(() => {
-          rafId = 0;
-          enforceBadgeEyeRinglessStyle(document);
-        });
-      };
-      const observer = new MutationObserver(schedule);
-      observer.observe(host, {
-        childList: true,
-        subtree: true,
-        attributes: false,
-      });
-      schedule();
-    };
-    observeBadgeMutations();
 
     // Dogfood arcade loader install path on arcade/play surfaces.
     const disableArcadeLoader =
