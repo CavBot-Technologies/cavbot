@@ -3730,6 +3730,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const badgePassportStyleId = "cb-badge-passport-style";
     let badgePassportEscBound = false;
     let floatingBadgeDocTriggerBound = false;
+    let floatingBadgeVisibilitySyncBound = false;
+
+    const getFloatingBadgeHost = () => {
+      const host = document.querySelector(floatingBadgeSelector);
+      return host instanceof HTMLElement ? host : null;
+    };
+
+    const syncFloatingBadgeVisibility = () => {
+      const host = getFloatingBadgeHost();
+      if (!host) return;
+
+      const nativeModal = document.getElementById("badgePassport");
+      const nativeOpen =
+        nativeModal instanceof HTMLElement &&
+        (nativeModal.classList.contains("is-open") || nativeModal.getAttribute("aria-hidden") === "false");
+
+      const globalOverlay = document.getElementById(badgePassportOverlayId);
+      const globalOpen =
+        globalOverlay instanceof HTMLElement && globalOverlay.getAttribute("data-open") === "true";
+
+      const shouldHide = nativeOpen || globalOpen;
+      host.style.opacity = shouldHide ? "0" : "1";
+      host.style.visibility = shouldHide ? "hidden" : "visible";
+      host.style.pointerEvents = shouldHide ? "none" : "auto";
+    };
+
+    const scheduleFloatingBadgeVisibilitySync = () => {
+      window.setTimeout(syncFloatingBadgeVisibility, 0);
+    };
+
+    const bindFloatingBadgeVisibilitySync = () => {
+      if (floatingBadgeVisibilitySyncBound) return;
+      floatingBadgeVisibilitySyncBound = true;
+      document.addEventListener("click", () => {
+        scheduleFloatingBadgeVisibilitySync();
+      }, true);
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+        scheduleFloatingBadgeVisibilitySync();
+      }, true);
+    };
 
     const ensureBadgePassportStyle = () => {
       if (document.getElementById(badgePassportStyleId)) return;
@@ -4055,6 +4096,7 @@ document.addEventListener("DOMContentLoaded", () => {
           overlay.setAttribute("data-open", "false");
           overlay.setAttribute("aria-hidden", "true");
           unlockPageScroll();
+          syncFloatingBadgeVisibility();
         });
       }
 
@@ -4066,6 +4108,7 @@ document.addEventListener("DOMContentLoaded", () => {
           overlay.setAttribute("data-open", "false");
           overlay.setAttribute("aria-hidden", "true");
           unlockPageScroll();
+          syncFloatingBadgeVisibility();
         });
       }
 
@@ -4086,6 +4129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       overlay.setAttribute("data-open", "true");
       overlay.setAttribute("aria-hidden", "false");
+      syncFloatingBadgeVisibility();
       const slot = overlay.querySelector('[data-cavbot-cdn-slot="badge"][data-cavbot-cdn-modal-badge="1"]');
       if (slot instanceof HTMLElement) {
         void mountSnippetIntoSlot(slot);
@@ -4105,6 +4149,7 @@ document.addEventListener("DOMContentLoaded", () => {
           document.documentElement.classList.add("modal-lock");
           document.body.classList.add("modal-lock");
         }
+        syncFloatingBadgeVisibility();
         const closeBtn = nativeModal.querySelector("[data-badge-close], .lightbox-close");
         if (closeBtn instanceof HTMLElement && typeof closeBtn.focus === "function") {
           closeBtn.focus({ preventScroll: true });
@@ -4175,6 +4220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       host.style.bottom = "max(16px, calc(env(safe-area-inset-bottom) + 12px))";
       host.style.zIndex = "9999";
       host.style.pointerEvents = "auto";
+      host.style.transition = "opacity 140ms ease";
     };
 
     const mountFloatingBadgeFallback = async () => {
@@ -4189,6 +4235,8 @@ document.addEventListener("DOMContentLoaded", () => {
       applyFloatingBadgeHostStyle(host);
       bindFloatingBadgeTrigger(host);
       bindFloatingBadgeDocumentTrigger();
+      bindFloatingBadgeVisibilitySync();
+      syncFloatingBadgeVisibility();
       await mountSnippetIntoSlot(host);
     };
 
