@@ -4048,7 +4048,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="cb-badge-passport-backdrop" data-cb-badge-passport-close></div>
           <section class="cb-badge-passport-dialog" role="dialog" aria-modal="true" aria-labelledby="cbBadgePassportTitle">
             <button type="button" class="cb-badge-passport-close icon-close" aria-label="Close badge passport" data-cb-badge-passport-close></button>
-            <p class="cb-badge-passport-eyebrow">CAVBOT BADGE PASSPORT</p>
+            <p class="cb-badge-passport-eyebrow">BADGE PASSPORT</p>
             <h2 id="cbBadgePassportTitle" class="cb-badge-passport-title">On-site Guard Identity</h2>
             <div class="cb-badge-passport-top">
               <span class="cb-badge-passport-robot" aria-hidden="true">
