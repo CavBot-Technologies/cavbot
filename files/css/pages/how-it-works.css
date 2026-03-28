@@ -1196,39 +1196,9 @@
       line-height: 1.9;
       max-width: 48rem;
     }
-    #badgePassport .passport-sub--secondary{
-      margin-top: -2px;
-    }
     #badgePassport .passport-tags{
       gap: 10px;
       margin-top: 8px;
-    }
-    #badgePassport .passport-events-list{
-      margin-top: 12px;
-      display: grid;
-      gap: 14px;
-      justify-items: start;
-    }
-    #badgePassport .passport-help-list{
-      display: grid;
-      gap: 10px;
-    }
-    #badgePassport .passport-help-item{
-      display: grid;
-      gap: 4px;
-      color: rgba(197,206,231,0.92);
-      font-size: 12px;
-      line-height: 1.85;
-    }
-    #badgePassport .passport-help-item strong{
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(247,251,255,0.96);
-      line-height: 1.4;
-    }
-    #badgePassport .passport-help-item span{
-      color: rgba(197,206,231,0.92);
     }
     #badgePassport .passport-grid{
       gap: 16px;
@@ -1381,12 +1351,6 @@
       }
       #badgePassport .passport-tags{
         gap: 8px;
-      }
-      #badgePassport .passport-events-list{
-        gap: 12px;
-      }
-      #badgePassport .passport-help-list{
-        gap: 9px;
       }
       #badgePassport .passport-mark-spot{
         margin-top: 8px;
