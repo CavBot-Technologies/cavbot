@@ -483,23 +483,28 @@ document.querySelectorAll('[data-play]').forEach(function(a){
                 <div class="passport-item"><span class="meta-chip">Built on</span><span class="meta-value">CavAi</span></div>
               </div>
             </div>
-            <p>This is a “coming soon” build. The Game Book stays complete so the reader always feels premium.</p>
-
             <h2 id="overview">Overview</h2>
-            <p>Cache Sweep is a whack-style recovery game for stale cache blobs. You hit stale (orange) and protect fresh (blue).</p>
+            <p>Cache Sweep is live. It is a whack-style recovery game where you clear stale cache blobs and protect fresh ones.</p>
+            <p>Target stale <span class="kbd">orange</span> blobs fast, avoid fresh <span class="kbd">blue</span> blobs, and keep your rhythm clean.</p>
 
             <h2 id="mechanics">Mechanics</h2>
+            <div class="callout">
+              <strong>Core loop</strong>
+              <p>Hit stale blobs quickly. Skip fresh blobs. Build stable streaks instead of panic taps.</p>
+            </div>
             <ul>
-              <li>Hit orange = correct.</li>
-              <li>Hit blue = wrong.</li>
-              <li>Wrong hits may cause a brief visual destabilize (intentional).</li>
-              <li>Rounds reset quickly so the player stays calm.</li>
+              <li><span class="kbd">Orange</span> hit = correct clear.</li>
+              <li><span class="kbd">Blue</span> hit = wrong clear.</li>
+              <li>Wrong hits trigger a brief visual destabilize by design.</li>
+              <li>Rounds reset fast so the loop stays readable and fair.</li>
             </ul>
+            <div class="callout"><strong>Play style</strong><p>Accuracy beats spam. One clean hit is better than three rushed misses.</p></div>
 
             <h2 id="sound">Sound</h2>
             <p>Sound is optional. If enabled, stale hits confirm softly and wrong hits remain subtle.</p>
 
             <h2 id="telemetry">Telemetry</h2>
+            <p>Cache Sweep emits compact, typed events for recovery analytics and round quality tracking.</p>
             <ul>
               <li><span class="kbd">cache_hit_correct</span> — correct hit</li>
               <li><span class="kbd">cache_hit_wrong</span> — wrong hit</li>
@@ -508,7 +513,8 @@ document.querySelectorAll('[data-play]').forEach(function(a){
             </ul>
 
             <h2 id="notes">Notes</h2>
-            <p>When the game ships, this section expands with final tuning notes and a short “why it exists” entry.</p>
+            <p>Cache Sweep is in active rotation. It is tuned for short rounds, fast resets, and reliable recovery signal under pressure.</p>
+            <p>Use it as a live route-recovery surface, not a placeholder.</p>
 
             <h2 id="version">Version</h2>
             <p><span class="kbd">Build</span> v1.0.0 · Powered by CavBot · Built on CavAi.</p>
