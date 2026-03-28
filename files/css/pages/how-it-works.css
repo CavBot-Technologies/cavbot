@@ -1253,6 +1253,10 @@
     #badgePassport .passport-tags--biocta{
       margin-top: 14px;
     }
+    #badgePassport .passport-tags--biocta-outside{
+      margin-top: 0;
+      justify-content: flex-start;
+    }
     #badgePassport .lightbox-footer{
       padding-top: 14px;
       padding-bottom: 14px;
