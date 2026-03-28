@@ -4156,7 +4156,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         return;
       }
-      await openGlobalBadgePassport();
+      // Keep one passport style: route to How It Works modal when the local modal is not present.
+      window.location.assign("/how-it-works.html#badge-passport");
     };
 
     const bindFloatingBadgeTrigger = (host) => {

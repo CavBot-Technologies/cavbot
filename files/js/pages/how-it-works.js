@@ -258,4 +258,10 @@
         if (implModal && implModal.classList.contains('is-open')) return closeModal(implModal);
         if (badgeModal && badgeModal.classList.contains('is-open')) return closeModal(badgeModal);
       });
+
+      // Allow cross-page badge click to route here and open the native passport modal.
+      var openFromHash = String(window.location.hash || '').toLowerCase() === '#badge-passport';
+      if (openFromHash && badgeModal){
+        openModal(badgeModal);
+      }
     })();
