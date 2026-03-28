@@ -833,6 +833,7 @@
 
           <section class="passport-card" aria-label="Step 1">
             <h4 class="passport-card-title">Step 1 · Ensure the tracker is present <span class="pill is-lime">Required</span></h4>
+            <br>
             <p class="passport-bio">
               The 404 surface assumes the CavBot tracker exists on the site (global layout / template).
             </p>
@@ -847,6 +848,7 @@
 
           <section class="passport-card" aria-label="Step 2">
             <h4 class="passport-card-title">Step 2 · Route your 404 to the arcade recovery surface <span class="pill is-violet">Surface</span></h4>
+            <br>
             <p class="passport-bio">
               Render the arcade recovery experience on your 404 route (framework or static 404). Emit <span class="code-inline">cavbot_404_view</span> on entry.
             </p>
@@ -870,6 +872,7 @@ export default function NotFoundPage() {
 
           <section class="passport-card" aria-label="Step 3">
             <h4 class="passport-card-title">Step 3 · Wire interaction events <span class="pill is-blue">Signal</span></h4>
+            <br>
             <p class="passport-bio">
               When the visitor plays / interacts, emit clean, typed outcomes. Keep payloads small.
             </p>
@@ -883,6 +886,7 @@ export default function NotFoundPage() {
 
           <section class="passport-card" aria-label="Step 4">
             <h4 class="passport-card-title">Step 4 · Verify in Command Center <span class="pill is-violet">Confirm</span></h4>
+            <br>
             <ul class="mini-list" style="margin:0;">
               <li>Open Command Center → confirm rows in <span class="code-inline">events</span>.</li>
               <li>Check 404 density + recovery rate after deployment.</li>
