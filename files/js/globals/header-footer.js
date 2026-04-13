@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const LOGOTYPE_SRC = "/assets/logo/official-logotype-light.svg";
   const LOGOMARK_SRC = "/assets/logo/cavbot-logomark.svg";
   const HEADER_SCROLL_SWITCH_Y = 12;
-  const WORKSPACE_HOME_PATH = "/";
-  const TRY_CAVAI_URL = "https://app.cavbot.io/cavai";
+  const WORKSPACE_HOME_PATH = "https://app.cavbot.io/";
+  const TRY_CAVAI_URL = "https://ai.cavbot.io/";
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
   const SIGNUP_URL = "https://app.cavbot.io/auth?mode=signup";
   const TRY_CAVAI_PRODUCT_LINKS = [
@@ -4457,7 +4457,6 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  installCavGuardForAppLinks();
   installDemoRequestModal();
   installStudioMarketingSystem();
   applyBrandLogotype();

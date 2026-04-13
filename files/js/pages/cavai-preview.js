@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
   const SIGNUP_URL = "https://app.cavbot.io/auth?mode=signup";
-  const OPEN_APP_URL = "https://app.cavbot.io/cavai";
+  const OPEN_APP_URL = "https://ai.cavbot.io/";
   const ACTIVE_MODEL_ID = "qwen3.5-flash";
   const MODEL_OPTIONS = [
     { id: "qwen3.5-flash", label: "Qwen3.5-Flash", locked: false },
