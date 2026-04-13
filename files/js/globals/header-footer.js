@@ -3724,7 +3724,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectKey = String(window.CAVBOT_PROJECT_KEY || "").trim();
     const siteId =
       String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
-    const disableFloatingBadge = false;
+    const disableFloatingBadge =
+      String(document.body?.getAttribute("data-cavbot-disable-floating-badge") || "").trim() === "1";
     const floatingBadgeSelector = "[data-cavbot-cdn-floating-badge]";
     const badgePassportOverlayId = "cb-badge-passport-overlay";
     const badgePassportStyleId = "cb-badge-passport-style";
@@ -4216,9 +4217,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const applyFloatingBadgeHostStyle = (host) => {
       if (!(host instanceof HTMLElement)) return;
+      host.style.inset = "auto";
+      host.style.left = "auto";
+      host.style.top = "auto";
       host.style.position = "fixed";
       host.style.right = "max(16px, calc(env(safe-area-inset-right) + 12px))";
       host.style.bottom = "max(16px, calc(env(safe-area-inset-bottom) + 12px))";
+      host.style.display = "inline-flex";
+      host.style.alignItems = "center";
+      host.style.justifyContent = "center";
+      host.style.width = "auto";
+      host.style.height = "auto";
+      host.style.minWidth = "0";
+      host.style.minHeight = "0";
+      host.style.maxWidth = "none";
+      host.style.maxHeight = "none";
+      host.style.margin = "0";
+      host.style.overflow = "visible";
+      host.style.contain = "layout paint style";
       host.style.zIndex = "9999";
       host.style.pointerEvents = "auto";
       host.style.transition = "opacity 140ms ease";

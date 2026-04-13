@@ -1239,6 +1239,19 @@ body {
   background-attachment: fixed;
 }
 
+[data-cavbot-cdn-floating-badge][data-cavbot-cdn-slot] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
 .btn,
 .nav-overlay-login,
 .cb-site-account,
