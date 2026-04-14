@@ -65,6 +65,29 @@ body.cb-has-fixed-header {
   gap: 8px;
 }
 
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.brand-logo-stack {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(188px, 17vw, 236px);
+  aspect-ratio: 1001 / 501;
+  contain: layout paint;
+  transition:
+    width 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.brand-logo-stack.is-compact {
+  width: clamp(26px, 2vw, 32px);
+}
+
 .brand-logo-img {
   display: block;
   height: clamp(42px, 3.2vw, 50px);
@@ -77,6 +100,44 @@ body.cb-has-fixed-header {
 .brand-logo-img.is-logomark {
   height: clamp(26px, 2vw, 32px);
   max-width: clamp(26px, 2vw, 32px);
+}
+
+.brand-logo-stack .brand-logo-img,
+.brand-logo-stack .brand-logo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  backface-visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.brand-logo-stack .brand-logo-img {
+  object-position: left center;
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.brand-logo-stack .brand-logo-layer--logomark {
+  object-position: center center;
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0.82);
+}
+
+.brand-logo-stack.is-compact .brand-logo-img {
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(0.96);
+}
+
+.brand-logo-stack.is-compact .brand-logo-layer--logomark {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 /* Desktop nav */
@@ -1202,6 +1263,14 @@ body.nav-open {
 
   .brand-lockup {
     flex: 0 0 auto;
+  }
+
+  .brand-logo-stack {
+    width: clamp(200px, 54vw, 260px);
+  }
+
+  .brand-logo-stack.is-compact {
+    width: clamp(28px, 6.8vw, 34px);
   }
 
   .brand-logo-img {
