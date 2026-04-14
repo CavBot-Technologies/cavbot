@@ -98,6 +98,26 @@
         letter-spacing: 0.14em;
       }
     }
+
+    /* Homepage widgets are decorative only and must never steal scroll/pointer input. */
+    body[data-cavbot-page-type="home-page"] :is(
+      .hero-robot-avatar-wrap,
+      .badge-visual,
+      .badge-orbit,
+      .cavbot-badge-frame,
+      .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+      .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
+    ),
+    body[data-cavbot-page-type="home-page"] :is(
+      .hero-robot-avatar-wrap,
+      .badge-visual,
+      .badge-orbit,
+      .cavbot-badge-frame,
+      .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+      .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
+    ) * {
+      pointer-events: none !important;
+    }
   </style>
 
   <!-- Structured data  -->
@@ -176,7 +196,9 @@
 
 <body class="page-shell"
       data-cavbot-page-type="home-page"
-      data-cavbot-component="home-shell">
+      data-cavbot-component="home-shell"
+      data-cavbot-disable-floating-badge="1"
+      data-cavbot-disable-arcade-loader="1">
 
   <!-- ===========================
        HEADER / NAV
@@ -1512,7 +1534,7 @@
   <!-- CavBot brain + nav toggle -->
   <script src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js" defer></script>
   <!-- CavBot header-footer + nav toggle -->
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414scrollfix1"></script>
+  <script src="files/js/globals/header-footer.js?v=brainfix-20260414scrollfix2"></script>
   <!-- CavBot mains.js -->
   <script src="files/js/globals/main.js?v=brainfix-20260326homewheel3"></script>
 </body>

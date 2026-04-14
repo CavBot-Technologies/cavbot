@@ -3713,6 +3713,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================
   (() => {
     const ASSET_ORIGIN = "https://cdn.cavbot.io";
+    const pageType = String(document.body?.getAttribute("data-cavbot-page-type") || "").trim().toLowerCase();
+    const isHomePage = pageType === "home-page";
     const arcadeLoaderSrc = `${ASSET_ORIGIN}/sdk/arcade/v1/loader.min.js`;
     const slotSelector = "[data-cavbot-cdn-slot]";
     const snippetUrlsBySlot = {
@@ -3732,6 +3734,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const siteId =
       String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
     const disableFloatingBadge =
+      isHomePage ||
       String(document.body?.getAttribute("data-cavbot-disable-floating-badge") || "").trim() === "1";
     const floatingBadgeSelector = "[data-cavbot-cdn-floating-badge]";
     const badgePassportOverlayId = "cb-badge-passport-overlay";
@@ -4272,6 +4275,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Dogfood arcade loader install path on arcade/play surfaces.
     const disableArcadeLoader =
+      isHomePage ||
       String(document.body?.getAttribute("data-cavbot-disable-arcade-loader") || "").trim() === "1";
     const arcadeCandidate =
       !disableArcadeLoader &&
