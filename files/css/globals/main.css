@@ -297,6 +297,15 @@
       padding: 4px;
     }
 
+    .hero-robot-static {
+      width: 132px;
+      height: 132px;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
     .cavbot-cdn-slot {
       width: 100%;
       height: 100%;
@@ -1411,6 +1420,15 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+    }
+
+    .badge-static {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .badge-state-list {

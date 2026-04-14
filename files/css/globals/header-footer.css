@@ -661,7 +661,13 @@ a.cb-try-cavai-menu-link:hover::after {
 .cb-cavguard-overlay:not([data-open="true"]),
 .cb-demo-request-overlay:not([data-open="true"]),
 .cb-caverify-overlay:not([data-open="true"]),
-.cb-badge-passport-overlay:not([data-open="true"]),
+.cb-badge-passport-overlay:not([data-open="true"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .topic-modal[aria-hidden="true"],
 .topic-modal:not(.is-open),
 .faq-modal[aria-hidden="true"],
@@ -670,9 +676,19 @@ a.cb-try-cavai-menu-link:hover::after {
 .lightbox:not(.is-open),
 .modal[aria-hidden="true"],
 .modal:not(.is-open),
-.cavai-auth-modal[aria-hidden="true"],
-.cavai-auth-modal:not(.is-open) {
+.cavai-auth-modal[aria-hidden="true"] {
+  visibility: hidden !important;
+  opacity: 0 !important;
   pointer-events: none !important;
+}
+
+.cavai-auth-modal:not(.is-open),
+.topic-modal[aria-hidden="true"],
+.topic-modal:not(.is-open),
+.faq-modal:not(.is-open),
+.lightbox:not(.is-open),
+.modal:not(.is-open) {
+  display: none !important;
 }
 
 /* Lock page scroll when mobile nav is open */
