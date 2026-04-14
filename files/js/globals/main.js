@@ -146,7 +146,7 @@
     scrollResumeTimer = window.setTimeout(() => {
       scrollPaused = false;
       ensureLoop();
-    }, 220);
+    }, 140);
   };
 
   marquee.addEventListener('mouseenter', pause);
@@ -154,7 +154,6 @@
 
   marquee.addEventListener('touchstart', pause, { passive: true });
   marquee.addEventListener('touchend', play, { passive: true });
-  window.addEventListener('wheel', pauseForScroll, { passive: true });
   window.addEventListener('scroll', pauseForScroll, { passive: true });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {

@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const LOGOTYPE_SRC = "/assets/logo/official-logotype-light.svg";
   const LOGOMARK_SRC = "/assets/logo/cavbot-logomark.svg";
-  const HEADER_SCROLL_COMPACT_ENTER_Y = 18;
-  const HEADER_SCROLL_COMPACT_EXIT_Y = 8;
+  const HEADER_SCROLL_SWITCH_Y = 12;
   const WORKSPACE_HOME_PATH = "https://app.cavbot.io/";
   const TRY_CAVAI_URL = "https://ai.cavbot.io/";
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
@@ -516,7 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function applyBrandLogotype() {
     document.querySelectorAll(".brand-logo-img").forEach((img) => {
-      if (!(img instanceof HTMLImageElement)) return;
       const currentSrc = String(img.getAttribute("src") || "").trim();
       const currentSrcLower = currentSrc.toLowerCase();
       let logotypeSrc = currentSrc;
@@ -529,47 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
       img.dataset.logomarkSrc = LOGOMARK_SRC;
       if (!img.getAttribute("alt")) img.setAttribute("alt", "CavBot");
       img.setAttribute("decoding", "async");
-      img.setAttribute("loading", "eager");
-
-      const brandLink = img.closest(".brand-logo");
-      if (brandLink instanceof HTMLElement && !brandLink.getAttribute("aria-label")) {
-        brandLink.setAttribute("aria-label", String(img.getAttribute("alt") || "CavBot"));
-      }
-
-      let stack = img.closest(".brand-logo-stack");
-      if (!(stack instanceof HTMLElement)) {
-        stack = document.createElement("span");
-        stack.className = "brand-logo-stack";
-        const parent = img.parentNode;
-        if (parent) {
-          parent.replaceChild(stack, img);
-          stack.appendChild(img);
-        }
-      }
-
-      stack.dataset.logotypeSrc = logotypeSrc;
-      stack.dataset.logomarkSrc = LOGOMARK_SRC;
-      img.setAttribute("src", logotypeSrc);
       img.classList.remove("is-logomark");
-      img.classList.add("brand-logo-layer", "brand-logo-layer--logotype");
-
-      let logomarkImg = stack.querySelector(".brand-logo-layer--logomark");
-      if (!(logomarkImg instanceof HTMLImageElement)) {
-        logomarkImg = document.createElement("img");
-        logomarkImg.className = "brand-logo-layer brand-logo-layer--logomark";
-        logomarkImg.alt = "";
-        logomarkImg.setAttribute("aria-hidden", "true");
-        logomarkImg.setAttribute("decoding", "async");
-        logomarkImg.setAttribute("loading", "eager");
-        stack.appendChild(logomarkImg);
-      }
-      logomarkImg.setAttribute("src", LOGOMARK_SRC);
-
-      if (typeof Image === "function") {
-        const preload = new Image();
-        preload.decoding = "async";
-        preload.src = LOGOMARK_SRC;
-      }
     });
   }
 
@@ -577,8 +535,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector(".site-header");
     if (!(header instanceof HTMLElement)) return;
 
-    const brandStacks = Array.from(document.querySelectorAll(".brand-logo-stack"));
-    if (!brandStacks.length) return;
+    const brandImages = Array.from(document.querySelectorAll(".brand-logo-img"));
+    if (!brandImages.length) return;
 
     let rafId = 0;
     let lastCompact = null;
@@ -593,9 +551,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (lastCompact === compact) return;
       lastCompact = compact;
       header.classList.toggle("is-scrolled", compact);
-      brandStacks.forEach((stack) => {
-        if (!(stack instanceof HTMLElement)) return;
-        stack.classList.toggle("is-compact", compact);
+      brandImages.forEach((img) => {
+        if (!(img instanceof HTMLImageElement)) return;
+        const logotypeSrc = String(img.dataset.logotypeSrc || LOGOTYPE_SRC);
+        const logomarkSrc = String(img.dataset.logomarkSrc || LOGOMARK_SRC);
+        const nextSrc = compact ? logomarkSrc : logotypeSrc;
+        if (String(img.getAttribute("src") || "") !== nextSrc) {
+          img.setAttribute("src", nextSrc);
+        }
+        img.classList.toggle("is-logomark", compact);
       });
       syncHeaderOffset();
     };
@@ -603,13 +567,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const run = () => {
       rafId = 0;
       const y = window.scrollY || window.pageYOffset || 0;
-      const nextCompact =
-        lastCompact === null
-          ? y > HEADER_SCROLL_COMPACT_ENTER_Y
-          : lastCompact
-            ? y > HEADER_SCROLL_COMPACT_EXIT_Y
-            : y > HEADER_SCROLL_COMPACT_ENTER_Y;
-      setBrandState(nextCompact);
+      setBrandState(y > HEADER_SCROLL_SWITCH_Y);
     };
 
     const schedule = () => {
