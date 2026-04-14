@@ -190,13 +190,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
 
-    document.addEventListener("wheel", scheduleRecover, { passive: true, capture: true });
-    document.addEventListener("touchmove", scheduleRecover, { passive: true, capture: true });
-    document.addEventListener("pointerdown", scheduleRecover, { passive: true, capture: true });
-    document.addEventListener("keydown", scheduleRecover, { passive: true, capture: true });
-    window.addEventListener("scroll", scheduleRecover, { passive: true, capture: true });
+    // Avoid running hidden-overlay recovery during normal page scrolling.
+    // The open/close handlers already manage scroll locks; these guards are only
+    // for recovering from stale state after visibility or layout changes.
     window.addEventListener("resize", scheduleRecover, { passive: true });
-    document.addEventListener("visibilitychange", scheduleRecover, { passive: true });
+    window.addEventListener("pageshow", scheduleRecover, { passive: true });
+    window.addEventListener("focus", scheduleRecover, { passive: true });
+    document.addEventListener("visibilitychange", scheduleRecover);
 
     if (typeof MutationObserver === "function") {
       const observer = new MutationObserver(() => scheduleRecover());
@@ -280,6 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ticking: false,
       refreshTimer: 0,
     };
+    const pageType = String(document.body?.dataset?.cavbotPageType || "").trim().toLowerCase();
 
     const sectionSelector = [
       "main > section",
@@ -458,9 +459,15 @@ document.addEventListener("DOMContentLoaded", () => {
     collectTargets();
     bindScrollHosts();
 
-    if (reduceMotion) {
+    const showAllTargets = () => {
       state.sections.forEach((node) => node.classList.add("is-visible"));
       state.cards.forEach((node) => node.classList.add("is-visible"));
+    };
+    const shouldBypassScrollMotion =
+      pageType === "home-page" || state.sections.length + state.cards.length > 140;
+
+    if (reduceMotion || shouldBypassScrollMotion) {
+      showAllTargets();
       return;
     }
 

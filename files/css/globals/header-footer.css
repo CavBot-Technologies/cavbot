@@ -1236,7 +1236,7 @@ body.page-shell {
 }
 
 body {
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 [data-cavbot-cdn-floating-badge][data-cavbot-cdn-slot] {
