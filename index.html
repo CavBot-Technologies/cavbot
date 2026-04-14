@@ -58,15 +58,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- CavBot header-footer styles -->
-  <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260414scrollhostfix1">
+  <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260414homepagescrollfinal1">
   <!-- Unified CavBot head + brain styles -->
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
   <!-- CavBot badge styles -->
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">
   <!-- Page styles -->
-  <link rel="stylesheet" href="files/css/globals/main.css?v=brainfix-20260414scrollhostfix1">
+  <link rel="stylesheet" href="files/css/globals/main.css?v=brainfix-20260414homepagescrollfinal1">
 
   <style>
+    html,
+    body[data-cavbot-page-type="home-page"] {
+      overscroll-behavior: auto;
+    }
+
     /* Home header parity: keep desktop nav CTA from clipping on wide breakpoints. */
     @media (min-width: 1161px) {
       body[data-cavbot-page-type="home-page"] .site-header-inner {
@@ -105,16 +110,16 @@
       .badge-visual,
       .badge-orbit,
       .cavbot-badge-frame,
-      .hero-robot-static,
-      .badge-static
+      .hero-robot-avatar-wrap .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+      .badge-visual .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
     ),
     body[data-cavbot-page-type="home-page"] :is(
       .hero-robot-avatar-wrap,
       .badge-visual,
       .badge-orbit,
       .cavbot-badge-frame,
-      .hero-robot-static,
-      .badge-static
+      .hero-robot-avatar-wrap .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+      .badge-visual .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
     ) * {
       pointer-events: none !important;
     }
@@ -299,12 +304,7 @@
         <div class="hero-robot-shell">
           <div class="hero-robot-main">
             <div class="hero-robot-avatar-wrap">
-              <img
-                src="/assets/newsroom/press/press-cavbot-head-image.png"
-                alt=""
-                class="hero-robot-static"
-                aria-hidden="true"
-                decoding="async">
+              <div class="cavbot-cdn-slot" data-cavbot-cdn-slot="head" aria-hidden="true"></div>
             </div>
 
             <div class="hero-robot-metrics">
@@ -1061,12 +1061,7 @@
           <div class="badge-visual" role="img" aria-label="CavBot active session badge">
             <div class="badge-orbit">
               <div class="cavbot-badge-frame">
-                <img
-                  src="/assets/newsroom/press/press-cavbot-badge-image.png"
-                  alt=""
-                  class="badge-static"
-                  aria-hidden="true"
-                  decoding="async">
+                <div class="cavbot-cdn-slot" data-cavbot-cdn-slot="badge" aria-hidden="true"></div>
               </div>
             </div>
           </div>
@@ -1548,7 +1543,7 @@
   <!-- CavBot brain + nav toggle -->
   <script src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js" defer></script>
   <!-- CavBot header-footer + nav toggle -->
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414scrollhostfix1"></script>
+  <script src="files/js/globals/header-footer.js?v=brainfix-20260414homepagescrollfinal1"></script>
   <!-- CavBot mains.js -->
   <script src="files/js/globals/main.js?v=brainfix-20260326homewheel3"></script>
 </body>

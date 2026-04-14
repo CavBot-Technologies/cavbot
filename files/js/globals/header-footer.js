@@ -186,7 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function installScrollRecoveryGuards() {
-    const pageType = String(document.body?.dataset?.cavbotPageType || "").trim().toLowerCase();
     let rafId = 0;
     const scheduleRecover = () => {
       if (rafId) return;
@@ -223,16 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.setTimeout(scheduleRecover, 0);
     window.setTimeout(scheduleRecover, 140);
     window.setTimeout(scheduleRecover, 480);
-
-    if (pageType === "home-page") {
-      const eagerRecover = () => {
-        if (hasAnyOpenScrollLockOverlay()) return;
-        recoverScrollIfNoOverlayOpen();
-      };
-      window.addEventListener("wheel", eagerRecover, { passive: true, capture: true });
-      window.addEventListener("pointermove", eagerRecover, { passive: true, capture: true });
-      window.addEventListener("touchstart", eagerRecover, { passive: true, capture: true });
-    }
   }
 
   function clamp(value, min, max) {
