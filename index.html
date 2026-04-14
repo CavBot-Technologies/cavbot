@@ -58,7 +58,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- CavBot header-footer styles -->
-  <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260414scrollfix1-home">
+  <link rel="stylesheet" href="files/css/globals/header-footer.css?v=brainfix-20260414homepagebadgefix1">
   <!-- Unified CavBot head + brain styles -->
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
   <!-- CavBot badge styles -->
@@ -105,16 +105,16 @@
       .badge-visual,
       .badge-orbit,
       .cavbot-badge-frame,
-      .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
-      .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
+      .hero-robot-avatar-wrap .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+      .badge-visual .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
     ),
     body[data-cavbot-page-type="home-page"] :is(
       .hero-robot-avatar-wrap,
       .badge-visual,
       .badge-orbit,
       .cavbot-badge-frame,
-      .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
-      .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
+      .hero-robot-avatar-wrap .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+      .badge-visual .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
     ) * {
       pointer-events: none !important;
     }
@@ -197,7 +197,6 @@
 <body class="page-shell"
       data-cavbot-page-type="home-page"
       data-cavbot-component="home-shell"
-      data-cavbot-disable-floating-badge="1"
       data-cavbot-disable-arcade-loader="1">
 
   <!-- ===========================
@@ -1530,11 +1529,16 @@
   window.CAVBOT_SITE_ID = "cavbot.io";
   window.CAVBOT_SITE_PUBLIC_ID = "cavbot.io";
 </script>
+  <div
+    data-cavbot-cdn-floating-badge="1"
+    data-cavbot-cdn-slot="badge"
+    aria-hidden="true"
+    style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
 <script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.js" defer></script>
   <!-- CavBot brain + nav toggle -->
   <script src="https://cdn.cavbot.io/sdk/brain/v1/cavai.min.js" defer></script>
   <!-- CavBot header-footer + nav toggle -->
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414scrollfix2"></script>
+  <script src="files/js/globals/header-footer.js?v=brainfix-20260414homepagebadgefix1"></script>
   <!-- CavBot mains.js -->
   <script src="files/js/globals/main.js?v=brainfix-20260326homewheel3"></script>
 </body>

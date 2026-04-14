@@ -657,6 +657,24 @@ a.cb-try-cavai-menu-link:hover::after {
   pointer-events: none !important;
 }
 
+.nav-overlay:not(.is-open),
+.cb-cavguard-overlay:not([data-open="true"]),
+.cb-demo-request-overlay:not([data-open="true"]),
+.cb-caverify-overlay:not([data-open="true"]),
+.cb-badge-passport-overlay:not([data-open="true"]),
+.topic-modal[aria-hidden="true"],
+.topic-modal:not(.is-open),
+.faq-modal[aria-hidden="true"],
+.faq-modal:not(.is-open),
+.lightbox[aria-hidden="true"],
+.lightbox:not(.is-open),
+.modal[aria-hidden="true"],
+.modal:not(.is-open),
+.cavai-auth-modal[aria-hidden="true"],
+.cavai-auth-modal:not(.is-open) {
+  pointer-events: none !important;
+}
+
 /* Lock page scroll when mobile nav is open */
 html.nav-open,
 body.nav-open {

@@ -130,15 +130,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const hiddenSelectors = [
       ".nav-overlay:not(.is-open)",
       ".nav-overlay[aria-hidden='true']",
-      ".cb-cavguard-overlay[data-open='false']",
-      ".cb-demo-request-overlay[data-open='false']",
-      ".cb-caverify-overlay[data-open='false']",
-      ".cb-badge-passport-overlay[data-open='false']",
+      ".cb-cavguard-overlay:not([data-open='true'])",
+      ".cb-demo-request-overlay:not([data-open='true'])",
+      ".cb-caverify-overlay:not([data-open='true'])",
+      ".cb-badge-passport-overlay:not([data-open='true'])",
       ".topic-modal[aria-hidden='true']",
+      ".topic-modal:not(.is-open)",
       ".faq-modal[aria-hidden='true']",
+      ".faq-modal:not(.is-open)",
       ".lightbox[aria-hidden='true']",
+      ".lightbox:not(.is-open)",
       ".modal[aria-hidden='true']",
+      ".modal:not(.is-open)",
       ".cavai-auth-modal[aria-hidden='true']",
+      ".cavai-auth-modal:not(.is-open)",
     ];
     hiddenSelectors.forEach((selector) => {
       document.querySelectorAll(selector).forEach((node) => {
@@ -208,7 +213,15 @@ document.addEventListener("DOMContentLoaded", () => {
         attributes: true,
         attributeFilter: ["class", "style"],
       });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
     }
+
+    window.setTimeout(scheduleRecover, 0);
+    window.setTimeout(scheduleRecover, 140);
+    window.setTimeout(scheduleRecover, 480);
   }
 
   function clamp(value, min, max) {
@@ -3734,7 +3747,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const siteId =
       String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
     const disableFloatingBadge =
-      isHomePage ||
       String(document.body?.getAttribute("data-cavbot-disable-floating-badge") || "").trim() === "1";
     const floatingBadgeSelector = "[data-cavbot-cdn-floating-badge]";
     const badgePassportOverlayId = "cb-badge-passport-overlay";
