@@ -3746,6 +3746,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectKey = String(window.CAVBOT_PROJECT_KEY || "").trim();
     const siteId =
       String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
+    const disableLiveTracking =
+      String(document.body?.getAttribute("data-cavbot-disable-live-tracking") || "").trim() === "1";
     const disableFloatingBadge =
       String(document.body?.getAttribute("data-cavbot-disable-floating-badge") || "").trim() === "1";
     const floatingBadgeSelector = "[data-cavbot-cdn-floating-badge]";
@@ -4015,6 +4017,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const refreshTracking = () => {
+      if (disableLiveTracking) return;
       try {
         if (window.cavai && typeof window.cavai.enableHeadTracking === "function") {
           window.cavai.enableHeadTracking();
@@ -4313,6 +4316,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // CAVBOT FALLBACK TRACKING
   // ============================
   (() => {
+    const disableLiveTracking =
+      String(document.body?.getAttribute("data-cavbot-disable-live-tracking") || "").trim() === "1";
+    if (disableLiveTracking) {
+      window.__cavbotFallbackTrackingEnsure = () => {};
+      return;
+    }
+
     const slotSelector = "[data-cavbot-cdn-slot][data-cavbot-cdn-ready='1']";
     const pupilSelector = ".cavbot-eye-pupil, .cavbot-dm-eye-pupil";
     let started = false;
@@ -4441,6 +4451,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // CAVAI TRACKING BOOTSTRAP
   // ============================
   (() => {
+    const disableLiveTracking =
+      String(document.body?.getAttribute("data-cavbot-disable-live-tracking") || "").trim() === "1";
+    if (disableLiveTracking) return;
+
     const hasCdnSlots = () =>
       !!document.querySelector("[data-cavbot-cdn-slot]");
 

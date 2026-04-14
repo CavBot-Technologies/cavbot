@@ -84,16 +84,36 @@
   if (prefersReduced) return;
 
   let raf = null;
-  let last = performance.now();
+  let last = 0;
   let running = true;
+  let inView = false;
+  let scrollPaused = false;
+  let scrollResumeTimer = 0;
 
   // px per second (tweak if you want slower/faster)
   const SPEED = 28;
 
+  function shouldAnimate() {
+    return running && inView && !scrollPaused && !document.hidden;
+  }
+
+  function stopLoop() {
+    if (raf) {
+      cancelAnimationFrame(raf);
+      raf = null;
+    }
+  }
+
+  function ensureLoop() {
+    if (raf || !shouldAnimate()) return;
+    last = performance.now();
+    raf = requestAnimationFrame(step);
+  }
+
   function step(now) {
-    if (!running) {
+    raf = null;
+    if (!shouldAnimate()) {
       last = now;
-      raf = requestAnimationFrame(step);
       return;
     }
 
@@ -109,17 +129,52 @@
     raf = requestAnimationFrame(step);
   }
 
-  raf = requestAnimationFrame(step);
-
   // Pause on interaction (feels premium)
-  const pause = () => (running = false);
-  const play = () => (running = true);
+  const pause = () => {
+    running = false;
+    stopLoop();
+  };
+  const play = () => {
+    running = true;
+    ensureLoop();
+  };
+
+  const pauseForScroll = () => {
+    scrollPaused = true;
+    stopLoop();
+    clearTimeout(scrollResumeTimer);
+    scrollResumeTimer = window.setTimeout(() => {
+      scrollPaused = false;
+      ensureLoop();
+    }, 140);
+  };
 
   marquee.addEventListener('mouseenter', pause);
   marquee.addEventListener('mouseleave', play);
 
   marquee.addEventListener('touchstart', pause, { passive: true });
   marquee.addEventListener('touchend', play, { passive: true });
+  window.addEventListener('scroll', pauseForScroll, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopLoop();
+      return;
+    }
+    ensureLoop();
+  });
+
+  if (typeof IntersectionObserver === 'function') {
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      inView = Boolean(entry && entry.isIntersecting);
+      if (inView) ensureLoop();
+      else stopLoop();
+    }, { rootMargin: '240px 0px' });
+    observer.observe(marquee);
+  } else {
+    inView = true;
+    ensureLoop();
+  }
 
   // If user scrolls manually, keep loop stable
   track.addEventListener('scroll', () => {
