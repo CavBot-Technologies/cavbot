@@ -14,13 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
     { label: "Image Edit", href: "/image-edit.html" },
   ];
   const TRY_CAVAI_FRONTEND_MODEL_LINKS = [
-    { id: "deepseek-chat", label: "DeepSeek Chat" },
-    { id: "qwen3.5-flash", label: "Qwen3.5-Flash" },
-    { id: "qwen-plus-character", label: "Qwen-Plus-Character" },
-    { id: "deepseek-reasoner", label: "DeepSeek Reasoner" },
-    { id: "qwen3.5-plus", label: "Qwen3.5-Plus" },
-    { id: "qwen3-max", label: "Qwen3-Max" },
+    { id: "deepseek", label: "Deepseek" },
+    { id: "qwen", label: "Qwen" },
   ];
+  let tryCavaiControlSequence = 0;
 
   const navToggle = document.querySelector(".nav-menu-toggle");
   const navOverlay = document.querySelector(".nav-overlay");
@@ -729,11 +726,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function buildTryCavaiControl() {
+    const controlId = ++tryCavaiControlSequence;
     const toModelShowcaseRow = (entry) => {
       return `
         <div class="cb-try-cavai-menu-link is-model is-static" ${entry.id ? `data-model-id="${entry.id}"` : ""}>
           <span class="cb-try-cavai-menu-link-label">${entry.label}</span>
         </div>
+      `;
+    };
+    const toMenuSectionMarkup = ({ key, label, content, defaultOpen = false, lockedOpen = false }) => {
+      const panelId = `cb-try-cavai-panel-${controlId}-${key}`;
+      const sectionClasses = [
+        "cb-try-cavai-menu-section",
+        defaultOpen ? "is-open" : "",
+        lockedOpen ? "is-locked-open" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+
+      return `
+        <section class="${sectionClasses}" data-default-open="${defaultOpen ? "true" : "false"}" ${lockedOpen ? 'data-locked-open="true"' : ""}>
+          <button
+            type="button"
+            class="cb-try-cavai-menu-section-toggle"
+            aria-expanded="${defaultOpen ? "true" : "false"}"
+            aria-controls="${panelId}"
+            ${lockedOpen ? 'disabled aria-disabled="true"' : ""}
+          >
+            <span class="cb-try-cavai-menu-label">${label}</span>
+            <span class="cb-try-cavai-menu-section-caret" aria-hidden="true"></span>
+          </button>
+          <div class="cb-try-cavai-menu-section-panel" id="${panelId}" ${defaultOpen ? "" : "hidden"}>
+            ${content}
+          </div>
+        </section>
       `;
     };
 
@@ -778,41 +804,83 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.className = "cb-try-cavai-menu";
     menu.setAttribute("role", "dialog");
     menu.setAttribute("aria-label", "CavBot quick actions");
-    menu.innerHTML = `
-      <section class="cb-try-cavai-menu-section">
-        <h2 class="cb-try-cavai-menu-label">Products</h2>
-        ${TRY_CAVAI_PRODUCT_LINKS
+    menu.innerHTML = [
+      toMenuSectionMarkup({
+        key: "products",
+        label: "Explore",
+        content: TRY_CAVAI_PRODUCT_LINKS
           .map((entry) => `
             <a class="cb-try-cavai-menu-link" href="${entry.href}">
               <span class="cb-try-cavai-menu-link-label">${entry.label}</span>
             </a>
           `)
-          .join("")}
-      </section>
-      <div class="cb-try-cavai-menu-divider"></div>
-      <section class="cb-try-cavai-menu-section">
-        <h2 class="cb-try-cavai-menu-label">Models</h2>
-        ${TRY_CAVAI_FRONTEND_MODEL_LINKS.map((entry) => toModelShowcaseRow(entry)).join("")}
-      </section>
-      <div class="cb-try-cavai-menu-divider"></div>
-      <section class="cb-try-cavai-menu-section">
-        <h2 class="cb-try-cavai-menu-label">Log in</h2>
-        <a class="cb-try-cavai-menu-link" href="${SIGNUP_URL}">Sign up</a>
-        <a class="cb-try-cavai-menu-link" href="${LOGIN_URL}">Log in</a>
-      </section>
-    `;
+          .join(""),
+      }),
+      toMenuSectionMarkup({
+        key: "models",
+        label: "Models",
+        content: TRY_CAVAI_FRONTEND_MODEL_LINKS.map((entry) => toModelShowcaseRow(entry)).join(""),
+      }),
+      toMenuSectionMarkup({
+        key: "login",
+        label: "Account",
+        content: `
+          <a class="cb-try-cavai-menu-link" href="${SIGNUP_URL}">Sign up</a>
+          <a class="cb-try-cavai-menu-link" href="${LOGIN_URL}">Log in</a>
+        `,
+        defaultOpen: true,
+        lockedOpen: true,
+      }),
+    ].join("");
+
+    const menuSections = Array.from(menu.querySelectorAll(".cb-try-cavai-menu-section"));
+    const setMenuSectionState = (section, open) => {
+      if (!section) return;
+      const isLockedOpen = section.getAttribute("data-locked-open") === "true";
+      const nextOpen = isLockedOpen ? true : open;
+      const button = section.querySelector(".cb-try-cavai-menu-section-toggle");
+      const panel = section.querySelector(".cb-try-cavai-menu-section-panel");
+
+      section.classList.toggle("is-open", nextOpen);
+      if (button) button.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+      if (panel) panel.hidden = !nextOpen;
+    };
+    const resetMenuSections = () => {
+      menuSections.forEach((section) => {
+        const defaultOpen = section.getAttribute("data-default-open") === "true";
+        setMenuSectionState(section, defaultOpen);
+      });
+    };
+
+    menuSections.forEach((section) => {
+      const button = section.querySelector(".cb-try-cavai-menu-section-toggle");
+      if (!button || button.disabled) return;
+
+      button.addEventListener("click", () => {
+        const isOpen = button.getAttribute("aria-expanded") === "true";
+        setMenuSectionState(section, !isOpen);
+      });
+    });
+    resetMenuSections();
 
     const closeMenu = () => {
       shell.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
+      resetMenuSections();
     };
 
     toggle.addEventListener("click", (event) => {
       event.preventDefault();
       event.stopPropagation();
       const nextOpen = !shell.classList.contains("is-open");
-      shell.classList.toggle("is-open", nextOpen);
-      toggle.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+      if (!nextOpen) {
+        closeMenu();
+        return;
+      }
+
+      resetMenuSections();
+      shell.classList.add("is-open");
+      toggle.setAttribute("aria-expanded", "true");
     });
 
     document.addEventListener("click", (event) => {
