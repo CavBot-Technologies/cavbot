@@ -72,38 +72,6 @@
       overscroll-behavior: auto;
     }
 
-    /* Home header parity: keep desktop nav CTA from clipping on wide breakpoints. */
-    @media (min-width: 1161px) {
-      body[data-cavbot-page-type="home-page"] .site-header-inner {
-        padding-right: 22px !important;
-      }
-
-      body[data-cavbot-page-type="home-page"] .site-header .nav-main {
-        gap: 12px;
-        margin-right: 0;
-        transform: translateX(-16px);
-      }
-
-      body[data-cavbot-page-type="home-page"] .site-header .nav-links {
-        gap: 10px;
-      }
-
-      body[data-cavbot-page-type="home-page"] .site-header :is(
-        .nav-overlay-link--active,
-        .nav-overlay-link--violet,
-        .nav-overlay-link--lime,
-        .nav-overlay-link--ice
-      ) {
-        padding: 10px 10px;
-        letter-spacing: 0.14em;
-      }
-
-      body[data-cavbot-page-type="home-page"] .site-header .nav-cta-row .btn {
-        padding: 8px 14px;
-        letter-spacing: 0.14em;
-      }
-    }
-
     /* Homepage widgets are decorative only and must never steal scroll/pointer input. */
     body[data-cavbot-page-type="home-page"] :is(
       .hero-robot-avatar-wrap,
