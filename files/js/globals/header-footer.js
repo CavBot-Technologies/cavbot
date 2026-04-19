@@ -35,6 +35,136 @@ document.addEventListener("DOMContentLoaded", () => {
     bodyWidth: "",
   };
 
+  function installRectangleRebrand() {
+    const STYLE_ID = "cb-rectangle-rebrand-style";
+    const RADIUS_PX = 4;
+    const RADIUS_VALUE = `${RADIUS_PX}px`;
+    const SKIP_RADIUS_SELECTOR = [
+      "[data-cavbot-cdn-slot]",
+      "[data-cavbot-cdn-floating-badge]",
+      "[data-cavbot-head]",
+      ".cavbot-cdn-slot",
+      ".cavbot-head-avatar",
+      ".cavbot-dm-avatar",
+      ".hero-robot-avatar-wrap",
+      ".badge-orbit",
+      ".cavbot-badge-frame",
+      ".cb-site-account-chip",
+      ".hero-robot-live-dot",
+      ".badge-state-bullet",
+      ".analytics-dot",
+      ".lab-dot",
+      ".status-dot",
+      ".tablet-dot",
+      ".toc-dot",
+      ".live-dot",
+      ".assembly-dot",
+      ".about-hero-bot-dot",
+      ".founder-proof-dot",
+      ".roadmap-goal-dot",
+      ".dash-dot",
+      ".chip-dot",
+      ".fact-dot",
+      ".press-badge-dot",
+      ".cavai-message-loading-dot",
+      ".nav-menu-icon",
+      ".dot",
+    ].join(", ");
+    const body = document.body;
+    if (!body) return;
+
+    body.setAttribute("data-cb-rectangle-rebrand", "true");
+
+    if (!document.getElementById(STYLE_ID)) {
+      const style = document.createElement("style");
+      style.id = STYLE_ID;
+      style.textContent = `
+        :root {
+          --cb-rectangle-radius: ${RADIUS_VALUE} !important;
+          --panel-radius-xl: var(--cb-rectangle-radius) !important;
+          --panel-radius-lg: var(--cb-rectangle-radius) !important;
+          --panel-radius-md: var(--cb-rectangle-radius) !important;
+          --panel-radius-sm: var(--cb-rectangle-radius) !important;
+          --shot-r: var(--cb-rectangle-radius) !important;
+          --cb-user-prompt-radius: var(--cb-rectangle-radius) !important;
+        }
+      `;
+      (document.head || document.documentElement).appendChild(style);
+    }
+
+    const readLargestRadius = (styles) => {
+      return Math.max(
+        parseFloat(styles.borderTopLeftRadius) || 0,
+        parseFloat(styles.borderTopRightRadius) || 0,
+        parseFloat(styles.borderBottomRightRadius) || 0,
+        parseFloat(styles.borderBottomLeftRadius) || 0,
+      );
+    };
+
+    const applyRectangleRadius = (node) => {
+      if (!(node instanceof HTMLElement)) return;
+      if (!node.isConnected) return;
+      if (node === document.documentElement || node === document.body) return;
+      if (node.closest(SKIP_RADIUS_SELECTOR)) return;
+
+      const styles = window.getComputedStyle(node);
+      if (!styles) return;
+      if (readLargestRadius(styles) <= RADIUS_PX) return;
+
+      node.style.setProperty("border-radius", RADIUS_VALUE, "important");
+      node.style.setProperty("border-top-left-radius", RADIUS_VALUE, "important");
+      node.style.setProperty("border-top-right-radius", RADIUS_VALUE, "important");
+      node.style.setProperty("border-bottom-right-radius", RADIUS_VALUE, "important");
+      node.style.setProperty("border-bottom-left-radius", RADIUS_VALUE, "important");
+    };
+
+    const applyWithin = (root) => {
+      if (root instanceof Element) applyRectangleRadius(root);
+      const scope = root instanceof Document ? root.documentElement : root;
+      if (!(scope instanceof Element)) return;
+      scope.querySelectorAll("*").forEach(applyRectangleRadius);
+    };
+
+    let queued = false;
+    let pendingFullPass = false;
+    const pendingRoots = new Set();
+    const flush = () => {
+      queued = false;
+      if (pendingFullPass) {
+        pendingFullPass = false;
+        pendingRoots.clear();
+        applyWithin(document);
+        return;
+      }
+
+      pendingRoots.forEach((root) => applyWithin(root));
+      pendingRoots.clear();
+    };
+    const queuePass = (root) => {
+      if (root) pendingRoots.add(root);
+      if (queued) return;
+      queued = true;
+      window.requestAnimationFrame(flush);
+    };
+    const queueFullPass = () => {
+      pendingFullPass = true;
+      queuePass(null);
+    };
+
+    queueFullPass();
+    window.setTimeout(queueFullPass, 180);
+    window.setTimeout(queueFullPass, 640);
+
+    const observer = new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach((node) => {
+          if (node instanceof Element) queuePass(node);
+        });
+      });
+    });
+    observer.observe(body, { childList: true, subtree: true });
+  }
+
   function lockPageScroll() {
     if (pageScrollLockState.depth === 0) {
       const docEl = document.documentElement;
@@ -4578,6 +4708,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  installRectangleRebrand();
   installDemoRequestModal();
   installStudioMarketingSystem();
   applyBrandLogotype();
