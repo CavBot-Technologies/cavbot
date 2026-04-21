@@ -141,6 +141,18 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
 
   const FORCE_BEACON = window.CAVBOT_FORCE_BEACON === true;
   const DISABLE_BEACON = window.CAVBOT_DISABLE_BEACON === true;
+  const ANALYTICS_TRANSPORT_HEADER = "X-Cavbot-Transport";
+  const ANALYTICS_TRANSPORT_VALUE = "analytics-v5";
+  const NATIVE_FETCH = (function () {
+    try {
+      return (typeof window.fetch === "function") ? window.fetch.bind(window) : null;
+    } catch {
+      return null;
+    }
+  })();
+  const API_ENDPOINT = (function () {
+    try { return new URL(API_URL, location.href); } catch { return null; }
+  })();
 
   // ---------------------------
   // Privacy switches
@@ -347,6 +359,75 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
     try { if (__flushTimer) { clearTimeout(__flushTimer); __flushTimer = null; } } catch {}
   }
 
+  function normalizeRequestUrl(input) {
+    try {
+      if (input && typeof input === "object" && input.url) {
+        return new URL(String(input.url), location.href);
+      }
+      return new URL(String(input || ""), location.href);
+    } catch {
+      return null;
+    }
+  }
+
+  function readHeaderValue(headers, name) {
+    try {
+      if (!headers || !name) return "";
+      const wanted = String(name).toLowerCase();
+      if (typeof headers.get === "function") {
+        return String(headers.get(name) || headers.get(wanted) || "");
+      }
+      if (Array.isArray(headers)) {
+        for (let i = 0; i < headers.length; i++) {
+          const entry = headers[i];
+          if (!Array.isArray(entry) || entry.length < 2) continue;
+          if (String(entry[0] || "").toLowerCase() === wanted) {
+            return String(entry[1] || "");
+          }
+        }
+        return "";
+      }
+      const obj = headers;
+      for (const key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key) && String(key).toLowerCase() === wanted) {
+          return String(obj[key] || "");
+        }
+      }
+    } catch {}
+    return "";
+  }
+
+  function isAnalyticsTransportRequest(input, init) {
+    try {
+      const marker = readHeaderValue(init && init.headers, ANALYTICS_TRANSPORT_HEADER);
+      if (marker && marker.toLowerCase() === ANALYTICS_TRANSPORT_VALUE) return true;
+
+      const url = normalizeRequestUrl(input);
+      if (!url || !API_ENDPOINT) return false;
+      return url.origin === API_ENDPOINT.origin && url.pathname === API_ENDPOINT.pathname;
+    } catch {
+      return false;
+    }
+  }
+
+  function parseRetryAfterMs(headers) {
+    try {
+      const raw = readHeaderValue(headers, "Retry-After").trim();
+      if (!raw) return 0;
+
+      const seconds = Number(raw);
+      if (Number.isFinite(seconds) && seconds > 0) {
+        return Math.min(FLUSH_MAX_BACKOFF_MS, Math.max(1000, Math.round(seconds * 1000)));
+      }
+
+      const when = Date.parse(raw);
+      if (Number.isFinite(when)) {
+        return Math.min(FLUSH_MAX_BACKOFF_MS, Math.max(1000, when - Date.now()));
+      }
+    } catch {}
+    return 0;
+  }
+
   function scheduleFlush(reason) {
     try {
       if (analyticsDisabled()) return;
@@ -374,6 +455,15 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
 
   function backoffReset() {
     __flushBackoffMs = 0;
+  }
+
+  function backoffFloor(ms) {
+    const value = Number(ms);
+    if (!Number.isFinite(value) || value <= 0) return;
+    __flushBackoffMs = Math.min(
+      FLUSH_MAX_BACKOFF_MS,
+      Math.max(__flushBackoffMs || 0, Math.round(value))
+    );
   }
 
   // ---------------------------
@@ -1201,7 +1291,7 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
   // Transport (batch-aware)
   // ---------------------------
   function postBatch(records) {
-    if (analyticsDisabled()) return Promise.resolve(true);
+    if (analyticsDisabled()) return Promise.resolve({ ok: true, mode: "disabled" });
 
     const site = siteContext();
 
@@ -1224,16 +1314,18 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
         const ok = navigator.sendBeacon(API_URL, blob);
         if (ok) {
           if (DEBUG) { try { console.log("[CavBot] Transport: beacon batch", records.length); } catch {} }
-          return Promise.resolve(true);
+          return Promise.resolve({ ok: true, mode: "beacon" });
         }
       }
     } catch {}
 
     try {
+      if (!NATIVE_FETCH) return Promise.resolve({ ok: false, reason: "fetch_unavailable" });
       if (DEBUG) { try { console.log("[CavBot] Transport: fetch batch", { n: records.length, crossOrigin: IS_CROSS_ORIGIN }); } catch {} }
 
       const headers = {
         "Content-Type": "application/json",
+        [ANALYTICS_TRANSPORT_HEADER]: ANALYTICS_TRANSPORT_VALUE,
         "X-Project-Key": PROJECT_KEY,
         "X-Cavbot-Sdk-Version": SDK_VERSION,
         "X-Cavbot-Env": ENV,
@@ -1247,7 +1339,7 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
         }
       } catch {}
 
-      return fetch(API_URL, {
+      return NATIVE_FETCH(API_URL, {
         method: "POST",
         mode: "cors",
         credentials: "omit",
@@ -1257,9 +1349,24 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
         cache: "no-store",
         referrerPolicy: "no-referrer"
       })
-        .then((resp) => !!(resp && resp.ok))
-        .catch(() => false);
-    } catch { return Promise.resolve(false); }
+        .then((resp) => {
+          const status = resp && typeof resp.status === "number" ? resp.status : null;
+          if (resp && resp.ok) return { ok: true, mode: "fetch", status: status };
+
+          return {
+            ok: false,
+            status: status,
+            retryAfterMs: parseRetryAfterMs(resp && resp.headers) || (status === 429 ? 5000 : 0)
+          };
+        })
+        .catch((err) => ({
+          ok: false,
+          reason: "fetch_failed",
+          message: safeString(err && err.message ? err.message : "fetch_failed", 260)
+        }));
+    } catch {
+      return Promise.resolve({ ok: false, reason: "transport_exception" });
+    }
   }
 
   async function flushQueue(reason) {
@@ -1299,13 +1406,15 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
 
       const flushedIds = [];
       let anyFailure = false;
+      let retryAfterMs = 0;
 
       for (let i = 0; i < queuedEntries.length; i += BATCH_SIZE) {
         const chunk = queuedEntries.slice(i, i + BATCH_SIZE);
         const records = chunk.map((entry) => entry.record);
-        const ok = await postBatch(records);
-        if (!ok) {
+        const result = await postBatch(records);
+        if (!result || !result.ok) {
           anyFailure = true;
+          retryAfterMs = Math.max(retryAfterMs, Number((result && result.retryAfterMs) || 0));
           continue;
         }
         for (let j = 0; j < chunk.length; j++) {
@@ -1320,8 +1429,9 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
       if (!anyFailure) {
         backoffReset();
       } else {
-        backoffNext();
-        if (DEBUG) { try { console.log("[CavBot] Flush: failed, queued backoff", { backoffMs: __flushBackoffMs, reason }); } catch {} }
+        if (retryAfterMs > 0) backoffFloor(retryAfterMs);
+        else backoffNext();
+        if (DEBUG) { try { console.log("[CavBot] Flush: failed, queued backoff", { backoffMs: __flushBackoffMs, reason, retryAfterMs: retryAfterMs || 0 }); } catch {} }
       }
     } catch {
       backoffNext();
@@ -1574,6 +1684,9 @@ const API_URL = window.CAVBOT_API_URL || "https://api.cavbot.io/v1/events";
       const origFetch = window.fetch;
 
       function wrappedFetch(input, init) {
+        if (isAnalyticsTransportRequest(input, init)) {
+          return origFetch.apply(this, arguments);
+        }
         const start = nowMs();
         let method = "GET";
         try { method = (init && init.method) ? String(init.method).toUpperCase() : "GET"; } catch {}
