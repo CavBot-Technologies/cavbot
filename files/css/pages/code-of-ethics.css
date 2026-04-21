@@ -419,6 +419,28 @@
       .ethics-scroll-sections { max-height: 64vh; }
     }
 
-    @media (min-width: 961px) {
-      .nav-overlay { display: none !important; }
-    }
+@media (min-width: 961px) {
+  .nav-overlay { display: none !important; }
+}
+
+/* Restore normal page scrolling instead of nested section scroll shells. */
+.ethics-content {
+  position: static;
+  top: auto;
+  align-self: stretch;
+}
+
+.ethics-scroll-sections {
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+  margin-right: 0;
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+}
+
+.ethics-scroll-sections::-webkit-scrollbar {
+  width: auto;
+  height: auto;
+  display: initial;
+}

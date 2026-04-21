@@ -295,3 +295,22 @@
     max-height: 68vh;
   }
 }
+
+/* Restore normal page scrolling instead of nested section scroll shells. */
+.page-privacy-policy .ethics-content {
+  position: static;
+  top: auto;
+  align-self: stretch;
+}
+
+.page-privacy-policy .ethics-scroll-sections {
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+  margin-right: 0;
+  scrollbar-width: auto;
+}
+
+.page-privacy-policy .ethics-scroll-sections::-webkit-scrollbar {
+  width: auto;
+}

@@ -19,9 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let tryCavaiControlSequence = 0;
 
-  const navToggle = document.querySelector(".nav-menu-toggle");
+  const navToggles = Array.from(document.querySelectorAll(".nav-menu-toggle"));
+  const navToggle = navToggles[0] || null;
   const navOverlay = document.querySelector(".nav-overlay");
   const navCloseBtn = document.querySelector(".nav-overlay-close");
+  let navLastTrigger = null;
   const pageScrollLockState = {
     depth: 0,
     scrollX: 0,
@@ -207,6 +209,85 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo(pageScrollLockState.scrollX, pageScrollLockState.scrollY);
   }
 
+  function getActiveNavToggle() {
+    return (
+      navToggles.find((toggle) => {
+        if (!(toggle instanceof HTMLElement)) return false;
+        const styles = window.getComputedStyle(toggle);
+        return styles.display !== "none" && styles.visibility !== "hidden";
+      }) ||
+      navToggle
+    );
+  }
+
+  function setNavToggleExpanded(isExpanded) {
+    navToggles.forEach((toggle) => {
+      toggle.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+    });
+  }
+
+  function setNavOverlayHidden(isHidden) {
+    if (!navOverlay) return;
+    navOverlay.setAttribute("aria-hidden", isHidden ? "true" : "false");
+    if ("inert" in navOverlay) {
+      navOverlay.inert = isHidden;
+    }
+  }
+
+  function clearFocusInsideNavOverlay() {
+    if (!navOverlay) return;
+    const activeElement = document.activeElement;
+    if (
+      activeElement instanceof HTMLElement &&
+      navOverlay.contains(activeElement) &&
+      typeof activeElement.blur === "function"
+    ) {
+      activeElement.blur();
+    }
+  }
+
+  function restoreFocusAfterNavClose() {
+    const focusTarget = navLastTrigger || getActiveNavToggle();
+    if (focusTarget && typeof focusTarget.focus === "function") {
+      focusTarget.focus({ preventScroll: true });
+    }
+  }
+
+  function openNav(trigger) {
+    if (!navOverlay || navOverlay.classList.contains("is-open")) return;
+    const resolvedTrigger =
+      trigger instanceof HTMLElement ? trigger : getActiveNavToggle();
+    navLastTrigger = resolvedTrigger || null;
+    lockPageScroll();
+    navOverlay.classList.add("is-open");
+    document.documentElement.classList.add("nav-open");
+    document.body.classList.add("nav-open");
+    setNavOverlayHidden(false);
+    setNavToggleExpanded(true);
+    window.requestAnimationFrame(() => {
+      const focusTarget =
+        navCloseBtn || navOverlay.querySelector(".nav-overlay-link");
+      if (focusTarget && typeof focusTarget.focus === "function") {
+        focusTarget.focus({ preventScroll: true });
+      }
+    });
+  }
+
+  function closeNav(options = {}) {
+    if (!navOverlay || !navOverlay.classList.contains("is-open")) return;
+    const { restoreFocus = true } = options;
+    clearFocusInsideNavOverlay();
+    if (restoreFocus) {
+      restoreFocusAfterNavClose();
+    }
+    navOverlay.classList.remove("is-open");
+    document.documentElement.classList.remove("nav-open");
+    document.body.classList.remove("nav-open");
+    setNavOverlayHidden(true);
+    setNavToggleExpanded(false);
+    unlockPageScroll();
+  }
+
   function isVisibleScrollLockOverlay(node) {
     if (!(node instanceof Element)) return false;
     if (!node.isConnected) return false;
@@ -302,11 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function recoverScrollIfNoOverlayOpen() {
     neutralizeHiddenOverlayInterceptors();
     if (window.innerWidth > 1160 && navOverlay?.classList.contains("is-open")) {
-      navOverlay.classList.remove("is-open");
-      navOverlay.setAttribute("aria-hidden", "true");
-      navToggle?.setAttribute("aria-expanded", "false");
-      document.documentElement.classList.remove("nav-open");
-      document.body.classList.remove("nav-open");
+      closeNav({ restoreFocus: false });
     }
     if (hasAnyOpenScrollLockOverlay()) return;
     forceClearPageScrollLocks();
@@ -1549,12 +1626,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const closeNavOverlayIfOpen = () => {
       if (!navOverlay || !navToggle) return;
-      if (!navOverlay.classList.contains("is-open")) return;
-      navOverlay.classList.remove("is-open");
-      document.documentElement.classList.remove("nav-open");
-      document.body.classList.remove("nav-open");
-      navOverlay.setAttribute("aria-hidden", "true");
-      navToggle.setAttribute("aria-expanded", "false");
+      closeNav({ restoreFocus: false });
     };
 
     const shouldGuardAnchor = (anchor) => {
@@ -2571,12 +2643,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const closeNavOverlayIfOpen = () => {
       if (!navOverlay || !navToggle) return;
-      if (!navOverlay.classList.contains("is-open")) return;
-      navOverlay.classList.remove("is-open");
-      document.documentElement.classList.remove("nav-open");
-      document.body.classList.remove("nav-open");
-      navOverlay.setAttribute("aria-hidden", "true");
-      navToggle.setAttribute("aria-expanded", "false");
+      closeNav({ restoreFocus: false });
     };
 
     const setStatus = (message, tone) => {
@@ -3798,35 +3865,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // HEADER / MOBILE NAV
   // ============================
   if (navToggle && navOverlay) {
-    const openNav = () => {
-      navOverlay.classList.add("is-open");
-      document.documentElement.classList.add("nav-open");
-      document.body.classList.add("nav-open");
-
-      navOverlay.setAttribute("aria-hidden", "false");
-      navToggle.setAttribute("aria-expanded", "true");
-    };
-
-    const closeNav = () => {
-      navOverlay.classList.remove("is-open");
-      document.documentElement.classList.remove("nav-open");
-      document.body.classList.remove("nav-open");
-
-      navOverlay.setAttribute("aria-hidden", "true");
-      navToggle.setAttribute("aria-expanded", "false");
-    };
-
-    navToggle.addEventListener("click", () => {
-      const isOpen = navOverlay.classList.contains("is-open");
-      if (isOpen) {
-        closeNav();
-      } else {
-        openNav();
-      }
+    navToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        navLastTrigger = toggle;
+        const isOpen = navOverlay.classList.contains("is-open");
+        if (isOpen) {
+          closeNav();
+        } else {
+          openNav(toggle);
+        }
+      });
     });
 
     if (navCloseBtn) {
-      navCloseBtn.addEventListener("click", closeNav);
+      navCloseBtn.addEventListener("click", () => closeNav());
     }
 
     navOverlay.addEventListener("click", (event) => {
@@ -3836,7 +3888,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     navOverlay.querySelectorAll("a").forEach((anchor) => {
-      anchor.addEventListener("click", closeNav);
+      anchor.addEventListener("click", () => closeNav({ restoreFocus: false }));
     });
 
     document.addEventListener("keydown", (event) => {
@@ -3847,12 +3899,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("resize", () => {
       if (window.innerWidth > 960 && navOverlay.classList.contains("is-open")) {
-        closeNav();
+        closeNav({ restoreFocus: false });
       }
     });
 
-    navOverlay.setAttribute("aria-hidden", "true");
-    navToggle.setAttribute("aria-expanded", "false");
+    window.addEventListener("pagehide", () => {
+      closeNav({ restoreFocus: false });
+      recoverScrollIfNoOverlayOpen();
+    });
+
+    window.addEventListener("beforeunload", () => {
+      closeNav({ restoreFocus: false });
+      recoverScrollIfNoOverlayOpen();
+    });
+
+    setNavOverlayHidden(true);
+    setNavToggleExpanded(false);
   }
 
   // ============================
@@ -4341,11 +4403,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const openGlobalBadgePassport = async () => {
       if (navOverlay && navToggle && navOverlay.classList.contains("is-open")) {
-        navOverlay.classList.remove("is-open");
-        document.documentElement.classList.remove("nav-open");
-        document.body.classList.remove("nav-open");
-        navOverlay.setAttribute("aria-hidden", "true");
-        navToggle.setAttribute("aria-expanded", "false");
+        closeNav({ restoreFocus: false });
       }
       const overlay = ensureBadgePassportOverlay();
       if (overlay.getAttribute("data-open") !== "true") {
