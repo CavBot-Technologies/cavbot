@@ -1344,6 +1344,58 @@ body {
   background-attachment: scroll;
 }
 
+/* Marketing pages should always scroll on the page itself, not through nested visual layers. */
+body:is(
+  [data-cavbot-page-type="home-page"],
+  [data-cavbot-page-type="resource-page"],
+  [data-cavbot-page-type="about-page"],
+  [data-cavbot-page-type="biography"],
+  [data-cavbot-page-type="arcade-lab"],
+  .page-ethics
+) {
+  overscroll-behavior-y: auto;
+  overflow-y: auto;
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Decorative CavBot surfaces on marketing pages must never steal wheel / touch scroll. */
+body:is(
+  [data-cavbot-page-type="home-page"],
+  [data-cavbot-page-type="resource-page"],
+  [data-cavbot-page-type="about-page"],
+  [data-cavbot-page-type="biography"],
+  [data-cavbot-page-type="arcade-lab"],
+  .page-ethics
+) :is(
+  [data-cavbot-cdn-slot]:not([data-cavbot-cdn-floating-badge]),
+  .cavbot-cdn-slot:not([data-cavbot-cdn-floating-badge]),
+  [data-cavbot-head],
+  [data-cavbot-body],
+  .cavbot-head-avatar,
+  .cavbot-badge-frame,
+  .cavbot-full-body
+),
+body:is(
+  [data-cavbot-page-type="home-page"],
+  [data-cavbot-page-type="resource-page"],
+  [data-cavbot-page-type="about-page"],
+  [data-cavbot-page-type="biography"],
+  [data-cavbot-page-type="arcade-lab"],
+  .page-ethics
+) :is(
+  [data-cavbot-cdn-slot]:not([data-cavbot-cdn-floating-badge]),
+  .cavbot-cdn-slot:not([data-cavbot-cdn-floating-badge]),
+  [data-cavbot-head],
+  [data-cavbot-body],
+  .cavbot-head-avatar,
+  .cavbot-badge-frame,
+  .cavbot-full-body
+) * {
+  pointer-events: none !important;
+  touch-action: auto !important;
+}
+
 [data-cavbot-cdn-floating-badge][data-cavbot-cdn-slot] {
   display: inline-flex !important;
   align-items: center !important;

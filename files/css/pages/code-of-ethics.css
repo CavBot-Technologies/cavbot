@@ -40,7 +40,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      overscroll-behavior: none;
+      overscroll-behavior: auto;
       margin: 0;
       min-height: 100vh;
       font-family: var(--font-sans);
