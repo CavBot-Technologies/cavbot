@@ -1357,6 +1357,12 @@ body {
   overflow: visible !important;
 }
 
+body:not([data-cavbot-interactive-floating-badge="1"]) [data-cavbot-cdn-floating-badge][data-cavbot-cdn-slot],
+body:not([data-cavbot-interactive-floating-badge="1"]) [data-cavbot-cdn-floating-badge][data-cavbot-cdn-slot] * {
+  pointer-events: none !important;
+  touch-action: auto !important;
+}
+
 .btn,
 .nav-overlay-login,
 .cb-site-account,

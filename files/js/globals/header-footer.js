@@ -246,6 +246,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function focusOutsideNavOverlay() {
+    const body = document.body;
+    if (!(body instanceof HTMLElement) || typeof body.focus !== "function") return;
+    const previousTabIndex = body.getAttribute("tabindex");
+    if (previousTabIndex == null) {
+      body.setAttribute("tabindex", "-1");
+    }
+    body.focus({ preventScroll: true });
+    if (previousTabIndex == null) {
+      window.setTimeout(() => {
+        if (document.activeElement !== body) {
+          body.removeAttribute("tabindex");
+        }
+      }, 0);
+    }
+  }
+
   function restoreFocusAfterNavClose() {
     const focusTarget = navLastTrigger || getActiveNavToggle();
     if (focusTarget && typeof focusTarget.focus === "function") {
@@ -279,6 +296,8 @@ document.addEventListener("DOMContentLoaded", () => {
     clearFocusInsideNavOverlay();
     if (restoreFocus) {
       restoreFocusAfterNavClose();
+    } else {
+      focusOutsideNavOverlay();
     }
     navOverlay.classList.remove("is-open");
     document.documentElement.classList.remove("nav-open");
@@ -4010,6 +4029,8 @@ document.addEventListener("DOMContentLoaded", () => {
       String(document.body?.getAttribute("data-cavbot-disable-live-tracking") || "").trim() === "1";
     const disableFloatingBadge =
       String(document.body?.getAttribute("data-cavbot-disable-floating-badge") || "").trim() === "1";
+    const interactiveFloatingBadge =
+      String(document.body?.getAttribute("data-cavbot-interactive-floating-badge") || "").trim() === "1";
     const floatingBadgeSelector = "[data-cavbot-cdn-floating-badge]";
     const badgePassportOverlayId = "cb-badge-passport-overlay";
     const badgePassportStyleId = "cb-badge-passport-style";
@@ -4020,6 +4041,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const getFloatingBadgeHost = () => {
       const host = document.querySelector(floatingBadgeSelector);
       return host instanceof HTMLElement ? host : null;
+    };
+
+    const disableFloatingBadgeHost = (host, hide = false) => {
+      if (!(host instanceof HTMLElement)) return;
+      host.removeAttribute("role");
+      host.removeAttribute("tabindex");
+      host.removeAttribute("aria-label");
+      host.setAttribute("aria-hidden", "true");
+      host.style.cursor = "default";
+      host.style.pointerEvents = "none";
+      host.style.touchAction = "auto";
+      if (hide) {
+        host.style.opacity = "0";
+        host.style.visibility = "hidden";
+        host.style.display = "none";
+      }
     };
 
     const syncFloatingBadgeVisibility = () => {
@@ -4038,7 +4075,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const shouldHide = nativeOpen || globalOpen;
       host.style.opacity = shouldHide ? "0" : "1";
       host.style.visibility = shouldHide ? "hidden" : "visible";
-      host.style.pointerEvents = shouldHide ? "none" : "auto";
+      host.style.pointerEvents = shouldHide || !interactiveFloatingBadge ? "none" : "auto";
+      host.style.touchAction = "auto";
     };
 
     const scheduleFloatingBadgeVisibilitySync = () => {
@@ -4443,6 +4481,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const bindFloatingBadgeTrigger = (host) => {
       if (!(host instanceof HTMLElement)) return;
+      if (!interactiveFloatingBadge) {
+        disableFloatingBadgeHost(host);
+        return;
+      }
       if (host.getAttribute("data-cb-badge-passport-bound") === "1") return;
       host.setAttribute("data-cb-badge-passport-bound", "1");
       host.setAttribute("role", "button");
@@ -4463,6 +4505,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const bindFloatingBadgeDocumentTrigger = () => {
+      if (!interactiveFloatingBadge) return;
       if (floatingBadgeDocTriggerBound) return;
       floatingBadgeDocTriggerBound = true;
       document.addEventListener(
@@ -4516,7 +4559,8 @@ document.addEventListener("DOMContentLoaded", () => {
       host.style.overflow = "visible";
       host.style.contain = "layout paint style";
       host.style.zIndex = "9999";
-      host.style.pointerEvents = "auto";
+      host.style.pointerEvents = interactiveFloatingBadge ? "auto" : "none";
+      host.style.touchAction = "auto";
       host.style.transition = "opacity 140ms ease";
     };
 
@@ -4538,6 +4582,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     void mountCdnSlots().then(() => {
+      if (disableFloatingBadge) {
+        disableFloatingBadgeHost(getFloatingBadgeHost(), true);
+        return;
+      }
       if (!disableFloatingBadge) {
         void mountFloatingBadgeFallback();
       }
