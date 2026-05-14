@@ -105,7 +105,7 @@ body.cb-has-fixed-header {
   padding: 0;
   border: 0;
   background: transparent;
-  color: rgba(226, 232, 238, 0.82);
+  color: rgba(247, 251, 255, 0.94);
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 560;
@@ -128,12 +128,15 @@ body.cb-has-fixed-header {
 .cb-nav-trigger:hover,
 .cb-nav-trigger:focus-visible,
 .cb-nav-trigger[aria-expanded="true"],
-.cb-nav-trigger.is-current,
 .nav-link:hover,
-.nav-link:focus-visible,
-.nav-link.is-current {
+.nav-link:focus-visible {
   color: #b9c85a;
   outline: none;
+}
+
+.cb-nav-trigger.is-current,
+.nav-link.is-current {
+  color: rgba(247, 251, 255, 0.94);
 }
 
 .cb-nav-chevron {
