@@ -8531,6 +8531,30 @@ footer.site-footer {
     ) !important;
 }
 
+.site-header .nav-main .nav-link:hover,
+.site-header .nav-main .nav-link:focus-visible,
+.site-header .nav-main .cb-nav-trigger:hover,
+.site-header .nav-main .cb-nav-trigger:focus-visible,
+.site-header .nav-main .cb-nav-trigger[aria-expanded="true"],
+.site-header .nav-main .cb-nav-item:hover > .cb-nav-trigger {
+  color: #b9c85a     !important;
+}
+
+
+.site-header .nav-main .cb-nav-trigger:hover .cb-nav-chevron,
+.site-header .nav-main .cb-nav-trigger:focus-visible .cb-nav-chevron,
+.site-header .nav-main .cb-nav-trigger[aria-expanded="true"] .cb-nav-chevron,
+.site-header .nav-main .cb-nav-item:hover > .cb-nav-trigger .cb-nav-chevron {
+  color: #b9c85a    !important;
+}
+
+
+.site-header .nav-main .cb-nav-trigger:hover .cb-nav-chevron path,
+.site-header .nav-main .cb-nav-trigger:focus-visible .cb-nav-chevron path,
+.site-header .nav-main .cb-nav-trigger[aria-expanded="true"] .cb-nav-chevron path,
+.site-header .nav-main .cb-nav-item:hover > .cb-nav-trigger .cb-nav-chevron path {
+  stroke: currentColor !important;
+}
 
     /* ==============================
        RESPONSIVE

@@ -380,12 +380,14 @@ document.addEventListener("DOMContentLoaded", () => {
     shell.className = "cb-try-cavai";
     shell.setAttribute("data-cb-try-cavai", "true");
 
-    const primaryLink = document.createElement("a");
-    primaryLink.className = "cb-try-cavai-link";
-    primaryLink.href = TRY_CAVAI_URL;
-    primaryLink.target = "_blank";
-    primaryLink.rel = "noopener noreferrer";
-    primaryLink.textContent = "Try CavAi";
+  const primaryLink = document.createElement("a");
+primaryLink.className = "cb-try-cavai-link";
+primaryLink.href = TRY_CAVAI_URL;
+primaryLink.target = "_blank";
+primaryLink.rel = "noopener noreferrer";
+primaryLink.textContent = "Try CavAi";
+
+
 
     const toggle = document.createElement("button");
     toggle.type = "button";
@@ -555,7 +557,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function installCavGuardForAppLinks() {
-    const APP_HOST = "app.cavbot.io";
+  return;
+const APP_HOST = "app.cavbot.io";
     const LOOPBACK_HOSTS = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
     const STYLE_ID = "cb-cavguard-style";
     const MODAL_ID = "cb-cavguard-overlay";
@@ -4053,8 +4056,9 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  installDemoRequestModal();
-  installCavGuardForAppLinks();
+ installDemoRequestModal();
+// CavGuard app-link blocker disabled so app.cavbot.io pages open normally.
+
 });
 
 document.addEventListener("DOMContentLoaded", () => {
