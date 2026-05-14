@@ -63,122 +63,1380 @@
     });
   });
 })();
-// Pilot marquee (infinite auto-glide + still swipeable)
+// Pilot logo marquee — seamless left motion with pause/play
 (function () {
-  const marquee = document.querySelector('[data-pilot-marquee]');
-  const track = marquee ? marquee.querySelector('[data-pilot-track]') : null;
-  if (!marquee || !track) return;
+  const marquee = document.querySelector('[data-pilot-logo-marquee]');
+  const track = document.querySelector('[data-pilot-logo-track]');
+  const group = document.querySelector('[data-pilot-logo-group]');
+  const toggle = document.querySelector('[data-pilot-logo-toggle]');
 
-  // Clone items once for seamless looping
-  const originalCards = Array.from(track.children);
-  if (!originalCards.length) return;
+  if (!marquee || !track || !group || !toggle) return;
 
-  const cloneWrap = document.createDocumentFragment();
-  originalCards.forEach((card) => cloneWrap.appendChild(card.cloneNode(true)));
-  track.appendChild(cloneWrap);
+  if (track.dataset.logoMarqueeReady === 'true') return;
+  track.dataset.logoMarqueeReady = 'true';
 
-  // Start the loop at 0
-  track.scrollLeft = 0;
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) return;
-
+  let paused = false;
   let raf = null;
   let last = 0;
-  let running = true;
-  let inView = false;
-  let scrollPaused = false;
-  let scrollResumeTimer = 0;
+  let x = 0;
+  let loopWidth = 0;
+  let rebuildTimer = 0;
 
-  // px per second (tweak if you want slower/faster)
-  const SPEED = 28;
+  const SPEED = 42;
 
-  function shouldAnimate() {
-    return running && inView && !scrollPaused && !document.hidden;
+  function syncButton() {
+    marquee.classList.toggle('is-paused', paused);
+    toggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    toggle.setAttribute(
+      'aria-label',
+      paused ? 'Play logo animation' : 'Pause logo animation'
+    );
   }
 
-  function stopLoop() {
-    if (raf) {
-      cancelAnimationFrame(raf);
-      raf = null;
+  function clearClones() {
+    Array.from(track.children).forEach((child) => {
+      if (child !== group) child.remove();
+    });
+  }
+
+  function normalizeX() {
+    if (!loopWidth) return;
+    x = ((x % loopWidth) + loopWidth) % loopWidth;
+    if (x > 0) x -= loopWidth;
+  }
+
+  function applyTransform() {
+    track.style.transform = `translate3d(${x}px, 0, 0)`;
+  }
+
+  function buildLoop() {
+    const previousLoopWidth = loopWidth || 1;
+    const progress = previousLoopWidth ? Math.abs(x / previousLoopWidth) : 0;
+
+    clearClones();
+
+    const baseWidth = group.getBoundingClientRect().width;
+    if (!baseWidth) return;
+
+    const neededWidth = marquee.clientWidth + baseWidth * 4;
+    let currentWidth = baseWidth;
+
+    while (currentWidth < neededWidth) {
+      const clone = group.cloneNode(true);
+      clone.removeAttribute('data-pilot-logo-group');
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+      currentWidth += baseWidth;
     }
+
+    const firstGroup = track.children[0];
+    const secondGroup = track.children[1];
+
+    if (firstGroup && secondGroup) {
+      loopWidth = secondGroup.offsetLeft - firstGroup.offsetLeft;
+    } else {
+      loopWidth = baseWidth;
+    }
+
+    if (!Number.isFinite(loopWidth) || loopWidth <= 0) {
+      loopWidth = baseWidth;
+    }
+
+    x = -((progress % 1) * loopWidth);
+    normalizeX();
+    applyTransform();
   }
 
-  function ensureLoop() {
-    if (raf || !shouldAnimate()) return;
-    last = performance.now();
-    raf = requestAnimationFrame(step);
+  function requestRebuild() {
+    window.clearTimeout(rebuildTimer);
+    rebuildTimer = window.setTimeout(() => {
+      buildLoop();
+      last = performance.now();
+    }, 80);
+  }
+
+  function bindImageGuards() {
+    const images = Array.from(group.querySelectorAll('img'));
+
+    images.forEach((img) => {
+      img.addEventListener('load', requestRebuild);
+      img.addEventListener('error', requestRebuild);
+
+      if (img.decode) {
+        img.decode().then(requestRebuild).catch(requestRebuild);
+      }
+    });
   }
 
   function step(now) {
     raf = null;
-    if (!shouldAnimate()) {
-      last = now;
-      return;
-    }
+    if (paused || document.hidden) return;
+
+    if (!last) last = now;
 
     const dt = Math.min(48, now - last);
     last = now;
 
-    track.scrollLeft += (SPEED * dt) / 1000;
+    if (loopWidth > 0) {
+      x -= (SPEED * dt) / 1000;
+      normalizeX();
+      applyTransform();
+    }
 
-    // When we pass the original width, snap back seamlessly
-    const half = track.scrollWidth / 2;
-    if (track.scrollLeft >= half) track.scrollLeft -= half;
-
-    raf = requestAnimationFrame(step);
+    raf = window.requestAnimationFrame(step);
   }
 
-  // Pause on interaction (feels premium)
-  const pause = () => {
-    running = false;
-    stopLoop();
-  };
-  const play = () => {
-    running = true;
-    ensureLoop();
-  };
-
-  const pauseForScroll = () => {
-    scrollPaused = true;
-    stopLoop();
-    clearTimeout(scrollResumeTimer);
-    scrollResumeTimer = window.setTimeout(() => {
-      scrollPaused = false;
-      ensureLoop();
-    }, 140);
-  };
-
-  marquee.addEventListener('mouseenter', pause);
-  marquee.addEventListener('mouseleave', play);
-
-  marquee.addEventListener('touchstart', pause, { passive: true });
-  marquee.addEventListener('touchend', play, { passive: true });
-  window.addEventListener('scroll', pauseForScroll, { passive: true });
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stopLoop();
+  function start() {
+    if (prefersReduced) {
+      syncButton();
+      buildLoop();
       return;
     }
-    ensureLoop();
-  });
 
-  if (typeof IntersectionObserver === 'function') {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      inView = Boolean(entry && entry.isIntersecting);
-      if (inView) ensureLoop();
-      else stopLoop();
-    }, { rootMargin: '240px 0px' });
-    observer.observe(marquee);
-  } else {
-    inView = true;
-    ensureLoop();
+    if (!paused && !raf) {
+      last = performance.now();
+      raf = window.requestAnimationFrame(step);
+    }
   }
 
-  // If user scrolls manually, keep loop stable
-  track.addEventListener('scroll', () => {
-    const half = track.scrollWidth / 2;
-    if (track.scrollLeft >= half) track.scrollLeft -= half;
-  }, { passive: true });
+  toggle.addEventListener('click', function () {
+    paused = !paused;
+    syncButton();
+    start();
+  });
+
+  window.addEventListener('resize', requestRebuild);
+
+  window.addEventListener('load', function () {
+    requestRebuild();
+  });
+
+  document.addEventListener('visibilitychange', function () {
+    last = performance.now();
+  });
+
+  if (typeof ResizeObserver === 'function') {
+    const observer = new ResizeObserver(requestRebuild);
+    observer.observe(marquee);
+    observer.observe(group);
+  }
+
+  bindImageGuards();
+  syncButton();
+
+  window.setTimeout(() => {
+    buildLoop();
+    start();
+  }, 120);
+})();
+
+
+// CavBot collaboration accordion + visual card switcher
+(function () {
+  const root = document.querySelector('[data-collab-accordion]');
+  if (!root) return;
+
+
+  const items = Array.from(root.querySelectorAll('.collab-feature'));
+  const cards = Array.from(document.querySelectorAll('[data-card-panel]'));
+  const progress = root.querySelector('[data-collab-progress]');
+  if (!items.length || !cards.length) return;
+
+  const COLLAB_STEP_MS = 9000;
+  const COLLAB_TOTAL_MS = COLLAB_STEP_MS * items.length;
+  let activeIndex = 0;
+  let progressRaf = null;
+  let trackerStart = 0;
+
+
+  function closeItem(item) {
+    const trigger = item.querySelector('.collab-feature-trigger');
+    item.classList.remove('is-active');
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+
+  function openItem(item) {
+    const trigger = item.querySelector('.collab-feature-trigger');
+    item.classList.add('is-active');
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+
+  function showCard(cardName) {
+    cards.forEach((card) => {
+      const isMatch = card.getAttribute('data-card-panel') === cardName;
+      card.classList.toggle('is-active', isMatch);
+      card.setAttribute('aria-hidden', isMatch ? 'false' : 'true');
+    });
+  }
+
+
+  function activateItem(item) {
+    if (item.classList.contains('is-active')) return;
+    activeIndex = Math.max(0, items.indexOf(item));
+    const cardName = item.getAttribute('data-card');
+    items.forEach(closeItem);
+    openItem(item);
+    showCard(cardName);
+    setProgress(activeIndex / items.length);
+    startTracker(activeIndex);
+  }
+
+
+  function setProgress(value) {
+    if (progress) {
+      progress.style.height = `${Math.max(0, Math.min(1, value)) * 100}%`;
+    }
+  }
+
+
+  function stopTimers() {
+    if (progressRaf) {
+      window.cancelAnimationFrame(progressRaf);
+      progressRaf = null;
+    }
+  }
+
+
+  function tickProgress(now) {
+    const elapsed = (now - trackerStart) % COLLAB_TOTAL_MS;
+    const rawProgress = elapsed / COLLAB_TOTAL_MS;
+    const nextIndex = Math.min(items.length - 1, Math.floor(rawProgress * items.length));
+
+    setProgress(rawProgress);
+
+    if (nextIndex !== activeIndex) {
+      activateByIndex(nextIndex);
+    }
+
+    progressRaf = window.requestAnimationFrame(tickProgress);
+  }
+
+
+  function activateByIndex(index) {
+    const nextIndex = ((index % items.length) + items.length) % items.length;
+    activeIndex = nextIndex;
+    const item = items[nextIndex];
+    const cardName = item.getAttribute('data-card');
+
+    items.forEach(closeItem);
+    openItem(item);
+    showCard(cardName);
+  }
+
+
+  function startTracker(offsetIndex) {
+    stopTimers();
+    const index = Number.isFinite(offsetIndex) ? offsetIndex : activeIndex;
+    trackerStart = performance.now() - (index / items.length) * COLLAB_TOTAL_MS;
+    progressRaf = window.requestAnimationFrame(tickProgress);
+  }
+
+
+  function bindTrackerVisibility() {
+    const section = root.closest('.cavbot-collab') || root;
+
+    if (!('IntersectionObserver' in window)) {
+      startTracker(activeIndex);
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
+
+      if (entry.isIntersecting) {
+        startTracker(activeIndex);
+      } else {
+        stopTimers();
+      }
+    }, { threshold: 0.12 });
+
+    observer.observe(section);
+  }
+
+
+  items.forEach((item) => {
+    const trigger = item.querySelector('.collab-feature-trigger');
+    if (!trigger) return;
+
+
+    trigger.addEventListener('click', () => {
+      activateItem(item);
+    });
+  });
+
+
+  const activeItem = items.find((item) => item.classList.contains('is-active')) || items[0];
+  const activeCard = activeItem.getAttribute('data-card');
+  activeIndex = Math.max(0, items.indexOf(activeItem));
+
+
+  items.forEach(closeItem);
+  openItem(activeItem);
+  showCard(activeCard);
+  setProgress(activeIndex / items.length);
+  bindTrackerVisibility();
+})();
+
+
+
+
+
+
+
+
+
+
+// CavBot security switcher
+(function () {
+  const root = document.querySelector('[data-security-switcher]');
+  if (!root) return;
+
+
+  const items = Array.from(root.querySelectorAll('.security-feature'));
+  const cards = Array.from(document.querySelectorAll('[data-security-panel]'));
+  const progress = root.querySelector('[data-security-progress]');
+
+
+  if (!items.length || !cards.length) return;
+
+  const SECURITY_STEP_MS = 9000;
+  const SECURITY_TOTAL_MS = SECURITY_STEP_MS * items.length;
+  let activeIndex = 0;
+  let progressRaf = null;
+  let trackerStart = 0;
+
+
+  function closeItem(item) {
+    const trigger = item.querySelector('.security-feature-trigger');
+
+
+    item.classList.remove('is-active');
+
+
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+
+  function openItem(item) {
+    const trigger = item.querySelector('.security-feature-trigger');
+
+
+    item.classList.add('is-active');
+
+
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+
+  function showCard(cardName) {
+    cards.forEach((card) => {
+      const isMatch = card.getAttribute('data-security-panel') === cardName;
+
+
+      card.classList.toggle('is-active', isMatch);
+      card.setAttribute('aria-hidden', isMatch ? 'false' : 'true');
+    });
+  }
+
+  function setProgress(value) {
+    if (progress) {
+      progress.style.height = `${Math.max(0, Math.min(1, value)) * 100}%`;
+    }
+  }
+
+
+  function stopTracker() {
+    if (progressRaf) {
+      window.cancelAnimationFrame(progressRaf);
+      progressRaf = null;
+    }
+  }
+
+
+  function activateByIndex(index) {
+    const nextIndex = ((index % items.length) + items.length) % items.length;
+    activeIndex = nextIndex;
+    const item = items[nextIndex];
+    const cardName = item.getAttribute('data-security-card');
+
+    items.forEach(closeItem);
+    openItem(item);
+    showCard(cardName);
+  }
+
+
+  function tickTracker(now) {
+    const elapsed = (now - trackerStart) % SECURITY_TOTAL_MS;
+    const rawProgress = elapsed / SECURITY_TOTAL_MS;
+    const nextIndex = Math.min(items.length - 1, Math.floor(rawProgress * items.length));
+
+    setProgress(rawProgress);
+
+    if (nextIndex !== activeIndex) {
+      activateByIndex(nextIndex);
+    }
+
+    progressRaf = window.requestAnimationFrame(tickTracker);
+  }
+
+
+  function startTracker(offsetIndex) {
+    stopTracker();
+    const index = Number.isFinite(offsetIndex) ? offsetIndex : activeIndex;
+    trackerStart = performance.now() - (index / items.length) * SECURITY_TOTAL_MS;
+    progressRaf = window.requestAnimationFrame(tickTracker);
+  }
+
+
+  function bindTrackerVisibility() {
+    const section = root.closest('.cavbot-security') || root;
+
+    if (!('IntersectionObserver' in window)) {
+      startTracker(activeIndex);
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
+
+      if (entry.isIntersecting) {
+        startTracker(activeIndex);
+      } else {
+        stopTracker();
+      }
+    }, { threshold: 0.12 });
+
+    observer.observe(section);
+  }
+
+
+  function activateItem(item) {
+    if (item.classList.contains('is-active')) return;
+
+    activeIndex = Math.max(0, items.indexOf(item));
+    activateByIndex(activeIndex);
+    setProgress(activeIndex / items.length);
+    startTracker(activeIndex);
+  }
+
+
+  items.forEach((item) => {
+    const trigger = item.querySelector('.security-feature-trigger');
+    if (!trigger) return;
+
+
+    trigger.addEventListener('click', () => {
+      activateItem(item);
+    });
+  });
+
+
+  const activeItem = items.find((item) => item.classList.contains('is-active')) || items[0];
+  const activeCard = activeItem.getAttribute('data-security-card');
+  activeIndex = Math.max(0, items.indexOf(activeItem));
+
+
+  items.forEach(closeItem);
+  openItem(activeItem);
+  showCard(activeCard);
+  setProgress(activeIndex / items.length);
+  bindTrackerVisibility();
+})();
+
+
+
+// CavBot latest releases card click behavior
+(function () {
+  const cards = Array.from(document.querySelectorAll('[data-release-card]'));
+  if (!cards.length) return;
+
+
+  cards.forEach((card) => {
+    const primaryLink = card.querySelector('.release-button');
+
+
+    if (!primaryLink) return;
+
+
+    card.setAttribute('tabindex', '0');
+
+
+    card.addEventListener('click', (event) => {
+      const clickedLink = event.target.closest('a');
+      const clickedButton = event.target.closest('button');
+
+
+      if (clickedLink || clickedButton) return;
+
+
+      primaryLink.click();
+    });
+
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+
+
+      const activeElement = document.activeElement;
+      const isInsideLink = activeElement && activeElement.closest && activeElement.closest('a');
+
+
+      if (isInsideLink) return;
+
+
+      event.preventDefault();
+      primaryLink.click();
+    });
+  });
+})();
+
+
+// CavBot final seal count
+(function () {
+  const root = document.querySelector('[data-cavbot-seal]');
+  if (!root) return;
+
+
+  const counter = root.querySelector('[data-seal-count]');
+  if (!counter) return;
+
+
+  const finalValue = Number(counter.getAttribute('data-seal-count')) || 7;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  function setFinal() {
+    counter.textContent = String(finalValue);
+  }
+
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    setFinal();
+    return;
+  }
+
+
+  let hasRun = false;
+  counter.textContent = '0';
+
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+      if (!entry || !entry.isIntersecting || hasRun) return;
+
+
+      hasRun = true;
+
+
+      const duration = 720;
+      const start = performance.now();
+
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(eased * finalValue);
+
+
+        counter.textContent = String(value);
+
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          setFinal();
+        }
+      }
+
+
+      requestAnimationFrame(tick);
+      observer.disconnect();
+    },
+    { threshold: 0.35 }
+  );
+
+
+  observer.observe(root);
+})();
+
+
+// Brain title rotating word
+(function () {
+  const word = document.querySelector('[data-brain-word]');
+  if (!word) return;
+  word.classList.remove('is-changing');
+})();
+// CavBot product showcase rotation
+(function () {
+  function initCavBotProductShowcase() {
+    const section = document.querySelector("[data-cavbot-product-showcase]");
+    if (!section) return;
+
+
+    const tabs = Array.from(section.querySelectorAll("[data-cavbot-showcase-tab]"));
+    const screens = Array.from(section.querySelectorAll("[data-cavbot-showcase-screen]"));
+    const word = section.querySelector("[data-cavbot-showcase-word]");
+
+
+    const words = ["Clarity", "Control", "Visibility"];
+
+
+    let activeIndex = 0;
+    let wordIndex = 0;
+    let showcaseRaf = null;
+    let showcaseStart = 0;
+    const SHOWCASE_STEP_MS = 4800;
+    const SHOWCASE_TOTAL_MS = SHOWCASE_STEP_MS * tabs.length;
+
+
+    function updateWord(index) {
+      if (!word) return;
+
+      wordIndex = ((index % words.length) + words.length) % words.length;
+      word.classList.add("is-changing");
+
+      window.setTimeout(function () {
+        word.textContent = words[wordIndex];
+        word.classList.remove("is-changing");
+      }, 180);
+    }
+
+
+    function setActive(index) {
+      activeIndex = ((index % tabs.length) + tabs.length) % tabs.length;
+
+
+      tabs.forEach((tab, tabIndex) => {
+        const isActive = tabIndex === activeIndex;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+
+      screens.forEach((screen, screenIndex) => {
+        screen.classList.toggle("is-active", screenIndex === activeIndex);
+      });
+
+    }
+
+
+    function stopShowcaseTimer() {
+      if (showcaseRaf) {
+        window.cancelAnimationFrame(showcaseRaf);
+        showcaseRaf = null;
+      }
+    }
+
+
+    function tickShowcaseTracker(now) {
+      const elapsed = (now - showcaseStart) % SHOWCASE_TOTAL_MS;
+      const rawProgress = elapsed / SHOWCASE_TOTAL_MS;
+      const progressPercent = rawProgress * 100;
+      const nextIndex = Math.min(tabs.length - 1, Math.floor(rawProgress * tabs.length));
+
+      section.style.setProperty("--cavbot-product-progress", `${progressPercent}%`);
+
+      if (nextIndex !== activeIndex) {
+        setActive(nextIndex);
+      }
+
+      showcaseRaf = window.requestAnimationFrame(tickShowcaseTracker);
+    }
+
+
+    function startShowcaseTracker(offsetIndex) {
+      stopShowcaseTimer();
+      const index = Number.isFinite(offsetIndex) ? offsetIndex : activeIndex;
+      showcaseStart = performance.now() - (index / tabs.length) * SHOWCASE_TOTAL_MS;
+      showcaseRaf = window.requestAnimationFrame(tickShowcaseTracker);
+    }
+
+
+    function bindShowcaseVisibility() {
+      if (!('IntersectionObserver' in window)) {
+        startShowcaseTracker(activeIndex);
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+
+        if (entry.isIntersecting) {
+          startShowcaseTracker(activeIndex);
+        } else {
+          stopShowcaseTimer();
+        }
+      }, { threshold: 0.12 });
+
+      observer.observe(section);
+    }
+
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        const nextIndex = Number(tab.getAttribute("data-cavbot-showcase-tab"));
+        if (Number.isFinite(nextIndex)) {
+          setActive(nextIndex);
+          section.style.setProperty("--cavbot-product-progress", `${(nextIndex / tabs.length) * 100}%`);
+          startShowcaseTracker(nextIndex);
+        }
+      });
+    });
+
+    setActive(0);
+    section.style.setProperty("--cavbot-product-progress", "0%");
+    bindShowcaseVisibility();
+    updateWord(0);
+
+    if (word) {
+      window.setInterval(function () {
+        updateWord(wordIndex + 1);
+      }, 2200);
+    }
+  }
+
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCavBotProductShowcase);
+  } else {
+    initCavBotProductShowcase();
+  }
+})();
+
+// PFF section entrance reveal
+(function () {
+  const section = document.querySelector('.pff-museum');
+  if (!section) return;
+
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced) {
+    section.classList.add('is-pff-visible');
+    return;
+  }
+
+  if (typeof IntersectionObserver !== 'function') {
+    section.classList.add('is-pff-visible');
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+
+      if (entry && entry.isIntersecting) {
+        section.classList.add('is-pff-visible');
+        observer.disconnect();
+      }
+    },
+    {
+      threshold: 0.35,
+      rootMargin: '0px 0px -8% 0px'
+    }
+  );
+
+  observer.observe(section);
+})();
+
+
+// System stack cards entrance animation
+(function () {
+  const section = document.querySelector('.system-role');
+  if (!section) return;
+
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  section.classList.add('is-ready');
+
+  if (prefersReduced) {
+    section.classList.add('is-visible');
+    return;
+  }
+
+  if (typeof IntersectionObserver !== 'function') {
+    section.classList.add('is-visible');
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+
+      if (entry && entry.isIntersecting) {
+        section.classList.add('is-visible');
+      } else {
+        section.classList.remove('is-visible');
+      }
+    },
+    {
+      threshold: 0.28,
+      rootMargin: '0px 0px -10% 0px'
+    }
+  );
+
+  observer.observe(section);
+})();
+
+// Reversible reveal animations for Arcade guide, Collab, and Security sections
+(function () {
+  const sections = [
+    document.querySelector('.arcade-guide'),
+    document.querySelector('.cavbot-collab'),
+    document.querySelector('.collab-showcase'),
+    document.querySelector('.cavbot-security'),
+    document.querySelector('.security-grid'),
+    document.querySelector('.cavbot-seal')
+  ].filter(Boolean);
+
+  if (!sections.length) return;
+
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced || typeof IntersectionObserver !== 'function') {
+    sections.forEach((section) => section.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px'
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+})();
+// Start/setup cards entrance animation
+(function () {
+  const section = document.querySelector('.pricing-docs');
+  if (!section) return;
+
+
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  section.classList.add('is-ready');
+
+
+  if (prefersReduced) {
+    section.classList.add('is-visible');
+    return;
+  }
+
+
+  if (typeof IntersectionObserver !== 'function') {
+    section.classList.add('is-visible');
+    return;
+  }
+
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+
+
+      if (entry && entry.isIntersecting) {
+        section.classList.add('is-visible');
+      } else {
+        section.classList.remove('is-visible');
+      }
+    },
+    {
+      threshold: 0.28,
+      rootMargin: '0px 0px -10% 0px'
+    }
+  );
+
+
+  observer.observe(section);
+})();
+
+
+// CavBot Arcade logo drop animation
+(function () {
+  const stage = document.querySelector('[data-arcade-logo-stage]');
+  if (!stage) return;
+
+
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  if (prefersReduced) {
+    stage.classList.add('is-visible');
+    return;
+  }
+
+
+  if (typeof IntersectionObserver !== 'function') {
+    stage.classList.add('is-visible');
+    return;
+  }
+
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry = entries[0];
+
+
+      if (entry && entry.isIntersecting) {
+        stage.classList.add('is-visible');
+      } else {
+        stage.classList.remove('is-visible');
+      }
+    },
+    {
+      threshold: 0.45,
+      rootMargin: '0px 0px -8% 0px'
+    }
+  );
+
+
+  observer.observe(stage);
+})();
+
+// CavBot Arcade triangle carousel
+(function () {
+  const track = document.querySelector('[data-arcade-track]');
+  const prevBtn = document.querySelector('[data-arcade-prev]');
+  const nextBtn = document.querySelector('[data-arcade-next]');
+
+
+  if (!track) return;
+
+
+  // Prevent double-cloning if the script ever runs twice.
+  if (track.dataset.arcadeLoopReady === 'true') return;
+  track.dataset.arcadeLoopReady = 'true';
+
+
+  const originalSlides = Array.from(track.querySelectorAll('.arcade-slide'));
+  if (!originalSlides.length) return;
+
+
+  const originalCount = originalSlides.length;
+
+
+  // Mark original slides.
+  originalSlides.forEach((slide, index) => {
+    slide.dataset.arcadeRealIndex = String(index);
+    slide.dataset.arcadeOriginal = 'true';
+  });
+
+
+  // Clone once before and once after for continuous left/right scrolling.
+  const beforeFragment = document.createDocumentFragment();
+  const afterFragment = document.createDocumentFragment();
+
+
+  originalSlides.forEach((slide, index) => {
+    const beforeClone = slide.cloneNode(true);
+    beforeClone.dataset.arcadeRealIndex = String(index);
+    beforeClone.dataset.arcadeClone = 'before';
+    beforeFragment.appendChild(beforeClone);
+
+
+    const afterClone = slide.cloneNode(true);
+    afterClone.dataset.arcadeRealIndex = String(index);
+    afterClone.dataset.arcadeClone = 'after';
+    afterFragment.appendChild(afterClone);
+  });
+
+
+  track.insertBefore(beforeFragment, track.firstChild);
+  track.appendChild(afterFragment);
+
+
+  const slides = Array.from(track.querySelectorAll('.arcade-slide'));
+
+
+  let ticking = false;
+  let activeIndex = originalCount;
+  let isJumping = false;
+
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+
+  function scrollToSlide(index, behavior) {
+    const safeIndex = clamp(index, 0, slides.length - 1);
+    const slide = slides[safeIndex];
+
+
+    if (!slide) return;
+
+
+    const targetLeft = slide.offsetLeft - (track.clientWidth - slide.offsetWidth) / 2;
+
+
+    track.scrollTo({
+      left: targetLeft,
+      behavior: behavior || 'smooth'
+    });
+
+
+    activeIndex = safeIndex;
+  }
+
+
+  function jumpToMatchingOriginalIfNeeded() {
+    if (isJumping) return;
+
+
+    let targetIndex = activeIndex;
+
+
+    // We are inside the left clone group.
+    // Jump to the matching original/real slide in the middle group.
+    if (activeIndex < originalCount) {
+      targetIndex = activeIndex + originalCount;
+    }
+
+
+    // We are inside the right clone group.
+    // Jump to the matching original/real slide in the middle group.
+    if (activeIndex >= originalCount * 2) {
+      targetIndex = activeIndex - originalCount;
+    }
+
+
+    if (targetIndex === activeIndex) return;
+
+
+    isJumping = true;
+
+
+    window.requestAnimationFrame(() => {
+      scrollToSlide(targetIndex, 'auto');
+      activeIndex = targetIndex;
+
+
+      window.requestAnimationFrame(() => {
+        isJumping = false;
+        requestArcadeUpdate();
+      });
+    });
+  }
+
+
+  function updateButtons() {
+    // Continuous carousel means the arrows should never disable.
+    if (!prevBtn || !nextBtn) return;
+
+
+    prevBtn.classList.remove('is-disabled');
+    nextBtn.classList.remove('is-disabled');
+  }
+
+
+  function updateArcadeSlides() {
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+
+
+    let nextActiveIndex = activeIndex;
+    let smallestDistance = Infinity;
+
+
+    slides.forEach((slide, index) => {
+      const rect = slide.getBoundingClientRect();
+      const slideCenter = rect.left + rect.width / 2;
+      const distance = Math.abs(slideCenter - trackCenter);
+
+
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        nextActiveIndex = index;
+      }
+    });
+
+
+    activeIndex = nextActiveIndex;
+
+
+    slides.forEach((slide, index) => {
+      const distanceFromActive = Math.abs(index - activeIndex);
+
+
+      slide.classList.remove('is-active', 'is-near', 'is-far');
+
+
+      if (distanceFromActive === 0) {
+        slide.classList.add('is-active');
+      } else if (distanceFromActive === 1) {
+        slide.classList.add('is-near');
+      } else {
+        slide.classList.add('is-far');
+      }
+
+      if (distanceFromActive !== 0) {
+        const previewLink = slide.querySelector('.arcade-cover-link.is-previewing');
+        const previewVideo = slide.querySelector('.arcade-preview-video');
+
+        if (previewLink) previewLink.classList.remove('is-previewing');
+        if (previewVideo) previewVideo.pause();
+      }
+    });
+
+
+    updateButtons();
+    ticking = false;
+
+
+    jumpToMatchingOriginalIfNeeded();
+  }
+
+
+  function requestArcadeUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateArcadeSlides);
+  }
+
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      scrollToSlide(activeIndex - 1, 'smooth');
+      window.setTimeout(requestArcadeUpdate, 180);
+    });
+  }
+
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      scrollToSlide(activeIndex + 1, 'smooth');
+      window.setTimeout(requestArcadeUpdate, 180);
+    });
+  }
+
+
+  track.addEventListener('scroll', requestArcadeUpdate, { passive: true });
+  window.addEventListener('resize', requestArcadeUpdate);
+
+
+  slides.forEach((slide) => {
+    const link = slide.querySelector('.arcade-cover-link');
+    const video = slide.querySelector('.arcade-preview-video');
+
+
+    if (!link || !video) return;
+
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'metadata';
+
+    const playPreview = () => {
+      const playPromise = video.play();
+
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          if (slide.classList.contains('is-active')) {
+            link.classList.remove('is-previewing');
+          }
+        });
+      }
+    };
+
+    link.addEventListener('mouseenter', () => {
+      if (!slide.classList.contains('is-active')) return;
+
+      link.classList.add('is-previewing');
+      playPreview();
+    });
+
+
+    link.addEventListener('mouseleave', () => {
+      link.classList.remove('is-previewing');
+      video.pause();
+    });
+  });
+
+
+  // Start on the first real slide, not the cloned slides.
+  window.setTimeout(() => {
+    scrollToSlide(originalCount, 'auto');
+    requestArcadeUpdate();
+  }, 120);
+})();
+
+// CavAi video expansion on scroll
+(function () {
+  const stage = document.querySelector('[data-cavai-video-stage]');
+  const shell = document.querySelector('[data-cavai-video-shell]');
+
+  if (!stage || !shell) return;
+
+  const prefersReduced =
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced) return;
+
+  let ticking = false;
+  let expanded = false;
+
+  function updateExpansion() {
+    const rect = stage.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const center = rect.top + rect.height / 2;
+
+    const enterTop = viewportHeight * 0.28;
+    const enterBottom = viewportHeight * 0.72;
+
+    const stayTop = viewportHeight * 0.16;
+    const stayBottom = viewportHeight * 0.84;
+
+    const shouldExpand = expanded
+      ? center > stayTop && center < stayBottom
+      : center > enterTop && center < enterBottom;
+
+    if (shouldExpand !== expanded) {
+      expanded = shouldExpand;
+      shell.classList.toggle('is-expanded', expanded);
+    }
+
+    ticking = false;
+  }
+
+  function requestUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateExpansion);
+  }
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate);
+
+  requestUpdate();
+})();
+
+// CavBot home hero demo pinned rise animation
+(function () {
+  function initHeroDemoRise() {
+    const hero = document.querySelector('.hero-home-surface');
+    const stage = document.querySelector('[data-hero-demo-stage]');
+    const frame = document.querySelector('[data-hero-demo-frame]');
+
+    if (!hero || !stage || !frame) return;
+
+    const prefersReduced =
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+      hero.style.setProperty('--hero-demo-progress', '1');
+      hero.style.setProperty('--hero-video-focus', '0');
+      hero.style.setProperty('--hero-demo-opacity', '1');
+      hero.style.setProperty('--hero-demo-y', '0px');
+      hero.style.setProperty('--hero-demo-scale', '1');
+      return;
+    }
+
+    let ticking = false;
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
+    }
+
+    function easeOutCubic(value) {
+      return 1 - Math.pow(1 - value, 3);
+    }
+
+    function updateHeroDemoRise() {
+      const rect = stage.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      const headerOffset =
+        parseFloat(
+          getComputedStyle(document.documentElement)
+            .getPropertyValue('--cb-header-offset')
+        ) || 0;
+
+      /*
+        Start when the demo frame is still lower on the page.
+        Finish when it reaches the header zone.
+      */
+      const start = viewportHeight * 0.92;
+      const end = headerOffset + 18;
+
+      const rawProgress = (start - rect.top) / (start - end);
+      const progress = easeOutCubic(clamp(rawProgress, 0, 1));
+
+      /*
+        Focus fades the intro text back only after the video has begun rising.
+      */
+      const rawFocus = (progress - 0.34) / 0.50;
+      const focus = clamp(rawFocus, 0, 1);
+
+      /*
+        This is the actual pull-up motion.
+        Bigger first number = starts lower.
+        Bigger multiplier = travels higher.
+      */
+      const y = 220 - progress * 220;
+      const scale = 0.90 + progress * 0.10;
+      const opacity = 0.08 + progress * 0.92;
+
+      hero.style.setProperty('--hero-demo-progress', progress.toFixed(4));
+      hero.style.setProperty('--hero-video-focus', focus.toFixed(4));
+      hero.style.setProperty('--hero-demo-opacity', opacity.toFixed(4));
+      hero.style.setProperty('--hero-demo-y', `${y.toFixed(2)}px`);
+      hero.style.setProperty('--hero-demo-scale', scale.toFixed(4));
+
+      ticking = false;
+    }
+
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateHeroDemoRise);
+    }
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    window.addEventListener('pageshow', requestUpdate, { passive: true });
+
+    requestUpdate();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroDemoRise);
+  } else {
+    initHeroDemoRise();
+  }
 })();

@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const LOGOTYPE_SRC = "/assets/logo/official-logotype-light.svg";
-  const LOGOMARK_SRC = "/assets/logo/cavbot-logomark.svg";
-  const HEADER_SCROLL_SWITCH_Y = 12;
   const WORKSPACE_HOME_PATH = "https://app.cavbot.io/";
-  const TRY_CAVAI_URL = "https://ai.cavbot.io/";
+  const TRY_CAVAI_URL = "https://app.cavbot.io/cavai";
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
   const SIGNUP_URL = "https://app.cavbot.io/auth?mode=signup";
   const TRY_CAVAI_PRODUCT_LINKS = [
-    { label: "CavAi", href: "/cavai-info.html" },
+    { label: "CavAi", href: "/cavai.html" },
     { label: "Caven", href: "/caven.html" },
     { label: "CavBot Companion", href: "/cavbot-companion.html" },
     { label: "Image Studio", href: "/image-studio.html" },
@@ -36,136 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     bodyRight: "",
     bodyWidth: "",
   };
-
-  function installRectangleRebrand() {
-    const STYLE_ID = "cb-rectangle-rebrand-style";
-    const RADIUS_PX = 4;
-    const RADIUS_VALUE = `${RADIUS_PX}px`;
-    const SKIP_RADIUS_SELECTOR = [
-      "[data-cavbot-cdn-slot]",
-      "[data-cavbot-cdn-floating-badge]",
-      "[data-cavbot-head]",
-      ".cavbot-cdn-slot",
-      ".cavbot-head-avatar",
-      ".cavbot-dm-avatar",
-      ".hero-robot-avatar-wrap",
-      ".badge-orbit",
-      ".cavbot-badge-frame",
-      ".cb-site-account-chip",
-      ".hero-robot-live-dot",
-      ".badge-state-bullet",
-      ".analytics-dot",
-      ".lab-dot",
-      ".status-dot",
-      ".tablet-dot",
-      ".toc-dot",
-      ".live-dot",
-      ".assembly-dot",
-      ".about-hero-bot-dot",
-      ".founder-proof-dot",
-      ".roadmap-goal-dot",
-      ".dash-dot",
-      ".chip-dot",
-      ".fact-dot",
-      ".press-badge-dot",
-      ".cavai-message-loading-dot",
-      ".nav-menu-icon",
-      ".dot",
-    ].join(", ");
-    const body = document.body;
-    if (!body) return;
-
-    body.setAttribute("data-cb-rectangle-rebrand", "true");
-
-    if (!document.getElementById(STYLE_ID)) {
-      const style = document.createElement("style");
-      style.id = STYLE_ID;
-      style.textContent = `
-        :root {
-          --cb-rectangle-radius: ${RADIUS_VALUE} !important;
-          --panel-radius-xl: var(--cb-rectangle-radius) !important;
-          --panel-radius-lg: var(--cb-rectangle-radius) !important;
-          --panel-radius-md: var(--cb-rectangle-radius) !important;
-          --panel-radius-sm: var(--cb-rectangle-radius) !important;
-          --shot-r: var(--cb-rectangle-radius) !important;
-          --cb-user-prompt-radius: var(--cb-rectangle-radius) !important;
-        }
-      `;
-      (document.head || document.documentElement).appendChild(style);
-    }
-
-    const readLargestRadius = (styles) => {
-      return Math.max(
-        parseFloat(styles.borderTopLeftRadius) || 0,
-        parseFloat(styles.borderTopRightRadius) || 0,
-        parseFloat(styles.borderBottomRightRadius) || 0,
-        parseFloat(styles.borderBottomLeftRadius) || 0,
-      );
-    };
-
-    const applyRectangleRadius = (node) => {
-      if (!(node instanceof HTMLElement)) return;
-      if (!node.isConnected) return;
-      if (node === document.documentElement || node === document.body) return;
-      if (node.closest(SKIP_RADIUS_SELECTOR)) return;
-
-      const styles = window.getComputedStyle(node);
-      if (!styles) return;
-      if (readLargestRadius(styles) <= RADIUS_PX) return;
-
-      node.style.setProperty("border-radius", RADIUS_VALUE, "important");
-      node.style.setProperty("border-top-left-radius", RADIUS_VALUE, "important");
-      node.style.setProperty("border-top-right-radius", RADIUS_VALUE, "important");
-      node.style.setProperty("border-bottom-right-radius", RADIUS_VALUE, "important");
-      node.style.setProperty("border-bottom-left-radius", RADIUS_VALUE, "important");
-    };
-
-    const applyWithin = (root) => {
-      if (root instanceof Element) applyRectangleRadius(root);
-      const scope = root instanceof Document ? root.documentElement : root;
-      if (!(scope instanceof Element)) return;
-      scope.querySelectorAll("*").forEach(applyRectangleRadius);
-    };
-
-    let queued = false;
-    let pendingFullPass = false;
-    const pendingRoots = new Set();
-    const flush = () => {
-      queued = false;
-      if (pendingFullPass) {
-        pendingFullPass = false;
-        pendingRoots.clear();
-        applyWithin(document);
-        return;
-      }
-
-      pendingRoots.forEach((root) => applyWithin(root));
-      pendingRoots.clear();
-    };
-    const queuePass = (root) => {
-      if (root) pendingRoots.add(root);
-      if (queued) return;
-      queued = true;
-      window.requestAnimationFrame(flush);
-    };
-    const queueFullPass = () => {
-      pendingFullPass = true;
-      queuePass(null);
-    };
-
-    queueFullPass();
-    window.setTimeout(queueFullPass, 180);
-    window.setTimeout(queueFullPass, 640);
-
-    const observer = new MutationObserver((records) => {
-      records.forEach((record) => {
-        record.addedNodes.forEach((node) => {
-          if (node instanceof Element) queuePass(node);
-        });
-      });
-    });
-    observer.observe(body, { childList: true, subtree: true });
-  }
 
   function lockPageScroll() {
     if (pageScrollLockState.depth === 0) {
@@ -319,134 +186,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return rect.width > 0 && rect.height > 0;
   }
 
-  function hasAnyOpenScrollLockOverlay() {
-    const selectors = [
-      ".nav-overlay.is-open",
-      ".cb-cavguard-overlay[data-open='true']",
-      ".cb-demo-request-overlay[data-open='true']",
-      ".cb-caverify-overlay[data-open='true']",
-      ".cb-badge-passport-overlay[data-open='true']",
-      ".topic-modal.is-open",
-      ".faq-modal.is-open",
-      ".lightbox.is-open",
-      ".modal.is-open[aria-hidden='false']",
-      ".cavai-auth-modal.is-open",
-    ];
-    return selectors.some((selector) =>
-      Array.from(document.querySelectorAll(selector)).some((node) => isVisibleScrollLockOverlay(node))
-    );
-  }
-
-  function forceClearPageScrollLocks() {
-    const docEl = document.documentElement;
-    const body = document.body;
-    if (!docEl || !body) return;
-    pageScrollLockState.depth = 0;
-    docEl.classList.remove("nav-open", "modal-open", "modal-lock");
-    body.classList.remove("nav-open", "modal-open", "modal-lock");
-    docEl.style.overflow = "";
-    body.style.overflow = "";
-    body.style.position = "";
-    body.style.top = "";
-    body.style.left = "";
-    body.style.right = "";
-    body.style.width = "";
-  }
-
-  function neutralizeHiddenOverlayInterceptors() {
-    const hiddenSelectors = [
-      ".nav-overlay:not(.is-open)",
-      ".nav-overlay[aria-hidden='true']",
-      ".cb-cavguard-overlay:not([data-open='true'])",
-      ".cb-demo-request-overlay:not([data-open='true'])",
-      ".cb-caverify-overlay:not([data-open='true'])",
-      ".cb-badge-passport-overlay:not([data-open='true'])",
-      ".topic-modal[aria-hidden='true']",
-      ".topic-modal:not(.is-open)",
-      ".faq-modal[aria-hidden='true']",
-      ".faq-modal:not(.is-open)",
-      ".lightbox[aria-hidden='true']",
-      ".lightbox:not(.is-open)",
-      ".modal[aria-hidden='true']",
-      ".modal:not(.is-open)",
-      ".cavai-auth-modal[aria-hidden='true']",
-      ".cavai-auth-modal:not(.is-open)",
-    ];
-    hiddenSelectors.forEach((selector) => {
-      document.querySelectorAll(selector).forEach((node) => {
-        if (!(node instanceof HTMLElement)) return;
-        node.style.pointerEvents = "none";
-      });
-    });
-
-    const openSelectors = [
-      ".nav-overlay.is-open",
-      ".cb-cavguard-overlay[data-open='true']",
-      ".cb-demo-request-overlay[data-open='true']",
-      ".cb-caverify-overlay[data-open='true']",
-      ".cb-badge-passport-overlay[data-open='true']",
-      ".topic-modal.is-open",
-      ".faq-modal.is-open",
-      ".lightbox.is-open",
-      ".modal.is-open[aria-hidden='false']",
-      ".cavai-auth-modal.is-open",
-    ];
-    openSelectors.forEach((selector) => {
-      document.querySelectorAll(selector).forEach((node) => {
-        if (!(node instanceof HTMLElement)) return;
-        node.style.pointerEvents = "auto";
-      });
-    });
-  }
-
-  function recoverScrollIfNoOverlayOpen() {
-    neutralizeHiddenOverlayInterceptors();
-    if (window.innerWidth > 1160 && navOverlay?.classList.contains("is-open")) {
-      closeNav({ restoreFocus: false });
-    }
-    if (hasAnyOpenScrollLockOverlay()) return;
-    forceClearPageScrollLocks();
-  }
-
-  function installScrollRecoveryGuards() {
-    let rafId = 0;
-    const scheduleRecover = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(() => {
-        rafId = 0;
-        recoverScrollIfNoOverlayOpen();
-      });
-    };
-
-    // Avoid running hidden-overlay recovery during normal page scrolling.
-    // The open/close handlers already manage scroll locks; these guards are only
-    // for recovering from stale state after visibility or layout changes.
-    window.addEventListener("resize", scheduleRecover, { passive: true });
-    window.addEventListener("pageshow", scheduleRecover, { passive: true });
-    window.addEventListener("focus", scheduleRecover, { passive: true });
-    document.addEventListener("visibilitychange", scheduleRecover);
-
-    if (typeof MutationObserver === "function") {
-      const observer = new MutationObserver(() => scheduleRecover());
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["class", "style"],
-      });
-      observer.observe(document.body, {
-        attributes: true,
-        attributeFilter: ["class", "style"],
-      });
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-      });
-    }
-
-    window.setTimeout(scheduleRecover, 0);
-    window.setTimeout(scheduleRecover, 140);
-    window.setTimeout(scheduleRecover, 480);
-  }
-
   function clamp(value, min, max) {
     if (max < min) return (min + max) * 0.5;
     return Math.min(max, Math.max(min, value));
@@ -462,358 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const y = clamp(topInset + halfH, 12 + halfH, window.innerHeight - 12 - halfH);
     overlay.style.setProperty("--cb-modal-left", `${x}px`);
     overlay.style.setProperty("--cb-modal-top", `${y}px`);
-  }
-
-  function installStudioMarketingSystem() {
-    const STYLE_ID = "cb-studio-marketing-style";
-    if (!document.getElementById(STYLE_ID)) {
-      const style = document.createElement("style");
-      style.id = STYLE_ID;
-      style.textContent = `
-        .cb-studio-reveal {
-          opacity: 0;
-          transition: opacity 260ms cubic-bezier(0.22, 1, 0.36, 1);
-          transition-delay: var(--cb-reveal-delay, 0ms);
-          will-change: opacity;
-        }
-
-        .cb-studio-reveal.is-visible {
-          opacity: 1;
-        }
-
-        .cb-studio-card {
-          opacity: 0;
-          transition: opacity 320ms cubic-bezier(0.22, 1, 0.36, 1);
-          transition-delay: var(--cb-card-stagger, 0ms);
-          will-change: opacity;
-        }
-
-        .cb-studio-card.is-visible {
-          opacity: 1;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .cb-studio-reveal,
-          .cb-studio-reveal.is-visible,
-          .cb-studio-card,
-          .cb-studio-card.is-visible {
-            opacity: 1;
-            transition: none;
-          }
-        }
-      `;
-      (document.head || document.documentElement).appendChild(style);
-    }
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const mainEl = document.querySelector("main");
-    if (!mainEl) return;
-
-    const state = {
-      sections: [],
-      cards: [],
-      lastY: window.scrollY || window.pageYOffset || 0,
-      ticking: false,
-      refreshTimer: 0,
-    };
-    const pageType = String(document.body?.dataset?.cavbotPageType || "").trim().toLowerCase();
-
-    const sectionSelector = [
-      "main > section",
-      "main > article",
-      "main section[data-section]",
-      "main [class*='hero']",
-      "main [class*='section']",
-      "main [class*='surface']",
-      "main [class*='feature-grid']",
-      "main [class*='panel-group']",
-      "main [class*='ethics-section']",
-      "main [class*='privacy-intro']",
-      "main [class*='policy-section']",
-    ].join(",");
-
-    const cardSelector = [
-      "main .card",
-      "main [class*='card']",
-      "main [class*='panel']",
-      "main [class*='tile']",
-      "main [class*='surface']",
-      "main [class*='module']",
-      "main [class*='feature']",
-      "main [class*='metric']",
-      "main [class*='faq']",
-      "main [class*='pricing']",
-      "main [class*='pill']",
-      "main [class*='box']",
-    ].join(",");
-
-    const scrollHostSelector = [
-      ".ethics-scroll-sections",
-      ".guide-page",
-      ".topic-modal-content",
-      ".cb-guide-scroll",
-      "[data-cb-scroll-host='true']",
-    ].join(",");
-
-    const blockedAncestorSelector = [
-      ".cb-cavguard-overlay",
-      ".cb-demo-overlay",
-      ".nav-overlay",
-      ".topic-modal",
-      ".topic-modal-shell",
-      ".guide-overlay",
-      ".lightbox",
-      ".modal",
-      "[role='dialog']",
-    ].join(",");
-
-    const asUniqueElements = (nodes) =>
-      Array.from(new Set(nodes)).filter((node) => node instanceof HTMLElement);
-
-    const isMotionEligible = (node, minWidth, minHeight) => {
-      if (!(node instanceof HTMLElement)) return false;
-      if (node.dataset.cbNoMotion === "true") return false;
-      if (node.closest(blockedAncestorSelector)) return false;
-      const tag = node.tagName.toLowerCase();
-      if (tag === "script" || tag === "style" || tag === "svg" || tag === "path") return false;
-      const computed = window.getComputedStyle(node);
-      if (computed.display === "none" || computed.visibility === "hidden") return false;
-      if (node.offsetWidth < minWidth || node.offsetHeight < minHeight) return false;
-      return true;
-    };
-
-    const collectTargets = () => {
-      let sectionTargets = asUniqueElements(Array.from(document.querySelectorAll(sectionSelector))).filter(
-        (node) => isMotionEligible(node, 220, 84)
-      );
-
-      if (!sectionTargets.length) {
-        sectionTargets = asUniqueElements(Array.from(mainEl.children)).filter((node) =>
-          isMotionEligible(node, 220, 84)
-        );
-      }
-
-      state.sections = sectionTargets.slice(0, 120);
-      const sectionSet = new Set(state.sections);
-
-      state.cards = asUniqueElements(Array.from(document.querySelectorAll(cardSelector)))
-        .filter((node) => {
-          if (!isMotionEligible(node, 130, 56)) return false;
-          if (sectionSet.has(node)) return false;
-          const tag = node.tagName.toLowerCase();
-          if (tag === "section" || tag === "article" || tag === "main") return false;
-          return true;
-        })
-        .slice(0, 260);
-
-      state.sections.forEach((node, index) => {
-        node.classList.add("cb-studio-reveal");
-        node.style.setProperty("--cb-reveal-delay", `${Math.min(index * 22, 280)}ms`);
-      });
-
-      state.cards.forEach((node, index) => {
-        node.classList.add("cb-studio-card");
-        node.style.setProperty("--cb-card-stagger", `${Math.min((index % 10) * 32, 240)}ms`);
-      });
-    };
-
-    const bindScrollHosts = () => {
-      asUniqueElements(Array.from(document.querySelectorAll(scrollHostSelector))).forEach((host) => {
-        if (host.dataset.cbStudioScrollBound === "true") return;
-        host.dataset.cbStudioScrollBound = "true";
-        host.addEventListener("scroll", scheduleRender, { passive: true });
-      });
-    };
-
-    const getProgress = (rect, viewportH) =>
-      clamp((viewportH - rect.top) / (viewportH + Math.max(rect.height, 1)), 0, 1);
-
-    const updateSectionMotion = (node, index, viewportH, direction) => {
-      const rect = node.getBoundingClientRect();
-      const onStage = rect.bottom > -viewportH * 0.16 && rect.top < viewportH * 1.12;
-      const visible = rect.bottom > viewportH * 0.05 && rect.top < viewportH * 0.95;
-      const active = rect.bottom > viewportH * 0.28 && rect.top < viewportH * 0.72;
-
-      node.classList.toggle("is-visible", visible);
-      node.classList.toggle("is-active", active);
-
-      if (!onStage) return;
-
-      const progress = getProgress(rect, viewportH);
-      node.style.setProperty("--cb-section-progress", progress.toFixed(4));
-      node.style.setProperty("--cb-section-index", String(index));
-      node.style.setProperty("--cb-section-direction", String(direction));
-    };
-
-    const updateCardMotion = (node, index, viewportH, direction) => {
-      const rect = node.getBoundingClientRect();
-      const inRange = rect.bottom > -viewportH * 0.1 && rect.top < viewportH * 1.08;
-      const visible = rect.bottom > viewportH * 0.02 && rect.top < viewportH * 0.98;
-      const active = rect.bottom > viewportH * 0.22 && rect.top < viewportH * 0.78;
-
-      node.classList.toggle("is-visible", visible);
-      node.classList.toggle("is-active", active);
-
-      if (!inRange) return;
-
-      const progress = getProgress(rect, viewportH);
-      node.style.setProperty("--cb-card-progress", progress.toFixed(4));
-      node.style.setProperty("--cb-card-index", String(index));
-      node.style.setProperty("--cb-card-direction", String(direction));
-    };
-
-    const renderFrame = () => {
-      state.ticking = false;
-      const currentY = window.scrollY || window.pageYOffset || 0;
-      const delta = currentY - state.lastY;
-      const direction = delta === 0 ? 0 : delta > 0 ? 1 : -1;
-      state.lastY = currentY;
-
-      document.documentElement.dataset.cbScrollDirection =
-        direction > 0 ? "down" : direction < 0 ? "up" : "idle";
-
-      const viewportH = Math.max(window.innerHeight || 0, 1);
-      state.sections.forEach((node, index) => updateSectionMotion(node, index, viewportH, direction));
-      state.cards.forEach((node, index) => updateCardMotion(node, index, viewportH, direction));
-    };
-
-    function scheduleRender() {
-      if (state.ticking) return;
-      state.ticking = true;
-      window.requestAnimationFrame(renderFrame);
-    }
-
-    const refreshTargets = () => {
-      window.clearTimeout(state.refreshTimer);
-      state.refreshTimer = window.setTimeout(() => {
-        collectTargets();
-        bindScrollHosts();
-        scheduleRender();
-      }, 90);
-    };
-
-    collectTargets();
-    bindScrollHosts();
-
-    const showAllTargets = () => {
-      state.sections.forEach((node) => node.classList.add("is-visible"));
-      state.cards.forEach((node) => node.classList.add("is-visible"));
-    };
-    const shouldBypassScrollMotion =
-      pageType === "home-page" || state.sections.length + state.cards.length > 140;
-
-    if (reduceMotion || shouldBypassScrollMotion) {
-      showAllTargets();
-      return;
-    }
-
-    document.body.classList.add("cb-studio-motion");
-    scheduleRender();
-    window.addEventListener("scroll", scheduleRender, { passive: true });
-    window.addEventListener("resize", refreshTargets, { passive: true });
-    window.addEventListener("orientationchange", refreshTargets, { passive: true });
-    window.addEventListener("pageshow", scheduleRender, { passive: true });
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) scheduleRender();
-    });
-
-    if (typeof MutationObserver === "function") {
-      const observer = new MutationObserver((entries) => {
-        let shouldRefresh = false;
-        for (const entry of entries) {
-          if (entry.type !== "childList") continue;
-          if ((entry.addedNodes && entry.addedNodes.length) || (entry.removedNodes && entry.removedNodes.length)) {
-            shouldRefresh = true;
-            break;
-          }
-        }
-        if (shouldRefresh) refreshTargets();
-      });
-      observer.observe(mainEl, { childList: true, subtree: true });
-    }
-
-    window.setTimeout(scheduleRender, 140);
-    window.setTimeout(refreshTargets, 640);
-  }
-
-  function applyBrandLogotype() {
-    document.querySelectorAll(".brand-logo-img").forEach((img) => {
-      const currentSrc = String(img.getAttribute("src") || "").trim();
-      const currentSrcLower = currentSrc.toLowerCase();
-      let logotypeSrc = currentSrc;
-      if (!currentSrcLower || currentSrcLower.includes("wordmark") || currentSrcLower.includes("official-logotype")) {
-        logotypeSrc = LOGOTYPE_SRC;
-        img.setAttribute("src", LOGOTYPE_SRC);
-      }
-      if (!logotypeSrc) logotypeSrc = LOGOTYPE_SRC;
-      img.dataset.logotypeSrc = logotypeSrc;
-      img.dataset.logomarkSrc = LOGOMARK_SRC;
-      if (!img.getAttribute("alt")) img.setAttribute("alt", "CavBot");
-      img.setAttribute("decoding", "async");
-      img.classList.remove("is-logomark");
-    });
-  }
-
-  function installStickyHeaderBrandSwap() {
-    const header = document.querySelector(".site-header");
-    if (!(header instanceof HTMLElement)) return;
-
-    const brandImages = Array.from(document.querySelectorAll(".brand-logo-img"));
-    if (!brandImages.length) return;
-
-    let rafId = 0;
-    let lastCompact = null;
-
-    const syncHeaderOffset = () => {
-      const headerHeight = Math.max(0, Math.ceil(header.getBoundingClientRect().height || 0));
-      document.documentElement.style.setProperty("--cb-header-offset", `${headerHeight}px`);
-      document.body.classList.add("cb-has-fixed-header");
-    };
-
-    const setBrandState = (compact) => {
-      if (lastCompact === compact) return;
-      lastCompact = compact;
-      header.classList.toggle("is-scrolled", compact);
-      brandImages.forEach((img) => {
-        if (!(img instanceof HTMLImageElement)) return;
-        const logotypeSrc = String(img.dataset.logotypeSrc || LOGOTYPE_SRC);
-        const logomarkSrc = String(img.dataset.logomarkSrc || LOGOMARK_SRC);
-        const nextSrc = compact ? logomarkSrc : logotypeSrc;
-        if (String(img.getAttribute("src") || "") !== nextSrc) {
-          img.setAttribute("src", nextSrc);
-        }
-        img.classList.toggle("is-logomark", compact);
-      });
-      syncHeaderOffset();
-    };
-
-    const run = () => {
-      rafId = 0;
-      const y = window.scrollY || window.pageYOffset || 0;
-      setBrandState(y > HEADER_SCROLL_SWITCH_Y);
-    };
-
-    const schedule = () => {
-      if (rafId) return;
-      rafId = window.requestAnimationFrame(run);
-    };
-
-    syncHeaderOffset();
-    run();
-
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", () => {
-      syncHeaderOffset();
-      schedule();
-    }, { passive: true });
-    window.addEventListener("orientationchange", () => {
-      syncHeaderOffset();
-      schedule();
-    }, { passive: true });
-    window.addEventListener("pageshow", () => {
-      syncHeaderOffset();
-      schedule();
-    }, { passive: true });
   }
 
   function firstInitialChar(value) {
@@ -1271,9 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
           font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
           border-radius: 16px;
           border: 1px solid rgba(255, 255, 255, 0.13);
-          background:
-            radial-gradient(360px 170px at 96% -42%, rgba(78, 168, 255, 0.16), transparent 64%),
-            rgba(1, 4, 16, 0.9);
+          background: rgba(1, 4, 16, 0.9);
           box-shadow: none;
           color: #d4dff8;
           display: grid;
@@ -1293,8 +678,8 @@ document.addEventListener("DOMContentLoaded", () => {
           bottom: 14px;
           width: 3px;
           border-radius: 999px;
-          background: linear-gradient(180deg, rgba(185, 200, 90, 0.98), rgba(185, 200, 90, 0.36));
-          box-shadow: 0 0 16px rgba(185, 200, 90, 0.28);
+          background: rgba(185, 200, 90, 0.86);
+          box-shadow: none;
           pointer-events: none;
           z-index: 0;
         }
@@ -1315,27 +700,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .cb-cavguard-overlay[data-open="true"] .cb-cavguard-card {
           opacity: 1;
           transform: translate3d(-50%, -50%, 0) scale(1);
-        }
-
-        .cb-cavguard-glow-top,
-        .cb-cavguard-glow-bottom {
-          display: none;
-        }
-
-        .cb-cavguard-glow-top {
-          width: 280px;
-          height: 180px;
-          top: -110px;
-          right: -88px;
-          background: rgba(78, 168, 255, 0.22);
-        }
-
-        .cb-cavguard-glow-bottom {
-          width: 260px;
-          height: 170px;
-          left: -78px;
-          bottom: -108px;
-          background: rgba(185, 200, 90, 0.18);
         }
 
         .cb-cavguard-header {
@@ -1572,8 +936,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modalOverlay.setAttribute("aria-hidden", "true");
         modalOverlay.innerHTML = `
           <div class="cb-cavguard-card" role="dialog" aria-modal="true" aria-labelledby="cb-cavguard-title">
-            <span class="cb-cavguard-glow-top" aria-hidden="true"></span>
-            <span class="cb-cavguard-glow-bottom" aria-hidden="true"></span>
             <div class="cb-cavguard-header">
               <div class="cb-cavguard-brand">
                 <div class="cb-cavguard-emblem" aria-hidden="true">
@@ -1885,9 +1247,7 @@ document.addEventListener("DOMContentLoaded", () => {
           font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
           border-radius: 16px;
           border: 1px solid rgba(255, 255, 255, 0.13);
-          background:
-            radial-gradient(360px 170px at 96% -42%, rgba(78, 168, 255, 0.16), transparent 64%),
-            rgba(1, 4, 16, 0.9);
+          background: rgba(1, 4, 16, 0.9);
           color: #d4dff8;
           display: grid;
           gap: 14px;
@@ -3881,126 +3241,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================
-  // HEADER / MOBILE NAV
-  // ============================
-  if (navToggle && navOverlay) {
-    navToggles.forEach((toggle) => {
-      toggle.addEventListener("click", () => {
-        navLastTrigger = toggle;
-        const isOpen = navOverlay.classList.contains("is-open");
-        if (isOpen) {
-          closeNav();
-        } else {
-          openNav(toggle);
-        }
-      });
-    });
-
-    if (navCloseBtn) {
-      navCloseBtn.addEventListener("click", () => closeNav());
-    }
-
-    navOverlay.addEventListener("click", (event) => {
-      if (event.target.classList.contains("nav-overlay-backdrop")) {
-        closeNav();
-      }
-    });
-
-    navOverlay.querySelectorAll("a").forEach((anchor) => {
-      anchor.addEventListener("click", () => closeNav({ restoreFocus: false }));
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && navOverlay.classList.contains("is-open")) {
-        closeNav();
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 960 && navOverlay.classList.contains("is-open")) {
-        closeNav({ restoreFocus: false });
-      }
-    });
-
-    window.addEventListener("pagehide", () => {
-      closeNav({ restoreFocus: false });
-      recoverScrollIfNoOverlayOpen();
-    });
-
-    window.addEventListener("beforeunload", () => {
-      closeNav({ restoreFocus: false });
-      recoverScrollIfNoOverlayOpen();
-    });
-
-    setNavOverlayHidden(true);
-    setNavToggleExpanded(false);
-  }
-
-  // ============================
-  // HEADER ACTIVE PAGE STATE
-  // ============================
-  (() => {
-    const normalizePath = (rawPath) => {
-      const path = String(rawPath || "/").trim().toLowerCase();
-      if (!path || path === "/") return "/";
-      const clean = path.split("#")[0].split("?")[0] || "/";
-      if (clean === "/index.html") return "/";
-      return clean.endsWith("/") ? clean.slice(0, -1) : clean;
-    };
-
-    const currentPath = normalizePath(window.location.pathname || "/");
-    const selector = [
-      ".site-header .nav-main .nav-links a[href]",
-      ".nav-overlay .nav-overlay-body a.nav-overlay-link[href]",
-    ].join(", ");
-
-    document.querySelectorAll(selector).forEach((node) => {
-      if (!(node instanceof HTMLAnchorElement)) return;
-      const rawHref = String(node.getAttribute("href") || "").trim();
-      if (
-        !rawHref ||
-        rawHref.startsWith("#") ||
-        /^mailto:/i.test(rawHref) ||
-        /^tel:/i.test(rawHref) ||
-        /^javascript:/i.test(rawHref)
-      ) {
-        return;
-      }
-
-      let targetUrl = null;
-      try {
-        targetUrl = new URL(rawHref, window.location.href);
-      } catch {
-        return;
-      }
-
-      if (targetUrl.origin !== window.location.origin) return;
-      const targetPath = normalizePath(targetUrl.pathname || "/");
-      if (targetPath === currentPath) {
-        node.classList.add("is-current");
-      } else {
-        node.classList.remove("is-current");
-      }
-    });
-  })();
-
-  // ============================
-  // FOOTER ACCORDION (mobile)
-  // ============================
-  (() => {
-    const toggles = document.querySelectorAll(".footer-column-toggle");
-    if (!toggles.length) return;
-
-    toggles.forEach((button) => {
-      button.addEventListener("click", () => {
-        const col = button.closest(".footer-column");
-        if (!col) return;
-        col.classList.toggle("is-open");
-      });
-    });
-  })();
-
-  // ============================
   // Hosted embed snippets
   // ============================
   (() => {
@@ -4813,17 +4053,636 @@ document.addEventListener("DOMContentLoaded", () => {
     yearEl.textContent = String(new Date().getFullYear());
   }
 
-  installRectangleRebrand();
   installDemoRequestModal();
-  installStudioMarketingSystem();
-  applyBrandLogotype();
-  installStickyHeaderBrandSwap();
-  hydrateTryCavaiRows();
+  installCavGuardForAppLinks();
+});
 
-  recoverScrollIfNoOverlayOpen();
-  installScrollRecoveryGuards();
-  window.setTimeout(recoverScrollIfNoOverlayOpen, 0);
-  window.setTimeout(recoverScrollIfNoOverlayOpen, 220);
-  window.addEventListener("pageshow", recoverScrollIfNoOverlayOpen, { passive: true });
-  window.addEventListener("focus", recoverScrollIfNoOverlayOpen, { passive: true });
+document.addEventListener("DOMContentLoaded", () => {
+  const LOGOTYPE_SRC = "/assets/logo/official-logotype-light.svg";
+  const LOGOMARK_SRC = "/assets/logo/cavbot-logomark.svg";
+
+  const header = document.querySelector(".site-header");
+  const navOverlay = document.querySelector(".nav-overlay");
+  const navCloseBtn = document.querySelector(".nav-overlay-close");
+  const navToggles = Array.from(document.querySelectorAll(".nav-menu-toggle"));
+  const megaTriggers = Array.from(document.querySelectorAll("[data-mega-trigger]"));
+  const megaMenus = Array.from(document.querySelectorAll("[data-mega-menu]"));
+  const tryCavaiControls = Array.from(document.querySelectorAll("[data-cb-try-cavai]"));
+
+  const pageScrollLockState = {
+    depth: 0,
+    scrollX: 0,
+    scrollY: 0,
+    htmlOverflow: "",
+    bodyOverflow: "",
+    bodyPosition: "",
+    bodyTop: "",
+    bodyLeft: "",
+    bodyRight: "",
+    bodyWidth: ""
+  };
+
+  function lockPageScroll() {
+    if (pageScrollLockState.depth === 0) {
+      const docEl = document.documentElement;
+      const body = document.body;
+
+      pageScrollLockState.scrollX = window.scrollX || window.pageXOffset || 0;
+      pageScrollLockState.scrollY = window.scrollY || window.pageYOffset || 0;
+      pageScrollLockState.htmlOverflow = docEl.style.overflow;
+      pageScrollLockState.bodyOverflow = body.style.overflow;
+      pageScrollLockState.bodyPosition = body.style.position;
+      pageScrollLockState.bodyTop = body.style.top;
+      pageScrollLockState.bodyLeft = body.style.left;
+      pageScrollLockState.bodyRight = body.style.right;
+      pageScrollLockState.bodyWidth = body.style.width;
+
+      docEl.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+      body.style.position = "fixed";
+      body.style.top = `-${pageScrollLockState.scrollY}px`;
+      body.style.left = "0";
+      body.style.right = "0";
+      body.style.width = "100%";
+    }
+
+    pageScrollLockState.depth += 1;
+  }
+
+  function unlockPageScroll() {
+    if (pageScrollLockState.depth <= 0) return;
+
+    pageScrollLockState.depth -= 1;
+
+    if (pageScrollLockState.depth > 0) return;
+
+    const docEl = document.documentElement;
+    const body = document.body;
+
+    docEl.style.overflow = pageScrollLockState.htmlOverflow;
+    body.style.overflow = pageScrollLockState.bodyOverflow;
+    body.style.position = pageScrollLockState.bodyPosition;
+    body.style.top = pageScrollLockState.bodyTop;
+    body.style.left = pageScrollLockState.bodyLeft;
+    body.style.right = pageScrollLockState.bodyRight;
+    body.style.width = pageScrollLockState.bodyWidth;
+
+    window.scrollTo(pageScrollLockState.scrollX, pageScrollLockState.scrollY);
+  }
+
+  function syncHeaderOffset() {
+    if (!header) return;
+
+    const headerHeight = Math.max(0, Math.ceil(header.getBoundingClientRect().height || 0));
+    document.documentElement.style.setProperty("--cb-header-offset", `${headerHeight}px`);
+    document.body.classList.add("cb-has-fixed-header");
+  }
+
+  function applyBrandLogotype() {
+    document.querySelectorAll(".brand-logo-img").forEach((img) => {
+      const currentSrc = String(img.getAttribute("src") || "").trim();
+      const currentSrcLower = currentSrc.toLowerCase();
+
+      let logotypeSrc = currentSrc;
+
+      if (!currentSrcLower || currentSrcLower.includes("wordmark") || currentSrcLower.includes("official-logotype")) {
+        logotypeSrc = LOGOTYPE_SRC;
+        img.setAttribute("src", LOGOTYPE_SRC);
+      }
+
+      img.dataset.logotypeSrc = logotypeSrc || LOGOTYPE_SRC;
+      img.dataset.logomarkSrc = LOGOMARK_SRC;
+
+      if (!img.getAttribute("alt")) {
+        img.setAttribute("alt", "CavBot");
+      }
+
+      img.setAttribute("decoding", "async");
+      img.classList.remove("is-logomark");
+    });
+  }
+
+  function installStableHeaderOffset() {
+    if (!header) return;
+
+    const brandImages = Array.from(document.querySelectorAll(".brand-logo-img"));
+    brandImages.forEach((img) => {
+      if (!(img instanceof HTMLImageElement)) return;
+      const logotypeSrc = String(img.dataset.logotypeSrc || LOGOTYPE_SRC);
+      if (String(img.getAttribute("src") || "") !== logotypeSrc) {
+        img.setAttribute("src", logotypeSrc);
+      }
+      img.classList.remove("is-logomark");
+    });
+
+    header.classList.remove("is-scrolled");
+    syncHeaderOffset();
+
+    window.addEventListener("resize", () => {
+      syncHeaderOffset();
+    }, { passive: true });
+    window.addEventListener("orientationchange", () => {
+      syncHeaderOffset();
+    }, { passive: true });
+    window.addEventListener("pageshow", () => {
+      syncHeaderOffset();
+    }, { passive: true });
+  }
+
+  function closeMegaMenus() {
+    megaTriggers.forEach((trigger) => {
+      trigger.setAttribute("aria-expanded", "false");
+    });
+
+    megaMenus.forEach((menu) => {
+      menu.classList.remove("is-open");
+      menu.setAttribute("aria-hidden", "true");
+    });
+  }
+
+  function positionMegaMenu(trigger, menu) {
+    if (!trigger || !menu) return;
+
+    const triggerRect = trigger.getBoundingClientRect();
+    const menuWidth = Math.min(
+      Number.parseFloat(getComputedStyle(menu).getPropertyValue("--cb-mega-width")) || 1040,
+      window.innerWidth - 24
+    );
+
+    const preferredLeft = triggerRect.left;
+    const left = Math.max(12, Math.min(preferredLeft, window.innerWidth - menuWidth - 12));
+
+    menu.style.setProperty("--cb-mega-left", `${left}px`);
+    menu.style.setProperty("--cb-mega-width", `${menuWidth}px`);
+  }
+
+  function openMegaMenu(name, trigger) {
+    const menu = document.querySelector(`[data-mega-menu="${name}"]`);
+    if (!menu) return;
+
+    closeTryCavaiMenus();
+    closeMegaMenus();
+
+    positionMegaMenu(trigger, menu);
+
+    trigger.setAttribute("aria-expanded", "true");
+    menu.classList.add("is-open");
+    menu.setAttribute("aria-hidden", "false");
+  }
+
+  function installMegaMenus() {
+    if (!megaTriggers.length) return;
+
+    megaTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const name = trigger.getAttribute("data-mega-trigger");
+        const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+        if (isOpen) {
+          closeMegaMenus();
+          return;
+        }
+
+        openMegaMenu(name, trigger);
+      });
+
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowDown") return;
+
+        event.preventDefault();
+
+        const name = trigger.getAttribute("data-mega-trigger");
+        openMegaMenu(name, trigger);
+
+        const menu = document.querySelector(`[data-mega-menu="${name}"]`);
+        const firstLink = menu ? menu.querySelector("a, button") : null;
+
+        if (firstLink && typeof firstLink.focus === "function") {
+          firstLink.focus({ preventScroll: true });
+        }
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) return;
+      if (target.closest("[data-mega-item]") || target.closest("[data-mega-menu]")) return;
+
+      closeMegaMenus();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMegaMenus();
+      }
+    });
+
+    window.addEventListener("resize", closeMegaMenus, { passive: true });
+    window.addEventListener("scroll", closeMegaMenus, { passive: true });
+  }
+
+  function closeTryCavaiMenus() {
+    tryCavaiControls.forEach((control) => {
+      control.classList.remove("is-open");
+
+      const toggle = control.querySelector(".cb-try-cavai-toggle");
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", "false");
+      }
+
+      control.querySelectorAll(".cb-try-cavai-menu-section").forEach((section) => {
+        const locked = section.classList.contains("is-locked-open");
+        const button = section.querySelector(".cb-try-cavai-menu-section-toggle");
+        const panel = section.querySelector(".cb-try-cavai-menu-section-panel");
+
+        if (locked) {
+          section.classList.add("is-open");
+          if (button) button.setAttribute("aria-expanded", "true");
+          if (panel) panel.hidden = false;
+          return;
+        }
+
+        section.classList.remove("is-open");
+        if (button) button.setAttribute("aria-expanded", "false");
+        if (panel) panel.hidden = true;
+      });
+    });
+  }
+
+  function installTryCavaiMenus() {
+    if (!tryCavaiControls.length) return;
+
+    tryCavaiControls.forEach((control) => {
+      const toggle = control.querySelector(".cb-try-cavai-toggle");
+
+      if (toggle) {
+        toggle.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const isOpen = control.classList.contains("is-open");
+
+          closeMegaMenus();
+          closeTryCavaiMenus();
+
+          if (!isOpen) {
+            control.classList.add("is-open");
+            toggle.setAttribute("aria-expanded", "true");
+          }
+        });
+      }
+
+      control.querySelectorAll(".cb-try-cavai-menu-section-toggle").forEach((button) => {
+        button.addEventListener("click", () => {
+          if (button.disabled) return;
+
+          const section = button.closest(".cb-try-cavai-menu-section");
+          const panel = section ? section.querySelector(".cb-try-cavai-menu-section-panel") : null;
+          const isOpen = section.classList.contains("is-open");
+
+          section.classList.toggle("is-open", !isOpen);
+          button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+
+          if (panel) {
+            panel.hidden = isOpen;
+          }
+        });
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) return;
+      if (target.closest("[data-cb-try-cavai]")) return;
+
+      closeTryCavaiMenus();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeTryCavaiMenus();
+      }
+    });
+  }
+
+  function setNavToggleExpanded(isExpanded) {
+    navToggles.forEach((toggle) => {
+      toggle.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+    });
+  }
+
+  function setNavOverlayHidden(isHidden) {
+    if (!navOverlay) return;
+
+    navOverlay.setAttribute("aria-hidden", isHidden ? "true" : "false");
+
+    if ("inert" in navOverlay) {
+      navOverlay.inert = isHidden;
+    }
+  }
+
+  function openNav(trigger) {
+    if (!navOverlay || navOverlay.classList.contains("is-open")) return;
+
+    closeMegaMenus();
+    closeTryCavaiMenus();
+
+    lockPageScroll();
+
+    navOverlay.classList.add("is-open");
+    document.documentElement.classList.add("nav-open");
+    document.body.classList.add("nav-open");
+
+    setNavOverlayHidden(false);
+    setNavToggleExpanded(true);
+
+    window.requestAnimationFrame(() => {
+      const focusTarget = navCloseBtn || navOverlay.querySelector(".nav-overlay-link");
+
+      if (focusTarget && typeof focusTarget.focus === "function") {
+        focusTarget.focus({ preventScroll: true });
+      }
+    });
+  }
+
+  function closeNav() {
+    if (!navOverlay || !navOverlay.classList.contains("is-open")) return;
+
+    navOverlay.classList.remove("is-open");
+    document.documentElement.classList.remove("nav-open");
+    document.body.classList.remove("nav-open");
+
+    setNavOverlayHidden(true);
+    setNavToggleExpanded(false);
+
+    unlockPageScroll();
+  }
+
+  function installMobileNav() {
+    if (!navOverlay || !navToggles.length) return;
+
+    navToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const isOpen = navOverlay.classList.contains("is-open");
+
+        if (isOpen) {
+          closeNav();
+        } else {
+          openNav(toggle);
+        }
+      });
+    });
+
+    if (navCloseBtn) {
+      navCloseBtn.addEventListener("click", closeNav);
+    }
+
+    const backdrop = navOverlay.querySelector(".nav-overlay-backdrop");
+
+    if (backdrop) {
+      backdrop.addEventListener("click", closeNav);
+    }
+
+    navOverlay.querySelectorAll("a").forEach((anchor) => {
+      anchor.addEventListener("click", closeNav);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && navOverlay.classList.contains("is-open")) {
+        closeNav();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1160 && navOverlay.classList.contains("is-open")) {
+        closeNav();
+      }
+    }, { passive: true });
+
+    setNavOverlayHidden(true);
+    setNavToggleExpanded(false);
+  }
+
+  function installMobileAccordions() {
+    document.querySelectorAll(".cb-mobile-section-toggle").forEach((button) => {
+      button.addEventListener("click", () => {
+        const section = button.closest(".cb-mobile-section");
+        const panel = section ? section.querySelector(".cb-mobile-section-panel") : null;
+        const isOpen = section.classList.contains("is-open");
+
+        section.classList.toggle("is-open", !isOpen);
+        button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+
+        if (panel) {
+          panel.hidden = isOpen;
+        }
+      });
+    });
+  }
+
+  function normalizePath(rawPath) {
+    const path = String(rawPath || "/").trim().toLowerCase();
+
+    if (!path || path === "/") return "/";
+
+    const clean = path.split("#")[0].split("?")[0] || "/";
+
+    if (clean === "/index.html") return "/";
+
+    return clean.endsWith("/") ? clean.slice(0, -1) : clean;
+  }
+
+  function installActivePageState() {
+    const currentPath = normalizePath(window.location.pathname || "/");
+
+    document.querySelectorAll("a[href]").forEach((node) => {
+      if (!(node instanceof HTMLAnchorElement)) return;
+
+      const rawHref = String(node.getAttribute("href") || "").trim();
+
+      if (
+        !rawHref ||
+        rawHref === "changethisurl" ||
+        rawHref.startsWith("#") ||
+        /^mailto:/i.test(rawHref) ||
+        /^tel:/i.test(rawHref) ||
+        /^javascript:/i.test(rawHref)
+      ) {
+        return;
+      }
+
+      let targetUrl = null;
+
+      try {
+        targetUrl = new URL(rawHref, window.location.href);
+      } catch {
+        return;
+      }
+
+      if (targetUrl.origin !== window.location.origin) return;
+
+      const targetPath = normalizePath(targetUrl.pathname || "/");
+
+      if (targetPath === currentPath) {
+        node.classList.add("is-current");
+
+        const megaMenu = node.closest("[data-mega-menu]");
+        if (megaMenu) {
+          const name = megaMenu.getAttribute("data-mega-menu");
+          const trigger = document.querySelector(`[data-mega-trigger="${name}"]`);
+          if (trigger) trigger.classList.add("is-current");
+        }
+      } else {
+        node.classList.remove("is-current");
+      }
+    });
+  }
+
+  function installFooterMobileFallback() {
+    document.querySelectorAll(".footer-column-toggle").forEach((button) => {
+      button.addEventListener("click", () => {
+        const col = button.closest(".footer-column");
+        if (!col) return;
+        col.classList.toggle("is-open");
+      });
+    });
+  }
+
+  function bootHeaderFooter() {
+    applyBrandLogotype();
+    installStableHeaderOffset();
+    installMegaMenus();
+    installTryCavaiMenus();
+    installMobileNav();
+    installMobileAccordions();
+    installActivePageState();
+    installFooterMobileFallback();
+
+    syncHeaderOffset();
+
+    window.setTimeout(syncHeaderOffset, 80);
+    window.setTimeout(syncHeaderOffset, 320);
+  }
+
+  bootHeaderFooter();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".nav-cta-row, .nav-overlay-cta").forEach((row) => {
+    if (!row.querySelector("[data-cb-try-cavai]") || row.querySelector("[data-site-update-open]")) {
+      return;
+    }
+
+    const trigger = document.createElement("button");
+    trigger.className = row.classList.contains("nav-overlay-cta")
+      ? "cb-site-update-trigger cb-site-update-trigger--mobile"
+      : "cb-site-update-trigger";
+    trigger.type = "button";
+    trigger.setAttribute("aria-label", "View site update notice");
+    trigger.setAttribute("data-site-update-open", "");
+    trigger.innerHTML = '<img class="cb-site-update-icon" src="/assets/icons/page/aware-svgrepo-com.svg" alt="" aria-hidden="true" />';
+    row.insertBefore(trigger, row.querySelector("[data-cb-try-cavai]"));
+  });
+
+  const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));
+  if (!triggers.length) return;
+
+  const MODAL_ID = "cb-site-update-overlay";
+  let lastFocusedElement = null;
+  let isOpen = false;
+  let lockedScrollY = 0;
+
+  function lockScroll() {
+    lockedScrollY = window.scrollY || window.pageYOffset || 0;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }
+
+  function unlockScroll() {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, lockedScrollY);
+  }
+
+  function ensureModal() {
+    let overlay = document.getElementById(MODAL_ID);
+    if (overlay) return overlay;
+
+    overlay = document.createElement("div");
+    overlay.id = MODAL_ID;
+    overlay.className = "cb-site-update-overlay";
+    overlay.setAttribute("aria-hidden", "true");
+    overlay.innerHTML = `
+      <section class="cb-site-update-card" role="dialog" aria-modal="true" aria-labelledby="cb-site-update-title" aria-describedby="cb-site-update-copy">
+        <span class="cb-site-update-mark" aria-hidden="true">
+          <img src="assets/icons/page/notice-svgrepo-com.svg" alt="" />
+        </span>
+        <h2 class="cb-site-update-title" id="cb-site-update-title">Site Update in Progress</h2>
+        <p class="cb-site-update-copy" id="cb-site-update-copy">We’re actively refining the CavBot website. Some pages may change, refresh, or move as updates are completed.</p>
+        <button class="cb-site-update-close" type="button" data-site-update-close>Close</button>
+      </section>
+    `;
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay || event.target.closest("[data-site-update-close]")) {
+        closeModal();
+      }
+    });
+
+    document.body.appendChild(overlay);
+    return overlay;
+  }
+
+  function openModal(trigger) {
+    const overlay = ensureModal();
+    lastFocusedElement = trigger;
+    isOpen = true;
+    lockScroll();
+    overlay.dataset.open = "true";
+    overlay.setAttribute("aria-hidden", "false");
+
+    const closeButton = overlay.querySelector("[data-site-update-close]");
+    if (closeButton) closeButton.focus({ preventScroll: true });
+  }
+
+  function closeModal() {
+    const overlay = document.getElementById(MODAL_ID);
+    if (!overlay || !isOpen) return;
+
+    isOpen = false;
+    overlay.dataset.open = "false";
+    overlay.setAttribute("aria-hidden", "true");
+    unlockScroll();
+
+    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+      lastFocusedElement.focus({ preventScroll: true });
+    }
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openModal(trigger);
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
+  });
 });

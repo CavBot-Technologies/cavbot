@@ -17,7 +17,7 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://cavbot.io/">
- 
+
   <!-- UNIVERSAL FAVICONS  -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
@@ -38,7 +38,7 @@
 <meta name="theme-color" content="#01030f">
 <meta name="msapplication-TileColor" content="#01030f">
 <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
-  
+
 <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CavBot">
@@ -172,1324 +172,2975 @@
       data-cavbot-component="home-shell"
       data-cavbot-disable-arcade-loader="1">
 
-  <!-- ===========================
-       HEADER / NAV
-       =========================== -->
-  <header class="site-header">
-    <div class="site-header-inner">
-      <div class="brand-lockup">
-        <a href="index.html" class="brand-logo">
-          <img src="/assets/logo/official-logotype-light.svg" alt="CavBot" class="brand-logo-img">
-        </a>
+<header class="site-header cb-company-header">
+  <div class="site-header-inner">
+    <a href="/" class="brand-lockup" aria-label="CavBot home">
+      <img
+        src="/assets/logo/official-logotype-light.svg"
+        alt="CavBot"
+        class="brand-logo-img"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="nav-main" aria-label="Primary navigation">
+      <!-- Product -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="product"
+          aria-expanded="false"
+          aria-controls="cb-mega-product"
+        >
+          <span>Product</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-product" data-mega-menu="product" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--product">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">AI</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavAi</span>
+                  <span class="cb-mega-link-copy">Ask, create, and solve with <br> AI.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Caven</span>
+                  <span class="cb-mega-link-copy"> Build, debug, and ship with a real AI coding agent.
+</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Companion</span>
+                  <span class="cb-mega-link-copy">Guidance and support for your day-to-day work.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Image Studio</span>
+                  <span class="cb-mega-link-copy"> Generate visuals and brand assets from prompts.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Image Edit</span>
+                  <span class="cb-mega-link-copy">Refine images with precise creative controls.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Web Analytics</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Error Tracking</span>
+                  <span class="cb-mega-link-copy">Find what broke and where it happened.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">SEO Performance</span>
+                  <span class="cb-mega-link-copy">See how your pages are built, read, and discovered.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Routes Intelligence</span>
+                  <span class="cb-mega-link-copy">Find the paths users take and where they break.</span>
+                </a>
+
+                 <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">A11y Snapshot</span>
+                  <span class="cb-mega-link-copy">Catch accessibility issues early.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Insights</span>
+                  <span class="cb-mega-link-copy">Turn website activity into clear next steps.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">404 Control Room</span>
+                  <span class="cb-mega-link-copy">Fix broken pages and guide users back.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Workspace</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Command Center</span>
+                  <span class="cb-mega-link-copy"> Manage your sites, projects, and key decisions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Dashboard</span>
+                  <span class="cb-mega-link-copy">See what’s happening across your website in real time.</span>
+                </a>
+
+                 <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavPad</span>
+                  <span class="cb-mega-link-copy">Write notes, briefs, and ideas directly on CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Arcade</span>
+                  <span class="cb-mega-link-copy">Play 404 games and choose one for your site.</span>
+                </a>
+
+                 <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Team Access</span>
+                  <span class="cb-mega-link-copy">Invite teammates, manage roles and work together.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Developer Tools</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavCode</span>
+                  <span class="cb-mega-link-copy">Code, inspect, and debug in CavBot’s built-in IDE.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">HTML Viewer</span>
+                  <span class="cb-mega-link-copy">View your page structure clearly.</span>
+                </a>
+
+
+ <a class="cb-mega-link" href="/">
+                 <span class="cb-mega-link-title">CavTools</span>
+                 <span class="cb-mega-link-copy">Run Cav commands, inspect, and debug faster.</span>
+               </a>
+
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavCloud</span>
+                  <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">START HERE</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Why CavBot?</span>
+                  <span class="cb-mega-link-copy">See why websites need more than analytics.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Models</span>
+                  <span class="cb-mega-link-copy">DeepSeek and Qwen, inside CavAi.</span>
+                </a>
+
+                   <a class="cb-mega-link" href="pricing.html">
+                  <span class="cb-mega-link-title">Pricing</span>
+                  <span class="cb-mega-link-copy">Choose the right plan for your site or team.</span>
+                </a>
+
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/">
+              <span>View all features</span>
+              <span class="cb-arrow-text" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
-      <!-- Mobile / tablet menu toggle (console-style dot grid) -->
-      <button
-        type="button"
-        class="nav-menu-toggle"
-        aria-label="Open navigation"
-        aria-expanded="false">
-        <span class="nav-menu-icon" aria-hidden="true">
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-        </span>
-      </button>
+      <!-- Security -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="Security"
+          aria-expanded="false"
+          aria-controls="cb-mega-Security"
+        >
+          <span>Security</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
 
-     <!-- Desktop nav -->
-    <nav class="nav-main">
-      <div class="nav-links">
-        <a href="product.html" class="nav-overlay-link--active">Product</a>
-        <a href="how-it-works.html" class="nav-overlay-link--active">How it Works</a>
-        <a href="pricing.html" class="nav-overlay-link--active">Pricing</a>
-        <a href="cavbot-arcade.html" class="nav-overlay-link--active">404 Arcade</a>
-        <a href="https://app.cavbot.io/" class="nav-overlay-link--active">Platform</a>
+        <div class="cb-mega-menu cb-mega-menu--compact" id="cb-mega-Security" data-mega-menu="Security" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--three">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Protection</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Caverify</span>
+                  <span class="cb-mega-link-copy">Built-in verification that keeps bots out.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavGuard</span>
+                  <span class="cb-mega-link-copy"> Built-in guardrails for restricted actions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavSafe</span>
+                  <span class="cb-mega-link-copy">The private CavCloud vault for sensitive files.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Trust</p>
+
+                <a class="cb-mega-link" href="/data-security.html">
+                  <span class="cb-mega-link-title">Data security</span>
+                  <span class="cb-mega-link-copy">How CavBot keeps platform data handled with care.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/privacy-policy.html">
+                  <span class="cb-mega-link-title">Privacy</span>
+                  <span class="cb-mega-link-copy">Clear terms for how data is collected and used.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/terms-of-use.html">
+                  <span class="cb-mega-link-title">Terms</span>
+                  <span class="cb-mega-link-copy">The rules for using CavBot products and services.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">Operational security</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Risk controls</span>
+                  <span class="cb-mega-link-copy">Set rules for protected actions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Audit trail</span>
+                  <span class="cb-mega-link-copy">Review changes across your workspace.</span>
+                </a>
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/">
+              <span>Explore security</span>
+              <span class="cb-arrow-text" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="nav-cta-row">
-        <a href="https://app.cavbot.io/auth?mode=login" class="nav-overlay-login">Log In</a>
-        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+
+      <!-- APIs -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="apis"
+          aria-expanded="false"
+          aria-controls="cb-mega-apis"
+        >
+          <span>Developers</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-apis" data-mega-menu="apis" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--three">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Signal</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Analytics v5</span>
+                  <span class="cb-mega-link-copy">Install one snippet and CavBot starts watching your site.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Events</span>
+                  <span class="cb-mega-link-copy">Send important product actions into <br> CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Summary</span>
+                  <span class="cb-mega-link-copy">Pull the latest site, route, and dashboard results.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">AI</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavAi v3</span>
+                  <span class="cb-mega-link-copy">The AI layer that helps CavBot turn what it sees into action.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Assistant memory</span>
+                  <span class="cb-mega-link-copy">Keep project context available when CavAi responds.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Agent workflows</span>
+                  <span class="cb-mega-link-copy">Run repeatable agents for research, fixes, and summaries.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">CavBot Assets</p>
+
+<a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">404 Arcade</span>
+                  <span class="cb-mega-link-copy">Install interactive 404 games for broken pages.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Badge</span>
+                  <span class="cb-mega-link-copy"> Show visible trust on your website.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Head</span>
+                  <span class="cb-mega-link-copy">Add a compact CavBot presence to your product.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Body</span>
+                  <span class="cb-mega-link-copy">Use CavBot for guided product moments.</span>
+                </a>
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/">
+              <span>Open docs</span>
+              <span class="cb-arrow-text" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </div>
+
+      <!-- Resources -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="resources"
+          aria-expanded="false"
+          aria-controls="cb-mega-resources"
+        >
+          <span>Resources</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-resources" data-mega-menu="resources" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--resources">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Support &amp; Services</p>
+
+                <a class="cb-mega-link" href="/help-center.html">
+                  <span class="cb-mega-link-title">Help Center</span>
+                  <span class="cb-mega-link-copy">Setup guides, FAQs and product help.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/faqs.html">
+                  <span class="cb-mega-link-title">Partners</span>
+                  <span class="cb-mega-link-copy">Programs and organizations helping CavBot grow.</span>
+                </a>
+
+ <a class="cb-mega-link" href="/cavbot-research.html">
+                  <span class="cb-mega-link-title">CavBot Research</span>
+                  <span class="cb-mega-link-copy">Practical research for better digital products.</span>
+                </a>
+                
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Company</p>
+
+                <a class="cb-mega-link" href="/about.html">
+                  <span class="cb-mega-link-title">About</span>
+                  <span class="cb-mega-link-copy">Read the story behind CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/code-of-ethics.html">
+                  <span class="cb-mega-link-title">Code of Ethics</span>
+                  <span class="cb-mega-link-copy">The standards we build <br> by.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/careers.html">
+                  <span class="cb-mega-link-title">Careers</span>
+                  <span class="cb-mega-link-copy">Join the team building CavBot.</span>
+                </a>
+
+                   <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Team</span>
+                  <span class="cb-mega-link-copy">Meet the people behind CavBot.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Highlights</p>
+
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Top Websites</span>
+                  <span class="cb-mega-link-copy">Explore leading websites by traffic.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/media-kit.html">
+                  <span class="cb-mega-link-title">Media Kit</span>
+                  <span class="cb-mega-link-copy">Official CavBot brand assets.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/newsroom.html">
+                  <span class="cb-mega-link-title">News and Press</span>
+                  <span class="cb-mega-link-copy">Latest company updates.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">Explore</p>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">How to use CavBot</span>
+                  <span class="cb-mega-link-copy">Learn the basics of working with CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Education</span>
+                  <span class="cb-mega-link-copy">Guides and lessons for better websites.</span>
+                </a>
+
+                  <a class="cb-mega-link" href="pricing.html">
+                  <span class="cb-mega-link-title">404 Field Guide</span>
+                  <span class="cb-mega-link-copy">Understand broken pages and how to fix them.</span>
+                </a>
+
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/help-center.html">
+              <span>Getting started with CavBot</span>
+              <span class="cb-arrow-text" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/pricing.html" class="nav-link">Pricing</a>
     </nav>
 
-    <!-- Mobile menu toggle -->
-    <button class="nav-menu-toggle" type="button" aria-label="Open navigation">
-      <span class="sr-only">Open navigation</span>
-      <span class="nav-menu-icon">
+    <div class="nav-cta-row">
+      <button class="cb-site-update-trigger" type="button" aria-label="View site update notice" data-site-update-open>
+        <img class="cb-site-update-icon" src="assets/icons/page/notice-svgrepo-com.svg" alt="" aria-hidden="true" />
+      </button>
+      <div class="cb-try-cavai" data-cb-try-cavai>
+        <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+
+        <button class="cb-try-cavai-toggle" type="button" aria-label="Open CavAi options" aria-expanded="false">
+          <span class="cb-try-cavai-caret" aria-hidden="true">
+            <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-closed" viewBox="0 0 16 16">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-open" viewBox="0 0 16 16">
+              <path d="M4.25 9.75L8 6l3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+
+        <div class="cb-try-cavai-menu" role="dialog" aria-label="CavAi quick actions">
+          <section class="cb-try-cavai-menu-section">
+            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="false">
+              <span class="cb-try-cavai-menu-label">Models</span>
+              <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="cb-try-cavai-menu-section-panel" hidden>
+              <div class="cb-try-cavai-menu-link is-static">
+                <span class="cb-try-cavai-menu-link-label">Deepseek</span>
+              </div>
+              <div class="cb-try-cavai-menu-link is-static">
+                <span class="cb-try-cavai-menu-link-label">Qwen</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cb-try-cavai-menu-section is-open is-locked-open">
+            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="true" disabled>
+              <span class="cb-try-cavai-menu-label">Account</span>
+              <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="cb-try-cavai-menu-section-panel">
+              <a class="cb-try-cavai-menu-link" href="https://app.cavbot.io/auth?mode=signup">
+                <span class="cb-try-cavai-menu-link-label">Sign up</span>
+              </a>
+              <a class="cb-try-cavai-menu-link" href="https://app.cavbot.io/auth?mode=login">
+                <span class="cb-try-cavai-menu-link-label">Log in</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="nav-menu-icon" aria-hidden="true">
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </span>
     </button>
   </div>
-</header>
 
-<!-- Mobile nav overlay -->
-<div class="nav-overlay" aria-hidden="true">
-  <div class="nav-overlay-backdrop"></div>
-  <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
-    <div class="nav-overlay-header">
-      <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
-    </div>
-    <div class="nav-overlay-body">
-      <a href="product.html" class="nav-overlay-link">Product</a>
-      <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
-      <a href="pricing.html" class="nav-overlay-link">Pricing</a>
-      <a href="cavbot-arcade.html" class="nav-overlay-link">404 Arcade</a>
-      <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+  <!-- Mobile / tablet navigation panel -->
+  <div class="nav-overlay" aria-hidden="true">
+    <div class="nav-overlay-backdrop"></div>
 
-       <div class="nav-cta-row">
-         <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
-         <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
-       </div>
-    </div>
+    <aside class="nav-overlay-panel" aria-label="CavBot menu">
+      <div class="nav-overlay-header">
+        <span class="nav-overlay-title">Menu</span>
+        <button class="nav-overlay-close" type="button" aria-label="Close menu"></button>
+      </div>
+
+      <div class="nav-overlay-body">
+        <section class="cb-mobile-section is-open">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="true">
+            <span>Product</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel">
+            <a href="/" class="nav-overlay-link">CavAi</a>
+            <a href="/" class="nav-overlay-link">Caven</a>
+            <a href="/" class="nav-overlay-link">CavBot Companion</a>
+            <a href="/" class="nav-overlay-link">Image Studio</a>
+            <a href="/" class="nav-overlay-link">Image Edit</a>
+            <a href="/" class="nav-overlay-link">Error Tracking</a>
+            <a href="/" class="nav-overlay-link">SEO Performance</a>
+            <a href="/" class="nav-overlay-link">A11y Snapshot</a>
+            <a href="/" class="nav-overlay-link">CavBot Insights</a>
+            <a href="/" class="nav-overlay-link">Command Center</a>
+            <a href="/" class="nav-overlay-link">Dashboard</a>
+            <a href="/" class="nav-overlay-link">CavBot Arcade</a>
+            <a href="/" class="nav-overlay-link">CavCode</a>
+            <a href="/" class="nav-overlay-link">HTML Viewer</a>
+            <a href="/" class="nav-overlay-link">CavTools</a>
+            <a href="/" class="nav-overlay-link">CavCloud</a>
+            <a href="/" class="nav-overlay-link">CavPad</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>Security</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/" class="nav-overlay-link">Caverify</a>
+            <a href="/" class="nav-overlay-link">CavGuard</a>
+            <a href="/" class="nav-overlay-link">CavSafe</a>
+            <a href="/data-security.html" class="nav-overlay-link">Data security</a>
+            <a href="/privacy-policy.html" class="nav-overlay-link">Privacy</a>
+            <a href="/terms-of-use.html" class="nav-overlay-link">Terms</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>API</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/" class="nav-overlay-link">CavBot Analytics v5</a>
+            <a href="/" class="nav-overlay-link">Events</a>
+            <a href="/" class="nav-overlay-link">Summary</a>
+            <a href="/" class="nav-overlay-link">CavAi V3</a>
+            <a href="/" class="nav-overlay-link">CavBot Badge</a>
+            <a href="/" class="nav-overlay-link">CavBot head</a>
+            <a href="/" class="nav-overlay-link">CavBot Body</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>Resources</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/help-center.html" class="nav-overlay-link">Help Center</a>
+            <a href="/cavbot-research.html" class="nav-overlay-link">CavBot Research</a>
+            <a href="/about.html" class="nav-overlay-link">About</a>
+            <a href="/code-of-ethics.html" class="nav-overlay-link">Code of Ethics</a>
+            <a href="/careers.html" class="nav-overlay-link">Careers</a>
+            <a href="/media-kit.html" class="nav-overlay-link">Media Kit</a>
+            <a href="/newsroom.html" class="nav-overlay-link">News and Press</a>
+          </div>
+        </section>
+
+        <a href="/pricing.html" class="nav-overlay-link nav-overlay-link--standalone">Pricing</a>
+      </div>
+
+      <div class="nav-overlay-cta">
+        <button class="cb-site-update-trigger cb-site-update-trigger--mobile" type="button" aria-label="View site update notice" data-site-update-open>
+          <img class="cb-site-update-icon" src="assets/icons/page/notice-svgrepo-com.svg" aria-hidden="true" />
+        </button>
+        <div class="cb-try-cavai cb-try-cavai--mobile" data-cb-try-cavai>
+          <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+        </div>
+      </div>
+    </aside>
   </div>
-</div>
-
+</header>
   <!-- ===========================
        MAIN
        =========================== -->
   <main class="page-inner">
     <!-- HERO -->
-    <section id="product" class="hero" aria-label="CavBot hero">
-      <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">CavBot overview</h2>
+   <!-- HERO -->
+<section id="product" class="hero hero-home-surface" aria-label="CavBot hero">
+  <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">CavBot overview</h2>
 
-      <div class="hero-copy-block">
-      <h1 class="hero-title">Website intelligence<br><br>&amp; support agent</h1><br>
-        <p class="hero-lede">
-         Built for developers, startups, and businesses that want clearer visibility. <br> Monitor your website, catch issues faster, and understand what needs attention next.
-          <br><br>
-        </p>
+  <div class="hero-copy-block">
+    <h1 class="cavai-main-title">
+  <span class="hero-title-line">Website intelligence</span><br>
+  <span class="hero-title-line">&amp; support agent</span>
+</h1><br>
 
-        <div class="hero-cta-row">
-          <a href="https://app.cavbot.io/auth?mode=signup" class="btn btn-primary">Start Free Trial</a>
-        </div>
-      </div>
-
-      <aside class="hero-robot-panel" aria-label="CavBot Command Center snapshot">
-        <div class="hero-robot-shell">
-          <div class="hero-robot-main">
-            <div class="hero-robot-avatar-wrap">
-              <div class="cavbot-cdn-slot" data-cavbot-cdn-slot="head" aria-hidden="true"></div>
-            </div>
-
-            <div class="hero-robot-metrics">
-              <div class="hero-robot-metrics-grid">
-                <div class="hero-metric">
-                  <div class="hero-metric-label">404</div><br>
-                  <div class="hero-metric-value">Broken pages</div>
-                </div>
-                <div class="hero-metric">
-                  <div class="hero-metric-label">Session</div><br>
-                  <div class="hero-metric-value">Live users</div>
-                </div>
-                <div class="hero-metric">
-                  <div class="hero-metric-label">Route</div><br>
-                  <div class="hero-metric-value">User paths</div>
-                </div>
-                <div class="hero-metric">
-                  <div class="hero-metric-label">SEO</div><br>
-                  <div class="hero-metric-value">Page health</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <!-- BRAIN EVOLUTION STRIP -->
-    <section class="brain-museum" aria-label="CavBot brain evolution">
-      <div class="brain-header">
-        <div class="brain-label">CavBot brainline</div> <br> 
-    <br>     <h2 class="brain-title">From 404 origin to multi-surface operations</h2> <br> 
-        <p class="brain-copy">
-          CavBot started by redesigning broken moments. It then expanded into a full operating system that coordinates
-          structured diagnostics, AI reasoning, implementation workflows, and production recovery.
-        </p>
-      </div>
+    <p class="hero-lede">
+      Built for developers, startups, and businesses that want clearer visibility. <br> Monitor your website, catch issues faster, and understand what needs <br> attention next.
       <br>
-      <div class="brain-grid">
-        <article class="brain-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Gen I · Arcade Origin</h3>
-          <div class="brain-gen">Gen I · Arcade Origin</div>
-      <br>    <div class="brain-era">404 playground</div>
-      <br>    <p class="brain-text">
-            The first CavBot lived only on error pages — a playful arcade on top of
-            a dead screen. No metrics, no console, just proof that a failure surface
-            could still feel designed.
-          </p>
-        </article>
+    </p>
 
-        <article class="brain-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Gen II · Signal Capture</h3>
-          <div class="brain-gen">Gen II · Signal Capture</div>
-      <br>    <div class="brain-era">Pattern curious</div>
-      <br>    <p class="brain-text">
-            Signal came next. CavBot began counting <strong>404 density</strong>,
-            route classes, and timestamps to understand which edges real users
-            actually touched.
-          </p>
-        </article>
+    <div class="hero-cta-row">
+      <a href="https://app.cavbot.io/auth?mode=signup" class="btn btn-primary">Start 14-Day Free Trial</a>
+    </div>
+  </div>
 
-        <article class="brain-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Gen III · Journey Model</h3>
-          <div class="brain-gen">Gen III · Journey Model</div>
-      <br>    <div class="brain-era">Structured observer</div>
-      <br>    <p class="brain-text">
-            CavBot stopped thinking in single errors and started thinking in
-            journeys — flow completion, repeat attempts, and quiet drop-offs
-            across entire funnels.
-          </p>
-        </article>
+  <aside class="hero-cavbot-standalone" aria-label="CavBot product snapshot">
+    <div class="hero-cavbot-orbit">
+      <div class="cavbot-cdn-slot" data-cavbot-cdn-slot="head" aria-hidden="true"></div>
+    </div>
+  </aside>
 
-        <article class="brain-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">CavAi + Command Center</h3>
-          <div class="brain-gen">CavAi + Command Center</div>
-      <br>    <div class="brain-era">Production brain</div>
-      <br>    <p class="brain-text">
-            CavBot Analytics v5 captures the signal layer. Command Center shows what matters.
-            CavAi turns that context into clear reasoning and execution-ready next steps.
-          </p>
-        </article>
+  <div class="hero-demo-section" id="watch-demo" data-hero-demo-stage>
+    <div class="hero-demo-frame" data-hero-demo-frame>
+      <video
+        class="hero-demo-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="assets/videos/cavbot-demo.mp4" type="video/mp4">
+      </video>
+
+      <a href="assets/videos/cavbot-demo.mp4" class="hero-demo-button">
+        <span class="hero-demo-play"></span>
+        <span>Watch Demo</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =======================
+    PILOT / LOGO MARQUEE STRIP
+    ======================= -->
+<section class="pilot-logo-section" aria-label="Teams using CavBot">
+  <div class="pilot-logo-marquee" data-pilot-logo-marquee>
+    <div class="pilot-logo-track" data-pilot-logo-track>
+      <div class="pilot-logo-group" data-pilot-logo-group>
+        <span class="pilot-logo-item">
+          <img
+            class="pilot-logo-img"
+            src="assets/logo/cavbot-wordmark.svg"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            onerror="this.style.visibility='hidden';"
+          />
+        </span>
+
+        <span class="pilot-logo-item">
+          <img
+            class="pilot-logo-img"
+            src="assets/pilots/cmpl-workspace.svg"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            onerror="this.style.visibility='hidden';"
+          />
+        </span>
+
+        <span class="pilot-logo-item">
+          <img
+            class="pilot-logo-img"
+            src="assets/pilots/cmpl.svg"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            onerror="this.style.visibility='hidden';"
+          />
+        </span>
+
+        <span class="pilot-logo-item">
+          <img
+            class="pilot-logo-img"
+            src="assets/pilots/Cavendish Pierre-Louis Logo Mark.png"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            onerror="this.style.visibility='hidden';"
+          />
+        </span>
+
       </div>
-    </section>
+    </div>
 
-    <!-- PATH / FAULT / FEEL -->
-    <section class="section pff-museum" aria-label="Path, Fault, and Feel modes">
-      <header class="section-header">
-        <div class="eyebrow">CavBot operating model</div>
-     <br>    <h2 class="section-title" style="font-size:18px;">Signals · Intelligence · Execution</h2>
-        <p class="section-body">
-          CavBot runs as one operating system. Signals are captured through Analytics v5, CavAi turns context into reasoning, and execution moves into product workflows.
-          <br><br><br> 
-        </p>
-      </header>
-      <br><br><br> 
-      <div class="pff-grid">
-        <article class="pff-card pff-card--path">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Path mode</h3>
-          <div class="pff-card-inner">
-            <div class="pff-card-header">
-              <div class="pff-glyph" aria-hidden="true"></div>
-              <div class="pff-mode-stack">
-                <div class="pff-mode-label">Path</div>
-                <div class="pff-mode-tag">Journey map</div>
-              </div>
-            </div>
-          <br>  <h3 class="pff-card-title">Canonical product map</h3>
-            <p class="pff-card-body">
-              Every URL, deep link, and edge route is treated as part of a canonical map.
-              CavBot maintains this map so your team always knows where traffic is meant
-              to land, not just where it accidentally lands.
-            </p>
-          </div>
-        </article>
+    <button
+      class="pilot-logo-toggle"
+      type="button"
+      data-pilot-logo-toggle
+      aria-label="Pause logo animation"
+      aria-pressed="false"
+    >
+      <img
+        class="pilot-logo-toggle-icon pilot-logo-toggle-icon--pause"
+        src="assets/icons/page/pause-svgrepo-com.svg"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="pilot-logo-toggle-icon pilot-logo-toggle-icon--play"
+        src="assets/icons/page/play-svgrepo-com.svg"
+        alt=""
+        aria-hidden="true"
+      />
+    </button>
+  </div>
+</section>
+<br><br><br><br>
 
-        <article class="pff-card pff-card--fault">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Fault mode</h3>
-          <div class="pff-card-inner">
-            <div class="pff-card-header">
-              <div class="pff-glyph" aria-hidden="true"></div>
-              <div class="pff-mode-stack">
-                <div class="pff-mode-label">Fault</div>
-                <div class="pff-mode-tag">404 &amp; edge control</div>
-              </div>
-            </div>
-           <br> <h3 class="pff-card-title">Classified breakpoints</h3>
-            <p class="pff-card-body">
-              Faults are categorised as navigational, network, or behavioural breaks.
-              Instead of one generic error page, CavBot enables the right recovery
-              pattern for each class of failure.
-            </p>
-          </div>
-        </article>
+<!-- ==============================
+     CAVBOT PRODUCT INTELLIGENCE SHOWCASE
+     ============================== -->
 
-        <article class="pff-card pff-card--feel">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Experience mode</h3>
-          <div class="pff-card-inner">
-            <div class="pff-card-header">
-              <div class="pff-glyph" aria-hidden="true"></div>
-              <div class="pff-mode-stack">
-                <div class="pff-mode-label">Feel</div>
-                <div class="pff-mode-tag">Experience telemetry</div>
-              </div>
-            </div>
-           <br> <h3 class="pff-card-title">Runtime experience index</h3>
-            <p class="pff-card-body">
-              Reliability is experienced, not just graphed. CavBot measures recovery
-              time, reload storms, hesitation, and quiet churn — surfacing where the
-              product feels brittle so journeys can be tightened at the edges.
-            </p>
-          </div>
-        </article>
-      </div>
-    </section>
+<section class="cavbot-product-showcase" data-cavbot-product-showcase>
+  <div class="cavbot-product-shell">
+    <header class="cavbot-product-header">
 
-    <!-- SYSTEM ROLE / ARCHITECTURE -->
-    <section id="architecture" class="system-role section">
-      <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Architecture</h2>
+      <h2 class="cavbot-product-title">
+        From broken pages
+        <span class="cavbot-product-title-line">
+          to better website
+          <span class="brain-word" data-cavbot-showcase-word>Clarity</span>
+        </span>
+      </h2>
+    </header>
 
-      <article class="system-left">
-        <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Where CavBot sits in your stack</h3>
-        <div class="eyebrow">Where CavBot sits in your stack</div>
-    <br>     <h2 class="section-title" style="font-size:18px;">Where CavBot fits in modern stacks</h2>
-        <p class="system-left-copy">
-          CavBot runs alongside your existing analytics and observability tooling.
-          It does not replace logs or APM. It turns product-facing behavior into coordinated operational workflows your team can actually run.
-        </p>
-        <br>
-        <div class="system-pill-row">
-          <div class="system-pill">CavBot Analytics v5 signal layer</div>
-          <div class="system-pill">CavAi intelligence workflows</div>
-          <div class="system-pill">Command Center operational view</div>
-          <div class="system-pill">Designed recovery surfaces</div>
+<br><br><br><br>
+    <div class="cavbot-product-grid">
+      <aside class="cavbot-product-left" aria-label="CavBot product areas">
+        <div class="cavbot-product-progress" aria-hidden="true">
+          <span data-cavbot-showcase-progress></span>
         </div>
-      </article>
 
-      <aside class="system-right" aria-label="CavBot specification overview">
-        <div class="spec-stack">
-          <div>
-            <div class="spec-row-label">Scope</div>
-            <div class="spec-row-body">
-              Digital products where teams need clear operational visibility across diagnostics, workflows, and edge-state behavior.
-            </div>
-      <br>    </div>
-          <div>
-            <div class="spec-row-label">Signal</div>
-            <div class="spec-row-body">
-              Session events, diagnostic drift, structure changes, and runtime behavior normalized into a usable operating context.
-            </div>
-       <br>     </div>
-          <div>
-            <div class="spec-row-label">Temper</div>
-            <div class="spec-row-body">
-              Quiet by default. CavBot appears only when sessions enter fragile
-              territory, providing guidance without crowding your UI.
-            </div>
-      <br>      </div>
-          <div>
-            <div class="spec-row-label">Origin</div>
-            <div class="spec-row-body">
-              Born from 404 recovery design, then expanded into a broader platform for detection, understanding, and coordinated execution.
-            </div>
-          </div>
+
+        <div class="cavbot-product-tabs" role="tablist" aria-label="CavBot intelligence modules">
+          <button class="cavbot-product-tab is-active" type="button" data-cavbot-showcase-tab="0" aria-selected="true">
+            <span class="cavbot-product-tab-title">Broken Pages</span>
+            <span class="cavbot-product-tab-copy">
+              Catch dead links, failed routes, and lost traffic before they become invisible damage.
+            </span>
+            <span class="cavbot-product-tab-meta">404 recovery</span>
+          </button>
+
+
+          <button class="cavbot-product-tab" type="button" data-cavbot-showcase-tab="1" aria-selected="false">
+            <span class="cavbot-product-tab-title">Route Health</span>
+            <span class="cavbot-product-tab-copy">
+              See which paths are stable, which ones are slowing users down, and where people repeat steps.
+            </span>
+            <span class="cavbot-product-tab-meta">journey visibility</span>
+          </button>
+
+
+          <button class="cavbot-product-tab" type="button" data-cavbot-showcase-tab="2" aria-selected="false">
+            <span class="cavbot-product-tab-title">SEO Visibility</span>
+            <span class="cavbot-product-tab-copy">
+              Understand titles, metadata, canonicals, and page structure before search visibility weakens.
+            </span>
+            <span class="cavbot-product-tab-meta">search structure</span>
+          </button>
+
+
+          <button class="cavbot-product-tab" type="button" data-cavbot-showcase-tab="3" aria-selected="false">
+            <span class="cavbot-product-tab-title">Runtime Feel</span>
+            <span class="cavbot-product-tab-copy">
+              Track the real feel of the site through response time, friction, reloads, and errors.
+            </span>
+            <span class="cavbot-product-tab-meta">site experience</span>
+          </button>
+
+
+          <button class="cavbot-product-tab" type="button" data-cavbot-showcase-tab="4" aria-selected="false">
+            <span class="cavbot-product-tab-title">Action Feed</span>
+            <span class="cavbot-product-tab-copy">
+              Turn website signals into a clear list of what needs attention and what should happen next.
+            </span>
+            <span class="cavbot-product-tab-meta">priority queue</span>
+          </button>
         </div>
       </aside>
-    </section>
 
-    <!-- =======================
-         ANALYTICS / EVENT MODEL
-         ======================= -->
-    <section id="analytics" class="section" aria-label="CavBot Analytics v5 event model">
-      <div class="analytics-panel">
-        <header class="section-header" style="margin-bottom:12px;">
-          <div class="eyebrow">CavBot Analytics v5</div>
-      <br>    <h2 class="section-title" style="font-size:18px;">CavBot Analytics v5: the signal foundation</h2>
-          <p class="section-body">
-            CavBot Analytics v5 captures structured events as an append-only stream.
-            Projects, sessions, pages, and component-level signals are normalized so CavAi can reason from the same source of truth.
-          </p>
-          <br><br><br>
-        </header>
 
-        <div class="analytics-layout">
-          <div class="analytics-left">
-            <p>
-              The front-end contract is intentionally small. One call — the same across
-              projects — sends structured events for pageviews, 404-game moves, badge
-              interactions, assistant usage, and SEO hints.
-            </p> <br>
-            <pre class="code-block"><code>window.cavbotAnalytics.track("pageview", {
-  route: window.location.pathname,
-  pageType: "marketing",
-  referrer: document.referrer || null,
-  meta: {
-    campaign: "launch",
-    source: "landing"
-  }
-});</code></pre>
-          </div>
-
-          <div class="analytics-right">
-            <div>
-              <div class="analytics-pill-label">What lands per event</div>
-              <br>
-              <ul class="analytics-list">
-                <li>Project, anonymous visitor, and logical session identifiers.</li>
-                <li>Route and <span class="code-inline">pageType</span> (marketing, product, docs, 404-arcade, etc.).</li>
-                <li>Referrer URL, referrer domain, and UTM tags for campaigns.</li>
-                <li>Device type and optional Core Web Vitals samples (LCP, TTFB, CLS).</li>
-              </ul>
-           <br>   </div>
-            <div>
-              <div class="analytics-pill-label">Core tables in CavBot Analytics</div>
-              <br>
-              <ul class="analytics-list-plain">
-                <li><strong>projects</strong> — CavBot-enabled sites/apps.</li>
-                <li><strong>visitors</strong> &amp; <strong>sessions</strong> — anonymous IDs scoped per project.</li>
-                <li><strong>pages</strong> &amp; <strong>events</strong> — append-only event log per route.</li>
-                <li><strong>performance_samples</strong> — Core Web Vitals by page.</li>
-                <li><strong>daily_page_aggregates</strong> &amp; <strong>referrer_aggregates</strong> — fast dashboards.</li>
-                <li><strong>insights</strong>, <strong>alerts</strong>, and <strong>deploy_markers</strong> — guardian-angel layer.</li>
-                <li><strong>project_settings</strong> — per-site controls for tracking and privacy.</li>
-              </ul>
-           <br>   </div>
-            <div>
-              <div class="analytics-pill-label">Privacy stance</div>
-              <br>
-              <ul class="analytics-list">
-                <li>Anonymous, project-scoped IDs — no names, emails, or long-term IPs stored.</li>
-                <li>Only coarse metadata (device, referrer domain, campaign tags).</li>
-                <li>IP-derived data is aggregated or discarded quickly — no creepy tracking.</li>
-              </ul>
+      <div class="cavbot-product-right" aria-live="polite">
+        <!-- SCREEN 1 -->
+        <figure class="cavbot-product-screen is-active" data-cavbot-showcase-screen="0">
+          <div class="cavbot-ui-window">
+            <div class="cavbot-ui-topbar">
+              <div class="cavbot-ui-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <p>404 Control Room</p>
             </div>
-<br>
-            <!-- Modern analytics graphs strip -->
-            <div class="analytics-graphs" role="region" aria-label="Analytics event mix overview">
-              <div class="analytics-graphs-label">Event mix in a typical CavBot project</div><br>
-              <div class="analytics-graphs-grid">
+
+
+            <div class="cavbot-ui-body cavbot-ui-body--broken">
+              <div class="cavbot-ui-hero-row">
                 <div>
-                  <div class="analytics-graph-donut">
-                    <div class="analytics-graph-donut-ring">
-                      <div class="analytics-graph-donut-center">
-                        68%
-                      </div>
-                    </div>
-                  </div>
+
+                  <h3>Broken pages that need attention</h3>
                 </div>
-                <div class="analytics-graph-bars">
-                  <div class="analytics-bar-row" style="--percent:72%;">
-                    <div class="analytics-bar-label">PAGEVIEWS</div>
-                    <div class="analytics-bar-track">
-                      <div class="analytics-bar-fill"></div>
-                    </div>
-                    <div class="analytics-bar-value">72%</div>
-                  </div>
-                  <div class="analytics-bar-row" style="--percent:14%;">
-                    <div class="analytics-bar-label">404 CONTROL</div>
-                    <div class="analytics-bar-track">
-                      <div class="analytics-bar-fill"></div>
-                    </div>
-                    <div class="analytics-bar-value">14%</div>
-                  </div>
-                  <div class="analytics-bar-row" style="--percent:8%;">
-                    <div class="analytics-bar-label">BADGE / STATE</div>
-                    <div class="analytics-bar-track">
-                      <div class="analytics-bar-fill"></div>
-                    </div>
-                    <div class="analytics-bar-value">8%</div>
-                  </div>
-                  <div class="analytics-bar-row" style="--percent:6%;">
-                    <div class="analytics-bar-label">SEO / PERF</div>
-                    <div class="analytics-bar-track">
-                      <div class="analytics-bar-fill"></div>
-                    </div>
-                    <div class="analytics-bar-value">6%</div>
-                  </div>
+                <span class="cavbot-ui-status cavbot-ui-status--lime">Live</span>
+              </div>
+<br>
+
+              <div class="cavbot-ui-metrics">
+                <div>
+                  <strong>18</strong>
+                  <span>404 events</span>
+                </div>
+                <div>
+                  <strong>7</strong>
+                  <span>affected routes</span>
+                </div>
+                <div>
+                  <strong>3</strong>
+                  <span>high intent</span>
+                </div>
+              </div>
+
+
+              <div class="cavbot-ui-table">
+                <div class="cavbot-ui-table-head">
+                  <span>Route</span>
+                  <span>Impact</span>
+                  <span>Status</span>
+                </div>
+
+
+                <div class="cavbot-ui-table-row is-hot">
+                  <span>/pricing-old</span>
+                  <span>High</span>
+                  <span>Recover</span>
+                </div>
+
+
+                <div class="cavbot-ui-table-row">
+                  <span>/docs/install</span>
+                  <span>Medium</span>
+                  <span>Review</span>
+                </div>
+
+
+                <div class="cavbot-ui-table-row">
+                  <span>/blog/launch</span>
+                  <span>Low</span>
+                  <span>Watch</span>
+                </div>
+              </div>
+
+
+              <div class="cavbot-ui-note">
+                <strong>Recommended action</strong>
+                <span>Redirect old pricing traffic to the current plan page.</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+
+
+        <!-- SCREEN 2 -->
+        <figure class="cavbot-product-screen" data-cavbot-showcase-screen="1">
+          <div class="cavbot-ui-window">
+            <div class="cavbot-ui-topbar">
+              <div class="cavbot-ui-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <p>Route Health</p>
+            </div>
+
+
+            <div class="cavbot-ui-body cavbot-ui-body--routes">
+              <div class="cavbot-ui-hero-row">
+                <div>
+
+                  <h3>Where users move, repeat, and exit</h3>
+                </div>
+                <span class="cavbot-ui-status">Stable</span>
+              </div>
+
+<br>
+              <div class="cavbot-route-map">
+                <svg class="cavbot-route-connectors" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <line class="route-svg-line route-svg-line--blue" x1="18" y1="50" x2="50" y2="28"></line>
+                  <line class="route-svg-line route-svg-line--lime" x1="50" y1="28" x2="82" y2="50"></line>
+                  <line class="route-svg-line route-svg-line--violet" x1="82" y1="50" x2="50" y2="72"></line>
+                  <line class="route-svg-line route-svg-line--white" x1="50" y1="72" x2="18" y2="50"></line>
+                </svg>
+
+                <div class="cavbot-route-node node-home">Home</div>
+                <div class="cavbot-route-node node-docs">Docs</div>
+                <div class="cavbot-route-node node-signup">Signup</div>
+                <div class="cavbot-route-node node-stuck">Repeat</div>
+
+
+                <span class="route-line route-line-a"></span>
+                <span class="route-line route-line-b"></span>
+                <span class="route-line route-line-c"></span>
+              </div>
+<br>
+
+              <div class="cavbot-ui-route-list">
+                <div>
+                  <span>/pricing</span>
+                  <strong>Stable</strong>
+                </div>
+                <div>
+                  <span>/checkout</span>
+                  <strong>Watch</strong>
+                </div>
+                <div>
+                  <span>/docs/install</span>
+                  <strong>Repeats</strong>
                 </div>
               </div>
             </div>
-            <!-- /analytics graphs -->
           </div>
-        </div>
-      </div>
-    </section>
+        </figure>
 
-    <!-- CAVAI -->
-    <section class="section" aria-labelledby="cavai-title" id="cavai">
-      <header class="section-header">
-        <div class="eyebrow">CavAi across CavBot</div>
-     <br>   <h2 id="cavai-title" class="section-title" style="font-size:18px;">CavAi: CavBot’s intelligence layer</h2>
-        <p class="section-body">
-          CavAi operates across code, reasoning, diagnostics, summaries,
-          and research to help teams move faster with grounded, context-aware execution.
-        </p>
-      </header>
+
+        <!-- SCREEN 3 -->
+        <figure class="cavbot-product-screen" data-cavbot-showcase-screen="2">
+          <div class="cavbot-ui-window">
+            <div class="cavbot-ui-topbar">
+              <div class="cavbot-ui-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <p>SEO Visibility</p>
+            </div>
+
+
+            <div class="cavbot-ui-body cavbot-ui-body--seo">
+              <div class="cavbot-ui-hero-row">
+                <div>
+
+                  <h3>Page signals before they become ranking problems</h3>
+                </div>
+                <span class="cavbot-ui-status cavbot-ui-status--lime">78%</span>
+              </div>
+
 <br><br>
-      <div class="brain-grid">
-        <article class="brain-card">
-          <div class="brain-gen">Reasoning</div><br>
-          <div class="brain-era">Command Center context</div>
-          <p class="brain-text">
-            CavAi summarizes spikes, prioritizes fixes, and drafts incident-ready notes from live workspace signals.
-          </p>
-        </article>
+              <div class="cavbot-seo-layout">
+                <div class="cavbot-seo-card cavbot-seo-card--serp">
+                  <p class="cavbot-seo-url">cavbot.io</p>
+                  <h4>CavBot — Website intelligence</h4>
+                  <p>Monitor routes, SEO structure, broken pages, and runtime signals.</p>
+                </div>
 
-        <article class="brain-card">
-          <div class="brain-gen">Research</div><br>
-          <div class="brain-era">Source-aware analysis</div>
-          <p class="brain-text">
-            CavAi can run research-style workflows, extract evidence, and return source-linked findings when teams
-            need grounded technical direction.
-          </p>
-        </article>
 
-        <article class="brain-card">
-          <div class="brain-gen">Workspace intelligence</div><br>
-          <div class="brain-era">Cross-module guidance</div>
-          <p class="brain-text">
-            CavAi connects operational context across modules, so decisions in storage, security, coding, and
-            diagnostics stay coordinated.
-          </p>
-        </article>
-
-        <article class="brain-card">
-          <div class="brain-gen">Coding</div><br>
-          <div class="brain-era">CavCode + diagnostics</div>
-          <p class="brain-text">
-            CavAi helps explain errors, suggest safe fixes, and create implementation plans directly from
-            active file context in CavCode.
-          </p>
-        </article>
-      </div>
-<br><br>
-      <br>
-      <div class="hero-cta-row">
-        <a href="https://ai.cavbot.io/" class="btn btn-primary">Explore CavAi</a>
-      </div>
-    </section>
-
-    <!-- =======================
-         SEO & STRUCTURE SECTION
-         ======================= -->
-    <section class="section" aria-label="SEO snapshots and structure">
-      <div class="seo-panel">
-        <header class="section-header" style="margin-bottom:12px;">
-          <div class="eyebrow">SEO &amp; structure</div>
-      <br>    <h2 class="section-title" style="font-size:18px;">Structural diagnostics by route</h2>
-          <p class="section-body">
-            CavBot doesn’t just watch traffic — it watches the structure traffic lands on.
-            SEO snapshots are stored per route so your team can connect metadata, indexability,
-            and performance to real behaviour.
-          </p>
-          <br>
-        </header>
-
-        <div class="seo-grid">
-          <article class="seo-card">
-            <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Per-route seo_snapshots</h3>
-            <div class="seo-title">Per-route seo_snapshots</div><br>
-            <p class="seo-body">
-              Each crawl writes into <span class="code-inline">seo_snapshots</span>:
-              title, meta description, canonical URL, indexability flags, heading outline,
-              word count, and social tags. CavBot shows the latest and how it has changed.
-            </p>
-          </article>
-
-          <article class="seo-card">
-            <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Issues over time</h3>
-            <div class="seo-title">Issues over time</div><br>
-            <p class="seo-body">
-              Derived issue codes — for example
-              <span class="code-inline">missing_meta_description</span>,
-              <span class="code-inline">short_title</span>,
-              <span class="code-inline">duplicate_title</span>, and
-              <span class="code-inline">non_indexable_critical</span> — are tracked over time,
-              not just as a one-off audit.
-            </p>
-          </article>
-
-          <article class="seo-card">
-            <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Behaviour + SEO</h3>
-            <div class="seo-title">Behaviour + SEO</div><br>
-            <p class="seo-body">
-              CavBot links SEO issues with behaviour. 404 spikes tied to missing redirects,
-              campaigns landing on thin or broken pages, and slow but important routes
-              are surfaced as insights, not buried in separate tools.
-            </p>
-          </article>
-        </div>
-
-        <!-- Modern SEO metrics strip -->
-        <div class="seo-metrics" role="region" aria-label="SEO health metrics">
-          <div class="seo-metrics-label">Live SEO health snapshot</div>
-          <div class="seo-metrics-grid">
-            <article class="seo-metric-card" style="--percent:82%;">
-              <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Routes with clean SEO</h3>
-              <div class="seo-metric-label">Routes with clean seo</div>
-              <div class="seo-metric-value">82%</div>
-              <div class="seo-metric-bar-track">
-                <div class="seo-metric-bar-fill"></div>
+                <div class="cavbot-seo-checks">
+                  <div>
+                    <span>Title structure</span>
+                    <strong>Clean</strong>
+                  </div>
+                  <div>
+                    <span>Canonical</span>
+                    <strong>Good</strong>
+                  </div>
+                  <div>
+                    <span>Metadata</span>
+                    <strong>Watch</strong>
+                  </div>
+                  <div>
+                    <span>Schema</span>
+                    <strong>Review</strong>
+                  </div>
+                </div>
               </div>
-              <p class="seo-metric-caption">
-                Canonical tags, indexability, and social metadata in a healthy state across most
-                of your canonical map.
-              </p>
-            </article>
-            <article class="seo-metric-card" style="--percent:38%;">
-              <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Critical non-indexable</h3>
-              <div class="seo-metric-label">Critical non-indexable</div>
-              <div class="seo-metric-value">9</div>
-              <div class="seo-metric-bar-track">
-                <div class="seo-metric-bar-fill"></div>
+
+
+              <div class="cavbot-seo-bars">
+                <span style="width: 88%"></span>
+                <span style="width: 72%"></span>
+                <span style="width: 54%"></span>
               </div>
-              <p class="seo-metric-caption">
-                High-value routes that cannot be indexed — surfaced as first-class issues
-                with deploy and campaign context.
-              </p>
-            </article>
-            <article class="seo-metric-card" style="--percent:61%;">
-              <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Thin or missing meta</h3>
-              <div class="seo-metric-label">Thin or missing meta</div>
-              <div class="seo-metric-value">27</div>
-              <div class="seo-metric-bar-track">
-                <div class="seo-metric-bar-fill"></div>
-              </div>
-              <p class="seo-metric-caption">
-                Pages where titles or descriptions underperform. CavBot links them directly to
-                the behaviour they generate.
-              </p>
-            </article>
+            </div>
           </div>
-        </div>
-        <!-- /SEO metrics -->
+        </figure>
+
+
+        <!-- SCREEN 4 -->
+        <figure class="cavbot-product-screen" data-cavbot-showcase-screen="3">
+          <div class="cavbot-ui-window">
+            <div class="cavbot-ui-topbar">
+              <div class="cavbot-ui-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <p>Runtime Feel</p>
+            </div>
+
+
+            <div class="cavbot-ui-body cavbot-ui-body--runtime">
+              <div class="cavbot-ui-hero-row">
+                <div>
+
+                  <h3>Performance, errors, and friction in one view</h3>
+                </div>
+                <span class="cavbot-ui-status">Healthy</span>
+              </div>
+
+<br>
+              <div class="cavbot-runtime-metrics">
+                <div>
+                  <strong>184ms</strong>
+                  <span>response</span>
+                </div>
+                <div>
+                  <strong>Low</strong>
+                  <span>friction</span>
+                </div>
+                <div>
+                  <strong>3</strong>
+                  <span>errors</span>
+                </div>
+              </div>
+
+
+              <div class="cavbot-runtime-chart">
+                <span style="height: 38%"></span>
+                <span style="height: 54%"></span>
+                <span style="height: 31%"></span>
+                <span class="is-active" style="height: 74%"></span>
+                <span style="height: 46%"></span>
+                <span style="height: 60%"></span>
+                <span style="height: 42%"></span>
+              </div>
+
+
+              <div class="cavbot-ui-note">
+                <strong>Signal</strong>
+                <span>Checkout reloads increased after the last route update.</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+
+
+        <!-- SCREEN 5 -->
+        <figure class="cavbot-product-screen" data-cavbot-showcase-screen="4">
+          <div class="cavbot-ui-window">
+            <div class="cavbot-ui-topbar">
+              <div class="cavbot-ui-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <p>Action Feed</p>
+            </div>
+
+
+            <div class="cavbot-ui-body cavbot-ui-body--actions">
+              <div class="cavbot-ui-hero-row">
+                <div>
+
+                  <h3>What needs attention next</h3>
+                </div>
+                <span class="cavbot-ui-status cavbot-ui-status--lime">Prioritized</span>
+              </div>
+
+<br>
+              <div class="cavbot-action-list">
+                <div class="is-priority">
+                  <span>01</span>
+                  <div>
+                    <strong>Recover broken pricing route</strong>
+                    <p>High-intent traffic is landing on an outdated path.</p>
+                  </div>
+                  <em>High</em>
+                </div>
+
+
+                <div>
+                  <span>02</span>
+                  <div>
+                    <strong>Clean duplicate SEO titles</strong>
+                    <p>Several route groups are using repeated search titles.</p>
+                  </div>
+                  <em>Medium</em>
+                </div>
+
+
+                <div>
+                  <span>03</span>
+                  <div>
+                    <strong>Review checkout reload pattern</strong>
+                    <p>A small group of users repeats the same checkout step.</p>
+                  </div>
+                  <em>Watch</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </figure>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- =======================
-         PRICING + DOCS
-         ======================= -->
-    <section id="pricing" class="pricing-docs section">
-      <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Pricing and developer notes</h2>
 
-      <!-- Pricing panel -->
-      <article class="pricing-card">
-        <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Access</h3>
-        <div class="pricing-title">Access</div>
-    <br>    <h2 class="pricing-headline">Start with a focused deployment</h2>
-        <p class="pricing-note">
-          CavBot is rolling out through tightly scoped pilots for teams that care
-          about the quiet layers of their web experience: routes, edges, SEO, and how
-          the runtime feels during real incidents.
+   <!-- PATH / FAULT / FEEL -->
+<section class="section pff-museum" aria-label="Path, Fault, and Feel modes">
+  <div class="pff-shell">
+    <header class="section-header pff-header">
+ <h2
+   class="section-title pff-type-title"
+   aria-label="See what breaks. Understand why. Act faster."
+ ><br><br><br><br>
+ <span>
+ <span class="pff-title-normal">See what </span><span class="pff-title-breaks">breaks.</span><span class="pff-title-normal">
+Understand why. Act faster.</span>
+</span>
+ </h2>
+<br>
+ <p class="section-body pff-header-copy">
+   Every visit leaves a trail. CavBot turns that activity into clear signals so teams can see what is working, spot what is breaking, and fix small issues before trust, traffic, or revenue starts slipping.
+ </p>
+</header>
+
+     <br><br><br><br><br><br><br><br><br>
+
+     <div class="pff-grid">
+       <article class="pff-card pff-card--path">
+         <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Path mode</h3>
+         <div class="pff-card-inner">
+           <div class="pff-card-header">
+             <div class="pff-glyph" aria-hidden="true"></div>
+             <div class="pff-mode-stack">
+               <div class="pff-mode-label">Path</div>
+
+             </div>
+           </div><br>
+         <h3 class="pff-card-title">User Routes</h3>
+           <p class="pff-card-body">
+             See where visitors are going, which pages they reach, and where their journey starts to break down.
+           </p>
+         </div>
+       </article>
+
+       <article class="pff-card pff-card--fault">
+         <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Fault mode</h3>
+         <div class="pff-card-inner">
+           <div class="pff-card-header">
+             <div class="pff-glyph" aria-hidden="true"></div>
+             <div class="pff-mode-stack">
+               <div class="pff-mode-label">Fault</div>
+
+             </div>
+           </div><br>
+          <h3 class="pff-card-title">Broken Pages</h3>
+           <p class="pff-card-body">
+             Catch 404s, failed routes, and website errors before they turn into bigger problems for users.
+           </p>
+         </div>
+       </article>
+
+       <article class="pff-card pff-card--feel">
+         <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Experience mode</h3>
+         <div class="pff-card-inner">
+           <div class="pff-card-header">
+             <div class="pff-glyph" aria-hidden="true"></div>
+             <div class="pff-mode-stack">
+               <div class="pff-mode-label">Feel</div>
+
+             </div>
+           </div><br>
+          <h3 class="pff-card-title">Site Friction</h3>
+           <p class="pff-card-body">
+             Understand where users slow down, repeat actions, reload pages, or leave before completing what they came to do.
+           </p>
+         </div>
+       </article>
+     </div><br> <br>
+  </div>
+</section>
+
+<br> <br><br><br>
+
+
+<!-- SYSTEM ROLE / ARCHITECTURE -->
+<section id="architecture" class="system-role section" aria-label="Where CavBot fits in your stack">
+  <div class="system-shell">
+    <article class="system-left">
+      <div class="system-left-inner">
+
+        <h2 class="system-title">
+          Works with your existing
+          <span>website tools.</span>
+        </h2>
+
+        <p class="system-left-copy">
+          CavBot works alongside the tools your team already uses. It does not replace your analytics, logs,
+          or error tracking. It gives you a clearer view of what is happening on the website itself
+          — broken pages, user paths, SEO issues, and signals that need attention.
         </p>
-        <p class="pricing-note">
-          Begin with one or two critical flows, measure the signal in Command Center,
-          and then expand into the rest of your product once CavBot proves its value
-          inside your own environment.
-        </p>
-        <br><br>
-        <div class="hero-cta-row" style="margin-top: 8px;">
-          <a
-            href="pricing.html"
-            class="btn btn-primary">
-            Find Your Plan
-          </a>
 
-          <a
-            href="help-center.html"
-            class="btn btn-ghost">
-            Help Center
-          </a>
+        <a class="system-link" href="/">
+          <span>Learn More</span>
+          
+        </a>
+      </div>
+    </article>
+
+    <aside class="system-right" aria-label="CavBot specification overview">
+      <article class="system-spec-card">
+        <div class="spec-row-label">Your Current Stack</div>
+        <div class="spec-row-body">
+          Use CavBot with your existing analytics, dashboards, and monitoring tools.
         </div>
       </article>
 
-      <!-- Docs / developer notes -->
-      <aside id="docs" class="docs-card" aria-label="Developer notes">
-        <div class="docs-title">Developer notes</div>
-     <br>   <div class="badge-chip">Event-first ingestion · JSON over HTTPS</div>
-    <br>    <ul class="docs-list">
-          <li>
-            <div class="docs-item-label">Single front-end contract</div>
-            <div>
-           <br>   One call — <span class="code-inline">window.cavbotAnalytics.track(eventName, payload)</span> —
-              sends pageviews, 404-game events, badge impressions, assistant activity, and SEO hints.
-              The schema is versioned and documented per SDK.
-            </div>
-          </li>
-          <li>
-         <br>   <div class="docs-item-label">REST endpoints</div>
-            <div>
-           <br>   Batched events land at <span class="code-inline">/v1/events</span>, with dedicated endpoints
-              for SEO snapshots, performance samples, project overviews, 404 summaries, page summaries,
-              referrer breakdowns, and insight feeds. Public project keys are hashed server-side and
-              ingestion is rate-limited per project.
-            </div>
-          </li>
-          <li>
-         <br>   <div class="docs-item-label">Works without the badge</div>
-            <div>
-            <br>  CavBot’s analytics and insights run regardless of whether you mount the CavBot badge or
-              404 arcade. The badge is a presence indicator; the coordination layer is the event stream and
-              the tables behind Command Center.
-            </div>
-          </li>
-        </ul>
-      </aside>
-    </section>
+      <article class="system-spec-card">
+        <div class="spec-row-label">Website Signals</div>
+        <div class="spec-row-body">
+          See broken pages, route issues, user activity, and SEO health in one place.
+        </div>
+      </article>
 
-    <!-- =======================
-         WHY CAVBOT MATTERS
-         ======================= -->
-    <section class="why-cavbot section">
-      <header class="section-header">
-        <div class="eyebrow">Impact</div>
-     <br>   <h2 class="section-title" style="font-size:18px;">Why CavBot matters now</h2>
-        <p class="section-body">
-          Modern teams need one system that can detect what is happening, explain what it means, and support clear action.
-          CavBot is built for that operational loop.
-        </p>
+      <article class="system-spec-card">
+        <div class="spec-row-label">Quiet By Default</div>
+        <div class="spec-row-body">
+          CavBot stays out of the way until something needs attention.
+        </div>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<br><br><br><br>
+
+   <!-- CAVAI FRONT PAGE SECTION -->
+<section class="cavai-front section" aria-labelledby="cavai-title" id="cavai">
+  <div class="cavai-top">
+    <h2 id="cavai-title" class="cavai-main-title">
+      AI
+      <a href="https://www.ai.cavbot.io/" class="cavai-title-link">research</a>
+      and
+      <a href="https://app.cavbot.io/cavai" class="cavai-title-link">agents</a>
+      that turn website signals into action.
+    </h2>
+
+    <p class="cavai-top-copy">
+   AI is changing how websites are understood, improved, and operated.
+   CavAi exists to turn that intelligence into clear action for the people building them.
+
+    </p>
+  </div>
+  </div>
+<br>
+ <div class="cavai-video-stage" data-cavai-video-stage>
+  <div class="cavai-video-shell" data-cavai-video-shell>
+    <video
+      class="cavai-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="assets/videos/cavai-demo.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
+
+</section>
+  <br><br>
+   <!-- =======================
+      PRICING + DOCS
+      ======================= -->
+<section id="pricing" class="pricing-docs section">
+  <h2 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Pricing and developer notes</h2>
+
+  <div class="pricing-shell">
+    <!-- Pricing panel -->
+    <article class="pricing-card">
+      <div class="pricing-card-inner">
+        <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Access</h3>
+
         <br>
-      </header>
 
-      <div class="why-grid">
-        <article class="why-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Command Center operational view</h3>
-          <div class="why-title">Command Center operational view</div>
-     <br>     <p class="why-text">
-            Command Center is where teams see what changed, what matters, and what should be handled first.
-            It keeps signal review, triage, and ownership readable under real production pressure.
-          </p>
-        </article>
-        <article class="why-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Intelligence and implementation</h3>
-          <div class="why-title">Intelligence and implementation</div>
-     <br>   <p class="why-text">
-            CavAi reasons over live context and frames next actions. CavCode turns those decisions into implementation work.
-            CavCode Viewer validates output before release so teams can move fast without blind handoffs.
-          </p>
-        </article>
-        <article class="why-card">
-          <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Control, artifact flow, and trust</h3>
-          <div class="why-title">Control, artifact flow, and trust</div>
-     <br>     <p class="why-text">
-            CavTools gives operators direct command-plane control. CavCloud keeps storage and artifact flow connected to real work.
-            CavSafe protects sensitive workflows with stricter access and policy-aware handling.
-          </p>
-        </article>
+        <h2 class="pricing-headline">
+          Start with one <br><span>website</span>
+        </h2>
+
+        <p class="pricing-note">
+          CavBot does not need a full rollout to be useful. Start with one site, one landing page, or one important
+          user flow. CavBot begins watching the places where real visitors arrive, move, break, and leave.
+        </p>
+
+        <br>
+
+        <p class="pricing-note">
+          As the product becomes useful, you can expand it across more pages, projects, and teams.
+        </p>
+
+        <br><br>
+
+        <div class="hero-cta-row pricing-actions" style="margin-top: 8px;">
+          <a href="https://app.cavbot.io/auth?mode=signup" class="btn btn-primary">Start 14-Day Free Trial</a>
+          <a href="pricing.html" class="btn btn-ghost">Find Your Plan</a>
+        </div>
       </div>
-    </section>
+    </article>
+
+    <!-- Docs / developer notes -->
+    <aside id="docs" class="docs-card" aria-label="How setup works">
+      <article class="setup-step">
+        <span class="setup-step-number">1</span>
+        <div class="setup-step-content">
+          <div class="docs-item-label">Add your website</div>
+          <div class="setup-step-copy">Start with one site or one important flow.</div>
+        </div>
+      </article>
+
+      <article class="setup-step">
+        <span class="setup-step-number">2</span>
+        <div class="setup-step-content">
+          <div class="docs-item-label">Let CavBot observe</div>
+          <div class="setup-step-copy">CavBot reads pages, routes, activity, and SEO structure.</div>
+        </div>
+      </article>
+
+      <article class="setup-step">
+        <span class="setup-step-number">3</span>
+        <div class="setup-step-content">
+          <div class="docs-item-label">Review the findings</div>
+          <div class="setup-step-copy">See where the experience is working, weakening, or breaking.</div>
+        </div>
+      </article>
+    </aside>
+  </div>
+</section>
+
+<br><br>
 
    <!-- =======================
         CAVBOT 404 ARCADE
         ======================= -->
 <section id="arcade" class="section" aria-label="CavBot Arcade">
-  <div class="eyebrow">Designed recovery surfaces</div>
-  <br>
-  <br>   <h2 class="section-title" style="font-size:18px;">CavBot Arcade</h2>
+  <br>   <div class="arcade-logo-stage" data-arcade-logo-stage>
+  <img
+    src="assets/cavbot-arcade/assets/logo/cavbot-arcade-logo-type.png"
+    alt="CavBot Arcade"
+    class="arcade-logo"
+    data-arcade-logo
+  />
+</div>
+
 <br>
   <br>
-  <div class="arcade-grid">
-    <!-- Fútbol Cavbot -->
-    <article class="arcade-card">
-      <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Fútbol Cavbot</h3>
-      <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play in Arcade">
-        <div class="arcade-illustration arcade-illustration--cover">
+<div class="arcade-strip" data-arcade-strip>
+  <button class="arcade-nav arcade-nav--prev" type="button" data-arcade-prev aria-label="Previous arcade game">
+    <img src="assets/icons/page/chevron-right-svgrepo-com.svg" alt="" aria-hidden="true" />
+  </button>
+
+
+  <div class="arcade-viewport">
+    <div class="arcade-track" data-arcade-track>
+
+
+      <article class="arcade-slide">
+        <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play Fútbol CavBot in Arcade">
           <img
             class="arcade-cover"
             src="assets/cavbot-arcade/images/thumbnails/cavbot-fc-thumbnail.png"
-            alt="CavBot Arcade recovery Fútbol CavBot cover image"
-            loading="lazy">
-        </div>
-      </a>
-<br>
-      <!-- NEW: arcade panel wrapper -->
-      <div class="arcade-panel" role="group" aria-label="Enter Arcade">
-        <div class="arcade-cta-row">
-          <a href="https://app.cavbot.io/cavbot-arcade" class="btn btn-live">Enter Arcade</a>
-        </div>
-      </div>
-    </article>
- 
- 
-    <!-- Catch CavBot -->
-    <article class="arcade-card">
-      <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Signal Chase</h3>
-      <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play in Arcade">
-        <div class="arcade-illustration arcade-illustration--cover">
+            alt="Fútbol CavBot arcade cover"
+            loading="lazy"
+          />
+          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
+            <source src="assets/cavbot-arcade/videos/futbol-cavbot-demo-preview.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </article>
+
+
+      <article class="arcade-slide">
+        <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play Catch CavBot in Arcade">
           <img
             class="arcade-cover"
             src="assets/cavbot-arcade/images/thumbnails/catch-cavbot-thumbnail.png"
-            alt="CavBot Arcade recovery Catch CavBot cover image"
-            loading="lazy">
-        </div>
-      </a>
-<br>
-      <!-- NEW: arcade panel wrapper -->
-      <div class="arcade-panel" role="group" aria-label="Enter Arcade">
-        <div class="arcade-cta-row">
-          <a href="https://app.cavbot.io/cavbot-arcade" class="btn btn-live">Enter Arcade</a>
-        </div>
-      </div>
-    </article>
+            alt="Catch CavBot arcade cover"
+            loading="lazy"
+          />
+          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
+            <source src="assets/cavbot-arcade/videos/catch-cavbot-demo-preview.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </article>
 
 
-    <!-- Pick the Imposter -->
-    <article class="arcade-card">
-      <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Pick the Imposter</h3>
-      <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play in Arcade">
-        <div class="arcade-illustration arcade-illustration--cover">
+      <article class="arcade-slide">
+        <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play Pick the Imposter in Arcade">
           <img
             class="arcade-cover"
             src="assets/cavbot-arcade/images/thumbnails/cavbot-imposter-thumbnail.png"
-            alt="CavBot Arcade recovery Pick the Imposter cover image"
-            loading="lazy">
-        </div>
-      </a>
+            alt="Pick the Imposter arcade cover"
+            loading="lazy"
+          />
+          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
+            <source src="assets/cavbot-arcade/videos/cavbot-imposter-demo-preview.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </article>
+
+
+      <article class="arcade-slide">
+        <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play Signal Chase in Arcade">
+          <img
+            class="arcade-cover"
+            src="assets/cavbot-arcade/images/thumbnails/cavbot-signal-chase-thumbnail.png"
+            alt="Signal Chase arcade cover"
+            loading="lazy"
+          />
+          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
+            <source src="assets/cavbot-arcade/videos/cavbot-signal-chase-demo-preview.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </article>
+
+
+      <article class="arcade-slide">
+        <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play Cache Sweep in Arcade">
+          <img
+            class="arcade-cover"
+            src="assets/cavbot-arcade/images/thumbnails/cavbot-cache-sweep-thumbnail.png"
+            alt="Cache Sweep arcade cover"
+            loading="lazy"
+          />
+          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
+            <source src="assets/cavbot-arcade/videos/cavbot-cache-sweep-demo-preview.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </article>
+
+
+      <article class="arcade-slide">
+        <a class="arcade-cover-link" href="https://app.cavbot.io/cavbot-arcade" aria-label="Play CavBot Tennis in Arcade">
+          <img
+            class="arcade-cover"
+            src="assets/cavbot-arcade/images/thumbnails/cavbot-tennis-thumbnail.png"
+            alt="CavBot Tennis arcade cover"
+            loading="lazy"
+          />
+          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
+            <source src="assets/cavbot-arcade/videos/tennis-cavbot-demo-preview.mp4" type="video/mp4" />
+          </video>
+        </a>
+      </article>
+
+
+    </div>
+  </div>
+
+
+  <button class="arcade-nav arcade-nav--next" type="button" data-arcade-next aria-label="Next arcade game">
+    <img src="assets/icons/page/chevron-right-svgrepo-com.svg" alt="" aria-hidden="true" />
+  </button>
+</div>
+
+
+</section>
+<br><br>
+  <!-- =======================
+     404 ARCADE EXPLAINER
+     ======================= -->
+<section id="arcade-guide" class="arcade-guide section" aria-labelledby="arcade-guide-title">
+  <div class="arcade-guide-left">
+    <h2 id="arcade-guide-title" class="arcade-guide-title">
+      Turn lost pages into guided recovery.
+    </h2>
 <br>
-      <!-- NEW: arcade panel wrapper -->
-      <div class="arcade-panel" role="group" aria-label="Enter Arcade">
-        <div class="arcade-cta-row">
-          <a href="https://app.cavbot.io/cavbot-arcade" class="btn btn-live">Enter Arcade</a>
-        </div>
+
+    <p class="arcade-guide-copy">
+      A broken link should not end the visit. CavBot Arcade turns the standard 404 screen into an interactive recovery experience that helps visitors stay oriented and find their way back.
+    </p>
+
+<br>
+    <div class="arcade-guide-cta">
+      <a href="404-arcade.html" class="btn btn-primary">Read the 404 Guide</a>
+    </div>
+  </div>
+
+
+  <div class="arcade-guide-faq" data-cavbot-accordion="single">
+    <article class="faq-item is-open">
+      <button class="faq-q arcade-faq-q" type="button" aria-expanded="true">
+        <span>What is CavBot Arcade?</span>
+        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 10l4 4 4-4" />
+        </svg>
+      </button>
+      <div class="faq-a arcade-faq-a">
+        A set of interactive 404 experiences for broken or missing pages.
+      </div>
+    </article>
+
+
+    <article class="faq-item">
+      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
+        <span>Why use a game on a 404 page?</span>
+        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 10l4 4 4-4" />
+        </svg>
+      </button>
+      <div class="faq-a arcade-faq-a" hidden>
+        Because the user is already interrupted. Arcade turns that interruption into a branded moment instead of a dead end.
+      </div>
+    </article>
+
+
+    <article class="faq-item">
+      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
+        <span>What happens when someone lands there?</span>
+        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 10l4 4 4-4" />
+        </svg>
+      </button>
+      <div class="faq-a arcade-faq-a" hidden>
+        They can play, recover, and continue back into the site instead of leaving immediately.
+      </div>
+    </article>
+
+
+    <article class="faq-item">
+      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
+        <span>Does it replace a normal 404 page?</span>
+        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 10l4 4 4-4" />
+        </svg>
+      </button>
+      <div class="faq-a arcade-faq-a" hidden>
+        Yes, it can replace the empty “page not found” screen with something more useful and memorable.
+      </div>
+    </article>
+
+
+    <article class="faq-item">
+      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
+        <span>Why does it matter?</span>
+        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 10l4 4 4-4" />
+        </svg>
+      </button>
+      <div class="faq-a arcade-faq-a" hidden>
+        Broken links hurt trust. CavBot Arcade gives teams a better way to handle those moments.
       </div>
     </article>
   </div>
 </section>
 
-   <!-- =======================
-        404 EXPLAINER / SAAS NARRATIVE (FAQ / ACCORDION)
-        ======================= -->
-<section class="section section-404-why" aria-label="Why 404s matter for product reliability">
-  <div class="section-404-panel">
-    <header class="section-header" style="margin-bottom:14px;">
-      <div class="eyebrow">404s as product surfaces</div>
-      <br>
-      <h2 class="section-title" style="font-size:18px;">404s designed as recovery surfaces</h2>
-      <p class="section-body">
-        A traditional 404 says “page not found” and ends the journey. CavBot treats
-        the same surface as a continuation — keeping users oriented, protecting
-        trust, and turning failure states into deliberate experiences.
+<br><br><br><br>
+
+ <!-- =======================
+    CAVBOT COLLABORATION
+    ======================= -->
+<section class="section cavbot-status cavbot-collab" aria-label="CavBot collaboration">
+  <div class="collab-shell">
+
+
+    <header class="collab-hero">
+     <div class="collab-hero-icon-wrap" aria-hidden="true">
+  <img
+    class="collab-hero-icon"
+    src="assets/icons/page/collab.svg"
+    alt=""
+    loading="lazy"
+  />
+</div>
+
+
+<br>
+      <h2 class="collab-title">Work together, move faster</h2>
+
+<br>
+      <p class="collab-lede">
+        From shared notes and code review to live signals and file handoff,
+        CavBot keeps your team’s work, context, and recovery steps in one place.
       </p>
     </header>
-<br><br><br>
-    <!-- FAQ Accordion -->
-    <div class="section-404-faq" data-cavbot-accordion="single">
-      <!-- Item 1 (open by default) -->
-      <div class="faq-item is-open">
-        <button
-          class="faq-q"
-          type="button"
-          aria-expanded="true"
-          aria-controls="faq-404-1"
-          id="faq-404-1-q">
-          <span class="faq-q-text">What changes when 404s are instrumented</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
 
-        <div class="faq-a" id="faq-404-1" role="region" aria-labelledby="faq-404-1-q">
-         <ul class="section-404-list">
-  <li style="margin-bottom:12px;">Visitors remain inside your product instead of bouncing out to a cold error screen.</li>
-  <li style="margin-bottom:12px;">Support sees where sessions actually break, not just that “something went wrong”.</li>
-  <li style="margin-bottom:12px;">Product can test alternate routes, offers, and guidance at the exact moment of failure.</li>
-  <li>Every 404 event is tied to campaigns, referrers, and deploys for real root-cause analysis.</li>
-</ul>
+
+    <div class="collab-showcase" aria-label="CavBot collaboration preview">
+      <div class="collab-preview-window">
+
+
+        <!-- top bar -->
+        <div class="collab-preview-topbar">
+          <div class="collab-preview-brand">
+            <span class="collab-preview-mark" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="6"></rect>
+    <path d="M12 5.1L13.85 10.15L18.9 12L13.85 13.85L12 18.9L10.15 13.85L5.1 12L10.15 10.15L12 5.1Z"></path>
+    <circle cx="12" cy="12" r="2.15"></circle>
+  </svg>
+</span>
+
+
+
+            <span class="collab-preview-brand-text">
+              <strong>Northstar Labs</strong>
+            </span>
+          </div>
+
+
+          <div class="collab-preview-title">
+            <span>Route Recovery Workspace</span>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 8l5 5 5-5"></path>
+            </svg>
+          </div>
+
+
+          <div class="collab-preview-actions">
+            <div class="collab-preview-avatars" aria-hidden="true">
+              <span class="avatar-chip avatar-chip--a">MK</span>
+              <span class="avatar-chip avatar-chip--b">AR</span>
+              <span class="avatar-chip avatar-chip--c">JL</span>
+              <span class="avatar-chip avatar-chip--meta">+2</span>
+            </div>
+
+
+            <button class="collab-preview-share" type="button">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M7 10V5.5C7 4.12 8.12 3 9.5 3h4"></path>
+                <path d="M10 8l4-4 4 4"></path>
+                <rect x="4" y="8" width="12" height="9" rx="2"></rect>
+              </svg>
+              <span>Share</span>
+            </button>
+
+
+            <button class="collab-preview-icon-btn" type="button" aria-label="Notifications">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M10 16.5a2.1 2.1 0 0 0 2-1.5"></path>
+                <path d="M5.5 13.5h9l-1.2-1.7V8.8A3.3 3.3 0 0 0 10 5.5a3.3 3.3 0 0 0-3.3 3.3v3L5.5 13.5Z"></path>
+              </svg>
+            </button>
+
+
+            <button class="collab-preview-icon-btn" type="button" aria-label="Workspace settings">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <circle cx="10" cy="10" r="2.3"></circle>
+                <path d="M10 3.5v1.6"></path>
+                <path d="M10 14.9v1.6"></path>
+                <path d="M3.5 10h1.6"></path>
+                <path d="M14.9 10h1.6"></path>
+                <path d="M5.5 5.5l1.2 1.2"></path>
+                <path d="M13.3 13.3l1.2 1.2"></path>
+                <path d="M14.5 5.5l-1.2 1.2"></path>
+                <path d="M6.7 13.3l-1.2 1.2"></path>
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Item 2 -->
-      <div class="faq-item">
-        <button
-          class="faq-q"
-          type="button"
-          aria-expanded="false"
-          aria-controls="faq-404-2"
-          id="faq-404-2-q">
-          <span class="faq-q-text">Why teams start CavBot on 404s</span>
-          <span class="faq-icon" aria-hidden="true"></span>
-        </button>
 
-        <div class="faq-a" id="faq-404-2" role="region" aria-labelledby="faq-404-2-q" hidden>
-          <p class="section-body">
-            404s are where reliability is most visible. CavBot turns them into a live,
-            guided surface and streams structured signal back into Command Center via
-            the same <span class="code-inline">/v1/events</span> ingestion pipeline as the rest of your app.
-            For many teams, that’s the first, cleanest place to begin a coordination layer pilot.
-          </p>
+        <!-- tabs -->
+        <div class="collab-preview-tabs" aria-label="Workspace tabs">
+          <button class="is-active" type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="5.2" height="5.2" rx="1.2"></rect>
+              <rect x="11.3" y="3.5" width="5.2" height="5.2" rx="1.2"></rect>
+              <rect x="3.5" y="11.3" width="5.2" height="5.2" rx="1.2"></rect>
+              <rect x="11.3" y="11.3" width="5.2" height="5.2" rx="1.2"></rect>
+            </svg>
+            <span>Planning</span>
+          </button>
+
+
+          <button type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M7.2 6.5L3.8 10l3.4 3.5"></path>
+              <path d="M12.8 6.5l3.4 3.5-3.4 3.5"></path>
+              <path d="M10.8 5l-1.6 10"></path>
+            </svg>
+            <span>Code Review</span>
+          </button>
+
+
+          <button type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3.5 13.5L7.4 9.5L10.1 12.1L15.8 6.5"></path>
+              <circle cx="15.8" cy="6.5" r="1.3"></circle>
+            </svg>
+            <span>Signals</span>
+          </button>
+
+
+          <button type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 6.2h4.2l1.4 1.5H16a1.3 1.3 0 0 1 1.3 1.3v5.6A1.3 1.3 0 0 1 16 16H4a1.3 1.3 0 0 1-1.3-1.3V7.5A1.3 1.3 0 0 1 4 6.2Z"></path>
+            </svg>
+            <span>Files</span>
+          </button>
+
+
+          <button type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="4" y="3.5" width="12" height="13" rx="2"></rect>
+              <path d="M7 7h6"></path>
+              <path d="M7 10h6"></path>
+              <path d="M7 13h4"></path>
+            </svg>
+            <span>Notes</span>
+          </button>
+        </div>
+
+
+        <!-- body -->
+        <div class="collab-preview-body">
+
+
+          <div class="collab-preview-board">
+            <div class="collab-board-head">
+              <span>Task</span>
+              <span>Status</span>
+              <span>Owner</span>
+              <span>Signal</span>
+              <span>Progress</span>
+              <span>Updated</span>
+              <span></span>
+            </div>
+
+
+            <div class="collab-task-group">
+              <div class="collab-task-group-title">
+                <span class="collab-task-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M5 8l5 5 5-5"></path>
+                  </svg>
+                </span>
+                <span class="collab-task-group-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <rect x="3.5" y="3.5" width="5.2" height="5.2" rx="1.2"></rect>
+                    <rect x="11.3" y="3.5" width="5.2" height="5.2" rx="1.2"></rect>
+                    <rect x="3.5" y="11.3" width="5.2" height="5.2" rx="1.2"></rect>
+                    <rect x="11.3" y="11.3" width="5.2" height="5.2" rx="1.2"></rect>
+                  </svg>
+                </span>
+                <strong>Audit</strong>
+                <em>3</em>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>1</b>Review 404 spike on /pricing</span>
+                <span><i class="collab-pill collab-pill--blue">In Progress</i></span>
+                <span class="collab-owner"><i>MK</i>Maya K.</span>
+                <span class="collab-signal collab-signal--watch">Elevated</span>
+                <span class="collab-progress"><i style="width:65%;"></i><b>65%</b></span>
+                <span>2m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>2</b>Map broken routes &amp; referrers</span>
+                <span><i class="collab-pill collab-pill--green">Complete</i></span>
+                <span class="collab-owner"><i>AR</i>Alex R.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress"><i style="width:100%;"></i><b>100%</b></span>
+                <span>18m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>3</b>Identify root cause</span>
+                <span><i class="collab-pill collab-pill--green">Complete</i></span>
+                <span class="collab-owner"><i>JL</i>Jordan L.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress"><i style="width:100%;"></i><b>100%</b></span>
+                <span>32m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-add-row">+ Add task</div>
+            </div>
+
+
+            <div class="collab-task-group">
+              <div class="collab-task-group-title">
+                <span class="collab-task-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M5 8l5 5 5-5"></path>
+                  </svg>
+                </span>
+                <span class="collab-task-group-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M4.5 10h11"></path>
+                    <path d="M10 4.5v11"></path>
+                  </svg>
+                </span>
+                <strong>Recovery</strong>
+                <em>4</em>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>4</b>Update route map</span>
+                <span><i class="collab-pill collab-pill--blue">In Progress</i></span>
+                <span class="collab-owner"><i>PS</i>Priya S.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress"><i style="width:45%;"></i><b>45%</b></span>
+                <span>1m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>5</b>Implement redirect fallback</span>
+                <span><i class="collab-pill collab-pill--yellow">In Review</i></span>
+                <span class="collab-owner"><i>TH</i>Tyler H.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress"><i style="width:70%;"></i><b>70%</b></span>
+                <span>6m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>6</b>Approve recovery patch</span>
+                <span><i class="collab-pill collab-pill--violet">Review</i></span>
+                <span class="collab-owner collab-owner--group"><i>RC</i><small>+2</small>2 reviewers</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress collab-progress--empty"><b>—</b></span>
+                <span>8m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>7</b>Verify fix in staging</span>
+                <span><i class="collab-pill collab-pill--gray">Queued</i></span>
+                <span class="collab-owner"><i>SD</i>Sam D.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress collab-progress--empty"><b>—</b></span>
+                <span>12m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-add-row">+ Add task</div>
+            </div>
+
+
+            <div class="collab-task-group collab-task-group--last">
+              <div class="collab-task-group-title">
+                <span class="collab-task-chevron" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M5 8l5 5 5-5"></path>
+                  </svg>
+                </span>
+                <span class="collab-task-group-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M5 15L15 5"></path>
+                    <path d="M8 5h7v7"></path>
+                  </svg>
+                </span>
+                <strong>Launch</strong>
+                <em>3</em>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>8</b>Upload release assets</span>
+                <span><i class="collab-pill collab-pill--blue">In Progress</i></span>
+                <span class="collab-owner"><i>TM</i>Taylor M.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress"><i style="width:80%;"></i><b>80%</b></span>
+                <span>3m ago</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>9</b>Smoke test in production</span>
+                <span><i class="collab-pill collab-pill--gray">Queued</i></span>
+                <span class="collab-owner"><i>RC</i>Riley C.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress collab-progress--empty"><b>—</b></span>
+                <span>—</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-task-row">
+                <span class="collab-task-name"><b>10</b>Monitor &amp; close</span>
+                <span><i class="collab-pill collab-pill--gray">Queued</i></span>
+                <span class="collab-owner"><i>AJ</i>Avery J.</span>
+                <span class="collab-signal collab-signal--good">Stable</span>
+                <span class="collab-progress collab-progress--empty"><b>—</b></span>
+                <span>—</span>
+                <span class="collab-row-menu">•••</span>
+              </div>
+
+
+              <div class="collab-add-row">+ Add task</div>
+            </div>
+          </div>
+
+
+          <aside class="collab-preview-sidebar" aria-label="Workspace highlights">
+            <div class="collab-side-card collab-side-card--highlight">
+              <h4>Workspace Highlights</h4>
+
+
+              <div class="collab-highlight-row">
+                <strong>2</strong>
+                <span>Reviewers</span>
+                <div class="collab-mini-avatars" aria-hidden="true">
+                  <i class="avatar-chip avatar-chip--a">MK</i>
+                  <i class="avatar-chip avatar-chip--b">AR</i>
+                  <i class="avatar-chip avatar-chip--meta">+2</i>
+                </div>
+              </div>
+
+
+              <div class="collab-highlight-row">
+                <strong>8</strong>
+                <span>Files shared</span>
+                <div class="collab-file-pills" aria-hidden="true">
+                  <i>&lt;/&gt;</i>
+                  <i>TS</i>
+                  <i>MD</i>
+                  <i>+5</i>
+                </div>
+              </div>
+
+
+              <div class="collab-highlight-row collab-highlight-row--signal">
+                <div>
+                  <span>Signals</span>
+                  <strong>Stable</strong>
+                  <small>All systems normal</small>
+                </div>
+
+
+                <svg viewBox="0 0 120 42" aria-hidden="true">
+                  <polyline
+                    points="2,26 14,22 24,28 34,18 44,24 54,20 64,27 76,15 88,19 99,9 118,17"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+
+
+              <div class="collab-highlight-row">
+                <div>
+                  <span>Team</span>
+                  <strong>Synced</strong>
+                  <small>Up to date</small>
+                </div>
+
+
+                <div class="collab-sync-dots" aria-hidden="true">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="collab-side-card">
+              <h4>Recent activity</h4>
+
+
+              <ul class="collab-activity-list">
+                <li><span>MK</span><p>Maya K. updated Review 404 spike <em>2m ago</em></p></li>
+                <li><span>TH</span><p>Tyler H. opened a pull request <em>6m ago</em></p></li>
+                <li><span>PS</span><p>Priya S. commented on Update route map <em>7m ago</em></p></li>
+                <li><span>AR</span><p>Alex R. added routes.csv <em>18m ago</em></p></li>
+              </ul>
+
+
+              <a class="collab-activity-link" href="CHANGE-THIS-URL">
+                <span>View all activity</span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M5 15L15 5"></path>
+                  <path d="M8 5h7v7"></path>
+                </svg>
+              </a>
+            </div>
+          </aside>
+        </div>
+
+
+        <div class="collab-preview-footer">
+          <span><i></i> Live</span>
+          <span>All changes saved</span>
+          <span class="collab-preview-spacer"></span>
+          <span>Auto-updates <b aria-hidden="true"></b></span>
+          <span><i></i> Connected</span>
         </div>
       </div>
     </div>
-<br><br><br>
-    <!-- CTA PILL (OUTSIDE FAQ) -->
-    <div class="section-404-cta-row">
-      <a href="404-recovery-field-guide.html" class="btn btn-primary">Read the 404 Guide</a>
-    </div>
-  </div>
-</section>
-    <!-- =======================
-         BADGE SECTION
-         ======================= -->
-    <section class="section badge-section" aria-label="CavBot presence badge">
-      <div class="badge-panel">
-        <header class="section-header" style="margin-bottom:12px;">
-          <div class="eyebrow">CavBot presence badge</div>
-      <br>    <h2 class="section-title" style="font-size:18px;">A compact badge connected to the full system</h2>
-          <p class="section-body">
-            The CavBot badge is a compact CavBot that lives in the corner of your product —
-            a quiet indicator that the session is under guard. It uses the same head and eye
-            system as the main bot, scaled down into a subtle, always-on presence.
-          </p>
-        </header>
-        <br><br>
 
-        <div class="badge-layout">
-          <!-- Badge visual -->
-          <div class="badge-visual" role="img" aria-label="CavBot active session badge">
-            <div class="badge-orbit">
-              <div class="cavbot-badge-frame">
-                <div class="cavbot-cdn-slot" data-cavbot-cdn-slot="badge" aria-hidden="true"></div>
+
+    <div class="collab-connected-grid" aria-label="CavBot collaboration details">
+      <article class="collab-cell collab-cell--copy">
+        <h3>Execute with clarity.</h3>
+        <p>
+          Keep notes, code, files, routes, and decisions organized inside CavBot.
+        </p>
+        <a class="collab-link" href="CHANGE-special-THIS-URL" aria-label="Explore CavBot collaboration">
+          <span class="collab-link-text">Explore CavBot Collaboration</span>
+          <span class="collab-link-icon" aria-hidden="true"></span>
+        </a>
+      </article>
+
+
+      <article class="collab-cell collab-cell--quote">
+        <div class="collab-quote-mark" aria-hidden="true">“</div>
+        <p class="collab-quote">
+          When the whole team sees the same context, recovery becomes faster and decisions become cleaner.
+        </p>
+        <div class="collab-quote-meta">
+          <span>CAVENDISH PIERRE-LOUIS</span>
+          <span>Founder &amp; CEO at CavBot</span>
+        </div>
+      </article>
+
+
+      <article class="collab-cell collab-cell--list" data-collab-accordion>
+        <div class="collab-feature-progress" aria-hidden="true">
+          <span data-collab-progress></span>
+        </div>
+
+        <div class="collab-feature is-active" data-card="cavcode">
+          <button class="collab-feature-trigger" type="button" aria-expanded="true">
+            <span class="collab-feature-title">Code together</span>
+            <span class="collab-feature-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="collab-feature-panel">
+            <p>Review, edit, and build with teammates inside CavCode.</p>
+            <a class="collab-feature-link" href="https://app.cavbot.io/cavcode" aria-label="Explore CavCode">
+              <span class="collab-feature-link-text">Explore CavCode</span>
+              <span class="collab-feature-link-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="collab-feature" data-card="cavcloud">
+          <button class="collab-feature-trigger" type="button" aria-expanded="false">
+            <span class="collab-feature-title">Share files</span>
+            <span class="collab-feature-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="collab-feature-panel">
+            <p>Keep notes, assets, and working files ready for the people who need them.</p>
+            <a class="collab-feature-link" href="https://app.cavbot.io/cavcloud" aria-label="Explore CavCloud">
+              <span class="collab-feature-link-text">Explore CavCloud</span>
+              <span class="collab-feature-link-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="collab-feature" data-card="dashboard">
+          <button class="collab-feature-trigger" type="button" aria-expanded="false">
+            <span class="collab-feature-title">Monitor together</span>
+            <span class="collab-feature-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="collab-feature-panel">
+            <p>Follow routes, 404s, errors, and live signals as a team.</p>
+            <a class="collab-feature-link" href="https://app.cavbot.io/dashboard" aria-label="Explore Dashboard">
+              <span class="collab-feature-link-text">Explore Dashboard</span>
+              <span class="collab-feature-link-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="collab-feature" data-card="cavtools">
+          <button class="collab-feature-trigger" type="button" aria-expanded="false">
+            <span class="collab-feature-title">Fix together</span>
+            <span class="collab-feature-plus" aria-hidden="true">+</span>
+          </button>
+          <div class="collab-feature-panel">
+            <p>Turn issues into owners, actions, and a clear record of what changed.</p>
+            <a class="collab-feature-link" href="https://app.cavbot.io/cavtools" aria-label="Explore CavTools">
+              <span class="collab-feature-link-text">Explore CavTools</span>
+              <span class="collab-feature-link-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="collab-cell collab-cell--visual">
+        <div class="collab-visual-stage">
+          <div class="collab-module-card is-active" data-card-panel="cavcode" aria-hidden="false">
+            <div class="collab-module-window">
+              <div class="collab-module-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="collab-module-app">CavCode</div>
+              </div>
+
+
+              <div class="collab-code-app">
+                <aside class="collab-code-sidebar">
+                  <div class="collab-code-sidebar-label">Explorer</div>
+                  <div class="collab-code-file is-active">recovery.tsx</div>
+                  <div class="collab-code-file">routes.ts</div>
+                  <div class="collab-code-file">404.html</div>
+                  <div class="collab-code-file">signals.ts</div>
+                  <div class="collab-code-file">fix-plan.md</div>
+                </aside>
+
+
+                <div class="collab-code-editor">
+                  <div class="collab-code-tabs">
+                    <span class="is-active">recovery.tsx</span>
+                    <span>routes.ts</span>
+                    <span>404.html</span>
+                  </div>
+
+
+                  <div class="collab-code-lines">
+                    <div><span>1</span><code>const recoveryPlan = {</code></div>
+                    <div><span>2</span><code>&nbsp;&nbsp;owner: "@team",</code></div>
+                    <div><span>3</span><code>&nbsp;&nbsp;status: "review",</code></div>
+                    <div><span>4</span><code>&nbsp;&nbsp;route: "/pricing",</code></div>
+                    <div><span>5</span><code>&nbsp;&nbsp;nextStep: "ship fix"</code></div>
+                    <div><span>6</span><code>};</code></div>
+                    <div><span>7</span><code>&nbsp;</code></div>
+                    <div><span>8</span><code>export default recoveryPlan;</code></div>
+                  </div>
+
+
+                  <div class="collab-code-footer">
+                    <span>2 reviewers</span>
+                    <span>Ready for merge</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div>
-            <p class="section-body" style="font-size:13px;">
-              When the badge appears, CavBot is actively watching the route, 404 state,
-              SEO snapshot, and runtime feel for that view. The avatar shifts posture —
-              calm, observing, or recovering — without distracting from your interface.
-            </p> <br> 
-            <p class="section-body" style="font-size:12px;">
-              The badge mounts through <strong>https://cdn.cavbot.io/sdk/widget/v1/cavbot-widget.min.js</strong> and a small
-              script hook, so you can drop it into any layout without rethinking your
-              design. Analytics and insights are still collected even if you choose not
-              to show the badge; it is a visual presence indicator, not a requirement
-              for CavBot Analytics v5.
-            </p> <br> 
-            <ul class="badge-state-list" aria-label="Badge state behaviours">
-              <li>
-                <div class="badge-state-bullet" aria-hidden="true"></div>
-                <div><strong>Calm</strong> — session is healthy; CavBot is observing quietly in the corner.</div>
-              </li>
-              <li>
-                <div class="badge-state-bullet" aria-hidden="true"></div>
-                <div><strong>Guarded</strong> — the route is fragile or critical, so CavBot tracks feel more closely.</div>
-              </li>
-              <li>
-                <div class="badge-state-bullet" aria-hidden="true"></div>
-                <div><strong>Recovering</strong> — the user has hit a 404 or edge; CavBot guides them back into the product.</div>
-              </li>
-            </ul>
+
+          <div class="collab-module-card" data-card-panel="cavcloud" aria-hidden="true">
+            <div class="collab-module-window">
+              <div class="collab-module-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="collab-module-app">CavCloud</div>
+              </div>
+
+
+              <div class="collab-cloud-app">
+                <div class="collab-cloud-header">
+                  <div>
+                    <div class="collab-cloud-kicker">Shared folder</div>
+                    <h4>Launch files</h4>
+                  </div>
+                  <div class="collab-cloud-chip">8 files</div>
+                </div>
+
+
+                <div class="collab-cloud-list">
+                  <div class="collab-cloud-row"><span>release-assets.zip</span><span>Shared</span></div>
+                  <div class="collab-cloud-row"><span>route-map.json</span><span>Updated</span></div>
+                  <div class="collab-cloud-row"><span>runbook.pdf</span><span>Ready</span></div>
+                  <div class="collab-cloud-row"><span>copy-notes.md</span><span>Synced</span></div>
+                </div>
+
+
+                <div class="collab-cloud-footer">
+                  <span>3 teammates</span>
+                  <span>Last sync 2m ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="collab-module-card" data-card-panel="dashboard" aria-hidden="true">
+            <div class="collab-module-window">
+              <div class="collab-module-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="collab-module-app">Dashboard</div>
+              </div>
+
+
+              <div class="collab-dash-app">
+                <div class="collab-dash-metrics">
+                  <div class="collab-dash-metric"><strong>128</strong><span>Routes</span></div>
+                  <div class="collab-dash-metric"><strong>2</strong><span>404s</span></div>
+                  <div class="collab-dash-metric"><strong>1</strong><span>Errors</span></div>
+                </div>
+
+
+                <div class="collab-dash-chart">
+                  <div class="collab-dash-bar" style="height: 42%;"></div>
+                  <div class="collab-dash-bar" style="height: 58%;"></div>
+                  <div class="collab-dash-bar" style="height: 34%;"></div>
+                  <div class="collab-dash-bar is-accent" style="height: 78%;"></div>
+                  <div class="collab-dash-bar" style="height: 48%;"></div>
+                  <div class="collab-dash-bar" style="height: 63%;"></div>
+                  <div class="collab-dash-bar" style="height: 39%;"></div>
+                </div>
+
+
+                <div class="collab-dash-list">
+                  <div class="collab-dash-row"><span>/pricing</span><span>Stable</span></div>
+                  <div class="collab-dash-row"><span>/checkout</span><span>Watch</span></div>
+                  <div class="collab-dash-row"><span>/api/scan</span><span>Live</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="collab-module-card" data-card-panel="cavtools" aria-hidden="true">
+            <div class="collab-module-window">
+              <div class="collab-module-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="collab-module-app">CavTools</div>
+              </div>
+
+
+              <div class="collab-tools-app">
+                <div class="collab-tools-toolbar">
+                  <span>Logs</span>
+                  <span>Diff</span>
+                  <span>Terminal</span>
+                  <span>Rollback</span>
+                </div>
+
+
+                <div class="collab-tools-card">
+                  <div class="collab-tools-head">
+                    <div>
+                      <div class="collab-tools-kicker">Recovery toolset</div>
+                      <h4>Route recovery plan</h4>
+                    </div>
+                    <div class="collab-tools-status">In progress</div>
+                  </div>
+
+
+                  <div class="collab-tools-steps">
+                    <div class="is-done">Capture failing route</div>
+                    <div class="is-done">Assign owner</div>
+                    <div class="is-live">Review logs and patch</div>
+                    <div>Ship fix and verify</div>
+                  </div>
+
+
+                  <div class="collab-tools-footer">
+                    <span>Owner: @team</span>
+                    <span>Runbook ready</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </article>
+    </div>
 
-   <!-- =======================
-        RUNTIME IMPACT — METRIC CARDS
-        ======================= -->
-<section class="section section-impact" aria-label="Runtime impact">
-  <div class="section-impact-panel">
-    <header class="section-header" style="margin-bottom:14px;">
-      <div class="eyebrow">Runtime impact</div>
-    <br>  <h2 class="section-title" style="font-size:18px;">How CavBot shifts outcomes</h2>
-      <p class="section-body">
-        Once 404s, routes, SEO, and fragile edges are under CavBot, the runtime starts to
-        behave differently — fewer exits, more recovered journeys, and less noise
-        created by simple broken paths.
+
+  </div>
+</section>
+
+
+<!-- =======================
+   CAVBOT SECURITY
+   ======================= -->
+<section class="section cavbot-status cavbot-security" aria-label="CavBot built-in security">
+  <div class="security-shell">
+
+
+    <header class="security-hero">
+     <div class="security-hero-mark" aria-hidden="true">
+  <img
+    src="assets/icons/page/blueprint-lock-svgrepo-com.svg"
+    alt=""
+    loading="lazy"
+  />
+</div>
+
+<br />
+
+      <h2 class="security-title">Built-in security where access stays in the right hands</h2>
+
+<br />
+      <p class="security-lede">
+        CavBot protects sign-ins, team permissions,
+        and private storage so sensitive actions stay controlled without slowing the team down.
       </p>
     </header>
-    <br>
+<br /><br /><br /><br />
 
-    <div class="impact-graph-grid" role="region" aria-label="CavBot runtime impact metrics">
-      <article class="impact-graph" style="--percent:37; --accent: var(--lime);">
-        <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">404 exits reduced</h3>
-        <div class="impact-graph-circle">
-          <div class="impact-graph-ring" aria-hidden="true">
-            <div class="impact-graph-center">
-              <span class="impact-graph-value">-37%</span>
-            </div>
-          </div>
-        </div><br>
-        <div class="impact-graph-label">404 exits reduced</div>
-        <p class="impact-graph-caption">
-          Fewer visitors abandon your product when they encounter a broken route.
+    <div class="security-grid" aria-label="CavBot security systems">
+
+
+      <article class="security-copy">
+
+
+
+        <h3>Secure by default</h3>
+
+<br>
+        <p>
+          Verification, permission checks, and protected
+          storage are built into the workflow, so sensitive actions are reviewed before risk can spread.
         </p>
+
+
+        <a class="security-link" href="CHANGE-THIS-URL" aria-label="Explore CavBot security">
+          <span class="security-link-text">Explore CavBot Security</span>
+          <span class="security-link-icon" aria-hidden="true"></span>
+        </a>
       </article>
 
-      <article class="impact-graph" style="--percent:24; --accent: var(--violet);">
-        <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Recovered journeys</h3>
-        <div class="impact-graph-circle">
-          <div class="impact-graph-ring" aria-hidden="true">
-            <div class="impact-graph-center">
-              <span class="impact-graph-value">+24%</span>
-            </div>
+
+      <article class="security-switcher" data-security-switcher>
+        <div class="security-feature-progress" aria-hidden="true">
+          <span data-security-progress></span>
+        </div>
+
+
+        <div class="security-feature is-active" data-security-card="cavverify">
+          <button class="security-feature-trigger" type="button" aria-expanded="true">
+            <span class="security-feature-title">Trusted entry</span>
+            <span class="security-feature-plus" aria-hidden="true">+</span>
+          </button>
+
+
+          <div class="security-feature-panel">
+            <p>Confirm the person entering CavBot before account access continues.</p>
+            <a class="security-feature-link" href="PASTEURL" aria-label="Explore CavVerify">
+              <span class="security-feature-link-text">Explore CavVerify</span>
+              <span class="security-feature-link-icon" aria-hidden="true"></span>
+            </a>
           </div>
-        </div><br>
-        <div class="impact-graph-label">Recovered journeys</div>
-        <p class="impact-graph-caption">
-          More sessions are rescued from dead links and steered back into
-          revenue or activation flows.
-        </p>
+        </div>
+
+
+        <div class="security-feature" data-security-card="cavguard">
+          <button class="security-feature-trigger" type="button" aria-expanded="false">
+            <span class="security-feature-title">Protected actions</span>
+            <span class="security-feature-plus" aria-hidden="true">+</span>
+          </button>
+
+
+          <div class="security-feature-panel">
+            <p> Require the right permission before settings, roles, or ownership changes are made.</p>
+            <a class="security-feature-link" href="PASTEURL" aria-label="Explore CavGuard">
+              <span class="security-feature-link-text">Explore CavGuard</span>
+              <span class="security-feature-link-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="security-feature" data-security-card="cavsafe">
+          <button class="security-feature-trigger" type="button" aria-expanded="false">
+            <span class="security-feature-title">Private storage</span>
+            <span class="security-feature-plus" aria-hidden="true">+</span>
+          </button>
+
+
+          <div class="security-feature-panel">
+            <p> Keep sensitive files private with owner-controlled storage</p>
+            <a class="security-feature-link" href="PASTEURL" aria-label="Explore CavSafe">
+              <span class="security-feature-link-text">Explore CavSafe</span>
+              <span class="security-feature-link-icon" aria-hidden="true"></span>
+            </a>
+          </div>
+        </div>
+
+
       </article>
 
-      <article class="impact-graph" style="--percent:19; --accent: var(--blue-soft);">
-        <h3 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Support tickets</h3>
-        <div class="impact-graph-circle">
-          <div class="impact-graph-ring" aria-hidden="true">
-            <div class="impact-graph-center">
-              <span class="impact-graph-value">-19%</span>
+
+      <article class="security-visual" aria-label="CavBot security preview">
+        <div class="security-visual-stage">
+
+
+          <!-- CAVVERIFY -->
+          <div class="security-product-card is-active" data-security-panel="cavverify" aria-hidden="false">
+            <div class="security-product-window">
+              <div class="security-window-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <strong>CavVerify</strong>
+              </div>
+
+
+              <div class="verify-mock">
+                <div class="security-product-brand security-product-brand--center">
+                  <div class="security-product-icon" aria-hidden="true">
+                    <img
+                      src="assets/icons/page/caverify.svg"
+                      alt=""
+                      loading="lazy"
+                    />
+                  </div>
+
+                </div>
+
+
+                <div class="verify-wordmark" aria-label="CavBot verification challenge">
+                  <span>Ca</span>
+                  <i></i>
+                  <span>Bot</span>
+                </div>
+
+
+                <div class="verify-tiles" aria-hidden="true">
+                  <button type="button">B</button>
+                  <button type="button">V</button>
+                  <button type="button">C</button>
+                  <button type="button">a</button>
+                </div>
+
+
+                <div class="verify-bottom-row">
+                  <span>Human check ready</span>
+                  <a href="CHANGE-THIS-URL">Use email code instead</a>
+                </div>
+              </div>
             </div>
           </div>
-        </div><br>
-        <div class="impact-graph-label">Support tickets</div>
-        <p class="impact-graph-caption">
-          Users who hit a dead route are quietly guided back into the product,
-          instead of opening “link not working” tickets.
-        </p>
+
+
+          <!-- CAVGUARD -->
+          <div class="security-product-card" data-security-panel="cavguard" aria-hidden="true">
+            <div class="security-product-window">
+              <div class="security-window-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <strong>CavGuard</strong>
+              </div>
+
+
+              <div class="guard-mock">
+                <div class="security-product-brand security-product-brand--center">
+                  <div class="security-product-icon" aria-hidden="true">
+                    <img
+                      src="assets/icons/page/cavguard.svg"
+                      alt=""
+                      loading="lazy"
+                    />
+                  </div>
+
+                </div>
+
+
+                <div class="guard-alert">
+                  <h5>Owner approval required.</h5>
+                  <p>
+                    This action changes workspace settings and must be approved by the owner.
+                  </p>
+                </div>
+
+
+                <div class="guard-policy-grid">
+                  <div>
+                    <span>Action</span>
+                    <strong>Update settings</strong>
+                  </div>
+
+
+                  <div>
+                    <span>Current role</span>
+                    <strong>Member</strong>
+                  </div>
+
+
+                  <div>
+                    <span>Required role</span>
+                    <strong>Owner</strong>
+                  </div>
+
+
+                  <div>
+                    <span>Decision</span>
+                    <strong>Restricted</strong>
+                  </div>
+                </div>
+
+
+                <div class="guard-footer">
+                  <span>Audit saved</span>
+                  <button type="button">Request approval</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- CAVSAFE -->
+          <div class="security-product-card" data-security-panel="cavsafe" aria-hidden="true">
+            <div class="security-product-window">
+              <div class="security-window-topbar">
+                <span></span>
+                <span></span>
+                <span></span>
+                <strong>CavSafe</strong>
+              </div>
+
+
+              <div class="safe-mock">
+                <div class="security-product-brand security-product-brand--center">
+
+                  <div class="security-product-icon" aria-hidden="true">
+                    <img
+                      src="assets/icons/page/cavsafe.svg"
+                      alt=""
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+
+                <div class="safe-stats">
+                  <div>
+                    <strong>18</strong>
+                    <span>Private files</span>
+                  </div>
+
+
+                  <div>
+                    <strong>3</strong>
+                    <span>Shared links</span>
+                  </div>
+
+
+                  <div>
+                    <strong>On</strong>
+                    <span>Owner lock</span>
+                  </div>
+                </div>
+
+
+                <div class="safe-file-list">
+                  <div class="safe-file-row">
+                    <span class="safe-file-icon">PDF</span>
+                    <div>
+                      <strong>runbook.pdf</strong>
+                      <small>Owner only</small>
+                    </div>
+                    <em>Private</em>
+                  </div>
+
+
+                  <div class="safe-file-row">
+                    <span class="safe-file-icon">ZIP</span>
+                    <div>
+                      <strong>release-assets.zip</strong>
+                      <small>Shared with team</small>
+                    </div>
+                    <em>Protected</em>
+                  </div>
+
+
+                  <div class="safe-file-row">
+                    <span class="safe-file-icon">ENV</span>
+                    <div>
+                      <strong>production.env</strong>
+                      <small>Hidden from members</small>
+                    </div>
+                    <em>Locked</em>
+                  </div>
+                </div>
+
+
+                <div class="safe-footer">
+                  <span>Last access: owner</span>
+                  <span>Encrypted storage</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </article>
-    </div>
 
-    <br>
 
-    <!-- Enhanced analytics / SEO coordination layer panel -->
-    <div class="impact-dashboard" role="region" aria-label="Analytics and SEO overview">
-      <div class="impact-dashboard-top">
-        <div class="impact-dashboard-title">
-          <div class="impact-dashboard-kicker">Coordination layer preview</div>
-        </div>
-
-      </div>
-
-      <div class="impact-dashboard-grid">
-        <!-- Analytics card -->
-        <div class="impact-dashboard-card impact-dashboard-card--analytics">
-          <div class="section-404-subtitle">Analytics snapshot</div>
-
-          <ul class="analytics-list">
-            <li>
-              <span class="analytics-dot" aria-hidden="true"></span>
-              <span>Top failing routes ranked by 404 density and exit rate.</span>
-            </li>
-            <li>
-              <span class="analytics-dot" aria-hidden="true"></span>
-              <span>Sessions tagged with poor runtime feel and reload storms.</span>
-            </li>
-            <li>
-              <span class="analytics-dot" aria-hidden="true"></span>
-              <span>Campaigns landing on fragile or thin SEO pages.</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- SEO card -->
-        <div class="impact-dashboard-card impact-dashboard-card--seo">
-          <div class="section-404-subtitle">SEO overview</div>
-
-          <div class="seo-progress">
-            <div class="seo-progress-row">
-              <div class="seo-progress-label">Routes with clean seo</div>
-              <div class="seo-progress-value">78%</div>
-            </div>
-            <div class="seo-progress-bar" style="--p:78;" aria-hidden="true">
-              <span class="seo-progress-fill"></span>
-            </div>
-          </div>
-
-          <div class="seo-metrics" role="group" aria-label="SEO metrics">
-            <div class="seo-metric">
-              <div class="seo-metric-label">Critical non-indexable</div>
-              <div class="seo-metric-value">12</div>
-            </div>
-
-            <div class="seo-metric">
-              <div class="seo-metric-label">Missing meta description</div>
-              <div class="seo-metric-value">31</div>
-            </div>
-
-            <div class="seo-metric">
-              <div class="seo-metric-label">Duplicate titles</div>
-              <div class="seo-metric-value">7</div>
-            </div>
-          </div>
-
-          <p class="impact-dashboard-note">
-            Values here are illustrative. In production, this panel mirrors live data from
-            CavBot Analytics v5 and your latest <span class="code-inline">seo_snapshots</span>.
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
-   <!-- =======================
-        Command Center
-        ======================= -->
-<section class="section" aria-label="Command Center analytics UI">
-  <div class="console-panel">
-    <header class="section-header" style="margin-bottom:12px;">
-      <div class="eyebrow">Command Center</div>
-   <br>   <h2 class="section-title" style="font-size:18px;">Command Center: operational view in practice</h2>
-      <p class="section-body">
-        Command Center is where teams see the state of their product, prioritize what matters, and coordinate response.
-        It is powered by CavBot Analytics v5, while CavAi provides reasoning workflows in the app.
-      </p>
+
+<br><br><br><br>
+
+<!-- =======================
+   CAVBOT LATEST RELEASES
+   ======================= -->
+<section class="section cavbot-status cavbot-releases" aria-label="Latest CavBot releases">
+  <div class="releases-shell">
+    <header class="releases-header">
+      <h2 class="releases-title">Latest releases</h2>
     </header>
-    <br>
 
-    <div class="console-layout">
-      <!-- LEFT CARD -->
-      <div class="console-card console-card--left">
-        <p class="section-body" style="font-size:13px;">
-          Command Center views are built from a small, disciplined set of tables —
-          <span class="code-inline">projects</span>,
-          <span class="code-inline">pages</span>,
-          <span class="code-inline">events</span>,
-          <span class="code-inline">seo_snapshots</span>,
-          <span class="code-inline">performance_samples</span>,
-          <span class="code-inline">daily_page_aggregates</span>,
-          <span class="code-inline">referrer_aggregates</span>,
-          <span class="code-inline">insights</span>,
-          <span class="code-inline">alerts</span>, and
-          <span class="code-inline">deploy_markers</span>.
-        </p>
-        <br>
-        <p class="section-body" style="font-size:13px;">
-          This structure makes it easy to correlate a spike in 404s with a specific deploy,
-          a slow but critical page with missing meta tags, or a noisy campaign with fragile
-          landing routes — all from one coordinated command view.
-        </p>
-        <br>
-        <p class="section-body" style="font-size:12px;">
-          The same schema also lays the foundation for future endpoints like
-          <span class="code-inline">/v1/assist</span> and
-          <span class="code-inline">/v1/insights/summarize</span>, so an AI layer can
-          eventually talk about your site’s health using real, structured data.
-        </p>
-      </div>
 
-      <!-- RIGHT CARD -->
-      <div class="console-card console-card--right">
-        <div class="section-404-subtitle">Key console views</div>
-        <ul class="console-list">
-          <li><strong>Project overview</strong> — traffic, 404s, performance, and journey feel at a glance.</li>
-          <li><strong>404 summary</strong> — which routes fail, how often, and how many journeys are recovered.</li>
-          <li><strong>Page &amp; SEO detail</strong> — snapshots, issues, Core Web Vitals, and behaviour on each route.</li>
-          <li><strong>Referrers &amp; campaigns</strong> — UTM and domain aggregates tied to real outcomes.</li>
-          <li><strong>Insights &amp; alerts</strong> — typed guardian-angel insights with severity and context.</li>
-        </ul>
+    <div class="releases-grid" aria-label="CavBot release cards">
+      <!-- CARD 1 -->
+      <article class="release-card" data-release-card>
+        <div class="release-card-content">
+          <div class="release-card-main">
+            <h3>Caven</h3>
 
-        <div class="console-pill-row">
-          <span class="console-pill">CavBot Analytics v5</span>
-          <span class="console-pill">Command Center</span>
-          <span class="console-pill">Future assist layer</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
- <!-- =======================
-     PILOT SHOWCASE STRIP
-======================= -->
-<section class="section brand-trust" aria-label="Companies powered by CavBot">
-  <div class="brand-trust-panel">
-    <div>
-      <div class="brand-trust-eyebrow">Powered by CavBot</div>
-    <br> <br>   <h2 class="brand-trust-title">Trusted by early production teams</h2>
-      <p class="brand-trust-copy">
-        Select teams are already running CavBot in production with monitored rollouts,
-        reliability checkpoints, and direct support as we continue strengthening the
-        platform.
-      </p> <br>  <br> 
-    </div>
+            <p>
+              Build and repair code with CavBot’s dedicated coding agent.
+            </p>
 
-    <!--  Marquee wraps the track (NO empty bar) -->
-    <div class="pilot-marquee" data-pilot-marquee role="region" aria-label="Pilot laptops marquee">
-      <div class="pilot-track" data-pilot-track>
-        <!-- 1) CavBot -->
-        <a class="pilot-card pilot-link" href="https://www.cavbot.io/" target="_blank" rel="noopener" aria-label="Open CavBot">
-          <div class="pilot-mock">
-            <img class="pilot-laptop"
-              src="assets/pilots/cavbot-wordmark.png"
-              alt="CavBot wordmark laptop mockup"
-              loading="lazy"
-              onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');">
           </div>
-          <div class="pilot-name">CavBot</div>
-          <div class="pilot-meta">Operational Intelligence Platform</div>
-        </a>
 
-        <!-- 3) Cavendish Pierre-Louis -->
-        <a class="pilot-card pilot-link" href="https://www.cavendishpierrelouis.io/" target="_blank" rel="noopener" aria-label="Open Cavendish Pierre-Louis">
-          <div class="pilot-mock">
-            <img class="pilot-laptop"
-              src="assets/pilots/cmpl-logomark.png"
-              alt="Cavendish Pierre-Louis laptop mockup"
-              loading="lazy"
-              onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');">
-          </div>
-          <div class="pilot-name">Cavendish Pierre-Louis</div>
-          <div class="pilot-meta">Web Architect &amp; Engineer</div>
-        </a>
 
-        <!-- 4) CMPL WorkSpace -->
-        <a class="pilot-card pilot-link" href="https://workspace.cavendishpierrelouis.io/" target="_blank" rel="noopener" aria-label="Open CMPL WorkSpace">
-          <div class="pilot-mock">
-            <img class="pilot-laptop"
-              src="assets/pilots/cmpl-logotype.png"
-              alt="CMPL WorkSpace laptop mockup"
-              loading="lazy"
-              onerror="this.style.display='none'; this.parentElement.classList.add('is-empty');">
-          </div>
-          <div class="pilot-name">CMPL WorkSpace</div>
-          <div class="pilot-meta">Workspace Suite</div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+          <div class="release-card-footer">
+            <div class="release-meta-row">
+              <span>Date</span>
+              <strong>April 19, 2026</strong>
+            </div>
 
-   <!-- =======================
-        CAVBOT STATUS / IN DEVELOPMENT (LAB)
-        ======================= -->
-<section class="section cavbot-status" aria-label="CavBot development status">
-  <div class="cavbot-status-panel">
-    <header class="section-header" style="margin-bottom:10px;">
-      <div class="eyebrow">Actively engineered</div>
-     <br>  <br>   <h2 class="section-title" style="font-size:18px;">CavBot is actively shipping</h2>
-      <p class="section-body">
-        CavBot is not a static mascot. It is an active product platform with ongoing releases across intelligence, diagnostics, and execution surfaces.
-      </p> <br>  <br> 
-    </header>
 
-    <div class="lab-grid" role="region" aria-label="CavBot lab overview">
-      <!-- LEFT CARD -->
-      <article class="lab-card lab-card--current" aria-label="Current brain">
-        <div class="lab-card-top">
-          <div class="section-404-subtitle lab-subtitle--lime">CavBot Analytics v5</div>
-        </div>
- <br> 
-        <ul class="section-body lab-body" style="font-size:12px;">
-          <li>Production-tested across 404s, fragile routes, and high-value funnels.</li>
-          <li>Route, fault, and experience signals streamed into session-level insight.</li>
-          <li>Command Center views for recovery, exits, SEO health, and journey feel.</li>
-        </ul>
+            <div class="release-meta-row">
+              <span>Category</span>
+              <strong>Product release</strong>
+            </div>
 
-        <div class="lab-divider" aria-hidden="true"></div>
 
-        <div class="lab-microgrid" role="group" aria-label="Lab checks">
-          <div class="lab-micro">
-            <div class="lab-micro-k">Signal</div>
-            <div class="lab-micro-v">Routes · 404s · Feel</div>
-          </div>
-          <div class="lab-micro">
-            <div class="lab-micro-k">Ingest</div>
-            <div class="lab-micro-v"><span class="code-inline">/v1/events</span></div>
-          </div>
-          <div class="lab-micro">
-            <div class="lab-micro-k">Outcome</div>
-            <div class="lab-micro-v">Recovered journeys</div>
+            <a class="release-button" href="https://www.cavbot.io/caven" aria-label="Read the Caven release">
+              <span>Model details</span>
+              
+            </a>
           </div>
         </div>
       </article>
 
-      <!-- RIGHT CARD -->
-      <article class="lab-card lab-card--next" aria-label="What is being built next">
-        <div class="lab-card-top">
-          <div class="section-404-subtitle">What CavBot is building next</div>
-        </div>
- <br> 
-        <p class="section-body lab-body" style="font-size:12px;">
-          Upcoming generations focus on deeper journey timelines, richer cross-session
-          patterns, and tighter links to the observability tools teams already use.
-          CavBot’s roadmap is conservative on purpose: new capabilities ship only when
-          they materially improve reliability, not just to headline a launch.
-        </p>
- <br> 
-        <div class="lab-divider" aria-hidden="true"></div>
 
-        <div class="lab-timeline" role="group" aria-label="Lab pipeline">
-          <div class="lab-step">
-            <div class="lab-dot" aria-hidden="true"></div>
-            <div>
-              <div class="lab-step-t">Prototype</div>
-              <div class="lab-step-d">Model new signals without touching prod flows.</div>
-            </div>
+      <!-- CARD 2 -->
+      <article class="release-card" data-release-card>
+        <div class="release-card-content">
+          <div class="release-card-main">
+            <h3>CavBot Companion</h3>
+
+
+            <p>
+              A steady place to think when work feels heavy.
+            </p>
+
+
           </div>
-          <div class="lab-step">
-            <div class="lab-dot" aria-hidden="true"></div>
-            <div>
-              <div class="lab-step-t">Instrument</div>
-              <div class="lab-step-d">Validate on controlled routes + edge cases.</div>
+
+
+          <div class="release-card-footer">
+            <div class="release-meta-row">
+              <span>Date</span>
+              <strong>April 19, 2026</strong>
             </div>
-          </div>
-          <div class="lab-step">
-            <div class="lab-dot" aria-hidden="true"></div>
-            <div>
-              <div class="lab-step-t">Ship</div>
-              <div class="lab-step-d">Release only when reliability is measurably better.</div>
+
+
+            <div class="release-meta-row">
+              <span>Category</span>
+              <strong>Product release</strong>
             </div>
+
+
+            <a class="release-button" href="https://www.cavbot.io/cavbot-companion" aria-label="Read the CavBot Companion release">
+              <span>Learn more</span>
+              
+            </a>
           </div>
         </div>
       </article>
+
+
+      <!-- CARD 3 -->
+      <article class="release-card" data-release-card>
+        <div class="release-card-content">
+          <div class="release-card-main">
+            <h3>Recovery Intelligence</h3>
+
+
+            <p>
+              A broken page should be the start of a better path.
+            </p>
+
+          </div>
+
+
+          <div class="release-card-footer">
+            <div class="release-meta-row">
+              <span>Date</span>
+              <strong>May 11, 2026</strong>
+            </div>
+
+
+            <div class="release-meta-row">
+              <span>Category</span>
+              <strong>News &amp; Press</strong>
+            </div>
+
+
+            <a class="release-button" href="https://www.cavbot.io/news/404-arcade-recovery-intelligence" aria-label="Read the Recovery Intelligence story">
+              <span>Read story</span>
+              
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =======================
+  CAVBOT FINAL SEAL
+  ======================= -->
+<section class="section cavbot-status cavbot-seal" aria-label="CavBot closing statement" data-cavbot-seal>
+  <div class="seal-gradient-art" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="none" fill="none">
+      <rect width="1600" height="900" fill="#01030F"></rect>
+      <path d="M0 0H1600V900H0V0Z" fill="url(#sealBase)"></path>
+      <path d="M0 0H1600V900H0V0Z" fill="url(#sealBlue)"></path>
+      <path d="M0 0H1600V900H0V0Z" fill="url(#sealViolet)"></path>
+      <path d="M0 0H1600V900H0V0Z" fill="url(#sealLime)"></path>
+
+
+      <defs>
+        <linearGradient id="sealBase" x1="120" y1="80" x2="1450" y2="840" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#050B22"></stop>
+          <stop offset="0.38" stop-color="#09183A"></stop>
+          <stop offset="0.72" stop-color="#0A1028"></stop>
+          <stop offset="1" stop-color="#01030F"></stop>
+        </linearGradient>
+
+
+        <radialGradient id="sealBlue" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 250) rotate(28) scale(820 620)">
+          <stop offset="0" stop-color="#4EA8FF" stop-opacity="0.52"></stop>
+          <stop offset="0.48" stop-color="#2348D8" stop-opacity="0.32"></stop>
+          <stop offset="1" stop-color="#01030F" stop-opacity="0"></stop>
+        </radialGradient>
+
+
+        <radialGradient id="sealViolet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1130 360) rotate(156) scale(760 560)">
+          <stop offset="0" stop-color="#3640B6" stop-opacity="0.48"></stop>
+          <stop offset="0.52" stop-color="#151B63" stop-opacity="0.28"></stop>
+          <stop offset="1" stop-color="#01030F" stop-opacity="0"></stop>
+        </radialGradient>
+
+
+        <radialGradient id="sealLime" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1160 780) rotate(172) scale(760 360)">
+          <stop offset="0" stop-color="#DCFF73" stop-opacity="0.22"></stop>
+          <stop offset="0.42" stop-color="#4EA8FF" stop-opacity="0.12"></stop>
+          <stop offset="1" stop-color="#01030F" stop-opacity="0"></stop>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+
+
+  <div class="seal-shell">
+    <div class="seal-user-stat" aria-label="7 users joined CavBot in the last 14 days">
+      <span class="seal-heart" aria-hidden="true">
+        <img
+          src="assets/icons/page/love-1-svgrepo-com.svg"
+          alt=""
+          loading="lazy"
+        />
+      </span>
+
+
+      <div class="seal-user-copy">
+        <strong><span data-seal-count="7">7</span> users</strong>
+        <span>joined CavBot<br />in the last <br /> 14 days</span>
+      </div>
+    </div>
+
+
+    <div class="seal-main">
+      <h2 class="seal-title">Know what breaks, see what matters, and act before impact.
+</h2>
+
+<br>
+      <div class="seal-actions" aria-label="CavBot closing actions">
+        <a class="seal-button button--primary" href="https://app.cavbot.io/auth?mode=signup">
+          <span>Start 14-day free trial</span>
+
+        </a>
+
+
+        <a class="seal-button button--ghost" href="https://app.cavbot.io/auth?mode=signup">
+          <span>Sign up for CavBot</span>
+          
+        </a>
+      </div>
     </div>
   </div>
 </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <!-- RESOURCES -->
-        <section class="footer-column">
-          <h2 class="footer-column-title">Resources</h2>
-          <button class="footer-column-toggle" type="button">
-            <span>Resources</span>
-            <span class="footer-toggle-icon">▾</span>
-          </button>
-          <ul class="footer-column-list">
-            <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
-            <li><a href="/faqs.html" class="footer-link">FAQs</a></li>
-            <li><a href="/cavbot-research.html" class="footer-link">CavBot Research</a></li>
-            <li><a href="/cavbot-biography.html" class="footer-link">CavBot Biography</a></li>
-          </ul>
-        </section>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/" class="footer-brand" aria-label="CavBot home">
+        <img
+          src="assets/logo/official-logotype-light.svg"
+          alt="CavBot"
+          class="footer-brand-logo"
+          decoding="async"
+        />
+      </a>
 
-        <section class="footer-column">
-          <h2 class="footer-column-title">Platform</h2>
-          <button class="footer-column-toggle" type="button">
-            <span>Platform</span>
-            <span class="footer-toggle-icon">▾</span>
-          </button>
-          <ul class="footer-column-list">
-            <li><a href="/cavtools.html" class="footer-link">CavTools</a></li>
-            <li><a href="/cavcloud.html" class="footer-link">CavCloud</a></li>
-            <li><a href="/cavsafe.html" class="footer-link">CavSafe</a></li>
-            <li><a href="/cavcode.html" class="footer-link">CavCode</a></li>
-            <li><a href="/cavcode-viewer.html" class="footer-link">CavCode Viewer</a></li>
-          </ul>
-        </section>
+      <p class="footer-statement">
+        Websites evolve, teams move faster, <br> and agents are becoming part of the <br> workflow.
+        CavBot brings them <br> together on one operational platform.
+      </p>
+    </div>
 
-        <!-- COMPANY -->
-        <section class="footer-column">
-          <h2 class="footer-column-title">Company</h2>
-          <button class="footer-column-toggle" type="button">
-            <span>Company</span>
-            <span class="footer-toggle-icon">▾</span>
-          </button>
-          <ul class="footer-column-list">
-            <li><a href="about.html" class="footer-link">About</a></li>
-            <li><a href="code-of-ethics.html" class="footer-link">Code of Ethics</a></li>
-            <li><a href="careers.html" class="footer-link">Careers</a></li>
-            <li><a href="media-kit.html" class="footer-link">Media Kit</a></li>
-            <li><a href="newsroom.html" class="footer-link">News &amp; Press</a></li>
-          </ul>
-        </section>
+    <div class="footer-grid">
+      <section class="footer-column">
+        <h2 class="footer-column-title">Platform</h2>
+        <ul class="footer-column-list">
+          <li><a href="/" class="footer-link">Features</a></li>
+          <li><a href="/" class="footer-link">CavAi</a></li>
+          <li><a href="/" class="footer-link">AI</a></li>
+          <li><a href="/" class="footer-link">Security</a></li>
+          <li><a href="/pricing.html" class="footer-link">pricing</a></li>
 
-        <!-- LEGAL -->
-        <section class="footer-column">
-          <h2 class="footer-column-title">Legal Notices</h2>
-          <button class="footer-column-toggle" type="button">
-            <span>Legal Area</span>
-            <span class="footer-toggle-icon">▾</span>
-          </button>
-          <ul class="footer-column-list">
-            <li><a href="/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
-            <li><a href="/terms-of-use.html" class="footer-link">Terms of Use</a></li>
-            <li><a href="/data-security.html" class="footer-link">Data &amp; Security</a></li>
-          </ul>
-        </section>
+        </ul>
+      </section>
+
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Ecosystem</h2>
+        <ul class="footer-column-list">
+          <li><a href="/" class="footer-link">Partners</a></li>
+          <li><a href="/" class="footer-link">API</a></li>
+          <li><a href="/" class="footer-link">Education</a></li>
+          <li><a href="/" class="footer-link">CavBot CLI</a></li>
+          <li><a href="https://app.cavbot.io/status" class="footer-link">System Status</a></li>
+          
+
+        </ul>
+      </section>
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Resources</h2>
+        <ul class="footer-column-list">
+          <li><a href="/" class="footer-link">Docs</a></li>
+          <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
+          <li><a href="/cavbot-research.html" class="footer-link">CavBot Research</a></li>
+          <li><a href="/" class="footer-link">Why CavBot?</a></li>
+          <li><a href="/" class="footer-link">Compare CavBot</a></li>
+          
+        </ul>
+      </section>
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Company</h2>
+        <ul class="footer-column-list">
+          <li><a href="/about.html" class="footer-link">About</a></li>
+          <li><a href="/code-of-ethics.html" class="footer-link">Code of Ethics</a></li>
+          <li><a href="/careers.html" class="footer-link">Careers</a></li>
+          <li><a href="/media-kit.html" class="footer-link">Media Kit</a></li>
+          <li><a href="/newsroom.html" class="footer-link">News and Press</a></li>
+
+        </ul>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <span class="footer-copy">&copy; 2026 CavBot.</span>
+        <nav class="footer-bottom-links" aria-label="Footer links">
+          <a href="/privacy-policy.html">Privacy</a>
+          <a href="/terms-of-use.html">Terms</a>
+          <a href="/data-security.html">Security</a>
+          <a href="/">What is Cav?</a>
+        </nav>
       </div>
 
-      <br><br><br><br>
-
-      <div class="footer-bottom">
-        <div class="footer-copy">
-          &copy; 2026 CavBot · All right reserved
-        </div>
+      <div class="footer-social-links" aria-label="Social links">
+        <a href="/" aria-label="Instagram" class="footer-social-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <circle cx="17" cy="7" r="1"></circle>
+          </svg>
+        </a>
+        <a href="/" aria-label="GitHub" class="footer-social-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2.8c-5.1 0-9.2 4.1-9.2 9.2 0 4.1 2.7 7.6 6.4 8.8.5.1.6-.2.6-.5v-1.8c-2.6.6-3.1-1.1-3.1-1.1-.4-1-.9-1.3-.9-1.3-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-2.1-.2-4.2-1-4.2-4.6 0-1 .4-1.9.9-2.5-.1-.2-.4-1.2.1-2.5 0 0 .7-.2 2.5.9.7-.2 1.5-.3 2.3-.3.8 0 1.6.1 2.3.3 1.8-1.2 2.5-.9 2.5-.9.5 1.3.2 2.3.1 2.5.6.6.9 1.5.9 2.5 0 3.6-2.2 4.4-4.2 4.6.3.3.6.8.6 1.7v2.5c0 .3.2.6.7.5 3.7-1.2 6.4-4.7 6.4-8.8 0-5.1-4.1-9.2-9.2-9.2Z"></path>
+          </svg>
+        </a>
+        <a href="/" aria-label="CavBot" class="footer-social-link footer-social-link--mark">
+          <img src="assets/logo/cavbot-logomark.svg" alt="" aria-hidden="true" decoding="async">
+        </a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
+
 
  <!-- Analytics bridge (window.cavbotAnalytics.track) -->
   <script>
@@ -1499,12 +3150,12 @@
   window.CAVBOT_SITE_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
   window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
 </script>
-  <div
-    data-cavbot-cdn-floating-badge="1"
-    data-cavbot-cdn-slot="badge"
-    aria-hidden="true"
-    style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
 <script src="/cavai/cavai-analytics-v5.js" defer></script>
+<div
+  data-cavbot-cdn-floating-badge="1"
+  data-cavbot-cdn-slot="badge"
+  aria-hidden="true"
+  style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
 <script
   defer
   src="/cavai/cavai.js"
