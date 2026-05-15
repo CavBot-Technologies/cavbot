@@ -532,50 +532,8 @@ body.cavai-shell {
   margin-top: clamp(10px, 2.5vw, 42px);
 }
 
-.cavai-logo-mark-glow {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: #8b5cff;
-  -webkit-mask: url("/assets/logo/CavAi Official Logo-svg/1.png") center / contain no-repeat;
-  mask: url("/assets/logo/CavAi Official Logo-svg/1.png") center / contain no-repeat;
-  clip-path: inset(0 0 48% 0);
-  filter: drop-shadow(0 0 18px rgba(139, 92, 255, 0.42));
-  animation:
-    cavai-app-logo-color-loop 8s ease-in-out infinite,
-    cavai-app-logo-breathe 2.6s ease-in-out infinite;
-}
 
-@keyframes cavai-app-logo-color-loop {
-  0%,
-  100% {
-    background: #8b5cff;
-    filter: drop-shadow(0 0 18px rgba(139, 92, 255, 0.42));
-  }
-  26% {
-    background: #4ea8ff;
-    filter: drop-shadow(0 0 18px rgba(78, 168, 255, 0.4));
-  }
-  52% {
-    background: #b9c85a;
-    filter: drop-shadow(0 0 18px rgba(185, 200, 90, 0.4));
-  }
-  78% {
-    background: #f7fbff;
-    filter: drop-shadow(0 0 18px rgba(247, 251, 255, 0.36));
-  }
-}
 
-@keyframes cavai-app-logo-breathe {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.035);
-  }
-}
 
 .resource-grid,
 .resource-card,
@@ -1297,11 +1255,13 @@ body.cavai-shell {
 .cavai-fake-logo {
   width: 42px;
   height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  display: grid;
+  place-items: center;
   place-self: center;
-  margin-top: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   line-height: 0;
   border-radius: 4px;
   background:
@@ -1313,46 +1273,25 @@ body.cavai-shell {
     );
 }
 
-.cavai-fake-logo svg {
-  width: 26px;
-  height: 26px;
-  fill: none;
+.cavai-real-logo-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   display: block;
-  flex: 0 0 auto;
-  margin: auto;
-}
-
-.cavai-fake-logo rect {
-  fill: rgba(1, 3, 15, 0.18);
-}
-
-.cavai-fake-logo path {
-  fill: #fff;
-}
-
-.cavai-art-card-head .cavai-fake-logo--atlas {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0;
-}
-
-.cavai-fake-logo--atlas svg {
-  width: 28px;
-  height: 28px;
-  transform: translate(2px, 4px);
+  width: 24px;
+  height: 24px;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%);
   transform-origin: center;
+  filter: brightness(0) saturate(100%);
 }
 
-.cavai-fake-logo--atlas rect {
-  fill: rgba(247, 251, 255, 0.58);
-}
 
-.cavai-fake-logo--atlas path {
-  fill: #01030f;
-  transform: none;
-  transform-origin: center;
-}
 
 .cavai-art-copy-block {
   margin: 0 20px 16px;
@@ -1888,9 +1827,6 @@ body.cavai-shell {
   overflow: hidden;
   backdrop-filter: blur(18px) saturate(170%);
   -webkit-backdrop-filter: blur(18px) saturate(170%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.035);
 }
 
 
@@ -1932,7 +1868,7 @@ body.cavai-shell {
   mask-size: contain;
   mask-repeat: no-repeat;
   pointer-events: none;
-  filter: drop-shadow(0 0 8px rgba(121, 231, 255, 0.32));
+  
 }
 
 
@@ -2394,3 +2330,4126 @@ body.cavai-shell {
     transition: none !important;
   }
 }
+/* ============================
+   CavAi Action Flow Section
+   ============================ */
+
+
+.cavai-action-flow {
+  --cavai-action-bg: #01030f;
+  --cavai-action-panel: rgba(6, 9, 25, 0.82);
+  --cavai-action-panel-strong: rgba(9, 13, 34, 0.94);
+  --cavai-action-border: rgba(247, 251, 255, 0.12);
+  --cavai-action-border-soft: rgba(247, 251, 255, 0.08);
+  --cavai-action-text: #f7fbff;
+  --cavai-action-muted: rgba(197, 206, 231, 0.68);
+  --cavai-action-faint: rgba(197, 206, 231, 0.46);
+  --cavai-flow-index: 0;
+
+
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(1, 3, 15, 1) 0%,
+      rgba(1, 3, 15, 1) 46%,
+      rgba(5, 13, 52, 0.96) 100%
+    );
+  color: var(--cavai-action-text);
+}
+
+
+.cavai-action-flow-inner {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(84px, 9vw, 140px) 0 clamp(90px, 10vw, 150px);
+}
+
+
+.cavai-action-flow-copy {
+  max-width: 760px;
+}
+
+
+.cavai-action-flow-eyebrow {
+  margin: 0 0 16px;
+  color: var(--cavai-lime, #d6ed6c);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-action-flow-title {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(40px, 4.4vw, 64px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+
+
+.cavai-action-flow-title span {
+  color: var(--cavai-lime, #d6ed6c);
+}
+
+
+.cavai-action-flow-subtitle {
+  width: min(720px, 100%);
+  margin: 28px 0 0;
+  color: var(--cavai-action-muted);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: clamp(14px, 1.2vw, 20px);
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: -0.018em;
+}
+
+
+.cavai-action-flow-tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: clamp(76px, 8vw, 120px);
+  padding-top: 28px;
+}
+
+
+.cavai-action-flow-rail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(247, 251, 255, 0.2);
+}
+
+
+.cavai-action-flow-progress {
+  position: absolute;
+  left: calc((100% / 3) * var(--cavai-flow-index));
+  top: -1px;
+  width: calc(100% / 3);
+  height: 2px;
+  background:
+    linear-gradient(
+      90deg,
+      var(--cavai-lime, #d6ed6c),
+      var(--cavai-cyan, #6be7ff),
+      var(--cavai-violet, #8d6cff)
+    );
+  transition: left 420ms ease;
+}
+
+
+.cavai-action-flow-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  color: rgba(197, 206, 231, 0.46);
+  font-family: var(--font-cavai-title);
+  font-size: clamp(22px, 2vw, 34px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+
+.cavai-action-flow-tab:nth-of-type(2) {
+  text-align: center;
+}
+
+
+.cavai-action-flow-tab:nth-of-type(3) {
+  text-align: right;
+}
+
+
+.cavai-action-flow-tab:hover,
+.cavai-action-flow-tab.is-active {
+  color: var(--cavai-action-text);
+}
+
+
+.cavai-action-flow-tab:focus-visible {
+  outline: 1px solid rgba(247, 251, 255, 0.42);
+  outline-offset: 8px;
+}
+
+
+.cavai-action-flow-stage {
+  position: relative;
+  min-height: clamp(420px, 44vw, 620px);
+  margin-top: clamp(64px, 8vw, 104px);
+}
+
+
+.cavai-action-flow-panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    visibility 0s linear 260ms;
+}
+
+
+.cavai-action-flow-panel.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    visibility 0s linear 0s;
+}
+
+
+.cavai-flow-window {
+  width: min(680px, 100%);
+  overflow: hidden;
+  border: 1px solid var(--cavai-action-border);
+  border-radius: 6px;
+  background: rgba(7, 10, 27, 0.92);
+}
+
+
+.cavai-flow-window-bar {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--cavai-action-border-soft);
+  background: rgba(10, 15, 42, 0.72);
+}
+
+
+.cavai-flow-window-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.cavai-flow-window-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(197, 206, 231, 0.36);
+}
+
+
+.cavai-flow-window-label {
+  color: rgba(197, 206, 231, 0.68);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+}
+
+
+.cavai-flow-signal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(220px, 0.88fr);
+  gap: 12px;
+  padding: 16px;
+}
+
+
+.cavai-flow-signal-main,
+.cavai-flow-agent-card,
+.cavai-flow-result-card {
+  border: 1px solid var(--cavai-action-border-soft);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.032);
+}
+
+
+.cavai-flow-card-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  padding: 15px;
+}
+
+
+.cavai-flow-card-head strong {
+  display: block;
+  color: var(--cavai-action-text);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 750;
+  letter-spacing: -0.018em;
+}
+
+
+.cavai-flow-card-head span {
+  display: block;
+  margin-top: 4px;
+  color: var(--cavai-action-faint);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+
+.cavai-flow-card-head em {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: rgba(214, 237, 108, 0.12);
+  color: var(--cavai-lime, #d6ed6c);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+
+/* Main app logos */
+
+
+.cavai-flow-app-logo {
+  width: 42px;
+  height: 42px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  background:
+    linear-gradient(
+      135deg,
+      var(--cavai-lime, #d6ed6c),
+      var(--cavai-cyan, #6be7ff),
+      var(--cavai-violet, #8d6cff)
+    );
+}
+
+
+.cavai-flow-app-logo img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  object-position: center;
+  transform: translate(-50%, -50%);
+}
+
+
+.cavai-flow-app-logo--signal img {
+  filter: brightness(0) saturate(100%);
+}
+
+
+.cavai-flow-app-logo--cavai {
+  background:
+    #140c3d;
+}
+
+
+.cavai-flow-app-logo--cavai img {
+  width: 25px;
+  height: 25px;
+  filter: none;
+}
+
+
+/* Icon shells */
+
+
+.cavai-flow-icon,
+.cavai-flow-step-icon,
+.cavai-flow-output-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+
+.cavai-flow-icon {
+  width: 28px;
+  height: 28px;
+}
+
+
+.cavai-flow-step-icon {
+  width: 24px;
+  height: 24px;
+}
+
+
+.cavai-flow-output-icon {
+  width: 34px;
+  height: 34px;
+}
+
+
+.cavai-flow-icon img,
+.cavai-flow-step-icon img,
+.cavai-flow-output-icon img {
+  display: block;
+  object-fit: contain;
+  object-position: center;
+  filter: brightness(0) invert(1);
+}
+
+
+.cavai-flow-icon img {
+  width: 16px;
+  height: 16px;
+}
+
+
+.cavai-flow-step-icon img {
+  width: 15px;
+  height: 15px;
+}
+
+
+.cavai-flow-output-icon img {
+  width: 19px;
+  height: 19px;
+}
+
+
+/* Unique icon backgrounds */
+
+
+.cavai-flow-icon--search {
+  background: rgba(107, 231, 255, 0.12);
+}
+
+
+.cavai-flow-icon--route {
+  background: rgba(141, 108, 255, 0.16);
+}
+
+
+.cavai-flow-icon--warning {
+  background: rgba(214, 237, 108, 0.13);
+}
+
+
+.cavai-flow-step-icon--history {
+  background: rgba(107, 231, 255, 0.11);
+}
+
+
+.cavai-flow-step-icon--structure {
+  background: rgba(141, 108, 255, 0.14);
+}
+
+
+.cavai-flow-step-icon--compare {
+  background: rgba(247, 251, 255, 0.07);
+}
+
+
+.cavai-flow-step-icon--spark {
+  background: rgba(214, 237, 108, 0.14);
+}
+
+
+.cavai-flow-output-icon--task {
+  background: rgba(214, 237, 108, 0.13);
+}
+
+
+.cavai-flow-output-icon--code {
+  background: rgba(107, 231, 255, 0.12);
+}
+
+
+.cavai-flow-output-icon--report {
+  background: rgba(141, 108, 255, 0.15);
+}
+
+
+.cavai-flow-message {
+  margin: 0 15px 15px;
+  padding: 16px;
+  border: 1px solid var(--cavai-action-border-soft);
+  border-radius: 4px;
+  background: rgba(1, 3, 15, 0.52);
+}
+
+
+.cavai-flow-message span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cavai-lime, #d6ed6c);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-flow-message strong {
+  display: block;
+  color: var(--cavai-action-text);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: clamp(14px, 1.2vw, 20px);
+  line-height: 1.26;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+
+.cavai-flow-signal-stack {
+  display: grid;
+  align-content: stretch;
+  gap: 10px;
+}
+
+
+.cavai-flow-mini-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 0 12px;
+  border: 1px solid var(--cavai-action-border-soft);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.032);
+}
+
+
+.cavai-flow-mini-row > span:not(.cavai-flow-icon) {
+  color: rgba(197, 206, 231, 0.68);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+
+.cavai-flow-mini-row strong {
+  color: var(--cavai-action-text);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+
+.cavai-flow-agent-card {
+  margin: 16px;
+}
+
+
+.cavai-flow-agent-steps {
+  display: grid;
+  gap: 9px;
+  padding: 0 15px 15px;
+}
+
+
+.cavai-flow-agent-step {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1px solid var(--cavai-action-border-soft);
+  border-radius: 4px;
+  background: rgba(1, 3, 15, 0.42);
+}
+
+
+.cavai-flow-agent-step.is-active {
+  border-color: rgba(214, 237, 108, 0.44);
+  background: rgba(214, 237, 108, 0.065);
+}
+
+
+.cavai-flow-agent-step > span:not(.cavai-flow-step-icon) {
+  color: rgba(247, 251, 255, 0.86);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+
+.cavai-flow-agent-step strong {
+  color: var(--cavai-action-faint);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.cavai-flow-result-card {
+  margin: 16px;
+  padding: 15px;
+}
+
+
+.cavai-flow-result-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+
+.cavai-flow-result-header span {
+  color: var(--cavai-action-faint);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-flow-result-header strong {
+  color: var(--cavai-lime, #d6ed6c);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+
+.cavai-flow-result-list {
+  display: grid;
+  gap: 9px;
+}
+
+
+.cavai-flow-output-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 10px 12px;
+  border: 1px solid var(--cavai-action-border-soft);
+  border-radius: 4px;
+  background: rgba(1, 3, 15, 0.38);
+}
+
+
+.cavai-flow-output-row strong {
+  display: block;
+  color: var(--cavai-action-text);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+
+.cavai-flow-output-row span {
+  display: block;
+  margin-top: 4px;
+  color: var(--cavai-action-faint);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+
+.cavai-flow-output-row > .cavai-flow-output-icon {
+  margin-top: 0;
+}
+
+
+.cavai-flow-output-row em {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: rgba(107, 231, 255, 0.1);
+  color: var(--cavai-cyan, #6be7ff);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+
+.cavai-flow-result-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  color: var(--cavai-action-faint);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+}
+
+
+.cavai-flow-result-footer strong {
+  color: var(--cavai-action-text);
+  font-weight: 750;
+}
+
+
+@media (max-width: 900px) {
+  .cavai-action-flow-inner {
+    width: min(100% - 32px, 720px);
+  }
+
+
+  .cavai-action-flow-tabs {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-top: 24px;
+  }
+
+
+  .cavai-action-flow-progress {
+    width: 33.333%;
+  }
+
+
+  .cavai-action-flow-tab,
+  .cavai-action-flow-tab:nth-of-type(2),
+  .cavai-action-flow-tab:nth-of-type(3) {
+    text-align: left;
+  }
+
+
+  .cavai-action-flow-stage {
+    min-height: 620px;
+  }
+
+
+  .cavai-flow-signal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 620px) {
+  .cavai-action-flow-inner {
+    width: min(100% - 24px, 560px);
+    padding-top: 72px;
+    padding-bottom: 92px;
+  }
+
+
+  .cavai-action-flow-title {
+    font-size: clamp(42px, 14vw, 64px);
+  }
+
+
+  .cavai-action-flow-subtitle {
+    font-size: 16px;
+  }
+
+
+  .cavai-action-flow-tab {
+    font-size: 24px;
+  }
+
+
+  .cavai-action-flow-stage {
+    min-height: 680px;
+    margin-top: 44px;
+  }
+
+
+  .cavai-flow-window {
+    width: 100%;
+  }
+
+
+  .cavai-flow-card-head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+
+  .cavai-flow-card-head em {
+    grid-column: 2;
+    width: fit-content;
+  }
+
+
+  .cavai-flow-output-row {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+
+  .cavai-flow-output-row em {
+    grid-column: 2;
+    width: fit-content;
+    margin-top: 4px;
+  }
+
+
+  .cavai-flow-result-footer {
+    display: grid;
+    gap: 6px;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .cavai-action-flow-progress,
+  .cavai-action-flow-panel {
+    transition: none;
+  }
+}
+
+/* ============================
+   FIX: Dead-center CavAi flow SVG icons
+   Paste at very bottom of CSS
+   ============================ */
+
+
+/* Stop broad text span rules from affecting icon wrappers */
+.cavai-flow-card-head > .cavai-flow-app-logo,
+.cavai-flow-mini-row > .cavai-flow-icon,
+.cavai-flow-agent-step > .cavai-flow-step-icon,
+.cavai-flow-output-row > .cavai-flow-output-icon {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  align-self: center !important;
+  justify-self: center !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  overflow: hidden !important;
+}
+
+
+/* Main app logo square */
+.cavai-flow-app-logo {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+
+/* Small signal icons */
+.cavai-flow-icon {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+
+/* Agent step icons */
+.cavai-flow-step-icon {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+
+/* Output row icons */
+.cavai-flow-output-icon {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+
+/* Force every SVG image to true center */
+.cavai-flow-app-logo img,
+.cavai-flow-icon img,
+.cavai-flow-step-icon img,
+.cavai-flow-output-icon img {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  display: block !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  transform-origin: center !important;
+  vertical-align: top !important;
+}
+
+
+/* Exact icon sizes inside their boxes */
+.cavai-flow-app-logo img {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+
+.cavai-flow-app-logo--cavai img {
+  width: 25px !important;
+  height: 25px !important;
+}
+
+
+.cavai-flow-icon img {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+
+.cavai-flow-step-icon img {
+  width: 15px !important;
+  height: 15px !important;
+}
+
+
+.cavai-flow-output-icon img {
+  width: 19px !important;
+  height: 19px !important;
+}
+
+
+/* Make sure output row text spans still behave correctly */
+.cavai-flow-output-row > div span {
+  display: block;
+  margin-top: 4px;
+  color: var(--cavai-action-faint);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+
+/* Make sure mini row text spans still behave correctly */
+.cavai-flow-mini-row > span:not(.cavai-flow-icon) {
+  display: block;
+  margin-top: 0;
+  color: rgba(197, 206, 231, 0.68);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+
+/* Make sure agent step text spans still behave correctly */
+.cavai-flow-agent-step > span:not(.cavai-flow-step-icon) {
+  display: block;
+  margin-top: 0;
+  color: rgba(247, 251, 255, 0.86);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.25;
+}
+/* ============================
+   Caven Intro Section
+   ============================ */
+
+
+.caven-intro-section {
+  --caven-bg: var(--cavai-bg, #01030f);
+  --caven-panel: rgba(7, 10, 27, 0.88);
+  --caven-panel-soft: rgba(255, 255, 255, 0.024);
+  --caven-border: rgba(247, 251, 255, 0.1);
+  --caven-border-soft: rgba(247, 251, 255, 0.075);
+  --caven-text: #f7fbff;
+  --caven-muted: rgba(197, 206, 231, 0.7);
+  --caven-faint: rgba(197, 206, 231, 0.48);
+  --caven-link: #58cfff;
+  --caven-gradient: linear-gradient(
+    104deg,
+    #f7fbff 0%,
+    #f7fbff 16%,
+    #f4f7d7 29%,
+    var(--cavai-lime, #b9c85a) 46%,
+    var(--cavai-cyan, #79e7ff) 66%,
+    var(--cavai-blue, #4ea8ff) 84%,
+    var(--cavai-violet, #8b5cff) 100%
+  );
+
+
+  position: relative;
+  overflow: hidden;
+  background: var(--caven-bg);
+  color: var(--caven-text);
+  padding: clamp(96px, 10vw, 160px) 0 clamp(110px, 11vw, 180px);
+  opacity: 0;
+  transform: translateY(54px) scale(0.986);
+  transform-origin: center top;
+  will-change: opacity, transform;
+  transition:
+    opacity 620ms ease,
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.caven-intro-section.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+.caven-intro-section::before,
+.caven-intro-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+.caven-intro-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1320px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+
+.caven-intro-head {
+  width: min(820px, 100%);
+  display: grid;
+  justify-items: start;
+  text-align: left;
+}
+
+
+.caven-logo-mark {
+  position: absolute;
+  z-index: 1;
+  top: clamp(56px, 7vw, 106px);
+  right: max(28px, calc((100vw - 1320px) / 2));
+  width: clamp(230px, 28vw, 430px);
+  height: clamp(230px, 28vw, 430px);
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(28px) scale(0.96);
+  will-change: opacity, transform;
+  transition:
+    opacity 780ms ease 120ms,
+    transform 1000ms cubic-bezier(0.16, 1, 0.3, 1) 120ms;
+}
+
+
+.caven-intro-section.is-visible .caven-logo-mark {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+
+.caven-logo-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.105;
+  filter: brightness(0) invert(1);
+}
+
+
+.caven-section-title {
+  margin: 0;
+  max-width: 800px;
+  font-family: var(--font-cavai-title, "Tektur", "Oxanium", Inter, system-ui, sans-serif);
+  font-size: clamp(46px, 4vw, 94px);
+  line-height: 0.96;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  background: var(--caven-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+.caven-section-subtitle {
+  width: min(760px, 100%);
+  margin: clamp(22px, 2.4vw, 34px) 0 0;
+  color: var(--caven-muted);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: clamp(16px, 1.25vw, 20px);
+  line-height: 1.58;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+
+.caven-section-actions {
+  margin-top: 30px;
+}
+
+
+.caven-section-link,
+.caven-feature-copy a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--caven-link);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 750;
+  letter-spacing: -0.018em;
+  text-decoration: none;
+}
+
+
+.caven-section-link span:last-child,
+.caven-feature-copy a span:last-child {
+  transform: translateY(-0.5px);
+  transition: transform 160ms ease;
+}
+
+
+.caven-section-link:hover,
+.caven-section-link:focus-visible,
+.caven-feature-copy a:hover,
+.caven-feature-copy a:focus-visible {
+  color: var(--cavai-lime, #b9c85a);
+  outline: none;
+}
+
+
+.caven-section-link:hover span:last-child,
+.caven-section-link:focus-visible span:last-child,
+.caven-feature-copy a:hover span:last-child,
+.caven-feature-copy a:focus-visible span:last-child {
+  transform: translate(3px, -0.5px);
+}
+
+
+.caven-section-statement {
+  margin: clamp(60px, 3vw, 90px) 0 clamp(34px, 4vw, 54px);
+  padding: 24px 0;
+  border-top: 1px solid rgba(247, 251, 255, 0.1);
+  border-bottom: 1px solid rgba(247, 251, 255, 0.1);
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  text-align: right;
+}
+
+
+.caven-section-statement strong,
+.caven-section-statement span {
+  font-family: var(--font-cavai-title, "Tektur", "Oxanium", Inter, system-ui, sans-serif);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-align: left;
+}
+
+
+.caven-section-statement strong {
+  color: #f7fbff;
+  font-size: clamp(24px, 2.4vw, 40px);
+  font-weight: 600;
+}
+
+
+.caven-section-statement span {
+  color: rgba(197, 206, 231, 0.5);
+  font-size: clamp(20px, 1.8vw, 30px);
+  font-weight: 500;
+}
+
+
+.caven-feature-stack {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(247, 251, 255, 0.08);
+}
+
+
+.caven-feature-card {
+  position: relative;
+  min-height: clamp(480px, 43vw, 640px);
+  display: grid;
+  grid-template-columns: minmax(260px, 0.88fr) minmax(0, 1.12fr);
+  gap: clamp(42px, 6vw, 86px);
+  align-items: center;
+  padding: clamp(34px, 5vw, 72px) 0;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.08);
+  background: transparent;
+  overflow: visible;
+}
+
+
+.caven-feature-card--debug {
+  grid-template-columns: minmax(0, 1.12fr) minmax(260px, 0.88fr);
+}
+
+
+.caven-feature-card--debug .caven-feature-copy {
+  order: 2;
+}
+
+
+.caven-feature-card--debug .caven-feature-visual {
+  order: 1;
+}
+
+
+.caven-feature-copy {
+  min-width: 0;
+}
+
+
+.caven-feature-copy h3 {
+  margin: 0;
+  max-width: 460px;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title, "Tektur", "Oxanium", Inter, system-ui, sans-serif);
+  font-size: clamp(30px, 3.1vw, 52px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+
+.caven-feature-copy p {
+  margin: clamp(18px, 2vw, 24px) 0 0;
+  max-width: 520px;
+  color: rgba(197, 206, 231, 0.72);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+}
+
+
+.caven-feature-copy a {
+  margin-top: 28px;
+}
+
+
+.caven-feature-visual {
+  min-width: 0;
+  position: relative;
+}
+
+
+/* Shared window */
+
+
+.caven-code-window,
+.caven-debug-panel,
+.caven-ship-panel {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(7, 10, 27, 0.78);
+  color: #f7fbff;
+}
+
+
+.caven-window-bar {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.08);
+  background: rgba(255, 255, 255, 0.024);
+}
+
+
+.caven-window-bar strong {
+  color: rgba(197, 206, 231, 0.68);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+
+.caven-window-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.caven-window-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(197, 206, 231, 0.36);
+}
+
+
+/* Visual 1 */
+
+
+.caven-code-body {
+  display: grid;
+  grid-template-columns: 178px minmax(0, 1fr);
+  min-height: 360px;
+}
+
+
+.caven-code-explorer {
+  padding: 18px 14px;
+  border-right: 1px solid rgba(247, 251, 255, 0.08);
+  background: rgba(255, 255, 255, 0.018);
+}
+
+
+.caven-code-explorer > span {
+  display: block;
+  margin-bottom: 14px;
+  color: rgba(197, 206, 231, 0.5);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+
+.caven-code-explorer div {
+  min-height: 38px;
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 0 10px;
+  border-radius: 4px;
+  color: rgba(197, 206, 231, 0.68);
+}
+
+
+.caven-code-explorer div + div {
+  margin-top: 5px;
+}
+
+
+.caven-code-explorer div.is-active {
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7fbff;
+}
+
+
+.caven-code-explorer img {
+  width: 15px;
+  height: 15px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.82;
+}
+
+
+.caven-code-explorer strong {
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.1;
+  font-weight: 650;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.caven-code-editor {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+
+.caven-code-tabs {
+  min-height: 50px;
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.08);
+  background: rgba(255, 255, 255, 0.014);
+}
+
+
+.caven-code-tabs span {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 13px;
+  border-radius: 4px 4px 0 0;
+  color: rgba(197, 206, 231, 0.62);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.caven-code-tabs span.is-active {
+  background: rgba(255, 255, 255, 0.055);
+  color: #f7fbff;
+}
+
+
+.caven-code-lines {
+  padding: 22px 20px 20px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+
+.caven-code-lines p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 16px;
+  color: rgba(247, 251, 255, 0.86);
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+
+.caven-code-lines p span {
+  color: rgba(197, 206, 231, 0.42);
+  text-align: right;
+}
+
+
+.caven-code-lines code {
+  color: rgba(247, 251, 255, 0.86);
+  white-space: pre;
+}
+
+
+.caven-code-note {
+  margin: 0 16px 16px;
+  min-height: 46px;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 0 13px;
+  border-radius: 4px;
+  
+  background: rgba(185, 200, 90, 0.055);
+}
+
+
+.caven-code-note img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+
+.caven-code-note span {
+  color: rgba(247, 251, 255, 0.88);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+
+/* Visual 2 */
+
+
+.caven-debug-panel {
+  padding: 16px;
+}
+
+
+.caven-debug-header {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 14px;
+  border: 1px solid rgba(247, 251, 255, 0.08);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.024);
+}
+
+
+.caven-debug-header span {
+  display: block;
+  margin-bottom: 5px;
+  color: rgba(197, 206, 231, 0.48);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.caven-debug-header strong {
+  color: #f7fbff;
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+
+.caven-debug-header em {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: rgba(88, 207, 255, 0.09);
+  color: var(--caven-link);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+
+.caven-debug-grid {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+
+.caven-debug-row {
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 13px;
+  padding: 12px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.08);
+  background: rgba(1, 3, 15, 0.34);
+}
+
+
+.caven-debug-icon,
+.caven-ship-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+
+.caven-debug-icon {
+  width: 34px;
+  height: 34px;
+}
+
+
+.caven-debug-icon img,
+.caven-ship-icon img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+
+.caven-debug-row strong,
+.caven-ship-row strong {
+  display: block;
+  color: #f7fbff;
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+
+.caven-debug-row span:not(.caven-debug-icon),
+.caven-ship-row span:not(.caven-ship-icon) {
+  display: block;
+  margin-top: 4px;
+  color: rgba(197, 206, 231, 0.58);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+
+.caven-debug-recommendation {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 4px;
+  
+  background: rgba(185, 200, 90, 0.05);
+}
+
+
+.caven-debug-recommendation span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--cavai-lime, #b9c85a);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.caven-debug-recommendation strong {
+  display: block;
+  color: rgba(247, 251, 255, 0.9);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  line-height: 1.42;
+  font-weight: 650;
+}
+
+
+/* Visual 3 */
+
+
+.caven-ship-panel {
+  padding: 16px;
+}
+
+
+.caven-ship-top {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+
+.caven-ship-top span {
+  color: rgba(197, 206, 231, 0.48);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.caven-ship-top strong {
+  color: var(--cavai-lime, #b9c85a);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 850;
+}
+
+
+.caven-ship-list {
+  display: grid;
+  gap: 10px;
+}
+
+
+.caven-ship-row {
+  min-height: 74px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.08);
+  background: rgba(1, 3, 15, 0.34);
+}
+
+
+.caven-ship-icon {
+  width: 38px;
+  height: 38px;
+}
+
+
+.caven-ship-row em {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: rgba(88, 207, 255, 0.09);
+  color: var(--caven-link);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+
+.caven-ship-footer {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(247, 251, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  color: rgba(197, 206, 231, 0.52);
+  font-family: var(--font-cavai-body, Inter, system-ui, sans-serif);
+  font-size: 13px;
+}
+
+
+.caven-ship-footer strong {
+  color: #f7fbff;
+  font-weight: 750;
+}
+
+
+/* Reveal pieces */
+
+
+.caven-intro-head,
+.caven-section-statement,
+.caven-feature-card {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 560ms ease,
+    transform 780ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.caven-intro-section.is-visible .caven-intro-head,
+.caven-intro-section.is-visible .caven-section-statement,
+.caven-intro-section.is-visible .caven-feature-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.caven-intro-section.is-visible .caven-section-statement {
+  transition-delay: 80ms;
+}
+
+
+.caven-intro-section.is-visible .caven-feature-card:nth-child(1) {
+  transition-delay: 140ms;
+}
+
+
+.caven-intro-section.is-visible .caven-feature-card:nth-child(2) {
+  transition-delay: 220ms;
+}
+
+
+.caven-intro-section.is-visible .caven-feature-card:nth-child(3) {
+  transition-delay: 300ms;
+}
+
+
+/* Responsive */
+
+
+@media (max-width: 1080px) {
+  .caven-logo-mark {
+    width: clamp(180px, 34vw, 300px);
+    height: clamp(180px, 34vw, 300px);
+    right: 24px;
+    opacity: 0.75;
+  }
+
+
+  .caven-feature-card,
+  .caven-feature-card--debug {
+    grid-template-columns: 1fr;
+  }
+
+
+  .caven-feature-card--debug .caven-feature-copy,
+  .caven-feature-card--debug .caven-feature-visual {
+    order: initial;
+  }
+
+
+  .caven-code-window,
+  .caven-debug-panel,
+  .caven-ship-panel {
+    max-width: none;
+  }
+}
+
+
+@media (max-width: 720px) {
+  .caven-intro-section {
+    padding-top: 78px;
+    padding-bottom: 96px;
+  }
+
+
+  .caven-intro-inner {
+    width: min(100% - 30px, 620px);
+  }
+
+
+  .caven-logo-mark {
+    top: 52px;
+    right: -34px;
+    width: 190px;
+    height: 190px;
+  }
+
+
+  .caven-section-title {
+    font-size: clamp(42px, 13vw, 68px);
+  }
+
+
+  .caven-feature-card {
+    min-height: auto;
+    padding: 38px 0;
+  }
+
+
+  .caven-code-body {
+    grid-template-columns: 1fr;
+  }
+
+
+  .caven-code-explorer {
+    border-right: 0;
+    border-bottom: 1px solid rgba(247, 251, 255, 0.08);
+  }
+
+
+  .caven-code-tabs {
+    overflow-x: auto;
+  }
+
+
+  .caven-ship-row {
+    grid-template-columns: 38px minmax(0, 1fr);
+  }
+
+
+  .caven-ship-row em {
+    grid-column: 2;
+    width: fit-content;
+  }
+
+
+  .caven-ship-footer {
+    display: grid;
+    gap: 6px;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .caven-intro-section,
+  .caven-logo-mark,
+  .caven-intro-head,
+  .caven-section-statement,
+  .caven-feature-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Remove all Caven divider lines */
+.caven-section-statement {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+
+.caven-feature-stack {
+  border-top: 0 !important;
+}
+
+
+.caven-feature-card {
+  border-bottom: 0 !important;
+}
+
+
+/* Remove internal preview dividers too */
+.caven-window-bar,
+.caven-code-tabs,
+.caven-code-explorer,
+.caven-ship-footer {
+  border: 0 !important;
+}
+
+
+.caven-code-explorer {
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+}
+
+
+.caven-model-footer,
+.caven-debug-recommendation,
+.caven-ship-footer {
+  border-top: 0 !important;
+}
+/* ============================
+   From Signal to Action
+   Section entrance + overlap
+  
+   ============================ */
+
+
+.cavai-action-flow {
+  position: relative !important;
+  z-index: 8 !important;
+  margin-top: clamp(-110px, -7vw, -56px) !important;
+  opacity: 0;
+  transform: translateY(86px);
+  will-change: transform, opacity;
+  transition:
+    opacity 680ms ease,
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* Keeps the previous section from feeling cut off when this section overlaps it */
+.cavai-foundation-section {
+  padding-bottom: clamp(150px, 12vw, 220px) !important;
+}
+
+
+/* Visible state triggered by JS */
+.cavai-action-flow.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* Optional: makes the actual content inside feel like it rises separately */
+.cavai-action-flow-copy,
+.cavai-action-flow-tabs,
+.cavai-action-flow-stage {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 620ms ease,
+    transform 860ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.cavai-action-flow.is-visible .cavai-action-flow-copy,
+.cavai-action-flow.is-visible .cavai-action-flow-tabs,
+.cavai-action-flow.is-visible .cavai-action-flow-stage {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.cavai-action-flow.is-visible .cavai-action-flow-tabs {
+  transition-delay: 90ms;
+}
+
+
+.cavai-action-flow.is-visible .cavai-action-flow-stage {
+  transition-delay: 170ms;
+}
+
+
+/* Mobile: reduce the overlap so it does not crash into the previous section */
+@media (max-width: 720px) {
+  .cavai-action-flow {
+    margin-top: clamp(-72px, -10vw, -38px) !important;
+    transform: translateY(56px);
+  }
+
+
+  .cavai-foundation-section {
+    padding-bottom: clamp(118px, 18vw, 160px) !important;
+  }
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cavai-action-flow,
+  .cavai-action-flow-copy,
+  .cavai-action-flow-tabs,
+  .cavai-action-flow-stage {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+/* ============================
+   CavAi Agents + Intelligence Band
+   Final refined version
+   ============================ */
+
+
+.cavai-agents-section,
+.cavai-intelligence-band {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: var(--cavai-ink);
+}
+
+
+/* remove inherited section spacing around the new sections */
+.cavai-foundation-section + .cavai-agents-section,
+.cavai-agents-section + .cavai-intelligence-band,
+.cavai-intelligence-band + .cavai-action-flow {
+  margin-top: 0 !important;
+}
+
+
+/* ============================
+   Section 5 — Agents
+   ============================ */
+
+
+.cavai-agents-section {
+  padding: clamp(100px, 12vw, 158px) 0 clamp(110px, 10vw, 172px);
+  background: #01030f;
+  
+}
+
+
+.cavai-agents-section::before,
+.cavai-agents-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+.cavai-agents-inner {
+  width: min(1320px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+
+.cavai-agents-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.8fr);
+  align-items: end;
+  gap: clamp(42px, 7vw, 120px);
+  margin-bottom: clamp(54px, 6vw, 86px);
+}
+
+
+.cavai-agents-title-wrap {
+  opacity: 0;
+  transform: translateX(-52px);
+  transition:
+    opacity 660ms ease,
+    transform 940ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.cavai-agents-copy {
+  opacity: 0;
+  transform: translateX(52px);
+  transition:
+    opacity 660ms ease 60ms,
+    transform 940ms cubic-bezier(0.16, 1, 0.3, 1) 60ms;
+}
+
+
+.cavai-agents-section.is-visible .cavai-agents-title-wrap,
+.cavai-agents-section.is-visible .cavai-agents-copy {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.cavai-agents-title {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(46px, 5.8vw, 92px);
+  line-height: 0.96;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+
+.cavai-agents-copy {
+  margin: 0;
+  max-width: 620px;
+  color: rgba(247, 251, 255, 0.78);
+  font-family: var(--font-cavai-body);
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+
+.cavai-agents-shell {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.012)),
+    rgba(3, 6, 18, 0.96);
+  
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 720ms ease 120ms,
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1) 120ms;
+}
+
+
+.cavai-agents-section.is-visible .cavai-agents-shell {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.cavai-agents-tabs {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.09);
+  background: rgba(1, 3, 15, 0.72);
+}
+
+
+.cavai-agents-tab {
+  appearance: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  border-radius: 7px;
+  padding: 0 18px;
+  background: rgba(255, 255, 255, 0.028);
+  color: rgba(197, 206, 231, 0.72);
+  font-family: var(--font-cavai-body);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+
+.cavai-agents-tab:hover,
+.cavai-agents-tab.is-active {
+  color: #f7fbff;
+  border-color: rgba(121, 231, 255, 0.32);
+  background: rgba(121, 231, 255, 0.07);
+}
+
+
+.cavai-agents-tab:active {
+  transform: translateY(1px);
+}
+
+
+.cavai-agents-tab:focus-visible {
+  outline: 1px solid rgba(121, 231, 255, 0.65);
+  outline-offset: 4px;
+}
+
+
+.cavai-agents-tab-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  line-height: 0;
+}
+
+
+.cavai-agents-tab-icon img {
+  width: 17px;
+  height: 17px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(73%) sepia(89%) saturate(850%) hue-rotate(141deg) brightness(102%) contrast(101%);
+}
+
+
+.cavai-agents-panel {
+  display: none;
+  padding: clamp(24px, 3vw, 38px);
+}
+
+
+.cavai-agents-panel.is-active {
+  display: block;
+  animation: cavai-agent-panel-enter 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+
+.cavai-agents-panel[hidden] {
+  display: none !important;
+}
+
+
+@keyframes cavai-agent-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.cavai-agent-library-head strong {
+  display: block;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(24px, 2vw, 34px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+
+.cavai-agent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+
+.cavai-agent-tile {
+  min-height: 104px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 251, 255, 0.11);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.034), rgba(255, 255, 255, 0.016)),
+    rgba(6, 9, 25, 0.84);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    
+}
+
+
+.cavai-agent-tile:hover {
+  transform: translateY(-2px);
+  
+  background:
+    linear-gradient(180deg, rgba(121, 231, 255, 0.046), rgba(255, 255, 255, 0.018)),
+    rgba(6, 9, 25, 0.92);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.2);
+}
+
+
+.cavai-agent-tile-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  
+  line-height: 0;
+  overflow: hidden;
+}
+
+
+.cavai-agent-tile-icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+
+.cavai-agent-tile-icon--teal {
+  background: linear-gradient(135deg, rgba(27, 202, 178, 0.92), rgba(16, 85, 92, 0.86));
+}
+
+
+.cavai-agent-tile-icon--blue {
+  background: linear-gradient(135deg, rgba(78, 168, 255, 0.95), rgba(33, 58, 138, 0.88));
+}
+
+
+.cavai-agent-tile-icon--lime {
+  background: linear-gradient(135deg, rgba(185, 200, 90, 0.96), rgba(56, 78, 58, 0.88));
+}
+
+
+.cavai-agent-tile-icon--violet {
+  background: linear-gradient(135deg, rgba(139, 92, 255, 0.96), rgba(49, 28, 113, 0.9));
+}
+
+
+.cavai-agent-tile-icon--cyan {
+  background: linear-gradient(135deg, rgba(121, 231, 255, 0.96), rgba(28, 82, 125, 0.88));
+}
+
+
+.cavai-agent-tile-icon--rose {
+  background: linear-gradient(135deg, rgba(255, 98, 111, 0.95), rgba(116, 36, 59, 0.9));
+}
+
+
+.cavai-agent-tile h3 {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-body);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.024em;
+}
+
+
+.cavai-agent-tile p {
+  margin: 6px 0 0;
+  max-width: 420px;
+  color: rgba(197, 206, 231, 0.66);
+  font-family: var(--font-cavai-body);
+  font-size: 13px;
+  line-height: 1.38;
+  font-weight: 500;
+}
+
+
+.cavai-agent-tile em {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 10px;
+  border-radius: 6px;
+  background: rgba(121, 231, 255, 0.08);
+  
+  color: rgba(121, 231, 255, 0.9);
+  font-family: var(--font-cavai-body);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 850;
+}
+
+
+.cavai-custom-agent-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(34px, 6vw, 92px);
+  align-items: center;
+  min-height: 650px;
+}
+
+
+.cavai-custom-agent-copy span {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--cavai-lime);
+  font-family: var(--font-cavai-body);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-custom-agent-copy h3 {
+  margin: 0;
+  max-width: 540px;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(36px, 4.1vw, 64px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.052em;
+  text-wrap: balance;
+}
+
+
+.cavai-custom-agent-copy p {
+  margin: 22px 0 0;
+  max-width: 560px;
+  color: rgba(197, 206, 231, 0.75);
+  font-family: var(--font-cavai-body);
+  font-size: clamp(15.5px, 1.1vw, 18px);
+  line-height: 1.55;
+  letter-spacing: -0.022em;
+}
+
+
+.cavai-custom-agent-copy ul {
+  display: grid;
+  gap: 11px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+.cavai-custom-agent-copy li {
+  position: relative;
+  padding-left: 22px;
+  color: rgba(247, 251, 255, 0.78);
+  font-family: var(--font-cavai-body);
+  font-size: 14.5px;
+  line-height: 1.42;
+}
+
+
+.cavai-custom-agent-copy li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--cavai-cyan);
+}
+
+
+.cavai-custom-agent-mock {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  background: rgba(2, 4, 14, 0.94);
+ 
+}
+
+
+.cavai-custom-agent-mock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.035);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+
+.cavai-custom-window-bar {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.09);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+.cavai-custom-window-bar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(197, 206, 231, 0.35);
+}
+
+
+.cavai-custom-window-bar strong {
+  margin-left: auto;
+  color: rgba(197, 206, 231, 0.64);
+  font-family: var(--font-cavai-body);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-custom-form {
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 2.4vw, 30px);
+}
+
+
+.cavai-custom-upload {
+  width: min(240px, 100%);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 7px;
+  border: 1px dashed rgba(121, 231, 255, 0.26);
+  background: rgba(121, 231, 255, 0.035);
+}
+
+
+.cavai-custom-upload > span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  background: #140c3d
+}
+
+
+.cavai-custom-upload img {
+  width: 23px;
+  height: 23px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+
+.cavai-custom-upload strong {
+  display: block;
+  color: #f7fbff;
+  font-family: var(--font-cavai-body);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+.cavai-custom-upload small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(197, 206, 231, 0.58);
+  font-family: var(--font-cavai-body);
+  font-size: 12px;
+}
+
+
+.cavai-custom-field {
+  display: grid;
+  gap: 8px;
+}
+
+
+.cavai-custom-field span,
+.cavai-custom-surface-row span {
+  color: rgba(247, 251, 255, 0.86);
+  font-family: var(--font-cavai-body);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+
+.cavai-custom-field div {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 13px 14px;
+  border-radius: 7px;
+  border: 1px solid rgba(247, 251, 255, 0.13);
+  background: rgba(1, 3, 15, 0.54);
+  color: rgba(247, 251, 255, 0.74);
+  font-family: var(--font-cavai-body);
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+
+.cavai-custom-field--large div {
+  min-height: 86px;
+  align-items: flex-start;
+}
+
+
+.cavai-custom-surface-row {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 14px;
+  border-radius: 7px;
+  border: 1px solid rgba(247, 251, 255, 0.13);
+  background: rgba(255, 255, 255, 0.026);
+}
+
+
+.cavai-custom-surface-row strong {
+  color: var(--cavai-cyan);
+  font-family: var(--font-cavai-body);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+
+.cavai-custom-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+
+.cavai-custom-actions button {
+  appearance: none;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 7px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(247, 251, 255, 0.8);
+  font-family: var(--font-cavai-body);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+
+.cavai-custom-actions button:last-child {
+  border-color: rgba(185, 200, 90, 0.32);
+  background: rgba(185, 200, 90, 0.14);
+  color: #f7fbff;
+}
+
+
+
+
+
+
+
+/* ============================
+   Section 6 — Multi-model gradient statement
+   ============================ */
+
+
+.cavai-intelligence-band {
+  min-height: clamp(640px, 86svh, 900px);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(121, 231, 255, 0.9) 0%, rgba(49, 88, 255, 0.78) 26%, rgba(49, 88, 255, 0) 55%),
+    radial-gradient(circle at 82% 78%, rgba(139, 92, 255, 0.84) 0%, rgba(78, 168, 255, 0.62) 30%, rgba(78, 168, 255, 0) 58%),
+    radial-gradient(circle at 52% 50%, rgba(185, 200, 90, 0.9) 0%, rgba(255, 132, 0, 0.82) 36%, rgba(139, 92, 255, 0.46) 64%, rgba(49, 88, 255, 0.94) 100%);
+  background-color: #3158ff;
+}
+
+
+.cavai-intelligence-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(128deg, rgba(255, 255, 255, 0.045), transparent 28%, rgba(255, 255, 255, 0.028) 58%, transparent 82%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.09), transparent 48%);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+
+/* removed the black fade completely */
+.cavai-intelligence-band::after {
+  content: none !important;
+  display: none !important;
+}
+
+
+.cavai-intelligence-band-inner {
+  width: min(1120px, calc(100% - 56px));
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-72px);
+  transition:
+    opacity 720ms ease,
+    transform 1050ms cubic-bezier(0.2, 1.35, 0.24, 1);
+}
+
+
+.cavai-intelligence-band.is-visible .cavai-intelligence-band-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cavai-intelligence-band-title {
+  margin: 0;
+  max-width: 1040px;
+  color: #ffffff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(30px, 4vw, 70px);
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  
+}
+
+
+@media (max-width: 1080px) {
+  .cavai-agents-head,
+  .cavai-custom-agent-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+  .cavai-agents-copy {
+    max-width: 760px;
+  }
+
+
+  .cavai-agent-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .cavai-custom-agent-layout {
+    min-height: auto;
+  }
+}
+
+
+@media (max-width: 720px) {
+  .cavai-agents-inner,
+  .cavai-intelligence-band-inner {
+    width: min(100% - 30px, 620px);
+  }
+
+
+  .cavai-agents-section {
+    padding-top: 76px;
+    padding-bottom: 92px;
+  }
+
+
+  .cavai-agents-title {
+    font-size: clamp(48px, 14vw, 74px);
+  }
+
+
+  .cavai-agents-tabs {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+
+  .cavai-agents-tab {
+    justify-content: center;
+    width: 100%;
+  }
+
+
+  .cavai-agent-library-head {
+    display: grid;
+  }
+
+
+  .cavai-agent-tile {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+
+  .cavai-agent-tile em {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+
+  .cavai-custom-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+
+  .cavai-intelligence-band {
+    min-height: 720px;
+  }
+
+
+  .cavai-intelligence-band-title {
+    font-size: clamp(42px, 11.5vw, 70px);
+    line-height: 1.04;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .cavai-agents-title-wrap,
+  .cavai-agents-copy,
+  .cavai-agents-shell,
+  .cavai-agents-panel,
+  .cavai-intelligence-band-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+/* Make the multi-model gradient statement section taller */
+.cavai-intelligence-band {
+  min-height: clamp(820px, 105svh, 1120px) !important;
+  padding: clamp(120px, 12vw, 180px) 0 !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+
+/* Keep the statement centered inside the taller box */
+.cavai-intelligence-band-inner {
+  width: min(1160px, calc(100% - 56px)) !important;
+  margin: 0 auto !important;
+  transform: translateY(-40px) !important;
+}
+
+
+.cavai-intelligence-band.is-visible .cavai-intelligence-band-inner {
+  transform: translateY(0) !important;
+}
+
+
+/* Give the text more breathing room */
+.cavai-intelligence-band-title {
+  max-width: 1080px !important;
+  font-size: clamp(40px, 5.4vw, 84px) !important;
+  line-height: 1.03 !important;
+}
+
+
+/* Mobile balance */
+@media (max-width: 720px) {
+  .cavai-intelligence-band {
+    min-height: 860px !important;
+    padding: 110px 0 !important;
+  }
+
+
+  .cavai-intelligence-band-title {
+    font-size: clamp(42px, 11vw, 70px) !important;
+  }
+}
+
+/* ============================
+  Section 5 — Agents
+  ============================ */
+
+
+.cavai-agents-section {
+  position: relative;
+  width: 100%;
+  padding: clamp(96px, 9vw, 152px) 0 clamp(110px, 10vw, 172px);
+  background: #01030f;
+  color: var(--cavai-ink);
+  overflow: hidden;
+}
+
+
+.cavai-agents-section::before,
+.cavai-agents-section::after {
+  content: none;
+  display: none;
+}
+
+
+.cavai-agents-inner {
+  width: min(1320px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+
+.cavai-agents-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 0.8fr);
+  align-items: end;
+  gap: clamp(42px, 7vw, 120px);
+  margin-bottom: clamp(54px, 6vw, 86px);
+}
+
+
+.cavai-agents-title-wrap {
+  opacity: 0;
+  transform: translateX(-52px);
+  transition:
+    opacity 660ms ease,
+    transform 940ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.cavai-agents-copy {
+  margin: 0;
+  max-width: 620px;
+  color: rgba(247, 251, 255, 0.78);
+  font-family: var(--font-cavai-body);
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  opacity: 0;
+  transform: translateX(52px);
+  transition:
+    opacity 660ms ease 60ms,
+    transform 940ms cubic-bezier(0.16, 1, 0.3, 1) 60ms;
+}
+
+
+.cavai-agents-section.is-visible .cavai-agents-title-wrap,
+.cavai-agents-section.is-visible .cavai-agents-copy {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+.cavai-agents-kicker {
+  margin: 0 0 16px;
+  color: var(--cavai-lime);
+  font-family: var(--font-cavai-body);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-agents-title {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(38px, 4.2vw, 62px);
+  line-height: 0.96;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+
+.cavai-agents-shell {
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.012)),
+    rgba(3, 6, 18, 0.96);
+ 
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 720ms ease 120ms,
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1) 120ms;
+}
+
+
+.cavai-agents-section.is-visible .cavai-agents-shell {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.cavai-agents-tabs {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.09);
+  background: rgba(1, 3, 15, 0.72);
+}
+
+
+.cavai-agents-tab {
+  appearance: none;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  border-radius: 4px;
+  padding: 0 18px;
+  background: rgba(255, 255, 255, 0.026);
+  color: rgba(197, 206, 231, 0.72);
+  font-family: var(--font-cavai-body);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+
+.cavai-agents-tab:hover,
+.cavai-agents-tab.is-active {
+  color: #f7fbff;
+  
+  background: rgba(78, 168, 255, 0.055);
+}
+
+
+.cavai-agents-tab:active {
+  transform: translateY(1px);
+}
+
+
+.cavai-agents-tab:focus-visible {
+  outline: 1px solid rgba(78, 168, 255, 0.65);
+  outline-offset: 4px;
+}
+
+
+.cavai-agents-tab-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-grid;
+  place-items: center;
+  line-height: 0;
+}
+
+
+.cavai-agents-tab-icon img {
+  width: 17px;
+  height: 17px;
+  display: block;
+  object-fit: contain;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(69%)
+    sepia(99%)
+    saturate(1211%)
+    hue-rotate(179deg)
+    brightness(101%)
+    contrast(101%);
+}
+
+
+.cavai-agents-panel {
+  display: none;
+  padding: clamp(24px, 3vw, 38px);
+}
+
+
+.cavai-agents-panel.is-active {
+  display: block;
+  animation: cavai-agent-panel-enter 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+
+.cavai-agents-panel[hidden] {
+  display: none;
+}
+
+
+@keyframes cavai-agent-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.cavai-agent-library-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+
+.cavai-agent-library-head span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--cavai-muted);
+  font-family: var(--font-cavai-body);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+
+.cavai-agent-library-head strong {
+  display: block;
+  color: var(--cavai-muted);
+  font-family: var(--font-cavai-title);
+  font-size: clamp(20px, 0vw, 26px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+
+.cavai-agent-library-head p {
+  margin: 0;
+  max-width: 520px;
+  color: rgba(247, 251, 255, 0.72);
+  font-family: var(--font-cavai-body);
+  font-size: 14.5px;
+  line-height: 1.48;
+  font-weight: 500;
+  text-align: right;
+}
+
+
+.cavai-agent-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+
+.cavai-agent-tile {
+  min-height: 84px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.032), rgba(255, 255, 255, 0.014)),
+    rgba(6, 9, 25, 0.88);
+  transition:
+    min-height 220ms ease,
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    
+}
+
+
+.cavai-agent-tile:hover,
+.cavai-agent-tile.is-open {
+  border-color: rgba(78, 168, 255, 0.24);
+  background:
+    linear-gradient(180deg, rgba(78, 168, 255, 0.035), rgba(255, 255, 255, 0.014)),
+    rgba(6, 9, 25, 0.92);
+}
+
+
+.cavai-agent-tile:hover {
+  transform: translateY(-1px);
+  
+}
+
+
+.cavai-agent-tile.is-open {
+  min-height: 104px;
+}
+
+
+.cavai-agent-tile-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  line-height: 0;
+  overflow: hidden;
+}
+
+
+.cavai-agent-tile-icon img {
+  width: 24px;
+  height: 24px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+
+.cavai-agent-tile-icon--blue {
+  background: linear-gradient(135deg, rgba(78, 168, 255, 0.95), rgba(33, 58, 138, 0.88));
+}
+
+
+.cavai-agent-tile-icon--lime {
+  background: linear-gradient(135deg, rgba(185, 200, 90, 0.96), rgba(56, 78, 58, 0.88));
+}
+
+
+.cavai-agent-tile-icon--violet {
+  background: linear-gradient(135deg, rgba(139, 92, 255, 0.96), rgba(49, 28, 113, 0.9));
+}
+
+
+.cavai-agent-tile-icon--cyan {
+  background: linear-gradient(135deg, rgba(121, 231, 255, 0.96), rgba(28, 82, 125, 0.88));
+}
+
+
+.cavai-agent-tile-icon--rose {
+  background: linear-gradient(135deg, rgba(255, 98, 111, 0.95), rgba(116, 36, 59, 0.9));
+}
+
+
+.cavai-agent-tile-copy {
+  min-width: 0;
+}
+
+
+.cavai-agent-tile h3 {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-body);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.024em;
+}
+
+
+.cavai-agent-tile p {
+  max-width: 420px;
+  margin: 0;
+  color: rgba(197, 206, 231, 0.66);
+  font-family: var(--font-cavai-body);
+  font-size: 13px;
+  line-height: 1.38;
+  font-weight: 500;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 180ms ease,
+    max-height 220ms ease,
+    margin-top 180ms ease,
+    transform 180ms ease;
+}
+
+
+.cavai-agent-tile.is-open p {
+  margin-top: 6px;
+  opacity: 1;
+  max-height: 90px;
+  transform: translateY(0);
+}
+
+
+.cavai-agent-expand {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  justify-self: end;
+  align-self: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(247, 251, 255, 0.58);
+  cursor: pointer;
+  line-height: 0;
+  transition:
+    color 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+
+.cavai-agent-expand:hover,
+.cavai-agent-expand:focus-visible {
+  color: rgba(78, 168, 255, 0.92);
+  outline: none;
+}
+
+
+.cavai-agent-expand:active {
+  transform: scale(0.94);
+}
+
+
+.cavai-agent-expand-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+
+.cavai-agent-expand-icon--close {
+  display: none;
+}
+
+
+.cavai-agent-tile.is-open .cavai-agent-expand-icon--plus {
+  display: none;
+}
+
+
+.cavai-agent-tile.is-open .cavai-agent-expand-icon--close {
+  display: block;
+}
+
+
+.cavai-custom-agent-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(34px, 6vw, 92px);
+  align-items: center;
+  min-height: 650px;
+}
+
+
+.cavai-custom-agent-copy span {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--cavai-lime);
+  font-family: var(--font-cavai-body);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-custom-agent-copy h3 {
+  margin: 0;
+  max-width: 540px;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(36px, 4.1vw, 64px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.052em;
+  text-wrap: balance;
+}
+
+
+.cavai-custom-agent-copy p {
+  margin: 22px 0 0;
+  max-width: 560px;
+  color: rgba(197, 206, 231, 0.75);
+  font-family: var(--font-cavai-body);
+  font-size: clamp(15.5px, 1.1vw, 18px);
+  line-height: 1.55;
+  letter-spacing: -0.022em;
+}
+
+
+.cavai-custom-agent-copy ul {
+  display: grid;
+  gap: 11px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+
+.cavai-custom-agent-copy li {
+  position: relative;
+  padding-left: 22px;
+  color: rgba(247, 251, 255, 0.78);
+  font-family: var(--font-cavai-body);
+  font-size: 14.5px;
+  line-height: 1.42;
+}
+
+
+.cavai-custom-agent-copy li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--cavai-cyan);
+}
+
+
+.cavai-custom-agent-mock {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  background: rgba(2, 4, 14, 0.94);
+ 
+}
+
+
+.cavai-custom-agent-mock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.035);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+
+.cavai-custom-window-bar {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(247, 251, 255, 0.09);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+.cavai-custom-window-bar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(197, 206, 231, 0.35);
+}
+
+
+.cavai-custom-window-bar strong {
+  margin-left: auto;
+  color: rgba(197, 206, 231, 0.64);
+  font-family: var(--font-cavai-body);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.cavai-custom-form {
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 2.4vw, 30px);
+}
+
+
+.cavai-custom-upload {
+  width: min(240px, 100%);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 4px;
+  border: 1px dashed rgba(78, 168, 255, 0.26);
+  background: rgba(78, 168, 255, 0.035);
+}
+
+
+.cavai-custom-upload > span {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(78, 168, 255, 0.95), rgba(49, 88, 255, 0.72));
+}
+
+
+.cavai-custom-upload img {
+  width: 23px;
+  height: 23px;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+
+.cavai-custom-upload strong {
+  display: block;
+  color: #f7fbff;
+  font-family: var(--font-cavai-body);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+
+.cavai-custom-upload small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(197, 206, 231, 0.58);
+  font-family: var(--font-cavai-body);
+  font-size: 12px;
+}
+
+
+.cavai-custom-field {
+  display: grid;
+  gap: 8px;
+}
+
+
+.cavai-custom-field span,
+.cavai-custom-surface-row span {
+  color: rgba(247, 251, 255, 0.86);
+  font-family: var(--font-cavai-body);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+
+.cavai-custom-field div {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 13px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.13);
+  background: rgba(1, 3, 15, 0.54);
+  color: rgba(247, 251, 255, 0.74);
+  font-family: var(--font-cavai-body);
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+
+.cavai-custom-field--large div {
+  min-height: 86px;
+  align-items: flex-start;
+}
+
+
+.cavai-custom-surface-row {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.13);
+  background: rgba(255, 255, 255, 0.026);
+}
+
+
+.cavai-custom-surface-row strong {
+  color: var(--cavai-cyan);
+  font-family: var(--font-cavai-body);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+
+.cavai-custom-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+
+.cavai-custom-actions button {
+  appearance: none;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 251, 255, 0.14);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(247, 251, 255, 0.8);
+  font-family: var(--font-cavai-body);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+
+.cavai-custom-actions button:last-child {
+  border-color: rgba(185, 200, 90, 0.32);
+  background: rgba(185, 200, 90, 0.14);
+  color: #f7fbff;
+}
+
+
+/* ============================
+  Section 6 — Multi-model gradient statement
+  ============================ */
+
+
+.cavai-intelligence-band {
+  position: relative;
+  width: 100%;
+  min-height: clamp(820px, 105svh, 1120px);
+  padding: clamp(120px, 12vw, 180px) 0;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(121, 231, 255, 0.9) 0%, rgba(49, 88, 255, 0.78) 26%, rgba(49, 88, 255, 0) 55%),
+    radial-gradient(circle at 82% 78%, rgba(139, 92, 255, 0.84) 0%, rgba(78, 168, 255, 0.62) 30%, rgba(78, 168, 255, 0) 58%),
+    radial-gradient(circle at 52% 50%, rgba(185, 200, 90, 0.9) 0%, rgba(255, 132, 0, 0.82) 36%, rgba(139, 92, 255, 0.46) 64%, rgba(49, 88, 255, 0.94) 100%);
+  background-color: #3158ff;
+}
+
+
+.cavai-intelligence-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(128deg, rgba(255, 255, 255, 0.045), transparent 28%, rgba(255, 255, 255, 0.028) 58%, transparent 82%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.09), transparent 48%);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+
+.cavai-intelligence-band::after {
+  content: none;
+  display: none;
+}
+
+
+.cavai-intelligence-band-inner {
+  width: min(1160px, calc(100% - 56px));
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-40px);
+  transition:
+    opacity 720ms ease,
+    transform 1050ms cubic-bezier(0.2, 1.35, 0.24, 1);
+}
+
+
+.cavai-intelligence-band.is-visible .cavai-intelligence-band-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.cavai-intelligence-band-kicker {
+  margin: 0 0 clamp(20px, 2vw, 30px);
+  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--font-cavai-body);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+
+.cavai-intelligence-band-title {
+  margin: 0;
+  max-width: 1080px;
+  color: #ffffff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(48px, 6.2vw, 96px);
+  line-height: 1.03;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  
+}
+
+
+@media (max-width: 1080px) {
+  .cavai-agents-head,
+  .cavai-custom-agent-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+  .cavai-agents-copy {
+    max-width: 760px;
+  }
+
+
+  .cavai-agent-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .cavai-custom-agent-layout {
+    min-height: auto;
+  }
+}
+
+
+@media (max-width: 720px) {
+  .cavai-agents-inner,
+  .cavai-intelligence-band-inner {
+    width: min(100% - 30px, 620px);
+  }
+
+
+  .cavai-agents-section {
+    padding-top: 76px;
+    padding-bottom: 92px;
+  }
+
+
+  .cavai-agents-title {
+    font-size: clamp(48px, 14vw, 74px);
+  }
+
+
+  .cavai-agents-tabs {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+
+  .cavai-agents-tab {
+    justify-content: center;
+    width: 100%;
+  }
+
+
+  .cavai-agent-library-head {
+    display: grid;
+  }
+
+
+  .cavai-agent-library-head p {
+    max-width: none;
+    text-align: left;
+  }
+
+
+  .cavai-agent-tile {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+
+  .cavai-custom-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+
+  .cavai-intelligence-band {
+    min-height: 860px;
+    padding: 110px 0;
+  }
+
+
+  .cavai-intelligence-band-title {
+    font-size: clamp(42px, 11vw, 70px);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .cavai-agents-title-wrap,
+  .cavai-agents-copy,
+  .cavai-agents-shell,
+  .cavai-agents-panel,
+  .cavai-agent-tile p,
+  .cavai-intelligence-band-inner {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+}
+/* ============================
+   Section 7 — More CavAi surfaces
+   ============================ */
+
+.cavai-more-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #01030f;
+  color: var(--cavai-ink);
+  padding: clamp(96px, 10vw, 154px) 0 clamp(110px, 10vw, 170px);
+}
+
+.cavai-more-section::before,
+.cavai-more-section::after {
+  content: none !important;
+  display: none !important;
+}
+
+.cavai-more-inner {
+  width: min(1320px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.cavai-more-head {
+  margin-bottom: clamp(54px, 6vw, 84px);
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 680ms ease,
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cavai-more-title {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(42px, 4.6vw, 76px);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.cavai-more-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(22px, 3vw, 44px);
+}
+
+.cavai-more-card {
+  min-height: clamp(330px, 29vw, 420px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-content: start;
+  gap: clamp(26px, 2.7vw, 38px);
+  padding: clamp(28px, 3vw, 42px);
+  border: 0;
+  border-radius: 8px;
+  background: rgba(7, 11, 30, 0.82);
+  color: #f7fbff;
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity 680ms ease,
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 180ms ease;
+}
+
+.cavai-more-card:hover {
+  background:
+    rgba(10, 16, 38, 0.92);
+}
+
+.cavai-more-card-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(1, 3, 15, 0.72);
+  line-height: 0;
+  overflow: hidden;
+}
+
+.cavai-more-card-icon img {
+  width: 28px;
+  height: 28px;
+  display: block;
+  object-fit: contain;
+ filter:
+  brightness(0)
+  saturate(100%)
+  invert(75%)
+  sepia(18%)
+  saturate(1000%)
+  hue-rotate(165deg)
+  brightness(80%)
+  contrast(90%);
+
+
+}
+
+.cavai-more-card-copy {
+  min-width: 0;
+}
+
+.cavai-more-card h3 {
+  margin: 0;
+  color: #f7fbff;
+  font-family: var(--font-cavai-body);
+  font-size: clamp(22px, 1.9vw, 31px);
+  line-height: 1.18;
+  font-weight: 760;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.cavai-more-card p {
+  margin: clamp(18px, 1.8vw, 26px) 0 0;
+  max-width: 420px;
+  color: rgba(197, 206, 231, 0.74);
+  font-family: var(--font-cavai-body);
+  font-size: clamp(15px, 1.08vw, 18px);
+  line-height: 1.52;
+  font-weight: 450;
+  letter-spacing: -0.022em;
+}
+
+.cavai-more-card-link {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--cavai-muted);
+  font-family: var(--font-cavai-body);
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 760;
+  letter-spacing: -0.018em;
+  text-decoration: none;
+}
+
+.cavai-more-card-link span:last-child {
+  transform: translateY(-0.5px);
+  transition: transform 160ms ease;
+}
+
+.cavai-more-card-link:hover,
+.cavai-more-card-link:focus-visible {
+  color: var(--cavai-lime);
+  outline: none;
+}
+
+.cavai-more-card-link:hover span:last-child,
+.cavai-more-card-link:focus-visible span:last-child {
+  transform: translate(3px, -0.5px);
+}
+
+.cavai-more-section.is-visible .cavai-more-head,
+.cavai-more-section.is-visible .cavai-more-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cavai-more-section.is-visible .cavai-more-card:nth-child(1) {
+  transition-delay: 80ms;
+}
+
+.cavai-more-section.is-visible .cavai-more-card:nth-child(2) {
+  transition-delay: 160ms;
+}
+
+.cavai-more-section.is-visible .cavai-more-card:nth-child(3) {
+  transition-delay: 240ms;
+}
+
+
+/* ============================
+   Section 8 — Final CavAi CTA
+   CavBot color version
+   ============================ */
+
+.cavai-final-cta {
+  position: relative;
+  width: 100%;
+  min-height: clamp(680px, 90svh, 940px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #ffffff;
+  background:
+   linear-gradient(
+      to bottom,
+      rgba(1, 3, 15, 1) 0%,
+      rgba(1, 3, 15, 1) 46%,
+      rgba(5, 13, 52, 0.96) 100%
+    );
+
+}
+
+.cavai-final-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(1, 3, 15, 0.62) 0%,
+      rgba(1, 3, 15, 0.18) 48%,
+      rgba(247, 251, 255, 0.035) 100%
+    );
+  pointer-events: none;
+}
+
+.cavai-final-cta::after {
+  content: none !important;
+  display: none !important;
+}
+
+.cavai-final-cta-inner {
+  width: min(980px, calc(100% - 56px));
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(54px);
+  transition:
+    opacity 720ms ease,
+    transform 980ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cavai-final-cta-title {
+  margin: 0;
+  max-width: 900px;
+  color: #ffffff;
+  font-family: var(--font-cavai-title);
+  font-size: clamp(50px, 6.2vw, 96px);
+  line-height: 1.02;
+  font-weight: 760;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.cavai-final-cta-copy {
+  margin: clamp(18px, 2vw, 28px) 0 0;
+  color: rgba(247, 251, 255, 0.76);
+  font-family: var(--font-cavai-body);
+  font-size: clamp(16px, 1.35vw, 22px);
+  line-height: 1.45;
+  font-weight: 500;
+  letter-spacing: -0.026em;
+}
+
+.cavai-final-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(30px, 3vw, 44px);
+}
+
+.cavai-final-button {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 6px;
+  font-family: var(--font-cavai-body);
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.cavai-final-button:hover,
+.cavai-final-button:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.cavai-final-button--primary {
+  border: 1px solid rgba(185, 200, 90, 0.96);
+  background: var(--cavai-lime);
+  color: #050711;
+}
+
+.cavai-final-button--primary:hover,
+.cavai-final-button--primary:focus-visible {
+  background: #d6e476;
+  border-color: #d6e476;
+  color: #050711;
+}
+
+.cavai-final-button--secondary {
+  border: 1px solid rgba(247, 251, 255, 0.3);
+  background: transparent;
+  color: #f7fbff;
+}
+
+.cavai-final-button--secondary:hover,
+.cavai-final-button--secondary:focus-visible {
+  border-color: solid rgba(247, 251, 255, 0.3);
+  background: rgba(121, 231, 255, 0.055);
+  color: #ffffff;
+}
+
+.cavai-final-cta.is-visible .cavai-final-cta-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .cavai-final-cta {
+    min-height: 760px;
+  }
+
+  .cavai-final-cta-inner {
+    width: min(100% - 30px, 620px);
+  }
+
+  .cavai-final-cta-title {
+    font-size: clamp(48px, 13vw, 74px);
+  }
+
+  .cavai-final-cta-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .cavai-final-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cavai-final-cta-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

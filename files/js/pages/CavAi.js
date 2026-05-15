@@ -64,7 +64,11 @@
     const observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
-          section.classList.toggle("is-visible", entry.isIntersecting);
+          if (entry.isIntersecting) {
+  section.classList.add("is-visible");
+  observer.unobserve(section);
+}
+
 
           if (prefersReducedMotion.matches) {
             section.classList.add("is-paused");
@@ -276,3 +280,404 @@
 
   observer.observe(section);
 })();
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = Array.from(document.querySelectorAll("[data-cavai-flow]"));
+  if (!sections.length) return;
+
+
+  sections.forEach((section) => {
+    if (section.dataset.cavaiFlowReady === "true") return;
+    section.dataset.cavaiFlowReady = "true";
+
+
+    const tabs = Array.from(section.querySelectorAll("[data-cavai-flow-tab]"));
+    const panels = Array.from(section.querySelectorAll("[data-cavai-flow-panel]"));
+
+
+    if (!tabs.length || !panels.length) return;
+
+
+    const prefersReduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+    const STEP_MS = 7200;
+    let activeIndex = 0;
+    let timer = null;
+    let isVisible = true;
+
+
+    function stopTimer() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
+
+
+    function setActive(index) {
+      const nextIndex = ((index % tabs.length) + tabs.length) % tabs.length;
+      activeIndex = nextIndex;
+
+
+      section.style.setProperty("--cavai-flow-index", String(nextIndex));
+
+
+      tabs.forEach((tab, tabIndex) => {
+        const isActive = tabIndex === nextIndex;
+        tab.classList.toggle("is-active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        tab.setAttribute("tabindex", isActive ? "0" : "-1");
+      });
+
+
+      panels.forEach((panel, panelIndex) => {
+        const isActive = panelIndex === nextIndex;
+        panel.classList.toggle("is-active", isActive);
+        panel.setAttribute("aria-hidden", isActive ? "false" : "true");
+      });
+    }
+
+
+    function startTimer() {
+      if (prefersReduced || !isVisible) return;
+
+
+      stopTimer();
+
+
+      timer = window.setInterval(() => {
+        setActive(activeIndex + 1);
+      }, STEP_MS);
+    }
+
+
+    tabs.forEach((tab, tabIndex) => {
+      tab.addEventListener("click", () => {
+        setActive(tabIndex);
+        startTimer();
+      });
+
+
+      tab.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+
+
+        event.preventDefault();
+
+
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const nextIndex = ((activeIndex + direction) % tabs.length + tabs.length) % tabs.length;
+
+
+        setActive(nextIndex);
+
+
+        const nextTab = tabs[nextIndex];
+        if (nextTab && typeof nextTab.focus === "function") {
+          nextTab.focus({ preventScroll: true });
+        }
+
+
+        startTimer();
+      });
+    });
+
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (!entry) return;
+
+
+          isVisible = entry.isIntersecting;
+
+
+          if (isVisible) {
+            startTimer();
+          } else {
+            stopTimer();
+          }
+        },
+        { threshold: 0.18 }
+      );
+
+
+      observer.observe(section);
+    }
+
+
+    setActive(0);
+    startTimer();
+  });
+});
+
+
+/* Caven intro reveal */
+(function () {
+  "use strict";
+
+
+  const section = document.querySelector("[data-caven-intro]");
+  if (!section) return;
+
+
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    section.classList.add("is-visible");
+    return;
+  }
+
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        section.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+
+  observer.observe(section);
+})();
+
+/* From signal to action section reveal */
+(function () {
+  "use strict";
+
+
+  const section = document.querySelector("[data-cavai-flow]");
+  if (!section) return;
+
+
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    section.classList.add("is-visible");
+    return;
+  }
+
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        section.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+
+  observer.observe(section);
+})();
+
+/* CavAi agents toggle + card expansion + directional reveal */
+(function () {
+  "use strict";
+
+
+  const section = document.querySelector("[data-cavai-agents]");
+  if (!section) return;
+
+
+  const tabs = Array.from(section.querySelectorAll("[data-cavai-agent-tab]"));
+  const panels = Array.from(section.querySelectorAll("[data-cavai-agent-panel]"));
+  const expandButtons = Array.from(section.querySelectorAll(".cavai-agent-expand"));
+
+
+  function activateAgentPanel(target) {
+    tabs.forEach(function (tab) {
+      const isActive = tab.getAttribute("data-cavai-agent-tab") === target;
+
+
+      tab.classList.toggle("is-active", isActive);
+      tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      tab.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+
+    panels.forEach(function (panel) {
+      const isActive = panel.getAttribute("data-cavai-agent-panel") === target;
+
+
+      panel.classList.toggle("is-active", isActive);
+
+
+      if (isActive) {
+        panel.removeAttribute("hidden");
+      } else {
+        panel.setAttribute("hidden", "");
+      }
+    });
+  }
+
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      activateAgentPanel(tab.getAttribute("data-cavai-agent-tab"));
+    });
+
+
+    tab.addEventListener("keydown", function (event) {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+
+
+      event.preventDefault();
+
+
+      const currentIndex = tabs.indexOf(tab);
+      const direction = event.key === "ArrowRight" ? 1 : -1;
+      const nextIndex = (currentIndex + direction + tabs.length) % tabs.length;
+      const nextTab = tabs[nextIndex];
+
+
+      if (!nextTab) return;
+
+
+      activateAgentPanel(nextTab.getAttribute("data-cavai-agent-tab"));
+      nextTab.focus({ preventScroll: true });
+    });
+  });
+
+
+  expandButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const tile = button.closest(".cavai-agent-tile");
+      if (!tile) return;
+
+
+      const isOpen = tile.classList.toggle("is-open");
+      button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+
+      const title = tile.querySelector("h3");
+      if (title) {
+        button.setAttribute(
+          "aria-label",
+          (isOpen ? "Collapse " : "Expand ") + title.textContent.trim()
+        );
+      }
+    });
+  });
+
+
+  activateAgentPanel("library");
+
+
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    section.classList.add("is-visible");
+    return;
+  }
+
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        section.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0.14,
+      rootMargin: "0px 0px -10% 0px"
+    }
+  );
+
+
+  observer.observe(section);
+})();
+
+
+/* CavAi intelligence band bounce reveal */
+(function () {
+  "use strict";
+
+
+  const section = document.querySelector("[data-cavai-intelligence-band]");
+  if (!section) return;
+
+
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    section.classList.add("is-visible");
+    return;
+  }
+
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        section.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0.18,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+
+  observer.observe(section);
+})();
+/* Section 7 + Section 8 reveal */
+(function () {
+  "use strict";
+
+  const sections = Array.from(
+    document.querySelectorAll("[data-cavai-more], [data-cavai-final]")
+  );
+
+  if (!sections.length) return;
+
+  const prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    sections.forEach(function (section) {
+      section.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+  sections.forEach(function (section) {
+    observer.observe(section);
+  });
+})();
+
