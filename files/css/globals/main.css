@@ -7291,7 +7291,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface .cavai-main-title {
   width: max-content;
   max-width: none !important;
   margin: 0 !important;
-  font-size: clamp(58px, 6.45vw, 96px) !important;
+  font-size: clamp(56px, 6.2vw, 94px) !important;
   line-height: 0.96 !important;
   letter-spacing: -0.07em !important;
   color: rgba(247, 251, 255, 0.98) !important;
@@ -8679,3 +8679,125 @@ footer.site-footer {
         word-break: break-word;
       }
     }
+/* ==============================
+   HERO FIRST-LOAD POSITION FIX
+   ============================== */
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block {
+  margin-top: clamp(8px, 2.6vh, 30px) !important;
+  gap: 18px !important;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standalone {
+  margin-top: clamp(36px, 8vh, 74px) !important;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface,
+body.page-shell .page-inner > section.hero.hero-home-surface {
+  padding-top: calc(
+    var(--cb-header-offset, 0px) + clamp(14px, 2.4vh, 28px)
+  ) !important;
+
+  grid-template-rows:
+    minmax(68svh, auto)
+    minmax(108svh, auto) !important;
+}
+/* ==============================
+   HERO CTA CLICK FIX
+   Keeps Start Trial button clickable
+   ============================== */
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block {
+  position: relative !important;
+  z-index: 80 !important;
+  pointer-events: auto !important;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cta-row,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row {
+  position: relative !important;
+  z-index: 90 !important;
+  pointer-events: auto !important;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cta-row a,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row a {
+  position: relative !important;
+  z-index: 100 !important;
+  pointer-events: auto !important;
+}
+
+/* The demo area should not block the hero CTA while it is visually behind/under it */
+.hero-demo-section {
+  pointer-events: none !important;
+}
+
+/* The demo frame itself should not steal clicks from the hero CTA */
+.hero-demo-frame {
+  pointer-events: none !important;
+}
+
+/* Keep the actual demo/play button clickable */
+.hero-demo-frame a,
+.hero-demo-frame button,
+.hero-demo-button {
+  pointer-events: auto !important;
+}
+/* ==============================
+   HERO DEMO CARD ALWAYS WINS
+   Demo card clicks above CTA when overlapping
+   ============================== */
+
+/* Keep hero as a clean stacking context */
+body.page-shell main.page-inner > section.hero.hero-home-surface,
+body.page-shell .page-inner > section.hero.hero-home-surface {
+  position: relative !important;
+  isolation: isolate !important;
+}
+
+/* Hero text/button stays clickable normally, but below the demo card */
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block {
+  position: relative !important;
+  z-index: 20 !important;
+  pointer-events: auto !important;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cta-row,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row {
+  position: relative !important;
+  z-index: 25 !important;
+  pointer-events: auto !important;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cta-row a,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row a {
+  position: relative !important;
+  z-index: 26 !important;
+  pointer-events: auto !important;
+}
+
+/* The demo section itself should not block random empty space */
+.hero-demo-section {
+  position: relative !important;
+  z-index: 70 !important;
+  pointer-events: none !important;
+}
+
+/* The actual demo card/frame ALWAYS wins when it overlaps anything */
+.hero-demo-frame {
+  position: sticky !important;
+  z-index: 120 !important;
+  pointer-events: auto !important;
+}
+
+/* Everything inside the card remains clickable */
+.hero-demo-frame *,
+.hero-demo-frame a,
+.hero-demo-frame button,
+.hero-demo-button {
+  pointer-events: auto !important;
+}
