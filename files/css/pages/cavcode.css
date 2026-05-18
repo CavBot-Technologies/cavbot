@@ -66,13 +66,8 @@ body[data-cavbot-page-type="resource-page"] .page-inner {
   margin: 0;
   overflow: hidden;
   color: var(--resource-ink);
-  background:
-    linear-gradient(
-      135deg,
-      rgba(1, 3, 15, 1) 0%,
-      rgba(4, 8, 26, 0.98) 48%,
-      rgba(8, 12, 36, 0.98) 100%
-    );
+  background: #01030f;;
+
 }
 
 
@@ -83,8 +78,7 @@ body[data-cavbot-page-type="resource-page"] .page-inner {
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+    #01030f;
   background-size: 84px 84px;
   opacity: 0.12;
 }
@@ -97,12 +91,7 @@ body[data-cavbot-page-type="resource-page"] .page-inner {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(
-      90deg,
-      rgba(1, 3, 15, 0.04) 0%,
-      rgba(1, 3, 15, 0.16) 52%,
-      rgba(1, 3, 15, 0.22) 100%
-    );
+   #01030f;
 }
 
 
@@ -6236,4 +6225,103 @@ button.cavcode-demo-tree-row {
  .cavcode-caven-plan-button {
    transition: none !important;
  }
+}
+/* ==============================
+   CAVCODE HERO RIBBONS
+   About-page color match + stronger lime
+   Keeps CavCode shapes exactly as-is
+============================== */
+
+
+.cavcode-hero {
+  background:
+    radial-gradient(circle at 74% 48%, rgba(78, 168, 255, 0.10), transparent 34%),
+    radial-gradient(circle at 86% 72%, rgba(139, 92, 255, 0.10), transparent 36%),
+    linear-gradient(180deg, #050a1b 0%, #030719 48%, #01030f 100%);
+}
+
+
+.cavcode-hero-art {
+  filter: saturate(1.32) contrast(1.06) brightness(1.06);
+}
+
+
+/* Ribbon 1: stronger lime presence */
+#cavcodeRibbonOne stop:nth-child(1) {
+  stop-color: #b9c85a;
+}
+
+
+#cavcodeRibbonOne stop:nth-child(2) {
+  stop-color: #b9c85a;
+}
+
+
+#cavcodeRibbonOne stop:nth-child(3) {
+  stop-color: #4ea8ff;
+}
+
+
+#cavcodeRibbonOne stop:nth-child(4) {
+  stop-color: #8b5cff;
+}
+
+
+/* Ribbon 2: lime-to-blue-to-violet, closer to About */
+#cavcodeRibbonTwo stop:nth-child(1) {
+  stop-color: #b9c85a;
+}
+
+
+#cavcodeRibbonTwo stop:nth-child(2) {
+  stop-color: #4ea8ff;
+}
+
+
+#cavcodeRibbonTwo stop:nth-child(3) {
+  stop-color: #8b5cff;
+}
+
+
+#cavcodeRibbonTwo stop:nth-child(4) {
+  stop-color: #071b5f;
+}
+
+
+/* Ribbon 3: bright edge with lime carried forward */
+#cavcodeRibbonThree stop:nth-child(1) {
+  stop-color: #f7fbff;
+}
+
+
+#cavcodeRibbonThree stop:nth-child(2) {
+  stop-color: #b9c85a;
+}
+
+
+#cavcodeRibbonThree stop:nth-child(3) {
+  stop-color: #4ea8ff;
+}
+
+
+#cavcodeRibbonThree stop:nth-child(4) {
+  stop-color: #8b5cff;
+}
+
+
+/* More visible lime glow without changing ribbon geometry */
+.cavcode-ribbon--one {
+  opacity: 0.98;
+}
+
+
+.cavcode-ribbon--two {
+  opacity: 0.88;
+  mix-blend-mode: screen;
+}
+
+
+.cavcode-ribbon--three {
+  opacity: 0.76;
+  mix-blend-mode: screen;
 }

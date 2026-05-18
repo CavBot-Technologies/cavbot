@@ -19,7 +19,8 @@
       --ink-soft: #c5cee7;
       --ink-subtle: #8890aa;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --pff-panel-bg: #070c20;
+      --pff-panel-bg: 
+    linear-gradient(180deg, #070c20; 0%, #07041d 54%, #070c20; 100%);
 
       --panel-radius-lg: 20px;
       --panel-radius-md: 16px;
