@@ -254,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = resolveProfileName(profile);
     const initials = deriveInitials(profile?.displayName, profile?.username, profile?.initials);
     const tone = sanitizeTone(profile?.avatarTone);
+    const avatarImage = String(profile?.avatarImage || "").trim();
 
     const link = document.createElement("a");
     link.className = "cb-site-account";
@@ -266,15 +267,29 @@ document.addEventListener("DOMContentLoaded", () => {
     chip.className = "cb-site-account-chip";
     chip.setAttribute("data-tone", tone);
 
-    const initialsEl = document.createElement("span");
-    initialsEl.className = "cb-site-account-initials";
-    initialsEl.textContent = initials || "C";
+    if (avatarImage) {
+      const img = document.createElement("img");
+      img.className = "cb-site-account-avatar";
+      img.src = avatarImage;
+      img.alt = "";
+      img.decoding = "async";
+      img.loading = "eager";
+      img.style.width = "100%";
+      img.style.height = "100%";
+      img.style.objectFit = "cover";
+      img.style.borderRadius = "inherit";
+      chip.appendChild(img);
+    } else {
+      const initialsEl = document.createElement("span");
+      initialsEl.className = "cb-site-account-initials";
+      initialsEl.textContent = initials || "C";
+      chip.appendChild(initialsEl);
+    }
 
     const nameEl = document.createElement("span");
     nameEl.className = "cb-site-account-name";
     nameEl.textContent = name;
 
-    chip.appendChild(initialsEl);
     link.appendChild(chip);
     link.appendChild(nameEl);
     return link;
@@ -298,6 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
             email: me.user.email,
             initials: me.user.initials,
             avatarTone: me.user.avatarTone,
+            avatarImage: me.user.avatarImage,
           };
         }
       }
