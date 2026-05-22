@@ -4,8 +4,8 @@ Documentation index for CavBot.
 
 ## Start here
 
-- [Get started](https://docs.cavbot.io/getstarted) - Create an account, add a website, install Analytics v5, and confirm the first signals.
-- [Get started Markdown](https://docs.cavbot.io/getstarted.md) - Plain text version of the get started page for LLMs and readers that prefer Markdown.
+- [Get started](https://cavbot.io/docs/getstarted) - Create an account, add a website, install Analytics v5, and confirm the first signals.
+- [Get started Markdown](https://cavbot.io/docs/getstarted.md) - Plain text version of the get started page for LLMs and readers that prefer Markdown.
 
 ## Core setup pages
 
@@ -33,13 +33,13 @@ Documentation index for CavBot.
 
 ## Developer menu pages
 
-- [CavBot Analytics v5](https://docs.cavbot.io/getstarted#analytics-v5) - Install one snippet and send browser-side website signals to CavBot.
-- [Events](https://docs.cavbot.io/getstarted#events) - Send important product actions into CavBot with stable event names and safe context.
-- [Summary](https://docs.cavbot.io/getstarted#summary) - Pull the latest site, route, and dashboard results as a compact operating snapshot.
-- [CavAi v3](https://docs.cavbot.io/getstarted#cavai-v3) - Use CavAi to explain CavBot signals and turn context into next steps.
-- [Assistant memory](https://docs.cavbot.io/getstarted#assistant-memory) - Keep durable project context available for CavAi responses.
-- [Agent workflows](https://docs.cavbot.io/getstarted#agent-workflows) - Run repeatable tasks for reviews, reports, and launch checks.
-- [404 Arcade](https://docs.cavbot.io/getstarted#arcade-404) - Add an interactive recovery surface to broken pages.
-- [CavBot Badge](https://docs.cavbot.io/getstarted#cavbot-badge) - Show a compact CavBot trust marker on a website.
-- [CavBot Head](https://docs.cavbot.io/getstarted#cavbot-head) - Add a small CavBot visual presence to product moments.
-- [CavBot Body](https://docs.cavbot.io/getstarted#cavbot-body) - Use the full CavBot visual presence for guided support or recovery moments.
+- [CavBot Analytics v5](https://cavbot.io/docs/getstarted#analytics-v5) - Install one snippet and send browser-side website signals to CavBot.
+- [Events](https://cavbot.io/docs/getstarted#events) - Send important product actions into CavBot with stable event names and safe context.
+- [Summary](https://cavbot.io/docs/getstarted#summary) - Pull the latest site, route, and dashboard results as a compact operating snapshot.
+- [CavAi v3](https://cavbot.io/docs/getstarted#cavai-v3) - Use CavAi to explain CavBot signals and turn context into next steps.
+- [Assistant memory](https://cavbot.io/docs/getstarted#assistant-memory) - Keep durable project context available for CavAi responses.
+- [Agent workflows](https://cavbot.io/docs/getstarted#agent-workflows) - Run repeatable tasks for reviews, reports, and launch checks.
+- [404 Arcade](https://cavbot.io/docs/getstarted#arcade-404) - Add an interactive recovery surface to broken pages.
+- [CavBot Badge](https://cavbot.io/docs/getstarted#cavbot-badge) - Show a compact CavBot trust marker on a website.
+- [CavBot Head](https://cavbot.io/docs/getstarted#cavbot-head) - Add a small CavBot visual presence to product moments.
+- [CavBot Body](https://cavbot.io/docs/getstarted#cavbot-body) - Use the full CavBot visual presence for guided support or recovery moments.

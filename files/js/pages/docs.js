@@ -118,7 +118,7 @@
 
   const docs = {
     getstarted: {
-      path: "/getstarted",
+      path: "/docs/getstarted",
       icon: "assets/icons/docs/rocket-svgrepo-com.svg",
       label: "Get started",
       kicker: "Start here",
@@ -133,7 +133,7 @@
       ]
     },
     account: {
-      path: "/account",
+      path: "/docs/account",
       icon: "assets/icons/docs/account-avatar-head-svgrepo-com.svg",
       label: "Account and profile",
       kicker: "Account",
@@ -149,7 +149,7 @@
       ]
     },
     workspace: {
-      path: "/workspace",
+      path: "/docs/workspace",
       icon: "assets/icons/docs/gnome-panel-workspace-switcher-svgrepo-com.svg",
       label: "Workspace",
       kicker: "Workspace",
@@ -165,7 +165,7 @@
       ]
     },
     signals: {
-      path: "/signals",
+      path: "/docs/signals",
       icon: "assets/icons/docs/signal-svgrepo-com.svg",
       label: "Website signals",
       kicker: "Signals",
@@ -181,7 +181,7 @@
       ]
     },
     cavai: {
-      path: "/cavai",
+      path: "/docs/cavai",
       icon: "assets/logo/CavAi Official Logo-svg/2.png",
       label: "CavAi",
       kicker: "CavAi",
@@ -197,7 +197,7 @@
       ]
     },
     developers: {
-      path: "/developers",
+      path: "/docs/developers",
       icon: "assets/icons/docs/code-svgrepo-com.svg",
       label: "Developers",
       kicker: "Developers",
@@ -213,7 +213,7 @@
       ]
     },
     tools: {
-      path: "/tools",
+      path: "/docs/tools",
       icon: "assets/icons/docs/devtool-svgrepo-com.svg",
       label: "Developer tools",
       kicker: "Tools",
@@ -228,7 +228,7 @@
       ]
     },
     security: {
-      path: "/security",
+      path: "/docs/security",
       icon: "assets/icons/page/shield-tick-svgrepo-com.svg",
       label: "Security",
       kicker: "Security",
@@ -243,7 +243,7 @@
       ]
     },
     integrations: {
-      path: "/integrations",
+      path: "/docs/integrations",
       icon: "assets/icons/docs/integrations-svgrepo-com.svg",
       label: "Integrations",
       kicker: "Integrations",
@@ -260,7 +260,7 @@
       ]
     },
     billing: {
-      path: "/billing",
+      path: "/docs/billing",
       icon: "assets/icons/docs/pay-svgrepo-com.svg",
       label: "Billing and plans",
       kicker: "Billing",
@@ -276,7 +276,7 @@
       ]
     },
     assets: {
-      path: "/assets",
+      path: "/docs/assets",
       icon: "assets/logo/cavbot-logomark.svg",
       label: "CavBot assets",
       kicker: "CavBot assets",
@@ -292,7 +292,7 @@
       ]
     },
     resources: {
-      path: "/resources",
+      path: "/docs/resources",
       icon: "assets/icons/docs/image-combiner-svgrepo-com3.svg",
       label: "More docs",
       kicker: "Resources",
@@ -321,6 +321,9 @@
   const pathToRoute = {};
   Object.keys(docs).forEach(function (key) {
     pathToRoute[docs[key].path] = key;
+    if (docs[key].path.indexOf("/docs/") === 0) {
+      pathToRoute[docs[key].path.replace("/docs", "")] = key;
+    }
   });
   const sectionToRoute = {};
   Object.keys(docs).forEach(function (key) {
@@ -331,7 +334,7 @@
 
   function currentRoute() {
     const path = slugPath(window.location.pathname);
-    if (path === "/" || path === "/docs.html" || path === "/index.html") return "home";
+    if (path === "/" || path === "/docs" || path === "/docs.html" || path === "/index.html") return "home";
     return pathToRoute[path] || "home";
   }
 
@@ -416,7 +419,7 @@
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute("content", cat.description);
     const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) canonical.setAttribute("href", "https://docs.cavbot.io" + cat.path);
+    if (canonical) canonical.setAttribute("href", "https://cavbot.io" + cat.path);
     if (articleKicker) articleKicker.textContent = cat.kicker;
     if (articleTitle) articleTitle.textContent = cat.title;
     if (articleLede) articleLede.textContent = cat.description;
@@ -435,7 +438,7 @@
       }).join("");
     }
     if (callout) {
-      callout.innerHTML = '<h2>Documentation index</h2><p>Fetch the complete documentation index at: <a href="https://docs.cavbot.io/llms.txt">https://docs.cavbot.io/llms.txt</a></p><p>Use the left menu or the On this page panel to open a section.</p>';
+      callout.innerHTML = '<h2>Documentation index</h2><p>Fetch the complete documentation index at: <a href="https://cavbot.io/docs/llms.txt">https://cavbot.io/docs/llms.txt</a></p><p>Use the left menu or the On this page panel to open a section.</p>';
     }
     if (prose) {
       prose.innerHTML = '<p>' + escapeHtml(cat.description) + '</p>';
@@ -561,7 +564,7 @@
     const route = body.getAttribute("data-docs-route") || "getstarted";
     const cat = categoryForRoute(route);
     const hash = window.location.hash || ("#" + cat.sections[0].id);
-    return "https://docs.cavbot.io" + cat.path + hash;
+    return "https://cavbot.io" + cat.path + hash;
   }
 
   function getCavAiUrl(query) {
@@ -579,7 +582,7 @@
       if (service === "chatgpt") link.setAttribute("href", "https://chatgpt.com/?prompt=" + prompt);
       if (service === "claude") link.setAttribute("href", "https://claude.ai/new?q=" + prompt);
     });
-    if (markdownLink) markdownLink.setAttribute("href", "https://docs.cavbot.io" + cat.path + ".md");
+    if (markdownLink) markdownLink.setAttribute("href", "https://cavbot.io" + cat.path + ".md");
   }
 
   function initCopy() {

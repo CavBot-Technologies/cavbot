@@ -1,7 +1,7 @@
 # Introduction to CavBot
 
 > Documentation Index
-> Fetch the complete documentation index at: https://docs.cavbot.io/llms.txt
+> Fetch the complete documentation index at: https://cavbot.io/docs/llms.txt
 > Use this file to discover available CavBot pages before exploring further.
 
 CavBot is a website intelligence platform for teams that need clearer visibility after launch. It connects your website, reads production signals, and helps you understand what broke, what changed, and what needs attention next.
