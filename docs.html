@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preload" as="image" href="assets/logo/official-logotype-light.svg" fetchpriority="high">
+  <meta charset="utf-8">
+  <title>CavBot Docs · Guides and references · CavBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CavBot Docs includes setup guides, product references, and developer docs for connecting websites, reading signals, using CavAi, and managing CavBot workspaces.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="application-name" content="CavBot Docs">
+  <link rel="canonical" href="https://docs.cavbot.io/">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#01030f">
+  <meta name="msapplication-TileColor" content="#01030f">
+
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CavBot Docs">
+  <meta property="og:title" content="CavBot Docs · Guides and references · CavBot">
+  <meta property="og:description" content="Setup guides, product references, and developer docs for CavBot.">
+  <meta property="og:url" content="https://docs.cavbot.io/">
+  <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CavBot Docs · Guides and references · CavBot">
+  <meta name="twitter:description" content="Setup guides, product references, and developer docs for CavBot.">
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="files/css/pages/docs.css">
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
+
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://cavbot.io/#organization",
+        "name": "CavBot",
+        "url": "https://cavbot.io/",
+        "founder": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/"
+        },
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://docs.cavbot.io/#website",
+        "url": "https://docs.cavbot.io/",
+        "name": "CavBot Docs",
+        "publisher": { "@id": "https://cavbot.io/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://docs.cavbot.io/#webpage",
+        "url": "https://docs.cavbot.io/",
+        "name": "CavBot Docs",
+        "description": "CavBot Docs includes setup guides, product references, and developer docs for connecting websites, reading signals, using CavAi, and managing CavBot workspaces.",
+        "isPartOf": { "@id": "https://docs.cavbot.io/#website" },
+        "about": { "@id": "https://cavbot.io/#organization" },
+        "inLanguage": "en"
+      }
+    ]
+  }
+  </script>
+</head>
+
+
+<body class="docs-page" data-docs-theme="dark" data-cavbot-page-type="docs-home" data-docs-route="home">
+  <script>
+    (function () {
+      var path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+      var isGetStarted = path === "/getstarted" || path === "/get-started";
+      document.body.setAttribute("data-docs-route", isGetStarted ? "getstarted" : "home");
+      document.body.setAttribute("data-cavbot-page-type", isGetStarted ? "docs-article" : "docs-home");
+    })();
+  </script>
+
+
+  <header class="docs-header" data-docs-header>
+    <div class="docs-header-inner">
+      <div class="docs-brand" aria-label="CavBot Docs">
+        <a class="docs-brand-mark-link" href="https://cavbot.io/" aria-label="CavBot Docs home">
+        <img
+          class="docs-brand-mark"
+          src="assets/logo/cavbot-logomark.svg"
+          data-docs-logo-dark="assets/logo/cavbot-logomark.svg"
+          data-docs-logo-light="assets/brand/logo/primary-logo/brand-mark/official-logomark-dark+lime.png"
+          alt=""
+          aria-hidden="true"
+          decoding="async"
+        >
+        </a>
+        <span class="docs-brand-text">
+          <strong>CavBot</strong>
+          <a class="docs-brand-docs-link" href="https://docs.cavbot.io/" data-docs-home-link>Docs</a>
+        </span>
+      </div>
+
+
+      <div class="docs-version" aria-label="Documentation version">
+        <span class="docs-version-label">Version:</span>
+        <strong>2.0</strong>
+      </div>
+
+
+      <form class="docs-search" action="/search/" role="search">
+        <label class="docs-search-label" for="docs-search-input">Search CavBot Docs</label>
+        <svg class="docs-search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.4"></circle>
+          <path d="M16 16l4 4"></path>
+        </svg>
+        <input
+          id="docs-search-input"
+          name="q"
+          type="search"
+          placeholder=" "
+          autocomplete="on"
+          spellcheck="true"
+        >
+        <span class="docs-search-placeholder" aria-hidden="true">
+          <span>Search docs or ask</span>
+          <img
+            class="docs-search-cavai-mark"
+            src="assets/logo/CavAi Official Logo-svg/2.png"
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          >
+          <span>CavAi</span>
+        </span>
+        <button class="docs-search-clear" type="button" aria-label="Clear search" data-docs-search-clear hidden>
+          <img src="assets/icons/page/close-sm-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+        </button>
+        <button class="docs-search-button" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.4"></circle>
+            <path d="M16 16l4 4"></path>
+          </svg>
+        </button>
+        <div class="docs-search-results" role="listbox" aria-label="Search results" hidden></div>
+      </form>
+
+
+      <div class="docs-header-actions" aria-label="Docs actions">
+        <button class="docs-theme-toggle" type="button" data-docs-theme-toggle aria-label="Switch to light mode">
+          <img
+            class="docs-theme-icon docs-theme-icon--dark"
+            src="assets/icons/page/brand/sun-svgrepo-com.svg"
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          >
+          <img
+            class="docs-theme-icon docs-theme-icon--light"
+            src="assets/icons/page/brand/mode-dark-svgrepo-com.svg"
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          >
+        </button>
+      </div>
+
+
+      <button class="docs-mobile-toggle" type="button" data-docs-mobile-toggle aria-label="Open docs menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+
+    <div class="docs-mobile-panel" data-docs-mobile-panel hidden>
+      <a href="/getstarted#overview">Get started</a>
+      <a href="/workspace">Workspace</a>
+      <a href="/signals">Website signals</a>
+      <a href="/developers">Developers</a>
+      <a href="/tools#cavcode">CavCode</a>
+      <a href="/security">Security</a>
+      <a href="/billing#plans">Plans</a>
+    </div>
+  </header>
+
+
+  <main class="docs-main" id="main" data-docs-view="home">
+    <section class="docs-hero" aria-labelledby="docs-home-title" data-docs-hero>
+      <div class="docs-hero-stage">
+        <figure class="docs-hero-visual docs-hero-visual--left" aria-hidden="true">
+          <div class="docs-asset docs-asset-ball docs-asset-ball--lime">
+            <span class="docs-ball-body"></span>
+          </div>
+
+
+          <div class="docs-asset docs-asset-ball docs-asset-ball--orange">
+            <span class="docs-ball-body"></span>
+          </div>
+        </figure>
+
+
+        <div class="docs-hero-content">
+          <h1 id="docs-home-title">CavBot Docs</h1>
+          <p class="docs-hero-lede">
+            Help for every stage of your website.
+          </p>
+        </div>
+
+
+        <figure class="docs-hero-visual docs-hero-visual--right" aria-hidden="true">
+          <div class="docs-asset docs-asset-ball docs-asset-ball--violet">
+            <span class="docs-ball-body"></span>
+          </div>
+
+
+          <div class="docs-asset docs-asset-ball docs-asset-ball--blue">
+            <span class="docs-ball-body"></span>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+
+    <section class="docs-index" aria-label="CavBot documentation sections">
+      <div class="docs-index-inner">
+        <div class="docs-topic-grid">
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/rocket-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Get started</h2>
+            </div>
+            <ul>
+              <li><a href="/getstarted#overview">Overview</a></li>
+              <li><a href="/getstarted#account">Account</a></li>
+              <li><a href="/getstarted#site-setup">Site setup</a></li>
+              <li><a href="/getstarted#snippet">Snippet</a></li>
+              <li><a href="/getstarted#launch-checklist">Launch checklist</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/account-avatar-head-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Account and profile</h2>
+            </div>
+            <ul>
+              <li><a href="/account#profile">Profile</a></li>
+              <li><a href="/account#sites">Sites</a></li>
+              <li><a href="/account#projects">Projects</a></li>
+              <li><a href="/account#top-site">Top site</a></li>
+              <li><a href="/account#notifications">Notifications</a></li>
+              <li><a href="/account#team-access">Team access</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/gnome-panel-workspace-switcher-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Workspace</h2>
+            </div>
+            <ul>
+              <li><a href="/workspace#dashboard">Dashboard</a></li>
+              <li><a href="/workspace#reports">Reports</a></li>
+              <li><a href="/workspace#cavpad">CavPad</a></li>
+              <li><a href="/workspace#arcade">Arcade</a></li>
+              <li><a href="/workspace#command-center">Command Center</a></li>
+              <li><a href="/workspace#members-and-roles">Members and roles</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/signal-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Website signals</h2>
+            </div>
+            <ul>
+              <li><a href="/signals#errors">Errors</a></li>
+              <li><a href="/signals#routes">Routes</a></li>
+              <li><a href="/signals#seo">SEO</a></li>
+              <li><a href="/signals#a11y">A11y</a></li>
+              <li><a href="/signals#cavbot-insights">CavBot Insights</a></li>
+              <li><a href="/signals#404-control-room">404 Control Room</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async">
+              <h2>CavAi</h2>
+            </div>
+            <ul>
+              <li><a href="/cavai#cavai-v3">CavAi V3</a></li>
+              <li><a href="/cavai#models">Models</a></li>
+              <li><a href="/cavai#assistant-memory">Memory</a></li>
+              <li><a href="/cavai#caven">Caven</a></li>
+              <li><a href="/cavai#image-studio">Image Studio</a></li>
+              <li><a href="/cavai#image-edit">Image Edit</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/code-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Developers</h2>
+            </div>
+            <ul>
+              <li><a href="/developers#analytics-v5">Analytics v5</a></li>
+              <li><a href="/developers#sdk">SDK</a></li>
+              <li><a href="/developers#events">Events</a></li>
+              <li><a href="/developers#api-keys">API keys</a></li>
+              <li><a href="/developers#webhooks">Webhooks</a></li>
+              <li><a href="/developers#summary-api">Summary API</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/devtool-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Developer tools</h2>
+            </div>
+            <ul>
+              <li><a href="/tools#cavcode">CavCode</a></li>
+              <li><a href="/tools#cavcloud">CavCloud</a></li>
+              <li><a href="/tools#cavtools">CavTools</a></li>
+              <li><a href="/tools#html-viewer">HTML Viewer</a></li>
+              <li><a href="/tools#cav-commands">Cav commands</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/page/shield-tick-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Security</h2>
+            </div>
+            <ul>
+              <li><a href="/security#caverify">CavVerify</a></li>
+              <li><a href="/security#cavguard">CavGuard</a></li>
+              <li><a href="/security#cavsafe">CavSafe</a></li>
+              <li><a href="/security#audit-trail">Audit trail</a></li>
+               <li><a href="/security#risk-controls">Risk Controls</a></li>
+              
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/integrations-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Integrations</h2>
+            </div>
+            <ul>
+              <li><a href="/integrations#webflow">Webflow</a></li>
+              <li><a href="/integrations#shopify">Shopify</a></li>
+              <li><a href="/integrations#wix">Wix</a></li>
+              <li><a href="/integrations#framer">Framer</a></li>
+              <li><a href="/integrations#wordpress">WordPress</a></li>
+              <li><a href="/integrations#squarespace">Squarespace</a></li>
+              <li><a href="/integrations#custom-html">Custom HTML</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/pay-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>Billing and plans</h2>
+            </div>
+            <ul>
+              <li><a href="/billing#plans">Plans</a></li>
+              <li><a href="/billing#trial">Trial</a></li>
+              <li><a href="/billing#checkout">Checkout</a></li>
+              <li><a href="/billing#portal">Portal</a></li>
+              <li><a href="/billing#seats">Seats</a></li>
+              <li><a href="/billing#cancel-a-plan">Cancel a plan</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/logo/cavbot-logomark.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>CavBot assets</h2>
+            </div>
+            <ul>
+              <li><a href="/assets#cavbot-badge">Badge</a></li>
+              <li><a href="/assets#cavbot-head">Head</a></li>
+              <li><a href="/assets#cavbot-body">Body</a></li>
+              <li><a href="/assets#arcade-404">Arcade</a></li>
+              <li><a href="/assets#arcade-games">404 games</a></li>
+              <li><a href="/assets#brand-resources">Brand resources</a></li>
+            </ul>
+          </article>
+
+
+          <article class="docs-topic-card" data-docs-reveal>
+            <div class="docs-topic-title-row">
+              <img class="docs-topic-icon" src="assets/icons/docs/image-combiner-svgrepo-com3.svg" alt="" aria-hidden="true" decoding="async">
+              <h2>More docs</h2>
+            </div>
+            <ul>
+              <li><a href="/resources#support">Support</a></li>
+              <li><a href="/resources#status">Status</a></li>
+              <li><a href="/resources#releases">Releases</a></li>
+              <li><a href="/resources#community">Community</a></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="docs-help" aria-labelledby="docs-help-title">
+      <div class="docs-help-inner">
+        <h2 id="docs-help-title">Help and support</h2>
+
+
+        <div class="docs-help-grid">
+          <article class="docs-help-card">
+            <h3>Did you find what you needed?</h3>
+            <div class="docs-feedback" aria-label="Documentation feedback">
+              <button type="button" data-docs-feedback="yes">
+                <img
+                  class="docs-feedback-icon"
+                  src="assets/icons/docs/like-svgrepo-com.svg"
+                  alt=""
+                  aria-hidden="true"
+                  decoding="async"
+                >
+                <span>Yes</span>
+              </button>
+              <button type="button" data-docs-feedback="no">
+                <img
+                  class="docs-feedback-icon"
+                  src="assets/icons/docs/dislike-svgrepo-com.svg"
+                  alt=""
+                  aria-hidden="true"
+                  decoding="async"
+                >
+                <span>No</span>
+              </button>
+            </div>
+          </article>
+
+
+          <article class="docs-help-card">
+            <h3>Still need help?</h3>
+            <ul>
+              <li><a href="/resources#community">Ask the CavBot community</a></li>
+              <li><a href="mailto:support@cavbot.io">Contact support</a></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <main class="docs-article-shell" id="getstarted" data-docs-view="getstarted">
+    <aside class="docs-left-panel" aria-label="Get started navigation">
+      <div class="docs-left-inner">
+
+        <div class="docs-left-title">
+          <span>Get started</span>
+         
+        </div>
+
+
+        <nav class="docs-left-nav" aria-label="Get started sections">
+          <div class="docs-nav-group" data-docs-nav-section="getstarted">
+            <p>Introduction</p>
+            <a class="is-active" href="/getstarted#overview" data-docs-open="overview">Overview</a>
+            <a href="/getstarted#overview" data-docs-open="how-cavbot-works">How CavBot works</a>
+            <a href="/getstarted#overview" data-docs-open="entrypoints">Choose an entrypoint</a>
+            <a href="/getstarted#overview" data-docs-open="concepts">Core concepts</a>
+          </div>
+
+
+          <div class="docs-nav-group" data-docs-nav-section="getstarted">
+            <p>Setup</p>
+            <a href="/getstarted#account" data-docs-open="account">Create your account</a>
+            <a href="/getstarted#site-setup" data-docs-open="site-setup">Add your first website</a>
+            <a href="/getstarted#snippet" data-docs-open="snippet">Install the snippet</a>
+            <a href="/getstarted#launch-checklist" data-docs-open="launch-checklist">Launch checklist</a>
+          </div>
+
+
+          <div class="docs-nav-group" data-docs-nav-section="getstarted">
+            <p>Next steps</p>
+            <a href="/getstarted#launch-checklist" data-docs-open="go-deeper">Go deeper</a>
+          </div>
+
+
+          <div class="docs-nav-group" data-docs-nav-section="developers" hidden>
+            <p>Signal</p>
+            <a href="/developers#analytics-v5" data-docs-open="analytics-v5">CavBot Analytics v5</a>
+            <a href="/developers#events" data-docs-open="events">Events</a>
+            <a href="/developers#summary-api" data-docs-open="summary-api">Summary API</a>
+          </div>
+
+
+          <div class="docs-nav-group" data-docs-nav-section="cavai" hidden>
+            <p>AI</p>
+            <a href="/cavai#cavai-v3" data-docs-open="cavai-v3">CavAi v3</a>
+            <a href="/cavai#assistant-memory" data-docs-open="assistant-memory">Assistant memory</a>
+            <a href="/cavai#caven" data-docs-open="caven">Caven</a>
+          </div>
+
+
+          <div class="docs-nav-group" data-docs-nav-section="assets" hidden>
+            <p>CavBot assets</p>
+            <a href="/assets#arcade-404" data-docs-open="arcade-404">404 Arcade</a>
+            <a href="/assets#cavbot-badge" data-docs-open="cavbot-badge">CavBot Badge</a>
+            <a href="/assets#cavbot-head" data-docs-open="cavbot-head">CavBot Head</a>
+            <a href="/assets#cavbot-body" data-docs-open="cavbot-body">CavBot Body</a>
+          </div>
+        </nav>
+      </div>
+    </aside>
+
+
+    <article class="docs-article" aria-labelledby="docs-article-title">
+      <header class="docs-article-header">
+        <p class="docs-kicker">Start here</p>
+
+
+        <div class="docs-title-row">
+          <h1 id="docs-article-title">Introduction to <br> CavBot</h1>
+          <details class="docs-copy-menu" data-docs-copy-menu>
+            <summary class="docs-copy-trigger" aria-label="Open copy and AI actions">
+              <img src="assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+              <span>Copy page</span>
+              <span class="docs-copy-caret" aria-hidden="true"></span>
+            </summary>
+
+            <div class="docs-copy-dropdown" role="menu">
+              <button class="docs-copy-action" type="button" data-docs-copy-page role="menuitem">
+                <span class="docs-copy-action-icon">
+                  <img src="assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+                </span>
+                <span>
+                  <strong>Copy page</strong>
+                  <em>Copy page as Markdown for LLMs</em>
+                </span>
+              </button>
+
+              <a class="docs-copy-action" href="https://docs.cavbot.io/getstarted.md" target="_blank" rel="noopener noreferrer" data-docs-markdown-link role="menuitem">
+                <span class="docs-copy-action-icon">
+                  <img src="assets/icons/docs/markdown-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+                </span>
+                <span>
+                  <strong>View as Markdown <img class="docs-copy-external-icon" src="assets/icons/docs/external-arrow-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async"></strong>
+                  <em>View this page as plain text</em>
+                </span>
+              </a>
+
+              <a class="docs-copy-action" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer" data-docs-ai-link="cavai" role="menuitem">
+                <span class="docs-copy-action-icon">
+                  <img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async">
+                </span>
+                <span>
+                  <strong>Open in CavAi <img class="docs-copy-external-icon" src="assets/icons/docs/external-arrow-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async"></strong>
+                  <em>Ask questions about this page</em>
+                </span>
+              </a>
+
+              <a class="docs-copy-action" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" data-docs-ai-link="chatgpt" role="menuitem">
+                <span class="docs-copy-action-icon">
+                  <img src="assets/icons/docs/OpenAI-black-monoblossom.svg" alt="" aria-hidden="true" decoding="async">
+                </span>
+                <span>
+                  <strong>Open in ChatGPT <img class="docs-copy-external-icon" src="assets/icons/docs/external-arrow-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async"></strong>
+                  <em>Ask questions about this page</em>
+                </span>
+              </a>
+
+              <a class="docs-copy-action" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" data-docs-ai-link="claude" role="menuitem">
+                <span class="docs-copy-action-icon">
+                  <img src="assets/icons/docs/claude-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+                </span>
+                <span>
+                  <strong>Open in Claude <img class="docs-copy-external-icon" src="assets/icons/docs/external-arrow-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async"></strong>
+                  <em>Ask questions about this page</em>
+                </span>
+              </a>
+            </div>
+          </details>
+        </div>
+
+<br>
+
+        <p class="docs-lede">
+          CavBot is a website intelligence platform. We bring clarity to what happens after launch —
+        helping every digital experience stay reliable, resilient, and ready to recover.
+
+        </p>
+      </header>
+
+<br>
+      <section class="docs-callout" aria-labelledby="docs-index-title">
+        <h2 id="docs-index-title">Documentation Index</h2>
+        <p>
+          Fetch the complete documentation index at:
+          <a href="https://docs.cavbot.io/llms.txt">https://docs.cavbot.io/llms.txt</a>
+        </p>
+        <p>Use this file to discover available CavBot pages before exploring further.</p>
+      </section>
+
+<br>
+      <section class="docs-prose">
+        <p>
+          Websites are no longer static pages. They are live systems made of routes, scripts, search visibility, user sessions, forms, dashboards, embedded tools, and production behavior. CavBot gives those systems a command layer.
+        </p>
+        <p>
+          Once a website is connected, CavBot can begin organizing signals around the site profile: broken routes, JavaScript errors, SEO structure, accessibility snapshots, route behavior, and workspace context.
+        </p>
+        <p>
+          CavBot does not replace your analytics stack. It sits beside it as an operational intelligence layer: a place to see what needs attention, understand why it matters, and move toward the next action.
+        </p>
+      </section>
+
+      <br><br><br><br>
+
+      <section class="docs-toggle-stack" aria-label="Get started documentation">
+        <details class="docs-doc-toggle" id="overview" data-docs-title="Overview" data-docs-summary="What CavBot is and when to use it." open>
+          <summary>
+            <span>Overview</span>
+            <em>What CavBot is and when to use it.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              CavBot helps you monitor and understand a website after it is live. The first setup flow is simple:
+            </p>
+
+
+            <ol>
+              <li>Create your CavBot account.</li>
+              <li>Add your website as a site profile.</li>
+              <li>Install the CavBot Analytics v5 snippet.</li>
+              <li>Open the dashboard and confirm signals are arriving.</li>
+              <li>Use CavAi, reports, and modules to understand what needs attention.</li>
+            </ol>
+
+
+            <p>
+              Every website belongs to a workspace, and every workspace can contain one or more site profiles. A site profile represents a real website origin, such as <code>https://example.com</code>.
+            </p>
+<br>
+
+            <h2>When to use CavBot</h2>
+            <p>
+              Use CavBot when the website is important enough that broken pages, weak metadata, route loops, or client-side errors should not sit unseen. It is built for post-launch work: the practical stage where a site has real visitors, real routes, and real consequences when something breaks.
+            </p>
+
+<br>
+            <p>
+              CavBot is especially useful when a team needs one place to understand site health before deciding what to fix. Analytics can show traffic and conversion. CavBot focuses on operational signals: what changed, what broke, what is missing, and what needs review next.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="how-cavbot-works" data-docs-title="How CavBot works" data-docs-summary="The basic system behind website intelligence." hidden>
+          <summary>
+            <span>How CavBot works</span>
+            <em>The basic system behind website intelligence.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              CavBot starts with a site profile. The profile gives CavBot a stable place to organize signals from the website. After the snippet is installed, CavBot can receive events from the browser and connect them to the selected project and site.
+            </p>
+
+
+            <ul>
+              <li><strong>Workspace:</strong> the command center for a project or team.</li>
+              <li><strong>Site:</strong> the website origin CavBot watches.</li>
+              <li><strong>Snippet:</strong> the browser-side Analytics v5 script installed on the website.</li>
+              <li><strong>Signals:</strong> events and snapshots CavBot uses to understand the site.</li>
+              <li><strong>Modules:</strong> focused views for errors, SEO, routes, accessibility, reports, and site operations.</li>
+            </ul>
+
+
+            <p>
+              CavBot becomes more useful when the site is active and receiving real user traffic, but the setup can be verified immediately with test visits and basic route checks.
+            </p>
+
+            <h2>The signal flow</h2>
+            <p>
+              The site profile is the anchor. The Analytics v5 snippet sends browser-side activity to CavBot, including page visits, route changes, runtime errors, and selected context about the active site. CavBot stores those signals under the workspace and connects them to modules such as Dashboard, Errors, Routes, SEO, A11y, Reports, and 404 Control Room.
+            </p>
+
+            <p>
+              CavAi can then use the workspace and site context to explain what the signals mean. The goal is not to flood the team with raw events. The goal is to help the team understand which issue deserves attention and why.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="entrypoints" data-docs-title="Choose an entrypoint" data-docs-summary="Where to begin based on what you already have." hidden>
+          <summary>
+            <span>Choose an entrypoint</span>
+            <em>Where to begin based on what you already have.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <table class="docs-table">
+              <thead>
+                <tr>
+                  <th>Situation</th>
+                  <th>Start with</th>
+                  <th>Goal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>You are new to CavBot.</td>
+                  <td>Create your account.</td>
+                  <td>Open a workspace and prepare your first site profile.</td>
+                </tr>
+                <tr>
+                  <td>You already have a live website.</td>
+                  <td>Add your first website.</td>
+                  <td>Register the canonical site origin inside CavBot.</td>
+                </tr>
+                <tr>
+                  <td>You want live browser signals.</td>
+                  <td>Install the snippet.</td>
+                  <td>Send page views, route changes, errors, and snapshots to CavBot.</td>
+                </tr>
+                <tr>
+                  <td>You want to review health.</td>
+                  <td>Open the dashboard.</td>
+                  <td>Read the first signals and check priority modules.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h2>Recommended path</h2>
+            <p>
+              If you are setting up CavBot for the first time, start with the account, then add the website, then install the snippet. Do not start with reports or CavAi until the workspace has a real site profile. Those surfaces become more useful once CavBot has a site to reference.
+            </p>
+
+            <p>
+              If you already have a workspace and a saved site, jump directly to the snippet. After the first browser visit, open the dashboard and confirm the selected site is receiving signals.
+            </p>
+          </div>
+        </details>
+
+<details class="docs-doc-toggle" id="concepts" data-docs-title="Core concepts" data-docs-summary="The terms used across CavBot Docs." hidden>
+          <summary>
+            <span>Core concepts</span>
+            <em>The terms used across CavBot Docs.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <dl class="docs-definition-list">
+              <div>
+                <dt>Workspace</dt>
+                <dd>The main container for a project, company, or team using CavBot.</dd>
+              </div>
+              <div>
+                <dt>Site profile</dt>
+                <dd>A saved website origin connected to a workspace.</dd>
+              </div>
+              <div>
+                <dt>Primary site</dt>
+                <dd>The main website CavBot opens first when a workspace has multiple sites.</dd>
+              </div>
+              <div>
+                <dt>Signal</dt>
+                <dd>A browser, route, SEO, accessibility, or runtime event CavBot can use for intelligence.</dd>
+              </div>
+              <div>
+                <dt>Analytics v5</dt>
+                <dd>The CavBot browser-side signal layer installed on a website.</dd>
+              </div>
+              <div>
+                <dt>CavAi</dt>
+                <dd>The assistant layer that can use CavBot context to explain signals and guide next actions.</dd>
+              </div>
+            </dl>
+
+            <h2>How the terms fit together</h2>
+            <p>
+              A workspace owns one or more site profiles. A site profile represents a real website origin. Analytics v5 sends signals from that website into the profile. Modules read those signals and show focused views for common operating work. CavAi can use the same context when you ask questions about the website.
+            </p>
+          </div>
+        </details>
+
+
+
+        <details class="docs-doc-toggle" id="account" data-docs-title="Create your account" data-docs-summary="Set up the identity CavBot uses for your workspace." hidden>
+          <summary>
+            <span>Create your account</span>
+            <em>Set up the identity CavBot uses for your workspace.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              Your CavBot account gives you access to the app, workspaces, sites, reports, and CavAi features. Use an email address you can keep long term, especially if the workspace will belong to a business or team.
+            </p>
+
+
+            <ol>
+              <li>Go to the CavBot app.</li>
+              <li>Create an account or sign in.</li>
+              <li>Complete the required profile information.</li>
+              <li>Open the default workspace.</li>
+              <li>Confirm that you can access the Command Center.</li>
+            </ol>
+
+
+            <div class="docs-note">
+              <strong>Note:</strong>
+              <span>Keep ownership access tied to the founder, company owner, or primary technical lead. Team members can be invited later from workspace settings.</span>
+            </div>
+
+            <h2>Before inviting a team</h2>
+            <p>
+              Confirm that the owner account can access billing, workspace settings, site setup, and the dashboard. Once the owner account is stable, invite teammates with roles that match their work. Editors can help with site operations. Admins should be limited to people who can manage access and sensitive settings.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="site-setup" data-docs-title="Add your first website" data-docs-summary="Create the site profile CavBot will monitor." hidden>
+          <summary>
+            <span>Add your first website</span>
+            <em>Create the site profile CavBot will monitor.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              A site profile tells CavBot which website belongs to the workspace. Use the public origin of your website, not a random route.
+            </p>
+
+
+            <p>Correct examples:</p>
+
+
+            <pre><code>https://example.com
+https://www.example.com
+https://app.example.com</code></pre>
+
+
+            <p>Avoid adding full paths as the main site origin:</p>
+
+
+            <pre><code>https://example.com/pricing
+https://example.com/blog/post-name
+https://example.com?ref=test</code></pre>
+
+
+            <ol>
+              <li>Open the Command Center.</li>
+              <li>Select the active workspace.</li>
+              <li>Choose <strong>Add website</strong>.</li>
+              <li>Enter the website origin.</li>
+              <li>Add a readable label if needed.</li>
+              <li>Save the site profile.</li>
+            </ol>
+
+
+            <p>
+              After the site is saved, CavBot can use it across dashboards, reports, route intelligence, SEO checks, error views, and CavAi workspace context.
+            </p>
+
+            <h2>Primary site</h2>
+            <p>
+              If the workspace has more than one site profile, choose the main production website as the primary site. This keeps dashboard views, reports, and CavAi context pointed at the website the team reviews most often.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="snippet" data-docs-title="Install the snippet" data-docs-summary="Send browser-side signals to CavBot Analytics v5." hidden>
+          <summary>
+            <span>Install the snippet</span>
+            <em>Send browser-side signals to CavBot Analytics v5.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              The Analytics v5 snippet connects your live website to CavBot. Install it near the end of the page body or through the custom code area of your website platform.
+            </p>
+
+
+            <pre><code>&lt;script&gt;
+  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+  window.CAVBOT_PROJECT_KEY = "YOUR_PROJECT_KEY";
+  window.CAVBOT_SITE_ID = "YOUR_SITE_ID";
+&lt;/script&gt;
+&lt;script src="/cavai/cavai-analytics-v5.js" defer&gt;&lt;/script&gt;</code></pre>
+
+
+            <p>
+              Replace <code>YOUR_PROJECT_KEY</code> and <code>YOUR_SITE_ID</code> with the values shown in your CavBot workspace.
+            </p>
+
+
+            <div class="docs-note">
+              <strong>Install once:</strong>
+              <span>The snippet should be installed once per site. If the website has separate environments, keep production, preview, and staging clearly separated.</span>
+            </div>
+
+
+            <p>
+              After installation, visit the website in a browser, move through a few routes, then open CavBot to confirm that signals are arriving.
+            </p>
+
+            <h2>Where to place it</h2>
+            <p>
+              On custom sites, place the configuration script and Analytics v5 script on every production page. On website builders, use the global custom code area when available. On storefronts and apps, install it in the shared layout so route changes and page visits are recorded consistently.
+            </p>
+          </div>
+        </details>
+
+
+
+        <details class="docs-doc-toggle" id="launch-checklist" data-docs-title="Launch checklist" data-docs-summary="Confirm the first setup is working." hidden>
+          <summary>
+            <span>Launch checklist</span>
+            <em>Confirm the first setup is working.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <ul class="docs-check-list">
+              <li>Your account is created and you can sign in.</li>
+              <li>Your workspace exists and opens correctly.</li>
+              <li>Your website origin is saved as a site profile.</li>
+              <li>Your primary site is selected.</li>
+              <li>The Analytics v5 snippet is installed on the website.</li>
+              <li>You visited the website after installing the snippet.</li>
+              <li>The dashboard shows the selected site.</li>
+              <li>Initial signals are visible or the empty state clearly explains what to do next.</li>
+            </ul>
+
+            <p>
+              Keep this check short. The first goal is proof that the account, workspace, site, snippet, and dashboard are connected. Deeper review can happen after the site has collected real activity.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="analytics-v5" data-docs-title="CavBot Analytics v5" data-docs-summary="Install one snippet and CavBot starts watching your site." hidden>
+          <summary>
+            <span>CavBot Analytics v5</span>
+            <em>Install one snippet and CavBot starts watching your site.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              CavBot Analytics v5 is the browser-side signal layer for CavBot. It connects a live website to a CavBot site profile so the platform can understand page visits, route changes, runtime errors, recovery moments, and the basic context needed to review site health.
+            </p>
+
+            <h2>What it does</h2>
+            <ul>
+              <li>Identifies the CavBot project and site that should receive website signals.</li>
+              <li>Tracks browser-side route activity, including single-page app navigation when supported.</li>
+              <li>Sends runtime error context so the Errors view can show where issues happened.</li>
+              <li>Supports dashboard, routes, reports, 404 recovery, and CavAi workspace context.</li>
+            </ul>
+
+            <h2>Basic install</h2>
+            <p>
+              Add the configuration values from your CavBot workspace, then load the Analytics v5 script once on the site. The exact placement depends on your website platform, but the snippet should be present on every production page you want CavBot to observe.
+            </p>
+
+            <pre><code>&lt;script&gt;
+  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+  window.CAVBOT_PROJECT_KEY = "YOUR_PROJECT_KEY";
+  window.CAVBOT_SITE_ID = "YOUR_SITE_ID";
+&lt;/script&gt;
+&lt;script src="/cavai/cavai-analytics-v5.js" defer&gt;&lt;/script&gt;</code></pre>
+
+            <h2>After installing</h2>
+            <ol>
+              <li>Open the website in a browser.</li>
+              <li>Visit the home page and two or three important routes.</li>
+              <li>Return to CavBot and open the dashboard for the same site profile.</li>
+              <li>Confirm that the site is selected and signals are appearing.</li>
+            </ol>
+
+            <div class="docs-note">
+              <strong>Keep IDs private:</strong>
+              <span>Only use the project key and site ID generated for that website. Do not reuse values across unrelated sites or staging environments unless that is intentional.</span>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="events" data-docs-title="Events" data-docs-summary="Send important product actions into CavBot." hidden>
+          <summary>
+            <span>Events</span>
+            <em>Send important product actions into CavBot.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              Events are named actions that help CavBot understand what happened on the website beyond a page view. Use them for moments your team cares about: form submissions, checkout starts, pricing clicks, sign-up attempts, recovery actions, or feature interactions.
+            </p>
+
+            <h2>When to send an event</h2>
+            <p>
+              Send an event when the action changes how the site should be understood. A normal page view does not need a custom event. A visitor clicking a primary call to action, failing a form step, opening a checkout, or using a recovery link is worth recording because it gives CavBot more context.
+            </p>
+
+            <h2>Event naming</h2>
+            <ul>
+              <li>Use short names that describe the action: <code>signup_started</code>, <code>pricing_cta_clicked</code>, <code>checkout_opened</code>.</li>
+              <li>Keep names stable. Changing names often makes reports harder to read.</li>
+              <li>Add small context fields only when they help review the event later.</li>
+            </ul>
+
+            <pre><code>window.CavBot?.track?.("pricing_cta_clicked", {
+  plan: "pro",
+  route: window.location.pathname
+});</code></pre>
+
+            <h2>Good event context</h2>
+            <p>
+              Useful context is specific but limited. A plan name, route, button label, form step, or recovery target can help. Avoid sending sensitive information, passwords, payment details, private messages, or anything the team does not need to operate the site.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="summary" data-docs-title="Summary" data-docs-summary="Pull the latest site, route, and dashboard results." hidden>
+          <summary>
+            <span>Summary</span>
+            <em>Pull the latest site, route, and dashboard results.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              Summary is the read layer for current CavBot results. It gives a team or tool a compact view of the selected site, including dashboard state, route health, recent issues, and the operational context CavBot has already organized.
+            </p>
+
+            <h2>What a summary is for</h2>
+            <ul>
+              <li>Checking whether a site is receiving signals.</li>
+              <li>Reviewing the latest route, error, SEO, or recovery concerns.</li>
+              <li>Giving CavAi or an internal tool the current site context before answering a question.</li>
+              <li>Preparing status updates without opening every module manually.</li>
+            </ul>
+
+            <h2>How teams use it</h2>
+            <p>
+              A summary should be treated as a snapshot. It helps answer “what does CavBot currently know about this site?” It should not replace detailed review inside the dashboard, reports, or individual signal modules when a fix is being planned.
+            </p>
+
+            <h2>Recommended checks</h2>
+            <ol>
+              <li>Confirm the workspace and site profile are correct.</li>
+              <li>Check that Analytics v5 has sent recent signals.</li>
+              <li>Review high-priority issues before lower-priority observations.</li>
+              <li>Use the summary as context, then open the focused module when detail is needed.</li>
+            </ol>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="cavai-v3" data-docs-title="CavAi v3" data-docs-summary="The AI layer that helps CavBot turn what it sees into action." hidden>
+          <summary>
+            <span>CavAi v3</span>
+            <em>The AI layer that helps CavBot turn what it sees into action.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              CavAi v3 is the assistant layer inside CavBot. It helps explain website signals, summarize workspace context, draft next steps, and answer questions about the site or project without forcing the team to read every raw signal first.
+            </p>
+
+            <h2>What CavAi can help with</h2>
+            <ul>
+              <li>Explain what a dashboard signal means.</li>
+              <li>Summarize recent route, SEO, accessibility, or error concerns.</li>
+              <li>Help choose the first fix when several issues are visible.</li>
+              <li>Use workspace context when the user asks about the active project.</li>
+            </ul>
+
+            <h2>How to ask useful questions</h2>
+            <p>
+              Ask CavAi with the site and goal in mind. “What should I review first for this site?” is better than “what is wrong?” A good question gives CavAi a clear task: explain, compare, summarize, draft, or prioritize.
+            </p>
+
+            <pre><code>Summarize the current issues for this site and tell me what to check first.
+
+Explain why this route keeps showing up in recovery reports.
+
+Turn the latest dashboard signals into a short status update.</code></pre>
+
+            <div class="docs-note">
+              <strong>Use context carefully:</strong>
+              <span>CavAi should support review and decision-making. Confirm important changes before publishing, deleting, billing, or changing access.</span>
+            </div>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="assistant-memory" data-docs-title="Assistant memory" data-docs-summary="Keep project context available when CavAi responds." hidden>
+          <summary>
+            <span>Assistant memory</span>
+            <em>Keep project context available when CavAi responds.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              Assistant memory is the project context CavAi can use when responding. It helps the assistant remember stable facts about a workspace, such as the site purpose, important routes, team preferences, and recurring operational concerns.
+            </p>
+
+            <h2>What belongs in memory</h2>
+            <ul>
+              <li>The main purpose of the website or product.</li>
+              <li>Important routes such as pricing, checkout, docs, auth, or contact pages.</li>
+              <li>Team preferences for summaries, tone, or workflows.</li>
+              <li>Known launch notes or recurring issues that affect future answers.</li>
+            </ul>
+
+            <h2>What should not go in memory</h2>
+            <p>
+              Do not store passwords, private keys, payment data, sensitive customer information, or temporary details that will become wrong quickly. Memory should make CavAi more useful without turning it into a place for secrets.
+            </p>
+
+            <h2>Review memory over time</h2>
+            <p>
+              Project context should stay accurate. When a site changes, update the relevant memory. If a launch note is no longer useful, remove it or replace it with the current state.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="agent-workflows" data-docs-title="Agent workflows" data-docs-summary="Run repeatable agents for research, fixes, and summaries." hidden>
+          <summary>
+            <span>Agent workflows</span>
+            <em>Run repeatable agents for research, fixes, and summaries.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              Agent workflows are repeatable tasks that use CavBot context to help with site operations. They are useful when a team asks the same kind of question often: review a route, summarize a launch, check a dashboard state, prepare a report, or draft next steps.
+            </p>
+
+            <h2>Good workflow candidates</h2>
+            <ul>
+              <li>Weekly site health summary.</li>
+              <li>Broken route review after a deploy.</li>
+              <li>SEO and metadata check for important pages.</li>
+              <li>404 recovery summary for pages that still receive visits.</li>
+              <li>Launch checklist review before a campaign or release.</li>
+            </ul>
+
+            <h2>Keep workflows bounded</h2>
+            <p>
+              A strong workflow has a clear input, a clear output, and a clear stopping point. Avoid broad prompts like “fix my website.” Use specific tasks like “review the pricing route signals and list the first three checks.”
+            </p>
+
+            <h2>Review before action</h2>
+            <p>
+              Workflows can help prepare decisions, but sensitive actions should still be confirmed by a person. Treat the workflow result as a structured recommendation, not an automatic approval.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="arcade-404" data-docs-title="404 Arcade" data-docs-summary="Install interactive 404 games for broken pages." hidden>
+          <summary>
+            <span>404 Arcade</span>
+            <em>Install interactive 404 games for broken pages.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              404 Arcade gives a broken page a better recovery moment. Instead of leaving visitors on a dead end, a site can show an interactive game or recovery surface while guiding the visitor back to a useful route.
+            </p>
+
+            <h2>When to use it</h2>
+            <p>
+              Use 404 Arcade when a site has public routes that may be mistyped, moved, outdated, or linked from old campaigns. It is not a replacement for fixing broken links. It is a recovery layer for visitors who still reach a missing page.
+            </p>
+
+            <h2>What to configure</h2>
+            <ul>
+              <li>The game or recovery experience shown on the 404 page.</li>
+              <li>The primary route visitors should return to.</li>
+              <li>Any helpful links, such as home, pricing, docs, support, or search.</li>
+              <li>Analytics v5 tracking so CavBot can see the recovery moment.</li>
+            </ul>
+
+            <h2>Measure recovery</h2>
+            <p>
+              After installing 404 Arcade, review whether visitors continue to another page, repeat the missing route, or leave. The goal is to protect the path and then repair the source of the broken route.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="cavbot-badge" data-docs-title="CavBot Badge" data-docs-summary="Show visible trust on your website." hidden>
+          <summary>
+            <span>CavBot Badge</span>
+            <em>Show visible trust on your website.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              The CavBot Badge is a compact trust marker that can appear on a website when CavBot is connected. It gives visitors a visible CavBot presence without taking over the page.
+            </p>
+
+            <h2>Where it belongs</h2>
+            <p>
+              Use the badge in low-friction places such as a footer, support surface, status area, or bottom corner. It should not block content, cover important buttons, or compete with the main page action.
+            </p>
+
+            <h2>Basic embed</h2>
+            <pre><code>&lt;link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css"&gt;
+
+&lt;span data-cavbot-badge data-cavbot-badge-inline data-cavbot-badge-theme="auto"&gt;&lt;/span&gt;</code></pre>
+
+            <h2>Implementation notes</h2>
+            <ul>
+              <li>Use the inline badge when it should sit inside an existing layout.</li>
+              <li>Use a floating slot only when it will not cover product controls.</li>
+              <li>Keep the badge visible, but do not make it the main call to action.</li>
+            </ul>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="cavbot-head" data-docs-title="CavBot Head" data-docs-summary="Add a compact CavBot presence to your product." hidden>
+          <summary>
+            <span>CavBot Head</span>
+            <em>Add a compact CavBot presence to your product.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              CavBot Head is a compact visual component for product moments where a small CavBot presence is useful. It can support onboarding, empty states, status surfaces, or guided moments without requiring a full assistant panel.
+            </p>
+
+            <h2>Common placements</h2>
+            <ul>
+              <li>Dashboard empty states.</li>
+              <li>Setup confirmation screens.</li>
+              <li>Help surfaces that need a small branded signal.</li>
+              <li>Product areas where CavBot is watching or explaining a state.</li>
+            </ul>
+
+            <h2>Basic asset</h2>
+            <pre><code>&lt;link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css"&gt;
+
+&lt;div data-cavbot-head-orbit&gt;&lt;/div&gt;</code></pre>
+
+            <p>
+              Keep the component small and leave enough spacing around it. It should support the message on the page, not distract from the task.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="cavbot-body" data-docs-title="CavBot Body" data-docs-summary="Use CavBot for guided product moments." hidden>
+          <summary>
+            <span>CavBot Body</span>
+            <em>Use CavBot for guided product moments.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <p>
+              CavBot Body is the larger CavBot visual presence for guided product moments. Use it when the page needs a stronger assistant identity, such as onboarding, a launch state, a recovery screen, or a branded support moment.
+            </p>
+
+            <h2>When to use the full body</h2>
+            <ul>
+              <li>A first-run experience needs a clear CavBot guide.</li>
+              <li>A recovery page needs a friendly but useful visual anchor.</li>
+              <li>A help screen needs a branded assistant presence.</li>
+              <li>A product moment benefits from more visual emphasis than the badge or head.</li>
+            </ul>
+
+            <h2>Basic asset</h2>
+            <pre><code>&lt;link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-full-body.css"&gt;
+
+&lt;div data-cavbot-full-body&gt;&lt;/div&gt;</code></pre>
+
+            <p>
+              Use CavBot Body with restraint. It should be reserved for guided moments where the visitor needs orientation, recovery, or support.
+            </p>
+          </div>
+        </details>
+
+
+        <details class="docs-doc-toggle" id="go-deeper" data-docs-title="Go deeper" data-docs-summary="Where to continue after setup." hidden>
+          <summary>
+            <span>Go deeper</span>
+            <em>Where to continue after setup.</em>
+          </summary>
+
+
+          <div class="docs-toggle-body">
+            <ul>
+              <li><a href="/getstarted#snippet">Review error tracking</a></li>
+              <li><a href="/getstarted#snippet">Read Analytics v5 docs</a></li>
+              <li><a href="/workspace#reports">Use the Command Center</a></li>
+              <li><a href="/signals#404-control-room">Open 404 Control Room</a></li>
+              <li><a href="/cavai#models">Use CavAi with workspace context</a></li>
+            </ul>
+
+            <p>
+              Once the first setup is working, review one module at a time. Start with the dashboard for the broad view, then move into errors, routes, SEO, accessibility, or 404 recovery depending on what the site needs first.
+            </p>
+          </div>
+        </details>
+      </section>
+
+<br>
+
+      <section class="docs-section-help" aria-labelledby="docs-section-help-title">
+        <div>
+          <h2 id="docs-section-help-title">Was this part helpful?</h2>
+          <p>Tell us if this docs section answered what you needed.</p>
+        </div>
+
+        <div class="docs-section-help-actions" aria-label="Section feedback">
+          <button type="button" data-docs-feedback="yes">
+            <img src="assets/icons/docs/like-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+            <span>Yes</span>
+          </button>
+          <button type="button" data-docs-feedback="no">
+            <img src="assets/icons/docs/dislike-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+            <span>No</span>
+          </button>
+        </div>
+
+        <div class="docs-section-help-links">
+          <strong>Still need help?</strong>
+          <a href="/resources#community">Ask the CavBot community</a>
+          <a href="mailto:support@cavbot.io">Contact support</a>
+        </div>
+      </section>
+    </article>
+
+
+    <aside class="docs-right-panel" aria-label="On this page">
+      <div class="docs-right-inner">
+        <p>
+          <img src="assets/icons/docs/indent-right-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
+          <span>On this page</span>
+        </p>
+        <nav>
+          <a class="is-active" href="/getstarted#overview" data-docs-open="overview">Overview</a>
+          <a href="/getstarted#overview" data-docs-open="how-cavbot-works">How CavBot works</a>
+          <a href="/getstarted#overview" data-docs-open="entrypoints">Choose an entrypoint</a>
+          <a href="/getstarted#overview" data-docs-open="concepts">Concepts</a>
+          <a href="/getstarted#account" data-docs-open="account">Create account</a>
+          <a href="/getstarted#site-setup" data-docs-open="site-setup">Site setup</a>
+          <a href="/getstarted#snippet" data-docs-open="snippet">Install snippet</a>
+          <a href="/getstarted#launch-checklist" data-docs-open="launch-checklist">Launch checklist</a>
+          <a href="/developers#analytics-v5" data-docs-open="analytics-v5">Analytics v5</a>
+          <a href="/developers#events" data-docs-open="events">Events</a>
+          <a href="/developers#summary-api" data-docs-open="summary-api">Summary API</a>
+          <a href="/cavai#cavai-v3" data-docs-open="cavai-v3">CavAi v3</a>
+          <a href="/cavai#assistant-memory" data-docs-open="assistant-memory">Assistant memory</a>
+          <a href="/cavai#caven" data-docs-open="caven">Caven</a>
+          <a href="/assets#arcade-404" data-docs-open="arcade-404">404 Arcade</a>
+          <a href="/assets#cavbot-badge" data-docs-open="cavbot-badge">CavBot Badge</a>
+          <a href="/assets#cavbot-head" data-docs-open="cavbot-head">CavBot Head</a>
+          <a href="/assets#cavbot-body" data-docs-open="cavbot-body">CavBot Body</a>
+          <a href="/getstarted#launch-checklist" data-docs-open="go-deeper">Go deeper</a>
+        </nav>
+      </div>
+    </aside>
+  </main>
+
+
+  <footer class="docs-footer">
+    <div class="docs-footer-inner">
+      <nav class="docs-footer-links" aria-label="Legal links">
+        <span>© 2026 CavBot</span>
+        <a href="https://cavbot.io/terms-of-use.html">Terms</a>
+        <a href="https://cavbot.io/privacy-policy.html">Privacy</a>
+        <a href="https://cavbot.io/data-security.html">Data Security</a>
+        <a href="https://app.cavbot.io/status">Status</a>
+        <a href="https://cavbot.io/pricing.html">Pricing</a>
+      </nav>
+    </div>
+  </footer>
+
+
+  <div class="docs-copy-toast" data-docs-copy-toast aria-live="polite" aria-hidden="true">
+    Copied
+  </div>
+
+
+  <script>
+    window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+    window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1";
+    window.CAVBOT_SITE = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+    window.CAVBOT_SITE_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+    window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+  </script>
+
+
+  <script src="/cavai/cavai-analytics-v5.js" defer></script>
+
+
+  <div
+    data-cavbot-cdn-floating-badge="1"
+    data-cavbot-cdn-slot="badge"
+    aria-hidden="true"
+    style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
+
+
+  <script
+    defer
+    src="/cavai/cavai.js"
+    data-api="https://app.cavbot.io/api/embed/analytics"
+    data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
+    data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"
+    data-site="cece1ca3-212c-46c5-b54f-e69dd2f8f061">
+  </script>
+
+
+  <script src="files/js/globals/header-footer.js" defer></script>
+  <script src="files/js/pages/docs.js" defer></script>
+</body>
+</html>

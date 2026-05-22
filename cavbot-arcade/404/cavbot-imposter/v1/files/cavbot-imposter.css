@@ -732,6 +732,108 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   padding-top: 0 !important;
 }
 
+.imposter-arena .cavbot-head {
+  width: 76px;
+  height: 58px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 22% 0%, rgba(255,255,255,0.22), transparent 54%),
+    linear-gradient(145deg, #f9fbff 0%, #e1e7f3 42%, #aeb8ca 100%);
+  border: 1px solid rgba(255,255,255,0.32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+}
+
+.imposter-arena .cavbot-face {
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(78,168,255,0.36), transparent 56%),
+    radial-gradient(circle at 82% 18%, rgba(139,92,255,0.5), transparent 58%),
+    linear-gradient(160deg, #05060a 0%, #050916 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.imposter-arena .cavbot-eyes-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.imposter-arena .cavbot-eye {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 32% 18%, rgba(255,255,255,0.36), transparent 58%),
+    radial-gradient(circle at 50% 72%, rgba(0,0,0,0.86), #020307 76%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imposter-arena .cavbot-eye-inner {
+  position: relative;
+  width: 72%;
+  height: 72%;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, #050916 82%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imposter-arena .cavbot-eye-track {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imposter-arena .cavbot-eye-pupil {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 20%, #ffffff 0%, #d2f2ff 20%, #0094ff 65%, #003b7a 100%);
+  transform: translate3d(var(--cavbot-eye-x, 0px), var(--cavbot-eye-y, 0px), 0);
+  transition: transform 120ms ease-out;
+  will-change: transform;
+}
+
+.imposter-arena .cavbot-eye-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(181,211,49,0.3) 0%, transparent 70%);
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.imposter-arena .cavbot-blink {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(0,0,0,0.66) 0%, rgba(0,0,0,0.98) 62%);
+  transform-origin: top center;
+  transform: scaleY(0);
+  opacity: 0;
+  pointer-events: none;
+  animation: cavbotBlink 7.2s infinite;
+}
+
 @media (max-width: 520px){
   .inspection-deck {
     --audio-chip-safe: 62px;
@@ -789,12 +891,4 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 /* accessibility: reduce motion => no pulsing, no shake */
 @media (prefers-reduced-motion: reduce){
   .cavbot-sprite{ transition: none !important; }
-}
-/* STOP cavbotbrain from “eye tracking” the arena clones */
-.imposter-arena .cavbot-eye-pupil,
-.imposter-arena .cavbot-eye-inner,
-.imposter-arena .cavbot-eye,
-.imposter-arena .cavbot-face,
-.imposter-arena .cavbot-head{
-  transform: none !important;
 }

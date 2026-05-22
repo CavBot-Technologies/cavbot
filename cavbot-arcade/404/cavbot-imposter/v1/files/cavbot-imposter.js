@@ -6,6 +6,14 @@
   const REDIRECT_DELAY_MS = 3800;
 
   const STORAGE_PREFIX = 'cavbotImposter_';
+  const safeStorage = globalThis.__cbLocalStore || {
+    getItem(key) {
+      try { return window.localStorage.getItem(key); } catch { return null; }
+    },
+    setItem(key, value) {
+      try { window.localStorage.setItem(key, value); } catch {}
+    }
+  };
 
   const deckEl = document.getElementById('inspection-deck');
   const arenaEl = document.getElementById('imposter-arena');
@@ -94,14 +102,14 @@
 
   function storageGet(key, fallback) {
     try {
-      const raw = globalThis.__cbLocalStore.getItem(STORAGE_PREFIX + key);
+      const raw = safeStorage.getItem(STORAGE_PREFIX + key);
       if (raw == null) return fallback;
       return raw;
     } catch { return fallback; }
   }
 
   function storageSet(key, value) {
-    try { globalThis.__cbLocalStore.setItem(STORAGE_PREFIX + key, String(value)); } catch {}
+    try { safeStorage.setItem(STORAGE_PREFIX + key, String(value)); } catch {}
   }
 
   function nowIso() { return new Date().toISOString(); }
@@ -1298,6 +1306,33 @@ const RESET_LINES = [
   }
 
   const lastPointer = { x: 0, y: 0, active: false };
+  function updateCavbotEyes(clientX, clientY) {
+    const heads = Array.prototype.slice.call(
+      document.querySelectorAll('.cavbot-dm-avatar, .imposter-arena .cavbot-head')
+    );
+
+    heads.forEach(function (head) {
+      const rect = head.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      const dx = clientX - (rect.left + rect.width * 0.5);
+      const dy = clientY - (rect.top + rect.height * 0.5);
+      const distance = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+      const max = head.classList.contains('cavbot-dm-avatar') ? 2.4 : 2.8;
+      const x = clamp((dx / distance) * max, -max, max);
+      const y = clamp((dy / distance) * max, -max, max);
+
+      Array.prototype.slice.call(head.querySelectorAll('.cavbot-eye-pupil')).forEach(function (pupil) {
+        pupil.style.setProperty('--cavbot-eye-x', x.toFixed(2) + 'px');
+        pupil.style.setProperty('--cavbot-eye-y', y.toFixed(2) + 'px');
+      });
+    });
+  }
+
+  document.addEventListener('pointermove', function (event) {
+    updateCavbotEyes(event.clientX, event.clientY);
+  }, { passive: true });
+
   arenaEl.addEventListener('pointermove', function (e) {
     const r = arenaEl.getBoundingClientRect();
     lastPointer.x = e.clientX - r.left;
@@ -1530,7 +1565,7 @@ const RESET_LINES = [
   updateHudBest();
 
   startDmTypewriter();
-  requestAnimationFrame(function waitForArena(attempt) {
+  function waitForArena(attempt) {
     const { w, h } = arenaSize();
     const minSize = 120;
     if ((w > minSize && h > minSize) || attempt >= 40) {
@@ -1538,6 +1573,7 @@ const RESET_LINES = [
       return;
     }
     requestAnimationFrame(function () { waitForArena(attempt + 1); });
-  }(0));
+  }
+  requestAnimationFrame(function () { waitForArena(0); });
 
 })();
