@@ -676,6 +676,7 @@ Object.keys(docs).forEach(function (key) {
     Array.from(resultsNode.querySelectorAll("[data-docs-search-href]")).forEach(function (button) {
       button.addEventListener("click", function () {
         navigateTo(button.getAttribute("data-docs-search-href") || "/docs/getstarted");
+
         closeSearchPanel();
       });
     });
