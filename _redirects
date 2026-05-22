@@ -6,6 +6,12 @@
 /docs/getstarted.md /getstarted.md 200
 
 
+/docs/files/* /files/:splat 200
+/docs/assets/* /assets/:splat 200
+/docs/cavai/* /cavai/:splat 200
+/docs/site.webmanifest /site.webmanifest 200
+
+
 /docs /docs.html 200
 /docs/ /docs.html 200
 /docs/getstarted /docs.html 200
