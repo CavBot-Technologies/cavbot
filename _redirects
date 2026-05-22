@@ -1,3 +1,7 @@
+# CavBot Docs routes
+# These must stay ABOVE any catch-all rule like /* /index.html 200
+
+
 /docs/llms.txt /llms.txt 200
 /docs/getstarted.md /getstarted.md 200
 
@@ -20,3 +24,19 @@
 
 
 /docs/* /docs.html 200
+
+
+# Old docs category URLs now live under /docs
+/getstarted /docs/getstarted 301
+/get-started /docs/get-started 301
+/account /docs/account 301
+/workspace /docs/workspace 301
+/signals /docs/signals 301
+/cavai /docs/cavai 301
+/developers /docs/developers 301
+/tools /docs/tools 301
+/security /docs/security 301
+/integrations /docs/integrations 301
+/billing /docs/billing 301
+/assets /docs/assets 301
+/resources /docs/resources 301

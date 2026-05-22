@@ -318,13 +318,12 @@
     ];
   }
 
-  const pathToRoute = {};
-  Object.keys(docs).forEach(function (key) {
-    pathToRoute[docs[key].path] = key;
-    if (docs[key].path.indexOf("/docs/") === 0) {
-      pathToRoute[docs[key].path.replace("/docs", "")] = key;
-    }
-  });
+const pathToRoute = {};
+Object.keys(docs).forEach(function (key) {
+  pathToRoute[docs[key].path] = key;
+});
+
+
   const sectionToRoute = {};
   Object.keys(docs).forEach(function (key) {
     docs[key].sections.forEach(function (section) {
@@ -333,10 +332,11 @@
   });
 
   function currentRoute() {
-    const path = slugPath(window.location.pathname);
-    if (path === "/" || path === "/docs" || path === "/docs.html" || path === "/index.html") return "home";
-    return pathToRoute[path] || "home";
-  }
+  const path = slugPath(window.location.pathname);
+  if (path === "/docs" || path === "/docs.html") return "home";
+  return pathToRoute[path] || "home";
+}
+
 
   function categoryForRoute(route) {
     return docs[route] || docs.getstarted;
@@ -675,7 +675,7 @@
       '<div class="docs-search-ask"><p><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> Ask CavAi</p><button type="button" class="docs-search-ask-button" data-docs-cavai-question="' + escapeHtml(query || "How do I get started with CavBot?") + '"><span>Ask CavAi about "' + escapeHtml(query || "CavBot Docs") + '"</span><small>Uses docs context.</small></button></div>';
     Array.from(resultsNode.querySelectorAll("[data-docs-search-href]")).forEach(function (button) {
       button.addEventListener("click", function () {
-        navigateTo(button.getAttribute("data-docs-search-href") || "/getstarted");
+        navigateTo(button.getAttribute("data-docs-search-href") || "/docs/getstarted");
         closeSearchPanel();
       });
     });

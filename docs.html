@@ -3,6 +3,7 @@
 <head>
   <link rel="preload" as="image" href="assets/logo/official-logotype-light.svg" fetchpriority="high">
   <meta charset="utf-8">
+  <base href="/">
   <title>CavBot Docs · Guides and references · CavBot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="CavBot Docs includes setup guides, product references, and developer docs for connecting websites, reading signals, using CavAi, and managing CavBot workspaces.">
@@ -91,14 +92,27 @@
 
 
 <body class="docs-page" data-docs-theme="dark" data-cavbot-page-type="docs-home" data-docs-route="home">
-  <script>
-    (function () {
-      var path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
-      var isGetStarted = path === "/getstarted" || path === "/get-started";
-      document.body.setAttribute("data-docs-route", isGetStarted ? "getstarted" : "home");
-      document.body.setAttribute("data-cavbot-page-type", isGetStarted ? "docs-article" : "docs-home");
-    })();
-  </script>
+<script>
+  (function () {
+    var path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+    var route = "home";
+
+
+    if (path.indexOf("/docs/") === 0) {
+      route = path.split("/").pop() || "home";
+    }
+
+
+    if (path === "/docs" || path === "/docs.html") {
+      route = "home";
+    }
+
+
+    document.body.setAttribute("data-docs-route", route);
+    document.body.setAttribute("data-cavbot-page-type", route === "home" ? "docs-home" : "docs-article");
+  })();
+</script>
+
 
 
   <header class="docs-header" data-docs-header>
@@ -1466,7 +1480,8 @@ Turn the latest dashboard signals into a short status update.</code></pre>
   </script>
 
 
-  <script src="files/js/globals/header-footer.js" defer></script>
-  <script src="files/js/pages/docs.js" defer></script>
+  <script src="/files/js/globals/header-footer.js" defer></script>
+<script src="/files/js/pages/docs.js" defer></script>
+
 </body>
 </html>
