@@ -10,7 +10,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="author" content="Cavendish Pierre-Louis">
   <meta name="application-name" content="CavBot Docs">
-  <link rel="canonical" href="https://cavbot.io/docs/">
+  <link rel="canonical" href="https://cavbot.io/docs.html">
 
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="CavBot Docs">
   <meta property="og:title" content="CavBot Docs · Guides and references · CavBot">
   <meta property="og:description" content="Setup guides, product references, and developer docs for CavBot.">
-  <meta property="og:url" content="https://cavbot.io/docs/">
+  <meta property="og:url" content="https://cavbot.io/docs.html">
   <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
 
 
@@ -55,34 +55,67 @@
         "@type": "Organization",
         "@id": "https://cavbot.io/#organization",
         "name": "CavBot",
-        "url": "https://cavbot.io/",
+        "url": "https://cavbot.io/docs.html",
         "founder": {
           "@type": "Person",
           "name": "Cavendish Pierre-Louis",
-          "url": "https://cavendishpierrelouis.io/"
-        },
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+          "url": "https://cavendishpierrelouis.io/",
+          "sameAs": [
+            "https://cavendishpierrelouis.io/"
+          ]
         }
       },
       {
         "@type": "WebSite",
-        "@id": "https://cavbot.io/docs/#website",
-        "url": "https://cavbot.io/docs/",
-        "name": "CavBot Docs",
+        "@id": "https://cavbot.io/#website",
+        "url": "https://cavbot.io/",
+        "name": "CavBot",
         "publisher": { "@id": "https://cavbot.io/#organization" },
-        "inLanguage": "en"
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cavbot.io/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "WebPage",
-        "@id": "https://cavbot.io/docs/#webpage",
-        "url": "https://cavbot.io/docs/",
+        "@id": "https://cavbot.io/#webpage",
+        "url": "https://cavbot.io/",
         "name": "CavBot Docs",
-        "description": "CavBot Docs includes setup guides, product references, and developer docs for connecting websites, reading signals, using CavAi, and managing CavBot workspaces.",
-        "isPartOf": { "@id": "https://cavbot.io/docs/#website" },
-        "about": { "@id": "https://cavbot.io/#organization" },
+        "description": "CavBot Docs includes setup guides, product references, 
+        and developer docs for connecting websites, reading signals, using CavAi, and managing CavBot workspaces.",
+        "isPartOf": { "@id": "https://cavbot.io/#website" },
+        "about": { "@id": "https://cavbot.io/#software" },
         "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://cavbot.io/#software",
+        "name": "CavBot",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://cavbot.io/docs.html",
+        "description": "CavBot Docs includes setup guides, product references, 
+        and developer docs for connecting websites, reading signals, using CavAi, and managing CavBot workspaces.",
+        "publisher": { "@id": "https://cavbot.io/#organization" },
+        "creator": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://cavbot.io/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cavbot.io/"
+          }
+        ]
       }
     ]
   }
