@@ -4,7 +4,7 @@
   --navy-800: #050a1b;
 
 
-  --violet-deep: #100833;
+  --violet-deep: #140C3D;
 
 
   --lime: #b9c85a;
@@ -151,7 +151,7 @@ body[data-cavbot-page-type="why-cavbot-page"] .site-footer {
     linear-gradient(
       180deg,
       #100833 0%,
-      #09051f 46%,
+      #09051f 10%,
       #01030f 100%
     );
 }
