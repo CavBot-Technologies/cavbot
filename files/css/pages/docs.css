@@ -1019,9 +1019,12 @@ body[data-docs-theme="light"] .docs-topic-icon {
 .docs-article {
   min-width: 0;
   width: min(820px, 100%);
+  max-width: 100%;
   justify-self: stretch;
   padding: 88px 0 112px;
+  overflow: hidden;
 }
+
 
 .docs-article-header {
   margin-bottom: 34px;
@@ -1229,21 +1232,32 @@ body[data-docs-theme="light"] .docs-copy-external-icon {
 }
 
 .docs-callout {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin-top: 46px;
   padding: 30px;
   background: var(--docs-surface);
   border: 0;
   border-radius: 2px;
+  overflow: hidden;
 }
 
+
 .docs-callout h2 {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin: 0 0 12px;
   color: var(--docs-text);
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 1.28;
   font-weight: 760;
   letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
+
 
 .docs-callout p {
   margin: 0;
@@ -1314,9 +1328,20 @@ body[data-docs-theme="light"] .docs-copy-external-icon {
    ========================= */
 
 .docs-toggle-stack {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   display: grid;
   gap: 20px;
 }
+
+.docs-doc-toggle,
+.docs-toggle-body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 
 .docs-doc-toggle {
   background: var(--docs-bg);
@@ -1455,6 +1480,7 @@ body[data-docs-theme="light"] .docs-copy-external-icon {
 }
 
 .docs-toggle-body code {
+  max-width: 100%;
   padding: 2px 6px;
   color: var(--docs-text);
   background: var(--docs-code-bg);
@@ -1462,25 +1488,99 @@ body[data-docs-theme="light"] .docs-copy-external-icon {
   border-radius: 2px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: 0.92em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
+
 .docs-toggle-body pre {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   margin: 28px 0 32px;
   padding: 22px;
   overflow-x: auto;
+  overflow-y: hidden;
   color: var(--docs-text);
   background: var(--docs-code-bg);
   border: 0;
   border-radius: 2px;
 }
 
+
 .docs-toggle-body pre code {
+  display: block;
+  min-width: max-content;
   padding: 0;
   background: transparent;
   border: 0;
   font-size: 13px;
   line-height: 1.7;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
 }
+
+
+/* =========================
+   COMMAND DICTIONARY SAFETY
+   Prevent long Cav command names from bleeding into the right panel
+   ========================= */
+
+
+.docs-command-list {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: grid;
+  gap: 20px;
+}
+
+
+.docs-command-list .docs-callout {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 0;
+  overflow: hidden;
+}
+
+
+.docs-command-list .docs-callout h2 {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-bottom: 18px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+
+.docs-command-list .docs-callout h2 code {
+  display: inline;
+  max-width: 100%;
+  padding: 0;
+  color: var(--docs-text);
+  background: transparent;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-break: anywhere;
+}
+
+
+.docs-command-list .docs-callout p {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+
+.docs-command-list .docs-callout pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 
 .docs-note {
   margin: 30px 0;

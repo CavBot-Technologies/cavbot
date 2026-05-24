@@ -9,7 +9,7 @@
   --accent-lime: #b9c85a;
   --accent-purple: #8b5cff;
   --radius-lg: 26px;
-  --radius-md: 18px;
+  --radius-md: 4px;
   --radius-sm: 12px;
   --font-sans: 'Inter', 'Sora', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
@@ -36,9 +36,7 @@ body.error-page {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 20% -10%, rgba(77, 211, 255, 0.16), transparent 40%),
-    radial-gradient(circle at 80% 0%, rgba(158, 241, 195, 0.12), transparent 45%),
-    linear-gradient(180deg, #010313 0%, #020617 55%, #01030c 100%);
+   #01030f;
   color: var(--ink);
   font: 16px/1.6 var(--font-sans);
   display: flex;
@@ -62,7 +60,7 @@ main {
   --shell-padding-inline: 34px;
   max-width: 1180px;
   margin: 0 auto;
-  border-radius: 28px;
+  border-radius: 4px;
   background: rgba(6, 10, 22, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 32px var(--shell-padding-inline) 28px;
@@ -78,7 +76,7 @@ main {
   .error-shell {
     --shell-padding-inline: 14px;
     padding: 18px var(--shell-padding-inline) 16px;
-    border-radius: 18px;
+    border-radius: 4px;
   }
 }
 
@@ -238,7 +236,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   padding: 10px;
   width: 46px;
   height: 46px;
-  border-radius: 999px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
   display: inline-flex;
@@ -246,7 +244,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   justify-content: center;
   color: var(--muted);
   transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0, 0, 0, 0.5);
+  
 }
 .hud-settings-button:hover {
   border-color: rgba(255, 255, 255, 0.45);
@@ -262,7 +260,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   color: #fff;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.35), 0 0 20px rgba(255, 255, 255, 0.05);
+  
 }
 .hud-settings-icon svg {
   width: 100%;
@@ -281,7 +279,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   border-radius: var(--radius-md);
   background: rgba(8, 12, 26, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+
   opacity: 0;
   transform: translateY(10px);
   pointer-events: none;
@@ -319,7 +317,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 .hud-slider {
   width: 100%;
   height: 4px;
-  border-radius: 999px;
+  border-radius: 4px;
   appearance: none;
   background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-lime) 70%, rgba(255, 255, 255, 0.2));
   cursor: pointer;
@@ -347,7 +345,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   align-items: center;
   gap: 10px;
   padding: 6px 10px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: rgba(9, 14, 28, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.22);
   font-family: var(--mono);
@@ -374,7 +372,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 .score-dot {
   width: 7px;
   height: 7px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: radial-gradient(circle, #f8f8ff 0%, var(--accent-blue) 50%, #04223a 100%);
   box-shadow: 0 0 10px rgba(77, 211, 255, 0.65);
 }
@@ -388,7 +386,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(6, 10, 22, 0.94);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02), 0 18px 40px rgba(0, 0, 0, 0.65);
+  
 }
 
 .console-main {
@@ -426,7 +424,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 2px 8px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: rgba(5,6,9,0.82);
   border: 1px solid rgba(255,255,255,0.14);
   color: var(--muted);
@@ -489,7 +487,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 .console-log-led {
   width: 7px;
   height: 7px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: radial-gradient(circle, #f8f8ff 0%, #00d6ff 40%, #00304a 100%);
   animation: logLedPulse 2.6s ease-in-out infinite;
 }
@@ -501,7 +499,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 
 .console-log {
   position: relative;
-  border-radius: 10px;
+  border-radius: 4px;
   background: radial-gradient(circle at top left, rgba(20,22,30,0.95), rgba(7,8,13,0.98));
   border: 1px solid rgba(255,255,255,0.04);
   padding: 6px 6px 6px;
@@ -526,7 +524,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 .console-log-inner::-webkit-scrollbar-track { background: transparent; }
 .console-log-inner::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.16);
-  border-radius: 999px;
+  border-radius: 4px;
 }
 
 .log-line {
@@ -593,7 +591,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   letter-spacing: 0;
   text-transform: none;
   background: rgba(5, 8, 18, 0.2);
-  border-radius: 16px;
+  border-radius: 4px;
 }
 .powered-phrase{
   display: inline-flex;
@@ -625,7 +623,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   display:block;
   width:108px;
   height:auto;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45));
+  
 }
 .powered-logotype svg{
   width:108px;
@@ -682,9 +680,8 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 .imposter-arena::after {
   opacity: 0.28;
   background:
-    radial-gradient(circle at 20% 18%, rgba(181, 211, 49, 0.15), transparent 52%),
-    radial-gradient(circle at 82% 82%, rgba(0, 110, 230, 0.14), transparent 55%);
-  mix-blend-mode: screen;
+    linear-gradient(135deg, rgba(12, 18, 38, 0.92), rgba(4, 6, 18, 0.98));
+  
 }
 
 .imposter-placeholder {
@@ -698,12 +695,12 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   transition: opacity 0.36s ease, transform 0.36s ease;
 }
 .imposter-placeholder img {
-  width: min(68vw, 240px);
-  max-width: 260px;
+  width: min(180vw, 400px);
+  max-width: 400px;
   height: auto;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55));
+  
 }
 .imposter-placeholder.is-hidden {
   opacity: 0;
@@ -718,120 +715,18 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   gap: 0 !important;
   background: transparent !important;
   border: 0 !important;
-  border-radius: 999px !important;
+  border-radius: 4px !important;
   cursor: pointer;
   transform-origin: center center;
   will-change: transform;
   user-select:none;
   -webkit-tap-highlight-color: transparent;
-  filter: drop-shadow(0 10px 16px rgba(0,0,0,0.55));
+
 }
 
 .cavbot-sprite .imposter-head-shell{
   transform: scale(0.54);
   padding-top: 0 !important;
-}
-
-.imposter-arena .cavbot-head {
-  width: 76px;
-  height: 58px;
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at 22% 0%, rgba(255,255,255,0.22), transparent 54%),
-    linear-gradient(145deg, #f9fbff 0%, #e1e7f3 42%, #aeb8ca 100%);
-  border: 1px solid rgba(255,255,255,0.32);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;
-}
-
-.imposter-arena .cavbot-face {
-  width: 100%;
-  height: 100%;
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 20% 0%, rgba(78,168,255,0.36), transparent 56%),
-    radial-gradient(circle at 82% 18%, rgba(139,92,255,0.5), transparent 58%),
-    linear-gradient(160deg, #05060a 0%, #050916 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.imposter-arena .cavbot-eyes-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.imposter-arena .cavbot-eye {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 32% 18%, rgba(255,255,255,0.36), transparent 58%),
-    radial-gradient(circle at 50% 72%, rgba(0,0,0,0.86), #020307 76%);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.imposter-arena .cavbot-eye-inner {
-  position: relative;
-  width: 72%;
-  height: 72%;
-  border-radius: inherit;
-  background: radial-gradient(circle, rgba(0,0,0,1) 0%, #050916 82%);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.imposter-arena .cavbot-eye-track {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.imposter-arena .cavbot-eye-pupil {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 30% 20%, #ffffff 0%, #d2f2ff 20%, #0094ff 65%, #003b7a 100%);
-  transform: translate3d(var(--cavbot-eye-x, 0px), var(--cavbot-eye-y, 0px), 0);
-  transition: transform 120ms ease-out;
-  will-change: transform;
-}
-
-.imposter-arena .cavbot-eye-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle, rgba(181,211,49,0.3) 0%, transparent 70%);
-  opacity: 0.16;
-  pointer-events: none;
-}
-
-.imposter-arena .cavbot-blink {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle, rgba(0,0,0,0.66) 0%, rgba(0,0,0,0.98) 62%);
-  transform-origin: top center;
-  transform: scaleY(0);
-  opacity: 0;
-  pointer-events: none;
-  animation: cavbotBlink 7.2s infinite;
 }
 
 @media (max-width: 520px){
@@ -849,7 +744,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
   content:"";
   position:absolute;
   inset: 0;
-  border-radius: 999px;
+  border-radius: 4px;
   pointer-events:none;
   mix-blend-mode: screen;
 }
@@ -869,7 +764,7 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 /* soft miss feedback */
 .inspection-deck.arena-miss{
   border-color: rgba(255,140,128,0.65);
-  box-shadow: 0 0 0 3px rgba(255,140,128,0.14) inset;
+  
 }
 .inspection-deck.arena-miss::before{ opacity: 0.42; }
 
@@ -885,10 +780,18 @@ html:not(.has-badge-css) [data-cavbot-badge] {
 /* caught mode */
 .inspection-deck.arena-caught{
   border-color: rgba(181,211,49,0.55);
-  box-shadow: 0 0 0 3px rgba(181,211,49,0.12) inset;
+ 
 }
 
 /* accessibility: reduce motion => no pulsing, no shake */
 @media (prefers-reduced-motion: reduce){
   .cavbot-sprite{ transition: none !important; }
+}
+/* STOP cavbotbrain from “eye tracking” the arena clones */
+.imposter-arena .cavbot-eye-pupil,
+.imposter-arena .cavbot-eye-inner,
+.imposter-arena .cavbot-eye,
+.imposter-arena .cavbot-face,
+.imposter-arena .cavbot-head{
+  transform: none !important;
 }
