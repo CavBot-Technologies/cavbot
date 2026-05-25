@@ -1126,7 +1126,7 @@ body[data-docs-theme="light"] .docs-copy-trigger > img {
   border: 1px solid var(--docs-line-strong);
   border-radius: 2px;
   background: color-mix(in srgb, var(--docs-bg) 94%, var(--docs-surface) 6%);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+  
 }
 
 .docs-copy-action {
