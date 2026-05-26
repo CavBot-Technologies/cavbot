@@ -591,6 +591,17 @@
         ]
       },
       {
+        id: "agent-workflows",
+        title: "Agent workflows",
+        summary: "Run repeatable agents for research, fixes, and summaries.",
+        blocks: [
+          p(`Agent workflows are repeatable CavAi and Caven-assisted processes for research, fixes, summaries, code review, recovery planning, and workspace follow-up. Use them when the team needs a consistent sequence instead of a one-off answer.`),
+          p(`A workflow should start with the project, selected site, route, file, signal, or dashboard state that needs review. Then the agent can summarize context, propose next steps, draft a plan, or help verify what changed.`),
+          p(`For production work, ask for a plan first when the change touches multiple files, protected actions, public pages, or workspace settings. Apply small changes, review the output, and verify the result in the focused CavBot surface.`),
+          note("Workflow rule", "Keep agent workflows scoped to the specific route, file, report, or issue being reviewed.")
+        ]
+      },
+      {
         id: "caven",
         title: "Caven",
         summary: "Use the coding-focused assistant.",
@@ -695,8 +706,8 @@
         ]
       },
       {
-        id: "summary-api",
-        title: "Summary API",
+        id: "summary",
+        title: "Summary",
         summary: "Read compact site state.",
         blocks: [
           p(`Summary data is the read layer for current CavBot results. It is used when a surface needs a compact view of selected site state, route health, dashboard status, or recent recovery context.`),
@@ -850,6 +861,22 @@
     title: "Security",
     description: "Use CavVerify, CavGuard, CavSafe, audit trails, and risk controls to protect workspace actions and files.",
     sections: [
+      {
+        id: "security",
+        title: "Security",
+        summary: "Protect workspace actions and files.",
+        blocks: [
+          p(`CavBot security combines verification, guardrails, protected storage, audit trails, and risk controls so sensitive workspace actions can be reviewed before they affect production or protected files.`),
+          p(`Start with roles and access. Then review CavVerify for step-up checks, CavGuard for protected actions, CavSafe for secured storage, audit trails for history, and risk controls for origin, alert, and deletion guardrails.`),
+          list([
+            "Use CavVerify before sensitive actions.",
+            "Use CavGuard decisions to slow down risky workflows.",
+            "Use CavSafe for protected files.",
+            "Use audit trails to review important changes.",
+            "Use risk controls to limit unsafe workspace behavior."
+          ])
+        ]
+      },
       {
         id: "caverify",
         title: "CavVerify",
@@ -1204,6 +1231,8 @@ Object.keys(docs).forEach(function (key) {
 
   function currentRoute() {
   const path = slugPath(window.location.pathname);
+  const hashId = window.location.hash ? window.location.hash.slice(1) : "";
+  if ((path === "/docs" || path === "/docs.html") && hashId && sectionToRoute[hashId]) return sectionToRoute[hashId];
   if (path === "/docs" || path === "/docs.html") return "home";
   return pathToRoute[path] || "home";
 }
@@ -1353,7 +1382,11 @@ Object.keys(docs).forEach(function (key) {
       toggle.open = active;
     });
     setActive(safeId);
-    if (replace && window.history) window.history.replaceState(null, "", cat.path + "#" + safeId);
+    if (replace && window.history) {
+      const path = slugPath(window.location.pathname);
+      const targetPath = path === "/docs" || path === "/docs.html" ? window.location.pathname : cat.path;
+      window.history.replaceState(null, "", targetPath + "#" + safeId);
+    }
     if (shouldScroll) {
       const target = document.getElementById(safeId);
       if (target) {
@@ -1366,7 +1399,9 @@ Object.keys(docs).forEach(function (key) {
 
   function navigateTo(url) {
     const parsed = new URL(url, window.location.origin);
-    const route = pathToRoute[slugPath(parsed.pathname)];
+    const parsedPath = slugPath(parsed.pathname);
+    const hashId = parsed.hash ? parsed.hash.slice(1) : "";
+    const route = pathToRoute[parsedPath] || ((parsedPath === "/docs" || parsedPath === "/docs.html") && hashId ? sectionToRoute[hashId] : "");
     if (!route) {
       window.location.href = parsed.href;
       return;

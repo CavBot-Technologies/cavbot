@@ -252,7 +252,6 @@
   let progressRaf = null;
   let trackerStart = 0;
 
-
   function closeItem(item) {
     const trigger = item.querySelector('.collab-feature-trigger');
     item.classList.remove('is-active');
@@ -416,6 +415,15 @@
   let progressRaf = null;
   let trackerStart = 0;
 
+  const hashToCard = {
+    '#security-cavverify': 'cavverify',
+    '#cavverify': 'cavverify',
+    '#security-cavguard': 'cavguard',
+    '#cavguard': 'cavguard',
+    '#security-cavsafe': 'cavsafe',
+    '#cavsafe': 'cavsafe'
+  };
+
 
   function closeItem(item) {
     const trigger = item.querySelector('.security-feature-trigger');
@@ -535,6 +543,67 @@
     startTracker(activeIndex);
   }
 
+  function activateCard(cardName) {
+    const item = items.find((candidate) => candidate.getAttribute('data-security-card') === cardName);
+    if (!item) return false;
+
+    activeIndex = Math.max(0, items.indexOf(item));
+    activateByIndex(activeIndex);
+    setProgress(activeIndex / items.length);
+    startTracker(activeIndex);
+    return true;
+  }
+
+  function scrollToSecurity(target) {
+    const section = root.closest('.cavbot-security') || root;
+    const scrollTarget = target || section;
+    const header = document.querySelector('[data-header]') || document.querySelector('.site-header') || document.querySelector('header');
+    const headerHeight = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+    const top = Math.max(0, scrollTarget.getBoundingClientRect().top + window.pageYOffset - headerHeight - 18);
+
+    window.scrollTo({
+      top,
+      behavior: window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+  }
+
+  function openFromHash(hash, shouldScroll) {
+    const normalizedHash = String(hash || '').toLowerCase();
+    if (normalizedHash === '#security') {
+      if (shouldScroll) scrollToSecurity(root.closest('.cavbot-security') || root);
+      return true;
+    }
+
+    const cardName = hashToCard[normalizedHash];
+    if (!cardName || !activateCard(cardName)) return false;
+
+    if (shouldScroll) {
+      const item = items.find((candidate) => candidate.getAttribute('data-security-card') === cardName);
+      scrollToSecurity(item || root);
+    }
+
+    return true;
+  }
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest && event.target.closest('a[href^="#security"], a[href="#cavverify"], a[href="#cavguard"], a[href="#cavsafe"]');
+    if (!link) return;
+
+    const hash = link.getAttribute('href');
+    if (!openFromHash(hash, true)) return;
+
+    event.preventDefault();
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', hash);
+    } else {
+      window.location.hash = hash;
+    }
+  });
+
+  window.addEventListener('hashchange', () => {
+    openFromHash(window.location.hash, true);
+  });
+
 
   items.forEach((item) => {
     const trigger = item.querySelector('.security-feature-trigger');
@@ -557,6 +626,9 @@
   showCard(activeCard);
   setProgress(activeIndex / items.length);
   bindTrackerVisibility();
+  if (window.location.hash) {
+    openFromHash(window.location.hash, true);
+  }
 })();
 
 

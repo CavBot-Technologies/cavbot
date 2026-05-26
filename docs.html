@@ -127,7 +127,27 @@
  <script>
   (function () {
     var path = window.location.pathname.replace(/\/+$/, "").toLowerCase();
+    var hash = window.location.hash ? window.location.hash.slice(1).toLowerCase() : "";
     var route = "home";
+    var sectionRoutes = {
+      "analytics-v5": "developers",
+      "events": "developers",
+      "summary": "developers",
+      "cavai-v3": "cavai",
+      "assistant-memory": "cavai",
+      "agent-workflows": "cavai",
+      "arcade-404": "assets",
+      "cavbot-badge": "assets",
+      "cavbot-head": "assets",
+      "cavbot-body": "assets",
+      "team-access": "account",
+      "security": "security",
+      "caverify": "security",
+      "cavguard": "security",
+      "cavsafe": "security",
+      "risk-controls": "security",
+      "audit-trail": "security"
+    };
 
 
     if (path.indexOf("/docs/") === 0) {
@@ -135,7 +155,9 @@
     }
 
 
-    if (path === "/docs" || path === "/docs.html") {
+    if ((path === "/docs" || path === "/docs.html") && sectionRoutes[hash]) {
+      route = sectionRoutes[hash];
+    } else if (path === "/docs" || path === "/docs.html") {
       route = "home";
     }
 
@@ -363,7 +385,7 @@
               <li><a href="/docs/cavai#cavai-v3">CavAi v3</a></li>
               <li><a href="/docs/cavai#models">Models</a></li>
               <li><a href="/docs/cavai#assistant-memory">Memory</a></li>
-              <li><a href="/docs/cavai#caven">Caven</a></li>
+              <li><a href="/docs/cavai#agent-workflows">Agent workflows</a></li>
               <li><a href="/docs/cavai#image-studio">Image Studio</a></li>
               <li><a href="/docs/cavai#image-edit">Image Edit</a></li>
             </ul>
@@ -381,7 +403,7 @@
               <li><a href="/docs/developers#events">Events</a></li>
               <li><a href="/docs/developers#api-keys">API keys</a></li>
               <li><a href="/docs/developers#webhooks">Webhooks</a></li>
-              <li><a href="/docs/developers#summary-api">Summary API</a></li>
+              <li><a href="/docs/developers#summary">Summary</a></li>
             </ul>
           </article>
 
@@ -568,7 +590,7 @@
             <p>Signal</p>
             <a href="/docs/developers#analytics-v5" data-docs-open="analytics-v5">CavBot Analytics v5</a>
             <a href="/docs/developers#events" data-docs-open="events">Events</a>
-            <a href="/docs/developers#summary-api" data-docs-open="summary-api">Summary API</a>
+            <a href="/docs/developers#summary" data-docs-open="summary">Summary</a>
           </div>
 
 
@@ -576,7 +598,7 @@
             <p>AI</p>
             <a href="/docs/cavai#cavai-v3" data-docs-open="cavai-v3">CavAi v3</a>
             <a href="/docs/cavai#assistant-memory" data-docs-open="assistant-memory">Assistant memory</a>
-            <a href="/docs/cavai#caven" data-docs-open="caven">Caven</a>
+            <a href="/docs/cavai#agent-workflows" data-docs-open="agent-workflows">Agent workflows</a>
           </div>
 
 
@@ -1450,10 +1472,10 @@ Turn the latest dashboard signals into a short status update.</code></pre>
           <a href="/docs/getstarted#launch-checklist" data-docs-open="launch-checklist">Launch checklist</a>
           <a href="/docs/developers#analytics-v5" data-docs-open="analytics-v5">Analytics v5</a>
           <a href="/docs/developers#events" data-docs-open="events">Events</a>
-          <a href="/docs/developers#summary-api" data-docs-open="summary-api">Summary API</a>
+          <a href="/docs/developers#summary" data-docs-open="summary">Summary</a>
           <a href="/docs/cavai#cavai-v3" data-docs-open="cavai-v3">CavAi v3</a>
           <a href="/docs/cavai#assistant-memory" data-docs-open="assistant-memory">Assistant memory</a>
-          <a href="/docs/cavai#caven" data-docs-open="caven">Caven</a>
+          <a href="/docs/cavai#agent-workflows" data-docs-open="agent-workflows">Agent workflows</a>
           <a href="/docs/assets#arcade-404" data-docs-open="arcade-404">404 Arcade</a>
           <a href="/docs/assets#cavbot-badge" data-docs-open="cavbot-badge">CavBot Badge</a>
           <a href="/docs/assets#cavbot-head" data-docs-open="cavbot-head">CavBot Head</a>
