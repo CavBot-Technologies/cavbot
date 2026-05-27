@@ -1,30 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>CavBot Companion · CavBot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Talk with CavBot itself — a calm, intelligent companion for work, reflection, and momentum.">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://cavbot.io/cavbot-companion.html">
+ <meta charset="utf-8">
+ <title>DeepSeek · Now Available in CavAi · CavBot</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="DeepSeek is now available in CavAi, giving CavBot another strong model path for reasoning, review, planning, and workspace assistance.">
+ <meta name="robots" content="index, follow">
+ <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+ <link rel="canonical" href="https://cavbot.io/deepseek-cavbot.html">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+ <!-- UNIVERSAL FAVICONS -->
+ <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+ <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+ <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+ <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+ <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+ <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
 
-  <link rel="stylesheet" href="files/css/globals/header-footer.css">
-  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
-  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">
-  <link rel="stylesheet" href="files/css/globals/main.css">
-  <link rel="stylesheet" href="files/css/pages/resource.css">
+ <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+ <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+ <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+ <link rel="manifest" href="site.webmanifest">
+
+ <meta name="theme-color" content="#01030f">
+ <meta name="msapplication-TileColor" content="#01030f">
+ <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+ <!-- Open Graph -->
+ <meta property="og:title" content="DeepSeek · Now Available in CavAi · CavBot">
+ <meta property="og:description" content="DeepSeek is now available in CavAi, giving CavBot another strong model path for reasoning, review, planning, and workspace assistance.">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://cavbot.io/deepseek-cavbot.html">
+ <meta property="og:site_name" content="CavBot">
+ <meta property="og:image" content="https://cavbot.io/assets/cavbot-blog/assets/images/404-field-guide.png">
+
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="DeepSeek · Now Available in CavAi · CavBot">
+ <meta name="twitter:description" content="DeepSeek is now available in CavAi, giving CavBot another strong model path for reasoning, review, planning, and workspace assistance.">
+ <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+ <!-- TYPEFACE -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+ <!-- Global CavBot styles (KEEP) -->
+ <link rel="stylesheet" href="files/css/globals/header-footer.css">
+ <!-- The 404 Experience -->
+ <link rel="stylesheet" href="files/css/pages/deepseek-cavbot.css">
+
+ <!-- Structured data -->
+ <script type="application/ld+json">
+ {
+   "@context":"https://schema.org",
+   "@type":"WebPage",
+   "name":"DeepSeek · Now Available in CavAi · CavBot",
+   "description":"DeepSeek is now available in CavAi, giving CavBot another strong model path for reasoning, review, planning, and workspace assistance.",
+   "url":"https://cavbot.io/deepseek-cavbot.html",
+   "isPartOf":{
+     "@type":"WebSite",
+     "name":"CavBot",
+     "url":"https://cavbot.io/"
+   },
+   "publisher":{
+     "@type":"Organization",
+     "name":"CavBot",
+     "url":"https://cavbot.io/",
+     "logo":{
+       "@type":"ImageObject",
+       "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+     }
+   }
+ }
+ </script>
 </head>
 
-<body class="page-shell" data-cavbot-page-type="resource-page" data-cavbot-component="resource-shell">
-  <header class="site-header cb-company-header">
+<body class="page-shell"
+ data-cavbot-page-type="404-field-guide"
+ data-cavbot-component="research-shell"
+ data-cavbot-disable-floating-badge="1">
+
+ <!-- HEADER / NAV (unified) -->
+ <header class="site-header cb-company-header">
   <div class="site-header-inner">
      <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
       <img
@@ -67,21 +129,6 @@
                   <span class="cb-mega-link-copy"> Build, debug, and ship with a real AI coding agent.
 </span>
                 </a>
-
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">CavBot Companion</span>
-                  <span class="cb-mega-link-copy">Guidance and support for your day-to-day work.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Image Studio</span>
-                  <span class="cb-mega-link-copy"> Generate visuals and brand assets from prompts.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Image Edit</span>
-                  <span class="cb-mega-link-copy">Refine images with precise creative controls.</span>
-                </a>
               </section>
 
               <section class="cb-mega-column">
@@ -120,32 +167,6 @@
               </section>
 
               <section class="cb-mega-column">
-                <p class="cb-mega-kicker">Workspace</p>
-
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Command Center</span>
-                  <span class="cb-mega-link-copy"> Manage your sites, projects, and key decisions.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Dashboard</span>
-                  <span class="cb-mega-link-copy">See what’s happening across your website in real time.</span>
-                </a>
-
-                 <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">CavPad</span>
-                  <span class="cb-mega-link-copy">Write notes, briefs, and ideas directly on CavBot.</span>
-                </a>
-
-               
-
-                 <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Team Access</span>
-                  <span class="cb-mega-link-copy">Invite teammates, manage roles and work together.</span>
-                </a>
-              </section>
-
-              <section class="cb-mega-column">
                 <p class="cb-mega-kicker">Developer Tools</p>
 
                 <a class="cb-mega-link" href="cavcode.html">
@@ -180,9 +201,9 @@
                   <span class="cb-mega-link-copy">See why websites need more than analytics.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">CavBot Models</span>
-                  <span class="cb-mega-link-copy">DeepSeek and Qwen, inside CavAi.</span>
+                <a class="cb-mega-link" href="/#collaboration">
+                  <span class="cb-mega-link-title">Team Access</span>
+                  <span class="cb-mega-link-copy">Invite teammates, manage roles and work together.</span>
                 </a>
 
                    <a class="cb-mega-link" href="pricing.html">
@@ -256,7 +277,8 @@
                   <span class="cb-mega-link-copy">The rules for using CavBot products and services.</span>
                 </a>
               </section>
-  <section class="cb-mega-column cb-mega-column--quiet">
+
+              <section class="cb-mega-column cb-mega-column--quiet">
                 <p class="cb-mega-kicker">Operational security</p>
 
                 <a class="cb-mega-link" href="/docs.html#risk-controls">
@@ -338,7 +360,7 @@
               <section class="cb-mega-column">
                 <p class="cb-mega-kicker">CavBot Assets</p>
 
-                <a class="cb-mega-link" href="/docs.html#arcade-games">
+                <a class="cb-mega-link" href="/docs.html#arcade-404">
                   <span class="cb-mega-link-title">404 Arcade</span>
                   <span class="cb-mega-link-copy">Install interactive 404 games for broken pages.</span>
                 </a>
@@ -399,7 +421,7 @@
                   <span class="cb-mega-link-copy">Programs and organizations helping CavBot grow.</span>
                 </a>
 
- <a class="cb-mega-link" href="/cavbot-research.html">
+ <a class="cb-mega-link" href="/blog.html?category=research#research">
                   <span class="cb-mega-link-title">Research</span>
                   <span class="cb-mega-link-copy">Practical research for better digital products.</span>
                 </a>
@@ -444,7 +466,7 @@
                   <span class="cb-mega-link-copy">Official CavBot brand assets.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="/blog.html">
                   <span class="cb-mega-link-title">Blog</span>
                   <span class="cb-mega-link-copy">Latest company updates.</span>
                 </a>
@@ -464,8 +486,8 @@
                   <span class="cb-mega-link-copy">Guides and lessons for better websites.</span>
                 </a>
 
-                  <a class="cb-mega-link" href="404-recovery-field-guide.html">
-                  <span class="cb-mega-link-title">404 Field Guide</span>
+                  <a class="cb-mega-link" href="what's-a-404.html">
+                  <span class="cb-mega-link-title">What's a 404?</span>
                   <span class="cb-mega-link-copy">Understand broken pages and how to fix them.</span>
                 </a>
 
@@ -570,21 +592,15 @@
           <div class="cb-mobile-section-panel">
             <a href="https://ai.cavbot.io/" class="nav-overlay-link">CavAi</a>
             <a href="/" class="nav-overlay-link">Caven</a>
-            <a href="/" class="nav-overlay-link">CavBot Companion</a>
-            <a href="/" class="nav-overlay-link">Image Studio</a>
-            <a href="/" class="nav-overlay-link">Image Edit</a>
             <a href="/" class="nav-overlay-link">Error Tracking</a>
             <a href="/" class="nav-overlay-link">SEO Performance</a>
             <a href="/" class="nav-overlay-link">A11y Snapshot</a>
             <a href="/" class="nav-overlay-link">CavBot Insights</a>
-            <a href="/" class="nav-overlay-link">Command Center</a>
-            <a href="/" class="nav-overlay-link">Dashboard</a>
             <a href="cavbot-arcade.html" class="nav-overlay-link">CavBot Arcade</a>
             <a href="cavcode.html" class="nav-overlay-link">CavCode</a>
             <a href="/" class="nav-overlay-link">HTML Viewer</a>
             <a href="/" class="nav-overlay-link">CavTools</a>
             <a href="/" class="nav-overlay-link">CavCloud</a>
-            <a href="/" class="nav-overlay-link">CavPad</a>
           </div>
         </section>
 
@@ -621,7 +637,7 @@
             <a href="/docs.html#cavai-v3" class="nav-overlay-link">CavAi V3</a>
             <a href="/docs.html#assistant-memory" class="nav-overlay-link">Assistant memory</a>
             <a href="/docs.html#agent-workflows" class="nav-overlay-link">Agent workflows</a>
-            <a href="/docs.html#arcade-games" class="nav-overlay-link">404 Arcade</a>
+            <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
             <a href="/docs.html#cavbot-badge" class="nav-overlay-link">CavBot Badge</a>
             <a href="/docs.html#cavbot-head" class="nav-overlay-link">CavBot Head</a>
             <a href="/docs.html#cavbot-body" class="nav-overlay-link">CavBot Body</a>
@@ -638,10 +654,10 @@
 
           <div class="cb-mobile-section-panel" hidden>
             <a href="/help-center.html" class="nav-overlay-link">Help Center</a>
-            <a href="/cavbot-research.html" class="nav-overlay-link">Research</a>
+            <a href="/blog.html?category=research#research" class="nav-overlay-link">Research</a>
             <a href="about.html" class="nav-overlay-link">About</a>
             <a href="https://brand.cavbot.io" class="nav-overlay-link">Media Kit</a>
-            <a href="/" class="nav-overlay-link">Blog</a>
+            <a href="/blog.html" class="nav-overlay-link">Blog</a>
             <a href="/careers.html" class="nav-overlay-link">Careers</a>
             <a href="/legal.html#ethics-overview" class="nav-overlay-link">Code of Ethics</a>
             
@@ -666,83 +682,107 @@
   </div>
 </header>
 
-  <div class="nav-overlay" aria-hidden="true">
-    <div class="nav-overlay-backdrop"></div>
-    <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
-      <div class="nav-overlay-header">
-        <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+ <div class="nav-overlay-backdrop"></div>
+ <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+   <div class="nav-overlay-header">
+     <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+   </div>
+   <div class="nav-overlay-body">
+     <a href="product.html" class="nav-overlay-link">Product</a>
+     <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+     <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+     <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+     <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+      <div class="nav-cta-row">
+        <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
       </div>
-      <div class="nav-overlay-body">
-        <a href="product.html" class="nav-overlay-link">Product</a>
-        <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
-        <a href="pricing.html" class="nav-overlay-link">Pricing</a>
-        <a href="/docs.html#arcade-games" class="nav-overlay-link">404 Arcade</a>
-        <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
-        <div class="nav-cta-row">
-          <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
-          <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+   </div>
+ </div>
+</div>
+
+<main class="article-main" id="main">
+  <section class="article-hero" aria-labelledby="article-title">
+    <div class="article-hero-shell">
+      <aside class="article-rail" aria-label="Article section">
+        <a href="/blog.html" class="article-breadcrumb">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>Product</span>
+      </aside>
+
+      <article class="article-content">
+        <header class="article-head">
+          <p class="article-date">May 27, 2026</p>
+
+          <h1 id="article-title">DeepSeek is now available in CavBot</h1>
+
+          <div class="article-author-row" aria-label="Article author">
+            <img
+              class="article-author-avatar"
+              src="assets/logo/cav.PNG"
+              alt="CavBot Team"
+              loading="lazy"
+              decoding="async"
+            >
+            <span class="article-author-name">CavBot Team</span>
+            <span aria-hidden="true">·</span>
+            <span>1 min read</span>
+          </div>
+        </header>
+<br>
+        <div class="article-prose">
+          <p>
+            DeepSeek is now available inside CavBot model workflows.
+          </p>
+
+          <p>
+            DeepSeek brings a focused reasoning path to CavAi, useful for reviewing ideas,
+             organizing tasks, and working through technical decisions with more clarity.
+          </p>
+<br>
+          <p>
+            <a class="article-inline-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">
+              Use DeepSeek for deeper reasoning in CavAi
+
+            </a>
+          </p>
         </div>
-      </div>
+
+        <figure class="article-cover" aria-label="DeepSeek is now available in CavBot image">
+          <div class="article-cover-art cb-model-thumb cb-model-thumb--deepseek" aria-hidden="true">
+            <div class="cb-model-thumb-copy">
+              <strong>DeepSeek</strong><br>
+              <span>now available</span>
+            </div>
+
+            <div class="cb-model-thumb-ui">
+              <span class="cb-model-search">Search models...</span>
+
+              <div class="cb-model-row">
+                <img src="assets/icons/page/ai-models/deepseek-color.png" alt="" loading="lazy" decoding="async">
+                <span>DeepSeek</span>
+                <b>›</b>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </article>
+
+      <aside class="article-side" aria-label="On this page">
+        <nav class="article-toc">
+          <p>Table of contents</p>
+          <a href="#article-title" data-article-toc>DeepSeek is now available <br> in CavBot</a>
+        </nav>
+      </aside>
     </div>
-  </div>
+  </section>
+</main>
 
-  <main class="page-inner resource-main">
-    <section class="resource-hero" aria-labelledby="resource-title">
-      <h1 id="resource-title" class="resource-title">CavBot Companion</h1>
-      <p class="resource-lede">Talk with CavBot itself — a calm, intelligent companion for work, reflection, and momentum.</p>
-      <br><br>
-      <p class="resource-lede">CavBot Companion is the conversational personality layer inside CavAi. It is designed for users who want a more human, steady, and thoughtful way to interact with CavBot while staying connected to their workspace, projects, and goals.</p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/cavai">IN APP</a>
-        <a class="btn btn-ghost" href="product.html">PRODUCT OVERVIEW</a>
-      </div>
-    </section>
-
-    <section class="resource-grid" aria-label="CavBot Companion details">
-      <article class="resource-card">
-        <h2>WHAT IT IS</h2>
-        <br><br>
-        <p>CavBot Companion is the conversational personality layer inside CavAi. It is designed for users who want a more human, steady, and thoughtful way to interact with CavBot while staying connected to their workspace, projects, and goals.</p>
-      </article>
-      <article class="resource-card">
-        <h2>WHAT IT DOES</h2>
-        <br><br>
-        <p>CavBot Companion helps users think clearly, talk through ideas, reduce overwhelm, and turn uncertainty into direction. It supports both work and life conversations with a calm, intelligent tone while staying aware of the CavBot ecosystem.</p>
-      </article>
-      <article class="resource-card">
-        <h2>WHY IT MATTERS</h2>
-        <br><br>
-        <p>Not every moment needs a cold answer or a task list. Sometimes users need perspective, clarity, encouragement, or a smarter way to think something through. CavBot Companion gives CavBot a real presence — one users can return to daily for guidance, reflection, and support without leaving the platform.</p>
-      </article>
-      <article class="resource-card">
-        <h2>PRIMARY WORKFLOWS</h2>
-        <br><br>
-        <ul class="resource-list">
-          <li>Talk through ideas, plans, and next moves</li>
-          <li>Get help prioritizing when work feels overwhelming</li>
-          <li>Reflect on decisions before acting</li>
-          <li>Receive steady support during founder stress or uncertainty</li>
-          <li>Stay connected to CavBot context while thinking through work and life</li>
-        </ul>
-      </article>
-    </section>
-
-    <section class="resource-cta" aria-label="CavBot app workflow">
-      <h2>IN THE CAVBOT APP</h2>
-      <p>
-        CavBot Companion lives inside the CavBot app with Analytics v5 signals, CavAi intelligence workflows, and execution surfaces.
-        Use Command Center in the app to review priorities, then move into CavBot Companion when you want to think, plan, regroup, or move forward with clarity.
-      </p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/">COMMAND CENTER</a>
-        <a class="btn btn-ghost" href="https://app.cavbot.io/auth?mode=login">LOG IN TO CONTINUE</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
+ <!-- FOOTER (unified) -->
+ <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">
       <a href="https://www.cavbot.io/" class="footer-brand" aria-label="CavBot home">
@@ -766,7 +806,7 @@
         <ul class="footer-column-list">
           <li><a href="/" class="footer-link">Features</a></li>
           <li><a href="https://ai.cavbot.io/" class="footer-link">CavAi</a></li>
-          <li><a href="/" class="footer-link">AI</a></li>
+          <li><a href="/introducing-cavai.html" class="footer-link">AI</a></li>
           <li><a href="/pricing.html" class="footer-link">Pricing</a></li>
           <li><a href="/docs.html#security" class="footer-link">Security</a></li>
 
@@ -792,7 +832,7 @@
         <ul class="footer-column-list">
           <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
           <li><a href="https://cavbot.io/docs" class="footer-link">Docs</a></li>
-          <li><a href="/cavbot-research.html" class="footer-link">Research</a></li>
+          <li><a href="/blog.html?category=research#research" class="footer-link">Research</a></li>
           <li><a href="why-cavbot.html" class="footer-link">Why CavBot?</a></li>
           <li><a href="/" class="footer-link">Compare CavBot</a></li>
           
@@ -807,7 +847,7 @@
         <ul class="footer-column-list">
           <li><a href="about.html" class="footer-link">About</a></li>
            <li><a href="https://brand.cavbot.io" class="footer-link">Media Kit</a></li>
-          <li><a href="/" class="footer-link">Blog</a></li>
+          <li><a href="/blog.html" class="footer-link">Blog</a></li>
           <li><a href="/careers.html" class="footer-link">Careers</a></li>
           <li><a href="/legal.html#ethics-overview" class="footer-link">Code of Ethics</a></li>
           
@@ -848,7 +888,7 @@
   </div>
 </footer>
 
-  <script>
+ <script>
 window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
 window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1";
 window.CAVBOT_SITE = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
@@ -864,6 +904,9 @@ window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
   data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"
   data-site="cece1ca3-212c-46c5-b54f-e69dd2f8f061">
 </script>
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414logosmooth1"></script>
+ <!-- CavBot header-footer + nav toggle -->
+ <script src="files/js/globals/header-footer.js?v=brainfix-20260414logosmooth1"></script>
+ <!-- The 404 Experience -->
+ <script src="files/js/pages/deepseek-cavbot.js"></script>
 </body>
 </html>
