@@ -161,7 +161,7 @@
       "Publish the website if the platform requires publishing before scripts appear live.",
       "Visit the public website in a browser so CavBot receives a real page signal.",
       "Return to CavBot and confirm the selected site shows activity or a clear empty state.",
-      "Review Routes, Errors, SEO, A11y, Reports, and 404 Control Room after the first signals arrive.",
+      "Review Routes, Errors, SEO, A11y, Reports, and 404 Recovery after the first signals arrive.",
       "Set a primary site when the project has more than one saved origin.",
       "Invite teammates only after the workspace, site, and access model are clear."
     ]),
@@ -170,7 +170,7 @@
 
     p(`CavBot is most useful when the team treats it as a review layer, not just a setup screen. After the snippet is installed, the real value comes from checking what CavBot is showing: which routes are active, which pages are missing, which errors are repeating, which pages need SEO review, which accessibility signals need attention, and whether visitors have a clear recovery path when something breaks.`),
 
-    p(`Each CavBot surface has a specific job. The dashboard gives a broad view. Routes helps review page movement and path activity. Errors helps identify browser and runtime problems. SEO helps review page structure and visibility basics. A11y helps review accessibility signals. 404 Control Room focuses on missing routes. Arcade can improve broken-page recovery. Reports help summarize current site state. CavAi can explain, organize, and help plan next steps from the context the workspace already has.`),
+    p(`Each CavBot surface has a specific job. The dashboard gives a broad view. Routes helps review page movement and path activity. Errors helps identify browser and runtime problems. SEO helps review page structure and visibility basics. A11y helps review accessibility signals. 404 Recovery focuses on missing routes. Arcade can improve broken-page recovery. Reports help summarize current site state. CavAi can explain, organize, and help plan next steps from the context the workspace already has.`),
 
     table(
       ["Surface", "Use it for"],
@@ -180,7 +180,7 @@
         ["Errors", "Review browser errors, runtime problems, and repeated failure patterns."],
         ["SEO", "Check page titles, descriptions, canonical structure, headings, and basic visibility signals."],
         ["A11y", "Review accessibility signals that may affect usability and page quality."],
-        ["404 Control Room", "Find missing routes, repeated broken paths, and recovery opportunities."],
+        ["404 Recovery", "Find missing routes, repeated broken paths, and recovery opportunities."],
         ["Arcade", "Play CavBot games inside the platform and use selected games for better 404 recovery."],
         ["Reports", "Read a structured snapshot of the selected site and its current condition."],
         ["CavAi", "Ask for explanations, summaries, plans, checklists, and next-step guidance."]
@@ -208,11 +208,11 @@
       [
         ["Is my website connected?", "Workspace site settings, Integrations, Analytics v5, and Dashboard activity."],
         ["Are visitors reaching pages?", "Routes and Dashboard."],
-        ["Are pages breaking?", "Errors and 404 Control Room."],
-        ["Are missing routes repeating?", "404 Control Room."],
+        ["Are pages breaking?", "Errors and 404 Recovery."],
+        ["Are missing routes repeating?", "404 Recovery."],
         ["Does page structure need review?", "SEO."],
         ["Are accessibility signals healthy?", "A11y."],
-        ["Can visitors recover from a missing page?", "Arcade and 404 Control Room."],
+        ["Can visitors recover from a missing page?", "Arcade and 404 Recovery."],
         ["What should I do next?", "Reports, CavAi, and the focused module connected to the issue."]
       ]
     ),
@@ -609,7 +609,7 @@
       "Errors point to the same selected site.",
       "SEO points to the same selected site.",
       "Accessibility points to the same selected site.",
-      "404 Control Room points to the same selected site.",
+      "404 Recovery points to the same selected site.",
       "CavAi responses are based on the intended workspace and site context."
     ]),
 
@@ -875,7 +875,7 @@
         ["SEO", "Keeps page metadata and structure checks attached to the correct website."],
         ["Accessibility", "Organizes accessibility findings by selected site."],
         ["Reports", "Builds exports and summaries around the current site context."],
-        ["404 Control Room", "Shows missing routes and recovery activity for the selected origin."],
+        ["404 Recovery", "Shows missing routes and recovery activity for the selected origin."],
         ["Arcade installs", "Connects public recovery installs to the right website."],
         ["CavAi", "Uses the selected site as context when explaining workspace activity."]
       ]
@@ -1348,7 +1348,7 @@
 
     p(`A clean Dashboard should answer the first questions a team asks when opening CavBot: Which project is active? Which site is selected? Is the site connected? Is the plan correct? Are the right modules available? Are there storage notices? Are there unread workspace notifications? Is there anything that needs review before the team continues?`),
 
-    p(`The Dashboard should be treated as the entry point, not the final diagnosis. It helps you understand the current workspace state, but deeper investigation should happen inside the focused surface that owns the signal. If the Dashboard points to broken routes, open 404 Control Room. If it points to browser errors, open Errors. If it points to search structure, open SEO. If it points to accessibility, open Accessibility. If it points to reports, open Reports.`),
+    p(`The Dashboard should be treated as the entry point, not the final diagnosis. It helps you understand the current workspace state, but deeper investigation should happen inside the focused surface that owns the signal. If the Dashboard points to broken routes, open 404 Recovery. If it points to browser errors, open Errors. If it points to search structure, open SEO. If it points to accessibility, open Accessibility. If it points to reports, open Reports.`),
 
     table(
       ["Dashboard area", "What to confirm"],
@@ -1431,7 +1431,7 @@
     table(
       ["Dashboard points to", "Open this next"],
       [
-        ["Broken or missing routes", "404 Control Room"],
+        ["Broken or missing routes", "404 Recovery"],
         ["Browser errors or failed requests", "Errors"],
         ["Search structure or metadata concerns", "SEO"],
         ["Accessibility concerns", "Accessibility"],
@@ -1492,7 +1492,7 @@
       ]
     ),
 
-    p(`A good report should make the next action easier. It should not only say that something happened. It should help the reader understand what area needs review, which signal matters, and what module should be opened next. If a report mentions broken routes, review 404 Control Room. If it mentions browser errors, review Errors. If it mentions metadata or search structure, review SEO. If it mentions accessibility, review Accessibility.`),
+    p(`A good report should make the next action easier. It should not only say that something happened. It should help the reader understand what area needs review, which signal matters, and what module should be opened next. If a report mentions broken routes, review 404 Recovery. If it mentions browser errors, review Errors. If it mentions metadata or search structure, review SEO. If it mentions accessibility, review Accessibility.`),
 
     p(`Reports can include different kinds of site and workspace information depending on what CavBot has available. A new workspace may only have basic setup and route context. A more active workspace may include route behavior, missing paths, errors, search structure, accessibility findings, recovery activity, storage notes, and workspace notices.`),
 
@@ -1528,7 +1528,7 @@
     table(
       ["If the report mentions", "Review this next"],
       [
-        ["Missing routes or broken paths", "Open 404 Control Room and inspect route frequency, source paths, and recovery behavior."],
+        ["Missing routes or broken paths", "Open 404 Recovery and inspect route frequency, source paths, and recovery behavior."],
         ["JavaScript errors or failed requests", "Open Errors and review the grouped issue, route, timestamp, and affected context."],
         ["SEO structure concerns", "Open SEO and inspect title, description, canonical, headings, robots settings, and page structure."],
         ["Accessibility findings", "Open Accessibility and review the specific issue type, affected page, and severity."],
@@ -1803,7 +1803,7 @@
         ["Guardrails", "Review workspace safety settings that protect origins, alerts, deletion, and risky behavior."],
         ["Workspace notices", "Read important messages about setup, storage, access, billing, limits, or required action."],
         ["Plan state", "Understand which features, limits, seats, sites, and modules are available."],
-        ["Linked modules", "Open focused areas such as Console, Routes, Errors, SEO, Reports, and 404 Control Room."]
+        ["Linked modules", "Open focused areas such as Console, Routes, Errors, SEO, Reports, and 404 Recovery."]
       ]
     ),
 
@@ -1863,7 +1863,7 @@
       ]
     ),
 
-    p(`Command Center should be used as a starting point, not as the final diagnosis. It helps confirm the workspace state. When a specific issue needs review, open the focused module that owns the signal. Use Routes for route activity, Errors for browser or runtime problems, SEO for page structure, Reports for summaries, CavCloud for files, CavSafe for protected storage, and 404 Control Room for missing routes.`),
+    p(`Command Center should be used as a starting point, not as the final diagnosis. It helps confirm the workspace state. When a specific issue needs review, open the focused module that owns the signal. Use Routes for route activity, Errors for browser or runtime problems, SEO for page structure, Reports for summaries, CavCloud for files, CavSafe for protected storage, and 404 Recovery for missing routes.`),
 
     p(`A strong workflow begins in Command Center. Confirm the project, confirm the selected site, review notices, check plan and module access, then open the focused surface that matches the work. This keeps the team from solving the wrong problem in the wrong place.`),
 
@@ -2134,7 +2134,7 @@
     table(
       ["If the error mentions", "Open this next"],
       [
-        ["Missing route or failed page load", "Open 404 Control Room or Routes."],
+        ["Missing route or failed page load", "Open 404 Recovery or Routes."],
         ["Broken asset path", "Open Routes and inspect the page source or deployment output."],
         ["Form failure", "Open the affected route and test the form directly."],
         ["Checkout or payment issue", "Review billing, checkout, and payment provider context."],
@@ -2280,11 +2280,11 @@
     table(
       ["If you see", "Open this next"],
       [
-        ["A route that may be missing", "Open 404 Control Room."],
+        ["A route that may be missing", "Open 404 Recovery."],
         ["A route with repeated browser issues", "Open Errors."],
         ["A route with weak title or page structure", "Open SEO."],
         ["A route with accessibility concerns", "Open A11y."],
-        ["A route tied to a recovery experience", "Open Arcade or 404 Control Room."],
+        ["A route tied to a recovery experience", "Open Arcade or 404 Recovery."],
         ["A route that needs a team summary", "Open Reports or CavPad."]
       ]
     ),
@@ -2346,14 +2346,14 @@
       ]
     ),
 
-    p(`When a route keeps appearing and the team does not recognize it, do not guess. Open the path, check whether it loads, review where it may be linked from, compare it against recent site changes, and inspect whether it appears in 404 Control Room, Errors, SEO, or Reports.`),
+    p(`When a route keeps appearing and the team does not recognize it, do not guess. Open the path, check whether it loads, review where it may be linked from, compare it against recent site changes, and inspect whether it appears in 404 Recovery, Errors, SEO, or Reports.`),
 
     list([
       "Open the route directly in the browser.",
       "Check whether the page loads or returns a missing-page state.",
       "Look for internal links pointing to the route.",
       "Review recent content, navigation, deployment, or campaign changes.",
-      "Check whether the route appears in 404 Control Room.",
+      "Check whether the route appears in 404 Recovery.",
       "Check whether the route has errors or metadata problems.",
       "Decide whether the route needs a fix, redirect, restore, or no action."
     ]),
@@ -2395,7 +2395,7 @@
       "Confirm the page loads, redirects, or stays unavailable intentionally.",
       "Test the main visitor action on the destination page.",
       "Check desktop and mobile when the route matters.",
-      "Review 404 Control Room if the route was previously missing.",
+      "Review 404 Recovery if the route was previously missing.",
       "Document the change if the route affected a major flow."
     ]),
 
@@ -2441,7 +2441,7 @@
       "Review pricing, product, signup, login, checkout, docs, support, and contact pages.",
       "Review pages used in ads, emails, launches, investor outreach, or social posts.",
       "Review pages after redesigns, migrations, CMS updates, or major copy changes.",
-      "Compare SEO findings with Routes, Reports, 404 Control Room, and Errors when a page looks suspicious."
+      "Compare SEO findings with Routes, Reports, 404 Recovery, and Errors when a page looks suspicious."
     ]),
 
     p(`A strong page title should be specific, readable, and honest. It should tell a visitor what the page is about without stuffing the title with repeated keywords. The title should feel like it belongs to the page, the product, and the brand.`),
@@ -2813,16 +2813,16 @@
 
       {
   id: "cavbot-insights",
-  title: "CavBot Insights",
+  title: "Insights",
   summary: "Read prioritized observations from the connected site.",
   blocks: [
-    p(`CavBot Insights turns connected site activity into clear observations the team can review. It helps owners, developers, designers, marketers, and support teams understand what may need attention without opening every surface first.`),
+    p(`Insights turns connected site activity into clear observations the team can review. It helps owners, developers, designers, marketers, and support teams understand what may need attention without opening every surface first.`),
 
     p(`Use Insights when you want a focused starting point. Instead of looking at routes, errors, SEO, accessibility, 404 activity, reports, and page behavior one by one, Insights can point to the areas that appear most important based on the signals CavBot has available.`),
 
     p(`An insight is not the final answer. It is a prompt to inspect the source. Before changing production, open the affected route, review the source module, confirm the timestamp, and decide whether the issue still matters. Insights help focus the review, but the team still owns the decision and the fix.`),
 
-    p(`CavBot Insights can include observations from route behavior, missing paths, browser errors, page metadata, accessibility concerns, page experience, visitor engagement, sign-up or sign-in paths, recovery activity, geographic trends, and other workspace signals when the underlying data exists.`),
+    p(`Insights can include observations from route behavior, missing paths, browser errors, page metadata, accessibility concerns, page experience, visitor engagement, sign-up or sign-in paths, recovery activity, geographic trends, and other workspace signals when the underlying data exists.`),
 
     table(
       ["Insight area", "What it can help identify"],
@@ -2872,11 +2872,11 @@
     table(
       ["If the insight mentions", "Open this next"],
       [
-        ["A missing route", "Open Routes or 404 Control Room."],
+        ["A missing route", "Open Routes or 404 Recovery."],
         ["A repeated browser issue", "Open Errors."],
         ["Weak page metadata", "Open SEO and inspect the live page."],
         ["Accessibility barriers", "Open A11y and test the page manually."],
-        ["A broken recovery path", "Open 404 Control Room and Arcade settings."],
+        ["A broken recovery path", "Open 404 Recovery and Arcade settings."],
         ["A confusing page pattern", "Open the live route and review the page experience."],
         ["A team decision is needed", "Create a CavPad note with the route, issue, owner, and next step."],
         ["A wider review is needed", "Generate or open a Report for the selected site."]
@@ -2885,7 +2885,7 @@
 
     p(`Insights are most useful when they lead to clear action. A good observation should help the team decide what to inspect, why it matters, and what the next step should be. If an insight is unclear, do not guess. Open the source module and review the original signal before making changes.`),
 
-    p(`For example, an insight about a repeated missing pricing route should lead the team to open 404 Control Room, check whether visitors are still reaching that path, identify where the bad link may be coming from, and decide whether to redirect, restore, or correct the source link.`),
+    p(`For example, an insight about a repeated missing pricing route should lead the team to open 404 Recovery, check whether visitors are still reaching that path, identify where the bad link may be coming from, and decide whether to redirect, restore, or correct the source link.`),
 
     p(`An insight about weak homepage metadata should lead the team to open SEO, inspect the title, description, heading structure, and canonical URL, then update the live page source or CMS fields before asking CavBot to collect a newer snapshot.`),
 
@@ -2894,7 +2894,7 @@
     table(
       ["Insight example", "Good next step"],
       [
-        ["Repeated missing route", "Review the path in 404 Control Room and decide whether it needs a redirect, restore, or source-link fix."],
+        ["Repeated missing route", "Review the path in 404 Recovery and decide whether it needs a redirect, restore, or source-link fix."],
         ["Browser error on signup", "Open Errors, reproduce the signup path, and verify whether the issue blocks account creation."],
         ["Missing page description", "Open SEO, update the source metadata, publish the page, and collect a newer snapshot."],
         ["Form label concern", "Open A11y, inspect the form, fix labels or instructions, and test the form manually."],
@@ -2968,7 +2968,7 @@
       "Keep watching repeated signals after launches, migrations, and campaigns."
     ]),
 
-    p(`CavBot Insights should make the workspace easier to operate. It should not replace careful review, but it should help the team spend less time searching for what matters and more time improving the site.`),
+    p(`Insights should make the workspace easier to operate. It should not replace careful review, but it should help the team spend less time searching for what matters and more time improving the site.`),
 
     note("Use with judgment", "Insights help focus attention. The team still owns the final decision, the fix, and the production review."),
 
@@ -2978,16 +2978,16 @@
 
       {
   id: "404-control-room",
-  title: "404 Control Room",
+  title: "404 Recovery",
   summary: "Investigate missing routes, recovery behavior, and broken-page patterns.",
   blocks: [
-    p(`404 Control Room is the review surface for missing routes. It helps the team understand which URLs visitors are reaching that the site cannot find, how often those paths appear, and what should happen next.`),
+    p(`404 Recovery is the review surface for missing routes. It helps the team understand which URLs visitors are reaching that the site cannot find, how often those paths appear, and what should happen next.`),
 
     p(`A 404 is not only a technical status. It is a visitor reaching a dead end. Sometimes that dead end is harmless, like a one-time typo. Other times it points to a real problem, such as a missing pricing page, a broken campaign link, a deleted product route, a moved docs article, a failed redirect, or an old URL that people still use.`),
 
-    p(`Use 404 Control Room when you need to separate random noise from broken paths that matter. The goal is to decide whether a missing route should be redirected, restored, corrected at the source link, supported with Arcade recovery, or left alone because it does not deserve action.`),
+    p(`Use 404 Recovery when you need to separate random noise from broken paths that matter. The goal is to decide whether a missing route should be redirected, restored, corrected at the source link, supported with Arcade recovery, or left alone because it does not deserve action.`),
 
-    p(`Open 404 Control Room after launches, redesigns, site migrations, pricing changes, campaign updates, product route changes, docs changes, and any release that touches navigation or routing. These are the moments when broken paths are most likely to appear.`),
+    p(`Open 404 Recovery after launches, redesigns, site migrations, pricing changes, campaign updates, product route changes, docs changes, and any release that touches navigation or routing. These are the moments when broken paths are most likely to appear.`),
 
     table(
       ["404 area", "What it helps you understand"],
@@ -3080,7 +3080,7 @@
       "Do not make a game, animation, or visual element the only way forward."
     ]),
 
-    p(`404 Control Room should also be used after migrations. Site migrations often create broken paths because old slugs, old folders, old CMS routes, and old platform URLs may continue to receive visits. A clean migration review should include redirects for important old paths and a check for repeated missing routes after launch.`),
+    p(`404 Recovery should also be used after migrations. Site migrations often create broken paths because old slugs, old folders, old CMS routes, and old platform URLs may continue to receive visits. A clean migration review should include redirects for important old paths and a check for repeated missing routes after launch.`),
 
     table(
       ["After this change", "Review 404s for"],
@@ -3111,10 +3111,10 @@
       ]
     ),
 
-    p(`404 Control Room should be compared with Routes, Errors, SEO, Reports, and Arcade. A missing route may also create browser errors, weak metadata, bad recovery behavior, or a confusing visitor path. If the same page or path appears in multiple surfaces, treat it as a larger site-quality issue.`),
+    p(`404 Recovery should be compared with Routes, Errors, SEO, Reports, and Arcade. A missing route may also create browser errors, weak metadata, bad recovery behavior, or a confusing visitor path. If the same page or path appears in multiple surfaces, treat it as a larger site-quality issue.`),
 
     table(
-      ["If 404 Control Room shows", "Open this next"],
+      ["If 404 Recovery shows", "Open this next"],
       [
         ["Repeated missing page", "Open Routes and decide whether the path should exist."],
         ["Missing asset path", "Open the live page and inspect the broken asset reference."],
@@ -3129,10 +3129,10 @@
 
     p(`For owners and operators, a 404 review should focus on visitor impact. Ask whether the missing route affects sales, signup, support, trust, onboarding, documentation, account access, or a public campaign. If it does, move it higher in the queue.`),
 
-    p(`For marketing teams, 404 Control Room is especially useful after campaigns. Old links can live inside emails, social posts, partner pages, ads, QR codes, pitch decks, and search results. If those links continue to send visitors to missing pages, the campaign experience is weaker than it should be.`),
+    p(`For marketing teams, 404 Recovery is especially useful after campaigns. Old links can live inside emails, social posts, partner pages, ads, QR codes, pitch decks, and search results. If those links continue to send visitors to missing pages, the campaign experience is weaker than it should be.`),
 
     table(
-      ["Team", "How 404 Control Room helps"],
+      ["Team", "How 404 Recovery helps"],
       [
         ["Owner", "Shows which missing routes may affect trust, sales, or customer experience."],
         ["Developer", "Points to broken paths, missing redirects, route rules, and asset references that need repair."],
@@ -3167,11 +3167,11 @@
       "Test the destination page and its main action.",
       "Check desktop and mobile when the route matters.",
       "Verify internal links no longer point to the old path.",
-      "Review 404 Control Room again after traffic returns.",
+      "Review 404 Recovery again after traffic returns.",
       "Document major fixes in CavPad or a report when the route affected an important flow."
     ]),
 
-    p(`If 404 Control Room looks empty, confirm setup before assuming there are no missing routes. Check the selected site, saved origin, snippet install, public page visits, route activity, and whether the site has received enough traffic for meaningful review.`),
+    p(`If 404 Recovery looks empty, confirm setup before assuming there are no missing routes. Check the selected site, saved origin, snippet install, public page visits, route activity, and whether the site has received enough traffic for meaningful review.`),
 
     table(
       ["Problem", "What to check"],
@@ -3189,7 +3189,7 @@
 
     note("Redirect rule", "Redirect routes that help real visitors continue. Do not create redirects for every random bot path or meaningless request."),
 
-    p(`404 Control Room should make the team calmer and more precise. It shows where visitors hit dead ends, which missing paths matter, and what kind of recovery or repair should happen. Used well, it turns broken routes into clear decisions.`),
+    p(`404 Recovery should make the team calmer and more precise. It shows where visitors hit dead ends, which missing paths matter, and what kind of recovery or repair should happen. Used well, it turns broken routes into clear decisions.`),
 
     note("Core rule", "Review frequency, source, and business value before acting. Fix important repeated routes, support visitors with clear recovery paths, and keep watching the routes that may grow after launches, migrations, and campaigns.")
   ]
@@ -3492,14 +3492,14 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Agent workflows should not be used to bypass review. CavAi and Caven can help prepare the work, but a person should still approve important changes. This is especially important for production pages, billing settings, team access, security controls, storage, public content, and code that will be deployed.`),
 
-    p(`When a workflow produces a recommendation, verify it against the source. If it mentions an error, open Error Intelligence. If it mentions a broken route, open 404 Control Room. If it mentions SEO, inspect the page metadata. If it mentions code, review the file and run the project when possible.`),
+    p(`When a workflow produces a recommendation, verify it against the source. If it mentions an error, open Error Intelligence. If it mentions a broken route, open 404 Recovery. If it mentions SEO, inspect the page metadata. If it mentions code, review the file and run the project when possible.`),
 
     list([
       "Use CavAi for summaries, plans, explanations, reports, and website review.",
       "Use Caven for code review, file repair, debugging, and CavCode work.",
       "Use CavPad to save decisions, follow-ups, and release notes.",
       "Use Reports when the team needs a shareable summary.",
-      "Use 404 Control Room for broken route recovery work.",
+      "Use 404 Recovery for broken route recovery work.",
       "Use Error Intelligence when a workflow points to runtime failures.",
       "Use CavGuard and CavVerify when a workflow reaches protected actions."
     ]),
@@ -3920,7 +3920,7 @@ Turn these notes into a clean launch checklist.`),
         ["Errors", "Reports browser-side runtime issues and where they happened."],
         ["SEO", "Provides page metadata and structure snapshots."],
         ["A11y", "Provides accessibility-related page checks where supported."],
-        ["404 Control Room", "Helps identify broken routes and recovery behavior."],
+        ["404 Recovery", "Helps identify broken routes and recovery behavior."],
         ["Reports", "Gives reports the live context they need to summarize site health."],
         ["CavAi", "Gives CavAi better workspace context when answering questions about the selected site."]
       ]
@@ -4479,7 +4479,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Summary is useful because most teams do not need raw signals first. They need to know what changed, what matters, and where to look next. A clean summary keeps that first review focused.`),
 
-    p(`For example, if Summary points to repeated missing routes, open 404 Control Room. If it points to runtime issues, open Error Intelligence. If it points to weak page structure, open SEO. If it points to accessibility problems, open A11y. Summary should guide the next step instead of pretending to replace it.`),
+    p(`For example, if Summary points to repeated missing routes, open 404 Recovery. If it points to runtime issues, open Error Intelligence. If it points to weak page structure, open SEO. If it points to accessibility problems, open A11y. Summary should guide the next step instead of pretending to replace it.`),
 
     note("Important", "Summary helps you decide where to look next. It should not be used as the only source before changing code, redirects, metadata, access settings, billing, or protected workspace configuration."),
 
@@ -4563,7 +4563,7 @@ Turn these notes into a clean launch checklist.`),
     sections: [
      {
   id: "cavcode",
-  title: "CavCode",
+  title: "Code",
   summary: "Open, edit, save, run, and review workspace code inside CavBot.",
   blocks: [
     p(`CavCode is CavBot’s built-in code editor. It gives a workspace a place to open project files, read code, edit files, review problems, run commands, preview output, and use Caven for coding help without leaving the CavBot platform.`),
@@ -4700,7 +4700,7 @@ Turn these notes into a clean launch checklist.`),
 
      {
   id: "cavcloud",
-  title: "CavCloud",
+  title: "Cloud",
   summary: "Store, organize, preview, share, and manage workspace files.",
   blocks: [
     p(`CavCloud is CavBot’s workspace file storage. It gives each workspace a clear place to keep files, folders, uploads, documents, generated outputs, HTML files, project assets, notes, exports, and other working material connected to the project.`),
@@ -4822,7 +4822,7 @@ Turn these notes into a clean launch checklist.`),
 
     {
   id: "cavtools",
-  title: "CavTools",
+  title: "Terminal",
   summary: "Inspect workspace behavior, commands, files, previews, and developer output.",
   blocks: [
     p(`CavTools is the developer inspection area inside CavBot. It gives builders a focused place to check what is happening inside a workspace before changing code, files, settings, or production behavior.`),
@@ -6885,7 +6885,7 @@ Turn these notes into a clean launch checklist.`),
       "Use Arcade before installation to decide which game fits a website.",
       "Use Arcade on a 404 page when a missing route needs a better recovery moment.",
       "Use clear recovery links so visitors can return home, search, contact support, or continue to another page.",
-      "Use 404 Control Room after launch to review which missing routes still need repair.",
+      "Use 404 Recovery after launch to review which missing routes still need repair.",
       "Do not use Arcade as a replacement for fixing important broken links."
     ]),
 
@@ -6961,7 +6961,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`After launch, review 404 Control Room. Arcade improves the visitor experience, but 404 Control Room helps the team understand which broken routes are still happening, how often they appear, and whether the route deserves a fix.`),
+    p(`After launch, review 404 Recovery. Arcade improves the visitor experience, but 404 Recovery helps the team understand which broken routes are still happening, how often they appear, and whether the route deserves a fix.`),
 
     p(`A route that appears once may be a typo. A route that appears repeatedly may point to a real problem. It may be linked from a menu, old campaign, search result, email, social post, third-party page, or saved bookmark. Repeated 404s should be reviewed instead of ignored.`),
 
@@ -6977,7 +6977,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`When 404 Control Room shows repeated activity, decide what the route deserves. Some routes should be redirected. Some should be restored. Some should be fixed at the source link. Some should remain as 404s if the path is invalid and not useful.`),
+    p(`When 404 Recovery shows repeated activity, decide what the route deserves. Some routes should be redirected. Some should be restored. Some should be fixed at the source link. Some should remain as 404s if the path is invalid and not useful.`),
 
     list([
       "Redirect the route when the content moved to a new location.",
@@ -6988,7 +6988,7 @@ Turn these notes into a clean launch checklist.`),
       "Keep Arcade active when the missing-page experience should remain polished."
     ]),
 
-    p(`Arcade and 404 Control Room work best together. Arcade protects the visitor experience in the moment. 404 Control Room helps the team understand what needs to be repaired after the visit happens.`),
+    p(`Arcade and 404 Recovery work best together. Arcade protects the visitor experience in the moment. 404 Recovery helps the team understand what needs to be repaired after the visit happens.`),
 
     note("Recovery rule", "Arcade improves the broken-page experience, but the team should still fix repeated missing routes through redirects, restored pages, or corrected links."),
 
@@ -7002,7 +7002,7 @@ Turn these notes into a clean launch checklist.`),
         ["Game appears but controls fail", "Test the page in another browser and confirm scripts are not blocked."],
         ["Game crowds mobile layout", "Adjust the 404 page layout or choose a simpler recovery placement."],
         ["Recovery links are missing", "Add clear links back to useful pages."],
-        ["Repeated broken route continues", "Review the route in 404 Control Room and decide whether to redirect, restore, or fix the source link."]
+        ["Repeated broken route continues", "Review the route in 404 Recovery and decide whether to redirect, restore, or fix the source link."]
       ]
     ),
 
@@ -7029,7 +7029,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`When using Arcade only inside CavBot, no install is required. Open the Arcade, choose a game, and start playing. This is the simplest way to explore the full CavBot Arcade collection.`),
 
-    p(`When using Arcade on a public 404 page, treat it like part of the website experience. Test it carefully, keep recovery actions visible, review 404 Control Room after launch, and repair any route that continues to receive meaningful traffic.`),
+    p(`When using Arcade on a public 404 page, treat it like part of the website experience. Test it carefully, keep recovery actions visible, review 404 Recovery after launch, and repair any route that continues to receive meaningful traffic.`),
 
     note("Core rule", "Arcade should make broken moments feel intentional, but the real goal is recovery: help visitors continue, help teams see what happened, and help the website stay easier to trust.")
   ]
@@ -7183,7 +7183,7 @@ Turn these notes into a clean launch checklist.`),
         ["Site connection", "A site will not connect, verify, publish activity, or match the expected origin."],
         ["Snippet install", "Analytics v5, SDK, badge, Arcade, or other runtime snippets do not load or verify."],
         ["Billing", "A plan, checkout, subscription, invoice, downgrade, upgrade, or payment state needs review."],
-        ["Modules", "Console, 404 Control Room, Error Intelligence, A11y, CavAi, CavCode, CavCloud, CavSafe, or another surface shows unexpected behavior."]
+        ["Modules", "Console, 404 Recovery, Error Intelligence, A11y, CavAi, CavCode, CavCloud, CavSafe, or another surface shows unexpected behavior."]
       ]
     ),
 
@@ -7603,7 +7603,7 @@ function integrationBlocks(name, when, placement, mistakes, platformGuidance, ve
         ["Errors", "Check whether browser issues appear after the snippet is live."],
         ["SEO", "Review whether page metadata snapshots are being collected."],
         ["A11y", "Review accessibility snapshots for important pages."],
-        ["404 Control Room", "Confirm missing routes and recovery behavior when testing 404 pages."]
+        ["404 Recovery", "Confirm missing routes and recovery behavior when testing 404 pages."]
       ]
     ),
 
