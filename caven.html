@@ -1,30 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Caven · CavBot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Caven is CavBot’s dedicated coding agent for implementation, debugging, and technical delivery inside CavAi and CavCode workflows.">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://cavbot.io/caven.html">
+ <meta charset="utf-8">
+ <title>Caven · Coding Work Inside CavBot · CavBot</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.">
+ <meta name="robots" content="index, follow">
+ <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+ <link rel="canonical" href="https://cavbot.io/caven.html">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+ <!-- UNIVERSAL FAVICONS -->
+ <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+ <link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+ <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+ <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+ <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+ <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
 
-  <link rel="stylesheet" href="files/css/globals/header-footer.css">
-  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
-  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">
-  <link rel="stylesheet" href="files/css/globals/main.css">
-  <link rel="stylesheet" href="files/css/pages/resource.css">
+ <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+ <link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+ <link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+ <link rel="manifest" href="site.webmanifest">
+
+ <meta name="theme-color" content="#01030f">
+ <meta name="msapplication-TileColor" content="#01030f">
+ <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+ <!-- Open Graph -->
+ <meta property="og:title" content="Caven · Coding Work Inside CavBot · CavBot">
+ <meta property="og:description" content="A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.">
+ <meta property="og:type" content="website">
+ <meta property="og:url" content="https://cavbot.io/caven.html">
+ <meta property="og:site_name" content="CavBot">
+ <meta property="og:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+ <!-- Twitter -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Caven · Coding Work Inside CavBot · CavBot">
+ <meta name="twitter:description" content="A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.">
+ <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+ <!-- TYPEFACE -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+ <!-- Global CavBot styles (KEEP) -->
+ <link rel="stylesheet" href="files/css/globals/header-footer.css">
+ <!-- Caven Page -->
+ <link rel="stylesheet" href="files/css/pages/caven.css">
+
+ <!-- Structured data -->
+ <script type="application/ld+json">
+ {
+   "@context":"https://schema.org",
+   "@type":"WebPage",
+   "name":"Caven · Coding Work Inside CavBot · CavBot",
+   "description":"A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.",
+   "url":"https://cavbot.io/caven.html",
+   "isPartOf":{
+     "@type":"WebSite",
+     "name":"CavBot",
+     "url":"https://cavbot.io/"
+   },
+   "publisher":{
+     "@type":"Organization",
+     "name":"CavBot",
+     "url":"https://cavbot.io/",
+     "logo":{
+       "@type":"ImageObject",
+       "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+     }
+   }
+ }
+ </script>
 </head>
 
-<body class="page-shell" data-cavbot-page-type="resource-page" data-cavbot-component="resource-shell">
-  <header class="site-header cb-company-header">
+<body class="page-shell"
+ data-cavbot-page-type="404-field-guide"
+ data-cavbot-component="research-shell"
+ >
+
+ <!-- HEADER / NAV (unified) -->
+ <header class="site-header cb-company-header">
   <div class="site-header-inner">
      <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
       <img
@@ -62,7 +124,7 @@
                   <span class="cb-mega-link-copy">Ask, create, and solve with <br> AI.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="caven.html">
                   <span class="cb-mega-link-title">Caven</span>
                   <span class="cb-mega-link-copy"> Build, debug, and ship with a real AI coding agent.
 </span>
@@ -150,8 +212,8 @@
               </section>
             </div>
 
-            <a class="cb-mega-bottom-link" href="/">
-              <span>View all features</span>
+            <a class="cb-mega-bottom-link" href="https://app.cavbot.io/">
+              <span>Open Dashboard</span>
               <span class="cb-arrow-text" aria-hidden="true">↗</span>
             </a>
           </div>
@@ -179,17 +241,17 @@
               <section class="cb-mega-column">
                 <p class="cb-mega-kicker">Protection</p>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="/#security-cavverify">
                   <span class="cb-mega-link-title">Caverify</span>
                   <span class="cb-mega-link-copy">Built-in verification that keeps bots out.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="/#security-cavguard">
                   <span class="cb-mega-link-title">CavGuard</span>
                   <span class="cb-mega-link-copy"> Built-in guardrails for restricted actions.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="/#security-cavsafe">
                   <span class="cb-mega-link-title">CavSafe</span>
                   <span class="cb-mega-link-copy">The private CavCloud vault for sensitive files.</span>
                 </a>
@@ -214,7 +276,7 @@
                 </a>
               </section>
 
-             <section class="cb-mega-column cb-mega-column--quiet">
+              <section class="cb-mega-column cb-mega-column--quiet">
                 <p class="cb-mega-kicker">Operational security</p>
 
                 <a class="cb-mega-link" href="/docs.html#risk-controls">
@@ -382,7 +444,7 @@
                   <span class="cb-mega-link-copy">Join the team building CavBot.</span>
                 </a>
 
-                   <a class="cb-mega-link" href="/">
+                   <a class="cb-mega-link" href="/about.html">
                   <span class="cb-mega-link-title">Team</span>
                   <span class="cb-mega-link-copy">Meet the people behind CavBot.</span>
                 </a>
@@ -440,6 +502,7 @@
 
       <a href="/cavbot-arcade.html" class="nav-link">CavBot Arcade</a> 
       <a href="/pricing.html" class="nav-link">Pricing</a>
+      <a href="https://app.cavbot.io/" class="nav-link">Dashboard</a>
     </nav>
 
     <div class="nav-cta-row">
@@ -527,7 +590,7 @@
 
           <div class="cb-mobile-section-panel">
             <a href="https://ai.cavbot.io/" class="nav-overlay-link">CavAi</a>
-            <a href="/" class="nav-overlay-link">Caven</a>
+            <a href="caven.html" class="nav-overlay-link">Caven</a>
             <a href="/" class="nav-overlay-link">Error Tracking</a>
             <a href="/" class="nav-overlay-link">SEO Audit</a>
             <a href="/" class="nav-overlay-link">Accessibility Check</a>
@@ -549,9 +612,9 @@
           </button>
 
           <div class="cb-mobile-section-panel" hidden>
-            <a href="/" class="nav-overlay-link">Caverify</a>
-            <a href="/" class="nav-overlay-link">CavGuard</a>
-            <a href="/" class="nav-overlay-link">CavSafe</a>
+            <a href="/#security-cavverify" class="nav-overlay-link">Caverify</a>
+            <a href="/#security-cavguard" class="nav-overlay-link">CavGuard</a>
+            <a href="/#security-cavsafe" class="nav-overlay-link">CavSafe</a>
             <a href="/legal.html#data-security" class="nav-overlay-link">Data security</a>
             <a href="/legal.html#privacy-policy" class="nav-overlay-link">Privacy</a>
             <a href="/legal.html#terms-of-use" class="nav-overlay-link">Terms</a>
@@ -603,6 +666,8 @@
         </section>
 
         <a href="/pricing.html" class="nav-overlay-link nav-overlay-link--standalone">Pricing</a>
+        <a href="https://app.cavbot.io/" class="nav-overlay-link nav-overlay-link--standalone">Dashboard</a>
+
       </div>
 
       <div class="nav-overlay-cta">
@@ -618,82 +683,461 @@
   </div>
 </header>
 
-  <div class="nav-overlay" aria-hidden="true">
-    <div class="nav-overlay-backdrop"></div>
-    <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
-      <div class="nav-overlay-header">
-        <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+ <div class="nav-overlay-backdrop"></div>
+ <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+   <div class="nav-overlay-header">
+     <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+   </div>
+   <div class="nav-overlay-body">
+     <a href="product.html" class="nav-overlay-link">Product</a>
+     <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+     <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+     <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+     <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+      <div class="nav-cta-row">
+        <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+        <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
       </div>
-      <div class="nav-overlay-body">
-        <a href="product.html" class="nav-overlay-link">Product</a>
-        <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
-        <a href="pricing.html" class="nav-overlay-link">Pricing</a>
-        <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
-        <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
-        <div class="nav-cta-row">
-          <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
-          <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+   </div>
+ </div>
+</div>
+
+
+
+
+
+<main class="article-main" id="main">
+  <section class="article-hero" aria-labelledby="article-title">
+    <div class="article-hero-shell">
+      <aside class="article-rail" aria-label="Article section">
+        <a href="/blog.html" class="article-breadcrumb">Blog</a>
+        <span aria-hidden="true">/</span>
+        <span>Company</span>
+      </aside>
+
+      <article class="article-content">
+        <header class="article-head">
+          <p class="article-date">May 27, 2026</p>
+
+          <h1 id="article-title">Caven brings coding work into CavBot</h1>
+
+          <div class="article-author-row" aria-label="Article author">
+            <img
+              class="article-author-avatar"
+              src="assets/logo/cav.PNG"
+              alt="CavBot Logo-mark"
+              loading="lazy"
+              decoding="async"
+            >
+            <span class="article-author-name">CavBot Team</span>
+            <span aria-hidden="true">·</span>
+            <span>5 min read</span>
+          </div>
+        </header>
+
+        <figure class="article-cover" aria-label="Caven coding agent article image">
+          <div class="article-cover-art cb-caven-thumb" aria-hidden="true">
+            <div class="cb-caven-thumb-copy">
+              <span class="cb-caven-thumb-title">Caven</span><br>
+              <span class="cb-caven-thumb-note">coding agent</span>
+            </div>
+
+            <div class="cb-caven-icon-box">
+              <img
+                src="assets/icons/page/code-svgrepo-com.svg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
+
+            <div class="cb-caven-code-card">
+              <div class="cb-caven-code-top">
+                <span></span><span></span><span></span>
+              </div>
+
+              <div class="cb-caven-code-lines">
+                <span><b>caven</b> inspect --route</span>
+                <span><b>fix</b> failing state</span>
+                <span><b>ship</b> clean patch</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+
+        <div class="article-prose">
+          <p class="article-lede" id="opening">
+            Building software is moving faster, but the hardest part has not disappeared. Someone still has to understand the request, find the right files, make the change, check the behavior, and know when the work is ready to ship.
+          </p>
+
+          <p>
+            Caven brings that full coding loop into CavBot.
+          </p>
+
+          <p>
+            With this launch, CavBot now has a dedicated coding agent built for real implementation work. Caven can help write new features, inspect existing code, explain what is failing, refactor messy paths, review changes, and turn technical ideas into working software.
+          </p>
+
+          <h2 id="why-caven">Why Caven exists</h2>
+
+          <p>
+            The bottleneck in development is not always typing code. Often, it is knowing what code needs to be written, where it belongs, and what has to be checked before the change is trusted.
+          </p>
+
+          <p>
+            A single product task can touch routes, components, API calls, state, copy, permissions, tests, and release behavior. Caven is built for that space. It helps move from “something needs to be built” to “here is the path, here is the code, and here is what still needs review.”
+          </p>
+
+          <p>
+            That matters because a strong coding agent should do more than answer questions. It should help carry the work forward.
+          </p>
+
+          <h2 id="how-caven-reasons">How Caven reasons</h2>
+
+          <p>
+            Caven starts by understanding the job. Is this a new feature, a bug, a refactor, a review, or a release task? From there, it looks for the files that matter, separates the work into steps, and keeps the change tied to the reason it exists.
+          </p>
+
+          <p>
+            For a route issue, that may mean finding the old path, checking the redirect, reviewing the checkout behavior, and preparing a clean patch. For a new product idea, it may mean shaping the component structure, writing the first draft, and pointing out what needs testing before it goes live.
+          </p>
         </div>
-      </div>
+
+        <figure class="article-product-visual article-product-visual--reasoning caven-shot-wrap" aria-label="Caven reasoning example">
+          <div class="caven-shot">
+            <div class="caven-shot-topbar">
+              <div class="caven-shot-dots">
+                <span></span><span></span><span></span>
+              </div>
+
+              <div class="caven-shot-titlebar">
+                <span>Agent</span>
+                <strong>repair checkout route · Caven Session</strong>
+              </div>
+
+              <div class="caven-shot-tools">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="caven-shot-body">
+              <aside class="caven-shot-sidebar">
+                <p>CAVEN</p>
+
+                <div class="caven-shot-task is-active">
+                  <span>CURRENT TASK</span>
+                  <strong>Repair checkout route</strong>
+                  <small>planning · 2 files found</small>
+                </div>
+
+                <div class="caven-shot-task">
+                  <strong>Review route guard</strong>
+                  <small>8m ago</small>
+                </div>
+
+                <div class="caven-shot-task">
+                  <strong>Clean pricing redirect</strong>
+                  <small>22m ago</small>
+                </div>
+
+                <div class="caven-shot-server">
+                  <span>2 project servers</span>
+                  <strong>connected</strong>
+                </div>
+
+                <div class="caven-shot-sidebar-status">
+                  <div>
+                    <span>Checks</span>
+                    <strong>route check passed</strong>
+                  </div>
+
+                  <div>
+                    <span>Files</span>
+                    <strong>2 changed</strong>
+                  </div>
+                </div>
+              </aside>
+
+              <section class="caven-shot-center">
+                <div class="caven-shot-reasoning">
+                  <div class="caven-shot-label-row">
+                    <span>CAVEN REASONING</span>
+                    <b>ready</b>
+                  </div>
+
+                  <h3>Plan before editing</h3>
+
+                  <div class="caven-shot-steps">
+                    <div>
+                      <span>01</span>
+                      <p>Find where checkout traffic reaches the old route.</p>
+                    </div>
+
+                    <div>
+                      <span>02</span>
+                      <p>Patch the redirect without changing the pricing page.</p>
+                    </div>
+
+                    <div>
+                      <span>03</span>
+                      <p>Run the route check before release.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="caven-shot-review">
+                  <div>
+                    <strong>Files to change</strong>
+                    <span>app/routes/checkout<br>lib/redirects.ts</span>
+                  </div>
+
+                  <div>
+                    <strong>Expected result</strong>
+                    <span>/pricing-old → /pricing<br>checkout route stays clean</span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="caven-shot-code">
+                <div class="caven-shot-code-head">
+                  <span>lib / redirects.ts</span>
+                  <strong>TypeScript</strong>
+                </div>
+
+                <pre><code><span class="code-purple">export const</span> redirects = [
+  {
+    source: <span class="code-green">"/pricing-old"</span>,
+    destination: <span class="code-green">"/pricing"</span>,
+    permanent: <span class="code-lime">true</span>
+  },
+  {
+    source: <span class="code-green">"/checkout/start"</span>,
+    destination: <span class="code-green">"/checkout"</span>,
+    permanent: <span class="code-lime">true</span>
+  }
+];
+
+<span class="code-purple">export function</span> resolveRoute(path: string) {
+  <span class="code-purple">const</span> match = redirects.find(item =&gt;
+    item.source === path
+  );
+
+  <span class="code-purple">if</span> (!match) {
+    <span class="code-purple">return</span> null;
+  }
+
+  <span class="code-purple">return</span> {
+    destination: match.destination,
+    permanent: match.permanent
+  };
+}</code></pre>
+              </section>
+            </div>
+          </div>
+        </figure>
+
+        <div class="article-prose">
+          <h2 id="from-issue-to-fix">From issue to fix</h2>
+
+          <p>
+            Caven is built for the moment when a task needs to become real code. You can use it to draft a feature, repair a broken flow, review a code path, clean up a component, or turn a rough technical idea into a cleaner implementation plan.
+          </p>
+
+          <p>
+            The work does not have to stop at explanation. Caven can help write the patch, organize the change, show what files are involved, and make the result easier to review. The goal is not to make the developer disappear. The goal is to remove the unnecessary drag between thinking, building, and shipping.
+          </p>
+
+          <p>
+            You still own the decisions that require taste: architecture, product behavior, edge cases, and what “good” means for the experience. Caven helps with the heavy middle of the work, where context, code, and review all need to stay connected.
+          </p>
+
+          <h2 id="caven-workflows">Caven workflows</h2>
+
+          <p>
+            Caven workflows are designed around how coding actually happens. Start with a feature request. Inspect the current behavior. Plan the change. Write the code. Review the result. Then decide what needs to be tested before it ships.
+          </p>
+
+          <p>
+            That flow can support small fixes and larger builds. A broken checkout route, a new dashboard card, a refactor, a landing page update, a component cleanup, or a backend adjustment can all move through the same rhythm: inspect, plan, patch, review.
+          </p>
+        </div>
+
+        <figure class="article-product-visual article-product-visual--workflow" aria-label="Caven workflows example">
+          <div class="article-workflow-window">
+            <div class="article-workflow-topbar">
+              <div class="article-ide-dots">
+                <span></span><span></span><span></span>
+              </div>
+
+              <div class="article-workflow-title">
+                <strong>route repair review</strong>
+              </div>
+
+              <div class="article-workflow-pill">ready</div>
+            </div>
+
+            <div class="article-workflow-layout">
+              <aside class="article-workflow-rail">
+                <p>WORKFLOW</p>
+
+                <div class="article-workflow-nav is-active">
+                  <span>01</span>
+                  <strong>Inspect</strong>
+                </div>
+
+                <div class="article-workflow-nav">
+                  <span>02</span>
+                  <strong>Plan</strong>
+                </div>
+
+                <div class="article-workflow-nav">
+                  <span>03</span>
+                  <strong>Patch</strong>
+                </div>
+
+                <div class="article-workflow-nav">
+                  <span>04</span>
+                  <strong>Review</strong>
+                </div>
+              </aside>
+
+              <section class="article-workflow-center">
+                <div class="article-workflow-command">
+                  <span>CAVEN COMMAND</span>
+                  <strong>inspect route failure and prepare patch</strong>
+                </div>
+
+                <div class="article-workflow-code">
+                  <div class="article-workflow-code-head">
+                    <span>app/routes/checkout.ts</span>
+                    <strong>review</strong>
+                  </div>
+
+                  <pre><code><span class="code-muted">01</span> <span class="code-purple">const</span> path = <span class="code-green">"/pricing-old"</span>;
+<span class="code-muted">02</span> <span class="code-purple">const</span> target = resolveRoute(path);
+<span class="code-muted">03</span>
+<span class="code-muted">04</span> <span class="code-purple">if</span> (!target) {
+<span class="code-muted">05</span>   queueRepair(<span class="code-green">"checkout-route"</span>);
+<span class="code-muted">06</span> }</code></pre>
+                </div>
+              </section>
+
+              <aside class="article-workflow-review">
+                <p>REVIEW NOTES</p>
+
+                <div>
+                  <strong>Issue</strong>
+                  <span>Old pricing route still receives checkout traffic.</span>
+                </div>
+
+                <div>
+                  <strong>Fix</strong>
+                  <span>Add permanent redirect and keep checkout flow unchanged.</span>
+                </div>
+
+                <div>
+                  <strong>Check</strong>
+                  <span>Run route check before release.</span>
+                </div>
+              </aside>
+            </div>
+
+            <div class="article-workflow-bottom">
+              <div>
+                <span>Inspect</span>
+                <strong>route found</strong>
+              </div>
+
+              <div>
+                <span>Plan</span>
+                <strong>3 steps</strong>
+              </div>
+
+              <div>
+                <span>Patch</span>
+                <strong>2 files</strong>
+              </div>
+
+              <div>
+                <span>Review</span>
+                <strong>ready</strong>
+              </div>
+            </div>
+          </div>
+        </figure>
+
+        <div class="article-prose">
+          <h2 id="where-it-fits">Where Caven fits</h2>
+
+          <p>
+            Caven sits beside CavCode and the wider CavAi experience as the coding agent for the work itself. CavCode gives the place to inspect and edit. CavAi gives broader assistance across CavBot. Caven focuses on turning technical direction into code that can be read, changed, reviewed, and shipped.
+          </p>
+
+          <p>
+            That makes Caven useful beyond repairs. It can help build new product surfaces, write implementation drafts, reason through code paths, prepare refactors, and support the review process before work moves forward.
+          </p>
+
+          <h2 id="available">Available in CavBot</h2>
+
+          <p>
+            Caven is now part of CavBot’s growing product system. It gives builders a dedicated coding agent for implementation, debugging, refactoring, review, and shipping support.
+          </p>
+
+          <p>
+            The goal is simple: help people move from idea to working code with more speed, more clarity, and less friction.
+          </p>
+          <br>
+          <p class="article-link-row">
+            <a class="article-inline-link" href="/docs/cavai#caven">Learn more about Caven in the docs</a>
+          </p>
+        </div>
+
+        <section class="article-ending" aria-label="Article closing">
+          <p>
+            Caven brings coding work closer to the moment where ideas become real.
+          </p>
+        </section>
+      </article>
+
+      <aside class="article-side" aria-label="On this page">
+        <nav class="article-toc">
+          <p>Table of contents</p>
+          <a href="#opening" data-article-toc>Caven brings coding work <br> into CavBot</a>
+          <a href="#why-caven" data-article-toc>Why Caven exists</a>
+          <a href="#how-caven-reasons" data-article-toc>How Caven reasons</a>
+          <a href="#from-issue-to-fix" data-article-toc>From issue to fix</a>
+          <a href="#caven-workflows" data-article-toc>Caven workflows</a>
+          <a href="#where-it-fits" data-article-toc>Where Caven fits</a>
+          <a href="#available" data-article-toc>Available in CavBot</a>
+        </nav>
+      </aside>
     </div>
-  </div>
+  </section>
+</main>
 
-  <main class="page-inner resource-main">
-    <section class="resource-hero" aria-labelledby="resource-title">
-      <h1 id="resource-title" class="resource-title">Caven</h1>
-      <p class="resource-lede">Build and ship code with CavBot’s dedicated coding agent.</p>
-      <br><br>
-      <p class="resource-lede">Caven is the coding model surface inside CavBot. It keeps implementation, debugging, reasoning, and delivery guidance connected to CavCode and the wider CavAi workspace, so teams can move from issue to fix with clearer execution.</p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/cavai?surface=cavcode">IN APP</a>
-        <a class="btn btn-ghost" href="product.html">PRODUCT OVERVIEW</a>
-      </div>
-    </section>
 
-    <section class="resource-grid" aria-label="Caven details">
-      <article class="resource-card">
-        <h2>What It Is</h2>
-        <br><br>
-        <p>Caven is CavBot’s coding agent, optimized for implementation workflows, repair tasks, and technical reasoning across active project files.</p>
-      </article>
-      <article class="resource-card">
-        <h2>What It Does</h2>
-        <br><br>
-        <p>Caven can draft code, explain failing behavior, propose safe fixes, and turn technical goals into structured execution steps that teams can run immediately.</p>
-      </article>
-      <article class="resource-card">
-        <h2>Why It Matters</h2>
-        <br><br>
-        <p>Engineering work depends on context. Caven stays connected to your CavBot workspace so implementation decisions remain grounded in diagnostics, files, and operational priorities.</p>
-      </article>
-      <article class="resource-card">
-        <h2>Primary Workflows</h2>
-        <br><br>
-        <ul class="resource-list">
-          <li>Generate implementation-ready drafts from clear technical prompts</li>
-          <li>Diagnose code issues and map root-cause-aware fixes</li>
-          <li>Refactor with safer step sequencing and validation guidance</li>
-          <li>Bridge coding output into review, testing, and release workflows</li>
-        </ul>
-      </article>
-    </section>
 
-    <section class="resource-cta" aria-label="CavBot app workflow">
-      <h2>In The CavBot App</h2>
-      <p>
-        Caven works inside the CavBot app with Analytics v5 signals, CavAi intelligence workflows, and execution surfaces.
-        Use Command Center in the app to review priorities, then move into Caven when it is time to implement and resolve.
-      </p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/">COMMAND CENTER</a>
-        <a class="btn btn-ghost" href="https://app.cavbot.io/auth?mode=login">LOG IN TO CONTINUE</a>
-      </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- FOOTER (unified) -->
+ <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">
       <a href="https://www.cavbot.io/" class="footer-brand" aria-label="CavBot home">
@@ -799,7 +1243,7 @@
   </div>
 </footer>
 
-  <script>
+ <script>
 window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
 window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1";
 window.CAVBOT_SITE = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
@@ -815,6 +1259,9 @@ window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
   data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"
   data-site="cece1ca3-212c-46c5-b54f-e69dd2f8f061">
 </script>
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414logosmooth1"></script>
+ <!-- CavBot header-footer + nav toggle -->
+ <script src="files/js/globals/header-footer.js?v=brainfix-20260414logosmooth1"></script>
+ <!-- The 404 Experience -->
+ <script src="files/js/pages/caven.js"></script>
 </body>
 </html>

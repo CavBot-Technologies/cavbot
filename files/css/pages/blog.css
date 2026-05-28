@@ -321,7 +321,7 @@ text-wrap: balance;
 }
 
 .blog-feature-body h3 {
-font-size: clamp(23px, 1.85vw, 30px);
+font-size: clamp(20px, 1vw, 24px);
 line-height: 1.08;
 }
 
@@ -804,7 +804,7 @@ background: var(--blog-surface);
 }
 
 .blog-side-body h3 {
-font-size: clamp(23px, 1.85vw, 30px);
+font-size: clamp(20px, 1vw, 24px);
 line-height: 1.08;
 }
 
@@ -1619,3 +1619,289 @@ html {
     width: 100%;
   }
 }
+/* ==============================
+   CAVEN THUMBNAIL
+   ============================== */
+
+
+.cb-thumb--caven {
+  background:
+    linear-gradient(135deg, #ff6b5f 0%, #ff4d4d 24%, #c92f3f 54%, #7f1424 78%, #330711 100%);
+}
+
+
+.cb-thumb--caven::before {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+
+.cb-thumb--caven::after {
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.07) 26%, rgba(255, 255, 255, 0) 52%),
+    linear-gradient(300deg, rgba(1, 3, 15, 0.16) 0%, rgba(1, 3, 15, 0) 44%);
+}
+
+
+.cb-thumb-caven-copy {
+  position: relative;
+  z-index: 4;
+  align-self: start;
+  display: grid;
+  gap: 6px;
+  max-width: 58%;
+  padding-top: 2px;
+}
+
+
+.cb-thumb-caven-copy strong {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(24px, 2.35vw, 36px);
+  line-height: 0.98;
+  font-weight: 650;
+  letter-spacing: -0.065em;
+}
+
+
+.cb-thumb-caven-copy span {
+  display: block;
+  color: rgba(247, 251, 255, 0.84);
+  font-size: clamp(14px, 1.18vw, 20px);
+  line-height: 1.02;
+  font-weight: 400;
+  letter-spacing: -0.052em;
+}
+
+
+.cb-thumb-caven-icon {
+  position: absolute;
+  z-index: 5;
+  right: 24px;
+  top: 18px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 9px;
+  pointer-events: none;
+}
+
+
+.cb-thumb-caven-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1) !important;
+  opacity: 1;
+}
+
+
+.cb-thumb-caven-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  color: #ffffff;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+
+.cb-thumb-caven-code {
+  position: absolute;
+  z-index: 4;
+  right: 22px;
+  bottom: 20px;
+  width: min(235px, 52%);
+  display: grid;
+  overflow: hidden;
+  
+  background: rgba(1, 3, 15, 0.42);
+  
+}
+
+
+.cb-thumb-caven-code-top {
+  min-height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 11px;
+  background: rgba(247, 251, 255, 0.045);
+}
+
+
+.cb-thumb-caven-code-top span {
+  width: 7px;
+  height: 7px;
+  display: block;
+  border-radius: 999px;
+  background: #ff4d4d;
+}
+
+
+.cb-thumb-caven-code-top span:nth-child(2) {
+  background: rgba(247, 251, 255, 0.48);
+}
+
+
+.cb-thumb-caven-code-top span:nth-child(3) {
+  background: rgba(143, 207, 255, 0.82);
+}
+
+
+.cb-thumb-caven-lines {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px 14px;
+}
+
+
+.cb-thumb-caven-lines span {
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(143, 207, 255, 0.82);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 10.5px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+
+.cb-thumb-caven-lines b {
+  color: rgba(247, 251, 255, 0.76);
+  font-weight: 700;
+}
+
+
+/* ==============================
+   CAVEN THUMBNAIL — LIBRARY MINI
+   ============================== */
+
+
+.blog-library-media.cb-thumb--caven {
+  padding: 18px;
+}
+
+
+.blog-library-media .cb-thumb-caven-copy {
+  max-width: 58%;
+  gap: 4px;
+  padding-top: 0;
+}
+
+
+.blog-library-media .cb-thumb-caven-copy strong {
+  font-size: clamp(21px, 2vw, 31px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+}
+
+
+.blog-library-media .cb-thumb-caven-copy span {
+  font-size: clamp(11px, 1vw, 15px);
+  line-height: 1.02;
+  letter-spacing: -0.052em;
+}
+
+
+.blog-library-media .cb-thumb-caven-icon {
+  right: 18px;
+  top: 16px;
+  width: 34px;
+  height: 34px;
+  padding: 7px;
+}
+
+
+.blog-library-media .cb-thumb-caven-code {
+  right: 18px;
+  bottom: 18px;
+  width: min(172px, 52%);
+}
+
+
+.blog-library-media .cb-thumb-caven-code-top {
+  min-height: 22px;
+  gap: 5px;
+  padding: 0 9px;
+}
+
+
+.blog-library-media .cb-thumb-caven-code-top span {
+  width: 5px;
+  height: 5px;
+}
+
+
+.blog-library-media .cb-thumb-caven-lines {
+  gap: 6px;
+  padding: 9px 10px 11px;
+}
+
+
+.blog-library-media .cb-thumb-caven-lines span {
+  min-height: 13px;
+  gap: 6px;
+  font-size: 8px;
+}
+
+
+/* ==============================
+   CAVEN RESPONSIVE
+   ============================== */
+
+
+@media (max-width: 760px) {
+  .cb-thumb-caven-copy {
+    max-width: 68%;
+  }
+
+
+  .cb-thumb-caven-copy strong {
+    font-size: clamp(24px, 7.5vw, 34px);
+  }
+
+
+  .cb-thumb-caven-copy span {
+    font-size: clamp(13px, 4.5vw, 18px);
+  }
+
+
+  .cb-thumb-caven-icon {
+    right: 18px;
+    top: 16px;
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+  }
+
+
+  .cb-thumb-caven-code {
+    right: 18px;
+    bottom: 18px;
+    width: min(190px, 56%);
+  }
+
+
+  .cb-thumb-caven-code-top {
+    min-height: 24px;
+  }
+
+
+  .cb-thumb-caven-lines {
+    gap: 7px;
+    padding: 10px 12px 12px;
+  }
+
+
+  .cb-thumb-caven-lines span {
+    min-height: 14px;
+    font-size: 8.5px;
+  }
+}
+

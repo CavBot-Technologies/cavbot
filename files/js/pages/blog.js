@@ -378,3 +378,46 @@
   }
 })();
 
+(function () {
+  "use strict";
+
+
+  function initCavenBlogTracking() {
+    var cards = Array.prototype.slice.call(
+      document.querySelectorAll('[data-blog-card="caven"]')
+    );
+
+
+    if (!cards.length) return;
+
+
+    cards.forEach(function (card) {
+      if (card.getAttribute("data-caven-tracking-bound") === "1") return;
+
+
+      card.setAttribute("data-caven-tracking-bound", "1");
+
+
+      card.addEventListener("click", function () {
+        if (
+          window.cavbotAnalytics &&
+          typeof window.cavbotAnalytics.track === "function"
+        ) {
+          window.cavbotAnalytics.track("blog_caven_card_click", {
+            article: "introducing-caven",
+            category: "company",
+            component: "blog-index"
+          });
+        }
+      });
+    });
+  }
+
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCavenBlogTracking);
+  } else {
+    initCavenBlogTracking();
+  }
+})();
+
