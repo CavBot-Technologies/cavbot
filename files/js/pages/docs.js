@@ -672,12 +672,290 @@
 
     note("Core rule", "Do not rely on CavBot for a site until the owner account, project, site origin, installed snippet, live browser visit, selected dashboard site, and plan state all agree.")
   ]
+},
+
+{
+  id: "how-to-use-cavbot",
+  title: "How to use CavBot",
+  summary: "Learn the day-to-day workflow for using CavBot after a website is connected.",
+  blocks: [
+    p(`CavBot is used from a workspace. The workspace holds your account, projects, sites, reports, files, alerts, and the website signals CavBot receives from the installed snippet. Start by confirming that you are in the right workspace and that the correct project is selected.`),
+
+    p(`A workspace can hold more than one project or website, so the selected context matters. Before trusting any dashboard, report, alert, or module, check that CavBot is looking at the site you actually want to review. Most confusion starts when the wrong project or wrong site is selected.`),
+
+    p(`The most important setup choice is the site. A site is the saved origin CavBot watches, such as https://example.com. If the wrong site is selected, dashboards and reports can look empty even when another site is receiving activity.`),
+
+    p(`The site origin should match the public website where the CavBot snippet is installed. Keep production, staging, preview, and local development origins separate. A production report should be based on the production site, not a preview URL or old staging address.`),
+
+    p(`Use the primary site when one website should be treated as the main review target for the project. The primary site helps CavBot know which origin should be used first across workspace views, reports, and module links.`),
+
+    ol([
+      "Sign in to CavBot and open the workspace.",
+      "Open the project you want to review.",
+      "Go to Manage Websites and add the public website origin.",
+      "Set the main production website as the primary site.",
+      "Install the Analytics v5 snippet on the live website.",
+      "Publish the website if your platform requires publishing.",
+      "Visit the live website in a browser to create real activity.",
+      "Return to CavBot and confirm the selected site is showing activity.",
+      "Use the left menu to review the site by area.",
+      "Fix the clearest issue first, then review the site again."
+    ]),
+
+    p(`After setup, CavBot should be used as a review system for the live website. It is not only a place to look at numbers. It is where you confirm the site being watched, review what CavBot is seeing, open the right module, and decide what needs to be fixed next.`),
+
+    table(
+      ["Area", "What to use it for"],
+      [
+        ["Command Center", "Review notices, manage URLs, and keep the workspace pointed at the right site."],
+        ["Dashboard", "Check the broad health of the selected site."],
+        ["Error Tracking", "Find JavaScript errors, API errors, and routes where problems appear."],
+        ["SEO Audit", "Review page structure, titles, descriptions, canonical signals, and search basics."],
+        ["Route Analytics", "See which paths visitors reach and where route activity changes."],
+        ["Accessibility Check", "Review accessibility and usability signals that affect visitors."],
+        ["Insights", "Turn site activity into clear next steps."],
+        ["404 Recovery", "Find missing pages and decide where visitors should go instead."],
+        ["Reports", "Read a structured snapshot of the selected site."],
+        ["CavAi", "Ask for explanations, summaries, and plans based on the current workspace context."]
+      ]
+    ),
+
+    p(`Use CavBot in this order when you are checking a website: confirm the site, check the dashboard, review routes, inspect errors, review SEO and accessibility, then look at 404 recovery. This keeps the review grounded in the website that is actually selected.`),
+
+    p(`The Dashboard is the best place to start because it gives you the broad state of the selected site. Use it to decide where to go next. If the dashboard points to errors, open Error Tracking. If routes look unusual, open Route Analytics. If pages need cleanup, open SEO Audit or Accessibility Check.`),
+
+    p(`Route Analytics helps you understand which paths CavBot has seen. Use it before making assumptions about a page. If a route does not appear, confirm that the page was visited, the snippet is installed on that page, and the selected CavBot site matches the live website.`),
+
+    p(`Error Tracking should be reviewed when users may be hitting broken behavior. JavaScript errors, API errors, failed requests, and unstable routes can make a site feel unfinished even when the design looks polished. Start with errors that appear on important pages such as homepage, pricing, signup, checkout, dashboard, docs, and support routes.`),
+
+    p(`SEO Audit should be reviewed when you want to understand how pages are described, structured, and prepared for search. Use it for titles, descriptions, canonical URLs, headings, page sections, internal links, and basic search readiness.`),
+
+    p(`Accessibility Check should be reviewed when you want to make sure visitors can use the page clearly. Accessibility is not only a compliance task. It affects readability, navigation, trust, and whether people can understand the page without friction.`),
+
+    p(`404 Recovery should be reviewed when missing routes appear. A 404 is not always a disaster, but repeated missing pages can waste traffic and hurt trust. Use 404 Recovery to decide whether a missing route should be redirected, rebuilt, corrected, or ignored.`),
+
+    table(
+      ["Review step", "Why it matters"],
+      [
+        ["Confirm selected site", "Prevents you from reading data from the wrong origin."],
+        ["Check Dashboard", "Shows the broad state of the selected website."],
+        ["Review Routes", "Confirms which pages CavBot has actually seen."],
+        ["Inspect Errors", "Shows broken behavior that may affect visitors."],
+        ["Review SEO", "Shows whether important pages are clear and properly described."],
+        ["Review Accessibility", "Shows usability issues that can make the site harder to use."],
+        ["Review 404 Recovery", "Shows missing routes that may need redirects or cleanup."],
+        ["Open Reports", "Creates a structured view of what needs attention."],
+        ["Use CavAi", "Helps explain findings and turn them into practical next steps."]
+      ]
+    ),
+
+    p(`When the dashboard is empty, do not assume the product is broken first. Check the origin, selected site, snippet placement, project key, browser request, and whether the website was published after the snippet was added.`),
+
+    table(
+      ["If you see this", "Check this first"],
+      [
+        ["No data yet", "Make sure the selected CavBot site matches the live website where the snippet is installed."],
+        ["Only one page has activity", "Confirm the snippet is installed in the shared layout or global code area."],
+        ["The wrong site shows activity", "Check the primary site, selected site, and project key."],
+        ["Routes stay empty", "Visit the live website after publishing and refresh CavBot."],
+        ["Errors stay empty", "Confirm errors are actually happening on the live site and that the snippet is loaded."],
+        ["SEO or A11y looks empty", "Confirm CavBot has received page activity for the selected site."],
+        ["404 Recovery is empty", "Open a missing route on the live site or review routes after traffic appears."]
+      ]
+    ),
+
+    p(`A normal CavBot review does not need to be complicated. Pick the site, read the current state, open the module connected to the issue, make one useful fix, then check CavBot again after real activity comes through.`),
+
+    list([
+      "Use one primary production site as the default review target.",
+      "Keep staging, preview, and local origins separate from production.",
+      "Install the snippet once in the shared site layout when possible.",
+      "Review the selected site before trusting a report.",
+      "Use the focused module when a dashboard card needs more detail.",
+      "Invite teammates with roles that match their work.",
+      "Keep billing, security, site deletion, and API keys limited to trusted owners or admins."
+    ]),
+
+    p(`The best way to use CavBot is to make one clear fix at a time. Do not jump across every module at once. Start with the issue that affects the most important page or the most important visitor path. Fix it, publish it, create real activity, then review CavBot again.`),
+
+    table(
+      ["If the issue is about", "Go here first"],
+      [
+        ["A page is missing or visitors hit a dead route", "404 Recovery"],
+        ["A page loads but something breaks", "Error Tracking"],
+        ["A page does not appear in activity", "Route Analytics"],
+        ["A page has weak titles or descriptions", "SEO Audit"],
+        ["A page is hard to read or use", "Accessibility Check"],
+        ["You need a broad summary", "Dashboard or Reports"],
+        ["You need help understanding the finding", "CavAi"]
+      ]
+    ),
+
+    p(`Reports are useful when you need to share the state of a website with yourself, a teammate, a client, or a decision maker. A good report should name the selected site, show what CavBot reviewed, and make the next step clear.`),
+
+    p(`Before sharing a report, check the selected site again. A report based on the wrong site can send the team in the wrong direction. If the report looks empty, outdated, or unrelated, return to the workspace and confirm the project, primary site, selected site, and live snippet.`),
+
+    table(
+      ["Before sharing a report", "Confirm this"],
+      [
+        ["Workspace", "You are inside the right account workspace."],
+        ["Project", "The correct project is selected."],
+        ["Site", "The selected site matches the live website being reviewed."],
+        ["Origin", "The saved origin matches the public website URL."],
+        ["Activity", "The site has received recent page activity."],
+        ["Modules", "The report reflects the areas you actually reviewed."],
+        ["Next step", "The report makes the next fix clear."]
+      ]
+    ),
+
+    p(`CavAi should be used after CavBot has enough context. It can help explain what a finding means, summarize the state of a site, turn a report into a simple action plan, or help write next steps for a teammate. It should not replace checking the selected site and live page.`),
+
+    p(`For teams, CavBot works best when each person has the right role. Owners and admins should handle billing, site deletion, API keys, security settings, and team access. Members should focus on review work, fixes, reports, and day-to-day site improvement.`),
+
+    table(
+      ["Role area", "Best handled by"],
+      [
+        ["Billing and plans", "Owner or trusted admin."],
+        ["Team invites and removals", "Owner or admin."],
+        ["Primary site changes", "Owner, admin, or the person responsible for the project."],
+        ["API keys and sensitive settings", "Owner or trusted admin."],
+        ["SEO fixes", "Developer, marketer, content owner, or site manager."],
+        ["Error fixes", "Developer or technical owner."],
+        ["Accessibility fixes", "Designer, developer, or product owner."],
+        ["Reports and review notes", "Anyone responsible for site quality."]
+      ]
+    ),
+
+    p(`If your site is built with a website builder or CMS, install the snippet in the global code area when possible. If your site is custom-coded, install the snippet in the shared layout so it loads across pages. If the snippet is added to only one page, CavBot may only receive activity from that page.`),
+
+    table(
+      ["Website setup", "Best placement"],
+      [
+        ["Website builder", "Use the global custom code or site-wide header area."],
+        ["CMS", "Use the shared template, layout, or global header field."],
+        ["Next.js or React app", "Use the shared root layout or app shell."],
+        ["Static site", "Add the snippet to the shared HTML layout or template."],
+        ["Single landing page", "Add the snippet to the live page before publishing."],
+        ["Multiple domains", "Save each public origin separately in CavBot."]
+      ]
+    ),
+
+    p(`After installing the snippet, publish the site and open the live website in a browser. CavBot needs live activity to review. Opening a draft, preview, editor, or local version may not create the signal you expect for the production site.`),
+
+    list([
+      "Install the snippet in the shared layout or global code area.",
+      "Publish the website after adding the snippet.",
+      "Open the live public website.",
+      "Visit more than one important route.",
+      "Return to CavBot and refresh the selected site view.",
+      "Check Route Analytics if only one page appears.",
+      "Check the selected site if activity appears under the wrong origin."
+    ]),
+
+    p(`When fixing issues, make the change at the source. CavBot shows what it can observe, but the fix usually happens in the website, CMS, codebase, router, metadata fields, redirect settings, page content, or deployment settings.`),
+
+    table(
+      ["Finding", "Where the fix usually happens"],
+      [
+        ["Missing page title", "Page metadata, CMS SEO field, or layout metadata."],
+        ["Missing description", "Page description field, metadata export, or CMS SEO settings."],
+        ["Wrong canonical", "Domain settings, route config, CMS canonical field, or page head tags."],
+        ["Broken route", "Router, redirect settings, page file, CMS slug, or hosting configuration."],
+        ["JavaScript error", "Frontend code, third-party script, component logic, or deployment build."],
+        ["API error", "Backend route, auth logic, server config, database call, or external service."],
+        ["Accessibility issue", "Markup, labels, contrast, keyboard behavior, or page structure."],
+        ["Missing snippet", "Shared layout, global code area, or publishing step."]
+      ]
+    ),
+
+    p(`Do not mark a fix complete only because it was edited. Publish the website, visit the live route, and let CavBot receive new activity. A fix is only confirmed when the live website shows the expected behavior and CavBot can collect the newer signal.`),
+
+    p(`Use CavBot as a repeatable review loop. Check the selected site, review the current state, fix one important issue, publish the change, visit the live page, then review again. This keeps the work clean and prevents the team from chasing old or unrelated findings.`),
+
+    table(
+      ["Review loop", "What to do"],
+      [
+        ["Select", "Choose the correct workspace, project, and site."],
+        ["Read", "Use Dashboard and Reports to understand the current state."],
+        ["Open", "Go to the module connected to the issue."],
+        ["Fix", "Update the live website, CMS, code, redirect, or setting."],
+        ["Publish", "Push the change to the public site."],
+        ["Visit", "Open the live route to create fresh activity."],
+        ["Review again", "Return to CavBot and confirm the newer signal."]
+      ]
+    ),
+
+    p(`If CavBot looks confusing, slow down and check the foundation first. Most issues can be traced back to selected site, origin mismatch, unpublished changes, snippet placement, stale deployment, or activity not yet reaching the selected project.`),
+
+    table(
+      ["Problem", "What to check"],
+      [
+        ["The dashboard is empty", "Confirm the selected site, installed snippet, live page visit, and project key."],
+        ["Only some pages show activity", "Confirm the snippet is installed globally and not only on one route."],
+        ["The wrong domain appears", "Check saved origins, primary site, selected site, and canonical domain."],
+        ["A report looks outdated", "Publish the latest site and revisit the live pages."],
+        ["Errors are missing", "Confirm the error happens on the live site while the snippet is loaded."],
+        ["SEO findings look old", "Revisit the live route after publishing metadata changes."],
+        ["404s do not appear", "Open a missing route on the live site and confirm the selected site is correct."],
+        ["A teammate cannot access something", "Check their role, plan access, and workspace membership."]
+      ]
+    ),
+
+    p(`CavBot should become part of the normal website routine. Use it after launches, redesigns, pricing changes, campaign pages, new docs, CMS edits, domain changes, checkout updates, and any release that changes important routes.`),
+
+    table(
+      ["Use CavBot after", "Reason"],
+      [
+        ["Launch", "Confirm the public site is being watched and important pages are visible."],
+        ["Redesign", "Check routes, SEO, accessibility, and broken behavior after visual changes."],
+        ["New campaign", "Review landing pages before traffic arrives."],
+        ["Pricing update", "Confirm key conversion pages are still clear and stable."],
+        ["Docs update", "Check structure, links, and route stability."],
+        ["Domain change", "Review origins, canonical URLs, redirects, and selected site."],
+        ["CMS update", "Make sure templates did not break metadata or page structure."],
+        ["Product release", "Review new pages, user paths, errors, and reports."]
+      ]
+    ),
+
+    note("Clean workflow", "Select the site first. Then read Dashboard, Routes, Errors, SEO, Accessibility, Insights, and 404 Recovery from that same site context."),
+
+    note("Core rule", "Trust the selected site first. If the selected site is wrong, every module can feel wrong even when CavBot is working."),
+
+    note("Best practice", "Fix one important issue, publish it, visit the live route, then check CavBot again. That loop keeps the review clean.")
+  ]
 }
+
+
 
     ]
   },
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   account: {
     path: "/docs/account",
     icon: "assets/icons/docs/account-avatar-head-svgrepo-com.svg",
