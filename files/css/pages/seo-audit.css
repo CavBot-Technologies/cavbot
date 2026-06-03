@@ -490,7 +490,7 @@ body {
   min-width: 0;
   padding: 22px;
   display: grid;
-  align-content: start;
+  align-content: start; 
   gap: 16px;
   background: var(--seo-panel);
 }
@@ -516,9 +516,9 @@ body {
   max-width: 660px;
   margin: 12px 0 0;
   color: var(--seo-ink);
-  font-size: clamp(26px, 3vw, 44px);
+  font-size: clamp(20px, 2vw, 40px);
   line-height: 0.98;
-  font-weight: 480;
+  font-weight: 400;
   letter-spacing: -0.07em;
 }
 
@@ -642,17 +642,17 @@ body {
   padding: 0 9px;
   display: inline-flex;
   align-items: center;
-  color: var(--seo-blue);
+  color: var(--seo-muted);
   font-size: 10px;
   line-height: 1;
   font-style: normal;
   font-weight: 600;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .seo-fix-row.is-high em {
-  color: var(--seo-blue);
+  color: var(--seo-white);
 }
 
 .seo-search-preview {
