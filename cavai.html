@@ -55,7 +55,7 @@
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oxanium:wght@600;700;800&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
 
 
  <link rel="stylesheet" href="files/css/globals/header-footer.css">
@@ -454,7 +454,7 @@
               <section class="cb-mega-column cb-mega-column--quiet">
                 <p class="cb-mega-kicker">Explore</p>
 
-                <a class="cb-mega-link" href="/docs/getstarted#how-to-use-cavbot">
+                <a class="cb-mega-link" href="/docs.html#how-to-use-cavbot">
                   <span class="cb-mega-link-title">How to use CavBot</span>
                   <span class="cb-mega-link-copy">Learn the basics of working with CavBot.</span>
                 </a>
@@ -472,7 +472,7 @@
               </section>
             </div>
 
-            <a class="cb-mega-bottom-link" href="/docs.html#getstarted">
+            <a class="cb-mega-bottom-link" href="/docs.html#overview">
               <span>Getting started with CavBot</span>
               <span class="cb-arrow-text" aria-hidden="true">↗</span>
             </a>
@@ -669,12 +669,14 @@
       <div class="cavai-hero-top">
         <div class="cavai-hero-left">
           <h1 id="cavai-title" class="cavai-title">
-            Intelligence for every digital product
+            Intelligence<br>
+            for every<br>
+            <span class="cavai-title-nowrap">digital product</span>
           </h1>
         </div>
 
         <div class="cavai-hero-right">
-          <p class="cavai-copy">
+          <p class="cavai-copy"><br><br><br>
             Meet CavAi, the connected intelligence layer inside CavBot that helps teams reason,
             diagnose, create, and execute across websites, workflows, <br> and product surfaces.
           </p>
@@ -719,7 +721,7 @@
 
       <div class="cavai-workflow-inner">
         <h2 id="cavai-workflow-title" class="cavai-workflow-title">
-          AI for every way you work
+          AI for every <br> way you work
         </h2>
       </div>
     </div>
@@ -730,26 +732,124 @@
           class="cavai-demo-video"
           data-cavai-demo-video
           playsinline
+          muted
+          disablepictureinpicture
+          disableremoteplayback
+          controlslist="nodownload noremoteplayback noplaybackrate"
+          x-webkit-airplay="deny"
           preload="metadata"
-          poster="assets/images/cavai-demo-poster.jpg"
         >
-          <source src="assets/videos/cavai-demo.mp4" type="video/mp4">
+          <source src="assets/videos/cavai-video.MP4" type="video/mp4">
         </video>
 
-        <button
-          class="cavai-video-control"
-          type="button"
-          data-cavai-video-control
-          aria-label="Play CavAi demo"
-        >
-          <svg class="cavai-video-icon cavai-video-icon--play" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M8 5.5v13l10-6.5-10-6.5Z"></path>
-          </svg>
+        <div class="cavai-video-controls" data-cavai-video-controls>
+          <button
+            class="cavai-video-rail-button"
+            type="button"
+            data-cavai-video-play
+            aria-label="Play CavAi demo"
+          >
+            <img class="cavai-video-rail-icon cavai-video-rail-icon--play" src="assets/icons/page/cavai/play-svgrepo-com.svg" alt="" aria-hidden="true">
+            <img class="cavai-video-rail-icon cavai-video-rail-icon--pause" src="assets/icons/page/cavai/pause-1006-svgrepo-com.svg" alt="" aria-hidden="true">
+          </button>
 
-          <svg class="cavai-video-icon cavai-video-icon--pause" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 5.5h3.5v13H7v-13Zm6.5 0H17v13h-3.5v-13Z"></path>
-          </svg>
-        </button>
+          <span class="cavai-video-time" data-cavai-video-time>0:00</span>
+
+          <input
+            class="cavai-video-progress"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+            data-cavai-video-progress
+            aria-label="Video progress"
+          >
+
+          <div class="cavai-video-volume">
+            <button
+              class="cavai-video-rail-button"
+              type="button"
+              data-cavai-video-mute
+              aria-label="Unmute CavAi demo"
+            >
+              <img class="cavai-video-rail-icon cavai-video-rail-icon--sound" src="assets/icons/page/cavai/sound-loud-filled-svgrepo-com.svg" alt="" aria-hidden="true">
+              <img class="cavai-video-rail-icon cavai-video-rail-icon--muted" src="assets/icons/page/cavai/mute-svgrepo-com.svg" alt="" aria-hidden="true">
+            </button>
+
+            <input
+              class="cavai-video-volume-slider"
+              type="range"
+              min="0"
+              max="1"
+              value="0"
+              step="0.01"
+              data-cavai-video-volume
+              aria-label="Video volume"
+            >
+          </div>
+
+          <div class="cavai-video-settings-wrap">
+            <button
+              class="cavai-video-rail-button"
+              type="button"
+              data-cavai-video-settings
+              aria-label="Video settings"
+              aria-expanded="false"
+            >
+              <img class="cavai-video-rail-icon" src="assets/icons/page/cavai/settings-svgrepo-com.svg" alt="" aria-hidden="true">
+            </button>
+
+            <div class="cavai-video-settings-panel" data-cavai-video-settings-panel hidden>
+              <button
+                class="cavai-video-settings-row"
+                type="button"
+                data-cavai-video-settings-toggle="speed"
+                aria-expanded="false"
+              >
+                <span>Speed</span>
+                <strong data-cavai-video-speed-label>1x</strong>
+              </button>
+              <div class="cavai-video-options" data-cavai-video-settings-group="speed" data-cavai-video-speed-options hidden>
+                <button type="button" data-cavai-speed="0.5">0.5x</button>
+                <button type="button" data-cavai-speed="0.75">0.75x</button>
+                <button type="button" data-cavai-speed="1" class="is-active">1x</button>
+                <button type="button" data-cavai-speed="1.25">1.25x</button>
+                <button type="button" data-cavai-speed="1.5">1.5x</button>
+                <button type="button" data-cavai-speed="1.75">1.75x</button>
+                <button type="button" data-cavai-speed="2">2x</button>
+              </div>
+
+              <button
+                class="cavai-video-settings-row"
+                type="button"
+                data-cavai-video-settings-toggle="quality"
+                aria-expanded="false"
+              >
+                <span>Quality</span>
+                <strong data-cavai-video-quality-label>Auto</strong>
+              </button>
+              <div class="cavai-video-options" data-cavai-video-settings-group="quality" data-cavai-video-quality-options hidden>
+                <button type="button" data-cavai-quality="Auto" class="is-active">Auto</button>
+                <button type="button" data-cavai-quality="224p">224p</button>
+                <button type="button" data-cavai-quality="360p">360p</button>
+                <button type="button" data-cavai-quality="540p">540p</button>
+                <button type="button" data-cavai-quality="720p">720p</button>
+                <button type="button" data-cavai-quality="1080p">1080p</button>
+                <button type="button" data-cavai-quality="4k">4k</button>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="cavai-video-rail-button"
+            type="button"
+            data-cavai-video-expand
+            aria-label="Expand CavAi demo video"
+          >
+            <img class="cavai-video-rail-icon" src="assets/icons/page/cavai/expand-wide-svgrepo-com.svg" alt="" aria-hidden="true">
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -1053,7 +1153,7 @@
 
 
       <h2 id="cavai-foundation-title" class="cavai-foundation-title">
-        Not just AI. Your guardian at work, <strong>anytime</strong>
+        Not just AI. Your guardian <br> at work, <strong>anytime</strong>
       </h2>
 
 
@@ -1778,7 +1878,7 @@ Turn simple direction into website sections, app pages, and implementation plans
       <article class="caven-feature-card caven-feature-card--debug">
         <div class="caven-feature-copy">
       
-          <h3>Debug with workspace <br>context</h3>
+          <h3><span class="caven-heading-nowrap">Debug with workspace</span><br>context</h3>
 
 
           <p>
@@ -2012,7 +2112,7 @@ Turn simple direction into website sections, app pages, and implementation plans
              
             </div>
 
-              <strong>+ more</strong>
+              <strong class="cavai-agent-more-label">+ more</strong>
             
           </div>
 
@@ -2497,7 +2597,7 @@ Turn simple direction into website sections, app pages, and implementation plans
 <section class="cavai-final-cta" aria-labelledby="cavai-final-cta-title" data-cavai-final>
   <div class="cavai-final-cta-inner">
     <h2 id="cavai-final-cta-title" class="cavai-final-cta-title">
-      Bring CavAi into your work
+      Bring CavAi <br> into your work
     </h2>
 
     <p class="cavai-final-cta-copy">

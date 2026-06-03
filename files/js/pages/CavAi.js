@@ -120,18 +120,55 @@
 
   const shell = document.querySelector("[data-cavai-video-shell]");
   const video = document.querySelector("[data-cavai-demo-video]");
-  const control = document.querySelector("[data-cavai-video-control]");
+  const railPlay = document.querySelector("[data-cavai-video-play]");
+  const muteButton = document.querySelector("[data-cavai-video-mute]");
+  const volumeSlider = document.querySelector("[data-cavai-video-volume]");
+  const progress = document.querySelector("[data-cavai-video-progress]");
+  const timeLabel = document.querySelector("[data-cavai-video-time]");
+  const settingsButton = document.querySelector("[data-cavai-video-settings]");
+  const settingsPanel = document.querySelector("[data-cavai-video-settings-panel]");
+  const speedLabel = document.querySelector("[data-cavai-video-speed-label]");
+  const qualityLabel = document.querySelector("[data-cavai-video-quality-label]");
+  const expandButton = document.querySelector("[data-cavai-video-expand]");
 
-  if (!shell || !video || !control) return;
+  if (!shell || !video || !railPlay) return;
+
+  video.muted = true;
+  video.volume = 0;
+  video.playsInline = true;
+  video.controls = false;
+  video.disablePictureInPicture = true;
+  video.disableRemotePlayback = true;
+
+  function formatTime(seconds) {
+    const safe = Number.isFinite(seconds) && seconds > 0 ? seconds : 0;
+    const minutes = Math.floor(safe / 60);
+    const secs = Math.floor(safe % 60);
+    return minutes + ":" + String(secs).padStart(2, "0");
+  }
 
   function syncVideoState() {
     const isPlaying = !video.paused && !video.ended;
+    const isMuted = video.muted || video.volume === 0;
 
     shell.classList.toggle("is-playing", isPlaying);
-    control.setAttribute(
+    shell.classList.toggle("is-muted", isMuted);
+
+    railPlay.setAttribute(
       "aria-label",
       isPlaying ? "Pause CavAi demo" : "Play CavAi demo"
     );
+
+    if (muteButton) {
+      muteButton.setAttribute(
+        "aria-label",
+        isMuted ? "Unmute CavAi demo" : "Mute CavAi demo"
+      );
+    }
+
+    if (volumeSlider) {
+      volumeSlider.value = isMuted ? "0" : String(video.volume || 0);
+    }
   }
 
   function toggleVideo() {
@@ -144,14 +181,227 @@
     }
   }
 
-  control.addEventListener("click", toggleVideo);
+  function syncProgress() {
+    const duration = video.duration || 0;
+    const current = video.currentTime || 0;
+
+    if (progress && duration > 0) {
+      progress.value = String((current / duration) * 100);
+    }
+
+    if (timeLabel) {
+      timeLabel.textContent = formatTime(current);
+    }
+  }
+
+  function closeSettings() {
+    if (!settingsPanel || !settingsButton) return;
+    settingsPanel.hidden = true;
+    settingsButton.setAttribute("aria-expanded", "false");
+    shell.classList.remove("is-controls-open");
+    collapseSettingsGroups(null);
+  }
+
+  function toggleSettings() {
+    if (!settingsPanel || !settingsButton) return;
+    const nextOpen = settingsPanel.hidden;
+    settingsPanel.hidden = !nextOpen;
+    settingsButton.setAttribute("aria-expanded", nextOpen ? "true" : "false");
+    shell.classList.toggle("is-controls-open", nextOpen);
+    if (!nextOpen) collapseSettingsGroups();
+  }
+
+  function collapseSettingsGroups(except) {
+    if (!settingsPanel) return;
+
+    Array.from(settingsPanel.querySelectorAll("[data-cavai-video-settings-group]")).forEach(function (group) {
+      const key = group.getAttribute("data-cavai-video-settings-group");
+      const isOpen = key === except;
+      group.hidden = !isOpen;
+    });
+
+    Array.from(settingsPanel.querySelectorAll("[data-cavai-video-settings-toggle]")).forEach(function (button) {
+      const key = button.getAttribute("data-cavai-video-settings-toggle");
+      button.setAttribute("aria-expanded", key === except ? "true" : "false");
+    });
+  }
+
+  function toggleSettingsGroup(key) {
+    if (!settingsPanel || !key) return;
+    const group = settingsPanel.querySelector('[data-cavai-video-settings-group="' + key + '"]');
+    const shouldOpen = Boolean(group && group.hidden);
+    collapseSettingsGroups(shouldOpen ? key : null);
+  }
+
+  function setActiveOption(containerSelector, activeButton) {
+    const container = activeButton.closest(containerSelector);
+    if (!container) return;
+
+    Array.from(container.querySelectorAll("button")).forEach(function (button) {
+      button.classList.toggle("is-active", button === activeButton);
+    });
+  }
+
+  function startMutedAutoplay() {
+    video.muted = true;
+    video.volume = 0;
+    syncVideoState();
+    video.play().catch(function () {
+      syncVideoState();
+    });
+  }
+
+  function toggleExpand() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(function () {
+        shell.classList.remove("is-expanded");
+      });
+      return;
+    }
+
+    if (shell.requestFullscreen) {
+      shell.requestFullscreen().catch(function () {
+        shell.classList.add("is-expanded");
+      });
+      return;
+    }
+
+    shell.classList.toggle("is-expanded");
+  }
+
+  function isVideoKeyboardContext(target) {
+    if (!target) return false;
+    if (target.closest("[data-cavai-video-shell]")) return true;
+    if (document.fullscreenElement === shell) return true;
+
+    const rect = shell.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+  }
+
+  function canUseSpaceForVideo(target) {
+    if (!target) return true;
+
+    const tag = String(target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea" || tag === "select") return false;
+    if (target.isContentEditable) return false;
+
+    return true;
+  }
+
+  railPlay.addEventListener("click", toggleVideo);
   video.addEventListener("click", toggleVideo);
   video.addEventListener("play", syncVideoState);
   video.addEventListener("pause", syncVideoState);
   video.addEventListener("ended", syncVideoState);
-  video.addEventListener("loadedmetadata", syncVideoState);
+  video.addEventListener("loadedmetadata", function () {
+    syncVideoState();
+    syncProgress();
+  });
+  video.addEventListener("timeupdate", syncProgress);
+  video.addEventListener("volumechange", syncVideoState);
+
+  if (progress) {
+    progress.addEventListener("input", function () {
+      const duration = video.duration || 0;
+      if (!duration) return;
+      video.currentTime = (Number(progress.value || 0) / 100) * duration;
+      syncProgress();
+    });
+  }
+
+  if (muteButton) {
+    muteButton.addEventListener("click", function () {
+      const shouldUnmute = video.muted || video.volume === 0;
+      video.muted = !shouldUnmute;
+      video.volume = shouldUnmute ? 0.7 : 0;
+      syncVideoState();
+    });
+  }
+
+  if (volumeSlider) {
+    volumeSlider.addEventListener("input", function () {
+      const nextVolume = Math.max(0, Math.min(1, Number(volumeSlider.value || 0)));
+      video.volume = nextVolume;
+      video.muted = nextVolume === 0;
+      syncVideoState();
+    });
+  }
+
+  if (settingsButton) {
+    settingsButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      toggleSettings();
+    });
+  }
+
+  if (settingsPanel) {
+    settingsPanel.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const groupButton = event.target.closest("[data-cavai-video-settings-toggle]");
+      const speedButton = event.target.closest("[data-cavai-speed]");
+      const qualityButton = event.target.closest("[data-cavai-quality]");
+
+      if (groupButton) {
+        toggleSettingsGroup(groupButton.getAttribute("data-cavai-video-settings-toggle"));
+        return;
+      }
+
+      if (speedButton) {
+        const speed = Number(speedButton.getAttribute("data-cavai-speed") || 1);
+        video.playbackRate = speed;
+        if (speedLabel) speedLabel.textContent = speed + "x";
+        setActiveOption("[data-cavai-video-speed-options]", speedButton);
+        collapseSettingsGroups(null);
+      }
+
+      if (qualityButton) {
+        const quality = qualityButton.getAttribute("data-cavai-quality") || "Auto";
+        if (qualityLabel) qualityLabel.textContent = quality;
+        setActiveOption("[data-cavai-video-quality-options]", qualityButton);
+        collapseSettingsGroups(null);
+      }
+    });
+  }
+
+  if (expandButton) {
+    expandButton.addEventListener("click", toggleExpand);
+  }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.code !== "Space" && event.key !== " ") return;
+    if (!isVideoKeyboardContext(event.target)) return;
+    if (!canUseSpaceForVideo(event.target)) return;
+
+    event.preventDefault();
+    toggleVideo();
+  });
+
+  document.addEventListener("click", closeSettings);
+  document.addEventListener("fullscreenchange", function () {
+    shell.classList.toggle("is-expanded", Boolean(document.fullscreenElement));
+  });
+
+  if ("IntersectionObserver" in window) {
+    const autoplayObserver = new IntersectionObserver(
+      function (entries) {
+        const entry = entries[0];
+        if (entry && entry.isIntersecting) {
+          startMutedAutoplay();
+          autoplayObserver.unobserve(shell);
+        }
+      },
+      {
+        threshold: 0.38
+      }
+    );
+
+    autoplayObserver.observe(shell);
+  } else {
+    startMutedAutoplay();
+  }
 
   syncVideoState();
+  syncProgress();
 })();
 /* ==============================
    CavAi Section 3
@@ -680,4 +930,3 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 })();
-

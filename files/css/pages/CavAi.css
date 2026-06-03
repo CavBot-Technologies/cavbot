@@ -15,7 +15,7 @@
   --cavai-line-violet: rgba(139, 92, 255, 0.42);
   --cavai-header-height: var(--cb-header-offset, 72px);
 
-  --font-cavai-title: "Tektur", Inter, system-ui, sans-serif;
+  --font-cavai-title: "Cormorant Garamond", Georgia, serif;
   --font-cavai-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -105,18 +105,24 @@ body.cavai-shell {
 
 .cavai-hero-left,
 .cavai-hero-right {
+  position: relative;
   min-width: 0;
+  overflow: visible;
 }
 
 .cavai-title,
 .cavai-hero-title {
-  margin: 0;
-  max-width: 800px;
+  position: relative;
+  z-index: 6;
+  margin: 0 -0.14em 0 0;
+  max-width: min(980px, 100%);
+  padding: 0 0.14em 0.16em 0;
+  overflow: visible;
   font-family: var(--font-cavai-title);
   font-size: clamp(78px, 8.4vw, 142px);
-  line-height: 0.88;
-  font-weight: 500;
-  letter-spacing: -0.035em;
+  line-height: 1.04;
+  font-weight: 750;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 
   background: linear-gradient(
@@ -133,6 +139,11 @@ body.cavai-shell {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.cavai-title-nowrap {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .cavai-hero-right {
@@ -267,8 +278,8 @@ body.cavai-shell {
 
   .cavai-title {
     font-size: clamp(56px, 16vw, 92px);
-    line-height: 0.9;
-    letter-spacing: -0.07em;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
   }
 
   .cavai-copy {
@@ -304,7 +315,7 @@ body.cavai-shell {
   --cavai-violet: #8b5cff;
   --cavai-header-height: var(--cb-header-offset, 72px);
 
-  --font-cavai-title: "Tektur", "Oxanium", Inter, system-ui, sans-serif;
+  --font-cavai-title: "Cormorant Garamond", Georgia, serif;
   --font-cavai-body: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -382,18 +393,24 @@ body.cavai-shell {
 
 .cavai-hero-left,
 .cavai-hero-right {
+  position: relative;
   min-width: 0;
+  overflow: visible;
 }
 
 .cavai-title,
 .cavai-hero-title {
-  margin: 0;
-  max-width: 800px;
+  position: relative;
+  z-index: 6;
+  margin: 0 -0.14em 0 0;
+  max-width: min(980px, 100%);
+  padding: 0 0.14em 0.16em 0;
+  overflow: visible;
   font-family: var(--font-cavai-title);
   font-size: clamp(78px, 8.4vw, 142px);
-  line-height: 0.88;
+  line-height: 1.04;
   font-weight: 500;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
   background: linear-gradient(
     104deg,
@@ -408,6 +425,11 @@ body.cavai-shell {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+.cavai-title-nowrap {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .cavai-hero-right {
@@ -747,10 +769,20 @@ body.cavai-shell {
   overflow: hidden;
   border-radius: 18px;
   border: 1px solid rgba(247, 251, 255, 0.22);
-  background: #07115e;
+  background: #01030f;
   left: auto;
   right: auto;
   transform: none;
+}
+
+.cavai-video-shell::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 28%;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(1, 3, 15, 0), rgba(1, 3, 15, 0.5));
+  opacity: 0.92;
 }
 
 
@@ -759,20 +791,59 @@ body.cavai-shell {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #07115e;
+  background: #01030f;
 }
 
-.cavai-video-control {
+.cavai-demo-video::-webkit-media-controls,
+.cavai-demo-video::-webkit-media-controls-enclosure,
+.cavai-demo-video::-webkit-media-controls-panel,
+.cavai-demo-video::-webkit-media-controls-start-playback-button,
+.cavai-demo-video::-webkit-media-controls-overlay-play-button,
+.cavai-demo-video::-webkit-media-controls-picture-in-picture-button,
+.cavai-demo-video::-webkit-media-controls-fullscreen-button,
+.cavai-demo-video::-webkit-media-controls-mute-button,
+.cavai-demo-video::-webkit-media-controls-volume-slider {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.cavai-video-controls {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 74px;
-  height: 74px;
-  transform: translate(-50%, -50%);
-  border: 1px solid rgba(247, 251, 255, 0.28);
-  border-radius: 999px;
-  background: rgba(247, 251, 255, 0.96);
-  color: #01030f;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 58px;
+  padding: 0 14px;
+  display: grid;
+  grid-template-columns: 42px auto minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 11px;
+  background: #2948d8;
+  color: #ffffff;
+  box-shadow: 0 -18px 60px rgba(1, 3, 15, 0.34);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.cavai-video-shell:hover .cavai-video-controls,
+.cavai-video-shell:focus-within .cavai-video-controls,
+.cavai-video-shell.is-controls-open .cavai-video-controls {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cavai-video-rail-button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #ffffff;
   display: inline-grid;
   place-items: center;
   padding: 0;
@@ -780,39 +851,235 @@ body.cavai-shell {
   appearance: none;
 }
 
-.cavai-video-control:hover,
-.cavai-video-control:focus-visible {
-  background: #ffffff;
-  color: #172c91;
+.cavai-video-rail-button:hover,
+.cavai-video-rail-button:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
   outline: none;
 }
 
-.cavai-video-icon {
-  width: 28px;
-  height: 28px;
+.cavai-video-rail-icon {
+  width: 24px !important;
+  height: 24px !important;
+  display: block;
+  flex: 0 0 24px;
+  object-fit: contain;
+  object-position: center;
   fill: currentColor;
 }
 
-.cavai-video-icon--pause {
+.cavai-video-rail-icon--pause,
+.cavai-video-rail-icon--sound {
   display: none;
 }
 
-.cavai-video-shell.is-playing .cavai-video-control {
-  left: auto;
-  top: auto;
-  right: 22px;
-  bottom: 22px;
-  width: 54px;
-  height: 54px;
-  transform: none;
-}
-
-.cavai-video-shell.is-playing .cavai-video-icon--play {
+.cavai-video-shell.is-playing .cavai-video-rail-icon--play {
   display: none;
 }
 
-.cavai-video-shell.is-playing .cavai-video-icon--pause {
+.cavai-video-shell.is-playing .cavai-video-rail-icon--pause {
   display: block;
+}
+
+.cavai-video-shell:not(.is-muted) .cavai-video-rail-icon--muted {
+  display: none;
+}
+
+.cavai-video-shell:not(.is-muted) .cavai-video-rail-icon--sound {
+  display: block;
+}
+
+.cavai-video-time {
+  min-width: 46px;
+  font-family: var(--font-cavai-body);
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.95);
+  font-variant-numeric: tabular-nums;
+}
+
+.cavai-video-progress,
+.cavai-video-volume-slider {
+  min-width: 0;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  accent-color: #ffffff;
+  cursor: pointer;
+  appearance: none;
+}
+
+.cavai-video-progress::-webkit-slider-thumb,
+.cavai-video-volume-slider::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  appearance: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.24);
+}
+
+.cavai-video-progress::-moz-range-thumb,
+.cavai-video-volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.24);
+}
+
+.cavai-video-volume {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 38px 92px;
+  align-items: center;
+  gap: 8px;
+}
+
+.cavai-video-volume-slider {
+  width: 92px;
+}
+
+.cavai-video-settings-wrap {
+  position: relative;
+}
+
+.cavai-video-settings-panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  width: 230px;
+  max-height: min(440px, calc(100vh - 140px));
+  overflow-y: auto;
+  border: 1px solid rgba(247, 251, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(1, 3, 15, 0.95);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+  padding: 12px 0;
+  color: #ffffff;
+}
+
+.cavai-video-settings-row {
+  width: 100%;
+  min-height: 34px;
+  border: 0;
+  padding: 0 18px;
+  background: transparent;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  font-family: var(--font-cavai-body);
+  font-size: 15px;
+  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  appearance: none;
+}
+
+.cavai-video-settings-row:hover,
+.cavai-video-settings-row:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.cavai-video-settings-row::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin-left: 10px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  opacity: 0.74;
+}
+
+.cavai-video-settings-row[aria-expanded="true"]::after {
+  transform: rotate(225deg);
+}
+
+.cavai-video-settings-row strong {
+  font: inherit;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cavai-video-options {
+  padding: 4px 0 12px;
+}
+
+.cavai-video-options + .cavai-video-settings-row,
+.cavai-video-settings-row + .cavai-video-settings-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cavai-video-options button {
+  width: 100%;
+  min-height: 34px;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 0 18px;
+  font-family: var(--font-cavai-body);
+  font-size: 15px;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cavai-video-options button::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+}
+
+.cavai-video-options button.is-active::before {
+  content: "✓";
+  color: #ffffff;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.cavai-video-options button:hover,
+.cavai-video-options button:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.cavai-video-shell.is-expanded {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  width: auto;
+  max-width: none;
+  height: auto;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+  background: #01030f;
+}
+
+.cavai-video-shell:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  background: #01030f;
+}
+
+.cavai-video-shell.is-expanded .cavai-demo-video {
+  object-fit: cover;
+}
+
+.cavai-video-shell:fullscreen .cavai-demo-video {
+  object-fit: cover;
 }
 
 /* ==============================
@@ -878,8 +1145,8 @@ body.cavai-shell {
 
   .cavai-title {
     font-size: clamp(56px, 16vw, 92px);
-    line-height: 0.9;
-    letter-spacing: -0.07em;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
   }
 
   .cavai-copy {
@@ -961,16 +1228,30 @@ body.cavai-shell {
     width: min(100% - 30px, 620px);
   }
 
-  .cavai-video-control {
-    width: 62px;
-    height: 62px;
+  .cavai-video-controls {
+    min-height: 54px;
+    grid-template-columns: 38px 42px minmax(92px, 1fr) 38px 38px 38px;
+    gap: 7px;
+    padding: 0 8px;
   }
 
-  .cavai-video-shell.is-playing .cavai-video-control {
-    right: 14px;
-    bottom: 14px;
-    width: 48px;
-    height: 48px;
+  .cavai-video-volume-slider {
+    display: none;
+  }
+
+  .cavai-video-volume {
+    grid-template-columns: 38px;
+    gap: 0;
+  }
+
+  .cavai-video-time {
+    min-width: 42px;
+    font-size: 13px;
+  }
+
+  .cavai-video-settings-panel {
+    right: -44px;
+    width: min(230px, calc(100vw - 46px));
   }
 }
 
@@ -1791,9 +2072,9 @@ body.cavai-shell {
   color: #ffffff;
   font-family: var(--font-cavai-title);
   font-size: clamp(20px, 1.6vw, 28px);
-  line-height: 1.1;
+  line-height: 1.28;
   font-weight: 500;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -3330,7 +3611,7 @@ body.cavai-shell {
 
 
 .caven-intro-head {
-  width: min(820px, 100%);
+  width: min(1040px, 100%);
   display: grid;
   justify-items: start;
   text-align: left;
@@ -3373,12 +3654,16 @@ body.cavai-shell {
 
 .caven-section-title {
   margin: 0;
-  max-width: 800px;
-  font-family: var(--font-cavai-title, "Tektur", "Oxanium", Inter, system-ui, sans-serif);
+  max-width: min(1040px, 100%);
+  padding-right: 0.16em;
+  margin-right: -0.16em;
+  display: inline-block;
+  overflow: visible;
+  font-family: var(--font-cavai-title, "Cormorant Garamond", Georgia, serif);
   font-size: clamp(46px, 4vw, 94px);
-  line-height: 0.96;
+  line-height: 1.12;
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
   background: var(--caven-gradient);
   -webkit-background-clip: text;
@@ -3457,7 +3742,7 @@ body.cavai-shell {
 
 .caven-section-statement strong,
 .caven-section-statement span {
-  font-family: var(--font-cavai-title, "Tektur", "Oxanium", Inter, system-ui, sans-serif);
+  font-family: var(--font-cavai-title, "Cormorant Garamond", Georgia, serif);
   line-height: 1.08;
   letter-spacing: -0.045em;
   text-align: left;
@@ -3521,14 +3806,26 @@ body.cavai-shell {
 
 .caven-feature-copy h3 {
   margin: 0;
-  max-width: 460px;
+  max-width: 620px;
   color: #f7fbff;
-  font-family: var(--font-cavai-title, "Tektur", "Oxanium", Inter, system-ui, sans-serif);
+  font-family: var(--font-cavai-title, "Cormorant Garamond", Georgia, serif);
   font-size: clamp(30px, 3.1vw, 52px);
-  line-height: 1;
+  line-height: 1.16;
   font-weight: 600;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
+}
+
+
+.caven-heading-nowrap {
+  white-space: nowrap;
+}
+
+
+@media (max-width: 520px) {
+  .caven-heading-nowrap {
+    white-space: normal;
+  }
 }
 
 
@@ -4400,9 +4697,9 @@ body.cavai-shell {
   color: #f7fbff;
   font-family: var(--font-cavai-title);
   font-size: clamp(46px, 5.8vw, 92px);
-  line-height: 0.96;
+  line-height: 1.12;
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
@@ -4681,6 +4978,10 @@ body.cavai-shell {
   font-size: 11px;
   font-style: normal;
   font-weight: 850;
+}
+
+.cavai-agent-more-label {
+  font-family: var(--font-cavai-body);
 }
 
 
@@ -5260,9 +5561,9 @@ body.cavai-shell {
   color: #f7fbff;
   font-family: var(--font-cavai-title);
   font-size: clamp(38px, 4.2vw, 62px);
-  line-height: 0.96;
+  line-height: 1.12;
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
@@ -6337,7 +6638,7 @@ body.cavai-shell {
   max-width: 900px;
   color: #ffffff;
   font-family: var(--font-cavai-title);
-  font-size: clamp(50px, 6.2vw, 96px);
+  font-size: clamp(56px, 6.5vw, 100px);
   line-height: 1.02;
   font-weight: 760;
   letter-spacing: -0.06em;
@@ -6451,4 +6752,3 @@ body.cavai-shell {
     transition: none !important;
   }
 }
-
