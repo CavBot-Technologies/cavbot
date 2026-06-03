@@ -118,6 +118,8 @@
 (function () {
   "use strict";
 
+  const demoLink = document.querySelector("[data-cavai-demo-link]");
+  const demoSection = document.querySelector("[data-cavai-demo-section]");
   const shell = document.querySelector("[data-cavai-video-shell]");
   const video = document.querySelector("[data-cavai-demo-video]");
   const railPlay = document.querySelector("[data-cavai-video-play]");
@@ -132,6 +134,41 @@
   const expandButton = document.querySelector("[data-cavai-video-expand]");
 
   if (!shell || !video || !railPlay) return;
+
+  function getVisibleHeaderHeight() {
+    const raw = window.getComputedStyle(document.documentElement).getPropertyValue("--cavai-header-height");
+    const fromVar = Number.parseFloat(raw);
+    if (Number.isFinite(fromVar) && fromVar > 0) return fromVar;
+
+    const header = document.querySelector(".site-header");
+    if (!header) return 72;
+    const rect = header.getBoundingClientRect();
+    return Math.max(0, Math.ceil(rect.height || 72));
+  }
+
+  function scrollDemoIntoView(event) {
+    if (!demoSection) return;
+    event.preventDefault();
+
+    const rect = demoSection.getBoundingClientRect();
+    const headerHeight = getVisibleHeaderHeight();
+    const visibleHeight = Math.max(1, window.innerHeight - headerHeight);
+    const centeredOffset = Math.max(0, (visibleHeight - rect.height) / 2);
+    const top = Math.max(0, window.scrollY + rect.top - headerHeight - centeredOffset);
+    const prefersReducedMotion =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    window.history.replaceState(null, "", "#cavai-demo-video");
+    window.scrollTo({
+      top,
+      behavior: prefersReducedMotion ? "auto" : "smooth"
+    });
+  }
+
+  if (demoLink && demoSection) {
+    demoLink.addEventListener("click", scrollDemoIntoView);
+  }
 
   video.muted = true;
   video.volume = 0;
