@@ -137,6 +137,65 @@
     });
   }
 
+  function initSeoVerifiedOwnershipPopover() {
+    var marks = Array.prototype.slice.call(
+      document.querySelectorAll(".seo-verify-trigger")
+    );
+
+    if (!marks.length) return;
+
+    marks.forEach(function (mark) {
+      if (mark.dataset.seoVerifyBound === "true") return;
+
+      mark.dataset.seoVerifyBound = "true";
+
+      var button = mark.querySelector(".seo-verify-info-button");
+      var closeTimer = null;
+
+      function clearCloseTimer() {
+        if (!closeTimer) return;
+        window.clearTimeout(closeTimer);
+        closeTimer = null;
+      }
+
+      function openPopover() {
+        clearCloseTimer();
+        mark.classList.add("is-open");
+      }
+
+      function closePopover() {
+        clearCloseTimer();
+        mark.classList.remove("is-open");
+      }
+
+      mark.addEventListener("mouseenter", openPopover);
+      mark.addEventListener("focusin", openPopover);
+
+      if (button) {
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          mark.classList.toggle("is-open");
+        });
+      }
+
+      document.addEventListener("pointermove", function (event) {
+        if (!mark.classList.contains("is-open")) return;
+        if (mark.contains(event.target)) {
+          clearCloseTimer();
+          return;
+        }
+
+        if (!closeTimer) {
+          closeTimer = window.setTimeout(closePopover, 420);
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closePopover();
+      });
+    });
+  }
+
   function restartSeoAnimations() {
     var animatedItems = document.querySelectorAll(
       ".seo-chart-line, .seo-chart-node, .seo-chart-bars rect, .seo-card-system, .seo-system-line, .seo-system-packet, .seo-system-bar, .seo-route-gap"
@@ -192,6 +251,7 @@
   function init() {
     initSeoPreviewRise();
     initSeoScanForm();
+    initSeoVerifiedOwnershipPopover();
     initSeoWorkAnimations();
   }
 
@@ -573,7 +633,7 @@
       section.dataset.seoEndBound = "true";
       observer.observe(section);
     });
-  }
+  } 
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initSeoEndSections);
