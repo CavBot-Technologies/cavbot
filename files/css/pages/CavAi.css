@@ -790,7 +790,8 @@ body.cavai-shell {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   background: #01030f;
 }
 
@@ -1075,11 +1076,11 @@ body.cavai-shell {
 }
 
 .cavai-video-shell.is-expanded .cavai-demo-video {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .cavai-video-shell:fullscreen .cavai-demo-video {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* ==============================
