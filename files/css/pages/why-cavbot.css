@@ -209,7 +209,7 @@ body[data-cavbot-page-type="why-cavbot-page"] .site-footer {
   font-size: clamp(58px, 7.4vw, 122px);
   line-height: 0.92;
   letter-spacing: -0.078em;
-  font-weight: 650;
+  font-weight: 550;
   text-wrap: balance;
 }
 

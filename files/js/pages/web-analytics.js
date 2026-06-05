@@ -1,6 +1,14 @@
 (function () {
   "use strict";
 
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function easeOutCubic(value) {
+    return 1 - Math.pow(1 - value, 3);
+  }
+
   function normalizeOrigin(value) {
     var raw = String(value || "").trim();
 
@@ -61,8 +69,128 @@
     });
   }
 
+  function initRoutePreviewRise() {
+    var stage = document.querySelector("[data-route-preview-stage]");
+    var frame = document.querySelector("[data-route-preview-frame]");
+
+    if (!stage || !frame) return;
+    if (stage.dataset.routePreviewBound === "true") return;
+
+    stage.dataset.routePreviewBound = "true";
+
+    var prefersReduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function setReady() {
+      frame.style.setProperty("--route-preview-y", "0px");
+      frame.style.setProperty("--route-preview-scale", "1");
+      frame.style.setProperty("--route-preview-opacity", "1");
+    }
+
+    function updatePreview() {
+      if (prefersReduced) {
+        setReady();
+        return;
+      }
+
+      var rect = stage.getBoundingClientRect();
+      var viewportHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      var start = viewportHeight * 0.96;
+      var end = viewportHeight * 0.34;
+
+      var rawProgress = (start - rect.top) / (start - end);
+      var progress = easeOutCubic(clamp(rawProgress, 0, 1));
+
+      var y = 96 - progress * 96;
+      var scale = 0.94 + progress * 0.06;
+      var opacity = 0.74 + progress * 0.26;
+
+      frame.style.setProperty("--route-preview-y", y.toFixed(2) + "px");
+      frame.style.setProperty("--route-preview-scale", scale.toFixed(4));
+      frame.style.setProperty("--route-preview-opacity", opacity.toFixed(4));
+    }
+
+    var ticking = false;
+
+    function requestUpdate() {
+      if (ticking) return;
+
+      ticking = true;
+
+      window.requestAnimationFrame(function () {
+        updatePreview();
+        ticking = false;
+      });
+    }
+
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate, { passive: true });
+    window.addEventListener("pageshow", requestUpdate);
+    window.addEventListener("load", requestUpdate);
+
+    requestUpdate();
+    window.setTimeout(requestUpdate, 80);
+    window.setTimeout(requestUpdate, 260);
+    window.setTimeout(requestUpdate, 700);
+  }
+
+  function restartRouteHeroAnimations(hero) {
+    var animatedItems = hero.querySelectorAll(
+      ".route-flow-map i, .route-issue-row"
+    );
+
+    animatedItems.forEach(function (item) {
+      item.style.animation = "none";
+    });
+
+    window.requestAnimationFrame(function () {
+      animatedItems.forEach(function (item) {
+        item.style.animation = "";
+      });
+    });
+  }
+
+  function initRouteHeroVisibility() {
+    var hero = document.querySelector("[data-route-hero]");
+
+    if (!hero) return;
+    if (hero.dataset.routeHeroBound === "true") return;
+
+    hero.dataset.routeHeroBound = "true";
+
+    var prefersReduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReduced || !("IntersectionObserver" in window)) {
+      hero.classList.add("is-route-visible");
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+
+          hero.classList.add("is-route-visible");
+          restartRouteHeroAnimations(hero);
+        });
+      },
+      {
+        threshold: 0.28
+      }
+    );
+
+    observer.observe(hero);
+  }
+
   function init() {
+    initRoutePreviewRise();
     initRouteStartForm();
+    initRouteHeroVisibility();
   }
 
   if (document.readyState === "loading") {

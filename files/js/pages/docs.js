@@ -7912,6 +7912,7 @@ Object.keys(docs).forEach(function (key) {
   function currentRoute() {
   const path = slugPath(window.location.pathname);
   const hashId = window.location.hash ? window.location.hash.slice(1) : "";
+  if ((path === "/docs" || path === "/docs.html") && hashId && docs[hashId]) return hashId;
   if ((path === "/docs" || path === "/docs.html") && hashId && sectionToRoute[hashId]) return sectionToRoute[hashId];
   if (path === "/docs" || path === "/docs.html") return "home";
   return pathToRoute[path] || "home";
@@ -8053,6 +8054,25 @@ Object.keys(docs).forEach(function (key) {
   }
 
   function openToggle(id, shouldScroll, replace) {
+    if (docs[id]) {
+      const route = id;
+      const cat = categoryForRoute(route);
+      if (body.getAttribute("data-docs-route") !== route) renderArticle(route);
+      setActive(cat.sections[0].id);
+      if (replace && window.history) {
+        window.history.replaceState(null, "", "/docs.html#" + route);
+      }
+      if (shouldScroll) {
+        const target = document.querySelector(".docs-article-header") || document.querySelector(".docs-article");
+        if (target) {
+          const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerOffset());
+          window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
+        }
+      }
+      syncExternalDocLinks();
+      return;
+    }
+
     const route = currentRoute() === "home" ? sectionToRoute[id] || "getstarted" : currentRoute();
     if (body.getAttribute("data-docs-route") !== route) renderArticle(route);
     const cat = categoryForRoute(route);
@@ -8081,7 +8101,7 @@ Object.keys(docs).forEach(function (key) {
     const parsed = new URL(url, window.location.origin);
     const parsedPath = slugPath(parsed.pathname);
     const hashId = parsed.hash ? parsed.hash.slice(1) : "";
-    const route = pathToRoute[parsedPath] || ((parsedPath === "/docs" || parsedPath === "/docs.html") && hashId ? sectionToRoute[hashId] : "");
+    const route = pathToRoute[parsedPath] || ((parsedPath === "/docs" || parsedPath === "/docs.html") && hashId ? docs[hashId] ? hashId : sectionToRoute[hashId] : "");
     if (!route) {
       window.location.href = parsed.href;
       return;

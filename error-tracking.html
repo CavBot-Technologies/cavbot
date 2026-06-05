@@ -1,0 +1,2689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Error Tracking · JavaScript errors, API failures & 404s · CavBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="See which errors repeat, where they happen, and which pages or sessions are affected so your website feels clearer, steadier, and easier to fix.">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+  <link rel="canonical" href="https://cavbot.io/error-tracking.html">
+
+  <!-- UNIVERSAL FAVICONS  -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+<link rel="manifest" href="site.webmanifest">
+
+<meta name="theme-color" content="#01030f">
+<meta name="msapplication-TileColor" content="#01030f">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+  
+<!-- Open Graph -->
+  <meta property="og:title" content="Error Tracking · JavaScript errors, API failures & 404s · CavBot">
+  <meta property="og:description" content="See which errors repeat, where they happen, and which pages or sessions are affected so your website feels clearer, steadier, and easier to fix.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cavbot.io/error-tracking.html">
+  <meta property="og:site_name" content="CavBot">
+  <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Error Tracking · JavaScript errors, API failures & 404s · CavBot">
+  <meta name="twitter:description" content="See which errors repeat, where they happen, and which pages or sessions are affected so your website feels clearer, steadier, and easier to fix.">
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+  <!-- TYPEFACE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CavBot header-footer styles -->
+  <link rel="stylesheet" href="files/css/globals/header-footer.css">
+  <!-- CavBot head + badge + body -->
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">
+  <link rel="stylesheet" href="files/css/globals/main.css">
+  <!-- Page styles -->
+  <link rel="stylesheet" href="files/css/pages/error-tracking.css">
+
+  <!-- Structured data  -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Error Tracking · JavaScript errors, API failures & 404s · CavBot",
+    "description":"See which errors repeat, where they happen, and which pages or sessions are affected so your website feels clearer, steadier, and easier to fix.",
+    "url":"https://cavbot.io/error-tracking.html",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"CavBot",
+      "url":"https://cavbot.io/"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"CavBot",
+      "url":"https://cavbot.io/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+      }
+    }
+  }
+  </script>
+</head>
+
+
+<body
+  class="page-shell"
+  data-cavbot-page-type="about-page"
+  data-cavbot-component="about-shell"
+>
+  <!-- DO NOT add data-cavbot-disable-floating-badge="1" on this page. -->
+  <header class="site-header cb-company-header">
+  <div class="site-header-inner">
+     <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
+      <img
+        src="/assets/logo/official-logotype-light.svg"
+        alt="CavBot"
+        class="brand-logo-img"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="nav-main" aria-label="Primary navigation">
+      <!-- Product -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="product"
+          aria-expanded="false"
+          aria-controls="cb-mega-product"
+        >
+          <span>Product</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-product" data-mega-menu="product" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--product">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">AI</p>
+
+                <a class="cb-mega-link" href="https://ai.cavbot.io/">
+                  <span class="cb-mega-link-title">CavAi</span>
+                  <span class="cb-mega-link-copy">Ask, create, and solve with <br> AI.</span>
+                </a>
+
+                <a class="cb-mega-link" href="caven.html">
+                  <span class="cb-mega-link-title">Caven</span>
+                  <span class="cb-mega-link-copy"> Build, debug, and ship with a real AI coding agent.
+</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Website Performance</p>
+
+                <a class="cb-mega-link" href="web-analytics.html">
+                  <span class="cb-mega-link-title">Web Analytics</span>
+                  <span class="cb-mega-link-copy">Understand your traffic beyond the <br> pageview.</span>
+                </a>
+
+                <a class="cb-mega-link" href="seo-audit.html">
+                  <span class="cb-mega-link-title">SEO Audit</span>
+                  <span class="cb-mega-link-copy">Review page structure, metadata, and <br> discovery signals.</span>
+                </a>
+
+                <a class="cb-mega-link" href="error-tracking.html">
+                  <span class="cb-mega-link-title">Error Tracking</span>
+                  <span class="cb-mega-link-copy">Find what broke and where it happened.</span>
+                </a>
+
+                 <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Accessibility Check</span>
+                  <span class="cb-mega-link-copy">Catch usability and accessibility issues <br> early.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Insights</span>
+                  <span class="cb-mega-link-copy">Turn website activity into clear next <br> steps.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">404 Recovery</span>
+                  <span class="cb-mega-link-copy">Find missing pages and guide visitors <br> back.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Developer Tools</p>
+
+                <a class="cb-mega-link" href="cavcode.html">
+                  <span class="cb-mega-link-title">Code</span>
+                  <span class="cb-mega-link-copy">Code, inspect, and debug in CavBot’s built-in IDE.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">HTML Viewer</span>
+                  <span class="cb-mega-link-copy">View your page structure clearly.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Cloud</span>
+                  <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">CavBot Terminal</span>
+                  <span class="cb-mega-link-copy">Run Cav commands, inspect, and debug faster.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">START HERE</p>
+
+                <a class="cb-mega-link" href="why-cavbot.html">
+                  <span class="cb-mega-link-title">Why CavBot?</span>
+                  <span class="cb-mega-link-copy">See why websites need more than analytics.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/#collaboration">
+                  <span class="cb-mega-link-title">Team Access</span>
+                  <span class="cb-mega-link-copy">Invite teammates, manage roles and work together.</span>
+                </a>
+
+                   <a class="cb-mega-link" href="pricing.html">
+                  <span class="cb-mega-link-title">Pricing</span>
+                  <span class="cb-mega-link-copy">Choose the right plan for your site or team.</span>
+                </a>
+
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="https://app.cavbot.io/">
+              <span>Open Dashboard</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="Security"
+          aria-expanded="false"
+          aria-controls="cb-mega-Security"
+        >
+          <span>Security</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu cb-mega-menu--compact" id="cb-mega-Security" data-mega-menu="Security" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--three">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Protection</p>
+
+                <a class="cb-mega-link" href="/#security-cavverify">
+                  <span class="cb-mega-link-title">Caverify</span>
+                  <span class="cb-mega-link-copy">Built-in verification that keeps bots out.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/#security-cavguard">
+                  <span class="cb-mega-link-title">CavGuard</span>
+                  <span class="cb-mega-link-copy"> Built-in guardrails for restricted actions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/#security-cavsafe">
+                  <span class="cb-mega-link-title">CavSafe</span>
+                  <span class="cb-mega-link-copy">The private CavCloud vault for sensitive files.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Trust</p>
+
+                <a class="cb-mega-link" href="/legal.html#data-security">
+                  <span class="cb-mega-link-title">Data security</span>
+                  <span class="cb-mega-link-copy">How CavBot keeps platform data handled with care.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/legal.html#privacy-policy">
+                  <span class="cb-mega-link-title">Privacy</span>
+                  <span class="cb-mega-link-copy">Clear terms for how data is collected and used.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/legal.html#terms-of-use">
+                  <span class="cb-mega-link-title">Terms</span>
+                  <span class="cb-mega-link-copy">The rules for using CavBot products and services.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">Operational security</p>
+
+                <a class="cb-mega-link" href="/docs.html#risk-controls">
+                  <span class="cb-mega-link-title">Risk controls</span>
+                  <span class="cb-mega-link-copy">Set rules for protected actions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#audit-trail">
+                  <span class="cb-mega-link-title">Audit trail</span>
+                  <span class="cb-mega-link-copy">Review changes across your workspace.</span>
+                </a>
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/docs.html#security">
+              <span>Explore security</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- APIs -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="apis"
+          aria-expanded="false"
+          aria-controls="cb-mega-apis"
+        >
+          <span>Developers</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-apis" data-mega-menu="apis" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--three">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Signal</p>
+
+                <a class="cb-mega-link" href="/docs.html#analytics-v5">
+                  <span class="cb-mega-link-title">CavBot Analytics v5</span>
+                  <span class="cb-mega-link-copy">Install one snippet and CavBot starts watching your site.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#events">
+                  <span class="cb-mega-link-title">Events</span>
+                  <span class="cb-mega-link-copy">Send important product actions into <br> CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#summary">
+                  <span class="cb-mega-link-title">Summary</span>
+                  <span class="cb-mega-link-copy">Pull the latest site, route, and dashboard results.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">AI</p>
+
+                <a class="cb-mega-link" href="/docs.html#cavai-v3">
+                  <span class="cb-mega-link-title">CavAi v3</span>
+                  <span class="cb-mega-link-copy">The AI layer that helps CavBot turn what it sees into action.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#assistant-memory">
+                  <span class="cb-mega-link-title">Assistant memory</span>
+                  <span class="cb-mega-link-copy">Keep project context available when CavAi responds.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#agent-workflows">
+                  <span class="cb-mega-link-title">Agent workflows</span>
+                  <span class="cb-mega-link-copy">Run repeatable agents for research, fixes, and summaries.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">CavBot Assets</p>
+
+                <a class="cb-mega-link" href="/docs.html#arcade-404">
+                  <span class="cb-mega-link-title">404 Arcade</span>
+                  <span class="cb-mega-link-copy">Install interactive 404 games for broken pages.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#cavbot-badge">
+                  <span class="cb-mega-link-title">CavBot Badge</span>
+                  <span class="cb-mega-link-copy"> Show visible trust on your website.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#cavbot-head">
+                  <span class="cb-mega-link-title">CavBot Head</span>
+                  <span class="cb-mega-link-copy">Add a compact CavBot presence to your product.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#cavbot-body">
+                  <span class="cb-mega-link-title">CavBot Body</span>
+                  <span class="cb-mega-link-copy">Use CavBot for guided product moments.</span>
+                </a>
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="https://cavbot.io/docs">
+              <span>Open docs</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="resources"
+          aria-expanded="false"
+          aria-controls="cb-mega-resources"
+        >
+          <span>Resources</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-resources" data-mega-menu="resources" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--resources">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Support &amp; Services</p>
+
+                <a class="cb-mega-link" href="/help-center.html">
+                  <span class="cb-mega-link-title">Help Center</span>
+                  <span class="cb-mega-link-copy">Setup guides, FAQs and product help.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Partners</span>
+                  <span class="cb-mega-link-copy">Programs and organizations helping CavBot grow.</span>
+                </a>
+
+ <a class="cb-mega-link" href="/blog.html?category=research#research">
+                  <span class="cb-mega-link-title">Research</span>
+                  <span class="cb-mega-link-copy">Practical research for better digital products.</span>
+                </a>
+                
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Company</p>
+
+                <a class="cb-mega-link" href="/legal.html#ethics-overview">
+                  <span class="cb-mega-link-title">Code of Ethics</span>
+                  <span class="cb-mega-link-copy">The standards we build <br> by.</span>
+                </a>
+
+                <a class="cb-mega-link" href="about.html">
+                  <span class="cb-mega-link-title">About</span>
+                  <span class="cb-mega-link-copy">Read the story behind <br> Cavbot</span>
+                </a>
+
+                <a class="cb-mega-link" href="/about.html">
+                  <span class="cb-mega-link-title">Team</span>
+                  <span class="cb-mega-link-copy">Meet the people behind <br> Cavbot</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Careers</span>
+                  <span class="cb-mega-link-copy">Join the team building <br> Cavbot.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Highlights</p>
+
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Top Websites</span>
+                  <span class="cb-mega-link-copy">Explore leading websites by traffic.</span>
+                </a>
+
+                <a class="cb-mega-link" href="https://brand.cavbot.io">
+                  <span class="cb-mega-link-title">Media Kit</span>
+                  <span class="cb-mega-link-copy">Official CavBot brand assets.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/blog.html">
+                  <span class="cb-mega-link-title">Blog</span>
+                  <span class="cb-mega-link-copy">Latest company updates.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">Explore</p>
+
+                <a class="cb-mega-link" href="/docs.html#how-to-use-cavbot">
+                  <span class="cb-mega-link-title">How to use CavBot</span>
+                  <span class="cb-mega-link-copy">Learn the basics of working with CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Education</span>
+                  <span class="cb-mega-link-copy">Guides and lessons for better websites.</span>
+                </a>
+
+                  <a class="cb-mega-link" href="what's-a-404.html">
+                  <span class="cb-mega-link-title">What's a 404?</span>
+                  <span class="cb-mega-link-copy">Understand broken pages and how to fix them.</span>
+                </a>
+
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/docs.html#overview">
+              <span>Getting started with CavBot</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/cavbot-arcade.html" class="nav-link">CavBot Arcade</a> 
+      <a href="/pricing.html" class="nav-link">Pricing</a>
+      <a href="https://app.cavbot.io/" class="nav-link">Dashboard</a>
+    </nav>
+
+    <div class="nav-cta-row">
+      <button class="cb-site-update-trigger" type="button" aria-label="View site update notice" data-site-update-open>
+        <img class="cb-site-update-icon" src="assets/icons/page/notice-svgrepo-com.svg" alt="" aria-hidden="true" />
+      </button>
+      <div class="cb-try-cavai" data-cb-try-cavai>
+       <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+        <button class="cb-try-cavai-toggle" type="button" aria-label="Open CavAi options" aria-expanded="false">
+          <span class="cb-try-cavai-caret" aria-hidden="true">
+            <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-closed" viewBox="0 0 16 16">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-open" viewBox="0 0 16 16">
+              <path d="M4.25 9.75L8 6l3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+
+        <div class="cb-try-cavai-menu" role="dialog" aria-label="CavAi quick actions">
+          <section class="cb-try-cavai-menu-section">
+            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="false">
+              <span class="cb-try-cavai-menu-label">Models</span>
+              <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="cb-try-cavai-menu-section-panel" hidden>
+              <div class="cb-try-cavai-menu-link is-static">
+                <span class="cb-try-cavai-menu-link-label">Deepseek</span>
+              </div>
+              <div class="cb-try-cavai-menu-link is-static">
+                <span class="cb-try-cavai-menu-link-label">Qwen</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="cb-try-cavai-menu-section is-open is-locked-open">
+            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="true" disabled>
+              <span class="cb-try-cavai-menu-label">Account</span>
+              <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="cb-try-cavai-menu-section-panel">
+              <a class="cb-try-cavai-menu-link" href="https://app.cavbot.io/auth?mode=signup">
+                <span class="cb-try-cavai-menu-link-label">Sign up</span>
+              </a>
+              <a class="cb-try-cavai-menu-link" href="https://app.cavbot.io/auth?mode=login">
+                <span class="cb-try-cavai-menu-link-label">Log in</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="nav-menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile / tablet navigation panel -->
+  <div class="nav-overlay" aria-hidden="true">
+    <div class="nav-overlay-backdrop"></div>
+
+    <aside class="nav-overlay-panel" aria-label="CavBot menu">
+      <div class="nav-overlay-header">
+        <span class="nav-overlay-title">Menu</span>
+        <button class="nav-overlay-close" type="button" aria-label="Close menu"></button>
+      </div>
+
+      <div class="nav-overlay-body">
+        <section class="cb-mobile-section is-open">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="true">
+            <span>Product</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel">
+            <a href="https://ai.cavbot.io/" class="nav-overlay-link">CavAi</a>
+            <a href="caven.html" class="nav-overlay-link">Caven</a>
+            <a href="error-tracking.html" class="nav-overlay-link">Error Tracking</a>
+            <a href="seo-audit.html" class="nav-overlay-link">SEO Audit</a>
+            <a href="/" class="nav-overlay-link">Accessibility Check</a>
+            <a href="/" class="nav-overlay-link">Insights</a>
+            <a href="cavbot-arcade.html" class="nav-overlay-link">CavBot Arcade</a>
+            <a href="cavcode.html" class="nav-overlay-link">Code</a>
+            <a href="/" class="nav-overlay-link">HTML Viewer</a>
+            <a href="/" class="nav-overlay-link">Cloud</a>
+            <a href="/" class="nav-overlay-link">CavBot Terminal</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>Security</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/#security-cavverify" class="nav-overlay-link">Caverify</a>
+            <a href="/#security-cavguard" class="nav-overlay-link">CavGuard</a>
+            <a href="/#security-cavsafe" class="nav-overlay-link">CavSafe</a>
+            <a href="/legal.html#data-security" class="nav-overlay-link">Data security</a>
+            <a href="/legal.html#privacy-policy" class="nav-overlay-link">Privacy</a>
+            <a href="/legal.html#terms-of-use" class="nav-overlay-link">Terms</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>API</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/docs.html#analytics-v5" class="nav-overlay-link">CavBot Analytics v5</a>
+            <a href="/docs.html#events" class="nav-overlay-link">Events</a>
+            <a href="/docs.html#summary" class="nav-overlay-link">Summary</a>
+            <a href="/docs.html#cavai-v3" class="nav-overlay-link">CavAi V3</a>
+            <a href="/docs.html#assistant-memory" class="nav-overlay-link">Assistant memory</a>
+            <a href="/docs.html#agent-workflows" class="nav-overlay-link">Agent workflows</a>
+            <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+            <a href="/docs.html#cavbot-badge" class="nav-overlay-link">CavBot Badge</a>
+            <a href="/docs.html#cavbot-head" class="nav-overlay-link">CavBot Head</a>
+            <a href="/docs.html#cavbot-body" class="nav-overlay-link">CavBot Body</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>Resources</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/help-center.html" class="nav-overlay-link">Help Center</a>
+            <a href="/blog.html?category=research#research" class="nav-overlay-link">Research</a>
+            <a href="about.html" class="nav-overlay-link">About</a>
+            <a href="https://brand.cavbot.io" class="nav-overlay-link">Media Kit</a>
+            <a href="/blog.html" class="nav-overlay-link">Blog</a>
+            <a href="/" class="nav-overlay-link">Careers</a>
+            <a href="/legal.html#ethics-overview" class="nav-overlay-link">Code of Ethics</a>
+            
+            
+            
+          </div>
+        </section>
+
+        <a href="/pricing.html" class="nav-overlay-link nav-overlay-link--standalone">Pricing</a>
+        <a href="https://app.cavbot.io/" class="nav-overlay-link nav-overlay-link--standalone">Dashboard</a>
+
+      </div>
+
+      <div class="nav-overlay-cta">
+        <button class="cb-site-update-trigger cb-site-update-trigger--mobile" type="button" aria-label="View site update notice" data-site-update-open>
+          <img class="cb-site-update-icon" src="assets/icons/page/notice-svgrepo-com.svg" aria-hidden="true" />
+        </button>
+        <div class="cb-try-cavai cb-try-cavai--mobile" data-cb-try-cavai>
+         <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+
+        </div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-backdrop"></div>
+  <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+    </div>
+    <div class="nav-overlay-body">
+      <a href="product.html" class="nav-overlay-link">Product</a>
+      <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+      <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+      <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+      <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+       <div class="nav-cta-row">
+         <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+         <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<main class="error-main" id="main">
+  <section class="error-hero" aria-labelledby="error-title" data-error-hero>
+    <div class="error-hero-shell">
+      <div class="error-hero-copy">
+        <p class="error-kicker">CavBot Error Tracking</p>
+
+        <h1 class="error-title" id="error-title">
+          Find the failures that <br> keep coming back <br> in real sessions
+        </h1>
+
+        <div class="error-hero-lower">
+          <p class="error-lede">
+            When a page breaks, the error is only part of the story. <br>
+            The real signal is where it happened, how often it <br>
+            repeats, and whether visitors are running into it.
+          </p>
+
+          <div class="error-hero-actions" aria-label="Error Tracking actions">
+            <a class="error-primary-link" href="https://app.cavbot.io/auth?mode=signup">
+              Start 14-day free trial
+            </a>
+
+            <span class="error-plan-note">Available on all paid plans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+<br><br><br><br>
+    <div class="error-preview-stage" data-error-preview-stage>
+      <div class="error-preview-frame" data-error-preview-frame>
+        <div class="error-window" aria-label="Error Tracking product preview">
+          <div class="error-window-bar">
+            <div class="error-window-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="error-window-title">
+              <span>Error Intelligence</span>
+              <strong>cavbot.io</strong>
+            </div>
+
+            
+          </div>
+
+          <div class="error-window-body">
+            <header class="error-window-head">
+              <div>
+               
+                <h2>
+                  The same issue is repeating <br>
+                  on a busy page
+                </h2>
+              </div>
+
+              <div class="error-score">
+                <span>Risk</span>
+                <strong data-error-loop-number="risk">24</strong>
+              </div>
+            </header>
+
+            <div class="error-insight-grid">
+              <section class="error-chart-panel">
+                <div class="error-panel-head">
+                  <span>Error volume</span>
+                  <strong>Last 24 hours</strong>
+                </div>
+
+                <div class="error-chart" aria-hidden="true">
+                  <div class="error-chart-bars">
+                    <span style="--error-bar: 44%"></span>
+                    <span style="--error-bar: 58%"></span>
+                    <span style="--error-bar: 49%"></span>
+                    <span style="--error-bar: 72%"></span>
+                    <span style="--error-bar: 61%"></span>
+                    <span style="--error-bar: 88%"></span>
+                    <span style="--error-bar: 68%"></span>
+                    <span style="--error-bar: 96%"></span>
+                    <span style="--error-bar: 76%"></span>
+                    <span style="--error-bar: 90%"></span>
+                    <span style="--error-bar: 63%"></span>
+                    <span style="--error-bar: 82%"></span>
+                  </div>
+                </div>
+              </section>
+
+              <section class="error-impact-panel">
+                <div class="error-panel-head">
+                  <span>Impact path</span>
+                  <strong>Grouped by route</strong>
+                </div>
+
+                <div class="error-impact-chain" aria-hidden="true">
+                  <div class="error-impact-step">
+                    <span>Page</span>
+                    <strong>/pricing</strong>
+                  </div>
+
+                  <i></i>
+
+                  <div class="error-impact-step is-error">
+                    <span>Error</span>
+                    <strong>TypeError</strong>
+                  </div>
+
+                  <i></i>
+
+                  <div class="error-impact-step">
+                    <span>Visitors</span>
+                    <strong>164 sessions</strong>
+                  </div>
+                </div>
+
+                <div class="error-fix-note">
+                  <span>Fix first</span><br>
+                  <strong>Repeating JavaScript error on a busy page.</strong>
+                  <strong>API failures are affecting sign-up attempts.</strong>
+                  <strong>Missing page is still receiving visits.</strong>
+                  <strong>Missing asset is causing repeat load errors.</strong>
+                  <strong>Low volume, but happening on a key page.</strong>
+                  <strong>Form error is stopping profile updates.</strong>
+                </div>
+              </section>
+
+              <section class="error-event-panel">
+                <div class="error-panel-head">
+                  <span>Recent events</span>
+                  <strong>Live stream</strong>
+                </div>
+<br>
+                <div class="error-event-list" aria-hidden="true">
+                  <div class="error-event-row is-hot">
+                    <span>JS</span>
+                    <strong>/pricing</strong>
+                    <em>8 times</em>
+                  </div>
+
+                  <div class="error-event-row">
+                    <span>API</span>
+                    <strong>/auth</strong>
+                    <em>3 times</em>
+                  </div>
+
+                  <div class="error-event-row">
+                    <span>404</span>
+                    <strong>/docs/getting-started</strong>
+                    <em>42 views</em>
+                  </div>
+                </div>
+              </section>
+
+              <section class="error-health-panel">
+                <div class="error-panel-head">
+                  <span>Stability</span>
+                  <strong>Today</strong>
+                </div>
+
+                <div class="error-health-number">
+                  <strong>99.2%</strong>
+                  <span>crash-free sessions</span>
+                </div>
+<br><br><br>
+                <div class="error-surface-list" aria-hidden="true">
+                  <span>JS</span>
+                  <span>API</span>
+                  <span>404</span>
+                  <span>Routes</span>
+                </div>
+              </section>
+            </div>
+
+            <div class="error-window-footer">
+              <div>
+                <span>Routes affected</span>
+                <strong>3</strong>
+              </div>
+
+              <div>
+                <span>Sessions affected</span>
+                <strong>164</strong>
+              </div>
+
+              <div>
+                <span>Top driver</span>
+                <strong>JS error</strong>
+              </div>
+
+              <div>
+                <span>Errors found</span>
+                <strong>24</strong>
+              </div>
+
+              <div>
+                <span>404 views</span>
+                <strong>42</strong>
+              </div>
+
+              <div>
+                <span>Last seen</span>
+                <strong>2 min ago</strong>
+              </div>
+
+              <div>
+                <span>Status</span>
+                <strong>ready to review</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- ==============================
+  ERROR TRACKING DIFFERENCE SECTION
+============================== -->
+<section class="error-focus-section" aria-labelledby="error-focus-title" data-error-focus-section>
+  <div class="error-focus-shell">
+    <header class="error-focus-header">
+      <h2 id="error-focus-title">
+        <span class="error-focus-title-main">Error Tracking brings the problems people run into <br> while using your website into one simple view.</span>
+        <span class="error-focus-title-muted">It gathers JavaScript errors, API errors, 404s, <br> affected routes, and affected sessions, 
+        then <br> organizes them by the pages carrying the most <br> trouble</span>
+      </h2>
+    </header>
+
+<br><br>
+    <div class="error-focus-grid" aria-label="Error Tracking feature cards">
+      <article class="error-focus-card error-focus-card--violet error-focus-card--grouped">
+        <div class="error-focus-copy">
+          <h3>Every error type in one <br> place. <span> Grouped by the <br> page it affects.</span></h3>
+        </div>
+
+
+        <div class="error-pill-track" aria-hidden="true">
+          <div class="error-pill-row">
+            <span>JS error</span>
+            <span>API failed</span>
+            <span>404 view</span>
+            <span>Missing asset</span>
+            <span>TypeError</span>
+            <span>5xx issue</span>
+            <span>Rejected request</span>
+            <span>Bad script</span>
+
+
+            <span>JS error</span>
+            <span>API failed</span>
+            <span>404 view</span>
+            <span>Missing asset</span>
+            <span>TypeError</span>
+            <span>5xx issue</span>
+            <span>Rejected request</span>
+            <span>Bad script</span>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="error-focus-card error-focus-card--black error-focus-card--route">
+        <div class="error-focus-copy">
+          <h3>Shows the page, the repeats, and the sessions affected.</h3>
+        </div>
+
+
+        <div class="error-focus-route-icon" aria-hidden="true">
+          <img
+            src="assets/icons/page/analytics/error-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+      </article>
+
+
+      <article class="error-focus-card error-focus-card--blue error-focus-card--spike">
+        <div class="error-focus-copy">
+          <h3>Live error spikes. See them while they’re still happening.</h3>
+        </div>
+
+
+        <div class="error-broken-loader" aria-hidden="true">
+          <div class="error-broken-pill">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+
+          <p><strong data-error-loop-number="repeats">24</strong> repeats today</p>
+        </div>
+      </article>
+
+
+      <article class="error-focus-card error-focus-card--deep-blue error-focus-card--premium">
+        <div class="error-focus-copy">
+          <h3>Error Intelligence is available on paid plans.</h3>
+        </div>
+
+
+        <div class="error-focus-app-icon" aria-hidden="true">
+          <img
+            src="assets/icons/page/analytics/shield-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+      </article>
+
+
+      <article class="error-focus-card error-focus-card--charcoal error-focus-card--priority">
+        <div class="error-focus-copy">
+          <h3>The issue matters more when it’s on your busiest page.</h3>
+        </div>
+
+
+        <div class="error-priority-stack" aria-hidden="true">
+          <div class="error-priority-item is-high">
+            <span>Fix first</span>
+            <strong>/pricing</strong>
+          </div>
+
+
+          <div class="error-priority-item">
+            <span>Review</span>
+            <strong>/auth</strong>
+          </div>
+
+
+          <div class="error-priority-item">
+            <span>Watch</span>
+            <strong>/docs</strong>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="error-focus-card error-focus-card--orange error-focus-card--stability">
+        <div class="error-focus-copy">
+          <h3>One clean picture of stability. <span>See <br> errors, 404 views, affected routes, <br> and crash-free sessions in the <br> same place.</span></h3>
+        </div>
+
+
+        <div class="error-stability-visual" aria-hidden="true">
+          <div class="error-stability-ring">
+            <span></span>
+          </div>
+
+
+          <div class="error-stability-bars">
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+  ERROR TRACKING DETAIL SECTION
+============================== -->
+<section class="error-detail-section" aria-labelledby="error-detail-title" data-error-detail-section>
+  <div class="error-detail-shell">
+    <header class="error-detail-header">
+      <h2 id="error-detail-title">
+        <span class="error-detail-title-main">The messy parts are easier to <br> read.</span>
+        <span class="error-detail-title-muted">Error Intelligence separates <br>  browser errors, 
+          API failures, <br> missing pages, broken files, <br> and stability signals, so each <br> problem has its own place</span>
+      </h2>
+    </header>
+<br><br>
+
+    <div class="error-detail-pills" role="tablist" aria-label="Error Tracking categories">
+      <button class="error-detail-pill is-active" type="button" role="tab" aria-selected="true" data-error-detail-tab="js">
+        JavaScript
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="api">
+        API failures
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="rejections">
+        Rejections
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="404">
+        404 views
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="routes">
+        Affected routes
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="sessions">
+        Affected sessions
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="assets">
+        Missing assets
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="network">
+        Network
+      </button>
+
+
+      <button class="error-detail-pill" type="button" role="tab" aria-selected="false" data-error-detail-tab="stability">
+        Stability
+      </button>
+    </div>
+
+
+    <div class="error-detail-panels">
+      <article class="error-detail-panel is-active" data-error-detail-panel="js">
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>JavaScript errors</h3>
+
+<br><br>
+          <p>
+            JavaScript errors happen when code on a page fails while the page is loading or while 
+            someone is using it. <br><br> 
+            
+            These errors can break buttons, forms, menus, checkout steps, 
+            account pages, and other parts of the website people depend on. Even when the page still 
+            looks normal, one broken script <br> can stop an important action from working.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+
+<br> 
+          <p>
+          Check the error message and the file or script connected to it. Look for missing values, 
+          broken functions, failed imports, or code that is running before the page is ready. 
+          
+          <br><br> 
+          
+          If the same error appears often, fix it before smaller one-time errors. 
+          A repeated JavaScript error usually means the same <br> part of the page is failing for more 
+          than one visitor.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="api" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>API failure</h3>
+
+<br>
+          <p>
+            API failures happen when a page tries to send or receive information, but the request 
+            does not go through properly. <br><br> 
+            
+            This can affect logins, sign-ups, checkout, forms, 
+            account updates, search, or any part of the website that needs a response from another 
+            system. The page may still load, <br> but the action the visitor tried to complete can fail.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+
+<br>
+          <p>
+            Check the request that failed and the response it received. <br> Look for server errors, 
+            missing information, blocked requests, <br> or a form that is sending the wrong data.
+            
+            <br><br>
+
+            If the failure happens during an important step like signing in, paying, or submitting a form, 
+            treat it as a high-priority issue. Visitors may not be able to finish what they came to do.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="rejections" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>Unhandled rejection</h3>
+
+<br>
+          <p>
+            Unhandled rejections happen when a page starts a task, but <br> the task fails 
+            before the page knows how to handle it. <br><br> 
+            
+            This can happen during a login, payment, 
+            form submission, <br> file load, or any action that depends on something finishing <br> in 
+            the background. The page may not fully break, but the <br> visitor can still be left stuck, 
+            waiting, or unsure if the action worked.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+
+<br>
+          <p>
+          Check the action that failed and what the page was waiting for. Look for a request 
+          that never came back, a file that did not load, or a response the page was not prepared to handle.
+
+          <br><br>
+
+          Add a clear fallback for the failed task. If the action cannot finish, the page should show a 
+          useful message, let the visitor <br> try again, or safely stop instead of leaving the step broken.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="404" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>404 view</h3>
+<br>
+
+          <p>
+          A 404 view happens when someone lands on a page that no longer exists or cannot be found.
+          
+          <br><br>
+
+          This can happen from an old link, a deleted page, a changed URL, a typo, or a button that 
+          points to the wrong place. Even if the rest of the website works, a missing page can stop 
+          visitors from finding what they came for.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+
+<br>
+          <p>
+          Check the missing URL and where the visit came from. If the page still matters, bring it back. 
+          If the page moved, send visitors to the new version with a redirect.
+         
+          <br><br>
+          
+          If the link is wrong, update it wherever it appears. The goal is simple: people should not keep 
+          landing on a dead page when there is a better place to send them.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="routes" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>Affected route</h3>
+
+<br>
+          <p>
+            An affected route is a page where one or more problems are showing up.
+            
+            <br><br>
+            
+            One page can have more than one issue at the same time. A form may fail, 
+            a file may be missing, or a link may send people <br> to the wrong place. Looking 
+            at the page as a whole makes it easier to understand what is really going wrong.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+
+<br>
+          <p>
+          Open the affected page and look at the problems listed under <br> it. Check what is breaking, 
+          what keeps coming back, and <br> which part of the page people are trying to use.
+
+         <br><br>
+
+          If the same page has several issues, fix that page before chasing smaller problems elsewhere.
+          A busy page with <br> multiple problems can hurt the website faster than a page <br> with one small error.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="sessions" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>Affected sessions</h3>
+
+<br>
+          <p>
+          Affected sessions show how many visits ran into the same problem. 
+         
+          <br><br>
+         
+         Some issues appear once and never show up again. Others keep happening while
+        people are trying to use the website. When the same problem reaches more sessions, 
+          it becomes easier to see which errors are actually getting in the way.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+<br>
+
+          <p>
+          Start with the issue that reached the most sessions. Check the page, the action people were taking, and the part of the website that failed. 
+          
+          <br><br>
+          
+          If the same problem keeps showing up across several visits, fix it before smaller one-time issues. A repeated problem can block more people than a small error that only appeared once.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="assets" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>Missing asset</h3>
+
+<br>
+          <p>
+          A missing asset means a page tried to load a file that was not found.
+          
+          <br><br>
+          
+          That file could be an image, script, font, stylesheet, video, or another part of the page. When a file is missing, the page may still open, but something can look wrong, load incorrectly, or stop working.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+<br> 
+
+          <p>
+           Check the missing file name and the page that tried to load it. 
+           Make sure the file still exists, the path is spelled correctly, and the website 
+           is pointing to the right location.
+
+            <br><br> 
+
+           If the file was renamed, moved, or removed during an update, replace the old reference 
+           with the correct one. This stops the page from asking for a file that is no longer there.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="network" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>Network issue</h3>
+
+          <br>
+
+          <p>
+          A network issue means the page tried to reach something, but the request did 
+          not finish the right way.
+          
+          <br><br>
+
+          This can happen when a service is down, a request takes too long, or another website 
+          blocks the connection. The page may still load, but the part that depends on that request 
+          can fail, freeze, or show the wrong result.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+
+<br>
+          <p>
+          Check the request that failed and the page action that caused <br> it. Look for the service
+           it was trying to reach, how long it took, <br> and whether the response came back correctly.
+
+            <br><br>
+
+          If the issue happens during login, checkout, sign-up, or another important step, check the outside service or connection first. The page may be working, but the request behind that action may not be getting through.
+
+          </p>
+        </section>
+      </article>
+
+
+      <article class="error-detail-panel" data-error-detail-panel="stability" hidden>
+        <section class="error-detail-card error-detail-card--issue">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/error-close-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>Stability view</h3>
+<br>
+
+          <p>
+          A stability view shows whether a page is working smoothly for the people using it.
+
+        <br><br>
+
+          It brings together the errors, missing pages, affected pages, and sessions that did 
+          not crash. This makes it easier to understand whether a page is holding up or starting 
+          to create problems for visitors.
+
+          </p>
+        </section>
+
+
+        <section class="error-detail-card error-detail-card--read">
+          <img
+            class="error-detail-card-icon"
+            src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+
+          <h3>How to fix</h3>
+<br>
+
+          <p>
+          Look at the pages with the most activity and compare them with the pages showing the most problems.
+
+<br><br>
+
+          A small issue on an active page can matter more than a larger issue on a page people rarely visit.
+          Start with the page where problems are most likely to affect real visitors, then work down from there.
+
+          </p>
+        </section>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+  ERROR TRACKING WORK SECTION
+============================== -->
+<section class="error-work-section" aria-labelledby="error-work-title" data-error-work-section>
+  <div class="error-work-shell">
+    <header class="error-work-header">
+      <h2 id="error-work-title">
+        <span class="error-work-title-muted">A failed request, missing file, old address, <br> or release spike</span>
+        <span class="error-work-title-main"> should not read like the <br> same issue. Each one points somewhere <br> different, and the fix should be just as clear</span>
+      </h2>
+    </header>
+<br><br>
+
+    <div class="error-work-grid" aria-label="Error Tracking work cards">
+      <article class="error-work-card error-work-card--blue">
+        <div class="error-work-card-copy">
+          <img
+            class="error-work-card-icon"
+            src="assets/icons/page/analytics/status-critical-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+<br>
+          <h3>Critical errors first</h3>
+
+
+          <p>
+            Serious problems stay at the top, <br>
+            with smaller warnings kept <br> lower in the list.
+          </p>
+        </div>
+
+
+        <div class="error-work-lanes" aria-hidden="true">
+          <span class="is-urgent">Urgent</span>
+          <span>Review</span>
+          <span>Watch</span>
+        </div>
+      </article>
+
+
+      <article class="error-work-card error-work-card--violet">
+        <div class="error-work-card-copy">
+          <img
+            class="error-work-card-icon"
+            src="assets/icons/page/analytics/server-square-cloud-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+<br>
+          <h3>Broken requests stay clear</h3>
+
+
+          <p>
+            Failed forms, logins, checkouts, <br> and account 
+            actions stay in one <br> place.
+          </p>
+        </div>
+
+
+        <div class="error-work-request" aria-hidden="true">
+          <div>
+            <span>POST</span>
+            <strong>/auth/session</strong>
+          </div>
+          <em>500</em>
+        </div>
+      </article>
+
+
+      <article class="error-work-card error-work-card--charcoal">
+        <div class="error-work-card-copy">
+          <img
+            class="error-work-card-icon"
+            src="assets/icons/page/analytics/file-search-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+<br>
+          <h3>Missing files get caught</h3>
+
+
+          <p>
+            A missing script, image, font, or <br>
+            stylesheet can leave a page <br> unfinished.
+          </p>
+        </div>
+
+
+        <div class="error-work-file-stack" aria-hidden="true">
+          <span>icon.svg</span>
+          <span>main.js</span>
+          <span>theme.css</span>
+        </div>
+      </article>
+
+
+      <article class="error-work-card error-work-card--light">
+        <div class="error-work-card-copy">
+          <img
+            class="error-work-card-icon"
+            src="assets/icons/page/analytics/redirect-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+<br>
+          <h3>Old links still get visits</h3>
+
+
+          <p>
+             A removed URL can still be opened <br>  from bookmarks, emails, 
+            search <br> results, and old buttons.
+          </p>
+        </div>
+
+
+        <div class="error-work-link-strip" aria-hidden="true">
+          <span>/docs/start</span>
+          <i></i>
+          <strong>404</strong>
+        </div>
+      </article>
+
+
+      <article class="error-work-card error-work-card--deep-blue">
+        <div class="error-work-card-copy">
+          <img
+            class="error-work-card-icon"
+            src="assets/icons/page/analytics/code-branch-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+<br>
+          <h3>Errors after updates</h3>
+
+
+          <p>
+            When something breaks after a new <br> release, start with the
+             page, file, <br> or action that changed.
+          </p>
+        </div>
+
+<br>
+        <div class="error-work-release" aria-hidden="true">
+          <span>Before</span>
+          <div>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+          <span>After</span>
+        </div>
+      </article>
+
+
+      <article class="error-work-card error-work-card--soft-violet">
+        <div class="error-work-card-copy">
+          <img
+            class="error-work-card-icon"
+            src="assets/icons/page/analytics/task-list-svgrepo-com.svg"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+
+<br>
+
+          <h3>Review without digging</h3>
+
+
+          <p>
+           The page, the error, and the reason are shown together.
+            No hunting around to understand what went wrong.
+          </p>
+        </div>
+
+
+        <div class="error-work-handoff" aria-hidden="true">
+          <span>Ready for dev</span>
+          <strong>/pricing</strong>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+  ERROR TRACKING SYSTEM SECTION
+============================== -->
+<section class="error-system-section" aria-labelledby="error-system-title" data-error-system-section>
+  <div class="error-system-shell">
+    <header class="error-system-header">
+      <h2 id="error-system-title">
+        <span class="error-system-title-main">Stay ahead of the problems that break the <br> experience.</span>
+        <span class="error-system-title-muted">
+         Watch for errors as they <br> happen, connect the tools you already <br> use, and keep fixed issues 
+         out of the <br> way while new ones stay easy to find
+        </span>
+      </h2>
+    </header>
+
+<br><br>
+    <div class="error-system-stack" aria-label="Error Tracking system cards">
+      <article class="error-system-card error-system-card--watch">
+        <div class="error-system-card-copy">
+          <h3>Always-on error checks</h3>
+
+
+          <p>
+            Watch your website 24/7 for script errors, 
+            failed requests, missing files, and broken pages 
+            before they keep affecting visitors.
+          </p>
+
+        </div>
+
+
+        <div class="error-system-watch-visual" aria-hidden="true">
+          <div class="error-system-browser-wrap">
+            <div class="error-system-audit-pill">Live error check</div>
+
+<br>
+            <div class="error-system-browser">
+              <div class="error-system-browser-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+
+              <div class="error-system-browser-line is-long"></div>
+
+
+              <div class="error-system-browser-row">
+                <i></i>
+                <span></span>
+              </div>
+
+
+              <div class="error-system-browser-row">
+                <i></i>
+                <span></span>
+              </div>
+
+
+              <div class="error-system-browser-row">
+                <i></i>
+                <span></span>
+              </div>
+
+
+              <div class="error-system-scan-line"></div>
+            </div>
+          </div>
+
+
+          <div class="error-system-health" data-error-system-health>
+            <strong data-error-system-score>88%</strong>
+            <em data-error-system-change class="is-good">+0.62</em>
+            <span>Stability</span>
+          </div>
+
+
+          <div class="error-system-issue-feed" data-error-system-feed>
+            <div class="error-system-issue-pill is-active" data-error-system-issue>
+              <span>Script error</span>
+              <strong>!</strong>
+            </div>
+
+
+            <div class="error-system-issue-pill" data-error-system-issue>
+              <span>API failed</span>
+              <strong>!</strong>
+            </div>
+
+
+            <div class="error-system-issue-pill" data-error-system-issue>
+              <span>Missing asset</span>
+              <strong>!</strong>
+            </div>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="error-system-card error-system-card--connect">
+        <div class="error-system-card-copy">
+          <h3>Connect your site</h3>
+
+
+          <p>
+            Use CavBot with the platform you already build <br> on. 
+            No rebuild, no new workflow, no extra <br> mess.
+          </p>
+
+
+          <a href="/docs.html#integrations">Learn more</a>
+        </div>
+
+
+        <div class="error-system-connect-visual" aria-hidden="true">
+          <div class="error-system-connect-map">
+            <div class="error-system-source-card">
+              <div></div>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+
+            <div class="error-system-hub">
+              <img
+                src="assets/logo/cavbot-logomark.svg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              >
+             
+            </div>
+
+
+            <div class="error-system-integrations">
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/webflow-mark-blue.svg" alt="" loading="lazy" decoding="async">
+                
+              </div>
+
+
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/shopify_glyph.svg" alt="" loading="lazy" decoding="async">
+                
+              </div>
+
+
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/Wix logoB.svg" alt="" loading="lazy" decoding="async">
+                
+              </div>
+
+
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/framer.svg" alt="" loading="lazy" decoding="async">
+               
+              </div>
+
+
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/wordpress-icon.svg" alt="" loading="lazy" decoding="async">
+               
+              </div>
+
+
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/squarespace-svgrepo-com-white.svg" alt="" loading="lazy" decoding="async">
+               
+              </div>
+
+
+              <div class="error-system-integration">
+                <img src="assets/icons/page/intergrations/html5-badge.svg" alt="" loading="lazy" decoding="async">
+               
+              </div>
+            </div>
+
+
+            <svg class="error-system-connect-lines" viewBox="0 0 700 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker
+                  id="errorSystemArrow"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="4"
+                  orient="auto"
+                  markerUnits="strokeWidth"
+                >
+                  <path d="M1 1L7 4L1 7" stroke="rgba(247, 251, 255, 0.32)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+
+
+              <path id="errorSystemSourcePath" class="error-system-path" d="M140 220 C154 220 162 220 178 220" marker-end="url(#errorSystemArrow)"/>
+
+
+              <path id="errorSystemPathOne" class="error-system-path" d="M292 220 C396 220 406 42 618 42" marker-end="url(#errorSystemArrow)"/>
+              <path id="errorSystemPathTwo" class="error-system-path" d="M292 220 C398 220 420 101 618 101" marker-end="url(#errorSystemArrow)"/>
+              <path id="errorSystemPathThree" class="error-system-path" d="M292 220 C400 220 438 160 618 160" marker-end="url(#errorSystemArrow)"/>
+              <path id="errorSystemPathFour" class="error-system-path" d="M292 220 C404 220 456 220 618 220" marker-end="url(#errorSystemArrow)"/>
+              <path id="errorSystemPathFive" class="error-system-path" d="M292 220 C400 220 438 279 618 279" marker-end="url(#errorSystemArrow)"/>
+              <path id="errorSystemPathSix" class="error-system-path" d="M292 220 C398 220 420 338 618 338" marker-end="url(#errorSystemArrow)"/>
+              <path id="errorSystemPathSeven" class="error-system-path" d="M292 220 C396 220 406 397 618 397" marker-end="url(#errorSystemArrow)"/>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="0s" repeatCount="indefinite">
+                  <mpath href="#errorSystemSourcePath"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.2s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathOne"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.28s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathTwo"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.36s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathThree"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.44s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathFour"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.52s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathFive"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.60s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathSix"></mpath>
+                </animateMotion>
+              </circle>
+
+
+              <circle class="error-system-flow-dot" r="4">
+                <animateMotion dur="4.8s" begin="1.68s" repeatCount="indefinite">
+                  <mpath href="#errorSystemPathSeven"></mpath>
+                </animateMotion>
+              </circle>
+            </svg>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="error-system-card error-system-card--review">
+        <div class="error-system-card-copy">
+          <h3>Fixed issues</h3>
+
+
+          <p>
+            Resolved problems move aside, while 
+            new <br> errors stay easy to find.
+          </p>
+
+        </div>
+
+
+        <div class="error-system-review-visual" aria-hidden="true">
+          <div class="error-system-review-list" data-error-system-review-list>
+            <div class="error-system-review-row">
+              <span>Checkout script error</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>Login request failed</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>main.js not found</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>Old help URL opened</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>Network timeout</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>Unhandled rejection</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>Contact form failed</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+
+
+            <div class="error-system-review-row">
+              <span>hero.webp missing</span>
+              <img class="error-system-row-x" src="assets/icons/page/analytics/error-close-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+              <img class="error-system-row-check" src="assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div><br><br><br><br><br><br><br><br>
+</section>
+
+
+<!-- ==============================
+  ROUTE FINAL CTA SECTION
+============================== -->
+<section class="error-final-section" aria-labelledby="error-final-title" data-error-final-section>
+  <div class="error-final-shell">
+    <div class="error-final-copy">
+      <h2 id="error-final-title">
+        <span class="error-final-title-line">Start for free.
+          <span class="error-final-title-highlight"> Find the errors <br> people run 
+          into and fix the <br> pages that need it.</span></span>
+      </h2>
+<br><br>
+      <div class="error-final-actions">
+        <a class="error-primary-link error-final-button" href="https://app.cavbot.io/auth?mode=signup">
+          Start 14-day free trial
+        </a>
+
+        <a class="error-final-secondary" href="pricing.html">
+          See all Plans
+        </a>
+      </div>
+    </div>
+
+    <aside class="error-final-proof" aria-label="7 users joined CavBot in the last 14 days">
+      <div class="error-final-mark" aria-hidden="true">
+        <img src="assets/icons/page/love-1-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+      </div>
+
+      <div class="error-final-proof-copy">
+        <strong>7 users</strong>
+        <span>joined CavBot<br>in the last<br>14 days</span>
+      </div>
+    </aside>
+  </div>
+</section> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="https://www.cavbot.io/" class="footer-brand" aria-label="CavBot home">
+        <img
+          src="assets/logo/official-logotype-light.svg"
+          alt="CavBot"
+          class="footer-brand-logo"
+          decoding="async"
+        />
+      </a>
+
+      <p class="footer-statement">
+        Websites evolve, teams move faster, <br> and agents are becoming part of the <br> workflow.
+        CavBot brings them <br> together on one operational platform.
+      </p>
+    </div>
+
+    <div class="footer-grid">
+      <section class="footer-column">
+        <h2 class="footer-column-title">Platform</h2>
+        <ul class="footer-column-list">
+          <li><a href="https://app.cavbot.io/" class="footer-link">Dashboard</a></li>
+          <li><a href="https://ai.cavbot.io/" class="footer-link">CavAi</a></li>
+          <li><a href="/introducing-cavai.html" class="footer-link">AI</a></li>
+          <li><a href="/pricing.html" class="footer-link">Pricing</a></li>
+          <li><a href="/docs.html#security" class="footer-link">Security</a></li>
+
+        </ul>
+      </section>
+
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Ecosystem</h2>
+        <ul class="footer-column-list">
+          <li><a href="/docs.html#api-keys" class="footer-link">Developer API</a></li>
+          <li><a href="/" class="footer-link">Education</a></li>
+          <li><a href="/" class="footer-link">Partners</a></li>
+          <li><a href="https://app.cavbot.io/status" class="footer-link">System Status</a></li>
+          <li><a href="/" class="footer-link">CavBot Terminal</a></li>
+          
+
+        </ul>
+      </section>
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Resources</h2>
+        <ul class="footer-column-list">
+          <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
+          <li><a href="https://cavbot.io/docs" class="footer-link">Docs</a></li>
+          <li><a href="/blog.html?category=research#research" class="footer-link">Research</a></li>
+          <li><a href="why-cavbot.html" class="footer-link">Why CavBot?</a></li>
+          <li><a href="/" class="footer-link">Compare CavBot</a></li>
+          
+          
+          
+          
+        </ul>
+      </section>
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Company</h2>
+        <ul class="footer-column-list">
+          <li><a href="about.html" class="footer-link">About</a></li>
+           <li><a href="https://brand.cavbot.io" class="footer-link">Media Kit</a></li>
+          <li><a href="/blog.html" class="footer-link">Blog</a></li>
+          <li><a href="/" class="footer-link">Careers</a></li>
+          <li><a href="/legal.html#ethics-overview" class="footer-link">Code of Ethics</a></li>
+          
+
+        </ul>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <span class="footer-copy">&copy; 2026 CavBot</span>
+        <nav class="footer-bottom-links" aria-label="Footer links">
+          <a href="/legal.html#privacy-policy">Privacy</a>
+          <a href="/legal.html#terms-of-use">Terms</a>
+          <a href="/legal.html#data-security">Data Security</a>
+          <a href="/docs.html#cav-commands">What is Cav?</a>
+        </nav>
+      </div>
+
+      <div class="footer-social-links" aria-label="Social links">
+        <a href="https://www.instagram.com/cavbot.io" aria-label="Instagram" class="footer-social-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <circle cx="17" cy="7" r="1"></circle>
+          </svg>
+        </a>
+        <a href="https://github.com/CavBot-Technologies" aria-label="GitHub" class="footer-social-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2.8c-5.1 0-9.2 4.1-9.2 9.2 0 4.1 2.7 7.6 6.4 8.8.5.1.6-.2.6-.5v-1.8c-2.6.6-3.1-1.1-3.1-1.1-.4-1-.9-1.3-.9-1.3-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-2.1-.2-4.2-1-4.2-4.6 0-1 .4-1.9.9-2.5-.1-.2-.4-1.2.1-2.5 0 0 .7-.2 2.5.9.7-.2 1.5-.3 2.3-.3.8 0 1.6.1 2.3.3 1.8-1.2 2.5-.9 2.5-.9.5 1.3.2 2.3.1 2.5.6.6.9 1.5.9 2.5 0 3.6-2.2 4.4-4.2 4.6.3.3.6.8.6 1.7v2.5c0 .3.2.6.7.5 3.7-1.2 6.4-4.7 6.4-8.8 0-5.1-4.1-9.2-9.2-9.2Z"></path>
+          </svg>
+        </a>
+        <a href="https://app.cavbot.io/cavbot" aria-label="CavBot" class="footer-social-link footer-social-link--mark">
+          <img src="assets/logo/cavbot-logomark.svg" alt="" aria-hidden="true" decoding="async">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+    window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1";
+    window.CAVBOT_SITE = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+    window.CAVBOT_SITE_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+    window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+  </script>
+
+
+  <script src="/cavai/cavai-analytics-v5.js" defer></script>
+  <div
+    data-cavbot-cdn-floating-badge="1"
+    data-cavbot-cdn-slot="badge"
+    aria-hidden="true"
+    style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
+  <script
+    defer
+    src="/cavai/cavai.js"
+    data-api="https://app.cavbot.io/api/embed/analytics"
+    data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
+    data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"
+    data-site="cece1ca3-212c-46c5-b54f-e69dd2f8f061">
+  </script>
+
+
+  <script src="files/js/globals/header-footer.js"></script>
+  <script src="files/js/pages/error-tracking.js" defer></script>
+</body>
+</html>
