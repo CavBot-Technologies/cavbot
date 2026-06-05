@@ -1,4 +1,365 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const CONSENT_KEY = "cavbot_cookie_consent_v1";
+  const CONSENT_COOKIE = "cavbot_cookie_consent";
+  const CONSENT_SESSION_KEY = "cavbot_cookie_notice_seen";
+  const CONSENT_VERSION = 1;
+  const DEFAULT_CONSENT = {
+    required: true,
+    analytics: false,
+    social: false,
+    advertising: false,
+  };
+
+  function readConsent() {
+    try {
+      const stored = window.localStorage.getItem(CONSENT_KEY);
+      if (!stored) throw new Error("No stored consent");
+      const parsed = JSON.parse(stored);
+      if (!parsed || parsed.version !== CONSENT_VERSION || !parsed.categories) return null;
+      return {
+        version: CONSENT_VERSION,
+        updatedAt: parsed.updatedAt || "",
+        categories: {
+          required: true,
+          analytics: Boolean(parsed.categories.analytics),
+          social: Boolean(parsed.categories.social),
+          advertising: Boolean(parsed.categories.advertising),
+        },
+      };
+    } catch (error) {
+      try {
+        const cookie = document.cookie
+          .split("; ")
+          .find((row) => row.indexOf(`${CONSENT_COOKIE}=`) === 0);
+        if (!cookie) return null;
+        const categories = JSON.parse(decodeURIComponent(cookie.split("=").slice(1).join("=")));
+        return {
+          version: CONSENT_VERSION,
+          updatedAt: "",
+          categories: {
+            required: true,
+            analytics: Boolean(categories.analytics),
+            social: Boolean(categories.social),
+            advertising: Boolean(categories.advertising),
+          },
+        };
+      } catch (cookieError) {
+        return null;
+      }
+    }
+  }
+
+  function writeConsent(categories) {
+    const consent = {
+      version: CONSENT_VERSION,
+      updatedAt: new Date().toISOString(),
+      categories: {
+        required: true,
+        analytics: Boolean(categories.analytics),
+        social: Boolean(categories.social),
+        advertising: Boolean(categories.advertising),
+      },
+    };
+
+    try {
+      window.localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+      document.cookie = `${CONSENT_COOKIE}=${encodeURIComponent(JSON.stringify(consent.categories))}; Path=/; Max-Age=15552000; SameSite=Lax`;
+    } catch (error) {}
+
+    applyConsent(consent);
+    window.CavBotConsent = createConsentApi(consent);
+    window.dispatchEvent(new CustomEvent("cavbot:cookie-consent", { detail: consent }));
+    return consent;
+  }
+
+  function applyConsent(consent) {
+    const categories = (consent && consent.categories) || DEFAULT_CONSENT;
+    document.documentElement.dataset.cavbotCookieAnalytics = categories.analytics ? "granted" : "denied";
+    document.documentElement.dataset.cavbotCookieSocial = categories.social ? "granted" : "denied";
+    document.documentElement.dataset.cavbotCookieAdvertising = categories.advertising ? "granted" : "denied";
+    window.CAVBOT_COOKIE_CONSENT = {
+      required: true,
+      analytics: Boolean(categories.analytics),
+      social: Boolean(categories.social),
+      advertising: Boolean(categories.advertising),
+    };
+  }
+
+  function createConsentApi(consent) {
+    const activeConsent = consent || readConsent() || {
+      version: CONSENT_VERSION,
+      updatedAt: "",
+      categories: DEFAULT_CONSENT,
+    };
+
+    return {
+      get: () => activeConsent,
+      hasConsent: (category) => {
+        if (category === "required") return true;
+        return Boolean(activeConsent.categories && activeConsent.categories[category]);
+      },
+    };
+  }
+
+  applyConsent(readConsent());
+  window.CavBotConsent = createConsentApi(readConsent());
+
+  function addManageCookieLinks() {
+    function placeCookieTrigger(nav, trigger) {
+      const dataSecurityLink = Array.from(nav.querySelectorAll("a")).find((link) => {
+        return (link.textContent || "").trim() === "Data Security";
+      });
+
+      if (dataSecurityLink && dataSecurityLink.nextSibling) {
+        nav.insertBefore(trigger, dataSecurityLink.nextSibling);
+        return;
+      }
+
+      if (dataSecurityLink) {
+        nav.appendChild(trigger);
+        return;
+      }
+
+      nav.appendChild(trigger);
+    }
+
+    function moveExistingCookieTrigger(nav) {
+      const trigger = nav.querySelector("[data-cavbot-cookie-open]");
+      if (!trigger) return false;
+
+      const dataSecurityLink = Array.from(nav.querySelectorAll("a")).find((link) => {
+        return (link.textContent || "").trim() === "Data Security";
+      });
+
+      if (dataSecurityLink && trigger.previousElementSibling !== dataSecurityLink) {
+        placeCookieTrigger(nav, trigger);
+      }
+
+      return true;
+    }
+
+    document.querySelectorAll(".footer-bottom-links").forEach((nav) => {
+      Array.from(nav.querySelectorAll("a")).forEach((link) => {
+        if ((link.textContent || "").trim() === "What is Cav") {
+          link.textContent = "What is Cav?";
+        }
+      });
+
+      if (moveExistingCookieTrigger(nav)) return;
+
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "footer-cookie-link";
+      trigger.setAttribute("data-cavbot-cookie-open", "");
+      trigger.textContent = "Manage cookies";
+      placeCookieTrigger(nav, trigger);
+    });
+
+    document.querySelectorAll(".docs-footer-links").forEach((nav) => {
+      if (moveExistingCookieTrigger(nav)) return;
+
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "footer-cookie-link docs-cookie-link";
+      trigger.setAttribute("data-cavbot-cookie-open", "");
+      trigger.textContent = "Manage cookies";
+      placeCookieTrigger(nav, trigger);
+    });
+  }
+
+  function ensureCookieExperience() {
+    let root = document.querySelector("[data-cavbot-cookie-root]");
+    if (root) return root;
+
+    root = document.createElement("div");
+    root.className = "cb-cookie-root";
+    root.setAttribute("data-cavbot-cookie-root", "");
+    root.setAttribute("aria-hidden", "true");
+    root.innerHTML = `
+      <section class="cb-cookie-card" data-cookie-view="notice" role="dialog" aria-modal="false" aria-labelledby="cb-cookie-notice-title" aria-describedby="cb-cookie-notice-copy">
+        <button class="cb-cookie-close" type="button" data-cookie-close aria-label="Close cookie notice">×</button>
+       <br> <h2 id="cb-cookie-notice-title">We value your privacy</h2> <br>
+        <p id="cb-cookie-notice-copy">CavBot uses required cookies to keep the website working. With your permission, we may also use optional cookies to understand site usage and improve the experience.</p>
+        <p>You can accept all, reject optional cookies, or manage each category. You can change your choices anytime from the footer.</p> <br>
+        
+        <div class="cb-cookie-actions">
+          <button type="button" class="cb-cookie-primary" data-cookie-accept-all>Accept all</button>
+          <button type="button" class="cb-cookie-secondary" data-cookie-reject-all>Reject all</button>
+          <button type="button" class="cb-cookie-link-button" data-cookie-manage>Manage preferences</button>
+          
+        </div>
+      </section>
+
+      <div class="cb-cookie-modal" data-cookie-view="preferences" role="dialog" aria-modal="true" aria-labelledby="cb-cookie-prefs-title" aria-describedby="cb-cookie-prefs-copy">
+        <button class="cb-cookie-close cb-cookie-close--modal" type="button" data-cookie-close aria-label="Close cookie preferences">×</button>
+        <div class="cb-cookie-modal-scroll">
+          <h2 id="cb-cookie-prefs-title">Manage cookie preferences</h2><br>
+          <p id="cb-cookie-prefs-copy">CavBot websites use cookies to keep the site working, remember your choices, and <br> understand how the website is used.
+<br><br> Some cookies are required. Others are optional and are only used with your permission, <br> such as cookies for analytics, social media, or advertising. You can choose which <br> optional cookies to allow below.
+<br><br> For more information, see the <a href="/legal.html#privacy-cookies">Cookies and similar technologies</a> section of our Privacy <br> Policy.
+</p>
+<br>
+          <article class="cb-cookie-pref">
+            <div>
+              <h3>Required</h3><br>
+              <p>CavBot uses required cookies to make our websites and Services work properly. 
+             <br><br> These cookies support core functions such as keeping you signed in, remembering your privacy choices, 
+              securing forms, managing website traffic, protecting against misuse, recognizing basic device and screen settings, 
+              checking page load performance for reliability, and preserving essential user experience settings.
+             <br><br> Required cookies are always active because CavBot websites and Services cannot operate correctly without them.</p>
+            </div>
+            <span class="cb-cookie-required">Always on</span>
+          </article>
+<br>
+          <article class="cb-cookie-pref">
+            <div>
+              <h3>Analytics</h3><br>
+              <p>CavBot uses analytics cookies to understand how visitors use our websites and where the experience 
+              can be improved.
+              <br><br> These cookies may help us measure page visits, website interactions, broken or incomplete 
+              flows, and the steps visitors take when using our Services. 
+              <br><br>Analytics cookies are optional and are only 
+              used with your permission.</p>
+            </div>
+            <button type="button" class="cb-cookie-toggle" role="switch" aria-checked="false" data-cookie-toggle="analytics"><span></span><em>Off</em></button>
+          </article>
+<br>
+          <article class="cb-cookie-pref">
+            <div>
+              <h3>Social Media</h3><br>
+              <p>CavBot and selected third parties may use social media cookies to support embedded content, 
+              sharing features, and campaign measurement.
+              <br><br> These cookies may also help show content that is more 
+              relevant to your interests <br> on websites and services not operated by CavBot.
+              <br><br>Social media cookies 
+              are optional and are only used with your permission.</p>
+            </div>
+            <button type="button" class="cb-cookie-toggle" role="switch" aria-checked="false" data-cookie-toggle="social"><span></span><em>Off</em></button>
+          </article>
+<br>
+          <article class="cb-cookie-pref">
+            <div>
+              <h3>Advertising</h3><br>
+              <p>CavBot and selected partners may use advertising cookies to show more relevant ads, 
+              limit how often the same message appears, measure ad and campaign performance, and understand 
+              whether someone signs up or makes a purchase after interacting with an ad. 
+             <br><br> Advertising cookies are optional and are only used with your permission.
+</p>
+            </div>
+            <button type="button" class="cb-cookie-toggle" role="switch" aria-checked="false" data-cookie-toggle="advertising"><span></span><em>Off</em></button>
+          </article>
+        </div>
+<br>
+        <div class="cb-cookie-modal-actions">
+          <button type="button" class="cb-cookie-secondary" data-cookie-reset>Reset all</button>
+          <button type="button" class="cb-cookie-primary" data-cookie-save>Save changes</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(root);
+    return root;
+  }
+
+  function initCookieExperience() {
+    addManageCookieLinks();
+    const root = ensureCookieExperience();
+    const notice = root.querySelector('[data-cookie-view="notice"]');
+    const modal = root.querySelector('[data-cookie-view="preferences"]');
+    const toggles = Array.from(root.querySelectorAll("[data-cookie-toggle]"));
+    let draft = Object.assign({}, DEFAULT_CONSENT, (readConsent() || {}).categories || {});
+
+    function syncToggles() {
+      toggles.forEach((toggle) => {
+        const key = toggle.getAttribute("data-cookie-toggle");
+        const isOn = Boolean(draft[key]);
+        toggle.setAttribute("aria-checked", isOn ? "true" : "false");
+        const label = toggle.querySelector("em");
+        if (label) label.textContent = isOn ? "On" : "Off";
+      });
+    }
+
+    function markSessionSeen() {
+      try {
+        window.sessionStorage.setItem(CONSENT_SESSION_KEY, "true");
+      } catch (error) {}
+    }
+
+    function showNotice() {
+      root.dataset.open = "notice";
+      root.setAttribute("aria-hidden", "false");
+      if (notice) notice.hidden = false;
+      if (modal) modal.hidden = true;
+    }
+
+    function showPreferences() {
+      draft = Object.assign({}, DEFAULT_CONSENT, (readConsent() || {}).categories || {});
+      syncToggles();
+      root.dataset.open = "preferences";
+      root.setAttribute("aria-hidden", "false");
+      if (notice) notice.hidden = true;
+      if (modal) modal.hidden = false;
+      const firstToggle = root.querySelector("[data-cookie-toggle]");
+      if (firstToggle && typeof firstToggle.focus === "function") firstToggle.focus({ preventScroll: true });
+    }
+
+    function closeCookieUi() {
+      markSessionSeen();
+      root.dataset.open = "false";
+      root.setAttribute("aria-hidden", "true");
+      if (notice) notice.hidden = true;
+      if (modal) modal.hidden = true;
+    }
+
+    function saveAndClose(categories) {
+      writeConsent(categories);
+      closeCookieUi();
+    }
+
+    root.addEventListener("click", (event) => {
+      const target = event.target;
+      const button = target && target.closest ? target.closest("button") : null;
+      if (!button) return;
+
+      if (button.matches("[data-cookie-close]")) closeCookieUi();
+      if (button.matches("[data-cookie-manage]")) showPreferences();
+      if (button.matches("[data-cookie-accept-all]")) saveAndClose({ required: true, analytics: true, social: true, advertising: true });
+      if (button.matches("[data-cookie-reject-all]")) saveAndClose(DEFAULT_CONSENT);
+      if (button.matches("[data-cookie-reset]")) {
+        draft = Object.assign({}, DEFAULT_CONSENT);
+        syncToggles();
+      }
+      if (button.matches("[data-cookie-save]")) saveAndClose(draft);
+      if (button.matches("[data-cookie-toggle]")) {
+        const key = button.getAttribute("data-cookie-toggle");
+        draft[key] = !draft[key];
+        syncToggles();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const trigger = event.target && event.target.closest ? event.target.closest("[data-cavbot-cookie-open]") : null;
+      if (!trigger) return;
+      event.preventDefault();
+      showPreferences();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeCookieUi();
+    });
+
+    let seenThisSession = false;
+    try {
+      seenThisSession = window.sessionStorage.getItem(CONSENT_SESSION_KEY) === "true";
+    } catch (error) {}
+
+    if (!seenThisSession) {
+      window.setTimeout(showNotice, 450);
+    }
+  }
+
+  initCookieExperience();
+
   const WORKSPACE_HOME_PATH = "https://app.cavbot.io/";
   const TRY_CAVAI_URL = "https://app.cavbot.io/cavai";
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";

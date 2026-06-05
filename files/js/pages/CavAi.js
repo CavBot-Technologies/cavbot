@@ -930,6 +930,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(section);
 })();
+
+
 /* Section 7 + Section 8 reveal */
 (function () {
   "use strict";
