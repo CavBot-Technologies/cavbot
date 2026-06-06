@@ -1003,7 +1003,7 @@ body.cb-has-fixed-header {
   display: none;
   gap: 10px;
   padding: 14px;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   max-height: min(78vh, 620px);
   overflow: auto;
@@ -1160,6 +1160,134 @@ a.cb-try-cavai-menu-link:hover::after {
 .cb-try-cavai-menu-link.is-static:hover {
   background: rgba(255, 255, 255, 0.015);
 }
+
+
+/* ==============================
+  CAVBOT APP SESSION AVATAR
+============================== */
+
+
+[data-cavbot-app-session-avatar] {
+  --cb-app-session-tone: #b9c85a;
+  --cb-app-session-ink: #050509;
+
+
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+
+
+  display: grid !important;
+  place-items: center !important;
+
+
+  border-radius: 4px;
+  background: var(--cb-app-session-tone) !important;
+  color: var(--cb-app-session-ink) !important;
+
+
+  overflow: hidden;
+  text-decoration: none;
+  position: relative;
+
+
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease;
+}
+
+
+[data-cavbot-app-session-avatar][data-cavbot-app-auth="signed-out"] {
+  --cb-app-session-tone: rgba(3, 7, 22, 0.94);
+  --cb-app-session-ink: #f7fbff;
+
+
+  background: rgba(3, 7, 22, 0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f7fbff !important;
+}
+
+
+/* Logged in uses the JS tone variable */
+[data-cavbot-app-session-avatar][data-cavbot-app-auth="signed-in"] {
+  background: var(--cb-app-session-tone) !important;
+  color: var(--cb-app-session-ink) !important;
+}
+
+
+/* Avatar image should never fight the initials/icon state */
+[data-cavbot-app-session-image][hidden],
+[data-cavbot-app-session-initials][hidden],
+[data-cavbot-app-session-icon][hidden] {
+  display: none !important;
+}
+
+
+/* Signed-in initials */
+[data-cavbot-app-session-initials] {
+  width: 100%;
+  height: 100%;
+
+
+  display: grid;
+  place-items: center;
+
+
+  color: var(--cb-app-session-ink) !important;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+
+
+  text-align: center;
+}
+
+
+/* Signed-out icon */
+[data-cavbot-app-session-icon] {
+  width: 18px;
+  height: 18px;
+
+
+  display: block;
+  object-fit: contain;
+
+
+  color: currentColor !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+
+
+  filter: brightness(0) invert(1) !important;
+  opacity: 1 !important;
+}
+
+
+/* If the icon is an inline SVG */
+[data-cavbot-app-session-icon] path,
+[data-cavbot-app-session-icon] circle,
+[data-cavbot-app-session-icon] rect,
+[data-cavbot-app-session-icon] line,
+[data-cavbot-app-session-icon] polyline,
+[data-cavbot-app-session-icon] polygon {
+  stroke: currentColor !important;
+  fill: currentColor !important;
+}
+
+
+/* If an avatar image ever appears, make it cover cleanly */
+[data-cavbot-app-session-image] {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
 
 /* ==============================
    Mobile menu button

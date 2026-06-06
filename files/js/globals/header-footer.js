@@ -5119,10 +5119,13 @@ document.addEventListener("DOMContentLoaded", () => {
 (function () {
   "use strict";
 
+
   var SESSION_ENDPOINT = "https://app.cavbot.io/api/public/website-session";
   var ICON_SVG = "/assets/icons/page/login-svgrepo-com.svg";
   var APP_HOME_URL = "https://app.cavbot.io/";
   var APP_LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
+
+
   var TONE_COLORS = {
     lime: "#b9c85a",
     violet: "#8b5cff",
@@ -5135,76 +5138,201 @@ document.addEventListener("DOMContentLoaded", () => {
     clear: "rgba(247, 251, 255, 0.08)"
   };
 
+
   function clean(value) {
     return String(value || "").trim();
   }
+
 
   function toneColor(tone) {
     var key = clean(tone).toLowerCase();
     return TONE_COLORS[key] || TONE_COLORS.lime;
   }
 
+
   function toneInk(tone) {
     var key = clean(tone).toLowerCase();
-    if (key === "lime" || key === "white") return "#050509";
+
+
+    if (key === "lime" || key === "white") {
+      return "#050509";
+    }
+
+
     return "#f7fbff";
   }
 
+
+  function getInitials(user) {
+    var direct = clean(user && user.initials).slice(0, 3).toUpperCase();
+    if (direct) return direct;
+
+
+    var name = clean(user && user.name);
+    if (name) {
+      return name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 3)
+        .map(function (part) {
+          return part.charAt(0);
+        })
+        .join("")
+        .toUpperCase();
+    }
+
+
+    var email = clean(user && user.email);
+    if (email) {
+      return email.charAt(0).toUpperCase();
+    }
+
+
+    return "";
+  }
+
+
+  function showNode(node, display) {
+    if (!node) return;
+
+
+    node.removeAttribute("hidden");
+    node.style.display = display || "";
+  }
+
+
+  function hideNode(node) {
+    if (!node) return;
+
+
+    node.setAttribute("hidden", "");
+    node.style.display = "none";
+  }
+
+
   function applyAvatar(state) {
     var user = state && state.authenticated && state.user ? state.user : null;
+
+
     document.documentElement.dataset.cavbotAppAuth = user ? "signed-in" : "signed-out";
+
 
     document.querySelectorAll("[data-cavbot-app-session-avatar]").forEach(function (node) {
       var img = node.querySelector("[data-cavbot-app-session-image]");
       var initials = node.querySelector("[data-cavbot-app-session-initials]");
       var icon = node.querySelector("[data-cavbot-app-session-icon]");
+
+
+      var avatarTone = user ? clean(user.avatarTone).toLowerCase() : "lime";
       var avatarImage = user ? clean(user.avatarImage) : "";
-      var avatarInitials = user ? clean(user.initials).slice(0, 3).toUpperCase() : "";
-      var avatarTone = user ? clean(user.avatarTone).toLowerCase() : "";
+      var avatarInitials = user ? getInitials(user) : "";
+
 
       node.dataset.cavbotAppAuth = user ? "signed-in" : "signed-out";
-      node.dataset.cavbotAppTone = avatarTone || "signed-out";
+      node.dataset.cavbotAppTone = user ? avatarTone || "lime" : "lime";
+
 
       if (node.tagName && node.tagName.toLowerCase() === "a") {
         node.setAttribute("href", user ? APP_HOME_URL : APP_LOGIN_URL);
       }
 
+
+      /*
+        Background rule:
+        - Logged out matches the site-update icon button shell.
+        - Logged in uses the user's saved tone.
+        - Violet, blue, white, transparent, and clear always stay respected.
+      */
+      node.style.setProperty(
+        "--cb-app-session-tone",
+        user ? toneColor(avatarTone) : "rgba(3, 7, 22, 0.94)"
+      );
+
+
+      node.style.setProperty(
+        "--cb-app-session-ink",
+        user ? toneInk(avatarTone) : "#f7fbff"
+      );
+
+
+      /*
+        Signed in:
+        Only the saved avatar image or initials render.
+        No login icon underneath.
+      */
       if (user) {
-        node.style.setProperty("--cb-app-session-tone", toneColor(avatarTone));
-        node.style.setProperty("--cb-app-session-ink", toneInk(avatarTone));
-      } else {
-        node.style.removeProperty("--cb-app-session-tone");
-        node.style.removeProperty("--cb-app-session-ink");
+        if (img) {
+          if (avatarImage) {
+            img.setAttribute("src", avatarImage);
+            showNode(img, "block");
+          } else {
+            img.removeAttribute("src");
+            hideNode(img);
+          }
+        }
+
+
+        if (icon) {
+          hideNode(icon);
+          icon.style.removeProperty("filter");
+          icon.style.removeProperty("color");
+          icon.style.removeProperty("fill");
+          icon.style.removeProperty("stroke");
+        }
+
+
+        if (initials) {
+          initials.textContent = avatarImage ? "" : avatarInitials;
+          if (avatarImage || !avatarInitials) {
+            hideNode(initials);
+          } else {
+            showNode(initials, "grid");
+          }
+          initials.style.placeItems = "center";
+          initials.style.width = "100%";
+          initials.style.height = "100%";
+          initials.style.color = "var(--cb-app-session-ink)";
+        }
+
+
+        return;
       }
 
+
+      /*
+        Signed out:
+        Only the login icon renders.
+        No initials or saved profile image.
+      */
       if (img) {
-        if (avatarImage) {
-          img.setAttribute("src", avatarImage);
-          img.removeAttribute("hidden");
-        } else {
-          img.setAttribute("hidden", "");
-          img.removeAttribute("src");
-        }
+        img.removeAttribute("src");
+        hideNode(img);
       }
+
 
       if (initials) {
-        initials.textContent = avatarImage ? "" : avatarInitials;
-        if (user && !avatarImage && avatarInitials) initials.removeAttribute("hidden");
-        else initials.setAttribute("hidden", "");
+        initials.textContent = "";
+        hideNode(initials);
       }
 
+
       if (icon) {
-        if (user) {
-          icon.setAttribute("hidden", "");
-        } else {
-          if (icon.tagName && icon.tagName.toLowerCase() === "img" && !icon.getAttribute("src")) {
-            icon.setAttribute("src", ICON_SVG);
-          }
-          icon.removeAttribute("hidden");
+        if (icon.tagName && icon.tagName.toLowerCase() === "img") {
+          icon.setAttribute("src", ICON_SVG);
+          icon.style.filter = "brightness(0) invert(1)";
         }
+
+
+        icon.style.color = "currentColor";
+        icon.style.fill = "currentColor";
+        icon.style.stroke = "currentColor";
+
+
+        showNode(icon, "grid");
       }
     });
   }
+
 
   function publish(state) {
     window.CavBotAppSession = state;
@@ -5212,10 +5340,12 @@ document.addEventListener("DOMContentLoaded", () => {
     window.dispatchEvent(new CustomEvent("cavbot:app-session", { detail: state }));
   }
 
+
   if (!window.fetch) {
     publish({ ok: false, authenticated: false, unavailable: true });
     return;
   }
+
 
   fetch(SESSION_ENDPOINT, {
     method: "GET",
@@ -5228,7 +5358,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then(function (payload) {
-      publish(payload && typeof payload === "object" ? payload : { ok: false, authenticated: false });
+      publish(
+        payload && typeof payload === "object"
+          ? payload
+          : { ok: false, authenticated: false }
+      );
     })
     .catch(function () {
       publish({ ok: false, authenticated: false, unavailable: true });
