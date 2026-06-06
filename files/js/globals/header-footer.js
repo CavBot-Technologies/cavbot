@@ -5013,9 +5013,11 @@ document.addEventListener("DOMContentLoaded", () => {
       row.insertBefore(trigger, tryCavai);
     }
 
-    if (!row.querySelector("[data-cavbot-app-session-avatar]")) {
-      row.insertBefore(createAppSessionAvatar(row), tryCavai);
+    var avatar = row.querySelector("[data-cavbot-app-session-avatar]");
+    if (!avatar) {
+      avatar = createAppSessionAvatar(row);
     }
+    tryCavai.insertAdjacentElement("afterend", avatar);
   });
 
   const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));

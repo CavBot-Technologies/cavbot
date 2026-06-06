@@ -1172,10 +1172,10 @@ a.cb-try-cavai-menu-link:hover::after {
   --cb-app-session-ink: #050509;
 
 
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  min-height: 36px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
 
 
   display: grid !important;
