@@ -4979,20 +4979,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  function createAppSessionAvatar(row) {
+    const avatar = document.createElement("a");
+    avatar.className = row.classList.contains("nav-overlay-cta")
+      ? "cb-app-session-trigger cb-app-session-trigger--mobile"
+      : "cb-app-session-trigger";
+    avatar.href = "https://app.cavbot.io/auth?mode=login";
+    avatar.setAttribute("aria-label", "Open CavBot account");
+    avatar.setAttribute("data-cavbot-app-session-avatar", "");
+    avatar.innerHTML = [
+      '<img class="cb-app-session-image" data-cavbot-app-session-image hidden alt="" />',
+      '<span class="cb-app-session-initials" data-cavbot-app-session-initials hidden></span>',
+      '<img class="cb-app-session-icon" data-cavbot-app-session-icon src="/assets/icons/page/login-svgrepo-com.svg" alt="" aria-hidden="true" />'
+    ].join("");
+    return avatar;
+  }
+
   document.querySelectorAll(".nav-cta-row, .nav-overlay-cta").forEach((row) => {
-    if (!row.querySelector("[data-cb-try-cavai]") || row.querySelector("[data-site-update-open]")) {
+    const tryCavai = row.querySelector("[data-cb-try-cavai]");
+    if (!tryCavai) {
       return;
     }
 
-    const trigger = document.createElement("button");
-    trigger.className = row.classList.contains("nav-overlay-cta")
-      ? "cb-site-update-trigger cb-site-update-trigger--mobile"
-      : "cb-site-update-trigger";
-    trigger.type = "button";
-    trigger.setAttribute("aria-label", "View site update notice");
-    trigger.setAttribute("data-site-update-open", "");
-    trigger.innerHTML = '<img class="cb-site-update-icon" src="/assets/icons/page/aware-svgrepo-com.svg" alt="" aria-hidden="true" />';
-    row.insertBefore(trigger, row.querySelector("[data-cb-try-cavai]"));
+    if (!row.querySelector("[data-site-update-open]")) {
+      const trigger = document.createElement("button");
+      trigger.className = row.classList.contains("nav-overlay-cta")
+        ? "cb-site-update-trigger cb-site-update-trigger--mobile"
+        : "cb-site-update-trigger";
+      trigger.type = "button";
+      trigger.setAttribute("aria-label", "View site update notice");
+      trigger.setAttribute("data-site-update-open", "");
+      trigger.innerHTML = '<img class="cb-site-update-icon" src="/assets/icons/page/aware-svgrepo-com.svg" alt="" aria-hidden="true" />';
+      row.insertBefore(trigger, tryCavai);
+    }
+
+    if (!row.querySelector("[data-cavbot-app-session-avatar]")) {
+      row.insertBefore(createAppSessionAvatar(row), tryCavai);
+    }
   });
 
   const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));
@@ -5097,10 +5120,34 @@ document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
   var SESSION_ENDPOINT = "https://app.cavbot.io/api/public/website-session";
-  var ICON_SVG = "assets/icons/page/login-svgrepo-com.svg";
+  var ICON_SVG = "/assets/icons/page/login-svgrepo-com.svg";
+  var APP_HOME_URL = "https://app.cavbot.io/";
+  var APP_LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
+  var TONE_COLORS = {
+    lime: "#b9c85a",
+    violet: "#8b5cff",
+    purple: "#8b5cff",
+    blue: "#4ea8ff",
+    ice: "#68e0ff",
+    navy: "#111827",
+    white: "#f7fbff",
+    transparent: "rgba(247, 251, 255, 0.08)",
+    clear: "rgba(247, 251, 255, 0.08)"
+  };
 
   function clean(value) {
     return String(value || "").trim();
+  }
+
+  function toneColor(tone) {
+    var key = clean(tone).toLowerCase();
+    return TONE_COLORS[key] || TONE_COLORS.lime;
+  }
+
+  function toneInk(tone) {
+    var key = clean(tone).toLowerCase();
+    if (key === "lime" || key === "white") return "#050509";
+    return "#f7fbff";
   }
 
   function applyAvatar(state) {
@@ -5113,8 +5160,22 @@ document.addEventListener("DOMContentLoaded", () => {
       var icon = node.querySelector("[data-cavbot-app-session-icon]");
       var avatarImage = user ? clean(user.avatarImage) : "";
       var avatarInitials = user ? clean(user.initials).slice(0, 3).toUpperCase() : "";
+      var avatarTone = user ? clean(user.avatarTone).toLowerCase() : "";
 
       node.dataset.cavbotAppAuth = user ? "signed-in" : "signed-out";
+      node.dataset.cavbotAppTone = avatarTone || "signed-out";
+
+      if (node.tagName && node.tagName.toLowerCase() === "a") {
+        node.setAttribute("href", user ? APP_HOME_URL : APP_LOGIN_URL);
+      }
+
+      if (user) {
+        node.style.setProperty("--cb-app-session-tone", toneColor(avatarTone));
+        node.style.setProperty("--cb-app-session-ink", toneInk(avatarTone));
+      } else {
+        node.style.removeProperty("--cb-app-session-tone");
+        node.style.removeProperty("--cb-app-session-ink");
+      }
 
       if (img) {
         if (avatarImage) {

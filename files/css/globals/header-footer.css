@@ -791,6 +791,70 @@ body.cb-has-fixed-header {
   filter: brightness(0) saturate(100%) invert(88%) sepia(78%) saturate(704%) hue-rotate(341deg) brightness(104%) contrast(101%);
 }
 
+.cb-app-session-trigger {
+  --cb-app-session-tone: #b9c85a;
+  --cb-app-session-ink: #050509;
+  width: 36px;
+  min-height: 36px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(3, 7, 22, 0.94);
+  color: #f7fbff;
+  overflow: hidden;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.cb-app-session-trigger:hover,
+.cb-app-session-trigger:focus-visible {
+  background: rgba(3, 7, 22, 0.98);
+  border-color: rgba(247, 251, 255, 0.32);
+  color: #ffffff;
+  outline: none;
+}
+
+.cb-app-session-trigger[data-cavbot-app-auth="signed-in"] {
+  background: var(--cb-app-session-tone);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--cb-app-session-ink);
+}
+
+.cb-app-session-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.cb-app-session-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: currentColor;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cb-app-session-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  object-fit: contain;
+  opacity: 0.92;
+  filter: brightness(0) invert(1);
+}
+
 .cb-site-update-overlay {
   position: fixed;
   inset: 0;
