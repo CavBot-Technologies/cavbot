@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const CONSENT_COOKIE = "cavbot_cookie_consent";
   const CONSENT_SESSION_KEY = "cavbot_cookie_notice_seen";
   const CONSENT_VERSION = 1;
+  const CONSENT_MAX_AGE_SECONDS = 15552000;
   const DEFAULT_CONSENT = {
     required: true,
     analytics: false,
@@ -10,42 +11,62 @@ document.addEventListener("DOMContentLoaded", () => {
     advertising: false,
   };
 
+  function normalizeConsent(rawConsent) {
+    if (!rawConsent) return null;
+    const categories = rawConsent.categories || rawConsent;
+    if (rawConsent.version && rawConsent.version !== CONSENT_VERSION) return null;
+    return {
+      version: CONSENT_VERSION,
+      updatedAt: rawConsent.updatedAt || "",
+      categories: {
+        required: true,
+        analytics: Boolean(categories.analytics),
+        social: Boolean(categories.social),
+        advertising: Boolean(categories.advertising),
+      },
+    };
+  }
+
+  function getConsentCookieAttributes() {
+    const attributes = [
+      "Path=/",
+      `Max-Age=${CONSENT_MAX_AGE_SECONDS}`,
+      "SameSite=Lax",
+    ];
+    const hostname = String(window.location.hostname || "").toLowerCase();
+
+    if (hostname === "cavbot.io" || hostname.endsWith(".cavbot.io")) {
+      attributes.splice(1, 0, "Domain=.cavbot.io");
+    }
+
+    if (window.location.protocol === "https:") {
+      attributes.push("Secure");
+    }
+
+    return attributes.join("; ");
+  }
+
+  function readCookieConsent() {
+    try {
+      const cookie = document.cookie
+        .split("; ")
+        .find((row) => row.indexOf(`${CONSENT_COOKIE}=`) === 0);
+      if (!cookie) return null;
+      const parsed = JSON.parse(decodeURIComponent(cookie.split("=").slice(1).join("=")));
+      return normalizeConsent(parsed);
+    } catch (error) {
+      return null;
+    }
+  }
+
   function readConsent() {
     try {
       const stored = window.localStorage.getItem(CONSENT_KEY);
       if (!stored) throw new Error("No stored consent");
       const parsed = JSON.parse(stored);
-      if (!parsed || parsed.version !== CONSENT_VERSION || !parsed.categories) return null;
-      return {
-        version: CONSENT_VERSION,
-        updatedAt: parsed.updatedAt || "",
-        categories: {
-          required: true,
-          analytics: Boolean(parsed.categories.analytics),
-          social: Boolean(parsed.categories.social),
-          advertising: Boolean(parsed.categories.advertising),
-        },
-      };
+      return normalizeConsent(parsed) || readCookieConsent();
     } catch (error) {
-      try {
-        const cookie = document.cookie
-          .split("; ")
-          .find((row) => row.indexOf(`${CONSENT_COOKIE}=`) === 0);
-        if (!cookie) return null;
-        const categories = JSON.parse(decodeURIComponent(cookie.split("=").slice(1).join("=")));
-        return {
-          version: CONSENT_VERSION,
-          updatedAt: "",
-          categories: {
-            required: true,
-            analytics: Boolean(categories.analytics),
-            social: Boolean(categories.social),
-            advertising: Boolean(categories.advertising),
-          },
-        };
-      } catch (cookieError) {
-        return null;
-      }
+      return readCookieConsent();
     }
   }
 
@@ -63,7 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       window.localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
-      document.cookie = `${CONSENT_COOKIE}=${encodeURIComponent(JSON.stringify(consent.categories))}; Path=/; Max-Age=15552000; SameSite=Lax`;
+    } catch (error) {}
+
+    try {
+      document.cookie = `${CONSENT_COOKIE}=${encodeURIComponent(JSON.stringify(consent))}; ${getConsentCookieAttributes()}`;
     } catch (error) {}
 
     applyConsent(consent);
@@ -101,8 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  applyConsent(readConsent());
-  window.CavBotConsent = createConsentApi(readConsent());
+  const initialConsent = readConsent();
+  applyConsent(initialConsent);
+  window.CavBotConsent = createConsentApi(initialConsent);
 
   function addManageCookieLinks() {
     function placeCookieTrigger(nav, trigger) {
@@ -353,7 +378,7 @@ document.addEventListener("DOMContentLoaded", () => {
       seenThisSession = window.sessionStorage.getItem(CONSENT_SESSION_KEY) === "true";
     } catch (error) {}
 
-    if (!seenThisSession) {
+    if (!readConsent() && !seenThisSession) {
       window.setTimeout(showNotice, 450);
     }
   }
