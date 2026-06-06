@@ -5092,3 +5092,84 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.key === "Escape") closeModal();
   });
 });
+
+(function () {
+  "use strict";
+
+  var SESSION_ENDPOINT = "https://app.cavbot.io/api/public/website-session";
+  var ICON_SVG = "assets/icons/page/login-svgrepo-com.svg";
+
+  function clean(value) {
+    return String(value || "").trim();
+  }
+
+  function applyAvatar(state) {
+    var user = state && state.authenticated && state.user ? state.user : null;
+    document.documentElement.dataset.cavbotAppAuth = user ? "signed-in" : "signed-out";
+
+    document.querySelectorAll("[data-cavbot-app-session-avatar]").forEach(function (node) {
+      var img = node.querySelector("[data-cavbot-app-session-image]");
+      var initials = node.querySelector("[data-cavbot-app-session-initials]");
+      var icon = node.querySelector("[data-cavbot-app-session-icon]");
+      var avatarImage = user ? clean(user.avatarImage) : "";
+      var avatarInitials = user ? clean(user.initials).slice(0, 3).toUpperCase() : "";
+
+      node.dataset.cavbotAppAuth = user ? "signed-in" : "signed-out";
+
+      if (img) {
+        if (avatarImage) {
+          img.setAttribute("src", avatarImage);
+          img.removeAttribute("hidden");
+        } else {
+          img.setAttribute("hidden", "");
+          img.removeAttribute("src");
+        }
+      }
+
+      if (initials) {
+        initials.textContent = avatarImage ? "" : avatarInitials;
+        if (user && !avatarImage && avatarInitials) initials.removeAttribute("hidden");
+        else initials.setAttribute("hidden", "");
+      }
+
+      if (icon) {
+        if (user) {
+          icon.setAttribute("hidden", "");
+        } else {
+          if (icon.tagName && icon.tagName.toLowerCase() === "img" && !icon.getAttribute("src")) {
+            icon.setAttribute("src", ICON_SVG);
+          }
+          icon.removeAttribute("hidden");
+        }
+      }
+    });
+  }
+
+  function publish(state) {
+    window.CavBotAppSession = state;
+    applyAvatar(state);
+    window.dispatchEvent(new CustomEvent("cavbot:app-session", { detail: state }));
+  }
+
+  if (!window.fetch) {
+    publish({ ok: false, authenticated: false, unavailable: true });
+    return;
+  }
+
+  fetch(SESSION_ENDPOINT, {
+    method: "GET",
+    credentials: "include",
+    cache: "no-store",
+    mode: "cors"
+  })
+    .then(function (response) {
+      if (!response.ok) throw new Error("SESSION_UNAVAILABLE");
+      return response.json();
+    })
+    .then(function (payload) {
+      publish(payload && typeof payload === "object" ? payload : { ok: false, authenticated: false });
+    })
+    .catch(function () {
+      publish({ ok: false, authenticated: false, unavailable: true });
+    });
+})();
