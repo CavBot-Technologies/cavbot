@@ -837,16 +837,7 @@ primaryLink.textContent = "Try CavAi";
         key: "models",
         label: "Models",
         content: TRY_CAVAI_FRONTEND_MODEL_LINKS.map((entry) => toModelShowcaseRow(entry)).join(""),
-      }),
-      toMenuSectionMarkup({
-        key: "login",
-        label: "Account",
-        content: `
-          <a class="cb-try-cavai-menu-link" href="${SIGNUP_URL}">Sign up</a>
-          <a class="cb-try-cavai-menu-link" href="${LOGIN_URL}">Log in</a>
-        `,
         defaultOpen: true,
-        lockedOpen: true,
       }),
     ].join("");
 
@@ -4702,10 +4693,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       control.querySelectorAll(".cb-try-cavai-menu-section").forEach((section) => {
         const locked = section.classList.contains("is-locked-open");
+        const label = (section.querySelector(".cb-try-cavai-menu-label")?.textContent || "").trim();
+        const defaultOpen = section.getAttribute("data-default-open") === "true" || label === "Models";
         const button = section.querySelector(".cb-try-cavai-menu-section-toggle");
         const panel = section.querySelector(".cb-try-cavai-menu-section-panel");
 
-        if (locked) {
+        if (locked || defaultOpen) {
           section.classList.add("is-open");
           if (button) button.setAttribute("aria-expanded", "true");
           if (panel) panel.hidden = false;
@@ -4719,10 +4712,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function normalizeTryCavaiMenu(control) {
+    if (!control) return;
+
+    control.querySelectorAll(".cb-try-cavai-menu-section").forEach((section) => {
+      const label = (section.querySelector(".cb-try-cavai-menu-label")?.textContent || "").trim();
+
+      if (label === "Account") {
+        section.remove();
+        return;
+      }
+
+      if (label === "Models") {
+        const button = section.querySelector(".cb-try-cavai-menu-section-toggle");
+        const panel = section.querySelector(".cb-try-cavai-menu-section-panel");
+        section.classList.add("is-open");
+        section.classList.remove("is-locked-open");
+        section.setAttribute("data-default-open", "true");
+        section.removeAttribute("data-locked-open");
+        if (button) {
+          button.disabled = false;
+          button.removeAttribute("disabled");
+          button.removeAttribute("aria-disabled");
+          button.setAttribute("aria-expanded", "true");
+        }
+        if (panel) panel.hidden = false;
+      }
+    });
+  }
+
   function installTryCavaiMenus() {
     if (!tryCavaiControls.length) return;
 
     tryCavaiControls.forEach((control) => {
+      normalizeTryCavaiMenu(control);
       const toggle = control.querySelector(".cb-try-cavai-toggle");
 
       if (toggle) {
@@ -4980,12 +5003,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   function createAppSessionAvatar(row) {
-    const avatar = document.createElement("a");
+    const avatar = document.createElement("button");
     avatar.className = row.classList.contains("nav-overlay-cta")
       ? "cb-app-session-trigger cb-app-session-trigger--mobile"
       : "cb-app-session-trigger";
-    avatar.href = "https://app.cavbot.io/auth?mode=login";
+    avatar.type = "button";
     avatar.setAttribute("aria-label", "Open CavBot account");
+    avatar.setAttribute("aria-haspopup", "menu");
+    avatar.setAttribute("aria-expanded", "false");
     avatar.setAttribute("data-cavbot-app-session-avatar", "");
     avatar.innerHTML = [
       '<img class="cb-app-session-image" data-cavbot-app-session-image hidden alt="" />',
@@ -5124,8 +5149,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var SESSION_ENDPOINT = "https://app.cavbot.io/api/public/website-session";
   var ICON_SVG = "/assets/icons/page/login-svgrepo-com.svg";
-  var APP_HOME_URL = "https://app.cavbot.io/";
   var APP_LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
+  var APP_LOGOUT_URL = "https://app.cavbot.io/api/auth/logout";
+  var APP_PLAN_URL = "https://app.cavbot.io/plan";
+  var APP_SETTINGS_PROFILE_URL = "https://app.cavbot.io/settings?tab=account";
+  var ACCOUNT_MENU_ID = "cb-app-session-menu";
+  var currentAppSession = { ok: false, authenticated: false };
+  var accountMenuTrigger = null;
 
 
   var TONE_COLORS = {
@@ -5212,6 +5242,150 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  function isSignedIn(state) {
+    return !!(state && state.authenticated && state.user);
+  }
+
+
+  function getProfileMenuLabel(state) {
+    var user = state && state.user ? state.user : null;
+    if (!user) return "Private Profile";
+    return user.publicProfileEnabled ? "Public Profile" : "Private Profile";
+  }
+
+
+  function getProfileHref(state) {
+    var user = state && state.user ? state.user : null;
+    if (!user) return APP_LOGIN_URL;
+
+    var username = clean(user.username).replace(/^@+/, "");
+    if (username) return "https://app.cavbot.io/" + encodeURIComponent(username);
+    return APP_SETTINGS_PROFILE_URL;
+  }
+
+
+  function closeAccountMenu() {
+    var menu = document.getElementById(ACCOUNT_MENU_ID);
+    if (!menu) return;
+
+    menu.dataset.open = "false";
+    menu.setAttribute("aria-hidden", "true");
+
+    document.querySelectorAll("[data-cavbot-app-session-avatar]").forEach(function (trigger) {
+      trigger.setAttribute("aria-expanded", "false");
+    });
+    accountMenuTrigger = null;
+  }
+
+
+  function positionAccountMenu(menu, trigger) {
+    if (!menu || !trigger || typeof trigger.getBoundingClientRect !== "function") return;
+
+    var rect = trigger.getBoundingClientRect();
+    var menuWidth = Math.min(220, Math.max(180, window.innerWidth - 24));
+    var left = Math.min(window.innerWidth - menuWidth - 12, Math.max(12, rect.right - menuWidth));
+    var top = Math.min(window.innerHeight - 12, rect.bottom + 10);
+
+    menu.style.setProperty("--cb-app-session-menu-left", left + "px");
+    menu.style.setProperty("--cb-app-session-menu-top", top + "px");
+    menu.style.setProperty("--cb-app-session-menu-width", menuWidth + "px");
+  }
+
+
+  function logoutFromWebsite() {
+    closeAccountMenu();
+
+    if (window.fetch) {
+      fetch(APP_LOGOUT_URL, {
+        method: "POST",
+        credentials: "include",
+        cache: "no-store",
+        mode: "cors"
+      }).catch(function () {
+        return null;
+      }).finally(function () {
+        window.location.href = APP_LOGIN_URL;
+      });
+      return;
+    }
+
+    window.location.href = APP_LOGIN_URL;
+  }
+
+
+  function ensureAccountMenu() {
+    var menu = document.getElementById(ACCOUNT_MENU_ID);
+    if (menu) return menu;
+
+    menu = document.createElement("div");
+    menu.id = ACCOUNT_MENU_ID;
+    menu.className = "cb-app-session-menu";
+    menu.setAttribute("role", "menu");
+    menu.setAttribute("aria-label", "Account");
+    menu.setAttribute("aria-hidden", "true");
+    menu.dataset.open = "false";
+
+    menu.addEventListener("click", function (event) {
+      var logout = event.target && event.target.closest
+        ? event.target.closest("[data-cavbot-app-session-logout]")
+        : null;
+      if (logout) {
+        event.preventDefault();
+        logoutFromWebsite();
+        return;
+      }
+
+      var item = event.target && event.target.closest
+        ? event.target.closest("a, button")
+        : null;
+      if (item) closeAccountMenu();
+    });
+
+    document.body.appendChild(menu);
+    return menu;
+  }
+
+
+  function renderAccountMenu(menu, state) {
+    var signedIn = isSignedIn(state);
+    var authLabel = signedIn ? "Log out" : "Log in";
+    var authHref = signedIn ? "#" : APP_LOGIN_URL;
+    var profileLabel = getProfileMenuLabel(state);
+    var profileHref = getProfileHref(state);
+
+    menu.innerHTML = [
+      '<a class="cb-app-session-menu-item" role="menuitem" href="' + profileHref + '">' + profileLabel + '</a>',
+      '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_PLAN_URL + '">Upgrade Plan</a>',
+      signedIn
+        ? '<button class="cb-app-session-menu-item is-danger" type="button" role="menuitem" data-cavbot-app-session-logout>' + authLabel + '</button>'
+        : '<a class="cb-app-session-menu-item is-auth" role="menuitem" href="' + authHref + '">' + authLabel + '</a>'
+    ].join("");
+  }
+
+
+  function openAccountMenu(trigger) {
+    var menu = ensureAccountMenu();
+    accountMenuTrigger = trigger || null;
+    renderAccountMenu(menu, currentAppSession);
+    positionAccountMenu(menu, trigger);
+    menu.dataset.open = "true";
+    menu.setAttribute("aria-hidden", "false");
+    if (trigger) trigger.setAttribute("aria-expanded", "true");
+  }
+
+
+  function toggleAccountMenu(trigger) {
+    var menu = ensureAccountMenu();
+    var isOpen = menu.dataset.open === "true";
+    if (isOpen && accountMenuTrigger === trigger) {
+      closeAccountMenu();
+      return;
+    }
+    closeAccountMenu();
+    openAccountMenu(trigger);
+  }
+
+
   function applyAvatar(state) {
     var user = state && state.authenticated && state.user ? state.user : null;
 
@@ -5234,11 +5408,6 @@ document.addEventListener("DOMContentLoaded", () => {
       node.dataset.cavbotAppTone = user ? avatarTone || "lime" : "lime";
 
 
-      if (node.tagName && node.tagName.toLowerCase() === "a") {
-        node.setAttribute("href", user ? APP_HOME_URL : APP_LOGIN_URL);
-      }
-
-
       /*
         Background rule:
         - Logged out matches the site-update icon button shell.
@@ -5247,13 +5416,13 @@ document.addEventListener("DOMContentLoaded", () => {
       */
       node.style.setProperty(
         "--cb-app-session-tone",
-        user ? toneColor(avatarTone) : "rgba(3, 7, 22, 0.94)"
+        user ? toneColor(avatarTone) : "rgba(247, 251, 255, 0.94)"
       );
 
 
       node.style.setProperty(
         "--cb-app-session-ink",
-        user ? toneInk(avatarTone) : "#f7fbff"
+        user ? toneInk(avatarTone) : "#01030f"
       );
 
 
@@ -5321,7 +5490,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (icon) {
         if (icon.tagName && icon.tagName.toLowerCase() === "img") {
           icon.setAttribute("src", ICON_SVG);
-          icon.style.filter = "brightness(0) invert(1)";
+          icon.style.filter = "brightness(0) saturate(100%)";
         }
 
 
@@ -5333,14 +5502,61 @@ document.addEventListener("DOMContentLoaded", () => {
         showNode(icon, "grid");
       }
     });
+
+    var menu = document.getElementById(ACCOUNT_MENU_ID);
+    if (menu && menu.dataset.open === "true") {
+      renderAccountMenu(menu, state);
+      if (accountMenuTrigger) positionAccountMenu(menu, accountMenuTrigger);
+    }
   }
 
 
   function publish(state) {
+    currentAppSession = state || { ok: false, authenticated: false };
     window.CavBotAppSession = state;
     applyAvatar(state);
     window.dispatchEvent(new CustomEvent("cavbot:app-session", { detail: state }));
   }
+
+
+  document.addEventListener("click", function (event) {
+    var trigger = event.target && event.target.closest
+      ? event.target.closest("[data-cavbot-app-session-avatar]")
+      : null;
+
+    if (trigger) {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleAccountMenu(trigger);
+      return;
+    }
+
+    var menu = document.getElementById(ACCOUNT_MENU_ID);
+    if (menu && menu.dataset.open === "true" && !menu.contains(event.target)) {
+      closeAccountMenu();
+    }
+  });
+
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closeAccountMenu();
+  });
+
+
+  window.addEventListener("resize", function () {
+    var menu = document.getElementById(ACCOUNT_MENU_ID);
+    if (menu && menu.dataset.open === "true" && accountMenuTrigger) {
+      positionAccountMenu(menu, accountMenuTrigger);
+    }
+  });
+
+
+  window.addEventListener("scroll", function () {
+    var menu = document.getElementById(ACCOUNT_MENU_ID);
+    if (menu && menu.dataset.open === "true" && accountMenuTrigger) {
+      positionAccountMenu(menu, accountMenuTrigger);
+    }
+  }, true);
 
 
   if (!window.fetch) {

@@ -1,29 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>CavTools · CavBot</title>
+  <title>CavBot Terminal · Your website on the command line · CavBot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CavTools is CavBot’s command plane for diagnostics, workspace checks, namespace operations, and operator workflows.">
-  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://cavbot.io/cavtools.html">
+  <meta name="description" content="See what changed, understand what broke, and move straight into the fix without chasing dashboards or losing your flow.">
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+  <link rel="canonical" href="https://cavbot.io/terminal.html">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <!-- UNIVERSAL FAVICONS  -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+<link rel="manifest" href="site.webmanifest">
+
+<meta name="theme-color" content="#01030f">
+<meta name="msapplication-TileColor" content="#01030f">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+  
+<!-- Open Graph -->
+  <meta property="og:title" content="CavBot Terminal · Your website on the command line · CavBot">
+  <meta property="og:description" content="See what changed, understand what broke, and move straight into the fix without chasing dashboards or losing your flow.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cavbot.io/terminal.html">
+  <meta property="og:site_name" content="CavBot">
+  <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CavBot Terminal · Your website on the command line · CavBot">
+  <meta name="twitter:description" content="See what changed, understand what broke, and move straight into the fix without chasing dashboards or losing your flow.">
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+  <!-- TYPEFACE -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- CavBot header-footer styles -->
   <link rel="stylesheet" href="files/css/globals/header-footer.css">
+  <!-- CavBot head + badge + body -->
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
   
   <link rel="stylesheet" href="files/css/globals/main.css">
-  <link rel="stylesheet" href="files/css/pages/resource.css">
+  <!-- Page styles -->
+  <link rel="stylesheet" href="files/css/pages/terminal.css">
+
+  <!-- Structured data  -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"CavBot Terminal · Your website on the command line · CavBot",
+    "description":"See what changed, understand what broke, and move straight into the fix without chasing dashboards or losing your flow.",
+    "url":"https://cavbot.io/terminal.html",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"CavBot",
+      "url":"https://cavbot.io/"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"CavBot",
+      "url":"https://cavbot.io/",
+      "logo":{
+        "@type":"ImageObject",
+        "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
+      }
+    }
+  }
+  </script>
 </head>
 
-<body class="page-shell" data-cavbot-page-type="resource-page" data-cavbot-component="resource-shell" data-cavbot-disable-floating-badge="1">
+
+<body
+  class="page-shell"
+  data-cavbot-page-type="about-page"
+  data-cavbot-component="about-shell"
+>
+  <!-- DO NOT add data-cavbot-disable-floating-badge="1" on this page. -->
   <header class="site-header cb-company-header">
   <div class="site-header-inner">
      <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
@@ -122,7 +190,7 @@
                   <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="terminal.html">
                   <span class="cb-mega-link-title">CavBot Terminal</span>
                   <span class="cb-mega-link-copy">Run Cav commands, inspect, and debug faster.</span>
                 </a>
@@ -214,7 +282,7 @@
                 </a>
               </section>
 
-             <section class="cb-mega-column cb-mega-column--quiet">
+              <section class="cb-mega-column cb-mega-column--quiet">
                 <p class="cb-mega-kicker">Operational security</p>
 
                 <a class="cb-mega-link" href="/docs.html#risk-controls">
@@ -461,37 +529,20 @@
         </button>
 
         <div class="cb-try-cavai-menu" role="dialog" aria-label="CavAi quick actions">
-          <section class="cb-try-cavai-menu-section">
-            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="false">
+          <section class="cb-try-cavai-menu-section is-open" data-default-open="true">
+            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="true">
               <span class="cb-try-cavai-menu-label">Models</span>
               <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </button>
-            <div class="cb-try-cavai-menu-section-panel" hidden>
+            <div class="cb-try-cavai-menu-section-panel">
               <div class="cb-try-cavai-menu-link is-static">
                 <span class="cb-try-cavai-menu-link-label">Deepseek</span>
               </div>
               <div class="cb-try-cavai-menu-link is-static">
                 <span class="cb-try-cavai-menu-link-label">Qwen</span>
               </div>
-            </div>
-          </section>
-
-          <section class="cb-try-cavai-menu-section is-open is-locked-open">
-            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="true" disabled>
-              <span class="cb-try-cavai-menu-label">Account</span>
-              <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-            <div class="cb-try-cavai-menu-section-panel">
-              <a class="cb-try-cavai-menu-link" href="https://app.cavbot.io/auth?mode=signup">
-                <span class="cb-try-cavai-menu-link-label">Sign up</span>
-              </a>
-              <a class="cb-try-cavai-menu-link" href="https://app.cavbot.io/auth?mode=login">
-                <span class="cb-try-cavai-menu-link-label">Log in</span>
-              </a>
             </div>
           </section>
         </div>
@@ -537,7 +588,7 @@
             <a href="cavcode.html" class="nav-overlay-link">Code</a>
             <a href="/" class="nav-overlay-link">HTML Viewer</a>
             <a href="/" class="nav-overlay-link">Cloud</a>
-            <a href="/" class="nav-overlay-link">CavBot Terminal</a>
+            <a href="terminal.html" class="nav-overlay-link">CavBot Terminal</a>
           </div>
         </section>
 
@@ -621,81 +672,222 @@
   </div>
 </header>
 
-  <div class="nav-overlay" aria-hidden="true">
-    <div class="nav-overlay-backdrop"></div>
-    <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
-      <div class="nav-overlay-header">
-        <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
-      </div>
-      <div class="nav-overlay-body">
-        <a href="product.html" class="nav-overlay-link">Product</a>
-        <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
-        <a href="pricing.html" class="nav-overlay-link">Pricing</a>
-        <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
-        <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
-        <div class="nav-cta-row">
-          <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
-          <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
-        </div>
-      </div>
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-backdrop"></div>
+  <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+    </div>
+    <div class="nav-overlay-body">
+      <a href="product.html" class="nav-overlay-link">Product</a>
+      <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+      <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+      <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+      <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+       <div class="nav-cta-row">
+         <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+         <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+       </div>
     </div>
   </div>
+</div>
+ 
+<main class="terminal-main" id="main" data-terminal-page>
+  <!-- ==============================
+    CAVBOT TERMINAL HERO
+  ============================== -->
+  <section class="terminal-hero" aria-labelledby="terminal-title">
+    <div class="terminal-shell">
+      <div class="terminal-copy">
 
-  <main class="page-inner resource-main">
-    <section class="resource-hero" aria-labelledby="resource-title">
-      <h1 id="resource-title" class="resource-title">CavTools</h1>
-      <p class="resource-lede">Operate your workspace from a single command plane.</p>
-      <br><br>
-      <p class="resource-lede">CavTools is the operator surface inside CavBot. It brings diagnostics, command execution, event visibility, and controlled actions into one connected environment, so teams can inspect, manage, and act across workspace systems with precision.</p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/cavtools">IN APP</a>
-        <a class="btn btn-ghost" href="product.html">PRODUCT OVERVIEW</a>
+ <h1 id="terminal-title" class="terminal-title">
+          Bring your website to the command <br> line
+        </h1>
+
+
+        <p class="terminal-lede">
+          See what’s wrong, understand what changed, and fix it
+          without <br> leaving your flow.
+        </p>
+
+
+        <div class="terminal-actions" aria-label="CavBot Terminal actions">
+          <a class="terminal-button terminal-button--primary" href="https://app.cavbot.io/terminal">
+            Open terminal
+          </a>
+
+
+          <a class="terminal-button terminal-button--secondary" href="/docs.html#cavtools">
+            Learn more
+          </a>
+        </div>
       </div>
-    </section>
 
-    <section class="resource-grid" aria-label="CavTools details">
-      <article class="resource-card">
-        <h2>What It Is</h2>
-        <br><br>
-        <p>CavTools is a unified operator environment for working across your CavBot workspace. It brings inspection, event streams, studio workflows, and command execution into one connected surface for system-wide control.</p>
-      </article>
-      <article class="resource-card">
-        <h2>What It Does</h2>
-        <br><br>
-        <p>CavTools gives teams a structured way to run commands, inspect live system state, work with files and resources, and move through diagnostics-driven workflows from one connected surface.</p>
-      </article>
-      <article class="resource-card">
-        <h2>Why It Matters</h2>
-        <br><br>
-        <p>Modern systems do not fail in one place. They fail across layers. CavTools turns platform state into clear, actionable control, so teams can investigate issues, execute with confidence, and move from signal to resolution without losing context.</p>
-      </article>
-      <article class="resource-card">
-        <h2>Primary Workflows</h2>
-        <br><br>
-        <ul class="resource-list">
-          <li>Run diagnostics and telemetry checks from one command surface.</li>
-          <li>Inspect and manage resources through namespace-aware tooling.</li>
-          <li>Use event streams and terminal output for fast triage.</li>
-          <li>Bridge operational commands with coding, storage, and workspace systems.</li>
-        </ul>
-      </article>
-    </section>
 
-    <section class="resource-cta" aria-label="CavBot app workflow">
-      <h2>In The CavBot App</h2>
-      <p>
-        CavTools works inside the CavBot app with Analytics v5 signals, CavAi intelligence workflows, and execution surfaces.
-        Start in Command Center to understand what is happening, then move into CavTools when it is time to act.
-      </p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/">COMMAND CENTER</a>
-        <a class="btn btn-ghost" href="https://app.cavbot.io/auth?mode=login">LOG IN TO CONTINUE</a>
-      </div>
-    </section>
-  </main>
+      <section
+        id="terminal-demo"
+        class="terminal-demo"
+        aria-label="CavBot Terminal command preview"
+        data-terminal-demo
+      >
+        <div class="terminal-demo-head">
+          <p class="terminal-demo-command" aria-live="polite">
+            <span aria-hidden="true">$</span>
+            <strong data-terminal-head-command></strong>
+            <i aria-hidden="true"></i>
+          </p>
 
+
+          <p class="terminal-demo-caption" data-terminal-head-caption>
+            See what needs attention now.
+          </p>
+        </div>
+
+
+        <div class="terminal-window">
+          <div class="terminal-window-bar">
+            <p>CavBot Terminal</p>
+
+
+            <button
+              class="terminal-toggle"
+              type="button"
+              aria-label="Pause terminal animation"
+              data-terminal-toggle
+              data-state="playing"
+            >
+              <svg class="terminal-toggle-icon terminal-toggle-icon--pause" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7.25 5.25h3.25v13.5H7.25V5.25Zm6.25 0h3.25v13.5H13.5V5.25Z"></path>
+              </svg>
+
+
+              <svg class="terminal-toggle-icon terminal-toggle-icon--play" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 5.5v13l10.5-6.5L8 5.5Z"></path>
+              </svg>
+            </button>
+          </div>
+
+
+          <div class="terminal-screen">
+            <div class="terminal-prompt">
+              <span aria-hidden="true">$</span>
+              <strong data-terminal-line-command></strong>
+              <i aria-hidden="true"></i>
+            </div>
+
+
+            <div class="terminal-output" data-terminal-output></div>
+          </div>
+        </div>
+
+<br><br>
+        <a class="terminal-all-link" href="/docs.html#cav-commands">
+          View all Cav Commands ↗
+        </a>
+      </section>
+    </div>
+  </section>
+
+<!-- ==============================
+  TERMINAL FINAL SECTION
+============================== -->
+<section class="terminal-seal" aria-labelledby="terminal-seal-title" data-terminal-seal>
+  <div class="terminal-seal-shell">
+    <header class="terminal-seal-header">
+      <h2 id="terminal-seal-title">
+        Goodbye, tab hopping. <br>
+        Hello, terminal.
+      </h2>
+    </header>
+
+
+    <div class="terminal-seal-feature-grid">
+      <article class="terminal-seal-feature">
+        <h3>Your entire website workflow</h3>
+        <p>Work with checks, routes, errors, changes, fixes, and more.</p>
+       
+      </article>
+
+
+      <article class="terminal-seal-feature">
+        <h3>Start with a command</h3>
+        <p>Move from a question to the right part of your website without leaving the terminal.</p>
+        
+      </article>
+
+
+      <article class="terminal-seal-feature">
+        <h3>Fix the right thing</h3>
+        <p>See what needs attention, then move straight to the fix.</p>
+       
+      </article>
+
+
+      <article class="terminal-seal-feature">
+        <h3>Work from one place</h3>
+        <p>Run the check, read the result, and keep moving without chasing tabs.</p>
+       
+      </article>
+    </div>
+
+
+    <div class="terminal-seal-stage">
+      <div class="terminal-seal-map" aria-hidden="true" data-terminal-seal-map></div>
+<br>
+
+      <article class="terminal-seal-card">
+        <h3>Try CavBot on the command line</h3>
+
+
+        <p>
+          CavBot Terminal brings your website into one clean <br> command line.
+        </p>
+
+
+        <div class="terminal-seal-command-row">
+          <code>cav help</code>
+          <span>or</span>
+          <a href="https://app.cavbot.io/terminal">Open terminal</a>
+        </div>
+
+        <a class="terminal-seal-link" href="/docs.html#cav-commands">
+          View all Cav Commands ↗
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</main>
+
+
+
+  <!-- FOOTER -->
   <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">
@@ -735,7 +927,7 @@
           <li><a href="/" class="footer-link">Education</a></li>
           <li><a href="/" class="footer-link">Partners</a></li>
           <li><a href="https://app.cavbot.io/status" class="footer-link">System Status</a></li>
-          <li><a href="/" class="footer-link">CavBot Terminal</a></li>
+          <li><a href="terminal.html" class="footer-link">CavBot Terminal</a></li>
           
 
         </ul>
@@ -804,21 +996,31 @@
 </footer>
 
   <script>
-window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
-window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1";
-window.CAVBOT_SITE = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
-window.CAVBOT_SITE_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
-window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
-</script>
-<script src="/cavai/cavai-analytics-v5.js" defer></script>
-<script
-  defer
-  src="/cavai/cavai.js"
-  data-api="https://app.cavbot.io/api/embed/analytics"
-  data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
-  data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"
-  data-site="cece1ca3-212c-46c5-b54f-e69dd2f8f061">
-</script>
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414logosmooth1"></script>
+    window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+    window.CAVBOT_PROJECT_KEY = "cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1";
+    window.CAVBOT_SITE = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+    window.CAVBOT_SITE_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+    window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
+  </script>
+
+
+  <script src="/cavai/cavai-analytics-v5.js" defer></script>
+  <div
+    data-cavbot-cdn-floating-badge="1"
+    data-cavbot-cdn-slot="badge"
+    aria-hidden="true"
+    style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
+  <script
+    defer
+    src="/cavai/cavai.js"
+    data-api="https://app.cavbot.io/api/embed/analytics"
+    data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
+    data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"
+    data-site="cece1ca3-212c-46c5-b54f-e69dd2f8f061">
+  </script>
+
+
+  <script src="files/js/globals/header-footer.js"></script>
+  <script src="files/js/pages/terminal.js" defer></script>
 </body>
 </html>
