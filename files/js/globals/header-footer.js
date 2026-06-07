@@ -5148,7 +5148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   var SESSION_ENDPOINT = "https://app.cavbot.io/api/public/website-session";
-  var ICON_SVG = "/assets/icons/page/profile-circle-svgrepo-com.svg";
+  var ICON_SVG = "/assets/icons/page/profile-svgrepo-com.svg";
   var APP_LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
   var APP_LOGOUT_URL = "https://app.cavbot.io/api/auth/logout";
   var APP_PLAN_URL = "https://app.cavbot.io/plan";
