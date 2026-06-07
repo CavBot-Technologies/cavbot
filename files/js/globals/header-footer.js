@@ -397,8 +397,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { label: "Image Edit", href: "/image-edit.html" },
   ];
   const TRY_CAVAI_FRONTEND_MODEL_LINKS = [
-    { id: "deepseek", label: "Deepseek" },
-    { id: "qwen", label: "Qwen" },
+    { id: "deepseek", label: "Deepseek", href: "https://www.cavbot.io/deepseek-cavbot" },
+    { id: "qwen", label: "Qwen", href: "https://www.cavbot.io/qwen-cavbot" },
   ];
   let tryCavaiControlSequence = 0;
 
@@ -744,9 +744,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const controlId = ++tryCavaiControlSequence;
     const toModelShowcaseRow = (entry) => {
       return `
-        <div class="cb-try-cavai-menu-link is-model is-static" ${entry.id ? `data-model-id="${entry.id}"` : ""}>
+        <a class="cb-try-cavai-menu-link is-model" href="${entry.href}" ${entry.id ? `data-model-id="${entry.id}"` : ""}>
           <span class="cb-try-cavai-menu-link-label">${entry.label}</span>
-        </div>
+        </a>
       `;
     };
     const toMenuSectionMarkup = ({ key, label, content, defaultOpen = false, lockedOpen = false }) => {
