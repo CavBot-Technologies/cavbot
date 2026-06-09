@@ -1285,6 +1285,10 @@ a.cb-try-cavai-menu-link:hover::after {
     opacity 180ms ease;
 }
 
+[data-cavbot-app-session-avatar].cb-app-session-trigger--mobile-header {
+  display: none !important;
+}
+
 
 [data-cavbot-app-session-avatar][data-cavbot-app-auth="signed-out"] {
   --cb-app-session-tone: rgba(247, 251, 255, 0.94);
@@ -2181,8 +2185,8 @@ iframe {
     margin-left: auto;
   }
 
-  .cb-app-session-trigger--mobile-header {
-    display: inline-grid;
+  [data-cavbot-app-session-avatar].cb-app-session-trigger--mobile-header {
+    display: inline-grid !important;
     width: 34px;
     min-height: 34px;
     flex: 0 0 34px;

@@ -8975,6 +8975,23 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row a {
   margin-left: 22px !important;
 }
 
+@media (max-width: 700px) {
+  .system-right .system-spec-card {
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .system-right .spec-row-label,
+  .system-right .spec-row-body {
+    width: min(100%, 30ch) !important;
+    max-width: min(100%, 30ch) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
 /* ==============================
    Mobile/tablet full-site polish
    ============================== */

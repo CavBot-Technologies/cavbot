@@ -5191,9 +5191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!row.querySelector("[data-site-update-open]")) {
       const trigger = document.createElement("button");
-      trigger.className = row.classList.contains("nav-overlay-cta")
-        ? "cb-site-update-trigger cb-site-update-trigger--mobile"
-        : "cb-site-update-trigger";
+      trigger.className = "cb-site-update-trigger";
       trigger.type = "button";
       trigger.setAttribute("aria-label", "View site update notice");
       trigger.setAttribute("data-site-update-open", "");
@@ -5204,16 +5202,29 @@ document.addEventListener("DOMContentLoaded", () => {
     var avatar = row.querySelector("[data-cavbot-app-session-avatar]");
     if (!avatar) {
       avatar = createAppSessionAvatar();
+      tryCavai.insertAdjacentElement("afterend", avatar);
     }
-    tryCavai.insertAdjacentElement("afterend", avatar);
   });
 
-  const headerInner = document.querySelector(".site-header-inner");
-  const menuToggle = headerInner ? headerInner.querySelector(".nav-menu-toggle") : null;
-  if (headerInner && menuToggle && !headerInner.querySelector(".cb-app-session-trigger--mobile-header")) {
-    const avatar = createAppSessionAvatar({ mobileHeader: true });
-    menuToggle.insertAdjacentElement("afterend", avatar);
+  function syncMobileHeaderAvatar() {
+    const headerInner = document.querySelector(".site-header-inner");
+    const menuToggle = headerInner ? headerInner.querySelector(".nav-menu-toggle") : null;
+    const existing = headerInner ? headerInner.querySelector(".cb-app-session-trigger--mobile-header") : null;
+    const shouldShowMobileHeaderAvatar = window.matchMedia("(max-width: 1160px)").matches;
+
+    if (!shouldShowMobileHeaderAvatar) {
+      if (existing) existing.remove();
+      return;
+    }
+
+    if (headerInner && menuToggle && !existing) {
+      const avatar = createAppSessionAvatar({ mobileHeader: true });
+      menuToggle.insertAdjacentElement("afterend", avatar);
+    }
   }
+
+  syncMobileHeaderAvatar();
+  window.addEventListener("resize", syncMobileHeaderAvatar, { passive: true });
 
   const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));
   if (!triggers.length) return;
