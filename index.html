@@ -749,7 +749,35 @@
         </button>
         <div class="cb-try-cavai cb-try-cavai--mobile" data-cb-try-cavai>
          <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+          <button class="cb-try-cavai-toggle" type="button" aria-label="Open CavAi options" aria-expanded="false">
+            <span class="cb-try-cavai-caret" aria-hidden="true">
+              <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-closed" viewBox="0 0 16 16">
+                <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-open" viewBox="0 0 16 16">
+                <path d="M4.25 9.75L8 6l3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </button>
 
+          <div class="cb-try-cavai-menu" role="dialog" aria-label="CavAi quick actions">
+            <section class="cb-try-cavai-menu-section is-open" data-default-open="true">
+              <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="true">
+                <span class="cb-try-cavai-menu-label">Models</span>
+                <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="cb-try-cavai-menu-section-panel">
+                <a class="cb-try-cavai-menu-link is-model" href="https://www.cavbot.io/deepseek-cavbot" data-model-id="deepseek">
+                  <span class="cb-try-cavai-menu-link-label">Deepseek</span>
+                </a>
+                <a class="cb-try-cavai-menu-link is-model" href="https://www.cavbot.io/qwen-cavbot" data-model-id="qwen">
+                  <span class="cb-try-cavai-menu-link-label">Qwen</span>
+                </a>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </aside>

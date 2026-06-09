@@ -4559,21 +4559,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function installStableHeaderOffset() {
+  function installResponsiveHeaderBranding() {
     if (!header) return;
 
     const brandImages = Array.from(document.querySelectorAll(".brand-logo-img"));
-    brandImages.forEach((img) => {
-      if (!(img instanceof HTMLImageElement)) return;
-      const logotypeSrc = String(img.dataset.logotypeSrc || LOGOTYPE_SRC);
-      if (String(img.getAttribute("src") || "") !== logotypeSrc) {
-        img.setAttribute("src", logotypeSrc);
-      }
-      img.classList.remove("is-logomark");
-    });
+    let isCompact = false;
 
-    header.classList.remove("is-scrolled");
-    syncHeaderOffset();
+    function setBrandMode(nextCompact) {
+      isCompact = Boolean(nextCompact);
+      header.classList.toggle("is-scrolled", isCompact);
+
+      brandImages.forEach((img) => {
+        if (!(img instanceof HTMLImageElement)) return;
+        const logotypeSrc = String(img.dataset.logotypeSrc || LOGOTYPE_SRC);
+        const logomarkSrc = String(img.dataset.logomarkSrc || LOGOMARK_SRC);
+        const nextSrc = isCompact ? logomarkSrc : logotypeSrc;
+
+        if (String(img.getAttribute("src") || "") !== nextSrc) {
+          img.setAttribute("src", nextSrc);
+        }
+
+        img.classList.toggle("is-logomark", isCompact);
+      });
+
+      syncHeaderOffset();
+    }
+
+    function updateBrandMode() {
+      setBrandMode((window.scrollY || window.pageYOffset || 0) > 18);
+    }
+
+    setBrandMode(false);
 
     window.addEventListener("resize", () => {
       syncHeaderOffset();
@@ -4582,8 +4598,9 @@ document.addEventListener("DOMContentLoaded", () => {
       syncHeaderOffset();
     }, { passive: true });
     window.addEventListener("pageshow", () => {
-      syncHeaderOffset();
+      updateBrandMode();
     }, { passive: true });
+    window.addEventListener("scroll", updateBrandMode, { passive: true });
   }
 
   function closeMegaMenus() {
@@ -4815,6 +4832,140 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function createMobileChevron() {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("viewBox", "0 0 16 16");
+    svg.setAttribute("aria-hidden", "true");
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", "M4.25 6.25L8 10l3.75-3.75");
+    path.setAttribute("fill", "none");
+    path.setAttribute("stroke", "currentColor");
+    path.setAttribute("stroke-width", "1.7");
+    path.setAttribute("stroke-linecap", "round");
+    path.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(path);
+
+    return svg;
+  }
+
+  function cleanNavText(value) {
+    return String(value || "").replace(/\s+/g, " ").trim();
+  }
+
+  function cloneLinkToMobile(sourceLink, className) {
+    const link = document.createElement("a");
+    link.className = className;
+    link.href = sourceLink.getAttribute("href") || "#";
+
+    const titleSource = sourceLink.querySelector(".cb-mega-link-title");
+    const copySource = sourceLink.querySelector(".cb-mega-link-copy");
+    const title = cleanNavText(titleSource ? titleSource.textContent : sourceLink.textContent);
+    const copy = cleanNavText(copySource ? copySource.textContent : "");
+
+    if (sourceLink.target) link.target = sourceLink.target;
+    if (sourceLink.rel) link.rel = sourceLink.rel;
+
+    if (titleSource || copySource) {
+      const titleEl = document.createElement("span");
+      titleEl.className = "cb-mobile-link-title";
+      titleEl.textContent = title;
+      link.appendChild(titleEl);
+
+      if (copy) {
+        const copyEl = document.createElement("span");
+        copyEl.className = "cb-mobile-link-copy";
+        copyEl.textContent = copy;
+        link.appendChild(copyEl);
+      }
+    } else {
+      link.textContent = title;
+    }
+
+    return link;
+  }
+
+  function buildMobileSectionFromMega(navItem, index) {
+    const trigger = navItem.querySelector(".cb-nav-trigger");
+    const menu = navItem.querySelector(".cb-mega-menu");
+    if (!trigger || !menu) return null;
+
+    const triggerLabel = trigger.querySelector("span");
+    const label = cleanNavText(triggerLabel ? triggerLabel.textContent : trigger.textContent);
+    if (!label) return null;
+
+    const section = document.createElement("section");
+    section.className = "cb-mobile-section";
+
+    const button = document.createElement("button");
+    button.className = "cb-mobile-section-toggle";
+    button.type = "button";
+    button.setAttribute("aria-expanded", "false");
+
+    const labelEl = document.createElement("span");
+    labelEl.textContent = label;
+    button.appendChild(labelEl);
+    button.appendChild(createMobileChevron());
+    section.appendChild(button);
+
+    const panel = document.createElement("div");
+    panel.className = "cb-mobile-section-panel";
+    panel.hidden = true;
+    panel.id = `cb-mobile-menu-panel-${index}`;
+    button.setAttribute("aria-controls", panel.id);
+
+    Array.from(menu.querySelectorAll(".cb-mega-column")).forEach((column) => {
+      const links = Array.from(column.querySelectorAll("a.cb-mega-link"));
+      if (!links.length) return;
+
+      const group = document.createElement("div");
+      group.className = "cb-mobile-menu-group";
+
+      const kicker = cleanNavText(column.querySelector(".cb-mega-kicker")?.textContent || "");
+      if (kicker) {
+        const kickerEl = document.createElement("p");
+        kickerEl.className = "cb-mobile-menu-kicker";
+        kickerEl.textContent = kicker;
+        group.appendChild(kickerEl);
+      }
+
+      links.forEach((link) => {
+        group.appendChild(cloneLinkToMobile(link, "nav-overlay-link cb-mobile-detail-link"));
+      });
+
+      panel.appendChild(group);
+    });
+
+    Array.from(menu.querySelectorAll(".cb-mega-bottom-link")).forEach((link) => {
+      panel.appendChild(cloneLinkToMobile(link, "nav-overlay-link cb-mobile-bottom-link"));
+    });
+
+    section.appendChild(panel);
+    return section;
+  }
+
+  function rebuildMobileNavFromDesktop() {
+    if (!navOverlay) return;
+    const body = navOverlay.querySelector(".nav-overlay-body");
+    const desktopNav = document.querySelector(".nav-main");
+    if (!body || !desktopNav) return;
+
+    const fragment = document.createDocumentFragment();
+
+    Array.from(desktopNav.querySelectorAll(":scope > .cb-nav-item")).forEach((navItem, index) => {
+      const section = buildMobileSectionFromMega(navItem, index);
+      if (section) fragment.appendChild(section);
+    });
+
+    Array.from(desktopNav.querySelectorAll(":scope > a.nav-link")).forEach((link) => {
+      fragment.appendChild(cloneLinkToMobile(link, "nav-overlay-link nav-overlay-link--standalone"));
+    });
+
+    if (fragment.childNodes.length) {
+      body.replaceChildren(fragment);
+    }
+  }
+
   function openNav(trigger) {
     if (!navOverlay || navOverlay.classList.contains("is-open")) return;
 
@@ -4854,6 +5005,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function installMobileNav() {
     if (!navOverlay || !navToggles.length) return;
+
+    document.querySelectorAll(".nav-overlay").forEach((overlay) => {
+      if (overlay === navOverlay) return;
+      if (overlay.querySelector(".cb-mobile-section")) return;
+      overlay.remove();
+    });
+
+    rebuildMobileNavFromDesktop();
 
     navToggles.forEach((toggle) => {
       toggle.addEventListener("click", () => {
@@ -4984,7 +5143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function bootHeaderFooter() {
     applyBrandLogotype();
-    installStableHeaderOffset();
+    installResponsiveHeaderBranding();
     installMegaMenus();
     installTryCavaiMenus();
     installMobileNav();
@@ -5002,10 +5161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  function createAppSessionAvatar(row) {
+  function createAppSessionAvatar(options = {}) {
     const avatar = document.createElement("button");
-    avatar.className = row.classList.contains("nav-overlay-cta")
-      ? "cb-app-session-trigger cb-app-session-trigger--mobile"
+    avatar.className = options.mobileHeader
+      ? "cb-app-session-trigger cb-app-session-trigger--mobile-header"
       : "cb-app-session-trigger";
     avatar.type = "button";
     avatar.setAttribute("aria-label", "Open CavBot account");
@@ -5020,7 +5179,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return avatar;
   }
 
-  document.querySelectorAll(".nav-cta-row, .nav-overlay-cta").forEach((row) => {
+  document.querySelectorAll(".nav-overlay-cta [data-cavbot-app-session-avatar]").forEach((avatar) => {
+    avatar.remove();
+  });
+
+  document.querySelectorAll(".nav-cta-row").forEach((row) => {
     const tryCavai = row.querySelector("[data-cb-try-cavai]");
     if (!tryCavai) {
       return;
@@ -5040,10 +5203,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var avatar = row.querySelector("[data-cavbot-app-session-avatar]");
     if (!avatar) {
-      avatar = createAppSessionAvatar(row);
+      avatar = createAppSessionAvatar();
     }
     tryCavai.insertAdjacentElement("afterend", avatar);
   });
+
+  const headerInner = document.querySelector(".site-header-inner");
+  const menuToggle = headerInner ? headerInner.querySelector(".nav-menu-toggle") : null;
+  if (headerInner && menuToggle && !headerInner.querySelector(".cb-app-session-trigger--mobile-header")) {
+    const avatar = createAppSessionAvatar({ mobileHeader: true });
+    menuToggle.insertAdjacentElement("afterend", avatar);
+  }
 
   const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));
   if (!triggers.length) return;

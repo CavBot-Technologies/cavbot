@@ -8630,6 +8630,26 @@ footer.site-footer {
         padding-top: var(--space-lg);
       }
 
+      .hero-robot-avatar-wrap,
+      .hero-robot-avatar-wrap .cavbot-cdn-slot[data-cavbot-cdn-slot="head"] {
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .hero-robot-avatar-wrap :is(
+        .badge-orbit,
+        .cavbot-head-orbit,
+        .cavbot-head-ring,
+        .cavbot-head-halo,
+        .cavbot-head-backdrop,
+        .cavbot-head-glow,
+        .cavbot-head-orbit-ring,
+        .cavbot-head-frame
+      ) {
+        display: none !important;
+      }
+
       .brain-card {
         padding: 16px 14px 14px;
         gap: 12px;
@@ -8953,4 +8973,1397 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row a {
 
 .system-right .spec-row-label {
   margin-left: 22px !important;
+}
+
+/* ==============================
+   Mobile/tablet full-site polish
+   ============================== */
+
+html,
+body,
+.page-shell {
+  overflow-x: clip;
+}
+
+@supports not (overflow-x: clip) {
+  html,
+  body,
+  .page-shell {
+    overflow-x: hidden;
+  }
+}
+
+.page-shell :is(img, video, canvas, iframe, svg) {
+  max-width: 100%;
+}
+
+.page-shell :is(p, h1, h2, h3, h4, h5, h6, a, span, li, dd, dt, button, figcaption) {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 980px) {
+  :root {
+    --space-xxl: 44px;
+    --space-xl: 34px;
+    --space-lg: 26px;
+    --space-md: 18px;
+    --space-sm: 14px;
+  }
+
+  .page-inner {
+    max-width: 100%;
+    padding: 30px 14px 52px;
+    gap: 44px;
+  }
+
+  .section {
+    padding-top: 44px;
+  }
+
+  .section-header {
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .eyebrow,
+  .brain-label,
+  .pff-mode-label,
+  .spec-row-label,
+  .docs-item-label {
+    font-size: 9.5px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .section-title,
+  .brain-title {
+    font-size: 16px !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.25 !important;
+  }
+
+  .section-body,
+  .hero-lede,
+  .brain-copy,
+  .pff-header-copy,
+  .system-left-copy,
+  .pricing-note,
+  .arcade-guide-copy {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .btn {
+    min-height: 38px;
+    padding-inline: 14px;
+    font-size: 12px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-top: 30px;
+    padding-bottom: 24px;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface,
+  body.page-shell .page-inner > section.hero.hero-home-surface {
+    min-height: 0 !important;
+    grid-template-rows: none !important;
+    padding-top: calc(var(--cb-header-offset, 0px) + 18px) !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block {
+    margin-top: 0 !important;
+    gap: 12px !important;
+  }
+
+  .cavai-main-title,
+  .hero-title,
+  .pff-type-title,
+  .system-title,
+  .pricing-headline,
+  .arcade-guide-title {
+    font-size: clamp(25px, 7.8vw, 42px) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -0.035em !important;
+  }
+
+  .hero-title-line {
+    display: inline;
+  }
+
+  .hero-copy-block br,
+  .hero-lede br {
+    display: none;
+  }
+
+  .hero-cta-row {
+    gap: 8px;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standalone {
+    margin-top: 0 !important;
+  }
+
+  .hero-cavbot-standalone {
+    justify-self: center;
+    width: min(220px, 68vw);
+  }
+
+  .cavbot-cdn-slot[data-cavbot-cdn-slot="head"] {
+    min-width: 92px;
+    min-height: 92px;
+  }
+
+  .hero-demo-section {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .hero-demo-frame {
+    position: relative !important;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .hero-demo-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-demo-button {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+
+  .cavai-front,
+  .brain-museum,
+  .pff-museum,
+  .system-role,
+  .pricing-docs,
+  .arcade-guide {
+    margin-top: 44px;
+  }
+
+  .cavai-top,
+  .arcade-guide {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  .cavai-main-title {
+    max-width: 100%;
+  }
+
+  .cavai-top-copy {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .cavai-video-stage {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+
+  .cavai-video-shell,
+  .cavai-video-shell.is-expanded {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    border-radius: 8px;
+  }
+
+  .brain-museum {
+    padding: 20px 14px;
+    gap: 14px;
+    border-radius: 8px;
+  }
+
+  .brain-word {
+    font-size: 24px;
+  }
+
+  .brain-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .brain-card {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .brain-era,
+  .brain-text {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .pff-museum,
+  .system-role,
+  .pricing-docs {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 34px 0 !important;
+  }
+
+  .pff-header,
+  .pff-grid,
+  .system-shell,
+  .pricing-shell {
+    width: min(100%, 720px) !important;
+    max-width: 100% !important;
+  }
+
+  .pff-shell {
+    width: min(100% - 20px, 720px);
+  }
+
+  .pff-header {
+    margin-bottom: 18px;
+  }
+
+  .pff-card {
+    min-height: 0;
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .pff-card-inner {
+    gap: 16px;
+  }
+
+  .pff-card-title {
+    font-size: 19px !important;
+    letter-spacing: -0.025em;
+  }
+
+  .pff-card-body {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+  }
+
+  .pff-glyph {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .pff-glyph-icon,
+  .pff-glyph-icon--path {
+    width: 24px;
+    height: 24px;
+  }
+
+  .pff-chip,
+  .badge-chip {
+    padding: 4px 8px;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .system-shell,
+  .pricing-shell {
+    grid-template-columns: 1fr !important;
+    min-height: 0 !important;
+  }
+
+  .system-left,
+  .pricing-card {
+    min-height: 0 !important;
+    padding: 26px 16px !important;
+  }
+
+  .system-spec-card,
+  .setup-step {
+    min-height: 0 !important;
+    padding: 22px 16px !important;
+  }
+
+  .spec-row-body,
+  .setup-step-copy {
+    font-size: 12.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .arcade-strip {
+    max-width: 100%;
+    padding-inline: 34px;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --space-xxl: 34px;
+    --space-xl: 28px;
+    --space-lg: 22px;
+    --space-md: 16px;
+  }
+
+  .page-inner {
+    padding-inline: 12px;
+    padding-bottom: 42px;
+    gap: 34px;
+  }
+
+  .section {
+    padding-top: 34px;
+  }
+
+  .cavai-main-title,
+  .hero-title,
+  .pff-type-title,
+  .system-title,
+  .pricing-headline,
+  .arcade-guide-title {
+    font-size: clamp(22px, 7.2vw, 32px) !important;
+    line-height: 1.08 !important;
+  }
+
+  .section-body,
+  .hero-lede,
+  .brain-copy,
+  .pff-header-copy,
+  .system-left-copy,
+  .pricing-note,
+  .arcade-guide-copy,
+  .cavai-top-copy {
+    font-size: 12.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .btn {
+    width: 100%;
+    min-height: 36px;
+    padding-inline: 12px;
+  }
+
+  .hero {
+    gap: 14px;
+  }
+
+  .hero-cavbot-standalone {
+    width: min(170px, 58vw);
+  }
+
+  .hero-demo-frame {
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
+  }
+
+  .cavai-video-stage {
+    aspect-ratio: 4 / 3;
+  }
+
+  .brain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pff-shell {
+    width: min(100% - 16px, 560px);
+  }
+
+  .pff-grid,
+  .system-shell,
+  .pricing-shell {
+    width: min(100% - 16px, 560px) !important;
+  }
+
+  .pff-card {
+    padding: 18px 14px;
+  }
+
+  .pff-card-header {
+    gap: 10px;
+  }
+
+  .pff-card-title {
+    font-size: 17px !important;
+  }
+
+  .pff-card-body {
+    font-size: 12.5px !important;
+  }
+
+  .system-left,
+  .pricing-card,
+  .system-spec-card,
+  .setup-step {
+    padding-inline: 14px !important;
+  }
+
+  .arcade-strip {
+    padding-inline: 28px;
+  }
+
+  .code-block {
+    font-size: 10px;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-inner {
+    padding-inline: 10px;
+  }
+
+  .cavai-main-title,
+  .hero-title,
+  .pff-type-title,
+  .system-title,
+  .pricing-headline,
+  .arcade-guide-title {
+    font-size: clamp(20px, 6.8vw, 28px) !important;
+  }
+
+  .hero-cavbot-standalone {
+    width: min(145px, 52vw);
+  }
+
+  .hero-demo-button {
+    min-height: 32px;
+    font-size: 11px;
+  }
+}
+
+/* ==============================
+   Targeted mobile repair pass
+   ============================== */
+
+.page-shell :is(p, h1, h2, h3, h4, h5, h6, a, span, li, dd, dt, button, figcaption) {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (max-width: 700px) {
+  body.page-shell main.page-inner,
+  body.page-shell .page-inner {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0 !important;
+    overflow-x: hidden;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface,
+  body.page-shell .page-inner > section.hero.hero-home-surface {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    min-height: auto !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas:
+      "copy"
+      "demo" !important;
+    grid-template-rows: auto auto !important;
+    row-gap: 22px !important;
+    padding:
+      calc(var(--cb-header-offset, 58px) + 24px)
+      18px
+      34px !important;
+    overflow: hidden !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    gap: 14px !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .cavai-main-title,
+  body.page-shell .page-inner > section.hero.hero-home-surface .cavai-main-title {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(34px, 10.2vw, 40px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.055em !important;
+    text-wrap: balance;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-title-line,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-title-line {
+    display: inline !important;
+    white-space: normal !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block br,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block br,
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-lede br,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-lede br {
+    display: block !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-lede,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-lede {
+    max-width: 100% !important;
+    margin: 0 !important;
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cta-row,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row {
+    margin-top: 2px !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .btn,
+  body.page-shell .page-inner > section.hero.hero-home-surface .btn {
+    width: 100%;
+    min-height: 42px;
+    font-size: 13px;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standalone {
+    display: none !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-demo-section,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-demo-section {
+    width: 100%;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-demo-frame,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-demo-frame {
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    padding: 8px !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pilot-logo-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .pilot-logo-marquee {
+    min-height: 58px !important;
+  }
+
+  .pilot-logo-group {
+    gap: 22px !important;
+    padding-inline: 18px !important;
+  }
+
+  .pilot-logo-item {
+    flex: 0 0 96px !important;
+    width: 96px !important;
+    max-width: 96px !important;
+  }
+
+  .pilot-logo-img {
+    width: auto !important;
+    max-width: 90px !important;
+    height: 22px !important;
+    object-fit: contain !important;
+  }
+
+  .pilot-logo-toggle {
+    display: none !important;
+  }
+
+  .cavbot-collab {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 48px 0 0 !important;
+    overflow: hidden !important;
+  }
+
+  .collab-shell,
+  .collab-hero,
+  .collab-connected-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .collab-hero {
+    padding-inline: 18px !important;
+  }
+
+  .collab-title {
+    font-size: clamp(27px, 8vw, 34px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .collab-lede {
+    max-width: 100% !important;
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+  }
+
+  .collab-showcase {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 286px;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border-radius: 4px !important;
+    position: relative !important;
+  }
+
+  .collab-preview-window {
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    width: 1040px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: translateX(-50%) scale(0.31) !important;
+    transform-origin: top center !important;
+  }
+
+  .collab-preview-board,
+  .collab-preview-tabs {
+    overflow: visible !important;
+  }
+
+  .collab-board-head,
+  .collab-task-row {
+    width: auto !important;
+  }
+
+  .collab-cell {
+    padding: 24px 18px !important;
+  }
+
+  .collab-cell--visual {
+    min-height: 320px !important;
+  }
+
+  .collab-visual-stage {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .cavbot-cdn-slot,
+  .cavbot-cdn-slot *,
+  [id^="cavbot-widget-root-"],
+  [id^="cavbot-widget-root-"] * {
+    max-width: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 700px) {
+  .collab-showcase {
+    height: 360px;
+  }
+
+  .collab-preview-window {
+    transform: translateX(-50%) scale(0.39) !important;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 980px) {
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standalone {
+    display: none !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .cavai-main-title,
+  body.page-shell .page-inner > section.hero.hero-home-surface .cavai-main-title {
+    font-size: clamp(42px, 7vw, 58px) !important;
+  }
+
+  .collab-showcase {
+    height: 560px;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .collab-preview-window {
+    position: absolute !important;
+    top: 0 !important;
+    left: 50% !important;
+    width: 1040px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    transform: translateX(-50%) scale(0.68) !important;
+    transform-origin: top center !important;
+  }
+}
+
+/* ==============================
+   Final phone-only section repairs
+   ============================== */
+
+@media (max-width: 700px) {
+  .arcade-guide-left,
+  .arcade-guide-faq,
+  .collab-hero-icon-wrap,
+  .collab-title,
+  .collab-lede,
+  .collab-showcase,
+  .collab-showcase .collab-cell,
+  .security-hero-mark,
+  .security-title,
+  .security-lede,
+  .security-copy,
+  .security-switcher,
+  .security-visual {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .arcade-guide {
+    margin-top: 34px !important;
+    padding: 28px 18px 0 !important;
+    gap: 24px !important;
+    overflow: hidden !important;
+  }
+
+  .arcade-guide-left {
+    gap: 14px !important;
+  }
+
+  .arcade-guide-title {
+    max-width: 100% !important;
+    font-size: clamp(25px, 8.2vw, 34px) !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.035em !important;
+    text-wrap: balance;
+  }
+
+  .arcade-guide-copy {
+    max-width: 100% !important;
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+  }
+
+  .arcade-guide-cta {
+    margin-top: 2px !important;
+  }
+
+  .arcade-faq-q {
+    min-height: 54px !important;
+    padding: 14px 0 !important;
+    gap: 12px !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+  }
+
+  .arcade-faq-chevron {
+    width: 18px !important;
+    height: 18px !important;
+    flex-basis: 18px !important;
+  }
+
+  .arcade-faq-a {
+    margin: -2px 0 16px !important;
+    max-width: 100% !important;
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .collab-connected-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    overflow: hidden !important;
+  }
+
+  .collab-cell--copy,
+  .collab-cell--quote,
+  .collab-cell--list {
+    min-height: 0 !important;
+    padding: 28px 22px !important;
+  }
+
+  .collab-cell h3 {
+    font-size: clamp(24px, 7.5vw, 31px) !important;
+    line-height: 1.12 !important;
+  }
+
+  .collab-cell--copy p,
+  .collab-feature-panel p {
+    max-width: 100% !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .collab-quote-mark {
+    margin-bottom: 8px !important;
+    font-size: 38px !important;
+  }
+
+  .collab-quote {
+    max-width: 100% !important;
+    font-size: clamp(20px, 7vw, 27px) !important;
+    line-height: 1.18 !important;
+  }
+
+  .collab-quote-meta {
+    margin-top: 20px !important;
+  }
+
+  .collab-cell--list {
+    padding-left: 34px !important;
+  }
+
+  .collab-feature-progress {
+    left: 22px !important;
+    top: 28px !important;
+    bottom: 28px !important;
+  }
+
+  .collab-feature-trigger {
+    padding: 17px 0 !important;
+    gap: 12px !important;
+  }
+
+  .collab-feature-title {
+    font-size: 17px !important;
+    line-height: 1.2 !important;
+  }
+
+  .collab-feature-plus {
+    font-size: 21px !important;
+  }
+
+  .collab-feature.is-active .collab-feature-panel {
+    max-height: 170px !important;
+    padding-bottom: 18px !important;
+  }
+
+  .collab-feature-link {
+    margin-top: 14px !important;
+    font-size: 13.5px !important;
+  }
+
+  .collab-cell--visual {
+    min-height: 360px !important;
+    padding: 28px 18px 40px !important;
+  }
+
+  .collab-visual-stage {
+    width: min(304px, calc(100vw - 36px)) !important;
+    max-width: min(304px, calc(100vw - 36px)) !important;
+    height: 300px !important;
+    min-height: 300px !important;
+    transform: none !important;
+    overflow: hidden !important;
+  }
+
+  .collab-module-window {
+    width: min(304px, calc(100vw - 36px)) !important;
+    min-width: 0 !important;
+    height: 300px !important;
+    max-height: 300px !important;
+    grid-template-rows: 32px minmax(0, 1fr) !important;
+    border-radius: 4px !important;
+  }
+
+  .collab-module-topbar {
+    height: 32px !important;
+    padding-inline: 10px !important;
+  }
+
+  .collab-module-app {
+    font-size: 9px !important;
+  }
+
+  .collab-cloud-app,
+  .collab-dash-app,
+  .collab-tools-app {
+    padding: 12px !important;
+    gap: 8px !important;
+  }
+
+  .collab-cloud-kicker,
+  .collab-tools-kicker {
+    margin-bottom: 5px !important;
+    font-size: 8.5px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .collab-cloud-header h4,
+  .collab-tools-head h4 {
+    font-size: 19px !important;
+  }
+
+  .collab-cloud-chip,
+  .collab-tools-status {
+    padding: 5px 7px !important;
+    font-size: 10px !important;
+  }
+
+  .collab-cloud-row,
+  .collab-dash-row,
+  .collab-tools-steps div {
+    padding: 7px 8px !important;
+    gap: 10px !important;
+    font-size: 10.5px !important;
+  }
+
+  .collab-cloud-footer,
+  .collab-tools-footer,
+  .collab-code-footer {
+    font-size: 10px !important;
+  }
+
+  .collab-dash-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .collab-dash-metric {
+    padding: 7px !important;
+  }
+
+  .collab-dash-metric strong {
+    font-size: 16px !important;
+  }
+
+  .collab-dash-metric span {
+    font-size: 9.5px !important;
+  }
+
+  .collab-dash-chart {
+    height: 76px !important;
+    padding: 10px 8px 7px !important;
+  }
+
+  .collab-code-tabs,
+  .collab-code-lines,
+  .collab-code-footer {
+    padding-inline: 10px !important;
+  }
+
+  .collab-code-lines {
+    gap: 5px !important;
+  }
+
+  .collab-code-lines div {
+    grid-template-columns: 18px minmax(0, 1fr) !important;
+    gap: 7px !important;
+  }
+
+  .collab-code-lines span,
+  .collab-code-lines code,
+  .collab-code-tabs span {
+    font-size: 9.5px !important;
+  }
+
+  .cavbot-security {
+    padding-top: 48px !important;
+  }
+
+  .security-hero {
+    padding: 0 18px 28px !important;
+    gap: 12px !important;
+  }
+
+  .security-title {
+    max-width: 100% !important;
+    font-size: clamp(25px, 8.2vw, 34px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .security-lede {
+    max-width: 100% !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .security-copy,
+  .security-switcher {
+    min-height: 0 !important;
+    padding: 28px 22px !important;
+  }
+
+  .security-copy h3 {
+    max-width: 100% !important;
+    font-size: clamp(22px, 7vw, 28px) !important;
+    line-height: 1.14 !important;
+  }
+
+  .security-copy p:not(.security-kicker),
+  .security-feature-panel p {
+    max-width: 100% !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .security-link,
+  .security-feature-link {
+    margin-top: 14px !important;
+    font-size: 13.5px !important;
+  }
+
+  .security-switcher {
+    padding-left: 34px !important;
+  }
+
+  .security-feature-progress {
+    left: 22px !important;
+    top: 28px !important;
+    bottom: 28px !important;
+  }
+
+  .security-feature-trigger {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 12px !important;
+    padding: 17px 0 !important;
+  }
+
+  .security-feature-title {
+    max-width: 100% !important;
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .security-feature-plus {
+    font-size: 21px !important;
+  }
+
+  .security-feature-panel {
+    padding-left: 0 !important;
+  }
+
+  .security-feature.is-active .security-feature-panel {
+    max-height: 160px !important;
+    padding-bottom: 18px !important;
+  }
+
+  .security-visual {
+    min-height: 366px !important;
+    padding: 28px 18px 40px !important;
+  }
+
+  .security-visual-stage {
+    width: min(304px, calc(100vw - 36px)) !important;
+    max-width: min(304px, calc(100vw - 36px)) !important;
+    height: 304px !important;
+    min-height: 304px !important;
+    transform: none !important;
+    overflow: hidden !important;
+  }
+
+  .security-product-window {
+    width: min(304px, calc(100vw - 36px)) !important;
+    min-width: 0 !important;
+    height: 304px !important;
+    max-height: 304px !important;
+    grid-template-rows: 32px minmax(0, 1fr) !important;
+    border-radius: 4px !important;
+  }
+
+  .security-window-topbar {
+    height: 32px !important;
+    padding-inline: 10px !important;
+  }
+
+  .security-window-topbar strong {
+    font-size: 9px !important;
+  }
+
+  .verify-mock,
+  .guard-mock,
+  .safe-mock {
+    min-height: 0 !important;
+    height: 272px !important;
+    padding: 12px !important;
+    gap: 8px !important;
+  }
+
+  .security-product-icon {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 10px !important;
+  }
+
+  .security-product-icon img {
+    width: 17px !important;
+    height: 17px !important;
+  }
+
+  .verify-wordmark {
+    gap: 5px !important;
+    font-size: 34px !important;
+  }
+
+  .verify-wordmark i {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .verify-tiles {
+    gap: 7px !important;
+  }
+
+  .verify-tiles button {
+    width: 44px !important;
+    height: 38px !important;
+    font-size: 21px !important;
+  }
+
+  .verify-bottom-row,
+  .guard-footer,
+  .safe-footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    font-size: 10px !important;
+  }
+
+  .guard-policy-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .guard-alert {
+    padding: 10px 12px !important;
+    gap: 5px !important;
+  }
+
+  .guard-alert h5 {
+    font-size: 12px !important;
+  }
+
+  .guard-alert p,
+  .guard-policy-grid strong,
+  .guard-footer button,
+  .safe-file-row strong {
+    font-size: 10px !important;
+  }
+
+  .guard-policy-grid div,
+  .safe-stats div,
+  .safe-file-row {
+    padding: 6px 7px !important;
+  }
+
+  .guard-policy-grid span,
+  .safe-stats span,
+  .safe-file-row small,
+  .safe-file-row em {
+    font-size: 8.5px !important;
+  }
+
+  .safe-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+  }
+
+  .safe-stats strong {
+    font-size: 12px !important;
+  }
+
+  .safe-file-list {
+    gap: 5px !important;
+  }
+
+  .safe-file-icon {
+    width: 25px !important;
+    height: 22px !important;
+    border-radius: 8px !important;
+    font-size: 7.5px !important;
+  }
+
+  .cavbot-releases {
+    padding: 46px 18px !important;
+  }
+
+  .releases-header {
+    margin-bottom: 18px !important;
+  }
+
+  .releases-title {
+    font-size: 20px !important;
+  }
+
+  .release-card {
+    min-height: 0 !important;
+    border-radius: 4px !important;
+  }
+
+  .release-card-content {
+    padding: 20px 18px !important;
+    gap: 28px !important;
+  }
+
+  .release-card-main h3 {
+    font-size: 21px !important;
+    line-height: 1.12 !important;
+  }
+
+  .release-card-main p {
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+  }
+
+  .release-meta-row {
+    min-height: 0 !important;
+    padding: 12px 0 !important;
+  }
+
+  .release-meta-row span {
+    font-size: 9.5px !important;
+  }
+
+  .release-meta-row strong,
+  .release-inline-link,
+  .release-button {
+    font-size: 12.5px !important;
+  }
+
+  .page-shell :is(
+    .btn,
+    .collab-preview-window,
+    .collab-preview-cell,
+    .collab-preview-metric,
+    .collab-module-window,
+    .collab-code-tabs span,
+    .collab-code-file,
+    .collab-cloud-chip,
+    .collab-cloud-row,
+    .collab-dash-row,
+    .collab-dash-metric,
+    .collab-dash-chart,
+    .collab-dash-bar,
+    .collab-tools-toolbar span,
+    .collab-tools-card,
+    .collab-tools-status,
+    .collab-tools-steps div,
+    .security-product-window,
+    .security-product-icon,
+    .verify-wordmark i,
+    .verify-tiles button,
+    .guard-alert,
+    .guard-policy-grid div,
+    .guard-footer button,
+    .safe-stats div,
+    .safe-file-row,
+    .safe-file-icon,
+    .release-card,
+    .release-button
+  ) {
+    border-radius: 4px !important;
+  }
+}
+
+/* ==============================
+   Mobile hero head + CavAi text alignment
+   ============================== */
+
+@media (max-width: 700px) {
+  body.page-shell main.page-inner > section.hero.hero-home-surface,
+  body.page-shell .page-inner > section.hero.hero-home-surface {
+    grid-template-areas:
+      "cavbot"
+      "copy"
+      "demo" !important;
+    row-gap: 16px !important;
+    padding-inline: 20px !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standalone {
+    display: grid !important;
+    grid-area: cavbot !important;
+    justify-self: center !important;
+    align-self: end !important;
+    width: 150px !important;
+    max-width: 46vw !important;
+    margin: 0 auto 4px !important;
+    aspect-ratio: 1 / 1 !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-orbit,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-orbit {
+    width: 100% !important;
+    height: 100% !important;
+    display: grid !important;
+    place-items: center !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-orbit::before,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-orbit::before {
+    display: block !important;
+    inset: 7% !important;
+    border-radius: 50% !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standalone .cavbot-cdn-slot[data-cavbot-cdn-slot="head"] {
+    min-width: 118px !important;
+    min-height: 118px !important;
+    transform: scale(1.02) !important;
+    transform-origin: center !important;
+  }
+
+  body.page-shell main.page-inner > section.hero.hero-home-surface .hero-copy-block,
+  body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block {
+    justify-items: start !important;
+  }
+
+  .cavai-front {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 40px 20px 0 !important;
+    overflow: hidden !important;
+  }
+
+  .cavai-front .cavai-top {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: grid !important;
+    gap: 16px !important;
+  }
+
+  .cavai-front .cavai-main-title,
+  .cavai-front .cavai-top-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .cavai-front .cavai-main-title {
+    font-size: clamp(25px, 8.4vw, 34px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .cavai-front .cavai-top-copy {
+    font-size: 13.5px !important;
+    line-height: 1.55 !important;
+  }
 }

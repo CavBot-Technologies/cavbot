@@ -1957,3 +1957,45 @@ html body .site-footer {
     opacity: 1 !important;
   }
 }
+
+@media (max-width: 760px) {
+  html body .pricing-platforms,
+  html body .pricing-compare,
+  html body .pricing-faq {
+    padding-top: 34px !important;
+    padding-bottom: 42px !important;
+  }
+
+  html body .pricing-platforms-kicker,
+  html body .pricing-platforms-title .pricing-platforms-letter,
+  html body .pricing-platform-card,
+  html body .pricing-platform-name,
+  html body .pricing-compare-title-row,
+  html body .pricing-compare-row,
+  html body .pricing-compare-group,
+  html body .pricing-faq-shell,
+  html body .pricing-faq-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  html body .pricing-platforms-pyramid,
+  html body .pricing-compare-table {
+    margin-top: 24px !important;
+  }
+
+  html body .pricing-platform-card {
+    min-height: 96px !important;
+    padding: 18px !important;
+  }
+
+  html body .pricing-platform-icon-shell {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  html body .pricing-faq-shell {
+    padding: 28px 14px 34px !important;
+    gap: 24px !important;
+  }
+}
