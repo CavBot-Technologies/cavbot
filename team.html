@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Preload brand logo -->
+<link rel="preload" as="image" href="/assets/logo/official-logotype-light.svg" fetchpriority="high">
+<link rel="sitemap" type="application/xml" href="https://www.cavbot.io/sitemap.xml">
+
   <link rel="preload" as="image" href="/assets/logo/official-logotype-light.svg" fetchpriority="high">
-  <link rel="sitemap" type="application/xml" href="https://www.cavbot.io/sitemap.xml">
 
 
   <meta charset="utf-8">
@@ -10,14 +13,14 @@
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content=" Meet the people building CavBot with care, good energy, and heart. Learn what guides the team and how CavBot is shaped behind the scenes.">
+  <meta name="description" content="Meet the people building CavBot with care, good energy, and heart. Learn what guides the team and how CavBot is shaped behind the scenes.">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="author" content="Cavendish Pierre-Louis">
   <meta name="application-name" content="CavBot">
 
 
-  <link rel="canonical" href="https://cavbot.io/team.html">
+  <link rel="canonical" href="https://cavbot.io/team">
 
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -41,6 +44,8 @@
 
 
   <meta name="theme-color" content="#01030f">
+
+<!-- Open Graph -->
   <meta name="msapplication-TileColor" content="#01030f">
   <meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
 
@@ -48,15 +53,16 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CavBot">
   <meta property="og:title" content="Meet the team behind CavBot">
-  <meta property="og:description" content="Why choose CavBot: see broken pages, search issues, 
-  page paths, speed problems, and the next fix in one clear website view.">
-  <meta property="og:url" content="https://cavbot.io/team.html">
+  <meta property="og:description" content="Meet the people building CavBot with care, good energy, and heart. Learn what guides the team and how CavBot is shaped behind the scenes.">
+  <meta property="og:url" content="https://cavbot.io/team">
   <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+  <!-- Twitter -->
 
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content=" Meet the team behind CavBot">
-  <meta name="twitter:description" content=" Meet the people building CavBot with care, good energy, and heart. Learn what guides the team and how CavBot is shaped behind the scenes.">
+  <meta name="twitter:title" content="Meet the team behind CavBot">
+  <meta name="twitter:description" content="Meet the people building CavBot with care, good energy, and heart. Learn what guides the team and how CavBot is shaped behind the scenes.">
   <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
 
 
@@ -84,7 +90,7 @@
     }
   </style>
 
-
+  <!-- Structured data  -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -98,7 +104,9 @@
           "@type": "Person",
           "name": "Cavendish Pierre-Louis",
           "url": "https://cavendishpierrelouis.io/",
-          "sameAs": ["https://cavendishpierrelouis.io/"]
+          "sameAs": [
+            "https://cavendishpierrelouis.io/"
+          ]
         }
       },
       {
@@ -106,17 +114,28 @@
         "@id": "https://cavbot.io/#website",
         "url": "https://cavbot.io/",
         "name": "CavBot",
-        "publisher": { "@id": "https://cavbot.io/#organization" },
-        "inLanguage": "en"
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cavbot.io/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "WebPage",
-        "@id": "https://cavbot.io/team.html#webpage",
-        "url": "https://cavbot.io/team.html",
+        "@id": "https://cavbot.io/team#webpage",
+        "url": "https://cavbot.io/team",
         "name": "Meet the team behind CavBot",
         "description": "Meet the people building CavBot with care, good energy, and heart. Learn what guides the team and how CavBot is shaped behind the scenes.",
-        "isPartOf": { "@id": "https://cavbot.io/#website" },
-        "about": { "@id": "https://cavbot.io/#software" },
+        "isPartOf": {
+          "@id": "https://cavbot.io/#website"
+        },
+        "about": {
+          "@id": "https://cavbot.io/#software"
+        },
         "inLanguage": "en"
       },
       {
@@ -126,8 +145,10 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web",
         "url": "https://cavbot.io/",
-        "description": "CavBot is a website intelligence platform for routes, broken pages, SEO visibility, performance signals, and operational next steps.",
-        "publisher": { "@id": "https://cavbot.io/#organization" },
+        "description": "A multi-surface operating system for signals, diagnostics, intelligence, and execution across digital products.",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
         "creator": {
           "@type": "Person",
           "name": "Cavendish Pierre-Louis",
@@ -136,7 +157,7 @@
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://cavbot.io/team.html#breadcrumbs",
+        "@id": "https://cavbot.io/team#breadcrumbs",
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -148,7 +169,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "Meet the team behind CavBot",
-            "item": "https://cavbot.io/team.html"
+            "item": "https://cavbot.io/team"
           }
         ]
       }
@@ -257,7 +278,7 @@
                   <span class="cb-mega-link-copy">View your page structure clearly.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="cavcloud.html">
                   <span class="cb-mega-link-title">Cloud</span>
                   <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
                 </a>
@@ -532,9 +553,9 @@
                 <p class="cb-mega-kicker">Highlights</p>
 
 
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Top Websites</span>
-                  <span class="cb-mega-link-copy">Explore leading websites by traffic.</span>
+                <a class="cb-mega-link" href="websites.html" target="_blank" rel="noopener noreferrer">
+                  <span class="cb-mega-link-title">Monitored Websites</span>
+                  <span class="cb-mega-link-copy">Explore active websites using CavBot.</span>
                 </a>
 
                 <a class="cb-mega-link" href="https://brand.cavbot.io">
@@ -659,7 +680,7 @@
             <a href="cavbot-arcade.html" class="nav-overlay-link">CavBot Arcade</a>
             <a href="cavcode.html" class="nav-overlay-link">Code</a>
             <a href="/" class="nav-overlay-link">HTML Viewer</a>
-            <a href="/" class="nav-overlay-link">Cloud</a>
+            <a href="cavcloud.html" class="nav-overlay-link">Cloud</a>
             <a href="terminal.html" class="nav-overlay-link">CavBot Terminal</a>
           </div>
         </section>

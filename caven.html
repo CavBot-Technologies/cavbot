@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="utf-8">
+  <!-- Preload brand logo -->
+<link rel="preload" as="image" href="/assets/logo/official-logotype-light.svg" fetchpriority="high">
+<link rel="sitemap" type="application/xml" href="https://www.cavbot.io/sitemap.xml">
+
+  <meta charset="utf-8">
  <title>Caven · Coding Work Inside CavBot · CavBot</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <meta name="description" content="A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.">
- <meta name="robots" content="index, follow">
+ <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="application-name" content="CavBot">
  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
- <link rel="canonical" href="https://cavbot.io/caven.html">
+ <link rel="canonical" href="https://cavbot.io/caven">
 
  <!-- UNIVERSAL FAVICONS -->
  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -34,9 +41,9 @@
  <meta property="og:title" content="Caven · Coding Work Inside CavBot · CavBot">
  <meta property="og:description" content="A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.">
  <meta property="og:type" content="website">
- <meta property="og:url" content="https://cavbot.io/caven.html">
+ <meta property="og:url" content="https://cavbot.io/caven">
  <meta property="og:site_name" content="CavBot">
- <meta property="og:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+ <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
 
  <!-- Twitter -->
  <meta name="twitter:card" content="summary_large_image">
@@ -54,30 +61,92 @@
  <!-- Caven Page -->
  <link rel="stylesheet" href="files/css/pages/caven.css">
 
- <!-- Structured data -->
- <script type="application/ld+json">
- {
-   "@context":"https://schema.org",
-   "@type":"WebPage",
-   "name":"Caven · Coding Work Inside CavBot · CavBot",
-   "description":"A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.",
-   "url":"https://cavbot.io/caven.html",
-   "isPartOf":{
-     "@type":"WebSite",
-     "name":"CavBot",
-     "url":"https://cavbot.io/"
-   },
-   "publisher":{
-     "@type":"Organization",
-     "name":"CavBot",
-     "url":"https://cavbot.io/",
-     "logo":{
-       "@type":"ImageObject",
-       "url":"https://cavbot.io/assets/logo/cavbot-wordmark.svg"
-     }
-   }
- }
- </script>
+  <!-- Structured data  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://cavbot.io/#organization",
+        "name": "CavBot",
+        "url": "https://cavbot.io/",
+        "founder": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/",
+          "sameAs": [
+            "https://cavendishpierrelouis.io/"
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cavbot.io/#website",
+        "url": "https://cavbot.io/",
+        "name": "CavBot",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cavbot.io/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://cavbot.io/caven#webpage",
+        "url": "https://cavbot.io/caven",
+        "name": "Caven · Coding Work Inside CavBot · CavBot",
+        "description": "A short note on why CavBot introduced Caven, and how a coding agent helps move ideas, fixes, and product work closer to shipping.",
+        "isPartOf": {
+          "@id": "https://cavbot.io/#website"
+        },
+        "about": {
+          "@id": "https://cavbot.io/#software"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://cavbot.io/#software",
+        "name": "CavBot",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://cavbot.io/",
+        "description": "A multi-surface operating system for signals, diagnostics, intelligence, and execution across digital products.",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://cavbot.io/caven#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cavbot.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Caven · Coding Work Inside CavBot",
+            "item": "https://cavbot.io/caven"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="page-shell"
@@ -179,7 +248,7 @@
                   <span class="cb-mega-link-copy">View your page structure clearly.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="cavcloud.html">
                   <span class="cb-mega-link-title">Cloud</span>
                   <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
                 </a>
@@ -454,9 +523,9 @@
                 <p class="cb-mega-kicker">Highlights</p>
 
 
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Top Websites</span>
-                  <span class="cb-mega-link-copy">Explore leading websites by traffic.</span>
+                <a class="cb-mega-link" href="websites.html" target="_blank" rel="noopener noreferrer">
+                  <span class="cb-mega-link-title">Monitored Websites</span>
+                  <span class="cb-mega-link-copy">Explore active websites using CavBot.</span>
                 </a>
 
                 <a class="cb-mega-link" href="https://brand.cavbot.io">
@@ -581,7 +650,7 @@
             <a href="cavbot-arcade.html" class="nav-overlay-link">CavBot Arcade</a>
             <a href="cavcode.html" class="nav-overlay-link">Code</a>
             <a href="/" class="nav-overlay-link">HTML Viewer</a>
-            <a href="/" class="nav-overlay-link">Cloud</a>
+            <a href="cavcloud.html" class="nav-overlay-link">Cloud</a>
             <a href="terminal.html" class="nav-overlay-link">CavBot Terminal</a>
           </div>
         </section>

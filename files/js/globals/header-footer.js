@@ -5171,10 +5171,14 @@ document.addEventListener("DOMContentLoaded", () => {
     avatar.setAttribute("aria-haspopup", "menu");
     avatar.setAttribute("aria-expanded", "false");
     avatar.setAttribute("data-cavbot-app-session-avatar", "");
+    avatar.setAttribute("data-cavbot-app-auth", "signed-out");
+    avatar.setAttribute("data-cavbot-app-tone", "signed-out");
+    avatar.style.setProperty("--cb-app-session-tone", "rgba(247, 251, 255, 0.94)");
+    avatar.style.setProperty("--cb-app-session-ink", "#01030f");
     avatar.innerHTML = [
       '<img class="cb-app-session-image" data-cavbot-app-session-image hidden alt="" />',
       '<span class="cb-app-session-initials" data-cavbot-app-session-initials hidden></span>',
-      '<img class="cb-app-session-icon" data-cavbot-app-session-icon src="/assets/icons/page/login-svgrepo-com.svg" alt="" aria-hidden="true" />'
+      '<img class="cb-app-session-icon" data-cavbot-app-session-icon src="/assets/icons/page/profile-svgrepo-com.svg" alt="" aria-hidden="true" />'
     ].join("");
     return avatar;
   }
@@ -5580,13 +5584,13 @@ document.addEventListener("DOMContentLoaded", () => {
       var icon = node.querySelector("[data-cavbot-app-session-icon]");
 
 
-      var avatarTone = user ? clean(user.avatarTone).toLowerCase() : "lime";
+      var avatarTone = user ? clean(user.avatarTone).toLowerCase() : "";
       var avatarImage = user ? clean(user.avatarImage) : "";
       var avatarInitials = user ? getInitials(user) : "";
 
 
       node.dataset.cavbotAppAuth = user ? "signed-in" : "signed-out";
-      node.dataset.cavbotAppTone = user ? avatarTone || "lime" : "lime";
+      node.dataset.cavbotAppTone = user ? avatarTone || "lime" : "signed-out";
 
 
       /*
@@ -5653,7 +5657,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       /*
         Signed out:
-        Only the login icon renders.
+        Only the public profile icon renders.
         No initials or saved profile image.
       */
       if (img) {

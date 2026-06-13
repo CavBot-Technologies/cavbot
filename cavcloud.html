@@ -1,32 +1,156 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- Preload brand logo -->
+<link rel="preload" as="image" href="/assets/logo/official-logotype-light.svg" fetchpriority="high">
+<link rel="sitemap" type="application/xml" href="https://www.cavbot.io/sitemap.xml">
+
   <meta charset="utf-8">
-  <title>CavCloud · CavBot</title>
+  <title>CavCloud · Store files and projects directly inside CavBot · CavBot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CavCloud is CavBot storage for files, folders, artifacts, sharing, and publish workflows connected to workspace operations.">
+  <meta name="description" content="Store files, organize folders, review assets, and keep website work connected to the pages, fixes, and releases around it.">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <link rel="canonical" href="https://cavbot.io/cavcloud.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="application-name" content="CavBot">
+  <link rel="canonical" href="https://cavbot.io/cavcloud">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+   <!-- UNIVERSAL FAVICONS  -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
 
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+<link rel="manifest" href="site.webmanifest">
+
+<meta name="theme-color" content="#01030f">
+<meta name="msapplication-TileColor" content="#01030f">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+
+<!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CavBot">
+  <meta property="og:title" content="CavCloud · Store files and projects directly inside CavBot · CavBot">
+  <meta property="og:description" content="Store files, organize folders, review assets, and keep website work connected to the pages, fixes, and releases around it.">
+  <meta property="og:url" content="https://cavbot.io/cavcloud">
+   <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CavCloud · Store files and projects directly inside CavBot · CavBot">
+  <meta name="twitter:description" content="Store files, organize folders, review assets, and keep website work connected to the pages, fixes, and releases around it.">
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="files/css/globals/header-footer.css">
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
-  
+
   <link rel="stylesheet" href="files/css/globals/main.css">
-  <link rel="stylesheet" href="files/css/pages/resource.css">
+  <link rel="stylesheet" href="files/css/pages/cavcloud.css">
+
+  <!-- Structured data  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://cavbot.io/#organization",
+        "name": "CavBot",
+        "url": "https://cavbot.io/",
+        "founder": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/",
+          "sameAs": [
+            "https://cavendishpierrelouis.io/"
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cavbot.io/#website",
+        "url": "https://cavbot.io/",
+        "name": "CavBot",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cavbot.io/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://cavbot.io/cavcloud#webpage",
+        "url": "https://cavbot.io/cavcloud",
+        "name": "CavCloud · Store files and projects directly inside CavBot · CavBot",
+        "description": "Store files, organize folders, review assets, and keep website work connected to the pages, fixes, and releases around it.",
+        "isPartOf": {
+          "@id": "https://cavbot.io/#website"
+        },
+        "about": {
+          "@id": "https://cavbot.io/#software"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://cavbot.io/#software",
+        "name": "CavBot",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://cavbot.io/",
+        "description": "A multi-surface operating system for signals, diagnostics, intelligence, and execution across digital products.",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://cavbot.io/cavcloud#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cavbot.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "CavCloud · Store files and projects directly inside CavBot",
+            "item": "https://cavbot.io/cavcloud"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
-<body class="page-shell" data-cavbot-page-type="resource-page" data-cavbot-component="resource-shell" data-cavbot-disable-floating-badge="1">
+<body class="page-shell" data-cavbot-page-type="resource-page" data-cavbot-component="resource-shell">
   <header class="site-header cb-company-header">
   <div class="site-header-inner">
-     <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
+    <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
       <img
         src="/assets/logo/official-logotype-light.svg"
         alt="CavBot"
@@ -112,12 +236,12 @@
                   <span class="cb-mega-link-copy">Code, inspect, and debug in CavBot’s built-in IDE.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="https://app.cavbot.io/cavcode-viewer">
                   <span class="cb-mega-link-title">HTML Viewer</span>
                   <span class="cb-mega-link-copy">View your page structure clearly.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/">
+                <a class="cb-mega-link" href="cavcloud.html">
                   <span class="cb-mega-link-title">Cloud</span>
                   <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
                 </a>
@@ -214,7 +338,7 @@
                 </a>
               </section>
 
-             <section class="cb-mega-column cb-mega-column--quiet">
+              <section class="cb-mega-column cb-mega-column--quiet">
                 <p class="cb-mega-kicker">Operational security</p>
 
                 <a class="cb-mega-link" href="/docs.html#risk-controls">
@@ -361,7 +485,7 @@
                   <span class="cb-mega-link-title">Research</span>
                   <span class="cb-mega-link-copy">Practical research for better digital products.</span>
                 </a>
-                
+
               </section>
 
               <section class="cb-mega-column">
@@ -392,9 +516,9 @@
                 <p class="cb-mega-kicker">Highlights</p>
 
 
-                <a class="cb-mega-link" href="/">
-                  <span class="cb-mega-link-title">Top Websites</span>
-                  <span class="cb-mega-link-copy">Explore leading websites by traffic.</span>
+                <a class="cb-mega-link" href="websites.html" target="_blank" rel="noopener noreferrer">
+                  <span class="cb-mega-link-title">Monitored Websites</span>
+                  <span class="cb-mega-link-copy">Explore active websites using CavBot.</span>
                 </a>
 
                 <a class="cb-mega-link" href="https://brand.cavbot.io">
@@ -518,8 +642,8 @@
             <a href="/" class="nav-overlay-link">Insights</a>
             <a href="cavbot-arcade.html" class="nav-overlay-link">CavBot Arcade</a>
             <a href="cavcode.html" class="nav-overlay-link">Code</a>
-            <a href="/" class="nav-overlay-link">HTML Viewer</a>
-            <a href="/" class="nav-overlay-link">Cloud</a>
+            <a href="https://app.cavbot.io/cavcode-viewer" class="nav-overlay-link">HTML Viewer</a>
+            <a href="cavcloud.html" class="nav-overlay-link">Cloud</a>
             <a href="terminal.html" class="nav-overlay-link">CavBot Terminal</a>
           </div>
         </section>
@@ -580,9 +704,9 @@
             <a href="/blog.html" class="nav-overlay-link">Blog</a>
             <a href="/" class="nav-overlay-link">Careers</a>
             <a href="/legal.html#ethics-overview" class="nav-overlay-link">Code of Ethics</a>
-            
-            
-            
+
+
+
           </div>
         </section>
 
@@ -624,60 +748,708 @@
     </div>
   </div>
 
-  <main class="page-inner resource-main">
-    <section class="resource-hero" aria-labelledby="resource-title">
-      <h1 id="resource-title" class="resource-title">CavCloud</h1>
-      <p class="resource-lede">Store, organize, and move work from one connected surface.</p>
-      <br><br>
-      <p class="resource-lede">CavCloud is the storage and artifact surface inside CavBot. It gives teams a structured place to manage files, folders, collaboration, and publication handoffs without leaving the workspace.</p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/cavcloud">IN APP</a>
-        <a class="btn btn-ghost" href="product.html">PRODUCT OVERVIEW</a>
-      </div>
-    </section>
 
-    <section class="resource-grid" aria-label="CavCloud details">
-      <article class="resource-card">
-        <h2>What It Is</h2>
-        <br><br>
-        <p>CavCloud is a workspace-connected storage environment for managing project files, artifacts, and operational handoffs in one place.</p>
-      </article>
-      <article class="resource-card">
-        <h2>What It Does</h2>
-        <br><br>
-        <p>CavCloud supports uploads, organization, previews, sharing, and publishing workflows, while keeping files connected to the rest of the CavBot operating system.</p>
-      </article>
-      <article class="resource-card">
-        <h2>Why It Matters</h2>
-        <br><br>
-        <p>Storage should not live outside the workflow. CavCloud keeps file operations, collaboration, and production handoffs inside the same platform, so teams can move faster without switching between disconnected tools.</p>
-      </article>
-      <article class="resource-card">
-        <h2>Primary Workflows</h2>
-        <br><br>
-        <ul class="resource-list">
-          <li>Store and organize files in structured project folders</li>
-          <li>Preview, manage, and route artifacts through workspace workflows</li>
-          <li>Share files with controlled visibility and collaboration settings</li>
-          <li>Move work directly into review, publishing, and execution flows</li>
+
+<!-- ==============================
+  CAVCLOUD HERO
+============================== -->
+
+<main class="cavcloud-main" id="main" data-cavcloud-page>
+  <section class="cavcloud-hero" aria-labelledby="cavcloud-title" data-cavcloud-hero>
+    <div class="cavcloud-hero-inner">
+      <div class="cavcloud-hero-copy">
+        <h1 id="cavcloud-title" class="cavcloud-title">
+          Everything you and your business need
+          to work efficiently, all in one place
+        </h1>
+<br>
+        <p class="cavcloud-lede">
+        Stay organized from first upload to final review.
+        Securely store <br> content, preview PDFs, share files,
+        edit assets, then move <br> projects forward without leaving CavBot.
+
+
+        </p>
+<br>
+        <p class="cavcloud-plan-link">
+          Need a plan? <a href="pricing.html">See all plans.</a>
+        </p>
+
+        <div class="cavcloud-actions" aria-label="CavCloud actions">
+          <a class="cavcloud-button cavcloud-button--primary" href="https://app.cavbot.io/auth?mode=signup">
+            Start 14-day free trial
+          </a>
+        </div>
+      </div>
+
+      <aside class="cavcloud-hero-art" aria-label="CavCloud file workspace preview">
+        <div class="cavcloud-app" data-cavcloud-app>
+          <div class="cavcloud-app-topbar">
+            <div class="cavcloud-window-dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="cavcloud-app-lockup">
+              <img src="assets/logo/cavbot-logomark.svg" alt="" loading="lazy" decoding="async">
+              <strong>CavCloud</strong>
+            </div>
+
+            <div class="cavcloud-app-total" data-cavcloud-total>
+              0 files added
+            </div>
+          </div>
+
+          <div class="cavcloud-app-body">
+            <nav class="cavcloud-app-sidebar" aria-label="CavCloud preview navigation">
+              <span>
+                <img src="assets/icons/page/cloud/layout-2-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                Dashboard
+              </span>
+
+              <span class="is-active">
+                <img src="assets/brand/logo/monochrome-logo/brand-mark/official-logomark-light.png" alt="" loading="lazy" decoding="async">
+                CavCloud
+              </span>
+
+              <span>
+                <img src="assets/icons/page/cloud/history-svgrepo-coom.svg" alt="" loading="lazy" decoding="async">
+                Recents
+              </span>
+
+              <span>
+                <img src="assets/icons/page/cloud/cloud-sync-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                Synced
+              </span>
+
+              <span>
+                <img src="assets/icons/page/cloud/star-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                Starred
+              </span>
+
+              <span>
+                <img src="assets/icons/page/cloud/share-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                Shared
+              </span>
+
+              <span>
+                <img src="assets/icons/page/cloud/trash-bin-2-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                Trash
+              </span>
+
+              <span>
+                <img src="assets/icons/page/cloud/settings-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                Settings
+              </span>
+
+              <span class="cavcloud-safe-row">
+                <img src="assets/icons/page/cloud/security-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                CavSafe
+              </span>
+
+              <i class="cavcloud-color-mark" aria-hidden="true">
+                <img src="assets/icons/page/cloud/color-palette.png" alt="" loading="lazy" decoding="async">
+              </i>
+            </nav>
+
+            <div class="cavcloud-workspace">
+              <div class="cavcloud-workspace-head">
+                <div>
+
+                  <strong>Hi, CavBot</strong>
+                </div>
+
+              </div>
+
+              <div class="cavcloud-board">
+                <div class="cavcloud-folder-target" data-cavcloud-folder>
+                  <div class="cavcloud-folder-icon">
+                    <img src="assets/icons/page/cloud/upload-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                  </div>
+
+                  <div class="cavcloud-folder-copy">
+                    <strong>Drop files here</strong>
+
+                  </div>
+
+                  <div class="cavcloud-folder-stack" data-cavcloud-stack aria-live="polite"></div>
+                </div>
+
+                <div class="cavcloud-file-lane" data-cavcloud-lane>
+                  <div class="cavcloud-file-track" data-cavcloud-track aria-label="Files available to move">
+                    <button class="cavcloud-file-card" type="button" draggable="true" data-cavcloud-file data-file-name="index.html" data-file-kind="HTML">
+                      <img src="assets/icons/page/cloud/html5-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                      <strong>index.html</strong>
+                      <span>HTML</span>
+                    </button>
+
+                    <button class="cavcloud-file-card" type="button" draggable="true" data-cavcloud-file data-file-name="robots.txt" data-file-kind="TXT">
+                      <img src="assets/icons/page/cloud/text-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                      <strong>robots.txt</strong>
+                      <span>TXT</span>
+                    </button>
+
+                    <button class="cavcloud-file-card" type="button" draggable="true" data-cavcloud-file data-file-name="preview.png" data-file-kind="IMAGE">
+                      <img src="assets/cavbot-arcade/images/thumbnails/cavbot-news-thumbnail.png" alt="" loading="lazy" decoding="async">
+                      <strong>preview.png</strong>
+                      <span>IMAGE</span>
+                    </button>
+
+                    <button class="cavcloud-file-card" type="button" draggable="true" data-cavcloud-file data-file-name="release.pdf" data-file-kind="PDF">
+                      <img src="assets/icons/page/cloud/pdf-file-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                      <strong>release.pdf</strong>
+                      <span>PDF</span>
+                    </button>
+
+                    <button class="cavcloud-file-card" type="button" draggable="true" data-cavcloud-file data-file-name="site.webmanifest" data-file-kind="FILE">
+                      <img src="assets/icons/page/cloud/brackets-code-block-codeblock-script-coding-editor-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                      <strong>site.webmanifest</strong>
+                      <span>FILE</span>
+                    </button>
+
+                    <button class="cavcloud-file-card" type="button" draggable="true" data-cavcloud-file data-file-name="sitemap.xml" data-file-kind="XML">
+                      <img src="assets/icons/page/cloud/xml-document-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+                      <strong>sitemap.xml</strong>
+                      <span>XML</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="cavcloud-storage-panel" aria-label="Storage preview">
+              <div class="cavcloud-storage-ring">
+                <svg viewBox="0 0 160 160" aria-hidden="true">
+                  <circle class="cavcloud-ring-track" cx="80" cy="80" r="58"></circle>
+                  <circle class="cavcloud-ring-fill" cx="80" cy="80" r="58"></circle>
+                </svg>
+
+                <div>
+                  <strong>500 GB</strong>
+
+                </div>
+              </div>
+
+              <div class="cavcloud-storage-stats">
+                <span>
+                  <small>Used</small>
+                  <strong data-cavcloud-used>0 MB</strong>
+                </span>
+
+                <span>
+                  <small>Premium+</small>
+                  <strong>500 GB</strong>
+                </span>
+              </div>
+
+              <div class="cavcloud-quick-actions">
+                <strong>Quick Actions</strong>
+
+                <button type="button">Upload files</button>
+                <button type="button">Upload folder</button>
+                <button type="button">Open trash</button>
+              </div>
+
+              <div class="cavcloud-storage-trend">
+                <strong>Storage Trend</strong>
+
+                <div>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+
+                <span>
+                  <small>Latest</small>
+                  <b data-cavcloud-trend>0 MB</b>
+                </span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+  CAVCLOUD STORAGE & CAPACITY
+============================== -->
+<section class="cavcloud-capacity" data-cavcloud-capacity>
+  <div class="cavcloud-capacity-shell">
+    <header class="cavcloud-capacity-header">
+      <div class="cavcloud-capacity-header-box">
+
+        <h2>More files, more control, less switching</h2>
+
+        <p>
+        Store content, preview PDFs, share files, edit assets, review changes,
+         and protect important folders with CavSafe — all inside CavBot.
+        </p>
+
+      </div>
+    </header>
+
+    <div class="cavcloud-capacity-billing" aria-label="Billing options">
+      <button type="button" class="is-active" data-cavcloud-billing-option="monthly" aria-pressed="true">
+        Monthly
+      </button>
+
+      <button type="button" data-cavcloud-billing-option="annual" aria-pressed="false">
+        Yearly
+      </button>
+    </div>
+
+    <div class="cavcloud-capacity-grid">
+      <!-- FREE -->
+      <article class="cavcloud-capacity-card cavcloud-capacity-card--free" data-cavcloud-capacity-card="left">
+        <div class="cavcloud-capacity-card-top">
+          <div>
+            <p class="cavcloud-capacity-plan-label">Free</p>
+
+            <p class="cavcloud-capacity-plan-copy">
+              Open CavBot with basic cloud storage for everyday files.
+            </p>
+
+            <h3>$0 <span>/mo</span></h3>
+          </div>
+        </div>
+
+        <div class="cavcloud-capacity-storage-box">
+          <span>CavCloud storage</span>
+          <strong>5 GB</strong>
+          <small>Included with your CavBot account.</small>
+        </div>
+
+        <ul class="cavcloud-capacity-feature-list">
+
+
+          <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            Best for starting with CavCloud
+          </li>
         </ul>
-      </article>
-    </section>
 
-    <section class="resource-cta" aria-label="CavBot app workflow">
-      <h2>In The CavBot App</h2>
-      <p>
-        CavCloud works inside the CavBot app with Analytics v5 signals, CavAi intelligence workflows, and execution surfaces.
-        Start in Command Center to understand what is happening, then move into CavCloud when it is time to organize, share, and publish.
-      </p>
-      <br><br>
-      <div class="resource-cta-row">
-        <a class="btn btn-primary" href="https://app.cavbot.io/">COMMAND CENTER</a>
-        <a class="btn btn-ghost" href="https://app.cavbot.io/auth?mode=login">LOG IN TO CONTINUE</a>
-      </div>
-    </section>
-  </main>
+        <a class="cavcloud-capacity-button" href="https://app.cavbot.io/auth?mode=login">
+          Open CavBot
+        </a>
+      </article>
+
+      <!-- PREMIUM -->
+      <article class="cavcloud-capacity-card cavcloud-capacity-card--premium" data-cavcloud-capacity-card="center">
+        <div class="cavcloud-capacity-card-top">
+          <div>
+            <p class="cavcloud-capacity-plan-label">Premium</p>
+
+            <p class="cavcloud-capacity-plan-copy">
+              Add more room for files, folders, reviews, and secured storage.
+            </p>
+
+            <h3>
+              <span data-cavcloud-price data-monthly-price="19.99" data-annual-price="199.99">$19.99</span>
+              <span data-cavcloud-price-period data-monthly-period="/mo" data-annual-period="/yr">/mo</span>
+            </h3>
+          </div>
+        </div>
+
+        <div class="cavcloud-capacity-storage-box">
+          <span>CavCloud storage</span>
+          <strong>50 GB</strong>
+          <small data-cavcloud-billing-note data-monthly-note="Monthly billing selected." data-annual-note="Yearly billing selected.">
+            Monthly billing selected.
+          </small>
+        </div>
+
+        <ul class="cavcloud-capacity-feature-list">
+
+
+ <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            10 GB  secured storage
+          </li>
+
+          <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            Owner-only CavSafe access
+          </li>
+
+
+        </ul>
+
+        <a
+          class="cavcloud-capacity-button"
+          href="https://app.cavbot.io/settings/upgrade?plan=premium&billing=monthly"
+          data-cavcloud-plan-link
+          data-monthly-href="https://app.cavbot.io/settings/upgrade?plan=premium&billing=monthly"
+          data-annual-href="https://app.cavbot.io/settings/upgrade?plan=premium&billing=annual"
+        >
+          Upgrade to Premium
+        </a>
+      </article>
+
+      <!-- PREMIUM PLUS -->
+      <article class="cavcloud-capacity-card cavcloud-capacity-card--plus" data-cavcloud-capacity-card="right">
+        <div class="cavcloud-capacity-card-top">
+          <div>
+            <p class="cavcloud-capacity-plan-label">Premium+</p>
+
+            <p class="cavcloud-capacity-plan-copy">
+              Expand storage with stronger protection, snapshots, and analytics.
+            </p>
+
+            <h3>
+              <span data-cavcloud-price data-monthly-price="39.99" data-annual-price="399.99">$39.99</span>
+              <span data-cavcloud-price-period data-monthly-period="/mo" data-annual-period="/yr">/mo</span>
+            </h3>
+          </div>
+
+          <div class="cavcloud-capacity-plan-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.75 13.82 8.3l5.43 1.95-5.43 1.95L12 17.75l-1.82-5.55-5.43-1.95 5.43-1.95L12 2.75Z"></path>
+              <path d="M18.5 15.35 19.2 17.4l2.05.7-2.05.7-.7 2.05-.7-2.05-2.05-.7 2.05-.7.7-2.05Z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="cavcloud-capacity-storage-box">
+          <span>CavCloud storage</span>
+          <strong>500 GB</strong>
+          <small data-cavcloud-billing-note data-monthly-note="Monthly billing selected." data-annual-note="Yearly billing selected.">
+            Monthly billing selected.
+          </small>
+        </div>
+
+        <ul class="cavcloud-capacity-feature-list">
+
+          <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            Integrity lock + audit log
+          </li>
+
+          <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            Time locks + snapshots
+          </li>
+ <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            50 GB  secured storage
+          </li>
+
+          <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            CavSafe analytics
+          </li>
+
+           <li>
+            <span aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.25 13.55 8.1 18.5 9.75l-4.95 1.65L12 16.25l-1.55-4.85L5.5 9.75l4.95-1.65L12 3.25Z"></path></svg>
+            </span>
+            Owner-only CavSafe access
+          </li>
+
+        </ul>
+
+        <a
+          class="cavcloud-capacity-button cavcloud-capacity-button--plus"
+          href="https://app.cavbot.io/settings/upgrade?plan=premium_plus&billing=monthly"
+          data-cavcloud-plan-link
+          data-monthly-href="https://app.cavbot.io/settings/upgrade?plan=premium_plus&billing=monthly"
+          data-annual-href="https://app.cavbot.io/settings/upgrade?plan=premium_plus&billing=annual"
+        >
+          Upgrade to Premium+
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+  CAVCLOUD SUPPORT SECTION
+============================== -->
+<section class="cavcloud-support" data-cavcloud-support aria-labelledby="cavcloud-support-title">
+  <div class="cavcloud-support-shell">
+    <header class="cavcloud-support-header">
+      <h2 id="cavcloud-support-title">
+        CavCloud supports your business at every step
+      </h2>
+    </header>
+
+    <div class="cavcloud-support-grid">
+      <article class="cavcloud-support-card" data-cavcloud-support-card="1">
+        <div class="cavcloud-support-icon cavcloud-support-icon--lime" aria-hidden="true">
+          <img src="assets/icons/page/cloud/lock-shield-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+        </div>
+
+        <h3>Store and protect your files</h3>
+
+        <p>
+          Upload content, organize folders, and protect sensitive files.
+        </p>
+      </article>
+
+      <article class="cavcloud-support-card" data-cavcloud-support-card="2">
+        <div class="cavcloud-support-icon cavcloud-support-icon--white" aria-hidden="true">
+          <img src="assets/icons/page/cloud/share-files-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+        </div>
+
+        <h3>Share your content</h3>
+
+        <p>
+          Send files for review without leaving CavBot.
+        </p>
+      </article>
+
+      <article class="cavcloud-support-card" data-cavcloud-support-card="3">
+        <div class="cavcloud-support-icon cavcloud-support-icon--lime" aria-hidden="true">
+          <img src="assets/icons/page/cloud/book-opened-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+        </div>
+
+        <h3>Review files faster</h3>
+
+        <p>
+          Preview PDFs, edit assets, and check the latest version before anything gets shared.
+        </p>
+      </article>
+
+      <article class="cavcloud-support-card" data-cavcloud-support-card="4">
+        <div class="cavcloud-support-icon cavcloud-support-icon--white" aria-hidden="true">
+          <img src="assets/icons/page/cloud/security-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+        </div>
+
+        <h3>Protect files with CavSafe</h3>
+
+        <p>
+          Use stricter access, owner control, snapshots, and activity history for sensitive files.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==============================
+  CAVCLOUD FINAL CTA
+============================== -->
+<section class="cavcloud-final" data-cavcloud-final aria-labelledby="cavcloud-final-title">
+  <div class="cavcloud-final-shell">
+    <h2 id="cavcloud-final-title">
+      Get organized. Stay protected. <br> Get CavCloud.
+    </h2>
+
+    <a class="cavcloud-final-button" href="https://app.cavbot.io/auth?mode=signup">
+      Start 14-day free trial
+     
+    </a>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <footer class="site-footer">
   <div class="footer-inner">
@@ -719,7 +1491,7 @@
           <li><a href="/" class="footer-link">Partners</a></li>
           <li><a href="https://app.cavbot.io/status" class="footer-link">System Status</a></li>
           <li><a href="terminal.html" class="footer-link">CavBot Terminal</a></li>
-          
+
 
         </ul>
       </section>
@@ -732,10 +1504,10 @@
           <li><a href="/blog.html?category=research#research" class="footer-link">Research</a></li>
           <li><a href="why-cavbot.html" class="footer-link">Why CavBot?</a></li>
           <li><a href="/" class="footer-link">Compare CavBot</a></li>
-          
-          
-          
-          
+
+
+
+
         </ul>
       </section>
 
@@ -747,7 +1519,7 @@
           <li><a href="/blog.html" class="footer-link">Blog</a></li>
           <li><a href="/" class="footer-link">Careers</a></li>
           <li><a href="/legal.html#ethics-overview" class="footer-link">Code of Ethics</a></li>
-          
+
 
         </ul>
       </section>
@@ -797,6 +1569,10 @@ window.CAVBOT_PROJECT_KEY = "cavbot_pk_gHn737DTf4afJ2xGpBFzZQ";
   data-api="https://app.cavbot.io/api/embed/analytics"
   data-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ">
 </script>
-  <script src="files/js/globals/header-footer.js?v=brainfix-20260414logosmooth1"></script>
+  <script src="files/js/globals/header-footer.js"></script>
+  <script src="files/js/pages/cavcloud.js" defer></script>
+
+
+
 </body>
 </html>

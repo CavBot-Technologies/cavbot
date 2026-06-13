@@ -1254,8 +1254,8 @@ a.cb-try-cavai-menu-link:hover::after {
 
 
 [data-cavbot-app-session-avatar] {
-  --cb-app-session-tone: #b9c85a;
-  --cb-app-session-ink: #050509;
+  --cb-app-session-tone: rgba(247, 251, 255, 0.94);
+  --cb-app-session-ink: #01030f;
 
 
   width: 32px;
@@ -1269,7 +1269,7 @@ a.cb-try-cavai-menu-link:hover::after {
 
 
   border-radius: 999px;
-  background: var(--cb-app-session-tone) !important;
+  background: rgba(247, 251, 255, 0.94) !important;
   color: var(--cb-app-session-ink) !important;
 
 

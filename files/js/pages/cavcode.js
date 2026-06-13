@@ -23,7 +23,7 @@
     function setFramePosition(progress) {
       var eased = easeOutCubic(clamp(progress, 0, 1));
 
-      /*
+      /* 
         0 = normal lower position
         1 = lifted upward position
 

@@ -1425,6 +1425,7 @@ button.cavcode-demo-tree-row {
 
 .cavcode-hero {
   --cavcode-hero-lift: clamp(-86px, -7vh, -54px);
+  --cavcode-ribbon-lift: clamp(-190px, -17vh, -130px);
 }
 
 .cavcode-hero-copy {
@@ -1432,7 +1433,7 @@ button.cavcode-demo-tree-row {
 }
 
 .cavcode-hero-art {
-  transform: translate3d(0, var(--cavcode-hero-lift), 0);
+  transform: translate3d(0, var(--cavcode-ribbon-lift), 0);
 }
 
 /* Keep the button grouped with the lifted hero copy */
@@ -1444,6 +1445,7 @@ button.cavcode-demo-tree-row {
 @media (max-width: 1240px) {
   .cavcode-hero {
     --cavcode-hero-lift: clamp(-74px, -6vh, -46px);
+    --cavcode-ribbon-lift: clamp(-150px, -13vh, -102px);
   }
 }
 
@@ -1451,6 +1453,7 @@ button.cavcode-demo-tree-row {
 @media (max-width: 760px) {
   .cavcode-hero {
     --cavcode-hero-lift: -24px;
+    --cavcode-ribbon-lift: -42px;
   }
 }
 /* ==============================
@@ -6229,8 +6232,6 @@ button.cavcode-demo-tree-row {
 }
 /* ==============================
    CAVCODE HERO RIBBONS
-   About-page color match + stronger lime
-   Keeps CavCode shapes exactly as-is
 ============================== */
 
 
