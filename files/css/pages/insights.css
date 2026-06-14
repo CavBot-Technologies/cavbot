@@ -3755,6 +3755,12 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.insights-faq-item summary *,
+.insights-faq-toggle,
+.insights-faq-icon {
+  cursor: pointer;
+}
+
 .insights-faq-item summary::-webkit-details-marker {
   display: none;
 }
