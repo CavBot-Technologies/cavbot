@@ -8278,7 +8278,7 @@ Object.keys(docs).forEach(function (key) {
     resultsNode.innerHTML = '<div class="docs-search-group"><p>Search docs</p>' + (matches.length ? matches.map(function (item) {
       return '<button type="button" class="docs-search-result" data-docs-search-href="' + escapeHtml(item.href) + '"><strong>' + escapeHtml(item.title) + '</strong><span>' + escapeHtml(item.summary) + '</span></button>';
     }).join("") : '<p class="docs-search-empty">No docs matched that search.</p>') + '</div>' +
-      '<div class="docs-search-ask"><p><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> Ask CavAi</p><button type="button" class="docs-search-ask-button" data-docs-cavai-question="' + escapeHtml(query || "How do I get started with CavBot?") + '"><span>Ask CavAi about "' + escapeHtml(query || "CavBot Docs") + '"</span><small>Uses docs context.</small></button></div>';
+      '<div class="docs-search-ask" data-docs-cavai-box><p><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> Ask CavAi</p><label class="docs-search-ask-label" for="docs-search-cavai-prompt">Ask CavAi about the docs</label><div class="docs-search-cavai-prompt"><input id="docs-search-cavai-prompt" name="prompt" type="text" value="' + escapeHtml(query || "") + '" placeholder="Ask CavAi about setup, teams, docs, pricing, or any CavBot topic"><button type="button" data-docs-cavai-submit>Ask</button></div><button type="button" class="docs-search-ask-button" data-docs-cavai-question="' + escapeHtml(query || "How do I get started with CavBot?") + '"><span>Ask CavAi about "' + escapeHtml(query || "CavBot Docs") + '"</span><small>Uses docs context and opens CavAi normally.</small></button></div>';
     Array.from(resultsNode.querySelectorAll("[data-docs-search-href]")).forEach(function (button) {
       button.addEventListener("click", function () {
         navigateTo(button.getAttribute("data-docs-search-href") || "/docs/getstarted");
@@ -8288,6 +8288,23 @@ Object.keys(docs).forEach(function (key) {
     });
     const ask = resultsNode.querySelector("[data-docs-cavai-question]");
     if (ask) ask.addEventListener("click", function () { openCavAiPanel(ask.getAttribute("data-docs-cavai-question") || ""); closeSearchPanel(); });
+    const askBox = resultsNode.querySelector("[data-docs-cavai-box]");
+    if (askBox) {
+      const input = askBox.querySelector("input[name='prompt']");
+      const submit = askBox.querySelector("[data-docs-cavai-submit]");
+      function submitPrompt() {
+        openCavAiPanel(input ? input.value : query);
+        closeSearchPanel();
+      }
+      if (submit) submit.addEventListener("click", submitPrompt);
+      if (input) {
+        input.addEventListener("keydown", function (event) {
+          if (event.key !== "Enter") return;
+          event.preventDefault();
+          submitPrompt();
+        });
+      }
+    }
     resultsNode.hidden = false;
   }
 
@@ -8322,18 +8339,25 @@ Object.keys(docs).forEach(function (key) {
     cavaiPanel = document.createElement("section");
     cavaiPanel.className = "docs-cavai-panel";
     cavaiPanel.hidden = true;
-    cavaiPanel.innerHTML = '<div class="docs-cavai-panel-head"><span><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> CavAi</span><a data-docs-cavai-open-full target="_blank" rel="noopener noreferrer">Open full CavAi</a><button type="button" data-docs-cavai-close aria-label="Close CavAi">×</button></div><iframe title="CavAi docs assistant" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    cavaiPanel.innerHTML = '<div class="docs-cavai-panel-head"><span><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> CavAi</span><a data-docs-cavai-open-full target="_blank" rel="noopener noreferrer">Open full CavAi</a><button type="button" data-docs-cavai-close aria-label="Close CavAi">×</button></div><form class="docs-cavai-panel-body" data-docs-cavai-panel-form><label for="docs-cavai-panel-prompt">Prompt</label><textarea id="docs-cavai-panel-prompt" name="prompt" rows="5" placeholder="Ask CavAi about these docs"></textarea><p>CavAi opens in the CavBot app with this docs context so the browser does not block it.</p><div class="docs-cavai-panel-actions"><button type="submit">Open CavAi</button></div></form>';
     document.body.appendChild(cavaiPanel);
     cavaiPanel.querySelector("[data-docs-cavai-close]").addEventListener("click", function () { cavaiPanel.hidden = true; });
+    cavaiPanel.querySelector("[data-docs-cavai-panel-form]").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const prompt = cavaiPanel.querySelector("[name='prompt']");
+      window.open(getCavAiUrl(prompt ? prompt.value : ""), "_blank", "noopener,noreferrer");
+    });
     return cavaiPanel;
   }
 
   function openCavAiPanel(query) {
     const panel = ensureCavAiPanel();
     const url = getCavAiUrl(query);
-    panel.querySelector("iframe").setAttribute("src", url);
+    const prompt = panel.querySelector("[name='prompt']");
+    if (prompt) prompt.value = query || "Read this CavBot Docs page and help me understand it.";
     panel.querySelector("[data-docs-cavai-open-full]").setAttribute("href", url);
     panel.hidden = false;
+    if (prompt) prompt.focus({ preventScroll: true });
   }
 
   function initFeedback() {

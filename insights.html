@@ -1,0 +1,2685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Preload brand logo -->
+<link rel="preload" as="image" href="/assets/logo/official-logotype-light.svg" fetchpriority="high">
+<link rel="sitemap" type="application/xml" href="https://www.cavbot.io/sitemap.xml">
+
+  <meta charset="utf-8">
+  <title>CavBot Insights · Website issues ranked by impact · CavBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Turn site data into clear priorities. See which pages are affected and what to review first.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="author" content="Cavendish Pierre-Louis">
+  <meta name="application-name" content="CavBot">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+  <link rel="canonical" href="https://cavbot.io/accessibility-check">
+
+  <!-- UNIVERSAL FAVICONS  -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icons/favicon-64x64.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicon-96x96.png">
+<link rel="icon" type="image/x-icon" href="assets/icons/favicon.ico">
+
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/icons/apple-touch-icon-120x120.png">
+
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/android-chrome-512x512.png">
+
+<link rel="mask-icon" href="assets/icons/safari-pinned-tab.svg" color="#140c3d">
+<link rel="manifest" href="site.webmanifest">
+
+<meta name="theme-color" content="#01030f">
+<meta name="msapplication-TileColor" content="#01030f">
+<meta name="msapplication-TileImage" content="assets/icons/mstile-144x144.png">
+  
+<!-- Open Graph -->
+  <meta property="og:title" content="CavBot Insights · Website issues ranked by impact · CavBot">
+  <meta property="og:description" content="Turn site data into clear priorities. See which pages are affected and what to review first.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cavbot.io/accessibility-check">
+  <meta property="og:site_name" content="CavBot">
+  <meta property="og:image" content="https://cavbot.io/assets/icons/ogimage.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CavBot Insights · Website issues ranked by impact · CavBot">
+  <meta name="twitter:description" content="Turn site data into clear priorities. See which pages are affected and what to review first.">
+  <meta name="twitter:image" content="https://cavbot.io/assets/icons/metaproperty.png">
+
+  <!-- TYPEFACE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CavBot header-footer styles -->
+  <link rel="stylesheet" href="files/css/globals/header-footer.css">
+  <!-- CavBot head + badge + body -->
+  <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
+  
+  <link rel="stylesheet" href="files/css/globals/main.css">
+  <!-- Page styles -->
+  <link rel="stylesheet" href="files/css/pages/insights.css">
+
+  <!-- Structured data  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://cavbot.io/#organization",
+        "name": "CavBot",
+        "url": "https://cavbot.io/",
+        "founder": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/",
+          "sameAs": [
+            "https://cavendishpierrelouis.io/"
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cavbot.io/#website",
+        "url": "https://cavbot.io/",
+        "name": "CavBot",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "inLanguage": "en",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://cavbot.io/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://cavbot.io/accessibility-check#webpage",
+        "url": "https://cavbot.io/accessibility-check",
+        "name": "CavBot Insights · Website issues ranked by impact · CavBot",
+        "description": "Turn site data into clear priorities. See which pages are affected and what to review first.",
+        "isPartOf": {
+          "@id": "https://cavbot.io/#website"
+        },
+        "about": {
+          "@id": "https://cavbot.io/#software"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://cavbot.io/#software",
+        "name": "CavBot",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://cavbot.io/",
+        "description": "CavBot is a website intelligence platform. We bring clarity to what happens after launch — helping every digital experience stay reliable, resilient, and ready to recover.",
+        "publisher": {
+          "@id": "https://cavbot.io/#organization"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "Cavendish Pierre-Louis",
+          "url": "https://cavendishpierrelouis.io/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://cavbot.io/accessibility-check#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://cavbot.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "CavBot Insights · Website issues ranked by impact",
+            "item": "https://cavbot.io/accessibility-check"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+
+<body
+  class="page-shell"
+  data-cavbot-page-type="about-page"
+  data-cavbot-component="about-shell"
+>
+  <!-- DO NOT add data-cavbot-disable-floating-badge="1" on this page. -->
+  <header class="site-header cb-company-header">
+  <div class="site-header-inner">
+     <a href="https://www.cavbot.io/" class="brand-lockup" aria-label="CavBot home">
+      <img
+        src="/assets/logo/official-logotype-light.svg"
+        alt="CavBot"
+        class="brand-logo-img"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="nav-main" aria-label="Primary navigation">
+      <!-- Product -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="product"
+          aria-expanded="false"
+          aria-controls="cb-mega-product"
+        >
+          <span>Product</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-product" data-mega-menu="product" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--product">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">AI</p>
+
+                <a class="cb-mega-link" href="https://ai.cavbot.io/">
+                  <span class="cb-mega-link-title">CavAi</span>
+                  <span class="cb-mega-link-copy">Ask, create, and solve with <br> AI.</span>
+                </a>
+
+                <a class="cb-mega-link" href="caven.html">
+                  <span class="cb-mega-link-title">Caven</span>
+                  <span class="cb-mega-link-copy"> Build, debug, and ship with a real AI coding agent.
+</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Website Performance</p>
+
+                <a class="cb-mega-link" href="web-analytics.html">
+                  <span class="cb-mega-link-title">Web Analytics</span>
+                  <span class="cb-mega-link-copy">Understand your traffic beyond the <br> pageview.</span>
+                </a>
+
+                <a class="cb-mega-link" href="seo-audit.html">
+                  <span class="cb-mega-link-title">SEO Audit</span>
+                  <span class="cb-mega-link-copy">Review page structure, metadata, and <br> discovery signals.</span>
+                </a>
+
+                <a class="cb-mega-link" href="error-tracking.html">
+                  <span class="cb-mega-link-title">Error Tracking</span>
+                  <span class="cb-mega-link-copy">Find what broke and where it happened.</span>
+                </a>
+
+                 <a class="cb-mega-link" href="accessibility-check.html">
+                  <span class="cb-mega-link-title">Accessibility Check</span>
+                  <span class="cb-mega-link-copy">Catch usability and accessibility issues <br> early.</span>
+                </a>
+
+                <a class="cb-mega-link" href="insights.html">
+                  <span class="cb-mega-link-title">Insights</span>
+                  <span class="cb-mega-link-copy">Turn website activity into clear next <br> steps.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">404 Recovery</span>
+                  <span class="cb-mega-link-copy">Find missing pages and guide visitors <br> back.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Developer Tools</p>
+
+                <a class="cb-mega-link" href="cavcode.html">
+                  <span class="cb-mega-link-title">Code</span>
+                  <span class="cb-mega-link-copy">Code, inspect, and debug in CavBot’s built-in IDE.</span>
+                </a>
+
+                <a class="cb-mega-link" href="https://app.cavbot.io/cavcode-viewer">
+                  <span class="cb-mega-link-title">HTML Viewer</span>
+                  <span class="cb-mega-link-copy">View your page structure clearly.</span>
+                </a>
+
+                <a class="cb-mega-link" href="cavcloud.html">
+                  <span class="cb-mega-link-title">Cloud</span>
+                  <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="terminal.html">
+                  <span class="cb-mega-link-title">CavBot Terminal</span>
+                  <span class="cb-mega-link-copy">Run Cav commands, inspect, and debug faster.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">START HERE</p>
+
+                <a class="cb-mega-link" href="why-cavbot.html">
+                  <span class="cb-mega-link-title">Why CavBot?</span>
+                  <span class="cb-mega-link-copy">See why websites need more than analytics.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/#collaboration">
+                  <span class="cb-mega-link-title">Team Access</span>
+                  <span class="cb-mega-link-copy">Invite teammates, manage roles and work together.</span>
+                </a>
+
+                   <a class="cb-mega-link" href="pricing.html">
+                  <span class="cb-mega-link-title">Pricing</span>
+                  <span class="cb-mega-link-copy">Choose the right plan for your site or team.</span>
+                </a>
+
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="https://app.cavbot.io/">
+              <span>Open Dashboard</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Security -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="Security"
+          aria-expanded="false"
+          aria-controls="cb-mega-Security"
+        >
+          <span>Security</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu cb-mega-menu--compact" id="cb-mega-Security" data-mega-menu="Security" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--three">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Protection</p>
+
+                <a class="cb-mega-link" href="/#security-cavverify">
+                  <span class="cb-mega-link-title">Caverify</span>
+                  <span class="cb-mega-link-copy">Built-in verification that keeps bots out.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/#security-cavguard">
+                  <span class="cb-mega-link-title">CavGuard</span>
+                  <span class="cb-mega-link-copy"> Built-in guardrails for restricted actions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/#security-cavsafe">
+                  <span class="cb-mega-link-title">CavSafe</span>
+                  <span class="cb-mega-link-copy">The private CavCloud vault for sensitive files.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Trust</p>
+
+                <a class="cb-mega-link" href="/legal.html#data-security">
+                  <span class="cb-mega-link-title">Data security</span>
+                  <span class="cb-mega-link-copy">How CavBot keeps platform data handled with care.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/legal.html#privacy-policy">
+                  <span class="cb-mega-link-title">Privacy</span>
+                  <span class="cb-mega-link-copy">Clear terms for how data is collected and used.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/legal.html#terms-of-use">
+                  <span class="cb-mega-link-title">Terms</span>
+                  <span class="cb-mega-link-copy">The rules for using CavBot products and services.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">Operational security</p>
+
+                <a class="cb-mega-link" href="/docs.html#risk-controls">
+                  <span class="cb-mega-link-title">Risk controls</span>
+                  <span class="cb-mega-link-copy">Set rules for protected actions.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#audit-trail">
+                  <span class="cb-mega-link-title">Audit trail</span>
+                  <span class="cb-mega-link-copy">Review changes across your workspace.</span>
+                </a>
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/docs.html#security">
+              <span>Explore security</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- APIs -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="apis"
+          aria-expanded="false"
+          aria-controls="cb-mega-apis"
+        >
+          <span>Developers</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-apis" data-mega-menu="apis" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--three">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Signal</p>
+
+                <a class="cb-mega-link" href="/docs.html#analytics-v5">
+                  <span class="cb-mega-link-title">CavBot Analytics v5</span>
+                  <span class="cb-mega-link-copy">Install one snippet and CavBot starts watching your site.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#events">
+                  <span class="cb-mega-link-title">Events</span>
+                  <span class="cb-mega-link-copy">Send important product actions into <br> CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#summary">
+                  <span class="cb-mega-link-title">Summary</span>
+                  <span class="cb-mega-link-copy">Pull the latest site, route, and dashboard results.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">AI</p>
+
+                <a class="cb-mega-link" href="/docs.html#cavai-v3">
+                  <span class="cb-mega-link-title">CavAi v3</span>
+                  <span class="cb-mega-link-copy">The AI layer that helps CavBot turn what it sees into action.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#assistant-memory">
+                  <span class="cb-mega-link-title">Assistant memory</span>
+                  <span class="cb-mega-link-copy">Keep project context available when CavAi responds.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#agent-workflows">
+                  <span class="cb-mega-link-title">Agent workflows</span>
+                  <span class="cb-mega-link-copy">Run repeatable agents for research, fixes, and summaries.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">CavBot Assets</p>
+
+                <a class="cb-mega-link" href="/docs.html#arcade-404">
+                  <span class="cb-mega-link-title">404 Arcade</span>
+                  <span class="cb-mega-link-copy">Install interactive 404 games for broken pages.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#cavbot-badge">
+                  <span class="cb-mega-link-title">CavBot Badge</span>
+                  <span class="cb-mega-link-copy"> Show visible trust on your website.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#cavbot-head">
+                  <span class="cb-mega-link-title">CavBot Head</span>
+                  <span class="cb-mega-link-copy">Add a compact CavBot presence to your product.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/docs.html#cavbot-body">
+                  <span class="cb-mega-link-title">CavBot Body</span>
+                  <span class="cb-mega-link-copy">Use CavBot for guided product moments.</span>
+                </a>
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="https://cavbot.io/docs">
+              <span>Open docs</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div class="cb-nav-item" data-mega-item>
+        <button
+          class="cb-nav-trigger"
+          type="button"
+          data-mega-trigger="resources"
+          aria-expanded="false"
+          aria-controls="cb-mega-resources"
+        >
+          <span>Resources</span>
+          <svg class="cb-nav-chevron" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+
+        <div class="cb-mega-menu" id="cb-mega-resources" data-mega-menu="resources" aria-hidden="true">
+          <div class="cb-mega-inner">
+            <div class="cb-mega-grid cb-mega-grid--resources">
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Support &amp; Services</p>
+
+                <a class="cb-mega-link" href="/help-center.html">
+                  <span class="cb-mega-link-title">Help Center</span>
+                  <span class="cb-mega-link-copy">Setup guides, FAQs and product help.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Partners</span>
+                  <span class="cb-mega-link-copy">Programs and organizations helping CavBot grow.</span>
+                </a>
+
+ <a class="cb-mega-link" href="/blog.html?category=research#research">
+                  <span class="cb-mega-link-title">Research</span>
+                  <span class="cb-mega-link-copy">Practical research for better digital products.</span>
+                </a>
+                
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Company</p>
+
+                <a class="cb-mega-link" href="/legal.html#ethics-overview">
+                  <span class="cb-mega-link-title">Code of Ethics</span>
+                  <span class="cb-mega-link-copy">The standards we build <br> by.</span>
+                </a>
+
+                <a class="cb-mega-link" href="about.html">
+                  <span class="cb-mega-link-title">About</span>
+                  <span class="cb-mega-link-copy">Read the story behind <br> Cavbot</span>
+                </a>
+
+                <a class="cb-mega-link" href="team.html">
+                  <span class="cb-mega-link-title">Team</span>
+                  <span class="cb-mega-link-copy">Meet the people behind <br> Cavbot</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Careers</span>
+                  <span class="cb-mega-link-copy">Join the team building <br> Cavbot.</span>
+                </a>
+              </section>
+
+              <section class="cb-mega-column">
+                <p class="cb-mega-kicker">Highlights</p>
+
+
+                <a class="cb-mega-link" href="websites.html" target="_blank" rel="noopener noreferrer">
+                  <span class="cb-mega-link-title">Monitored Websites</span>
+                  <span class="cb-mega-link-copy">Explore active websites using CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="https://brand.cavbot.io">
+                  <span class="cb-mega-link-title">Media Kit</span>
+                  <span class="cb-mega-link-copy">Official CavBot brand assets.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/blog.html">
+                  <span class="cb-mega-link-title">Blog</span>
+                  <span class="cb-mega-link-copy">Latest company updates.</span>
+                </a>
+
+              </section>
+
+              <section class="cb-mega-column cb-mega-column--quiet">
+                <p class="cb-mega-kicker">Explore</p>
+
+                <a class="cb-mega-link" href="/docs.html#how-to-use-cavbot">
+                  <span class="cb-mega-link-title">How to use CavBot</span>
+                  <span class="cb-mega-link-copy">Learn the basics of working with CavBot.</span>
+                </a>
+
+                <a class="cb-mega-link" href="/">
+                  <span class="cb-mega-link-title">Education</span>
+                  <span class="cb-mega-link-copy">Guides and lessons for better websites.</span>
+                </a>
+
+                  <a class="cb-mega-link" href="what's-a-404.html">
+                  <span class="cb-mega-link-title">What's a 404?</span>
+                  <span class="cb-mega-link-copy">Understand broken pages and how to fix them.</span>
+                </a>
+
+              </section>
+            </div>
+
+            <a class="cb-mega-bottom-link" href="/docs.html#overview">
+              <span>Getting started with CavBot</span>
+              <span class="cb-arrow-text" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/cavbot-arcade.html" class="nav-link">CavBot Arcade</a> 
+      <a href="/pricing.html" class="nav-link">Pricing</a>
+      <a href="https://app.cavbot.io/" class="nav-link">Dashboard</a>
+    </nav>
+
+    <div class="nav-cta-row">
+      <button class="cb-site-update-trigger" type="button" aria-label="View site update notice" data-site-update-open>
+        <img class="cb-site-update-icon" src="assets/icons/page/notice-svgrepo-com.svg" alt="" aria-hidden="true" />
+      </button>
+      <div class="cb-try-cavai" data-cb-try-cavai>
+       <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+        <button class="cb-try-cavai-toggle" type="button" aria-label="Open CavAi options" aria-expanded="false">
+          <span class="cb-try-cavai-caret" aria-hidden="true">
+            <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-closed" viewBox="0 0 16 16">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="cb-try-cavai-caret-icon cb-try-cavai-caret-icon-open" viewBox="0 0 16 16">
+              <path d="M4.25 9.75L8 6l3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </button>
+
+        <div class="cb-try-cavai-menu" role="dialog" aria-label="CavAi quick actions">
+          <section class="cb-try-cavai-menu-section is-open" data-default-open="true">
+            <button class="cb-try-cavai-menu-section-toggle" type="button" aria-expanded="true">
+              <span class="cb-try-cavai-menu-label">Models</span>
+              <svg class="cb-try-cavai-menu-section-caret" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M6.25 4.25L10 8l-3.75 3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="cb-try-cavai-menu-section-panel">
+              <a class="cb-try-cavai-menu-link is-model" href="https://www.cavbot.io/deepseek-cavbot" data-model-id="deepseek">
+                <span class="cb-try-cavai-menu-link-label">Deepseek</span>
+              </a>
+              <a class="cb-try-cavai-menu-link is-model" href="https://www.cavbot.io/qwen-cavbot" data-model-id="qwen">
+                <span class="cb-try-cavai-menu-link-label">Qwen</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span class="nav-menu-icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile / tablet navigation panel -->
+  <div class="nav-overlay" aria-hidden="true">
+    <div class="nav-overlay-backdrop"></div>
+
+    <aside class="nav-overlay-panel" aria-label="CavBot menu">
+      <div class="nav-overlay-header">
+        <span class="nav-overlay-title">Menu</span>
+        <button class="nav-overlay-close" type="button" aria-label="Close menu"></button>
+      </div>
+
+      <div class="nav-overlay-body">
+        <section class="cb-mobile-section is-open">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="true">
+            <span>Product</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel">
+            <a href="https://ai.cavbot.io/" class="nav-overlay-link">CavAi</a>
+            <a href="caven.html" class="nav-overlay-link">Caven</a>
+            <a href="error-tracking.html" class="nav-overlay-link">Error Tracking</a>
+            <a href="seo-audit.html" class="nav-overlay-link">SEO Audit</a>
+            <a href="accessibility-check.html" class="nav-overlay-link">Accessibility Check</a>
+            <a href="/" class="nav-overlay-link">Insights</a>
+            <a href="cavbot-arcade.html" class="nav-overlay-link">CavBot Arcade</a>
+            <a href="cavcode.html" class="nav-overlay-link">Code</a>
+            <a href="/" class="nav-overlay-link">HTML Viewer</a>
+            <a href="cavcloud.html" class="nav-overlay-link">Cloud</a>
+            <a href="terminal.html" class="nav-overlay-link">CavBot Terminal</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>Security</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/#security-cavverify" class="nav-overlay-link">Caverify</a>
+            <a href="/#security-cavguard" class="nav-overlay-link">CavGuard</a>
+            <a href="/#security-cavsafe" class="nav-overlay-link">CavSafe</a>
+            <a href="/legal.html#data-security" class="nav-overlay-link">Data security</a>
+            <a href="/legal.html#privacy-policy" class="nav-overlay-link">Privacy</a>
+            <a href="/legal.html#terms-of-use" class="nav-overlay-link">Terms</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>API</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/docs.html#analytics-v5" class="nav-overlay-link">CavBot Analytics v5</a>
+            <a href="/docs.html#events" class="nav-overlay-link">Events</a>
+            <a href="/docs.html#summary" class="nav-overlay-link">Summary</a>
+            <a href="/docs.html#cavai-v3" class="nav-overlay-link">CavAi V3</a>
+            <a href="/docs.html#assistant-memory" class="nav-overlay-link">Assistant memory</a>
+            <a href="/docs.html#agent-workflows" class="nav-overlay-link">Agent workflows</a>
+            <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+            <a href="/docs.html#cavbot-badge" class="nav-overlay-link">CavBot Badge</a>
+            <a href="/docs.html#cavbot-head" class="nav-overlay-link">CavBot Head</a>
+            <a href="/docs.html#cavbot-body" class="nav-overlay-link">CavBot Body</a>
+          </div>
+        </section>
+
+        <section class="cb-mobile-section">
+          <button class="cb-mobile-section-toggle" type="button" aria-expanded="false">
+            <span>Resources</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M4.25 6.25L8 10l3.75-3.75" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+
+          <div class="cb-mobile-section-panel" hidden>
+            <a href="/help-center.html" class="nav-overlay-link">Help Center</a>
+            <a href="/blog.html?category=research#research" class="nav-overlay-link">Research</a>
+            <a href="about.html" class="nav-overlay-link">About</a>
+            <a href="https://brand.cavbot.io" class="nav-overlay-link">Media Kit</a>
+            <a href="/blog.html" class="nav-overlay-link">Blog</a>
+            <a href="/" class="nav-overlay-link">Careers</a>
+            <a href="/legal.html#ethics-overview" class="nav-overlay-link">Code of Ethics</a>
+            
+            
+            
+          </div>
+        </section>
+
+        <a href="/pricing.html" class="nav-overlay-link nav-overlay-link--standalone">Pricing</a>
+        <a href="https://app.cavbot.io/" class="nav-overlay-link nav-overlay-link--standalone">Dashboard</a>
+
+      </div>
+
+      <div class="nav-overlay-cta">
+        <button class="cb-site-update-trigger cb-site-update-trigger--mobile" type="button" aria-label="View site update notice" data-site-update-open>
+          <img class="cb-site-update-icon" src="assets/icons/page/notice-svgrepo-com.svg" aria-hidden="true" />
+        </button>
+        <div class="cb-try-cavai cb-try-cavai--mobile" data-cb-try-cavai>
+         <a class="cb-try-cavai-link" href="https://app.cavbot.io/cavai" target="_blank" rel="noopener noreferrer">Try CavAi</a>
+
+        </div>
+      </div>
+    </aside>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div class="nav-overlay" aria-hidden="true">
+  <div class="nav-overlay-backdrop"></div>
+  <div class="nav-overlay-panel" role="dialog" aria-modal="true" aria-label="Main navigation">
+    <div class="nav-overlay-header">
+      <button class="nav-overlay-close" type="button" aria-label="Close navigation">×</button>
+    </div>
+    <div class="nav-overlay-body">
+      <a href="product.html" class="nav-overlay-link">Product</a>
+      <a href="how-it-works.html" class="nav-overlay-link">How it works</a>
+      <a href="pricing.html" class="nav-overlay-link">Pricing</a>
+      <a href="/docs.html#arcade-404" class="nav-overlay-link">404 Arcade</a>
+      <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
+
+       <div class="nav-cta-row">
+         <a href="https://app.cavbot.io/auth?mode=login" class="nav-login">Log In</a>
+         <a class="btn btn-primary" href="https://app.cavbot.io/auth?mode=signup">Get Started</a>
+       </div>
+    </div>
+  </div>
+</div>
+
+<main class="insights-main" id="main">
+  <section
+    class="insights-hero"
+    aria-labelledby="insights-title"
+    data-insights-hero
+  >
+    <div class="insights-hero-shell">
+      <div class="insights-hero-copy">
+        <p class="insights-kicker">CavBot Insights</p>
+
+
+        <h1 class="insights-title" id="insights-title">
+          Website insights, ranked <br> by impact
+          
+        </h1>
+
+
+        <div class="insights-hero-lower">
+          <p class="insights-lede">
+         Cavbot intelligence turns site data into clear priorities. See which <br> pages are affected and what to review first.
+          
+          </p>
+
+
+          <div
+            class="insights-hero-actions"
+            aria-label="CavBot Insights actions"
+          >
+            <a
+              class="insights-primary-link"
+              href="https://app.cavbot.io/auth?mode=signup"
+            >
+              Start 14-day free trial
+            </a>
+
+
+            <span class="insights-plan-note">Available on Premium+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div
+      class="insights-preview-stage"
+      data-insights-preview-stage
+    >
+      <div
+        class="insights-preview-frame"
+        data-insights-preview-frame
+      >
+        <div
+          class="insights-window"
+          aria-label="CavBot Insights product preview"
+        >
+          <div class="insights-window-bar">
+            <div
+              class="insights-window-dots"
+              aria-hidden="true"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+
+            <div class="insights-window-title">
+              <span>CavBot Insights</span>
+              <strong>cavbot.io</strong>
+            </div>
+          </div>
+
+
+          <div class="insights-window-body">
+            <header class="insights-window-head">
+              <div>
+
+
+                <h2>
+                  The same pages are showing <br> problems
+                  across your site
+                </h2>
+              </div>
+
+
+              <div class="insights-priority-score">
+                <span>Review first</span>
+
+
+                <strong data-insights-loop="priority-pages">
+                  18
+                </strong>
+
+
+                <small>pages</small>
+              </div>
+            </header>
+
+
+            <div class="insights-preview-grid">
+              <section class="insights-signal-panel">
+                <div class="insights-panel-head">
+                  <div>
+                  
+                    <strong>Last 30 days</strong>
+                  </div>
+
+
+                  <em>Live view</em>
+                </div>
+
+
+                <div class="insights-chart-summary">
+                  <div>
+                    <span>Pages needing attention</span>
+
+
+                    <strong data-insights-loop="priority-pages">
+                      18
+                    </strong>
+                  </div>
+
+
+                  <div>
+                    <span>Signals reviewed</span>
+
+
+                    <strong data-insights-count="846">
+                      0
+                    </strong>
+                  </div>
+
+
+                  <div>
+                    <span>New opportunities</span>
+
+
+                    <strong data-insights-count="12">
+                      0
+                    </strong>
+                  </div>
+                </div>
+
+
+                <div class="insights-chart-wrap">
+                  <svg
+                    class="insights-chart"
+                    viewBox="0 0 620 250"
+                    role="img"
+                    aria-label="Website signal trend"
+                  >
+                    <defs>
+                      <linearGradient
+                        id="insightsLineGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="0%"
+                      >
+                        <stop
+                          offset="0%"
+                          stop-color="#8b5cff"
+                        ></stop>
+
+
+                        <stop
+                          offset="58%"
+                          stop-color="#4ea8ff"
+                        ></stop>
+
+
+                        <stop
+                          offset="100%"
+                          stop-color="#b9c85a"
+                        ></stop>
+                      </linearGradient>
+
+
+                      <linearGradient
+                        id="insightsAreaGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="0%"
+                        y2="100%"
+                      >
+                        <stop
+                          offset="0%"
+                          stop-color="#4ea8ff"
+                          stop-opacity="0.24"
+                        ></stop>
+
+
+                        <stop
+                          offset="100%"
+                          stop-color="#4ea8ff"
+                          stop-opacity="0.01"
+                        ></stop>
+                      </linearGradient>
+                    </defs>
+
+
+                    <g
+                      class="insights-chart-grid"
+                      aria-hidden="true"
+                    >
+                      <line
+                        x1="28"
+                        y1="34"
+                        x2="592"
+                        y2="34"
+                      ></line>
+
+
+                      <line
+                        x1="28"
+                        y1="82"
+                        x2="592"
+                        y2="82"
+                      ></line>
+
+
+                      <line
+                        x1="28"
+                        y1="130"
+                        x2="592"
+                        y2="130"
+                      ></line>
+
+
+                      <line
+                        x1="28"
+                        y1="178"
+                        x2="592"
+                        y2="178"
+                      ></line>
+
+
+                      <line
+                        x1="28"
+                        y1="222"
+                        x2="592"
+                        y2="222"
+                      ></line>
+                    </g>
+
+
+                    <path
+                      class="insights-chart-area"
+                      d="
+                        M28 196
+                        C72 188, 96 158, 132 164
+                        C176 170, 202 126, 244 132
+                        C286 138, 318 96, 358 104
+                        C402 112, 432 74, 474 82
+                        C516 90, 548 54, 592 46
+                        L592 222
+                        L28 222
+                        Z
+                      "
+                    ></path>
+
+
+                    <path
+                      class="insights-chart-line"
+                      d="
+                        M28 196
+                        C72 188, 96 158, 132 164
+                        C176 170, 202 126, 244 132
+                        C286 138, 318 96, 358 104
+                        C402 112, 432 74, 474 82
+                        C516 90, 548 54, 592 46
+                      "
+                    ></path>
+
+
+                    <g class="insights-chart-dots">
+                      <circle
+                        cx="28"
+                        cy="196"
+                        r="5"
+                      ></circle>
+
+
+                      <circle
+                        cx="132"
+                        cy="164"
+                        r="5"
+                      ></circle>
+
+
+                      <circle
+                        cx="244"
+                        cy="132"
+                        r="5"
+                      ></circle>
+
+
+                      <circle
+                        cx="358"
+                        cy="104"
+                        r="5"
+                      ></circle>
+
+
+                      <circle
+                        cx="474"
+                        cy="82"
+                        r="5"
+                      ></circle>
+
+
+                      <circle
+                        cx="592"
+                        cy="46"
+                        r="5"
+                      ></circle>
+                    </g>
+                  </svg>
+                </div>
+
+
+                <div
+                  class="insights-chart-labels"
+                  aria-hidden="true"
+                >
+                  <span>May 1</span>
+                  <span>May 6</span>
+                  <span>May 11</span>
+                  <span>May 16</span>
+                  <span>May 21</span>
+                  <span>May 26</span>
+                  <span>May 30</span>
+                </div>
+
+
+                <div class="insights-signal-legend">
+                  <span>
+                    <i
+                      class="
+                        insights-signal-dot
+                        insights-signal-dot--errors
+                      "
+                    ></i>
+
+
+                    Errors
+                  </span>
+
+
+                  <span>
+                    <i
+                      class="
+                        insights-signal-dot
+                        insights-signal-dot--seo
+                      "
+                    ></i>
+
+
+                    SEO
+                  </span>
+
+
+                  <span>
+                    <i
+                      class="
+                        insights-signal-dot
+                        insights-signal-dot--routes
+                      "
+                    ></i>
+
+
+                    Routes
+                  </span>
+
+
+                  <span>
+                    <i
+                      class="
+                        insights-signal-dot
+                        insights-signal-dot--quality
+                      "
+                    ></i>
+
+
+                    Page quality
+                  </span>
+                </div>
+              </section>
+
+
+              <div class="insights-side-column">
+                <section class="insights-priority-panel">
+                  <div class="insights-panel-head">
+                    <div>
+                    
+                      <strong>Priority pages</strong>
+                    </div>
+
+
+                    <em data-insights-loop-total="priority-pages">
+                      18 total
+                    </em>
+                  </div>
+
+
+                  <div class="insights-priority-list">
+                    <article
+                      class="
+                        insights-priority-row
+                        is-active
+                      "
+                    >
+                      <div class="insights-priority-rank">
+                        01
+                      </div>
+
+
+                      <div>
+                        <strong>/pricing</strong>
+
+
+                        <span>
+                          SEO decline and slow page response
+                        </span>
+                      </div>
+
+
+                      <b>High</b>
+                    </article>
+
+
+                    <article class="insights-priority-row">
+                      <div class="insights-priority-rank">
+                        02
+                      </div>
+
+
+                      <div>
+                        <strong>
+                          /docs/getting-started
+                        </strong>
+
+
+                        <span>
+                          Search traffic rising, errors increasing
+                        </span>
+                      </div>
+
+
+                      <b>High</b>
+                    </article>
+
+
+                    <article class="insights-priority-row">
+                      <div class="insights-priority-rank">
+                        03
+                      </div>
+
+
+                      <div>
+                        <strong>/features</strong>
+
+
+                        <span>
+                          Missing labels and weak search clicks
+                        </span>
+                      </div>
+
+
+                      <b>Med</b>
+                    </article>
+
+
+                    <article class="insights-priority-row">
+                      <div class="insights-priority-rank">
+                        04
+                      </div>
+
+
+                      <div>
+                        <strong>/blog</strong>
+
+
+                        <span>
+                          New queries with low click-through
+                        </span>
+                      </div>
+
+
+                      <b>Med</b>
+                    </article>
+                  </div>
+                </section>
+
+
+                <section class="insights-coverage-panel">
+                  <div class="insights-panel-head">
+                    <div>
+                     
+                      <strong>Signals connected</strong>
+                    </div>
+
+
+                    <em>Today</em>
+                  </div>
+
+
+                  <div class="insights-coverage-body">
+                    <div
+                      class="insights-coverage-ring"
+                      data-insights-coverage-ring
+                      aria-hidden="true"
+                    >
+                      <div>
+                        <strong
+                          data-insights-count="86"
+                          data-insights-suffix="%"
+                        >
+                          0%
+                        </strong>
+
+
+                        <span>covered</span>
+                      </div>
+                    </div>
+
+
+                    <div class="insights-coverage-list">
+                      <span>Traffic</span>
+                      <span>Errors</span>
+                      <span>SEO</span>
+                      <span>Routes</span>
+                      <span>Accessibility</span>
+                      <span>Web vitals</span>
+                      <span>404 recovery</span>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+
+
+          <footer class="insights-window-footer">
+            <div>
+              <span>Pages reviewed</span>
+              <strong>128</strong>
+            </div>
+
+
+            <div>
+              <span>Priority pages</span>
+
+
+              <strong data-insights-loop="priority-pages">
+                18
+              </strong>
+            </div>
+
+
+            <div>
+              <span>Search opportunities</span>
+              <strong>12</strong>
+            </div>
+
+
+            <div>
+              <span>Errors found</span>
+              <strong>31</strong>
+            </div>
+
+
+            <div>
+              <span>Broken routes</span>
+              <strong>7</strong>
+            </div>
+
+
+            <div>
+              <span>Coverage</span>
+              <strong>86%</strong>
+            </div>
+
+
+            <div>
+              <span>Last updated</span>
+              <strong>2 min ago</strong>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ==============================
+  GOOGLE + CAVBOT INSIGHTS SECTION
+============================== -->
+<section
+  class="insights-google-section"
+  id="insights-google"
+  aria-labelledby="insights-google-title"
+  data-insights-google-section
+>
+  <div class="insights-google-shell">
+    <header class="insights-google-header">
+      <h2 id="insights-google-title">
+        Get insights Google leaves disconnected
+      </h2>
+    </header>
+
+    <div class="insights-google-workspace">
+      <aside
+        class="insights-google-left"
+        aria-label="Google and CavBot comparison"
+      >
+        <div
+          class="insights-google-tabs"
+          role="tablist"
+          aria-label="CavBot Insights comparison views"
+          aria-orientation="vertical"
+        >
+          <button
+            class="insights-google-tab is-active"
+            id="insights-google-tab-0"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="insights-google-panel-0"
+            tabindex="0"
+            data-insights-google-tab="0"
+          >
+            <span class="insights-google-tab-title">
+              Page priorities across the <br> whole site
+            </span>
+
+            <span class="insights-google-tab-copy">
+             CavBot ranks every page by the problems affecting it, so you know where to start.
+            </span>
+          </button>
+
+          <button
+            class="insights-google-tab"
+            id="insights-google-tab-1"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="insights-google-panel-1"
+            tabindex="-1"
+            data-insights-google-tab="1"
+          >
+            <span class="insights-google-tab-title">
+              One explanation for every <br> page
+
+            </span>
+
+            <span class="insights-google-tab-copy">
+              See why a page needs attention without comparing separate reports.
+            </span>
+          </button>
+
+          <button
+            class="insights-google-tab"
+            id="insights-google-tab-2"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="insights-google-panel-2"
+            tabindex="-1"
+            data-insights-google-tab="2"
+          >
+            <span class="insights-google-tab-title">
+            Errors connected to pages <br> and releases
+            </span>
+
+            <span class="insights-google-tab-copy">
+            See where an error started and what changed before it appeared.
+            </span>
+          </button>
+
+          <button
+            class="insights-google-tab"
+            id="insights-google-tab-3"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="insights-google-panel-3"
+            tabindex="-1"
+            data-insights-google-tab="3"
+          >
+            <span class="insights-google-tab-title">
+             Broken routes and 404 <br> recovery
+            </span>
+
+            <span class="insights-google-tab-copy">
+             See where a broken path came from and whether visitors reached the right page.
+            </span>
+          </button>
+
+          <button
+            class="insights-google-tab"
+            id="insights-google-tab-4"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="insights-google-panel-4"
+            tabindex="-1"
+            data-insights-google-tab="4"
+          >
+            <span class="insights-google-tab-title">
+              Accessibility problems in <br> the same priority list
+            </span>
+
+            <span class="insights-google-tab-copy">
+            See which pages are harder to use and <br> whether those pages also have search <br> or speed problems.
+            </span>
+          </button>
+
+          <button
+            class="insights-google-tab"
+            id="insights-google-tab-5"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="insights-google-panel-5"
+            tabindex="-1"
+            data-insights-google-tab="5"
+          >
+            <span class="insights-google-tab-title">
+              Recommended next action
+            </span>
+
+            <span class="insights-google-tab-copy">
+              See which problem to address first and why it matters most.
+            </span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="insights-google-right" aria-live="polite">
+        <!-- ==============================
+          SCREEN 1 — PAGE PRIORITIES
+        =============================== -->
+        <section
+          class="insights-google-screen is-active"
+          id="insights-google-panel-0"
+          role="tabpanel"
+          aria-labelledby="insights-google-tab-0"
+          aria-hidden="false"
+          data-insights-google-screen="0"
+        >
+          <div class="insights-google-window">
+            <div class="insights-google-window-bar">
+              <div
+                class="insights-google-window-dots"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <p>Page priorities</p>
+            </div>
+
+            <div class="insights-google-window-body">
+              <div class="insights-google-visual-head">
+                <div>
+                 
+                  <strong>Pages with the most problems <br> rise first</strong>
+                </div>
+
+                <em>18 pages</em>
+              </div>
+
+              <div class="insights-google-priority-summary">
+                <div>
+                  <span>Pages reviewed</span>
+                  <strong>128</strong>
+                </div>
+
+                <div>
+                  <span>Review first</span>
+                  <strong>18</strong>
+                </div>
+
+                <div>
+                  <span>Signals connected</span>
+                  <strong>846</strong>
+                </div>
+              </div>
+
+              <div class="insights-google-priority-table">
+                <div class="insights-google-priority-head">
+                  <span>Rank</span>
+                  <span>Page</span>
+                  <span>Problems found</span>
+                  <span>Impact</span>
+                </div>
+
+                <article
+                  class="insights-google-priority-row is-current"
+                  data-insights-google-row-loop
+                >
+                  <span>01</span>
+
+                  <strong>/pricing</strong>
+
+                  <p>
+                    Search down · slow loading · 12 errors · 2 missing labels
+                  </p>
+
+                  <b>High</b>
+                </article>
+
+                <article
+                  class="insights-google-priority-row"
+                  data-insights-google-row-loop
+                >
+                  <span>02</span>
+
+                  <strong>/docs/getting-started</strong>
+
+                  <p>
+                    Search rising · API errors after the latest release
+                  </p>
+
+                  <b>High</b>
+                </article>
+
+                <article
+                  class="insights-google-priority-row"
+                  data-insights-google-row-loop
+                >
+                  <span>03</span>
+
+                  <strong>/features</strong>
+
+                  <p>
+                    Weak clicks · unclear buttons · 3 broken routes
+                  </p>
+
+                  <b>Med</b>
+                </article>
+
+                <article
+                  class="insights-google-priority-row"
+                  data-insights-google-row-loop
+                >
+                  <span>04</span>
+
+                  <strong>/contact</strong>
+
+                  <p>
+                    High exits · missing labels · slow response
+                  </p>
+
+                  <b>Med</b>
+                </article>
+
+                <article
+                  class="insights-google-priority-row"
+                  data-insights-google-row-loop
+                >
+                  <span>05</span>
+
+                  <strong>/blog</strong>
+
+                  <p>
+                    New queries · weak clicks · repeated 404 entry path
+                  </p>
+
+                  <b>Med</b>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================
+          SCREEN 2 — ONE EXPLANATION
+        =============================== -->
+        <section
+          class="insights-google-screen"
+          id="insights-google-panel-1"
+          role="tabpanel"
+          aria-labelledby="insights-google-tab-1"
+          aria-hidden="true"
+          data-insights-google-screen="1"
+        >
+          <div class="insights-google-window">
+            <div class="insights-google-window-bar">
+              <div
+                class="insights-google-window-dots"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <p>One page explanation</p>
+            </div>
+
+            <div class="insights-google-window-body">
+              <div class="insights-google-visual-head">
+                <div>
+                  
+                  <strong>Several reports, one explanation</strong>
+                </div>
+
+                <em>/pricing</em>
+              </div>
+
+              <div class="insights-google-explanation-layout">
+                <div class="insights-google-explanation-signals">
+                  <article class="insights-google-pulse-card">
+                    <span>Search Console</span>
+                    <strong>Clicks down 18%</strong>
+                    <em>Search</em>
+                  </article>
+
+                  <article class="insights-google-pulse-card">
+                    <span>Indexing</span>
+                    <strong>Crawled, not indexed</strong>
+                    <em>Coverage</em>
+                  </article>
+
+                  <article class="insights-google-pulse-card">
+                    <span>Web vitals</span>
+                    <strong>LCP reached 3.4 seconds</strong>
+                    <em>Speed</em>
+                  </article>
+
+                  <article class="insights-google-pulse-card">
+                    <span>Analytics</span>
+                    <strong>Page exits up 12%</strong>
+                    <em>Visitors</em>
+                  </article>
+
+                  <article class="insights-google-pulse-card">
+                    <span>Error Tracking</span>
+                    <strong>12 new JavaScript errors</strong>
+                    <em>CavBot</em>
+                  </article>
+                </div>
+
+                <div class="insights-google-explanation-result">
+                  <div class="insights-google-explanation-page">
+                    <span>Page</span>
+                    <strong>/pricing</strong>
+                  </div>
+
+                  <div
+                    class="insights-google-explanation-lines"
+                    aria-hidden="true"
+                  >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+
+                  <div class="insights-google-explanation-copy">
+                    <span>CavBot explanation</span>
+
+                    <h3>
+                      The same page is losing search clicks, loading slowly,
+                      and producing new errors after the latest release.
+                    </h3>
+
+                    <p>
+                      Instead of comparing separate reports, review the page
+                      once with every related problem beside it.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================
+          SCREEN 3 — ERRORS AND RELEASES
+        =============================== -->
+        <section
+          class="insights-google-screen"
+          id="insights-google-panel-2"
+          role="tabpanel"
+          aria-labelledby="insights-google-tab-2"
+          aria-hidden="true"
+          data-insights-google-screen="2"
+        >
+          <div class="insights-google-window">
+            <div class="insights-google-window-bar">
+              <div
+                class="insights-google-window-dots"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <p>Errors and releases</p>
+            </div>
+
+            <div class="insights-google-window-body">
+              <div class="insights-google-visual-head">
+                <div>
+                
+                  <strong>Trace what changed before the <br> error appeared</strong>
+                </div>
+
+                <em>31 events</em>
+              </div>
+
+              <div class="insights-google-error-layout">
+                <div class="insights-google-error-flow">
+                  <article class="insights-google-flow-step">
+                    <div class="insights-google-flow-number">01</div>
+
+                    <div>
+                      <span>Release</span>
+                      <strong>Version 2.4.1</strong>
+                      <p>Deployed at 11:42 AM</p>
+                    </div>
+                  </article>
+
+                  <div
+                    class="insights-google-flow-line"
+                    aria-hidden="true"
+                  ></div>
+
+                  <article class="insights-google-flow-step">
+                    <div class="insights-google-flow-number">02</div>
+
+                    <div>
+                      <span>Changed file</span>
+                      <strong>assets/js/pricing.js</strong>
+                      <p>Updated plan calculations</p>
+                    </div>
+                  </article>
+
+                  <div
+                    class="insights-google-flow-line"
+                    aria-hidden="true"
+                  ></div>
+
+                  <article class="insights-google-flow-step">
+                    <div class="insights-google-flow-number">03</div>
+
+                    <div>
+                      <span>Route</span>
+                      <strong>/pricing</strong>
+                      <p>Error began six minutes later</p>
+                    </div>
+                  </article>
+
+                  <div
+                    class="insights-google-flow-line"
+                    aria-hidden="true"
+                  ></div>
+
+                  <article class="insights-google-flow-step">
+                    <div class="insights-google-flow-number">04</div>
+
+                    <div>
+                      <span>Error</span>
+                      <strong>calculatePlan is not defined</strong>
+                      <p>Seen 31 times</p>
+                    </div>
+                  </article>
+                </div>
+
+                <article class="insights-google-error-result">
+                  <header>
+                    <div>
+                      <span>Affected page</span>
+                      <strong>/pricing</strong>
+                    </div>
+
+                    <b>Review first</b>
+                  </header>
+
+                  <div class="insights-google-error-stack">
+                    <div>
+                      <span>Type</span>
+                      <strong>JavaScript</strong>
+                    </div>
+
+                    <div>
+                      <span>Started</span>
+                      <strong>11:48 AM</strong>
+                    </div>
+
+                    <div>
+                      <span>Visitors affected</span>
+                      <strong>24</strong>
+                    </div>
+
+                    <div>
+                      <span>Likely source</span>
+                      <strong>Latest release</strong>
+                    </div>
+                  </div>
+
+                  <div class="insights-google-error-next">
+                    <span>Review next</span>
+
+                    <p>
+                      Check the pricing calculation added in version 2.4.1.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================
+          SCREEN 4 — ROUTES AND 404S
+        =============================== -->
+        <section
+          class="insights-google-screen"
+          id="insights-google-panel-3"
+          role="tabpanel"
+          aria-labelledby="insights-google-tab-3"
+          aria-hidden="true"
+          data-insights-google-screen="3"
+        >
+          <div class="insights-google-window">
+            <div class="insights-google-window-bar">
+              <div
+                class="insights-google-window-dots"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <p>Routes and 404s</p>
+            </div>
+
+            <div class="insights-google-window-body">
+              <div class="insights-google-visual-head">
+                <div>
+                 
+                  <strong>
+                    See where visitors came from <br> and what happened next
+                  </strong>
+                </div>
+
+                <em>19 visits</em>
+              </div>
+
+              <div class="insights-google-route-layout">
+                <div class="insights-google-route-sources">
+                  <article class="insights-google-pulse-card">
+                    <span>Typed address</span>
+                    <strong>/prcing</strong>
+                    <em>8 visits</em>
+                  </article>
+
+                  <article class="insights-google-pulse-card">
+                    <span>Old link</span>
+                    <strong>/plans</strong>
+                    <em>6 visits</em>
+                  </article>
+
+                  <article class="insights-google-pulse-card">
+                    <span>External page</span>
+                    <strong>/pricing-old</strong>
+                    <em>5 visits</em>
+                  </article>
+                </div>
+
+                <div
+                  class="insights-google-route-connector"
+                  aria-hidden="true"
+                >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <article class="insights-google-broken-route">
+                  <span>404 route</span>
+                  <strong>/prcing</strong>
+                  <p>No page found</p>
+                </article>
+
+                <div
+                  class="insights-google-route-arrow"
+                  aria-hidden="true"
+                >
+                  <span></span>
+                </div>
+
+                <article class="insights-google-recovery-card">
+                  <header>
+                    <div>
+                      <span>Recovered page</span>
+                      <strong>/pricing</strong>
+                    </div>
+
+                    <b>Matched</b>
+                  </header>
+
+                  <div class="insights-google-recovery-metrics">
+                    <div>
+                      <span>Continued browsing</span>
+                      <strong>74%</strong>
+                    </div>
+
+                    <div>
+                      <span>Repeated pattern</span>
+                      <strong>19</strong>
+                    </div>
+
+                    <div>
+                      <span>Common cause</span>
+                      <strong>Misspelling</strong>
+                    </div>
+                  </div>
+
+                  <p>
+                    Visitors who reached the suggested page continued instead
+                    of leaving the site.
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================
+          SCREEN 5 — ACCESSIBILITY
+        =============================== -->
+        <section
+          class="insights-google-screen"
+          id="insights-google-panel-4"
+          role="tabpanel"
+          aria-labelledby="insights-google-tab-4"
+          aria-hidden="true"
+          data-insights-google-screen="4"
+        >
+          <div class="insights-google-window">
+            <div class="insights-google-window-bar">
+              <div
+                class="insights-google-window-dots"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <p>Accessibility</p>
+            </div>
+
+            <div class="insights-google-window-body">
+              <div class="insights-google-visual-head">
+                <div>
+  
+                  <strong>
+                    Accessibility beside search, <br> speed, and errors
+                  </strong>
+                </div>
+
+                <em>12 pages</em>
+              </div>
+
+              <div class="insights-google-access-table">
+                <div class="insights-google-access-head">
+                  <span>Rank</span>
+                  <span>Page</span>
+                  <span>Accessibility</span>
+                  <span>Other problems</span>
+                  <span>Impact</span>
+                </div>
+
+                <article
+                  class="insights-google-access-row is-current"
+                  data-insights-google-row-loop
+                >
+                  <span>01</span>
+
+                  <strong>/features</strong>
+
+                  <p>4 unnamed buttons</p>
+
+                  <em>Weak clicks · slow mobile page</em>
+
+                  <b>High</b>
+                </article>
+
+                <article
+                  class="insights-google-access-row"
+                  data-insights-google-row-loop
+                >
+                  <span>02</span>
+
+                  <strong>/contact</strong>
+
+                  <p>3 fields need labels</p>
+
+                  <em>High exits · slow response</em>
+
+                  <b>High</b>
+                </article>
+
+                <article
+                  class="insights-google-access-row"
+                  data-insights-google-row-loop
+                >
+                  <span>03</span>
+
+                  <strong>/pricing</strong>
+
+                  <p>Weak button contrast</p>
+
+                  <em>Search decline · JavaScript errors</em>
+
+                  <b>High</b>
+                </article>
+
+                <article
+                  class="insights-google-access-row"
+                  data-insights-google-row-loop
+                >
+                  <span>04</span>
+
+                  <strong>/docs</strong>
+
+                  <p>Keyboard order breaks</p>
+
+                  <em>API errors · broken route</em>
+
+                  <b>Med</b>
+                </article>
+
+                <article
+                  class="insights-google-access-row"
+                  data-insights-google-row-loop
+                >
+                  <span>05</span>
+
+                  <strong>/blog</strong>
+
+                  <p>Heading order skips</p>
+
+                  <em>New queries · weak clicks</em>
+
+                  <b>Med</b>
+                </article>
+              </div>
+
+              <div class="insights-google-access-summary">
+                <div>
+                  <span>Missing labels</span>
+                  <strong>18</strong>
+                </div>
+
+                <div>
+                  <span>Contrast problems</span>
+                  <strong>7</strong>
+                </div>
+
+                <div>
+                  <span>Keyboard paths</span>
+                  <strong>5</strong>
+                </div>
+
+                <div>
+                  <span>Heading problems</span>
+                  <strong>9</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==============================
+          SCREEN 6 — NEXT ACTION
+        =============================== -->
+        <section
+          class="insights-google-screen"
+          id="insights-google-panel-5"
+          role="tabpanel"
+          aria-labelledby="insights-google-tab-5"
+          aria-hidden="true"
+          data-insights-google-screen="5"
+        >
+          <div class="insights-google-window">
+            <div class="insights-google-window-bar">
+              <div
+                class="insights-google-window-dots"
+                aria-hidden="true"
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <p>Next action</p>
+            </div>
+
+            <div class="insights-google-window-body">
+              <div class="insights-google-visual-head">
+                <div>
+                 
+                  <strong>/pricing</strong>
+                </div>
+
+                <em>Priority 01</em>
+              </div>
+
+              <div class="insights-google-action-layout">
+                <article class="insights-google-action-card">
+                  <div class="insights-google-action-title">
+                    <span>Review next</span>
+
+                    <h3>
+                      Fix the slow page response and new JavaScript errors
+                      before changing the search copy.
+                    </h3>
+                  </div>
+
+                  <div class="insights-google-action-reason">
+                    <span>Why this comes first</span>
+
+                    <p>
+                      Search clicks are falling while the page loads slowly and
+                      produces errors after the latest release.
+                    </p>
+                  </div>
+                </article>
+
+                <div class="insights-google-action-details">
+                  <article>
+                    <span>Impact</span>
+                    <strong>High</strong>
+                    <p>Several problems affect the same page.</p>
+                  </article>
+
+                  <article>
+                    <span>Confidence</span>
+                    <strong>82%</strong>
+                    <p>Based on the signals currently available.</p>
+                  </article>
+
+                  <article>
+                    <span>Effort</span>
+                    <strong>Medium</strong>
+                    <p>The page and recent release need review.</p>
+                  </article>
+
+                  <article>
+                    <span>Area</span>
+                    <strong>Performance</strong>
+                    <p>Start with loading and release changes.</p>
+                  </article>
+                </div>
+              </div>
+
+              <p class="insights-google-forecast-note">
+                Estimates are based on the signals CavBot can see. They are not
+                guaranteed outcomes.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- END .insights-google-right -->
+
+      <p class="insights-google-source-note">
+      Google remains the source for Google Search data. 
+      CavBot adds its own website <br> signals and puts it all together.
+      </p>
+    </div>
+    <!-- END .insights-google-workspace -->
+  </div>
+</section>
+
+
+<!-- ==============================
+  ROUTE SETUP SECTION
+============================== -->
+<section class="route-setup-section" aria-labelledby="route-setup-title" data-route-setup-section>
+  <div class="route-setup-shell">
+    <div class="route-setup-copy">
+     <br><br> <h2 id="route-setup-title">
+        Set up CavBot Analytics <br>
+        in minutes<span> — no complicated <br> setup needed</span>
+      </h2>
+
+      <div class="route-setup-steps" aria-label="CavBot Route Analytics setup steps">
+        <article class="route-setup-step">
+          <span class="route-setup-number">1</span>
+          <p>
+            <strong>Install the JavaScript snippet</strong>
+            <span>by copying and pasting it into your site.</span>
+          </p>
+        </article>
+
+        <article class="route-setup-step">
+          <span class="route-setup-number">2</span>
+          <p>
+            <strong>Verify the website</strong>
+            <span>so CavBot can confirm ownership.</span>
+          </p>
+        </article>
+
+        <article class="route-setup-step">
+          <span class="route-setup-number">3</span>
+          <p>
+            <strong>See live traffic update </strong>
+            <span> <br> as visitors move through your pages.</span>
+          </p>
+        </article>
+      </div>
+<br>
+      <a class="route-setup-learn" href="https://cavbot.io/docs.html#analytics-v5">
+        Learn more <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+  INSIGHTS FAQ START
+============================== -->
+<section
+  class="insights-faq-start"
+  id="insights-faq"
+  aria-labelledby="insights-faq-title"
+>
+  <div
+    class="insights-faq-start-inner"
+    data-insights-faq-heading-reveal
+  >
+    <h2 id="insights-faq-title">
+      Need help? Start here.
+    </h2>
+  </div>
+</section>
+
+
+<!-- ==============================
+  INSIGHTS FAQ ANSWERS
+============================== -->
+<section
+  class="insights-faq-panel"
+  aria-label="CavBot Insights questions and answers"
+>
+  <div
+    class="insights-faq-panel-inner"
+    data-insights-faq-reveal
+  >
+    <div
+      class="insights-faq-list"
+      data-insights-faq-list
+    >
+      <details class="insights-faq-item" open>
+        <summary>
+          <span>
+            Is CavBot Insights an alternative to Google Search Console?
+          </span>
+
+          <span
+            class="insights-faq-toggle"
+            aria-hidden="true"
+          >
+            <svg
+              class="insights-faq-icon insights-faq-icon-plus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+
+            <svg
+              class="insights-faq-icon insights-faq-icon-minus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14"></path>
+            </svg>
+          </span>
+        </summary>
+
+        <div class="insights-faq-answer">
+          <p>
+            No. Google Search Console remains the source for Google Search
+            data. CavBot adds its own website signals and puts it all together
+            on the pages they affect.
+           
+          </p>
+        </div>
+      </details>
+
+
+      <details class="insights-faq-item">
+        <summary>
+          <span>
+            What does CavBot use from Google Search Console?
+          </span>
+
+          <span
+            class="insights-faq-toggle"
+            aria-hidden="true"
+          >
+            <svg
+              class="insights-faq-icon insights-faq-icon-plus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+
+            <svg
+              class="insights-faq-icon insights-faq-icon-minus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14"></path>
+            </svg>
+          </span>
+        </summary>
+
+        <div class="insights-faq-answer">
+          <p>
+            CavBot uses search data from the properties you connect, including clicks, 
+            impressions, click-through rate, average position, pages, and queries. 
+            It shows that data beside CavBot’s website checks, so you can see where 
+            search performance and page issues overlap.
+          </p>
+        </div>
+      </details>
+
+
+      <details class="insights-faq-item">
+        <summary>
+          <span>
+            Do I need a CavBot account?
+          </span>
+
+          <span
+            class="insights-faq-toggle"
+            aria-hidden="true"
+          >
+            <svg
+              class="insights-faq-icon insights-faq-icon-plus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+
+            <svg
+              class="insights-faq-icon insights-faq-icon-minus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14"></path>
+            </svg>
+          </span>
+        </summary>
+
+        <div class="insights-faq-answer">
+          <p>
+            Yes. CavBot Insights is available on Premium+.
+            <a href="https://app.cavbot.io/auth?mode=signup">
+              Start a 14-day free trial
+            </a>
+            to connect your site and review your pages.
+          </p>
+        </div>
+      </details>
+
+
+      <details class="insights-faq-item">
+        <summary>
+          <span>
+            Will this help if I already use Google Search Console?
+          </span>
+
+          <span
+            class="insights-faq-toggle"
+            aria-hidden="true"
+          >
+            <svg
+              class="insights-faq-icon insights-faq-icon-plus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+
+            <svg
+              class="insights-faq-icon insights-faq-icon-minus"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14"></path>
+            </svg>
+          </span>
+        </summary>
+
+        <div class="insights-faq-answer">
+          <p>
+            Yes. Search Console shows search performance. CavBot shows whether those 
+            same pages also have problems that can affect the visitor experience, 
+            like errors, slow loading, broken routes, or accessibility issues.
+          </p>
+        </div>
+      </details>
+    </div>
+
+
+    <!-- ==============================
+      INSIGHTS FAQ CONTACT
+    =============================== -->
+    <div
+      class="insights-faq-contact"
+      data-insights-faq-contact-reveal
+    >
+      <div class="insights-faq-contact-icon-wrap">
+        <img
+          class="insights-faq-contact-icon"
+          src="assets/icons/page/analytics/question-and-answer-svgrepo-com.svg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        >
+      </div>
+
+      <div class="insights-faq-contact-copy">
+        <h3>Have other questions?</h3>
+
+        <p>
+          If you have more questions,
+          <a href="help-center.html"> <br> contact us</a>
+          so we can help.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="insights-final-section" aria-labelledby="insights-final-title" data-insights-final-section>
+  <div class="insights-final-shell">
+    <div class="insights-final-copy">
+      <h2 id="insights-final-title">
+        <br><br>
+        <span class="insights-final-title-line">See your website more clearly.<br></span>
+        <span class="insights-final-title-soft">Review every page in one <br> place.</span>
+      </h2>
+
+      <br><br>
+
+      <div class="insights-final-actions">
+        <a class="insights-primary-link insights-final-button" href="https://app.cavbot.io/auth?mode=signup">
+          Start 14-day free trial
+        </a>
+
+        <a class="insights-final-secondary" href="pricing.html">
+          See all Plans
+        </a>
+      </div>
+    </div>
+
+    <aside class="insights-final-proof" aria-label="7 users joined CavBot in the last 14 days">
+      <div class="insights-final-mark" aria-hidden="true">
+        <img src="assets/icons/page/love-1-svgrepo-com.svg" alt="" loading="lazy" decoding="async">
+      </div>
+
+      <div class="insights-final-proof-copy">
+        <strong>7 users</strong>
+        <span>joined CavBot<br>in the last<br>14 days</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+  </main>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="https://www.cavbot.io/" class="footer-brand" aria-label="CavBot home">
+        <img
+          src="assets/logo/official-logotype-light.svg"
+          alt="CavBot"
+          class="footer-brand-logo"
+          decoding="async"
+        />
+      </a>
+
+      <p class="footer-statement">
+        Websites evolve, teams move faster, <br> and agents are becoming part of the <br> workflow.
+        CavBot brings them <br> together on one operational platform.
+      </p>
+    </div>
+
+    <div class="footer-grid">
+      <section class="footer-column">
+        <h2 class="footer-column-title">Platform</h2>
+        <ul class="footer-column-list">
+          <li><a href="https://app.cavbot.io/" class="footer-link">Dashboard</a></li>
+          <li><a href="https://ai.cavbot.io/" class="footer-link">CavAi</a></li>
+          <li><a href="/introducing-cavai.html" class="footer-link">AI</a></li>
+          <li><a href="/pricing.html" class="footer-link">Pricing</a></li>
+          <li><a href="/docs.html#security" class="footer-link">Security</a></li>
+
+        </ul>
+      </section>
+
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Ecosystem</h2>
+        <ul class="footer-column-list">
+          <li><a href="/docs.html#api-keys" class="footer-link">Developer API</a></li>
+          <li><a href="/" class="footer-link">Education</a></li>
+          <li><a href="/" class="footer-link">Partners</a></li>
+          <li><a href="https://app.cavbot.io/status" class="footer-link">System Status</a></li>
+          <li><a href="terminal.html" class="footer-link">CavBot Terminal</a></li>
+          
+
+        </ul>
+      </section>
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Resources</h2>
+        <ul class="footer-column-list">
+          <li><a href="/help-center.html" class="footer-link">Help Center</a></li>
+          <li><a href="https://cavbot.io/docs" class="footer-link">Docs</a></li>
+          <li><a href="/blog.html?category=research#research" class="footer-link">Research</a></li>
+          <li><a href="why-cavbot.html" class="footer-link">Why CavBot?</a></li>
+          <li><a href="/" class="footer-link">Compare CavBot</a></li>
+          
+          
+          
+          
+        </ul>
+      </section>
+
+      <section class="footer-column">
+        <h2 class="footer-column-title">Company</h2>
+        <ul class="footer-column-list">
+          <li><a href="about.html" class="footer-link">About</a></li>
+           <li><a href="https://brand.cavbot.io" class="footer-link">Media Kit</a></li>
+          <li><a href="/blog.html" class="footer-link">Blog</a></li>
+          <li><a href="/" class="footer-link">Careers</a></li>
+          <li><a href="/legal.html#ethics-overview" class="footer-link">Code of Ethics</a></li>
+          
+
+        </ul>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        <span class="footer-copy">&copy; 2026 CavBot</span>
+        <nav class="footer-bottom-links" aria-label="Footer links">
+          <a href="/legal.html#privacy-policy">Privacy</a>
+          <a href="/legal.html#terms-of-use">Terms</a>
+          <a href="/legal.html#data-security">Data Security</a>
+          <button type="button" class="footer-cookie-link" data-cavbot-cookie-open>Manage cookies</button>
+          <a href="/docs.html#cav-commands">What is Cav?</a>
+        </nav>
+      </div>
+
+      <div class="footer-social-links" aria-label="Social links">
+        <a href="https://www.instagram.com/cavbot.io" aria-label="Instagram" class="footer-social-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <circle cx="17" cy="7" r="1"></circle>
+          </svg>
+        </a>
+        <a href="https://github.com/CavBot-Technologies" aria-label="GitHub" class="footer-social-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2.8c-5.1 0-9.2 4.1-9.2 9.2 0 4.1 2.7 7.6 6.4 8.8.5.1.6-.2.6-.5v-1.8c-2.6.6-3.1-1.1-3.1-1.1-.4-1-.9-1.3-.9-1.3-.8-.5.1-.5.1-.5.8.1 1.3.9 1.3.9.8 1.3 2 1 2.5.8.1-.6.3-1 .5-1.2-2.1-.2-4.2-1-4.2-4.6 0-1 .4-1.9.9-2.5-.1-.2-.4-1.2.1-2.5 0 0 .7-.2 2.5.9.7-.2 1.5-.3 2.3-.3.8 0 1.6.1 2.3.3 1.8-1.2 2.5-.9 2.5-.9.5 1.3.2 2.3.1 2.5.6.6.9 1.5.9 2.5 0 3.6-2.2 4.4-4.2 4.6.3.3.6.8.6 1.7v2.5c0 .3.2.6.7.5 3.7-1.2 6.4-4.7 6.4-8.8 0-5.1-4.1-9.2-9.2-9.2Z"></path>
+          </svg>
+        </a>
+        <a href="https://app.cavbot.io/cavbot" aria-label="CavBot" class="footer-social-link footer-social-link--mark">
+          <img src="assets/logo/cavbot-logomark.svg" alt="" aria-hidden="true" decoding="async">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";
+    window.CAVBOT_PROJECT_KEY = "cavbot_pk_gHn737DTf4afJ2xGpBFzZQ";
+  </script>
+
+
+  <script src="/cavai/cavai-analytics-v5.js" defer></script>
+  <div
+    data-cavbot-cdn-floating-badge="1"
+    data-cavbot-cdn-slot="badge"
+    aria-hidden="true"
+    style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
+  <script
+    defer
+    src="/cavai/cavai.js"
+    data-api="https://app.cavbot.io/api/embed/analytics"
+    data-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ">
+  </script>
+
+
+  <script src="files/js/globals/header-footer.js"></script>
+  <script src="files/js/pages/insights.js" defer></script>
+</body>
+</html>

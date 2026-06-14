@@ -5193,6 +5193,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (!row.querySelector("[data-cavbot-site-search-open]")) {
+      const searchTrigger = document.createElement("button");
+      searchTrigger.className = "cb-site-search-trigger";
+      searchTrigger.type = "button";
+      searchTrigger.setAttribute("aria-label", "Search CavBot");
+      searchTrigger.setAttribute("data-cavbot-site-search-open", "");
+      searchTrigger.setAttribute("data-cavbot-site-search-tip", "Search CavBot: / or ⌘K");
+      searchTrigger.innerHTML = '<img class="cb-site-search-icon" src="/assets/icons/page/analytics/search-svgrepo-com.svg" alt="" aria-hidden="true" />';
+      row.insertBefore(searchTrigger, row.firstElementChild || tryCavai);
+    }
+
     if (!row.querySelector("[data-site-update-open]")) {
       const trigger = document.createElement("button");
       trigger.className = "cb-site-update-trigger";
@@ -5229,6 +5240,194 @@ document.addEventListener("DOMContentLoaded", () => {
 
   syncMobileHeaderAvatar();
   window.addEventListener("resize", syncMobileHeaderAvatar, { passive: true });
+
+  document.querySelectorAll(".nav-overlay-cta").forEach((row) => {
+    if (row.querySelector("[data-cavbot-site-search-open]")) return;
+    const updateTrigger = row.querySelector("[data-site-update-open]");
+    const searchTrigger = document.createElement("button");
+    searchTrigger.className = "cb-site-search-trigger cb-site-search-trigger--mobile";
+    searchTrigger.type = "button";
+    searchTrigger.setAttribute("aria-label", "Search CavBot");
+    searchTrigger.setAttribute("data-cavbot-site-search-open", "");
+    searchTrigger.setAttribute("data-cavbot-site-search-tip", "Search CavBot");
+    searchTrigger.innerHTML = '<img class="cb-site-search-icon" src="/assets/icons/page/analytics/search-svgrepo-com.svg" alt="" aria-hidden="true" />';
+    row.insertBefore(searchTrigger, updateTrigger || row.firstElementChild);
+  });
+
+  const siteSearchItems = [
+    { title: "Home", href: "/", type: "Page", summary: "CavBot website intelligence platform overview." },
+    { title: "About", href: "/about.html", type: "Company", summary: "Learn what CavBot is building and why." },
+    { title: "Team", href: "/team.html", type: "Company", summary: "Meet the CavBot team." },
+    { title: "Pricing", href: "/pricing.html", type: "Plan", summary: "Review CavBot plans and subscription options." },
+    { title: "Dashboard", href: "https://app.cavbot.io/", type: "App", summary: "Open the CavBot app dashboard." },
+    { title: "CavAi", href: "/cavai.html", type: "AI", summary: "CavBot AI assistant for website work and product help." },
+    { title: "Introducing CavAi", href: "/introducing-cavai.html", type: "AI", summary: "Read how CavAi works inside CavBot." },
+    { title: "DeepSeek in CavAi", href: "/deepseek-cavbot.html", type: "AI Model", summary: "DeepSeek model support in CavAi." },
+    { title: "Qwen in CavAi", href: "/qwen-cavbot.html", type: "AI Model", summary: "Qwen model support in CavAi." },
+    { title: "Docs", href: "/docs.html", type: "Docs", summary: "Guides, setup, account, analytics, CavAi, billing, and platform documentation." },
+    { title: "Get started", href: "/docs.html#getstarted", type: "Docs", summary: "Create an account, add a site, install Analytics v5, and verify setup." },
+    { title: "Account and profile", href: "/docs.html#profile", type: "Docs", summary: "Account, profile, sites, top site, and notifications." },
+    { title: "Analytics v5", href: "/docs.html#analytics-v5", type: "Docs", summary: "Install and verify CavBot website analytics." },
+    { title: "CavAi v3", href: "/docs.html#cavai-v3", type: "Docs", summary: "Use CavAi with workspace context, models, tools, and assistant memory." },
+    { title: "CavCloud", href: "/cavcloud.html", type: "Product", summary: "Cloud storage and workspace files for CavBot." },
+    { title: "CavCode", href: "/cavcode.html", type: "Product", summary: "Code workspace and developer tools." },
+    { title: "Caven", href: "/caven.html", type: "Product", summary: "CavBot coding assistant and development workflow." },
+    { title: "Web Analytics", href: "/web-analytics.html", type: "Product", summary: "Understand website traffic and route activity." },
+    { title: "Insights", href: "/insights.html", type: "Product", summary: "Search Console insights and website intelligence." },
+    { title: "Error Tracking", href: "/error-tracking.html", type: "Product", summary: "Find browser errors and runtime issues." },
+    { title: "SEO Audit", href: "/seo-audit.html", type: "Product", summary: "Review titles, descriptions, metadata, and page structure." },
+    { title: "Accessibility Check", href: "/accessibility-check.html", type: "Product", summary: "Review accessibility signals and usability issues." },
+    { title: "Websites", href: "/websites.html", type: "Product", summary: "Manage and review monitored websites." },
+    { title: "CavBot Arcade", href: "/cavbot-arcade.html", type: "Product", summary: "CavBot games and recovery experiences." },
+    { title: "Blog", href: "/blog.html", type: "Resources", summary: "Company updates, product notes, and research." },
+    { title: "Help Center", href: "/help-center.html", type: "Support", summary: "Find help and support resources." },
+    { title: "Brand", href: "/brand.html", type: "Company", summary: "CavBot brand resources and design guidance." },
+    { title: "Legal", href: "/legal.html", type: "Company", summary: "Privacy, terms, cookies, and legal policies." },
+    { title: "What is a 404?", href: "/what's-a-404.html", type: "Guide", summary: "Understand broken pages and 404 recovery." },
+    { title: "Why CavBot", href: "/why-cavbot.html", type: "Company", summary: "Why teams use CavBot after launch." }
+  ];
+
+  function searchText(item) {
+    return [item.title, item.type, item.summary, item.href].join(" ").toLowerCase();
+  }
+
+  function scoreSearchItem(item, query) {
+    if (!query) return 1;
+    const q = query.toLowerCase();
+    const title = item.title.toLowerCase();
+    const text = searchText(item);
+    if (title === q) return 100;
+    if (title.startsWith(q)) return 90;
+    if (title.includes(q)) return 75;
+    if (text.includes(q)) return 55;
+    const tokens = q.split(/\s+/).filter(Boolean);
+    if (tokens.length && tokens.every((token) => text.includes(token))) return 45;
+    return 0;
+  }
+
+  function getCavAiSearchUrl(query) {
+    const prompt = encodeURIComponent(
+      (query ? 'Help me find this on the CavBot website: "' + query + '". ' : "Help me search the CavBot website. ") +
+      "Use CavBot website pages, docs, product pages, company pages, and support pages as context. Current page: " +
+      window.location.href
+    );
+    return "https://app.cavbot.io/cavai?prompt=" + prompt + "&q=" + prompt + "#prompt=" + prompt;
+  }
+
+  function ensureSiteSearchModal() {
+    let modal = document.getElementById("cb-site-search-modal");
+    if (modal) return modal;
+
+    modal = document.createElement("div");
+    modal.id = "cb-site-search-modal";
+    modal.className = "cb-site-search-modal";
+    modal.setAttribute("aria-hidden", "true");
+    modal.innerHTML = [
+      '<section class="cb-site-search-panel" role="dialog" aria-modal="true" aria-labelledby="cb-site-search-title">',
+      '<div class="cb-site-search-box">',
+      '<img class="cb-site-search-box-icon" src="/assets/icons/page/analytics/search-svgrepo-com.svg" alt="" aria-hidden="true" />',
+      '<label class="cb-site-search-label" for="cb-site-search-input" id="cb-site-search-title">Search CavBot</label>',
+      '<input id="cb-site-search-input" type="search" autocomplete="off" placeholder=" " />',
+      '<span class="cb-site-search-placeholder" aria-hidden="true"><span>Search pages, docs, products, team, pricing, or ask</span><img src="/assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" /><span>CavAi</span></span>',
+      '<button class="cb-site-search-clear" type="button" data-cavbot-site-search-clear aria-label="Clear search">×</button>',
+      '</div>',
+      '<div class="cb-site-search-results" data-cavbot-site-search-results></div>',
+      '<form class="cb-site-search-cavai" data-cavbot-site-search-cavai>',
+      '<p><img src="/assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" /> Ask CavAi</p>',
+      '<label class="cb-site-search-cavai-label" for="cb-site-search-cavai-prompt">Ask CavAi about CavBot</label>',
+      '<div class="cb-site-search-cavai-prompt"><input id="cb-site-search-cavai-prompt" name="prompt" type="text" placeholder="Ask CavAi to find something specific on CavBot" /><button type="submit">Ask</button></div>',
+      '<button class="cb-site-search-ask-button" type="submit"><span data-cavbot-site-search-ask-label>Ask CavAi about "CavBot"</span><small>Uses CavBot website context.</small></button>',
+      '</form>',
+      '</section>'
+    ].join("");
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeSiteSearch();
+      }
+    });
+
+    const input = modal.querySelector("#cb-site-search-input");
+    const clear = modal.querySelector("[data-cavbot-site-search-clear]");
+    const cavaiForm = modal.querySelector("[data-cavbot-site-search-cavai]");
+    input.addEventListener("input", () => renderSiteSearch(input.value));
+    clear.addEventListener("click", () => {
+      input.value = "";
+      renderSiteSearch("");
+      input.focus();
+    });
+    cavaiForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const prompt = cavaiForm.querySelector("input[name='prompt']");
+      window.open(getCavAiSearchUrl(prompt ? prompt.value : input.value), "_blank", "noopener,noreferrer");
+    });
+
+    document.body.appendChild(modal);
+    return modal;
+  }
+
+  function renderSiteSearch(query) {
+    const modal = ensureSiteSearchModal();
+    const results = modal.querySelector("[data-cavbot-site-search-results]");
+    const cavaiInput = modal.querySelector("[data-cavbot-site-search-cavai] input");
+    const cavaiLabel = modal.querySelector("[data-cavbot-site-search-ask-label]");
+    const q = String(query || "").trim();
+    if (cavaiInput && cavaiInput !== document.activeElement) cavaiInput.value = q;
+    if (cavaiLabel) cavaiLabel.textContent = 'Ask CavAi about "' + (q || "CavBot") + '"';
+    const matches = siteSearchItems
+      .map((item) => ({ item, score: scoreSearchItem(item, q) }))
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title))
+      .slice(0, 10)
+      .map((entry) => entry.item);
+
+    results.innerHTML = matches.length
+      ? matches.map((item) => {
+        return '<a class="cb-site-search-result" href="' + item.href + '">' +
+          '<span class="cb-site-search-result-main"><strong>' + item.title + '</strong><small>' + item.summary + '</small></span>' +
+          '<span class="cb-site-search-result-type">' + item.type + '</span>' +
+          '</a>';
+      }).join("")
+      : '<div class="cb-site-search-empty"><strong>No direct page match</strong><span>Ask CavAi to search CavBot for "' + q.replace(/</g, "&lt;").replace(/>/g, "&gt;") + '".</span></div>';
+  }
+
+  function openSiteSearch(initialQuery = "") {
+    const modal = ensureSiteSearchModal();
+    const input = modal.querySelector("#cb-site-search-input");
+    modal.dataset.open = "true";
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("cb-site-search-open");
+    input.value = initialQuery;
+    renderSiteSearch(initialQuery);
+    window.setTimeout(() => input.focus({ preventScroll: true }), 0);
+  }
+
+  function closeSiteSearch() {
+    const modal = document.getElementById("cb-site-search-modal");
+    if (!modal) return;
+    modal.dataset.open = "false";
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("cb-site-search-open");
+  }
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target && event.target.closest ? event.target.closest("[data-cavbot-site-search-open]") : null;
+    if (!trigger) return;
+    event.preventDefault();
+    event.stopPropagation();
+    openSiteSearch("");
+  });
+
+  document.addEventListener("keydown", (event) => {
+    const tag = event.target && event.target.tagName ? event.target.tagName.toLowerCase() : "";
+    const isTyping = tag === "input" || tag === "textarea" || (event.target && event.target.isContentEditable);
+    if (event.key === "Escape") closeSiteSearch();
+    if (isTyping) return;
+    if (event.key === "/" || ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k")) {
+      event.preventDefault();
+      openSiteSearch("");
+    }
+  });
 
   const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));
   if (!triggers.length) return;

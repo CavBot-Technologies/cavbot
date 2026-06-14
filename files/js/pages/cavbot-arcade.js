@@ -1000,7 +1000,7 @@
       return;
     }
 
-
+ 
     var lastY = window.scrollY || window.pageYOffset || 0;
     var scrollDirection = "down";
     var ticking = false;
