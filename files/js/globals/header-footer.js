@@ -978,32 +978,7 @@ const APP_HOST = "app.cavbot.io";
       return "CavBot";
     };
 
-    const isCareersLink = (anchor) => {
-      if (!(anchor instanceof HTMLAnchorElement)) return false;
-      const rawHref = String(anchor.getAttribute("href") || "").trim();
-      if (!rawHref) return false;
-
-      let targetUrl = null;
-      try {
-        targetUrl = new URL(rawHref, window.location.href);
-      } catch {
-        return false;
-      }
-
-      const pathname = String(targetUrl.pathname || "")
-        .toLowerCase()
-        .replace(/\/+$/, "");
-      return pathname === "/careers" || pathname === "/careers.html";
-    };
-
     const resolveGuardCopy = (anchor) => {
-      if (isCareersLink(anchor)) {
-        return {
-          headline: "CavBot careers are not open yet.",
-          copy: "We are not hiring yet. Stay on cavbot.io for updates.",
-        };
-      }
-
       const brand = resolveGuardBrand(anchor);
       return {
         headline: `${brand} is in pre-launch.`,
@@ -1428,8 +1403,6 @@ const APP_HOST = "app.cavbot.io";
       } catch {
         return false;
       }
-
-      if (isCareersLink(anchor)) return true;
 
       const hostname = String(targetUrl.hostname || "").toLowerCase();
       if (hostname === APP_HOST) return true;
@@ -5258,6 +5231,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Home", href: "/", type: "Page", summary: "CavBot website intelligence platform overview." },
     { title: "About", href: "/about.html", type: "Company", summary: "Learn what CavBot is building and why." },
     { title: "Team", href: "/team.html", type: "Company", summary: "Meet the CavBot team." },
+    { title: "Careers", href: "/careers.html", type: "Company", summary: "Open roles, jobs, founding roles, marketing roles, and careers at CavBot.", aliases: "career careers carrers carrers jobs hiring roles open roles cofounder co-founder social media manager" },
     { title: "Pricing", href: "/pricing.html", type: "Plan", summary: "Review CavBot plans and subscription options." },
     { title: "Dashboard", href: "https://app.cavbot.io/", type: "App", summary: "Open the CavBot app dashboard." },
     { title: "CavAi", href: "/cavai.html", type: "AI", summary: "CavBot AI assistant for website work and product help." },
@@ -5288,7 +5262,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   function searchText(item) {
-    return [item.title, item.type, item.summary, item.href].join(" ").toLowerCase();
+    return [item.title, item.type, item.summary, item.href, item.aliases || ""].join(" ").toLowerCase();
   }
 
   function scoreSearchItem(item, query) {
@@ -5327,7 +5301,7 @@ document.addEventListener("DOMContentLoaded", () => {
       '<div class="cb-site-search-box">',
       '<img class="cb-site-search-box-icon" src="/assets/icons/page/analytics/search-svgrepo-com.svg" alt="" aria-hidden="true" />',
       '<label class="cb-site-search-label" for="cb-site-search-input" id="cb-site-search-title">Search CavBot</label>',
-      '<input id="cb-site-search-input" type="search" autocomplete="off" placeholder=" " />',
+      '<input id="cb-site-search-input" type="text" autocomplete="off" placeholder=" " />',
       '<span class="cb-site-search-placeholder" aria-hidden="true"><span>Search pages, docs, products, team, pricing, or ask</span><img src="/assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" /><span>CavAi</span></span>',
       '<button class="cb-site-search-clear" type="button" data-cavbot-site-search-clear aria-label="Clear search">×</button>',
       '</div>',
