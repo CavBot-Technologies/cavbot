@@ -2,10 +2,88 @@
   "use strict";
 
   var API_URL = window.CAVBOT_MONITORED_SITES_API || "https://app.cavbot.io/api/public/monitored-sites";
-  var FALLBACK_ICON = "/assets/logo/cavbot-logomark.svg";
+  var FALLBACK_ICON = "/assets/icons/favicon-32x32.png";
+  var DEFAULT_PAYLOAD = {
+    ok: true,
+    generatedAt: "2026-06-15T00:00:00-04:00",
+    sites: {
+      active: [
+        {
+          rank: 1,
+          host: "cavbot.io",
+          displayName: "cavbot.io",
+          url: "https://cavbot.io",
+          status: "Pending",
+          signals: 0,
+          delta: 0,
+          trend: [0, 0],
+          faviconUrl: FALLBACK_ICON
+        },
+        {
+          rank: 2,
+          host: "app.cavbot.io",
+          displayName: "app.cavbot.io",
+          url: "https://app.cavbot.io",
+          status: "Pending",
+          signals: 0,
+          delta: 0,
+          trend: [0, 0],
+          faviconUrl: FALLBACK_ICON
+        }
+      ],
+      recent: [
+        {
+          rank: 1,
+          host: "cavbot.io",
+          displayName: "cavbot.io",
+          url: "https://cavbot.io",
+          status: "Pending",
+          signals: 0,
+          delta: 0,
+          trend: [0, 0],
+          faviconUrl: FALLBACK_ICON
+        },
+        {
+          rank: 2,
+          host: "app.cavbot.io",
+          displayName: "app.cavbot.io",
+          url: "https://app.cavbot.io",
+          status: "Pending",
+          signals: 0,
+          delta: 0,
+          trend: [0, 0],
+          faviconUrl: FALLBACK_ICON
+        }
+      ],
+      top: [
+        {
+          rank: 1,
+          host: "cavbot.io",
+          displayName: "cavbot.io",
+          url: "https://cavbot.io",
+          status: "Pending",
+          signals: 0,
+          delta: 0,
+          trend: [0, 0],
+          faviconUrl: FALLBACK_ICON
+        },
+        {
+          rank: 2,
+          host: "app.cavbot.io",
+          displayName: "app.cavbot.io",
+          url: "https://app.cavbot.io",
+          status: "Pending",
+          signals: 0,
+          delta: 0,
+          trend: [0, 0],
+          faviconUrl: FALLBACK_ICON
+        }
+      ]
+    }
+  };
   var state = {
     activeFilter: "active",
-    payload: null
+    payload: DEFAULT_PAYLOAD
   };
 
   function qs(selector, root) {
@@ -50,6 +128,22 @@
     } catch (_error) {
       return false;
     }
+  }
+
+  function normalizedHost(site) {
+    var raw = site && (site.host || site.displayName || site.url);
+    try {
+      if (isValidUrl(raw)) return new URL(raw).hostname.toLowerCase();
+    } catch (_error) {}
+    return String(raw || "").replace(/^https?:\/\//i, "").replace(/\/.*$/, "").toLowerCase();
+  }
+
+  function faviconForSite(site) {
+    var host = normalizedHost(site);
+    if (host === "cavbot.io" || host === "www.cavbot.io" || host === "app.cavbot.io") {
+      return FALLBACK_ICON;
+    }
+    return site.faviconUrl || FALLBACK_ICON;
   }
 
   function trendColor(values) {
@@ -162,9 +256,10 @@
 
       var img = document.createElement("img");
       img.className = "websites-favicon";
-      img.src = site.faviconUrl || FALLBACK_ICON;
+      img.src = faviconForSite(site);
       img.alt = "";
-      img.loading = "lazy";
+      img.loading = "eager";
+      img.fetchPriority = "high";
       img.decoding = "async";
       img.addEventListener("error", function () {
         img.src = FALLBACK_ICON;
@@ -272,12 +367,13 @@
       renderRows();
     } catch (error) {
       console.error("[websites]", error);
-      renderError();
+      if (!state.payload) renderError();
     }
   }
 
   function init() {
     bindFilters();
+    renderRows();
     loadSites();
   }
 
