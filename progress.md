@@ -25,3 +25,10 @@ Completed:
 - Visual screenshot check confirmed the game UI, CavBot heads, activity panels, and powered badge render from the embedded frame.
 - Confirmed old exposed production path `https://www.cavbot.io/cavbot-arcade/404/cavbot-imposter/v1/index.html` returns 404.
 - Deleted the exposed local `cavbot/cavbot-arcade` folder from the main checkout after live CDN verification succeeded.
+
+Follow-up redirect fix:
+- Removed the extra branded 404 loading/exit overlay from `cavbot/404.html`.
+- Changed `cavbot-client/sdk/arcade/v1/loader.min.js` to create the arcade iframe with `loading="eager"`.
+- Fixed the brief Chrome `app.cavbot.io refused to connect` screen after game completion by removing embedded `window.top.location.assign(...)` fallback navigation from all six 404 game scripts. Embedded games now post `cavbot:arcade:navigate` to the host and return immediately; standalone game pages still navigate themselves with `window.location`.
+- Updated the CDN loader host-page message listener to guard duplicate completion messages and use `window.location.replace(...)`.
+- Verification: `node --check` passed for all six edited 404 game scripts and `sdk/arcade/v1/loader.min.js`; static redirect regression check confirmed no `window.top.location` fallback remains and every embedded postMessage branch returns. Playwright smoke could not run because the `playwright` package is not installed and `npx -p playwright` did not expose the ESM import in this environment.

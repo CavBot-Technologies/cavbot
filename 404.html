@@ -200,6 +200,7 @@
       }
 
       window.addEventListener("message", function (event) {
+        if (redirecting) return;
         var data = event && event.data ? event.data : null;
         if (!data || data.type !== "cavbot:arcade:navigate") return;
 
