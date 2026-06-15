@@ -192,6 +192,8 @@
       function goHome() {
         if (redirecting) return;
         redirecting = true;
+        var root = document.getElementById("cavbot-arcade-root");
+        if (root) root.remove();
         try {
           window.location.replace(new URL(HOME_PATH, window.location.origin).href);
         } catch (_error) {
@@ -208,6 +210,8 @@
           var target = new URL(data.href || HOME_PATH, window.location.origin);
           if (target.origin !== window.location.origin) return;
           redirecting = true;
+          var root = document.getElementById("cavbot-arcade-root");
+          if (root) root.remove();
           window.location.replace(target.href);
         } catch (_error) {
           goHome();
@@ -232,6 +236,8 @@
             return;
           }
 
+          var root = document.getElementById("cavbot-arcade-root");
+          if (root) root.remove();
           goHome();
         });
       }
