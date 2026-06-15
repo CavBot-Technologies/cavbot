@@ -165,6 +165,68 @@
     window.CAVBOT_SITE_ID = "cavbot.io";
     window.CAVBOT_SITE_PUBLIC_ID = "cavbot.io";
   </script>
+  <script>
+    (function installArcadeExitGuard() {
+      var HOME_PATH = "/";
+      var redirecting = false;
+      var boundIframe = null;
+      var firstIframeLoadSeen = false;
+
+      function goHome() {
+        if (redirecting) return;
+        redirecting = true;
+        try {
+          window.location.replace(new URL(HOME_PATH, window.location.origin).href);
+        } catch (_error) {
+          window.location.href = HOME_PATH;
+        }
+      }
+
+      window.addEventListener("message", function (event) {
+        var data = event && event.data ? event.data : null;
+        if (!data || data.type !== "cavbot:arcade:navigate") return;
+
+        try {
+          var target = new URL(data.href || HOME_PATH, window.location.origin);
+          if (target.origin !== window.location.origin) return;
+          window.location.replace(target.href);
+        } catch (_error) {
+          goHome();
+        }
+      });
+
+      function bindArcadeFrame() {
+        var frame = document.querySelector("#cavbot-arcade-root iframe");
+        if (!frame || frame === boundIframe) return;
+
+        boundIframe = frame;
+        firstIframeLoadSeen = false;
+
+        frame.setAttribute(
+          "sandbox",
+          "allow-scripts allow-same-origin allow-top-navigation-by-user-activation"
+        );
+
+        frame.addEventListener("load", function () {
+          if (!firstIframeLoadSeen) {
+            firstIframeLoadSeen = true;
+            return;
+          }
+
+          goHome();
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindArcadeFrame);
+      } else {
+        bindArcadeFrame();
+      }
+
+      var observer = new MutationObserver(bindArcadeFrame);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    })();
+  </script>
   <script
     defer
     src="https://cdn.cavbot.io/sdk/arcade/v1/loader.min.js"
