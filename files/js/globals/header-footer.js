@@ -5251,7 +5251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Error Tracking", href: "/error-tracking.html", type: "Product", summary: "Find browser errors and runtime issues." },
     { title: "SEO Audit", href: "/seo-audit.html", type: "Product", summary: "Review titles, descriptions, metadata, and page structure." },
     { title: "Accessibility Check", href: "/accessibility-check.html", type: "Product", summary: "Review accessibility signals and usability issues." },
-    { title: "Websites", href: "/websites.html", type: "Product", summary: "Manage and review monitored websites." },
+    { title: "Monitored Websites", href: "/websites.html", type: "Product", summary: "Manage and review monitored websites." },
     { title: "CavBot Arcade", href: "/cavbot-arcade.html", type: "Product", summary: "CavBot games and recovery experiences." },
     { title: "Blog", href: "/blog.html", type: "Resources", summary: "Company updates, product notes, and research." },
     { title: "Help Center", href: "/help-center.html", type: "Support", summary: "Find help and support resources." },

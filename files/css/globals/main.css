@@ -19,7 +19,7 @@
       --ink-soft: #c5cee7;
       --ink-subtle: #8890aa;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --pff-panel-bg: 
+      --pff-panel-bg:
     linear-gradient(180deg, #070c20; 0%, #07041d 54%, #070c20; 100%);
 
       --panel-radius-lg: 20px;
@@ -159,7 +159,7 @@
     .code-block {
       margin: 10px 0 4px;
       padding: 10px 12px;
-      border-radius: 10px;
+      border-radius: 4px;
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: rgba(1, 3, 15, 0.96);
       font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -263,7 +263,7 @@
     .hero-robot-live-dot {
       width: 7px;
       height: 7px;
-      border-radius: 12px;
+      border-radius: 4px;
       background: var(--lime);
       animation: heroLivePulse 1.6s ease-in-out infinite;
     }
@@ -343,7 +343,7 @@
     }
 
     .hero-metric {
-      border-radius: 10px;
+      border-radius: 4px;
       border: 1px solid rgba(139, 92, 255, 0.16);
       background: rgba(2, 5, 16, 0.93);
       padding: 8px 9px;
@@ -447,7 +447,7 @@
   width: min(1120px, calc(100vw - 48px));
   height: 100%;
   margin: 0;
-  border-radius: 34px;
+  border-radius: 4px;
   background: rgba(3, 6, 20, 0.98);
   overflow: hidden;
   transform: translateX(-50%);
@@ -508,7 +508,7 @@
   width: 100%;
   left: 0;
   transform: none;
-  border-radius: 24px;
+  border-radius: 4px;
 }
 }
 
@@ -1029,7 +1029,7 @@
   content: "";
   width: 6px;
   height: 6px;
-  border-radius: 12px;
+  border-radius: 4px;
   background: rgba(185, 200, 90, 0.9);
 }
 
@@ -1978,7 +1978,7 @@
   aspect-ratio: 16 / 9;
   text-decoration: none;
   color: inherit;
-  border-radius: 14px;
+  border-radius: 4px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(1, 3, 15, 0.98);
@@ -2838,7 +2838,7 @@
   width: 100%;
   max-width: 1420px;
   margin: 0 auto;
-  border-radius: 26px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: linear-gradient(180deg, rgba(12, 18, 42, 0.98), rgba(4, 8, 23, 0.98));
   overflow: hidden;
@@ -2903,6 +2903,28 @@
   display: block;
 }
 
+.collab-svg-icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(0.78);
+}
+
+.collab-preview-mark .collab-svg-icon {
+  width: 22px;
+  height: 22px;
+  filter:
+    brightness(0)
+    invert(90%)
+    sepia(18%)
+    saturate(782%)
+    hue-rotate(183deg)
+    brightness(102%)
+    contrast(96%);
+}
+
 
 .collab-preview-mark svg rect,
 .collab-preview-mark svg path {
@@ -2923,6 +2945,12 @@
 .collab-preview-title svg {
   width: 16px;
   height: 16px;
+}
+
+.collab-preview-title .collab-svg-icon {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
 }
 
 
@@ -3006,6 +3034,12 @@
   height: 16px;
 }
 
+.collab-preview-share .collab-svg-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1) opacity(0.92);
+}
+
 
 .collab-preview-share svg path,
 .collab-preview-share svg rect {
@@ -3030,6 +3064,12 @@
 .collab-preview-icon-btn svg {
   width: 16px;
   height: 16px;
+}
+
+.collab-preview-icon-btn .collab-svg-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1) opacity(0.78);
 }
 
 
@@ -3076,6 +3116,17 @@
   flex: 0 0 auto;
 }
 
+.collab-preview-tabs button .collab-svg-icon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1) opacity(0.55);
+}
+
+.collab-preview-tabs button.is-active .collab-svg-icon {
+  opacity: 1;
+  filter: brightness(0) invert(1);
+}
+
 
 .collab-preview-tabs button svg path,
 .collab-preview-tabs button svg rect,
@@ -3115,7 +3166,7 @@
 
 .collab-preview-board {
   min-width: 0;
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid var(--collab-line);
   background: rgba(255, 255, 255, 0.018);
   overflow: hidden;
@@ -3170,6 +3221,13 @@
   justify-content: center;
   color: var(--ink-soft);
   flex: 0 0 auto;
+}
+
+.collab-task-chevron .collab-svg-icon,
+.collab-task-group-icon .collab-svg-icon {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1) opacity(0.65);
 }
 
 
@@ -3245,7 +3303,7 @@
   font-style: normal;
   font-size: 11px;
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+
 }
 
 
@@ -3375,9 +3433,16 @@
   min-height: 38px;
   display: flex;
   align-items: center;
+  gap: 8px;
   padding: 0 16px;
   color: var(--ink-soft);
   font-size: 13px;
+}
+
+.collab-add-row .collab-svg-icon {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1) opacity(0.56);
 }
 
 
@@ -3392,7 +3457,7 @@
 
 
 .collab-side-card {
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid var(--collab-line);
   background: rgba(255, 255, 255, 0.026);
   padding: 14px;
@@ -3408,7 +3473,7 @@
 
 .collab-highlight-row {
   min-height: 54px;
-  border-radius: 10px;
+  border-radius: 4px;
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.045);
   padding: 10px 12px;
@@ -3491,7 +3556,7 @@
   display: grid;
   place-items: center;
   background: rgba(78, 168, 255, 0.12);
-  border: 1px solid rgba(78, 168, 255, 0.25);
+
   color: var(--blue-soft);
   font-style: normal;
   font-size: 9px;
@@ -3585,7 +3650,7 @@
 .collab-activity-link {
   margin-top: 18px;
   min-height: 34px;
-  border-radius: 9px;
+  border-radius: 4px;
   border: 1px solid var(--collab-line);
   color: #8fa8ff;
   text-decoration: none;
@@ -4027,7 +4092,7 @@
   max-height: 360px;
   display: grid;
   grid-template-rows: 42px minmax(0, 1fr);
-  border-radius: 24px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: linear-gradient(180deg, rgba(17, 25, 58, 0.96), rgba(6, 11, 29, 0.98));
   overflow: hidden;
@@ -4095,7 +4160,7 @@
   font-size: 12px;
   color: var(--ink-soft);
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: 4px;
   margin-bottom: 6px;
 }
 
@@ -4124,7 +4189,7 @@
   font-size: 12px;
   color: var(--ink-soft);
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 4px;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -4200,21 +4265,12 @@
 }
 
 
-.collab-cloud-kicker,
-.collab-tools-kicker {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-subtle);
-  margin-bottom: 8px;
-}
-
 
 .collab-cloud-header h4,
 .collab-tools-head h4 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.1;
   color: var(--ink);
 }
@@ -4223,8 +4279,8 @@
 .collab-cloud-chip,
 .collab-tools-status {
   padding: 7px 10px;
-  border-radius: 6px;
-  border: 1px solid rgba(78, 168, 255, 0.18);
+  border-radius: 4px;
+
   background: rgba(78, 168, 255, 0.12);
   color: var(--blue-soft);
   font-size: 12px;
@@ -4283,7 +4339,7 @@
 
 .collab-dash-metric {
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 4px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -4311,7 +4367,7 @@
   align-items: flex-end;
   gap: 8px;
   padding: 14px 10px 9px;
-  border-radius: 14px;
+  border-radius: 4px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -4341,7 +4397,7 @@
 
 .collab-tools-toolbar span {
   padding: 6px 9px;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.09);
   background: rgba(255, 255, 255, 0.05);
   color: var(--ink-soft);
@@ -4350,7 +4406,7 @@
 
 
 .collab-tools-card {
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(255, 255, 255, 0.03);
   padding: 12px;
@@ -5216,7 +5272,7 @@
   max-height: 384px;
   display: grid;
   grid-template-rows: 40px minmax(0, 1fr);
-  border-radius: 22px;
+  border-radius: 4px;
   border: 1px solid var(--security-line-strong);
   background: rgba(5, 10, 25, 0.96);
   overflow: hidden;
@@ -5271,7 +5327,7 @@
 .security-product-icon {
   width: 42px;
   height: 42px;
-  border-radius: 13px;
+  border-radius: 4px;;
   display: grid;
   place-items: center;
   border: 1px solid rgba(78, 168, 255, 0.32);
@@ -5343,7 +5399,7 @@
 .verify-wordmark i {
   width: 25px;
   height: 25px;
-  border-radius: 7px;
+  border-radius: 4px;
   background: var(--security-blue);
 
 }
@@ -5399,7 +5455,7 @@
 
 
 .guard-alert {
-  border-radius: 17px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   background: rgba(255, 255, 255, 0.025);
   padding: 16px 18px;
@@ -5434,7 +5490,7 @@
 
 
 .guard-policy-grid div {
-  border-radius: 13px;
+  border-radius: 4px;;
   border: 1px solid rgba(255, 255, 255, 0.09);
   background: rgba(255, 255, 255, 0.03);
   padding: 9px 10px;
@@ -5512,7 +5568,7 @@
 
 
 .safe-stats div {
-  border-radius: 14px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.09);
   background: rgba(255, 255, 255, 0.03);
   padding: 8px 9px;
@@ -5546,7 +5602,7 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 9px;
-  border-radius: 13px;
+  border-radius: 4px;;
   border: 1px solid rgba(255, 255, 255, 0.09);
   background: rgba(255, 255, 255, 0.03);
   padding: 8px 9px;
@@ -5556,7 +5612,7 @@
 .safe-file-icon {
   width: 32px;
   height: 28px;
-  border-radius: 10px;
+  border-radius: 4px;
   display: grid;
   place-items: center;
   color: var(--security-blue);
@@ -5890,7 +5946,7 @@
 .releases-header {
   margin-bottom: clamp(26px, 4vw, 42px);
 }
- 
+
 
 .releases-title {
   margin: 0;
@@ -5911,7 +5967,7 @@
 
 .release-card {
   min-height: clamp(430px, 36vw, 520px);
-  border-radius: 24px;
+  border-radius: 4px;
 
   background: var(--release-card);
   overflow: hidden;
@@ -6102,7 +6158,7 @@
 
   .release-card {
     min-height: 420px;
-    border-radius: 20px;
+    border-radius: 4px;
   }
 
 
@@ -6618,7 +6674,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-robot-metrics
 }
 
 /* ==============================
-   DEMO VIDEO 
+   DEMO VIDEO
    ============================== */
 
 /* Important: sticky needs visible overflow */
@@ -7802,7 +7858,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   max-height: 610px;
   min-width: 0;
   max-width: 100%;
-  border-radius: 7px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(7, 11, 30, 0.92);
   overflow: hidden;
@@ -7926,7 +7982,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   min-width: 0;
   min-height: 62px;
   padding: 12px clamp(10px, 1.2vw, 14px);
-  border-radius: 7px;
+  border-radius: 4px;
   display: grid;
   align-content: center;
   gap: 7px;
@@ -7955,7 +8011,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 /* Tables */
 .cavbot-ui-table {
   display: grid;
-  border-radius: 7px;
+  border-radius: 4px;
   overflow: hidden;
   min-width: 0;
   border: 1px solid rgba(255, 255, 255, 0.10);
@@ -8006,7 +8062,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 
 .cavbot-ui-note {
   padding: 10px 12px;
-  border-radius: 7px;
+  border-radius: 4px;
   display: grid;
   gap: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -8037,7 +8093,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   position: relative;
   height: clamp(152px, 17vw, 174px);
   min-height: 0;
-  border-radius: 7px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   background:
     linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
@@ -8053,7 +8109,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   width: 68px;
   min-height: 34px;
   padding: 0 10px;
-  border-radius: 6px;
+  border-radius: 4px;
   display: grid;
   place-items: center;
   color: var(--ink);
@@ -8168,7 +8224,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 .cavbot-ui-route-list div {
   min-height: 32px;
   padding: 0 12px;
-  border-radius: 7px;
+  border-radius: 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8202,7 +8258,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 
 .cavbot-seo-card,
 .cavbot-seo-checks div {
-  border-radius: 7px;
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.10);
   background: rgba(255, 255, 255, 0.03);
 }
@@ -8301,7 +8357,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 .cavbot-runtime-chart {
   min-height: clamp(96px, 13vw, 124px);
   padding: 16px;
-  border-radius: 7px;
+  border-radius: 4px;
   display: flex;
   align-items: end;
   gap: 12px;
@@ -8333,7 +8389,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 .cavbot-action-list > div {
   min-height: 68px;
   padding: 12px 13px;
-  border-radius: 7px;
+  border-radius: 4px;
   display: grid;
   grid-template-columns: 34px minmax(0, 1fr) auto;
   gap: 13px;
@@ -8352,7 +8408,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 .cavbot-action-list span {
   width: 30px;
   height: 30px;
-  border-radius: 6px;
+  border-radius: 4px;
   display: grid;
   place-items: center;
   color: var(--ink);
@@ -8922,7 +8978,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row a {
 .arcade-logo-link:focus-visible {
   outline: 2px solid var(--lime);
   outline-offset: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 
@@ -9144,7 +9200,7 @@ body,
     width: 100%;
     min-height: 0;
     aspect-ratio: 16 / 9;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
   }
 
@@ -9198,13 +9254,13 @@ body,
     width: 100%;
     height: 100%;
     transform: none;
-    border-radius: 8px;
+    border-radius: 4px;
   }
 
   .brain-museum {
     padding: 20px 14px;
     gap: 14px;
-    border-radius: 8px;
+    border-radius: 4px;
   }
 
   .brain-word {
@@ -9379,7 +9435,7 @@ body,
 
   .hero-demo-frame {
     aspect-ratio: 16 / 10;
-    border-radius: 6px;
+    border-radius: 4px;
   }
 
   .cavai-video-stage {
@@ -9914,12 +9970,6 @@ body,
     gap: 8px !important;
   }
 
-  .collab-cloud-kicker,
-  .collab-tools-kicker {
-    margin-bottom: 5px !important;
-    font-size: 8.5px !important;
-    letter-spacing: 0.12em !important;
-  }
 
   .collab-cloud-header h4,
   .collab-tools-head h4 {
@@ -10116,7 +10166,7 @@ body,
   .security-product-icon {
     width: 30px !important;
     height: 30px !important;
-    border-radius: 10px !important;
+    border-radius: 4px !important;
   }
 
   .security-product-icon img {
@@ -10203,7 +10253,7 @@ body,
   .safe-file-icon {
     width: 25px !important;
     height: 22px !important;
-    border-radius: 8px !important;
+    border-radius: 4px !important;
     font-size: 7.5px !important;
   }
 
