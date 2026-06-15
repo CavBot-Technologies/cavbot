@@ -72,91 +72,6 @@
       text-align: center;
     }
 
-    .arcade-loading {
-      position: fixed;
-      inset: 0;
-      z-index: 2147483647;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      box-sizing: border-box;
-      background:
-        radial-gradient(circle at 50% 42%, rgba(57, 153, 255, 0.2), transparent 32%),
-        #01030f;
-      color: #f7fbff;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      transition: opacity 180ms ease, visibility 180ms ease;
-    }
-
-    .arcade-loading-panel {
-      display: grid;
-      justify-items: center;
-      gap: 14px;
-      text-align: center;
-    }
-
-    .arcade-loading-mark {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
-      overflow: hidden;
-    }
-
-    .arcade-loading-mark img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .arcade-loading-title {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.2;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(247, 251, 255, 0.86);
-    }
-
-    .arcade-loading-bar {
-      width: min(220px, 62vw);
-      height: 3px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .arcade-loading-bar::before {
-      content: "";
-      display: block;
-      width: 44%;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #4aa3ff, #b7ff3d);
-      animation: arcadeLoadingSweep 1.05s ease-in-out infinite;
-    }
-
-    body.is-arcade-ready .arcade-loading {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    body.is-arcade-exiting .arcade-loading {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    body.is-arcade-exiting #cavbot-arcade-root iframe {
-      visibility: hidden;
-    }
-
     #cavbot-arcade-root,
     #cavbot-arcade-root iframe {
       width: 100vw !important;
@@ -165,15 +80,6 @@
       display: block;
       border: 0;
       background: #01030f;
-    }
-
-    @keyframes arcadeLoadingSweep {
-      0% {
-        transform: translateX(-110%);
-      }
-      100% {
-        transform: translateX(250%);
-      }
     }
   </style>
 
@@ -265,15 +171,6 @@
   </script>
 </head>
 <body data-cavbot-page-type="404" data-cavbot-component="imposter-fullscreen">
-  <div class="arcade-loading" id="arcade-loading" role="status" aria-live="polite" aria-label="Loading CavBot Arcade">
-    <div class="arcade-loading-panel">
-      <span class="arcade-loading-mark" aria-hidden="true">
-        <img src="/assets/icons/favicon-96x96.png" alt="">
-      </span>
-      <p class="arcade-loading-title" id="arcade-loading-title">Loading CavBot Arcade</p>
-      <span class="arcade-loading-bar" aria-hidden="true"></span>
-    </div>
-  </div>
   <noscript>
     <main class="arcade-fallback">
       CavBot Arcade needs JavaScript to load this 404 recovery game.
@@ -291,18 +188,10 @@
       var redirecting = false;
       var boundIframe = null;
       var firstIframeLoadSeen = false;
-      var loadingTitle = document.getElementById("arcade-loading-title");
-
-      function setLoadingText(text) {
-        if (loadingTitle) loadingTitle.textContent = text;
-      }
 
       function goHome() {
         if (redirecting) return;
         redirecting = true;
-        document.body.classList.remove("is-arcade-ready");
-        document.body.classList.add("is-arcade-exiting");
-        setLoadingText("Returning home");
         try {
           window.location.replace(new URL(HOME_PATH, window.location.origin).href);
         } catch (_error) {
@@ -318,9 +207,6 @@
           var target = new URL(data.href || HOME_PATH, window.location.origin);
           if (target.origin !== window.location.origin) return;
           redirecting = true;
-          document.body.classList.remove("is-arcade-ready");
-          document.body.classList.add("is-arcade-exiting");
-          setLoadingText("Returning home");
           window.location.replace(target.href);
         } catch (_error) {
           goHome();
@@ -342,7 +228,6 @@
         frame.addEventListener("load", function () {
           if (!firstIframeLoadSeen) {
             firstIframeLoadSeen = true;
-            document.body.classList.add("is-arcade-ready");
             return;
           }
 
