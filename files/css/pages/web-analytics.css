@@ -3235,7 +3235,7 @@ body {
   padding: clamp(150px, 12vw, 214px) 0 clamp(178px, 14vw, 260px);
   overflow: hidden;
 }
-
+ 
 /* Top violet cutout from the section above */
 .route-error-section::before {
   content: "";

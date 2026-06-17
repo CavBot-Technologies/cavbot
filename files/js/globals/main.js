@@ -688,6 +688,8 @@
   const counter = root.querySelector('[data-seal-count]');
   if (!counter) return;
 
+  if (counter.hasAttribute('data-cavbot-signup-count')) return;
+
 
   const finalValue = Number(counter.getAttribute('data-seal-count')) || 7;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

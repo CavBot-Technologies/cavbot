@@ -4428,6 +4428,104 @@ const APP_HOST = "app.cavbot.io";
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  const proofs = Array.from(document.querySelectorAll("[data-cavbot-signup-proof]"));
+  if (!proofs.length) return;
+
+  const endpoint =
+    window.CAVBOT_SIGNUP_METRICS_API ||
+    "https://app.cavbot.io/api/public/signup-metrics";
+  const POLL_MS = 30 * 1000;
+  let timer = null;
+  let inFlight = false;
+
+  function labelForCount(count) {
+    return `${count} ${count === 1 ? "user" : "users"}`;
+  }
+
+  function setProofState(state) {
+    proofs.forEach((proof) => {
+      const countNode = proof.querySelector("[data-cavbot-signup-count]");
+      const copyNode = proof.querySelector("[data-cavbot-signup-copy]");
+      if (!countNode || !copyNode) return;
+
+      if (state && Number.isFinite(state.joined)) {
+        const count = Math.max(0, Math.floor(state.joined));
+        countNode.textContent = labelForCount(count);
+        copyNode.innerHTML = `joined CavBot<br>in the last<br>${state.windowDays || 14} days`;
+        proof.setAttribute(
+          "aria-label",
+          `${labelForCount(count)} joined CavBot in the last ${state.windowDays || 14} days`
+        );
+        proof.dataset.cavbotSignupState = "live";
+        return;
+      }
+
+      countNode.textContent = "0 users";
+      copyNode.innerHTML = "joined CavBot<br>in the last<br>14 days";
+      proof.setAttribute("aria-label", "0 users joined CavBot in the last 14 days");
+      proof.dataset.cavbotSignupState = "live";
+    });
+  }
+
+  function requestMetrics() {
+    if (inFlight || !window.fetch) return;
+    inFlight = true;
+
+    fetch(endpoint, {
+      method: "GET",
+      mode: "cors",
+      credentials: "omit",
+      cache: "no-store",
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("SIGNUP_METRICS_BAD_RESPONSE");
+        return response.json();
+      })
+      .then((payload) => {
+        if (!payload || payload.ok !== true || !Number.isFinite(Number(payload.joined))) {
+          throw new Error("SIGNUP_METRICS_INVALID_PAYLOAD");
+        }
+
+        setProofState({
+          joined: Number(payload.joined),
+          windowDays: Number(payload.windowDays) || 14,
+        });
+      })
+      .catch(() => {
+        setProofState({
+          joined: 0,
+          windowDays: 14,
+        });
+      })
+      .finally(() => {
+        inFlight = false;
+      });
+  }
+
+  function schedule() {
+    if (timer) window.clearInterval(timer);
+    if (document.visibilityState === "hidden") return;
+    timer = window.setInterval(requestMetrics, POLL_MS);
+  }
+
+  requestMetrics();
+  schedule();
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      requestMetrics();
+      schedule();
+      return;
+    }
+
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   const LOGOTYPE_SRC = "/assets/logo/official-logotype-light.svg";
   const LOGOMARK_SRC = "/assets/logo/cavbot-logomark.svg";
 
@@ -5251,6 +5349,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Error Tracking", href: "/error-tracking.html", type: "Product", summary: "Find browser errors and runtime issues." },
     { title: "SEO Audit", href: "/seo-audit.html", type: "Product", summary: "Review titles, descriptions, metadata, and page structure." },
     { title: "Accessibility Check", href: "/accessibility-check.html", type: "Product", summary: "Review accessibility signals and usability issues." },
+    { title: "404 Recovery", href: "/404-recovery.html", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and 404 Arcade recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found not found arcade recovery recovery games catch cavbot" },
     { title: "Monitored Websites", href: "/websites.html", type: "Product", summary: "Manage and review monitored websites." },
     { title: "CavBot Arcade", href: "/cavbot-arcade.html", type: "Product", summary: "CavBot games and recovery experiences." },
     { title: "Blog", href: "/blog.html", type: "Resources", summary: "Company updates, product notes, and research." },
