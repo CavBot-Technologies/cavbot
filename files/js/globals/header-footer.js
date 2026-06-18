@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h2 id="cb-cookie-prefs-title">Manage cookie preferences</h2><br>
           <p id="cb-cookie-prefs-copy">CavBot websites use cookies to keep the site working, remember your choices, and <br> understand how the website is used.
 <br><br> Some cookies are required. Others are optional and are only used with your permission, <br> such as cookies for analytics, social media, or advertising. You can choose which <br> optional cookies to allow below.
-<br><br> For more information, see the <a href="/legal.html#privacy-cookies">Cookies and similar technologies</a> section of our Privacy <br> Policy.
+<br><br> For more information, see the <a href="/legal#privacy-cookies">Cookies and similar technologies</a> section of our Privacy <br> Policy.
 </p>
 <br>
           <article class="cb-cookie-pref">
@@ -390,11 +390,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
   const SIGNUP_URL = "https://app.cavbot.io/auth?mode=signup";
   const TRY_CAVAI_PRODUCT_LINKS = [
-    { label: "CavAi", href: "/cavai.html" },
-    { label: "Caven", href: "/caven.html" },
-    { label: "CavBot Companion", href: "/cavbot-companion.html" },
-    { label: "Image Studio", href: "/image-studio.html" },
-    { label: "Image Edit", href: "/image-edit.html" },
+    { label: "CavAi", href: "/cavai" },
+    { label: "Caven", href: "/caven" },
+    { label: "CavBot Companion", href: "/cavbot-companion" },
+    { label: "Image Studio", href: "/image-studio" },
+    { label: "Image Edit", href: "/image-edit" },
   ];
   const TRY_CAVAI_FRONTEND_MODEL_LINKS = [
     { id: "deepseek", label: "Deepseek", href: "https://www.cavbot.io/deepseek-cavbot" },
@@ -3526,11 +3526,11 @@ const APP_HOST = "app.cavbot.io";
                   <span class="cb-demo-request-protection-copy">
                     <span class="cb-demo-request-protection-title">Secured by <strong>Caverify</strong></span>
                     <span class="cb-demo-request-protection-links">
-                      <a href="/privacy-policy.html">Privacy</a>
+                      <a href="/legal#privacy-policy">Privacy</a>
                       <span aria-hidden="true">•</span>
-                      <a href="/terms-of-use.html">Terms</a>
+                      <a href="/legal#terms-of-use">Terms</a>
                       <span aria-hidden="true">•</span>
-                      <a href="/data-security.html">Security</a>
+                      <a href="/legal#data-security">Security</a>
                     </span>
                   </span>
                 </div>
@@ -4010,7 +4010,7 @@ const APP_HOST = "app.cavbot.io";
               </article>
             </div>
             <div class="cb-badge-passport-actions">
-              <a class="cb-badge-passport-link" href="/how-it-works.html#surfaces">How It Works</a>
+              <a class="cb-badge-passport-link" href="/docs#cavbot-badge">How It Works</a>
               <button type="button" class="cb-badge-passport-close-btn" data-cb-badge-passport-close>Close</button>
             </div>
           </section>
@@ -5152,7 +5152,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const clean = path.split("#")[0].split("?")[0] || "/";
 
-    if (clean === "/index.html") return "/";
+    if (clean === "/index") return "/";
 
     return clean.endsWith("/") ? clean.slice(0, -1) : clean;
   }
@@ -5328,37 +5328,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const siteSearchItems = [
     { title: "Home", href: "/", type: "Page", summary: "CavBot website intelligence platform overview." },
-    { title: "About", href: "/about.html", type: "Company", summary: "Learn what CavBot is building and why." },
-    { title: "Team", href: "/team.html", type: "Company", summary: "Meet the CavBot team." },
-    { title: "Careers", href: "/careers.html", type: "Company", summary: "Open roles, jobs, founding roles, marketing roles, and careers at CavBot.", aliases: "career careers carrers carrers jobs hiring roles open roles cofounder co-founder social media manager" },
-    { title: "Pricing", href: "/pricing.html", type: "Plan", summary: "Review CavBot plans and subscription options." },
+    { title: "About", href: "/about", type: "Company", summary: "Learn what CavBot is building and why." },
+    { title: "Team", href: "/team", type: "Company", summary: "Meet the CavBot team." },
+    { title: "Careers", href: "/careers", type: "Company", summary: "Open roles, jobs, founding roles, marketing roles, and careers at CavBot.", aliases: "career careers carrers carrers jobs hiring roles open roles cofounder co-founder social media manager" },
+    { title: "Pricing", href: "/pricing", type: "Plan", summary: "Review CavBot plans and subscription options." },
     { title: "Dashboard", href: "https://app.cavbot.io/", type: "App", summary: "Open the CavBot app dashboard." },
-    { title: "CavAi", href: "/cavai.html", type: "AI", summary: "CavBot AI assistant for website work and product help." },
-    { title: "Introducing CavAi", href: "/introducing-cavai.html", type: "AI", summary: "Read how CavAi works inside CavBot." },
-    { title: "DeepSeek in CavAi", href: "/deepseek-cavbot.html", type: "AI Model", summary: "DeepSeek model support in CavAi." },
-    { title: "Qwen in CavAi", href: "/qwen-cavbot.html", type: "AI Model", summary: "Qwen model support in CavAi." },
-    { title: "Docs", href: "/docs.html", type: "Docs", summary: "Guides, setup, account, analytics, CavAi, billing, and platform documentation." },
-    { title: "Get started", href: "/docs.html#getstarted", type: "Docs", summary: "Create an account, add a site, install Analytics v5, and verify setup." },
-    { title: "Account and profile", href: "/docs.html#profile", type: "Docs", summary: "Account, profile, sites, top site, and notifications." },
-    { title: "Analytics v5", href: "/docs.html#analytics-v5", type: "Docs", summary: "Install and verify CavBot website analytics." },
-    { title: "CavAi v3", href: "/docs.html#cavai-v3", type: "Docs", summary: "Use CavAi with workspace context, models, tools, and assistant memory." },
-    { title: "CavCloud", href: "/cavcloud.html", type: "Product", summary: "Cloud storage and workspace files for CavBot." },
-    { title: "CavCode", href: "/cavcode.html", type: "Product", summary: "Code workspace and developer tools." },
-    { title: "Caven", href: "/caven.html", type: "Product", summary: "CavBot coding assistant and development workflow." },
-    { title: "Web Analytics", href: "/web-analytics.html", type: "Product", summary: "Understand website traffic and route activity." },
-    { title: "Insights", href: "/insights.html", type: "Product", summary: "Search Console insights and website intelligence." },
-    { title: "Error Tracking", href: "/error-tracking.html", type: "Product", summary: "Find browser errors and runtime issues." },
-    { title: "SEO Audit", href: "/seo-audit.html", type: "Product", summary: "Review titles, descriptions, metadata, and page structure." },
-    { title: "Accessibility Check", href: "/accessibility-check.html", type: "Product", summary: "Review accessibility signals and usability issues." },
-    { title: "404 Recovery", href: "/404-recovery.html", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and 404 Arcade recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found not found arcade recovery recovery games catch cavbot" },
-    { title: "Monitored Websites", href: "/websites.html", type: "Product", summary: "Manage and review monitored websites." },
-    { title: "CavBot Arcade", href: "/cavbot-arcade.html", type: "Product", summary: "CavBot games and recovery experiences." },
-    { title: "Blog", href: "/blog.html", type: "Resources", summary: "Company updates, product notes, and research." },
-    { title: "Help Center", href: "/help-center.html", type: "Support", summary: "Find help and support resources." },
-    { title: "Brand", href: "/brand.html", type: "Company", summary: "CavBot brand resources and design guidance." },
-    { title: "Legal", href: "/legal.html", type: "Company", summary: "Privacy, terms, cookies, and legal policies." },
-    { title: "What is a 404?", href: "/what's-a-404.html", type: "Guide", summary: "Understand broken pages and 404 recovery." },
-    { title: "Why CavBot", href: "/why-cavbot.html", type: "Company", summary: "Why teams use CavBot after launch." }
+    { title: "CavAi", href: "/cavai", type: "AI", summary: "CavBot AI assistant for website work and product help." },
+    { title: "Introducing CavAi", href: "/introducing-cavai", type: "AI", summary: "Read how CavAi works inside CavBot." },
+    { title: "DeepSeek in CavAi", href: "/deepseek-cavbot", type: "AI Model", summary: "DeepSeek model support in CavAi." },
+    { title: "Qwen in CavAi", href: "/qwen-cavbot", type: "AI Model", summary: "Qwen model support in CavAi." },
+    { title: "Docs", href: "/docs", type: "Docs", summary: "Guides, setup, account, analytics, CavAi, billing, and platform documentation." },
+    { title: "Get started", href: "/docs#getstarted", type: "Docs", summary: "Create an account, add a site, install Analytics v5, and verify setup." },
+    { title: "Account and profile", href: "/docs#profile", type: "Docs", summary: "Account, profile, sites, top site, and notifications." },
+    { title: "Analytics v5", href: "/docs#analytics-v5", type: "Docs", summary: "Install and verify CavBot website analytics." },
+    { title: "CavAi v3", href: "/docs#cavai-v3", type: "Docs", summary: "Use CavAi with workspace context, models, tools, and assistant memory." },
+    { title: "CavCloud", href: "/cavcloud", type: "Product", summary: "Cloud storage and workspace files for CavBot." },
+    { title: "CavCode", href: "/cavcode", type: "Product", summary: "Code workspace and developer tools." },
+    { title: "Caven", href: "/caven", type: "Product", summary: "CavBot coding assistant and development workflow." },
+    { title: "Web Analytics", href: "/web-analytics", type: "Product", summary: "Understand website traffic and route activity." },
+    { title: "Insights", href: "/insights", type: "Product", summary: "Search Console insights and website intelligence." },
+    { title: "Error Tracking", href: "/error-tracking", type: "Product", summary: "Find browser errors and runtime issues." },
+    { title: "SEO Audit", href: "/seo-audit", type: "Product", summary: "Review titles, descriptions, metadata, and page structure." },
+    { title: "Accessibility Check", href: "/accessibility-check", type: "Product", summary: "Review accessibility signals and usability issues." },
+    { title: "404 Recovery", href: "/404-recovery", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and 404 Arcade recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found not found arcade recovery recovery games catch cavbot" },
+    { title: "Monitored Websites", href: "/websites", type: "Product", summary: "Manage and review monitored websites." },
+    { title: "CavBot Arcade", href: "/cavbot-arcade", type: "Product", summary: "CavBot games and recovery experiences." },
+    { title: "Blog", href: "/blog", type: "Resources", summary: "Company updates, product notes, and research." },
+    { title: "Help Center", href: "/help-center", type: "Support", summary: "Find help and support resources." },
+    { title: "Brand", href: "/brand", type: "Company", summary: "CavBot brand resources and design guidance." },
+    { title: "Legal", href: "/legal", type: "Company", summary: "Privacy, terms, cookies, and legal policies." },
+    { title: "What is a 404?", href: "/what's-a-404", type: "Guide", summary: "Understand broken pages and 404 recovery." },
+    { title: "Why CavBot", href: "/why-cavbot", type: "Company", summary: "Why teams use CavBot after launch." }
   ];
 
   function searchText(item) {

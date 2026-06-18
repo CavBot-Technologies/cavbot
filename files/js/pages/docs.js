@@ -8060,7 +8060,7 @@ Object.keys(docs).forEach(function (key) {
       if (body.getAttribute("data-docs-route") !== route) renderArticle(route);
       setActive(cat.sections[0].id);
       if (replace && window.history) {
-        window.history.replaceState(null, "", "/docs.html#" + route);
+        window.history.replaceState(null, "", "/docs#" + route);
       }
       if (shouldScroll) {
         const target = document.querySelector(".docs-article-header") || document.querySelector(".docs-article");
@@ -8084,7 +8084,7 @@ Object.keys(docs).forEach(function (key) {
     setActive(safeId);
     if (replace && window.history) {
       const path = slugPath(window.location.pathname);
-      const targetPath = path === "/docs" || path === "/docs.html" ? window.location.pathname : cat.path;
+      const targetPath = path === "/docs" || path === "/docs.html" ? "/docs" : cat.path;
       window.history.replaceState(null, "", targetPath + "#" + safeId);
     }
     if (shouldScroll) {
