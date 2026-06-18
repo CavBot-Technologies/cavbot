@@ -4200,16 +4200,17 @@ const APP_HOST = "app.cavbot.io";
       }
     });
 
-    // Dogfood arcade loader install path on arcade/play surfaces.
+    // Dogfood arcade loader install path. Keep this opt-in so marketing pages
+    // that mention Arcade or 404 recovery do not append the 404 game.
+    const enableArcadeLoader =
+      pageType === "404" ||
+      String(document.body?.getAttribute("data-cavbot-enable-arcade-loader") || "").trim() === "1";
     const disableArcadeLoader =
       isHomePage ||
       String(document.body?.getAttribute("data-cavbot-disable-arcade-loader") || "").trim() === "1";
     const arcadeCandidate =
-      !disableArcadeLoader &&
-      (
-        !!document.querySelector("[data-play], [data-play-url], .arcade-card, .arcade-grid") ||
-        /cavbot-arcade|404/i.test(String(window.location.pathname || ""))
-      );
+      enableArcadeLoader &&
+      !disableArcadeLoader;
     if (arcadeCandidate) {
       const hasArcadeLoader = document.querySelector('script[src*="/sdk/arcade/"]');
       if (!hasArcadeLoader) {
