@@ -5276,16 +5276,6 @@ document.addEventListener("DOMContentLoaded", () => {
       row.insertBefore(searchTrigger, row.firstElementChild || tryCavai);
     }
 
-    if (!row.querySelector("[data-site-update-open]")) {
-      const trigger = document.createElement("button");
-      trigger.className = "cb-site-update-trigger";
-      trigger.type = "button";
-      trigger.setAttribute("aria-label", "View site update notice");
-      trigger.setAttribute("data-site-update-open", "");
-      trigger.innerHTML = '<img class="cb-site-update-icon" src="/assets/icons/page/aware-svgrepo-com.svg" alt="" aria-hidden="true" />';
-      row.insertBefore(trigger, tryCavai);
-    }
-
     var avatar = row.querySelector("[data-cavbot-app-session-avatar]");
     if (!avatar) {
       avatar = createAppSessionAvatar();
@@ -5315,7 +5305,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".nav-overlay-cta").forEach((row) => {
     if (row.querySelector("[data-cavbot-site-search-open]")) return;
-    const updateTrigger = row.querySelector("[data-site-update-open]");
     const searchTrigger = document.createElement("button");
     searchTrigger.className = "cb-site-search-trigger cb-site-search-trigger--mobile";
     searchTrigger.type = "button";
@@ -5323,7 +5312,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchTrigger.setAttribute("data-cavbot-site-search-open", "");
     searchTrigger.setAttribute("data-cavbot-site-search-tip", "Search CavBot");
     searchTrigger.innerHTML = '<img class="cb-site-search-icon" src="/assets/icons/page/analytics/search-svgrepo-com.svg" alt="" aria-hidden="true" />';
-    row.insertBefore(searchTrigger, updateTrigger || row.firstElementChild);
+    row.insertBefore(searchTrigger, row.firstElementChild);
   });
 
   const siteSearchItems = [
@@ -5353,6 +5342,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "404 Recovery", href: "/404-recovery", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and 404 Arcade recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found not found arcade recovery recovery games catch cavbot" },
     { title: "Monitored Websites", href: "/websites", type: "Product", summary: "Manage and review monitored websites." },
     { title: "CavBot Arcade", href: "/cavbot-arcade", type: "Product", summary: "CavBot games and recovery experiences." },
+    { title: "Compare CavBot", href: "/vs/google", type: "Comparison", summary: "Compare CavBot with Google Analytics for traffic, broken pages, errors, page health, and recovery.", aliases: "vs google google analytics compare cavbot cavbot vs google cavbot vs google analytics comparison analytics comparison" },
     { title: "Blog", href: "/blog", type: "Resources", summary: "Company updates, product notes, and research." },
     { title: "Help Center", href: "/help-center", type: "Support", summary: "Find help and support resources." },
     { title: "Brand", href: "/brand", type: "Company", summary: "CavBot brand resources and design guidance." },
@@ -5503,102 +5493,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const triggers = Array.from(document.querySelectorAll("[data-site-update-open]"));
-  if (!triggers.length) return;
-
-  const MODAL_ID = "cb-site-update-overlay";
-  let lastFocusedElement = null;
-  let isOpen = false;
-  let lockedScrollY = 0;
-
-  function lockScroll() {
-    lockedScrollY = window.scrollY || window.pageYOffset || 0;
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${lockedScrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-  }
-
-  function unlockScroll() {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
-    document.body.style.width = "";
-    window.scrollTo(0, lockedScrollY);
-  }
-
-  function ensureModal() {
-    let overlay = document.getElementById(MODAL_ID);
-    if (overlay) return overlay;
-
-    overlay = document.createElement("div");
-    overlay.id = MODAL_ID;
-    overlay.className = "cb-site-update-overlay";
-    overlay.setAttribute("aria-hidden", "true");
-    overlay.innerHTML = `
-      <section class="cb-site-update-card" role="dialog" aria-modal="true" aria-labelledby="cb-site-update-title" aria-describedby="cb-site-update-copy">
-        <span class="cb-site-update-mark" aria-hidden="true">
-          <img src="assets/icons/page/notice-svgrepo-com.svg" alt="" />
-        </span>
-        <h2 class="cb-site-update-title" id="cb-site-update-title">Site Update in Progress</h2>
-        <p class="cb-site-update-copy" id="cb-site-update-copy">We’re actively refining the CavBot website. Some pages may change, refresh, or move as updates are completed.</p>
-        <button class="cb-site-update-close" type="button" data-site-update-close>Close</button>
-      </section>
-    `;
-
-    overlay.addEventListener("click", (event) => {
-      if (event.target === overlay || event.target.closest("[data-site-update-close]")) {
-        closeModal();
-      }
-    });
-
-    document.body.appendChild(overlay);
-    return overlay;
-  }
-
-  function openModal(trigger) {
-    const overlay = ensureModal();
-    lastFocusedElement = trigger;
-    isOpen = true;
-    lockScroll();
-    overlay.dataset.open = "true";
-    overlay.setAttribute("aria-hidden", "false");
-
-    const closeButton = overlay.querySelector("[data-site-update-close]");
-    if (closeButton) closeButton.focus({ preventScroll: true });
-  }
-
-  function closeModal() {
-    const overlay = document.getElementById(MODAL_ID);
-    if (!overlay || !isOpen) return;
-
-    isOpen = false;
-    overlay.dataset.open = "false";
-    overlay.setAttribute("aria-hidden", "true");
-    unlockScroll();
-
-    if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
-      lastFocusedElement.focus({ preventScroll: true });
-    }
-  }
-
-  triggers.forEach((trigger) => {
-    trigger.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      openModal(trigger);
-    });
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
-  });
 });
 
 (function () {

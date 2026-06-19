@@ -794,12 +794,15 @@ body.cb-has-fixed-header {
 
 .cb-site-search-trigger {
   position: relative;
+  border-color: transparent;
+  background: transparent;
   color: #f7fbff;
 }
 
 .cb-site-search-trigger:hover,
 .cb-site-search-trigger:focus-visible {
-  border-color: rgba(78, 168, 255, 0.62);
+  background: transparent;
+  border-color: transparent;
   color: #4ea8ff;
 }
 
@@ -847,6 +850,8 @@ body.cb-has-fixed-header {
 }
 
 .cb-site-search-icon {
+  width: 36px;
+  height: 36px;
   filter: brightness(0) invert(1);
 }
 
