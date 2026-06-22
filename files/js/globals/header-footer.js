@@ -4904,6 +4904,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function clearMobileFocusInsideNavOverlay() {
+    if (!navOverlay) return;
+    const activeElement = document.activeElement;
+    if (
+      activeElement instanceof HTMLElement &&
+      navOverlay.contains(activeElement) &&
+      typeof activeElement.blur === "function"
+    ) {
+      activeElement.blur();
+    }
+  }
+
+  function focusActiveMobileNavToggle() {
+    const focusTarget = navToggles.find((toggle) => {
+      if (!(toggle instanceof HTMLElement)) return false;
+      const styles = window.getComputedStyle(toggle);
+      return styles.display !== "none" && styles.visibility !== "hidden";
+    });
+
+    if (focusTarget && typeof focusTarget.focus === "function") {
+      focusTarget.focus({ preventScroll: true });
+    }
+  }
+
   function createMobileChevron() {
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 16 16");
@@ -5064,6 +5088,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeNav() {
     if (!navOverlay || !navOverlay.classList.contains("is-open")) return;
+
+    clearMobileFocusInsideNavOverlay();
+    focusActiveMobileNavToggle();
 
     navOverlay.classList.remove("is-open");
     document.documentElement.classList.remove("nav-open");
