@@ -44,11 +44,13 @@ body.cavai-shell {
 
 .cavai-page {
   width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   background: var(--cavai-bg);
   color: var(--cavai-ink);
   font-family: var(--font-cavai-body);
+  overflow-x: clip;
   overflow-anchor: none;
   touch-action: pan-y;
 }
@@ -753,8 +755,9 @@ body.cavai-shell {
 .cavai-video-section {
   position: relative;
   z-index: 3;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
   padding: 0 clamp(24px, 4vw, 64px) clamp(92px, 9vw, 148px);
   display: flex;
   justify-content: center;
@@ -6735,5 +6738,641 @@ body.cavai-shell {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+}
+
+/* ==============================
+   CavAi mobile stability pass
+   Prevent sideways scroll and keep key sections visible.
+   ============================== */
+
+@media (max-width: 720px) {
+  html,
+  body,
+  body.cavai-shell,
+  .cavai-page {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .cavai-page {
+    overflow-x: clip;
+  }
+
+  .cavai-hero,
+  .cavai-workflow-section,
+  .cavai-video-section,
+  .cavai-fit-section,
+  .cavai-foundation-section,
+  .cavai-action-flow,
+  .cavai-agents-section,
+  .cavai-intelligence-band,
+  .cavai-final-cta {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .cavai-workflow-section,
+  .cavai-foundation-head,
+  .cavai-foundation-card,
+  .cavai-foundation-point,
+  .cavai-action-flow,
+  .cavai-action-flow-copy,
+  .cavai-action-flow-tabs,
+  .cavai-action-flow-stage,
+  .cavai-agents-title-wrap,
+  .cavai-agents-copy,
+  .cavai-agents-shell,
+  .cavai-intelligence-band-inner,
+  .cavai-more-head,
+  .cavai-more-card,
+  .caven-intro-section,
+  .caven-logo-mark,
+  .caven-intro-head,
+  .caven-section-statement,
+  .caven-feature-card,
+  .cavai-final-cta-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .cavai-workflow-stage {
+    position: relative;
+    min-height: 520px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 92px 0 104px;
+  }
+
+  .cavai-workflow-inner {
+    position: relative;
+    z-index: 4;
+    width: min(100% - 28px, 560px);
+  }
+
+  .cavai-workflow-title {
+    max-width: 258px;
+    font-size: clamp(30px, 7.8vw, 37px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .cavai-workflow-float-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .cavai-workflow-chip,
+  .cavai-workflow-chip--one,
+  .cavai-workflow-chip--three,
+  .cavai-workflow-chip--five,
+  .cavai-workflow-chip--six,
+  .cavai-workflow-chip--seven,
+  .cavai-workflow-chip--eight {
+    position: absolute;
+    inset: auto;
+    display: inline-flex;
+    width: min(43vw, 142px);
+    max-width: 142px;
+    min-height: 30px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    font-size: clamp(8.6px, 2.45vw, 10px);
+    line-height: 1.08;
+    white-space: normal;
+    text-align: center;
+    overflow: hidden;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .cavai-workflow-chip::before {
+    margin-right: 5px;
+    flex: 0 0 auto;
+  }
+
+  .cavai-workflow-chip--one {
+    top: 28px;
+    left: 14px;
+  }
+
+  .cavai-workflow-chip--eight {
+    top: 48px;
+    right: 14px;
+  }
+
+  .cavai-workflow-chip--three {
+    top: 132px;
+    left: 20px;
+  }
+
+  .cavai-workflow-chip--five {
+    top: 344px;
+    right: 20px;
+    bottom: auto;
+  }
+
+  .cavai-workflow-chip--six {
+    left: 18px;
+    bottom: 68px;
+  }
+
+  .cavai-workflow-chip--seven {
+    right: 18px;
+    bottom: 24px;
+    display: inline-flex;
+  }
+
+  .cavai-video-section {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 8px 42px;
+  }
+
+  .cavai-video-shell {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .cavai-video-controls {
+    min-height: 46px;
+    grid-template-columns: 34px 38px minmax(0, 1fr) 34px 34px 34px;
+    gap: 5px;
+    padding: 0 6px;
+  }
+
+  .cavai-video-rail-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cavai-video-rail-icon {
+    width: 20px !important;
+    height: 20px !important;
+    flex-basis: 20px;
+  }
+
+  .cavai-video-time {
+    min-width: 38px;
+    font-size: 12px;
+  }
+
+  .cavai-video-progress {
+    min-width: 0;
+  }
+
+  .cavai-foundation-section {
+    display: block;
+    padding: 54px 0 58px !important;
+  }
+
+  .cavai-foundation-inner {
+    width: min(100% - 28px, 560px);
+  }
+
+  .cavai-foundation-head {
+    margin-bottom: 28px;
+  }
+
+  .cavai-foundation-title {
+    font-size: clamp(28px, 8vw, 38px);
+    line-height: 1.05;
+    letter-spacing: -0.038em;
+  }
+
+  .cavai-foundation-copy {
+    max-width: 100%;
+    font-size: 14.5px;
+    line-height: 1.48;
+  }
+
+  .cavai-foundation-cards {
+    gap: 18px;
+  }
+
+  .cavai-foundation-card {
+    min-height: auto;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .cavai-foundation-card h3 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .cavai-foundation-card p {
+    font-size: 13.25px;
+    line-height: 1.42;
+  }
+
+  .cavai-card-visual {
+    min-height: auto;
+    align-items: start;
+  }
+
+  .cavai-model-picker,
+  .cavai-context-console,
+  .cavai-agent-board {
+    padding: 12px;
+  }
+
+  .cavai-model-row,
+  .cavai-agent-row {
+    min-height: 46px;
+    padding: 8px;
+    gap: 9px;
+  }
+
+  .cavai-model-row small,
+  .cavai-agent-row small {
+    font-size: 11px;
+  }
+
+  .cavai-context-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cavai-context-tile {
+    min-height: 50px;
+    padding: 8px;
+  }
+
+  .cavai-foundation-points {
+    margin-top: 34px;
+    gap: 22px;
+  }
+
+  .cavai-foundation-point {
+    gap: 8px;
+  }
+
+  .cavai-action-flow {
+    margin-top: 0 !important;
+  }
+
+  .caven-feature-card,
+  .caven-feature-card--debug {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 26px 0;
+  }
+
+  .caven-feature-stack {
+    gap: 20px;
+  }
+
+  .caven-feature-copy {
+    display: grid;
+    align-content: start;
+  }
+
+  .caven-feature-copy h3 {
+    max-width: 100%;
+    font-size: clamp(26px, 7.2vw, 34px);
+    line-height: 1.08;
+  }
+
+  .caven-feature-copy p {
+    max-width: 100%;
+    margin-top: 10px;
+    font-size: 13.5px;
+    line-height: 1.42;
+  }
+
+  .caven-feature-copy a {
+    width: fit-content;
+    margin-top: 14px;
+    font-size: 13px;
+  }
+
+  .caven-feature-visual {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .caven-code-window,
+  .caven-debug-panel,
+  .caven-ship-panel {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 4px;
+  }
+
+  .caven-window-bar {
+    min-height: 36px;
+    padding: 0 10px;
+  }
+
+  .caven-window-bar strong {
+    font-size: 9.5px;
+  }
+
+  .caven-code-body {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .caven-code-explorer {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .caven-code-explorer > span {
+    margin-bottom: 2px;
+    font-size: 9px;
+  }
+
+  .caven-code-explorer div {
+    min-height: 32px;
+    padding: 0 8px;
+  }
+
+  .caven-code-explorer div + div {
+    margin-top: 0;
+  }
+
+  .caven-code-explorer strong {
+    font-size: 11.5px;
+  }
+
+  .caven-code-editor {
+    min-width: 0;
+  }
+
+  .caven-code-tabs {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 10px;
+    overflow-x: hidden;
+    padding: 10px;
+  }
+
+  .caven-code-tabs span {
+    min-height: 30px;
+    align-items: center;
+    border-radius: 4px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  .caven-code-lines {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+
+  .caven-code-lines p {
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 8px;
+    font-size: 11px;
+  }
+
+  .caven-code-lines code {
+    min-width: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .caven-code-note {
+    margin: 0 10px 10px;
+    min-height: 38px;
+    grid-template-columns: 18px minmax(0, 1fr);
+    padding: 7px 9px;
+  }
+
+  .caven-code-note img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .caven-code-note span {
+    font-size: 11.5px;
+  }
+
+  .cavai-agents-section {
+    padding-top: 58px;
+    padding-bottom: 64px;
+  }
+
+  .cavai-agents-inner {
+    width: min(100% - 28px, 560px);
+  }
+
+  .cavai-agents-head {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .cavai-agents-title {
+    max-width: 340px;
+    font-size: clamp(32px, 8.8vw, 42px);
+    line-height: 1.06;
+    letter-spacing: -0.035em;
+  }
+
+  .cavai-agents-copy {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.44;
+  }
+
+  .cavai-agents-shell {
+    overflow: hidden;
+  }
+
+  .cavai-agents-tabs {
+    min-height: auto;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .cavai-agents-tab {
+    width: auto;
+    min-height: 36px;
+    justify-content: center;
+    padding: 0 10px;
+    font-size: 12.5px;
+  }
+
+  .cavai-agents-tab-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .cavai-agents-tab-icon img {
+    width: 14px;
+    height: 14px;
+  }
+
+  .cavai-agents-panel {
+    padding: 14px 10px 22px;
+  }
+
+  .cavai-agent-library-head {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .cavai-agent-library-head p {
+    max-width: 100%;
+    text-align: left;
+    font-size: 12.75px;
+    line-height: 1.38;
+  }
+
+  .cavai-agent-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 2px 0 0;
+    overflow: hidden;
+  }
+
+  .cavai-agent-tile,
+  .cavai-agent-tile:nth-child(2n),
+  .cavai-agent-tile:nth-child(4n + 1),
+  .cavai-agent-tile:nth-child(4n + 3),
+  .cavai-agent-tile:hover,
+  .cavai-agent-tile.is-open {
+    min-height: 62px;
+    grid-template-columns: 34px minmax(0, 1fr) 22px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    transform: none;
+  }
+
+  .cavai-agent-tile-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .cavai-agent-tile-icon img {
+    width: 17px;
+    height: 17px;
+  }
+
+  .cavai-agent-tile h3 {
+    font-size: 13px;
+    line-height: 1.16;
+  }
+
+  .cavai-agent-tile p {
+    font-size: 11.5px;
+    line-height: 1.3;
+  }
+
+  .cavai-agent-expand {
+    grid-column: auto;
+    justify-self: end;
+    width: 22px;
+    height: 22px;
+    margin-top: 0;
+  }
+
+  .cavai-agent-expand-icon {
+    width: 13px;
+    height: 13px;
+  }
+
+  .cavai-intelligence-band {
+    min-height: auto;
+    padding: 46px 0;
+  }
+
+  .cavai-intelligence-band-inner {
+    width: min(100% - 28px, 560px);
+  }
+
+  .cavai-intelligence-band-title {
+    max-width: 300px;
+    font-size: clamp(27px, 7.4vw, 34px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+  }
+
+  .cavai-more-section {
+    padding: 58px 0 64px;
+  }
+
+  .cavai-more-inner {
+    width: min(100% - 28px, 560px);
+  }
+
+  .cavai-more-head {
+    margin-bottom: 18px;
+  }
+
+  .cavai-more-title {
+    font-size: clamp(30px, 8.2vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .cavai-more-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cavai-more-card {
+    min-height: auto;
+    grid-template-columns: 42px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 10px 12px;
+    padding: 16px;
+    border-radius: 4px;
+  }
+
+  .cavai-more-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 4px;
+  }
+
+  .cavai-more-card-icon img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cavai-more-card-copy {
+    align-self: center;
+  }
+
+  .cavai-more-card h3 {
+    font-size: 18px;
+    line-height: 1.16;
+    letter-spacing: -0.028em;
+  }
+
+  .cavai-more-card p {
+    margin-top: 6px;
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.38;
+  }
+
+  .cavai-more-card-link {
+    grid-column: 2;
+    font-size: 13px;
   }
 }

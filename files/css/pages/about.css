@@ -888,35 +888,71 @@ body[data-cavbot-page-type="about-page"] .about-mission-copy {
 
 
 @media (max-width: 760px) {
+  .about-company-section {
+    --about-company-title-x: 0px;
+    --about-company-story-x: 0px;
+    --about-company-media-x: 0px;
+    --about-company-piece-y: 0px;
+    --about-company-piece-opacity: 1;
+  }
+
+
+  .about-vision-section {
+    --about-vision-y: 0px;
+    --about-vision-opacity: 1;
+  }
+
+
+  .about-belief-section {
+    --about-belief-y: 0px;
+    --about-belief-opacity: 1;
+  }
+
+
+  .about-company-title,
+  .about-company-story,
+  .about-company-media,
+  .about-vision-inner,
+  .about-belief-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+
+
   .about-mission-section {
-    min-height: 720px;
+    min-height: auto;
     padding:
-      calc(var(--cb-header-offset, 0px) + 84px)
-      22px
-      72px;
+      calc(var(--cb-header-offset, 0px) + 34px)
+      20px
+      34px;
   }
 
 
   .about-mission-title {
-    font-size: clamp(48px, 15vw, 68px);
+    font-size: clamp(32px, 9vw, 40px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
   }
 
 
   .about-mission-copy {
-    margin-top: 36px;
-    gap: 28px;
+    width: min(100%, 330px);
+    margin-top: 18px;
+    gap: 11px;
   }
 
 
   .about-mission-copy p {
-    font-size: 19px;
-    line-height: 1.42;
+    font-size: 13.5px;
+    line-height: 1.34;
+    letter-spacing: -0.012em;
   }
 
 
   .about-mission-bg {
     width: 100%;
-    opacity: 0.42;
+    opacity: 0.24;
   }
 
 
@@ -928,8 +964,8 @@ body[data-cavbot-page-type="about-page"] .about-mission-copy {
 
   body[data-cavbot-page-type="about-page"] .about-mission-section {
     min-height: auto !important;
-    padding-top: calc(var(--cb-header-offset, 0px) + 72px) !important;
-    padding-bottom: 64px !important;
+    padding-top: calc(var(--cb-header-offset, 0px) + 34px) !important;
+    padding-bottom: 34px !important;
   }
 
 
@@ -947,45 +983,81 @@ body[data-cavbot-page-type="about-page"] .about-mission-copy {
 
 
   .about-company-section {
-    padding-top: 78px;
-    padding-bottom: 86px;
+    padding-top: 42px;
+    padding-bottom: 46px;
   }
 
 
   .about-company-inner,
   .about-vision-inner,
   .about-belief-inner {
-    width: min(100% - 36px, 620px);
+    width: min(100% - 40px, 560px);
   }
 
 
   .about-company-title {
-    font-size: clamp(42px, 12vw, 58px);
-    letter-spacing: -0.06em;
+    font-size: clamp(20px, 5.35vw, 25px);
+    line-height: 1.16;
+    letter-spacing: -0.032em;
   }
 
 
   .about-company-grid {
-    margin-top: 40px;
-    gap: 48px;
+    margin-top: 22px;
+    gap: 24px;
   }
 
 
   .about-company-story {
-    gap: 22px;
+    gap: 16px;
   }
 
 
   .about-company-story p {
-    font-size: 17px;
-    line-height: 1.55;
+    font-size: 13.75px;
+    line-height: 1.43;
+    letter-spacing: -0.012em;
   }
 
 
   .about-vision-title,
   .about-belief-title {
-    font-size: clamp(38px, 3vw, 74px);
-    letter-spacing: -0.058em;
+    font-size: clamp(20px, 5.3vw, 25px);
+    line-height: 1.16;
+    letter-spacing: -0.032em;
+  }
+
+
+  .about-vision-section {
+    padding-top: 42px;
+    padding-bottom: 46px;
+  }
+
+
+  .about-vision-divider {
+    margin:
+      24px
+      0
+      22px
+      calc(50% - 50vw);
+  }
+
+
+  .about-vision-grid {
+    gap: 22px;
+  }
+
+
+  .about-vision-copy h3 {
+    font-size: clamp(24px, 6.8vw, 30px);
+    line-height: 1.04;
+  }
+
+
+  .about-vision-copy p {
+    margin-top: 12px;
+    font-size: 13.75px;
+    line-height: 1.43;
   }
 
 
@@ -995,25 +1067,28 @@ body[data-cavbot-page-type="about-page"] .about-mission-copy {
 
 
   .about-vision-list li {
-    grid-template-columns: 44px minmax(0, 1fr);
-    gap: 14px;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 12px;
   }
 
 
   .about-vision-list strong {
-    font-size: clamp(25px, 8vw, 38px);
+    font-size: clamp(19px, 5.4vw, 24px);
+    line-height: 1.12;
   }
 
 
   .about-belief-section {
     min-height: auto;
-    padding-top: 82px;
-    padding-bottom: 92px;
+    padding-top: 44px;
+    padding-bottom: 50px;
   }
 
 
   .about-belief-button {
     width: 100%;
+    min-height: 48px;
+    margin-top: 34px;
   }
 }
 
