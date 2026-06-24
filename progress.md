@@ -16,7 +16,7 @@ Completed:
 - Deployed `cavbot` 404 page using the public install contract:
   `https://cdn.cavbot.io/sdk/arcade/v1/loader.min.js`,
   `data-config-origin="https://app.cavbot.io"`,
-  `data-project-key="cavbot_pk_gHn737DTf4afJ2xGpBFzZQ"`,
+  `data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"`,
   `data-site-id="cavbot.io"`,
   `data-site="cavbot.io"`,
   `data-env="404"`.
