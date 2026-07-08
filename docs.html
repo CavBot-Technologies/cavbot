@@ -14,7 +14,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="author" content="Cavendish Pierre-Louis">
   <meta name="application-name" content="CavBot">
-  <link rel="canonical" href="https://cavbot.io/docs">
+  <link rel="canonical" href="https://cavbot.io/docs"> 
 
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -171,7 +171,7 @@
       "security": "security",
       "caverify": "security",
       "cavguard": "security",
-      "cavsafe": "security",
+      "vault": "security",
       "risk-controls": "security",
       "audit-trail": "security",
       "integrations": "integrations",
@@ -228,7 +228,7 @@
 
       <div class="docs-version" aria-label="Documentation version">
         <span class="docs-version-label">Version:</span>
-        <strong>2.2</strong>
+        <strong>2.4</strong>
       </div>
 
 
@@ -387,7 +387,7 @@
               <li><a href="/docs/workspace#dashboard">Dashboard</a></li>
               <li><a href="/docs/workspace#reports">Reports</a></li>
               <li><a href="/docs/workspace#cavpad">CavPad</a></li>
-              <li><a href="/docs/workspace#command-center">Command Center</a></li>
+              <li><a href="/docs/workspace#command-center">Account home</a></li>
               <li><a href="/docs/workspace#members-and-roles">Members and roles</a></li>
             </ul>
           </article>
@@ -448,8 +448,8 @@
             </div>
             <ul>
               <li><a href="/docs/tools#cavcode">Code</a></li>
-              <li><a href="/docs/tools#cavcloud">Cloud</a></li>
-              <li><a href="/docs/tools#cavtools">Terminal</a></li>
+              <li><a href="/docs/tools#cloud">Cloud</a></li>
+              <li><a href="/docs/tools#terminal">Terminal</a></li>
               <li><a href="/docs/tools#html-viewer">HTML Viewer</a></li>
               <li><a href="/docs/tools#cav-commands">Cav commands</a></li>
             </ul>
@@ -464,7 +464,7 @@
             <ul>
               <li><a href="/docs/security#caverify">CavVerify</a></li>
               <li><a href="/docs/security#cavguard">CavGuard</a></li>
-              <li><a href="/docs/security#cavsafe">CavSafe</a></li>
+              <li><a href="/docs/security#vault">CavBot Vault</a></li>
               <li><a href="/docs/security#audit-trail">Audit trail</a></li>
                <li><a href="/docs/security#risk-controls">Risk Controls</a></li>
               
@@ -572,6 +572,7 @@
           <article class="docs-help-card">
             <h3>Still need help?</h3>
             <ul>
+              <li><a href="/docs.html/install">How to install</a></li>
               <li><a href="/docs/resources#community">Ask the CavBot community</a></li>
               <li><a href="mailto:support@cavbot.io">Contact support</a></li>
             </ul>
@@ -798,12 +799,12 @@
 
           <div class="docs-toggle-body">
             <p>
-              CavBot starts with a site profile. The profile gives CavBot a stable place to organize signals from the website. After the snippet is installed, CavBot can receive events from the browser and connect them to the selected project and site.
+              CavBot starts with a site profile. The profile gives CavBot a stable place to organize signals from the website. After the snippet is installed, CavBot can receive events from the browser and connect them to the correct site.
             </p>
 
 
             <ul>
-              <li><strong>Workspace:</strong> the command center for a project or team.</li>
+              <li><strong>Account Home:</strong> the command center for connected sites and your team.</li>
               <li><strong>Site:</strong> the website origin CavBot watches.</li>
               <li><strong>Snippet:</strong> the browser-side Analytics v5 script installed on the website.</li>
               <li><strong>Signals:</strong> events and snapshots CavBot uses to understand the site.</li>
@@ -939,8 +940,7 @@
               <li>Go to the CavBot app.</li>
               <li>Create an account or sign in.</li>
               <li>Complete the required profile information.</li>
-              <li>Open the default workspace.</li>
-              <li>Confirm that you can access the Command Center.</li>
+              <li>Confirm that you can access the Account home.</li>
             </ol>
 
 
@@ -987,8 +987,7 @@ https://example.com?ref=test</code></pre>
 
 
             <ol>
-              <li>Open the Command Center.</li>
-              <li>Select the active workspace.</li>
+              <li>Open Account home.</li>
               <li>Choose <strong>Add website</strong>.</li>
               <li>Enter the website origin.</li>
               <li>Add a readable label if needed.</li>
@@ -1215,7 +1214,7 @@ https://example.com?ref=test</code></pre>
               <li>Explain what a dashboard signal means.</li>
               <li>Summarize recent route, SEO, accessibility, or error concerns.</li>
               <li>Help choose the first fix when several issues are visible.</li>
-              <li>Use workspace context when the user asks about the active project.</li>
+              <li>Use site context when the user asks about the Primary site.</li>
             </ul>
 
             <h2>How to ask useful questions</h2>
@@ -1237,16 +1236,16 @@ Turn the latest dashboard signals into a short status update.</code></pre>
         </details>
 
 
-        <details class="docs-doc-toggle" id="assistant-memory" data-docs-title="Assistant memory" data-docs-summary="Keep project context available when CavAi responds." hidden>
+        <details class="docs-doc-toggle" id="assistant-memory" data-docs-title="Assistant memory" data-docs-summary="Keep site context available when CavAi responds." hidden>
           <summary>
             <span>Assistant memory</span>
-            <em>Keep project context available when CavAi responds.</em>
+            <em>Keep site context available when CavAi responds.</em>
           </summary>
 
 
           <div class="docs-toggle-body">
             <p>
-              Assistant memory is the project context CavAi can use when responding. It helps the assistant remember stable facts about a workspace, such as the site purpose, important routes, team preferences, and recurring operational concerns.
+              Assistant memory is the site context CavAi can use when responding. It helps the assistant remember stable facts about a workspace, such as the site purpose, important routes, team preferences, and recurring operational concerns.
             </p>
 
             <h2>What belongs in memory</h2>
@@ -1264,7 +1263,7 @@ Turn the latest dashboard signals into a short status update.</code></pre>
 
             <h2>Review memory over time</h2>
             <p>
-              Project context should stay accurate. When a site changes, update the relevant memory. If a launch note is no longer useful, remove it or replace it with the current state.
+              Site context should stay accurate. When a site changes, update the relevant memory. If a launch note is no longer useful, remove it or replace it with the current state.
             </p>
           </div>
         </details>
@@ -1444,7 +1443,7 @@ Turn the latest dashboard signals into a short status update.</code></pre>
             <ul>
               <li><a href="/docs/getstarted#snippet">Review error tracking</a></li>
               <li><a href="/docs/getstarted#snippet">Read Analytics v5 docs</a></li>
-              <li><a href="/docs/workspace#reports">Use the Command Center</a></li>
+              <li><a href="/docs/workspace#reports">Use the Account home</a></li>
               <li><a href="404-recovery">Open 404 Recovery</a></li>
               <li><a href="/docs/cavai#models">Use CavAi with workspace context</a></li>
             </ul>
@@ -1477,6 +1476,7 @@ Turn the latest dashboard signals into a short status update.</code></pre>
 
         <div class="docs-section-help-links">
           <strong>Still need help?</strong>
+          <a href="/docs.html/install">How to install</a>
           <a href="/docs/resources#community">Ask the CavBot community</a>
           <a href="mailto:support@cavbot.io">Contact support</a>
         </div>

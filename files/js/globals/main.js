@@ -420,8 +420,8 @@
     '#cavverify': 'cavverify',
     '#security-cavguard': 'cavguard',
     '#cavguard': 'cavguard',
-    '#security-cavsafe': 'cavsafe',
-    '#cavsafe': 'cavsafe'
+    '#vault': 'cavsafe',
+    '#vault': 'cavsafe'
   };
 
 
@@ -586,7 +586,7 @@
   }
 
   document.addEventListener('click', (event) => {
-    const link = event.target.closest && event.target.closest('a[href^="#security"], a[href="#cavverify"], a[href="#cavguard"], a[href="#cavsafe"]');
+    const link = event.target.closest && event.target.closest('a[href^="#security"], a[href="#cavverify"], a[href="#cavguard"], a[href="#vault"]');
     if (!link) return;
 
     const hash = link.getAttribute('href');

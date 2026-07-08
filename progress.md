@@ -23,7 +23,7 @@ Completed:
 - Live Playwright verification passed against `https://www.cavbot.io/404?verify=1781283800`:
   one `CavBot Arcade` iframe rendered at 1440x960, CDN loader and config calls were present, signed arcade asset requests loaded, no local `/cavbot-arcade/404/...` requests occurred, and there were no request failures or page errors.
 - Visual screenshot check confirmed the game UI, CavBot heads, activity panels, and powered badge render from the embedded frame.
-- Confirmed old exposed production path `https://www.cavbot.io/cavbot-arcade/404/cavbot-imposter/v1/index.html` returns 404.
+- Confirmed old exposed production path `https://www.cavbot.io/arcade/404/cavbot-imposter/v1/index.html` returns 404.
 - Deleted the exposed local `cavbot/cavbot-arcade` folder from the main checkout after live CDN verification succeeded.
 
 Follow-up redirect fix:

@@ -57,16 +57,16 @@
     ["cav diag", "Summarizes codebase files, markers, runtime events, and sync state.", "cav diag", "Returns a diagnostics snapshot."],
     ["cav diag errors", "Lists active Monaco diagnostics.", "cav diag errors", "Returns errors and warnings for the editor."],
     ["cav diag find", "Searches codebase file contents.", "cav diag find \"checkout\" --path /codebase/src", "Returns matching file lines."],
-    ["cav events tail", "Shows recent CavTools events.", "cav events tail 10", "Returns recent event lines."],
+    ["cav events tail", "Shows recent Terminal events.", "cav events tail 10", "Returns recent event lines."],
     ["cav events filter", "Filters events by tone.", "cav events filter bad", "Returns matching events."],
     ["cav events clear", "Clears event history.", "cav events clear", "Clears local events."],
     ["cav jump", "Opens a file at a line and column.", "cav jump /codebase/app/page.tsx:2:1", "Opens the target file."],
-    ["cav tab", "Switches a CavTools or CavCode tab.", "cav tab scm", "Changes the active panel."],
+    ["cav tab", "Switches a Terminal or CavCode tab.", "cav tab scm", "Changes the active panel."],
     ["cav open codebase", "Opens the CavCode editor.", "cav open codebase", "Navigates to CavCode."],
     ["cav open --", "Opens a codebase file.", "cav open -- /codebase/styles/global.css", "Opens the file in the editor."],
     ["cav run --", "Opens a file through the run shortcut.", "cav run -- /codebase/app/page.tsx", "Opens the file."],
     ["cav live", "Opens the live viewer.", "cav live", "Navigates to the HTML viewer/live preview."],
-    ["cav studio run", "Runs the CavTools studio action.", "cav studio run", "Starts the configured studio run."],
+    ["cav studio run", "Runs the CavBot Terminal studio action.", "cav studio run", "Starts the configured studio run."],
     ["cav studio clear", "Clears studio output.", "cav studio clear", "Clears the studio state."],
     ["cav studio reset", "Resets studio state.", "cav studio reset", "Resets the studio panel."],
     ["cav export all", "Builds an export payload.", "cav export all", "Returns JSON with current context."],
@@ -87,8 +87,8 @@
     ["cav ai explain-current-diagnostic", "Routes a diagnostic explanation request.", "cav ai explain-current-diagnostic", "Returns the AI action hook state."],
     ["cav ai suggest-fix", "Routes a fix suggestion request.", "cav ai suggest-fix", "Returns the AI action hook state."],
     ["cav ai improve-seo", "Routes an SEO assist request.", "cav ai improve-seo", "Returns the AI action hook state."],
-    ["cav ai create-fix-plan", "Routes a deterministic fix-plan request.", "cav ai create-fix-plan", "Returns the AI action hook state."],
-    ["cav ai summarize-artifact", "Routes a CavCloud artifact summary request.", "cav ai summarize-artifact", "Returns the AI action hook state."],
+    ["cav ai create-fix-plan", "Routes a structured fix-plan request.", "cav ai create-fix-plan", "Returns the AI action hook state."],
+    ["cav ai summarize-artifact", "Routes a CavBot Cloud artifact summary request.", "cav ai summarize-artifact", "Returns the AI action hook state."],
     ["cav run dev|build|test", "Starts a runtime session for the mounted project.", "cav run dev", "Starts the process and streams logs."],
     ["cav run status", "Shows runtime sessions.", "cav run status", "Returns runtime state."],
     ["cav run logs", "Reads runtime logs.", "cav run logs <sessionId> 0", "Returns log lines."],
@@ -106,7 +106,7 @@
     ["cav debug start|config|attach|select|stop|status|logs|continue|pause|next|step|out|threads|frame|scopes|vars|evaluate|repl|break|watch", "Runs debugger sessions and debug actions.", "cav debug start /cavcode/app/page.tsx", "Starts or controls a debug session."],
     ["cav index refresh|symbols|refs|calls|graph|xref|semantic", "Builds and queries the CavCode code index.", "cav index symbols", "Returns index results."],
     ["cav template list|init", "Lists or initializes code templates.", "cav template init website starter", "Returns templates or creates starter files."],
-    ["cav loop plan|replace|checkpoint|run", "Runs deterministic edit-loop helpers.", "cav loop checkpoint create pre-refactor", "Creates plans, replacements, checkpoints, or loop runs."]
+    ["cav loop plan|replace|checkpoint|run", "Runs structured edit-loop helpers.", "cav loop checkpoint create pre-refactor", "Creates plans, replacements, checkpoints, or loop runs."]
   ];
 
   function p(text) { return { type: "p", text: text }; }
@@ -115,6 +115,619 @@
   function note(title, text) { return { type: "note", title: title, text: text }; }
   function code(text) { return { type: "code", text: text }; }
   function table(headers, rows) { return { type: "table", headers: headers, rows: rows }; }
+  function faq(items) { return { type: "faq", items: items }; }
+  function h2(text, info) { return { type: "h2", text: text, info: info || "" }; }
+  function linkp(text, href, label, suffix) { return { type: "linkp", text: text, href: href, label: label, suffix: suffix || "" }; }
+  function steps(items) { return { type: "steps", items: items }; }
+  function snippets(title, description) { return { type: "snippets", title: title, description: description }; }
+  function contractOptionsBlock(text) { return { type: "contract-options", text: text }; }
+
+ const contractOptions = [
+  '<meta name="cavbot-page" content="404" />',
+  '<body data-cavbot-page-type="404">'
+ ];
+
+ const platformInstall = {
+  customHtml: {
+    title: "Custom HTML",
+    intro: "Use the snippets below to add Arcade, widgets, analytics, and CavAi to your site.",
+    sectionA: "Before you begin, make sure you have:",
+    sectionASummary: "Dropping scripts before the closing </head> keeps Arcade, widgets, analytics, and CavAi fast and reliable.",
+    bullets: [
+      "Added your website as a trusted origin",
+      "Created an active publishable key",
+      "Selected the correct site"
+    ],
+    snippetsTitle: "Installation snippets",
+    snippetsDescription: "Add the Widget, Analytics, and CavAi snippets inside the <head> of every page where you want CavBot to run. If your website has a custom 404 page, add the Arcade loader to that page.",
+    dedicated: "If your hosting platform allows a custom 404.html, add the Arcade loader there so missing routes show the recovery experience.",
+    dedicatedBody: "If your hosting provider supports a custom 404.html page, add the Arcade loader to that page. This makes sure Arcade loads when someone visits a missing route. You can also mark the page as a CavBot 404 page by adding either of the following:",
+    dedicatedFollow: "",
+    test: [
+      "Add the snippets to your website.",
+      "Publish or redeploy the site.",
+      "Open a missing route, such as: https://YOURDOMAIN.com/this-route-does-not-exist.",
+      "Confirm that CavBot Arcade appears on the 404 page.",
+      "Check CavBot to confirm the visit was recorded.",
+      "Confirm that the widget, analytics, and CavAi are also loading on the site."
+    ],
+    
+    troubleshooting404: [
+      "Make sure your hosting provider returns a real 404 response for missing routes.",
+      "Add the CavBot 404 meta tag or body attribute shown above.",
+       "Confirm that the Arcade loader is included on the custom 404 page.",
+        "Publish the site again and test a new missing route.",
+         "Add the CavBot 404 meta tag or body attribute shown above."
+    ]
+  },
+ webflow: {
+  title: "Webflow",
+  intro: "Add CavBot to your Webflow site.",
+
+
+  sectionA: "Before you begin",
+  sectionASummary:
+    "Use the snippets below to add Arcade, widgets, Analytics v5, and CavAi to your Webflow site. You can manage your website, publishable key, and installation details in API & Keys.",
+
+
+  requirements: [
+    "Add your published Webflow domain as a trusted origin.",
+    "Create an active publishable key.",
+    "Select the correct site in CavBot."
+  ],
+
+
+  steps: [
+    [
+      "Open your Webflow project",
+      "Sign in to Webflow and open the project where you want to install CavBot."
+    ],
+    [
+      "Open Site settings",
+      "From the Webflow Dashboard, open the settings for the selected site."
+    ],
+    [
+      "Open Custom code",
+      "In Site settings, select Custom code."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Paste the Widget, Analytics v5, and CavAi v3 snippets into Head code. These snippets should load across your published website."
+    ],
+    [
+      "Save and publish",
+      "Save your changes, choose the domains you want to update, and publish the site. Custom code will not appear on the live website until the site is published."
+    ]
+  ],
+
+
+  snippetsTitle: "Installation snippets",
+  snippetsDescription:
+    "Add the Widget, Analytics v5, and CavAi v3 snippets to your site-wide Head code. Add the 404 Arcade loader to your Webflow 404 page.",
+
+
+  dedicated: "Add Arcade to your Webflow 404 page",
+  dedicatedBody:
+    "Webflow includes a separate page for visitors who open a URL that does not exist. Add the 404 Arcade loader to this page so Arcade appears on missing routes.",
+
+
+  dedicatedSteps: [
+    "Open your Webflow project.",
+    "Open the Pages panel.",
+    "Find the 404 page under Utility Pages.",
+    "Open the page settings.",
+    "Add the 404 Arcade loader to the page Head code.",
+    "Save your changes.",
+    "Publish the site."
+  ],
+
+
+  dedicatedFollow:
+    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page Head code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
+
+
+  testTitle: "Test your installation",
+  testIntro:
+    "Test the published website after saving and publishing your changes.",
+
+
+  test: [
+    "Open your published Webflow website.",
+    "Visit a route that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist.",
+    "Confirm that CavBot Arcade appears on the 404 page.",
+    "Open CavBot and confirm that the missing-page visit was recorded.",
+    "Visit a normal page on your website.",
+    "Confirm that the CavBot widget appears.",
+    "Check CavBot to confirm that Analytics v5 is receiving activity.",
+    "Confirm that CavAi is connected to the selected site."
+  ],
+
+
+  testNote:
+    "Always test the published website. Scripts may not run the same way inside the Webflow Designer.",
+
+
+  troubleshootingTitle: "Troubleshooting",
+  troubleshootingIntro:
+    "Check the following if CavBot does not load or activity does not appear in your account.",
+
+
+  troubleshooting: [
+    {
+      title: "If nothing loads",
+      items: [
+        "Make sure your published Webflow domain is listed as a trusted origin in API & Keys.",
+        "Confirm that your publishable key is active.",
+        "Make sure the selected site matches the site used in each snippet.",
+        "Confirm that the data-site and data-site-id values are correct.",
+        "Make sure the Widget, Analytics v5, and CavAi snippets are in the site-wide Head code.",
+        "Save your changes and publish the site again.",
+        "Refresh the published website after the new version is live."
+      ]
+    },
+    {
+      title: "If Arcade does not appear on the 404 page",
+      items: [
+        "Confirm that the Arcade loader was added to the Webflow 404 page.",
+        "Make sure the site was published after the loader was added.",
+        "Add either the CavBot 404 meta tag or the body attribute shown above.",
+        "Test a URL that does not exist on the site.",
+        "Make sure the URL opens Webflow’s 404 page.",
+        "Confirm that the published domain matches the trusted origin in API & Keys.",
+        "Check that the publishable key and site values in the Arcade loader are correct."
+      ]
+    },
+    {
+      title: "If visits do not appear in CavBot",
+      items: [
+        "Confirm that the Analytics v5 loader is in the site-wide Head code.",
+        "Open the published website and visit several pages.",
+        "Make sure the correct site is selected in CavBot.",
+        "Confirm that the published domain is listed as a trusted origin.",
+        "Publish the Webflow site again after making any changes."
+      ]
+    }
+  ]
+},
+
+ wix: {
+  title: "Wix",
+  intro: "Add CavBot to your Wix site.",
+
+
+  sectionA: "Before you begin",
+  sectionASummary:
+    "Make sure your Wix domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
+
+
+  steps: [
+    [
+      "Open your Wix Dashboard",
+      "Sign in to Wix and open the website where you want to install CavBot."
+    ],
+    [
+      "Open Custom Code",
+      "In the left menu, open Settings, then Advanced Settings, then Custom Code. If Advanced Settings is not shown, open Settings, then Custom Code."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Select + Add Custom Code. Add the Widget, Analytics v5, and CavAi v3 snippets below. Apply each one to All pages and choose Head as the placement."
+    ],
+    [
+      "Save your changes",
+      "Give each custom code entry a clear name, confirm that it is enabled, and save it."
+    ],
+    [
+      "Publish your website",
+      "Publish the Wix site after adding the snippets. New custom code will not appear on the live website until the site is published."
+    ],
+    [
+      "Test a missing page",
+      "Open your published website in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
+    ],
+    [
+      "Confirm the connection",
+      "Open CavBot, go to Integrations, then select Wix. Confirm that CavBot has received activity from the published website."
+    ]
+  ],
+
+
+  snippetsTitle: "Installation snippets",
+  snippetsDescription:
+    "Add the Widget, Analytics v5, and CavAi v3 snippets to your site-wide Custom Code. Add the 404 Arcade loader to your Wix 404 page when that page can be edited.",
+
+
+  dedicated: "Add Arcade to your Wix 404 page",
+  dedicatedBody:
+    "If Wix allows you to edit your website’s 404 page, add the Arcade loader to that page. This makes sure Arcade appears when someone visits a URL that does not exist.",
+
+
+  dedicatedFollow:
+    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page Head code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
+
+
+  test: [
+    "Save each custom code entry and publish the Wix website.",
+    "Open the published website and visit a URL that does not exist.",
+    "Confirm that CavBot Arcade appears on the 404 page.",
+    "Visit a normal page and confirm that the CavBot widget appears.",
+    "Open CavBot and confirm that Analytics v5 recorded the visit.",
+    "Confirm that CavAi is connected to the selected site.",
+    "If nothing appears, check that the published Wix domain is listed as a trusted origin in API & Keys.",
+    "Confirm that the publishable key is active and that the site values in each snippet match the selected site.",
+    "Publish the Wix website again after making any changes."
+  ]
+},
+
+
+ shopify: {
+  title: "Shopify",
+  intro: "Add CavBot to your Shopify store.",
+
+
+  sectionA: "Before you begin",
+  sectionASummary:
+    "Make sure your Shopify domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
+
+
+  steps: [
+    [
+      "Open Shopify Admin",
+      "Sign in to Shopify and open the store where you want to install CavBot."
+    ],
+    [
+      "Open your theme code",
+      "In the left menu, open Online Store, then Themes. Open the menu for your active theme and select Edit code."
+    ],
+    [
+      "Open theme.liquid",
+      "In the file list, open Layout, then select theme.liquid. This file loads across the storefront."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Paste the Widget, Analytics v5, and CavAi v3 snippets before the closing </head> tag in theme.liquid."
+    ],
+    [
+      "Add the Arcade loader",
+      "Paste the 404 Arcade loader before the closing </head> tag. You can also add it directly to the 404 template if your theme lets you edit that page."
+    ],
+    [
+      "Save your changes",
+      "Select Save after adding the snippets. Changes made to the published theme will appear on the live store after they are saved."
+    ],
+    [
+      "Test a missing page",
+      "Open your live store in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
+    ],
+    [
+      "Confirm the connection",
+      "Open CavBot, go to Integrations, then select Shopify. Confirm that CavBot has received activity from the store."
+    ]
+  ],
+
+
+  snippetsTitle: "Installation snippets",
+  snippetsDescription:
+    "Add the Widget, Analytics v5, and CavAi v3 snippets to theme.liquid. Add the 404 Arcade loader to theme.liquid or directly to your store’s 404 template.",
+
+
+  dedicated: "Add Arcade to your Shopify 404 page",
+  dedicatedBody:
+    "If your Shopify theme lets you edit the 404 template, add the Arcade loader there. This makes sure Arcade appears when someone visits a URL that does not exist.",
+
+
+  dedicatedFollow:
+    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag before the closing </head> tag or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
+
+
+  test: [
+    "Save the theme changes after adding the snippets.",
+    "If you edited a draft theme, publish it before testing.",
+    "Open the live Shopify store and visit a URL that does not exist.",
+    "Confirm that CavBot Arcade appears on the 404 page.",
+    "Visit a normal storefront page and confirm that the CavBot widget appears.",
+    "Open CavBot and confirm that Analytics v5 recorded the visit.",
+    "Confirm that CavAi is connected to the selected site.",
+    "If nothing loads, make sure the Shopify domain is listed as a trusted origin in API & Keys.",
+    "Confirm that the publishable key is active and that the site values in each snippet match the selected site.",
+    "Make sure the snippets were added to the published theme.",
+    "Save the theme again and refresh the live store after making any changes."
+  ]
+},
+
+
+
+ wordpress: {
+  title: "WordPress",
+  intro: "Add CavBot to your WordPress site.",
+
+
+  sectionA: "Before you begin",
+  sectionASummary:
+    "Make sure your WordPress domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot. You can install CavBot with a code plugin or through your theme files.",
+
+
+  steps: [
+    [
+      "Choose an installation method",
+      "Use a code plugin if you do not want to edit your theme files. Use the theme method if you manage the site yourself and can edit the active theme."
+    ],
+    [
+      "Method 1 — Use a code plugin",
+      "Sign in to WordPress Admin, open Plugins, then select Add New."
+    ],
+    [
+      "Install a code plugin",
+      "Search for WPCode or Insert Headers and Footers. Install and activate the plugin you want to use."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Open the plugin settings and paste the Widget, Analytics v5, and CavAi v3 snippets into the Header section."
+    ],
+    [
+      "Add the Arcade loader",
+      "Paste the 404 Arcade loader into the Header section. You can also add it directly to your 404 template if your theme lets you edit that page."
+    ],
+    [
+      "Save your changes",
+      "Save each code entry and make sure it is enabled."
+    ],
+    [
+      "Method 2 — Edit the active theme",
+      "In WordPress Admin, open Appearance, then Theme File Editor."
+    ],
+    [
+      "Open header.php",
+      "Select the active theme, open header.php, and find the closing </head> tag. If your theme does not include header.php, use the code plugin method."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Paste the Widget, Analytics v5, and CavAi v3 snippets before the closing </head> tag."
+    ],
+    [
+      "Add the Arcade loader",
+      "Paste the 404 Arcade loader before the closing </head> tag. You can also add it directly to the theme’s 404.php file."
+    ],
+    [
+      "Save the theme file",
+      "Select Update File after adding the snippets."
+    ],
+    [
+      "Test a missing page",
+      "Open your live WordPress site in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
+    ],
+    [
+      "Confirm the connection",
+      "Open CavBot, go to Integrations, then select WordPress. Confirm that CavBot has received activity from the site."
+    ]
+  ],
+
+
+  snippetsTitle: "Installation snippets",
+  snippetsDescription:
+    "Add the Widget, Analytics v5, and CavAi v3 snippets to your site header. Add the 404 Arcade loader to the site header or directly to your WordPress 404 template.",
+
+
+  dedicated: "Add Arcade to your WordPress 404 page",
+  dedicatedBody:
+    "If your theme includes a 404.php file, add the Arcade loader there. This makes sure Arcade appears when someone visits a URL that does not exist.",
+
+
+  dedicatedFollow:
+    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag before the closing </head> tag or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
+
+
+  test: [
+    "Save the plugin settings or theme changes.",
+    "Clear your WordPress cache if your site uses a caching plugin.",
+    "Open the live website and visit a URL that does not exist.",
+    "Confirm that CavBot Arcade appears on the 404 page.",
+    "Visit a normal page and confirm that the CavBot widget appears.",
+    "Open CavBot and confirm that Analytics v5 recorded the visit.",
+    "Confirm that CavAi is connected to the selected site.",
+    "If nothing appears, make sure the WordPress domain is listed as a trusted origin in API & Keys.",
+    "Confirm that the publishable key is active and that the site values in each snippet match the selected site."
+  ],
+
+
+  afterTest: [
+    "Some WordPress caching plugins, hosting providers, and CDNs may continue showing an older version of the page. Clear the site cache and refresh the live page after making changes."
+  ],
+
+
+  troubleshooting404: [
+    "Confirm that the Arcade loader was added to the site header or the 404.php file.",
+    "Make sure the missing URL opens your WordPress 404 page.",
+    "Add either the CavBot 404 meta tag or body attribute shown above.",
+    "Clear any WordPress, hosting, or CDN cache.",
+    "Refresh the page and test a different missing URL.",
+    "Confirm that the published domain matches the trusted origin in API & Keys.",
+    "Check that the publishable key and site values in the Arcade loader are correct."
+  ]
+},
+
+
+
+ squarespace: {
+  title: "Squarespace",
+  intro: "Add CavBot to your Squarespace site.",
+
+
+  sectionA: "Before you begin",
+  sectionASummary:
+    "Make sure your Squarespace domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
+
+
+  steps: [
+    [
+      "Open your Squarespace site",
+      "Sign in to Squarespace and open the website where you want to install CavBot."
+    ],
+    [
+      "Open Code Injection",
+      "Open the Pages panel, scroll to Custom Code, then select Code Injection. On some older Squarespace sites, you may need to open Website Tools first."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Paste the Widget, Analytics v5, and CavAi v3 snippets into the Header field."
+    ],
+    [
+      "Save your changes",
+      "Select Save after adding the snippets."
+    ],
+    [
+      "Test the live website",
+      "Open your website in a new tab and visit several normal pages to confirm that CavBot is loading."
+    ],
+    [
+      "Confirm the connection",
+      "Open CavBot, go to Integrations, then select Squarespace. Confirm that CavBot has received activity from the website."
+    ]
+  ],
+
+
+  snippetsTitle: "Installation snippets",
+  snippetsDescription:
+    "Add the Widget, Analytics v5, and CavAi v3 snippets to the Header field in Code Injection. Add the 404 Arcade loader to your custom 404 page.",
+
+
+  dedicated: "Add Arcade to your Squarespace 404 page",
+  dedicatedBody:
+    "Create a page for your 404 message and place it in the Not linked section of the Pages panel. Open the current 404 page settings and select your new page as the custom 404 page. Then add the Arcade loader to that page’s header code.",
+
+
+  dedicatedFollow:
+    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page header code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
+
+
+  test: [
+    "Save the Code Injection changes.",
+    "Open the live Squarespace website in a new tab.",
+    "Visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist.",
+    "Confirm that your custom 404 page opens.",
+    "Confirm that CavBot Arcade appears on the page.",
+    "Visit a normal page and confirm that the CavBot widget appears.",
+    "Open CavBot and confirm that Analytics v5 recorded the visit.",
+    "Confirm that CavAi is connected to the selected site."
+  ],
+
+
+  afterTest: [
+    "Always test the live website rather than the Squarespace editor. If an older version of the page appears, refresh the page or open it in a private browser window."
+  ],
+
+
+  troubleshooting404: [
+    "Confirm that the Arcade loader was added to the custom 404 page.",
+    "Make sure the correct page is selected as the Squarespace 404 page.",
+    "Add either the CavBot 404 meta tag or body attribute shown above.",
+    "Test a URL that does not exist on the website.",
+    "Make sure the missing URL opens the custom 404 page.",
+    "Confirm that the Squarespace domain is listed as a trusted origin in API & Keys.",
+    "Confirm that the publishable key is active.",
+    "Check that the data-site and data-site-id values match the selected site.",
+    "Save the changes and test the page again in a private browser window."
+  ]
+},
+
+
+
+  framer: {
+  title: "Framer",
+  intro: "Add CavBot to your Framer site.",
+
+
+  sectionA: "Before you begin",
+  sectionASummary:
+    "Make sure your Framer domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
+
+
+  steps: [
+    [
+      "Open your Framer project",
+      "Sign in to Framer and open the project where you want to install CavBot."
+    ],
+    [
+      "Open Project Settings",
+      "In the Framer editor, select the settings icon in the top-right corner."
+    ],
+    [
+      "Open Custom Code",
+      "In Project Settings, open General and scroll to the Custom Code section."
+    ],
+    [
+      "Add the site-wide snippets",
+      "Paste the Widget, Analytics v5, and CavAi v3 snippets into the End of head tag field."
+    ],
+    [
+      "Add the Arcade loader",
+      "Paste the 404 Arcade loader into the End of head tag field. You can also add it directly to your Framer 404 page."
+    ],
+    [
+      "Save and publish",
+      "Save your changes and publish the site. Custom code will not appear on the live website until the new version is published."
+    ],
+    [
+      "Test a missing page",
+      "Open your published website in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
+    ],
+    [
+      "Confirm the connection",
+      "Open CavBot, go to Integrations, then select Framer. Confirm that CavBot has received activity from the published website."
+    ]
+  ],
+
+
+  snippetsTitle: "Installation snippets",
+  snippetsDescription:
+    "Add the Widget, Analytics v5, and CavAi v3 snippets to the End of head tag field. Add the 404 Arcade loader there or directly to your Framer 404 page.",
+
+
+  dedicated: "Add Arcade to your Framer 404 page",
+  dedicatedBody:
+    "If your Framer project includes a custom 404 page, add the Arcade loader to that page. This makes sure Arcade appears when someone visits a URL that does not exist.",
+
+
+  dedicatedFollow:
+    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page Head code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
+
+
+  dedicatedExtra:
+    "To add CavBot to one page only, open that page’s settings, add the required snippet to its End of head tag field, save your changes, and publish the site again.",
+
+
+  test: [
+    "Save the Custom Code changes and publish the Framer website.",
+    "Open the published website in a new tab.",
+    "Visit a URL that does not exist.",
+    "Confirm that CavBot Arcade appears on the 404 page.",
+    "Visit a normal page and confirm that the CavBot widget appears.",
+    "Open CavBot and confirm that Analytics v5 recorded the visit.",
+    "Confirm that CavAi is connected to the selected site."
+  ],
+
+
+  afterTest: [
+    "Always test the published website rather than the Framer editor. If an older version appears, refresh the page or open the site in a private browser window."
+  ],
+
+
+  troubleshooting404: [
+    "Confirm that the Arcade loader was added to the End of head tag field or directly to the Framer 404 page.",
+    "Make sure the site was published after the code was added.",
+    "Add either the CavBot 404 meta tag or body attribute shown above.",
+    "Test a URL that does not exist on the website.",
+    "Make sure the missing URL opens the Framer 404 page.",
+    "Confirm that the published domain is listed as a trusted origin in API & Keys.",
+    "Confirm that the publishable key is active.",
+    "Check that the data-site and data-site-id values match the selected site.",
+    "Publish the site again and test the page in a private browser window."
+  ]
+}
+};
+
+
+
 
  const docs = {
   getstarted: {
@@ -134,18 +747,17 @@
 
     p(`Use CavBot when a website matters to the business and the team needs more than a basic traffic chart. CavBot is built for the moments after launch: when visitors are moving through real pages, when links break, when errors appear, when important routes need review, when SEO structure needs to be checked, and when a team needs a clearer way to decide what deserves attention next.`),
 
-    p(`The purpose of CavBot is not to replace every tool a team already uses. The purpose is to bring the most important website signals into one operating workspace so the team can see them together. A route issue, a browser error, a missing page, a weak metadata setup, and a recovery experience should not feel like five disconnected problems. CavBot keeps them attached to the same project, site, and workspace context.`),
+    p(`The purpose of CavBot is not to replace every tool a team already uses. The purpose is to bring the most important website signals into one account workspace so the team can see them together. A route issue, a browser error, a missing page, a weak metadata setup, and a recovery experience should not feel like five disconnected problems. CavBot keeps them attached to the correct site and account home.`),
 
-    p(`A CavBot workspace is organized around projects and sites. A project is the operating container for the work. A site is a saved website origin, such as https://example.com. Once a site is selected, CavBot uses that site as the default context for dashboards, reports, assistant help, routing, errors, SEO, accessibility, 404 recovery, Arcade, and other workspace surfaces.`),
+    p(`CavBot Account Home is organized around connected sites. A site is a saved website origin, such as https://example.com. The Primary site is the active site CavBot uses for dashboards, reports, assistant help, routing, errors, SEO, accessibility, 404 recovery, Arcade, and other workspace surfaces.`),
 
     table(
       ["Term", "Meaning"],
       [
         ["Workspace", "The main area where a team manages CavBot activity, settings, sites, files, reports, and access."],
-        ["Project", "The operating container inside the workspace. A project can hold one or more monitored sites."],
         ["Site", "A saved website origin that CavBot watches, such as https://example.com."],
         ["Selected site", "The site currently being reviewed. Many dashboards, reports, and tools use it as their active context."],
-        ["Primary site", "The main site for the project. Use it when one website should be treated as the default production target."]
+        ["Primary site", "The active site CavBot uses by default across Account Home, analytics, reports, and tools."]
       ]
     ),
 
@@ -155,14 +767,14 @@
 
     ol([
       "Create or sign in to your CavBot account.",
-      "Open the workspace and confirm the correct project is selected.",
+      "Open Account Home and confirm the correct Primary site is selected.",
       "Add the public website origin you want CavBot to monitor.",
       "Install the Analytics v5 snippet once in the global layout, site header, or approved custom-code area.",
       "Publish the website if the platform requires publishing before scripts appear live.",
       "Visit the public website in a browser so CavBot receives a real page signal.",
       "Return to CavBot and confirm the selected site shows activity or a clear empty state.",
       "Review Routes, Errors, SEO, A11y, Reports, and 404 Recovery after the first signals arrive.",
-      "Set a primary site when the project has more than one saved origin.",
+      "Set a Primary site when the account has more than one saved origin.",
       "Invite teammates only after the workspace, site, and access model are clear."
     ]),
 
@@ -230,7 +842,7 @@
   title: "Account",
   summary: "Set up the identity, owner access, and workspace foundation.",
   blocks: [
-    p(`Your CavBot account is the identity used to create, own, or join a workspace. It controls how you sign in, which workspaces you can access, which projects you can open, and which actions you are allowed to perform inside CavBot.`),
+    p(`Your CavBot account is the identity used to access Account Home. It controls how you sign in, which connected sites you can access, and which actions you are allowed to perform inside CavBot.`),
 
     p(`Set up the account carefully before adding sites, inviting teammates, changing billing, creating API keys, or adjusting security settings. A clean account setup prevents confusion later when a teammate cannot access the right workspace, a billing screen is locked, or a protected action requires owner approval.`),
 
@@ -243,7 +855,7 @@
       [
         ["Owner identity", "The owner account is the highest-trust account for the workspace."],
         ["Email address", "The email should remain available for sign-in, billing, security, and recovery."],
-        ["Workspace access", "The account determines which projects, sites, files, and settings the user can reach."],
+        ["Workspace access", "The account determines which sites, files, and settings the user can reach."],
         ["Billing access", "Plan changes, checkout, cancellation, and billing review should stay limited to trusted users."],
         ["Security actions", "Sensitive settings, protected files, API keys, and member controls should not be handled from a shared account."]
       ]
@@ -256,7 +868,7 @@
     ol([
       "Create or sign in to the CavBot account that should own the workspace.",
       "Confirm the account email is stable and can receive important messages.",
-      "Open the workspace and confirm the correct project is selected.",
+      "Open Account Home and confirm the correct Primary site is selected.",
       "Add the production site or confirm the saved site is correct.",
       "Install and verify the site connection before inviting teammates.",
       "Open Settings and confirm the owner can reach billing, site settings, member controls, and security controls.",
@@ -266,15 +878,15 @@
 
     note("Owner setup", "Finish the owner setup before expanding the workspace. The owner should be able to access the workspace, billing, sites, settings, and security controls without needing another member to unlock the account."),
 
-    p(`A CavBot account and a CavBot workspace are connected, but they are not the same thing. The account is the person or identity signing in. The workspace is the operating area where projects, sites, files, reports, settings, members, and billing live. One account may join more than one workspace, but each workspace should still have clear ownership.`),
+    p(`A CavBot account is the identity signing in. Account Home is the operating area where connected sites, files, reports, settings, members, and billing live. Each account should have clear ownership and individual member access.`),
 
     table(
       ["Term", "Meaning"],
       [
         ["Account", "The identity used to sign in to CavBot."],
+        ["Workspace", "The container for sites, settings, reports, files, and related work."],
         ["Owner", "The highest-trust user responsible for the workspace."],
-        ["Workspace", "The operating area where the team manages CavBot activity."],
-        ["Project", "The container for sites, settings, reports, files, and related work."],
+        ["Admin", "A user with elevated privileges to manage the workspace."],
         ["Member", "A teammate invited into the workspace with limited access based on role."]
       ]
     ),
@@ -298,7 +910,7 @@
       [
         ["Workspace looks empty", "Confirm you signed in with the account that owns or joined the workspace."],
         ["Billing is not visible", "Confirm the account has owner or authorized billing access."],
-        ["Site is missing", "Confirm the correct project and selected workspace are open."],
+        ["Site is missing", "Confirm the correct account and Account Home are open."],
         ["Feature appears locked", "Confirm the workspace plan and the account role."],
         ["Invite cannot be managed", "Confirm the account has permission to manage members."],
         ["Protected setting is blocked", "Confirm the action is allowed for the account role."]
@@ -395,7 +1007,7 @@
 
     ol([
       "Open the CavBot workspace.",
-      "Confirm the correct project is selected.",
+      "Confirm the correct Primary site is selected.",
       "Add the public production origin for the website.",
       "Use https:// whenever the website supports it.",
       "Do not include page paths, query strings, tracking tags, or fragments.",
@@ -458,7 +1070,7 @@
         ["Saved site origin", "The public website address CavBot should monitor."],
         ["Installed snippet", "The code placed on that same website."],
         ["Site ID", "The CavBot site profile the snippet belongs to."],
-        ["Project key", "The workspace project allowed to receive the signal."],
+        ["Project key", "The site-scoped install key allowed to send the signal."],
         ["Origin allowlist", "The approved website origin allowed to send data."]
       ]
     ),
@@ -512,7 +1124,7 @@
   title: "Launch checklist",
   summary: "Confirm the workspace, site, snippet, signals, and plan before relying on CavBot.",
   blocks: [
-    p(`Use this checklist before treating CavBot as active for a website. A CavBot setup is not complete just because the workspace exists or the snippet was pasted somewhere. The account, project, site profile, installed snippet, public website, signal surfaces, team access, and plan state should all point to the same place.`),
+    p(`Use this checklist before treating CavBot as active for a website. A CavBot setup is not complete just because Account Home exists or the snippet was pasted somewhere. The account, site profile, installed snippet, public website, signal surfaces, team access, and plan state should all point to the same place.`),
 
     p(`The goal is simple: confirm that CavBot is watching the correct website, receiving real activity from the live origin, and showing that activity under the right workspace. This prevents confusion later when a report looks empty, a module appears locked, a teammate reviews the wrong site, or CavAi receives the wrong context.`),
 
@@ -522,7 +1134,7 @@
       ["Area", "What must be true"],
       [
         ["Account", "The owner can sign in and reach the correct workspace."],
-        ["Workspace", "The correct project is selected and opens without an access request."],
+        ["Account Home", "The correct Primary site is selected and opens without an access request."],
         ["Site", "The saved site origin matches the live website visitors use."],
         ["Snippet", "Analytics v5 is installed once in the shared production layout."],
         ["Signals", "A real browser visit from the live site reaches CavBot."],
@@ -532,7 +1144,7 @@
       ]
     ),
 
-    p(`Start with the owner account. The owner should be able to sign in, open the workspace, reach Settings, view Billing, manage sites, and confirm the selected project. If the owner account is not stable, do not move forward with team setup yet.`),
+    p(`Start with the owner account. The owner should be able to sign in, open Account Home, reach Settings, view Billing, manage sites, and confirm the Primary site. If the owner account is not stable, do not move forward with team setup yet.`),
 
     list([
       "Account is created.",
@@ -543,13 +1155,13 @@
       "The owner is not using a teammate account by mistake."
     ]),
 
-    p(`Next, confirm the workspace and project. CavBot work should happen inside the correct project container. If the wrong project is active, the site, reports, members, keys, and signals may appear missing even though the platform is working.`),
+    p(`Next, confirm Account Home and the Primary site. If the wrong site is active, reports and signals may look unrelated or empty even though the platform is working.`),
 
     list([
-      "The correct project is selected.",
-      "The project name or workspace context matches the business or website being monitored.",
-      "Old test projects are not being mistaken for production.",
-      "The team knows which workspace should be used for live work."
+      "The correct Primary site is selected.",
+      "The saved site origin matches the business or website being monitored.",
+      "Old test sites are not being mistaken for production.",
+      "The team knows which Account Home should be used for live work."
     ]),
 
     p(`Then confirm the site profile. The saved site should be the clean production origin, not a page path, temporary preview link, localhost address, or campaign URL. CavBot should monitor the address real visitors use.`),
@@ -666,7 +1278,7 @@
       ]
     ),
 
-    p(`After the checklist passes, CavBot can be treated as active for that site. From there, continue into Website Signals for diagnostics, Integrations for platform-specific install notes, Security for protected actions, Billing for plan access, Developer Tools for CavCode and CavTools, or Assets for badges, Arcade, and other installable surfaces.`),
+    p(`After the checklist passes, CavBot can be treated as active for that site. From there, continue into Website Signals for diagnostics, Integrations for platform-specific install notes, Security for protected actions, Billing for plan access, Developer Tools for CavCode and CavBot Terminal, or Assets for badges, Arcade, and other installable surfaces.`),
 
     note("Do not skip verification", "A snippet can be installed but still point to the wrong site, wrong project, wrong key, or unpublished environment. Always verify the live website and the CavBot workspace together."),
 
@@ -679,19 +1291,19 @@
   title: "How to use CavBot",
   summary: "Learn the day-to-day workflow for using CavBot after a website is connected.",
   blocks: [
-    p(`CavBot is used from a workspace. The workspace holds your account, projects, sites, reports, files, alerts, and the website signals CavBot receives from the installed snippet. Start by confirming that you are in the right workspace and that the correct project is selected.`),
+    p(`CavBot is used from Account Home. It holds your connected sites, reports, files, alerts, and the website signals CavBot receives from the installed snippet. Start by confirming that the correct Primary site is selected.`),
 
-    p(`A workspace can hold more than one project or website, so the selected context matters. Before trusting any dashboard, report, alert, or module, check that CavBot is looking at the site you actually want to review. Most confusion starts when the wrong project or wrong site is selected.`),
+    p(`An account can hold more than one website, so the selected site matters. Before trusting any dashboard, report, alert, or module, check that CavBot is looking at the site you actually want to review. Most confusion starts when the wrong site is selected.`),
 
     p(`The most important setup choice is the site. A site is the saved origin CavBot watches, such as https://example.com. If the wrong site is selected, dashboards and reports can look empty even when another site is receiving activity.`),
 
     p(`The site origin should match the public website where the CavBot snippet is installed. Keep production, staging, preview, and local development origins separate. A production report should be based on the production site, not a preview URL or old staging address.`),
 
-    p(`Use the primary site when one website should be treated as the main review target for the project. The primary site helps CavBot know which origin should be used first across workspace views, reports, and module links.`),
+    p(`Use the Primary site for the website CavBot should treat as the active review target. Changing it switches analytics, reports, and module links to that site.`),
 
     ol([
       "Sign in to CavBot and open the workspace.",
-      "Open the project you want to review.",
+      "Confirm the Primary site you want to review.",
       "Go to Manage Websites and add the public website origin.",
       "Set the main production website as the primary site.",
       "Install the Analytics v5 snippet on the live website.",
@@ -707,7 +1319,7 @@
     table(
       ["Area", "What to use it for"],
       [
-        ["Command Center", "Review notices, manage URLs, and keep the workspace pointed at the right site."],
+        ["Account home", "Review notices, manage URLs, and keep the workspace pointed at the right site."],
         ["Dashboard", "Check the broad health of the selected site."],
         ["Error Tracking", "Find JavaScript errors, API errors, and routes where problems appear."],
         ["SEO Audit", "Review page structure, titles, descriptions, canonical signals, and search basics."],
@@ -793,13 +1405,12 @@
 
     p(`Reports are useful when you need to share the state of a website with yourself, a teammate, a client, or a decision maker. A good report should name the selected site, show what CavBot reviewed, and make the next step clear.`),
 
-    p(`Before sharing a report, check the selected site again. A report based on the wrong site can send the team in the wrong direction. If the report looks empty, outdated, or unrelated, return to the workspace and confirm the project, primary site, selected site, and live snippet.`),
+    p(`Before sharing a report, check the selected site again. A report based on the wrong site can send the team in the wrong direction. If the report looks empty, outdated, or unrelated, return to Account Home and confirm the Primary site, selected site, and live snippet.`),
 
     table(
       ["Before sharing a report", "Confirm this"],
       [
         ["Workspace", "You are inside the right account workspace."],
-        ["Project", "The correct project is selected."],
         ["Site", "The selected site matches the live website being reviewed."],
         ["Origin", "The saved origin matches the public website URL."],
         ["Activity", "The site has received recent page activity."],
@@ -885,7 +1496,7 @@
       ]
     ),
 
-    p(`If CavBot looks confusing, slow down and check the foundation first. Most issues can be traced back to selected site, origin mismatch, unpublished changes, snippet placement, stale deployment, or activity not yet reaching the selected project.`),
+    p(`If CavBot looks confusing, slow down and check the foundation first. Most issues can be traced back to the selected site, an origin mismatch, unpublished changes, snippet placement, stale deployment, or activity not yet reaching the Primary site.`),
 
     table(
       ["Problem", "What to check"],
@@ -1166,9 +1777,9 @@
     table(
       ["Plan", "Website limit"],
       [
-        ["CavTower", "1 website"],
-        ["CavControl", "6 websites"],
-        ["CavElite", "20 websites"]
+        ["Free", "1 website"],
+        ["Pro", "6 websites"],
+        ["Plus", "20 websites"]
       ]
     ),
 
@@ -1216,7 +1827,7 @@
       ["Item", "What to confirm"],
       [
         ["Saved origin", "The site in CavBot matches the live website origin."],
-        ["Project key", "The snippet uses the key for the correct workspace project."],
+        ["Project key", "The snippet uses the site-scoped key generated for the correct website."],
         ["Site ID", "The snippet points to the selected CavBot site."],
         ["Public page source", "The snippet appears on the live published website."],
         ["Origin allowlist", "The website origin is approved for the key or workspace policy."],
@@ -1287,17 +1898,17 @@
 
 {
   id: "top-site",
-  title: "Top site",
+  title: "Primary site",
   summary: "Choose the primary website CavBot opens first.",
   blocks: [
-    p(`Top site is the primary website for a workspace project. It is the site CavBot should open first when the workspace loads and the site CavBot should use as the default context for dashboards, reports, routes, alerts, recovery review, and assistant summaries.`),
+    p(`Primary site is the active website for Account Home. It is the site CavBot opens first and uses as the default context for dashboards, reports, routes, alerts, recovery review, and assistant summaries.`),
 
-    p(`A workspace can contain more than one site. For example, a team may connect a marketing website, an app domain, a documentation site, a storefront, a staging environment, and a preview environment. Top site tells CavBot which one matters most by default.`),
+    p(`A workspace can contain more than one site. For example, a team may connect a marketing website, an app domain, a documentation site, a storefront, a staging environment, and a preview environment. Primary site tells CavBot which one matters most by default.`),
 
     p(`Choose the website your team reviews most often. In most cases, this should be the public customer-facing production origin. That is usually the website where broken routes, visitor activity, SEO structure, accessibility checks, recovery flows, reports, and operational review matter the most.`),
 
     table(
-      ["Workspace setup", "Recommended Top site"],
+      ["Workspace setup", "Recommended Primary site"],
       [
         ["One production website", "Use the production website."],
         ["Marketing site and app domain", "Use the one your team reviews most often."],
@@ -1308,9 +1919,9 @@
       ]
     ),
 
-    p(`Top site does not delete or disable the other sites in the workspace. It only decides which site should be treated as the default. Other saved sites can still be opened, reviewed, monitored, and used when the team selects them.`),
+    p(`Primary site does not delete or disable the other sites in the workspace. It only decides which site should be treated as the default. Other saved sites can still be opened, reviewed, monitored, and used when the team selects them.`),
 
-    p(`The right Top site keeps the workspace focused. It prevents the dashboard from opening on a staging site by mistake, keeps reports pointed at the most important website, and helps teammates start from the same operating context when they open CavBot.`),
+    p(`The right Primary site keeps the workspace focused. It prevents the dashboard from opening on a staging site by mistake, keeps reports pointed at the most important website, and helps teammates start from the same operating context when they open CavBot.`),
 
     list([
       "Use the main production website when the workspace monitors a live business site.",
@@ -1318,13 +1929,13 @@
       "Use the storefront when checkout and customer paths are the highest priority.",
       "Use the docs site when documentation quality is the main focus of the workspace.",
       "Use a staging or preview site only when the workspace exists for testing or QA.",
-      "Update Top site after a domain migration, rebrand, platform move, or major site restructure."
+      "Update Primary site after a domain migration, rebrand, platform move, or major site restructure."
     ]),
 
-    p(`Top site is especially important when the workspace has similar origins. A team may have https://example.com, https://www.example.com, https://app.example.com, and https://staging.example.com saved at the same time. Without a clear Top site, teammates may review the wrong origin and think CavBot is missing signals or showing the wrong reports.`),
+    p(`Primary site is especially important when the workspace has similar origins. A team may have https://example.com, https://www.example.com, https://app.example.com, and https://staging.example.com saved at the same time. Without a clear Primary site, teammates may review the wrong origin and think CavBot is missing signals or showing the wrong reports.`),
 
     table(
-      ["Top site affects", "Why it matters"],
+      ["Primary site affects", "Why it matters"],
       [
         ["First workspace view", "CavBot can open the most important site first."],
         ["Dashboard context", "The main view starts with the right website."],
@@ -1335,64 +1946,64 @@
       ]
     ),
 
-    p(`Do not choose a temporary preview URL as Top site unless that preview environment is the main purpose of the workspace. Preview URLs often change, expire, or represent unfinished work. If a preview URL becomes the default by mistake, the workspace may feel empty or misleading when the team expects production activity.`),
+    p(`Do not choose a temporary preview URL as Primary site unless that preview environment is the main purpose of the workspace. Preview URLs often change, expire, or represent unfinished work. If a preview URL becomes the default by mistake, the workspace may feel empty or misleading when the team expects production activity.`),
 
-    p(`When adding new sites, review the Top site setting after the new origin is saved. A newly added site should not automatically become the most important site unless the team intentionally wants that change.`),
+    p(`When adding new sites, review the Primary site setting after the new origin is saved. A newly added site should not automatically become the most important site unless the team intentionally wants that change.`),
 
     ol([
       "Open the workspace Sites area.",
       "Review the saved origins.",
       "Confirm which origin is the main production or operating site.",
-      "Set that origin as Top site.",
+      "Set that origin as Primary site.",
       "Open the dashboard and confirm it starts on the correct site.",
       "Check reports and key modules to confirm they use the expected site context.",
       "Tell teammates which site is the primary site for the workspace."
     ]),
 
-    p(`Change Top site when the main operating focus changes. This can happen after a domain migration, launch, product pivot, app restructure, storefront launch, client handoff, or when the team decides that a different origin should become the default review surface.`),
+    p(`Change Primary site when the main operating focus changes. This can happen after a domain migration, launch, product pivot, app restructure, storefront launch, client handoff, or when the team decides that a different origin should become the default review surface.`),
 
     table(
-      ["Change Top site when", "Example"],
+      ["Change Primary site when", "Example"],
       [
         ["The production domain changes", "The business moves from olddomain.com to newdomain.com."],
         ["The app becomes the main focus", "The team reviews app.example.com more than the marketing site."],
         ["A storefront launches", "The team wants shop.example.com to become the main monitored site."],
         ["A staging workspace becomes production", "A tested origin becomes the live customer-facing site."],
         ["A client handoff happens", "The client’s live domain becomes the main workspace focus."],
-        ["An old origin is retired", "The previous Top site is no longer used."]
+        ["An old origin is retired", "The previous Primary site is no longer used."]
       ]
     ),
 
-    p(`If the wrong Top site is selected, CavBot may still work, but the workspace can feel confusing. The dashboard may open on the wrong origin, teammates may review the wrong reports, and the assistant may summarize activity from a site that is not the team’s current priority.`),
+    p(`If the wrong Primary site is selected, CavBot may still work, but the workspace can feel confusing. The dashboard may open on the wrong origin, teammates may review the wrong reports, and the assistant may summarize activity from a site that is not the team’s current priority.`),
 
     table(
       ["Problem", "What to check"],
       [
-        ["Dashboard opens on the wrong website", "Confirm the Top site is set to the intended origin."],
-        ["Reports appear to reference the wrong site", "Check the selected site and Top site setting."],
-        ["Team members keep reviewing staging", "Set the public production site as Top site and label staging clearly."],
-        ["CavAi answers feel out of context", "Confirm the selected site and Top site match the website being discussed."],
-        ["A removed site was the Top site", "Choose a new Top site after removing an old origin."],
-        ["A new domain launched", "Update Top site to the new production origin."]
+        ["Dashboard opens on the wrong website", "Confirm the Primary site is set to the intended origin."],
+        ["Reports appear to reference the wrong site", "Check the selected site and Primary site setting."],
+        ["Team members keep reviewing staging", "Set the public production site as Primary site and label staging clearly."],
+        ["CavAi answers feel out of context", "Confirm the selected site and Primary site match the website being discussed."],
+        ["A removed site was the Primary site", "Choose a new Primary site after removing an old origin."],
+        ["A new domain launched", "Update Primary site to the new production origin."]
       ]
     ),
 
-    p(`For teams, Top site should be treated as a workspace baseline. It should be obvious which website is production, which sites are secondary, and which origin CavBot should open first. This keeps reviews cleaner and reduces mistakes when multiple people are using the same workspace.`),
+    p(`For teams, Primary site should be treated as a workspace baseline. It should be obvious which website is production, which sites are secondary, and which origin CavBot should open first. This keeps reviews cleaner and reduces mistakes when multiple people are using the same workspace.`),
 
     list([
       "Label production, staging, app, docs, and storefront sites clearly.",
-      "Keep the public production origin as Top site unless there is a clear reason not to.",
-      "Review Top site after adding or removing sites.",
-      "Review Top site after changing domains.",
-      "Do not use a temporary preview URL as Top site for a long-term workspace.",
+      "Keep the public production origin as Primary site unless there is a clear reason not to.",
+      "Review Primary site after adding or removing sites.",
+      "Review Primary site after changing domains.",
+      "Do not use a temporary preview URL as Primary site for a long-term workspace.",
       "Make sure teammates understand which site is the main workspace context."
     ]),
 
-    p(`Top site is a small setting, but it has a large effect on how CavBot feels day to day. A clean Top site makes the workspace open in the right place, keeps reports easier to trust, and helps the team review the website that matters most without extra steps.`),
+    p(`Primary site is a small setting, but it has a large effect on how CavBot feels day to day. A clean Primary site makes the workspace open in the right place, keeps reports easier to trust, and helps the team review the website that matters most without extra steps.`),
 
-    note("Recommended", "Use the public customer-facing production origin as Top site. Change it only when the workspace’s main operating focus changes."),
+    note("Recommended", "Use the public customer-facing production origin as Primary site. Change it only when the workspace’s main operating focus changes."),
 
-    note("Core rule", "Top site is the default website for the workspace. It should point to the origin your team needs to review first, most often, and with the least confusion.")
+    note("Core rule", "Primary site is the default website for the workspace. It should point to the origin your team needs to review first, most often, and with the least confusion.")
   ]
 },
 
@@ -1412,7 +2023,7 @@
       [
         ["Unread notices", "Items the workspace has not reviewed yet."],
         ["Invite updates", "Team invitation activity that may need owner or admin attention."],
-        ["Storage notices", "CavCloud or CavSafe usage approaching a limit."],
+        ["Storage notices", "CavBot Cloud or CavBot Vault usage approaching a limit."],
         ["Plan notices", "Feature access, plan limits, upgrade state, or downgrade impact."],
         ["Security notices", "Protected actions, verification checks, or sensitive workspace events."],
         ["System updates", "CavBot service or product messages that may affect the workspace."]
@@ -1430,7 +2041,7 @@
       "Check notifications before deleting assets, changing settings, or making security-sensitive updates."
     ]),
 
-    p(`Notifications are especially useful for storage. When CavCloud or CavSafe approaches a plan limit, the workspace should know before uploads fail or protected storage becomes harder to manage. Review storage notices before uploading large projects, image sets, videos, exported site bundles, archives, or generated files.`),
+    p(`Notifications are especially useful for storage. When CavBot Cloud or CavBot Vault approaches a plan limit, the workspace should know before uploads fail or protected storage becomes harder to manage. Review storage notices before uploading large projects, image sets, videos, exported site bundles, archives, or generated files.`),
 
     p(`Notifications also help teams understand access-related changes. If a teammate is invited, removed, blocked by a seat limit, or unable to access the expected workspace, notifications can provide useful context before the owner or admin changes settings.`),
 
@@ -1472,7 +2083,7 @@
       ]
     ),
 
-    p(`When troubleshooting, start with the notification, then open the related surface. If the notice mentions storage, open CavCloud or CavSafe. If it mentions a plan or locked feature, open Billing or Plans. If it mentions access, open Team or Settings. If it mentions a protected action, review Security, CavGuard, CavVerify, and Audit Trail as needed.`),
+    p(`When troubleshooting, start with the notification, then open the related surface. If the notice mentions storage, open CavBot Cloud or CavBot Vault. If it mentions a plan or locked feature, open Billing or Plans. If it mentions access, open Team or Settings. If it mentions a protected action, review Security, CavGuard, CavVerify, and Audit Trail as needed.`),
 
     p(`For teams, notifications create a shared sense of what recently happened. They help reduce confusion when one person changes a setting, another person sees a locked feature, and a third person is trying to understand why something no longer behaves the same way.`),
 
@@ -1482,7 +2093,7 @@
       ["Problem", "What to check"],
       [
         ["A module is locked", "Review plan notices and confirm the active plan allows the module."],
-        ["A file upload fails", "Review storage notices and check CavCloud or CavSafe usage."],
+        ["A file upload fails", "Review storage notices and check CavBot Cloud or CavBot Vault usage."],
         ["A teammate cannot join", "Review seat limits, invite notices, and pending invites."],
         ["An action did not complete", "Check whether a success, warning, or error notice was recorded."],
         ["A protected action is blocked", "Review security notices and confirm role, verification, and workspace context."],
@@ -1559,8 +2170,8 @@
       ["Plan", "Seat limit"],
       [
         ["Free", "4 seats"],
-        ["Premium", "8 seats"],
-        ["Premium+", "16 seats"]
+        ["Pro", "8 seats"],
+        ["Plus", "16 seats"]
       ]
     ),
 
@@ -1613,29 +2224,28 @@
     label: "Workspace",
     
     title: "Workspace",
-    description: "Use the dashboard, reports, CavPad, Arcade, Command Center, and member controls from one workspace context.",
+    description: "Manage profile, reports, and member controls from one workspace context.",
     sections: [
       {
   id: "dashboard",
   title: "Dashboard",
   summary: "Review the selected site, workspace state, and next actions.",
   blocks: [
-    p(`The Dashboard is the first operating view for a CavBot workspace. It gives the owner, admin, or team member a clear starting point for the selected project and site before they open deeper tools. Use it to confirm what CavBot is looking at, what the workspace can access, what needs attention, and which area should be reviewed next.`),
+    p(`The Dashboard is the first operating view in CavBot Account Home. It gives the owner, admin, or team member a clear starting point for the Primary site before they open deeper tools. Use it to confirm what CavBot is looking at, what the account can access, what needs attention, and which area should be reviewed next.`),
 
-    p(`The most important rule is simple: always confirm the selected site first. CavBot work is tied to a project and a website origin. If the wrong site is selected, the rest of the workspace may appear empty, outdated, locked, or unrelated to the website you meant to review.`),
+    p(`The most important rule is simple: always confirm the Primary site first. CavBot analytics are tied to a website origin. If the wrong site is active, the rest of the workspace may appear empty, outdated, or unrelated to the website you meant to review.`),
 
-    p(`A clean Dashboard should answer the first questions a team asks when opening CavBot: Which project is active? Which site is selected? Is the site connected? Is the plan correct? Are the right modules available? Are there storage notices? Are there unread workspace notifications? Is there anything that needs review before the team continues?`),
+    p(`A clean Dashboard should answer the first questions a team asks when opening CavBot: Which Primary site is active? Is the site connected? Is the plan correct? Are the right modules available? Are there storage notices? Are there unread workspace notifications? Is there anything that needs review before the team continues?`),
 
     p(`The Dashboard should be treated as the entry point, not the final diagnosis. It helps you understand the current workspace state, but deeper investigation should happen inside the focused surface that owns the signal. If the Dashboard points to broken routes, open 404 Recovery. If it points to browser errors, open Errors. If it points to search structure, open SEO. If it points to accessibility, open Accessibility. If it points to reports, open Reports.`),
 
     table(
       ["Dashboard area", "What to confirm"],
       [
-        ["Project", "Confirm the workspace project is the one you intended to open."],
-        ["Selected site", "Confirm the website origin matches the public site you want to review."],
+        ["Primary site", "Confirm the website origin matches the public site you want to review."],
         ["Plan state", "Confirm the active plan supports the modules, seats, storage, and site count you expect."],
         ["Module access", "Check which areas are available and which are locked by plan limits."],
-        ["Storage", "Review CavCloud and CavSafe usage before uploading large files or project folders."],
+        ["Storage", "Review CavBot Cloud and CavBot Vault usage before uploading large files or project folders."],
         ["Notifications", "Look for workspace notices that explain recent changes, limits, warnings, or completed actions."],
         ["Guardrails", "Confirm the workspace protection settings match the level of control the team needs."]
       ]
@@ -1643,7 +2253,7 @@
 
     p(`When the Dashboard looks empty, do not assume the product is broken. Empty data usually means CavBot has not received the right signal yet, the selected site is not the one receiving traffic, the snippet was installed on a different origin, the site has not been published after installation, or no real public browser visit has happened since setup.`),
 
-    p(`Start troubleshooting from the top of the chain. First, confirm the selected project. Then confirm the selected site. Then confirm the saved origin is correct. Then confirm the snippet exists on the live public page. Then visit the site in a real browser. After that, return to CavBot and review whether the Dashboard begins showing recent activity or a more useful empty state.`),
+    p(`Start troubleshooting from the top of the chain. First, confirm the Primary site. Then confirm the saved origin is correct. Then confirm the snippet exists on the live public page. Then visit the site in a real browser. After that, return to CavBot and review whether the Dashboard begins showing recent activity or a more useful empty state.`),
 
     table(
       ["If the Dashboard looks empty", "What to check"],
@@ -1660,13 +2270,13 @@
 
     p(`The Dashboard also helps prevent confusion when a workspace has more than one site. A business may have a marketing site, app domain, documentation site, storefront, staging origin, and preview environment. CavBot treats each saved origin as a separate site context when it is added to the workspace. The Dashboard helps you stay aware of which one is currently active.`),
 
-    p(`If the workspace has multiple sites, set the most important production website as the Top site. The Top site should be the site the team reviews most often. This keeps the Dashboard, reports, and assistant context focused on the main operating website instead of opening on a test origin or less important environment.`),
+    p(`If the workspace has multiple sites, set the most important production website as the Primary site. The Primary site should be the site the team reviews most often. This keeps the Dashboard, reports, and assistant context focused on the main operating website instead of opening on a test origin or less important environment.`),
 
     list([
-      "Confirm the selected project before reviewing any signal.",
+      "Confirm the Primary site before reviewing any signal.",
       "Confirm the selected site before trusting dashboard data.",
       "Use the public production origin as the main site whenever possible.",
-      "Set the Top site when the workspace has more than one saved origin.",
+      "Set the Primary site when the workspace has more than one saved origin.",
       "Keep staging, preview, and test sites clearly separated from production.",
       "Remove stale origins when they no longer need monitoring."
     ]),
@@ -1679,7 +2289,7 @@
       ["Notice type", "Why it matters"],
       [
         ["Plan notice", "Explains whether features, seats, storage, or modules are limited by the current plan."],
-        ["Storage notice", "Warns when CavCloud or CavSafe usage may affect uploads, file moves, or protected storage."],
+        ["Storage notice", "Warns when CavBot Cloud or CavBot Vault usage may affect uploads, file moves, or protected storage."],
         ["Site notice", "Helps identify setup, origin, snippet, or selected-site issues."],
         ["Security notice", "Points to protected actions, role limits, verification, or guardrail decisions."],
         ["Team notice", "Helps owners review invites, seat limits, role changes, or access issues."],
@@ -1687,15 +2297,15 @@
       ]
     ),
 
-    p(`Use the Dashboard at the start of every serious review. Before changing settings, rotating keys, inviting teammates, installing snippets, uploading files, or publishing a fix, open the Dashboard and confirm that the workspace context is correct. A few seconds of confirmation can prevent work from being done against the wrong site or project.`),
+    p(`Use the Dashboard at the start of every serious review. Before changing settings, rotating keys, inviting teammates, installing snippets, uploading files, or publishing a fix, open the Dashboard and confirm that the Primary site is correct. A few seconds of confirmation can prevent work from being done against the wrong site.`),
 
-    p(`The Dashboard is especially important after setup changes. Recheck it after adding a site, changing the Top site, updating the snippet, changing plans, inviting teammates, moving files, enabling protected storage, adjusting risk controls, or publishing a new version of the website.`),
+    p(`The Dashboard is especially important after setup changes. Recheck it after adding a site, changing the Primary site, updating the snippet, changing plans, inviting teammates, moving files, enabling protected storage, adjusting risk controls, or publishing a new version of the website.`),
 
     table(
       ["After this change", "Return to the Dashboard to confirm"],
       [
         ["New site added", "The new origin appears and can be selected."],
-        ["Top site changed", "The workspace opens on the intended primary site."],
+        ["Primary site changed", "The workspace opens on the intended primary site."],
         ["Snippet installed", "The selected site begins receiving activity after a real public visit."],
         ["Plan changed", "Module access, seat limits, and storage limits match the new plan."],
         ["Team member invited", "The invite appears in the team or notification flow where available."],
@@ -1714,17 +2324,16 @@
         ["Search structure or metadata concerns", "SEO"],
         ["Accessibility concerns", "Accessibility"],
         ["Reports or executive review", "Reports"],
-        ["Storage usage or file activity", "CavCloud or CavSafe"],
+        ["Storage usage or file activity", "CavBot Cloud or CavBot Vault"],
         ["Protected actions or blocked workflows", "Security, CavGuard, or Audit Trail"],
         ["Setup or snippet concerns", "Integrations and Analytics v5"]
       ]
     ),
 
-    p(`A strong Dashboard review follows the same pattern each time: confirm the project, confirm the site, read notices, check plan and module access, review storage, inspect any warning or empty state, then open the focused module that owns the issue. This keeps the workflow calm and prevents the team from jumping into fixes before understanding the workspace state.`),
+    p(`A strong Dashboard review follows the same pattern each time: confirm the Primary site, read notices, check plan and module access, review storage, inspect any warning or empty state, then open the focused module that owns the issue. This keeps the workflow calm and prevents the team from jumping into fixes before understanding the workspace state.`),
 
     list([
-      "Confirm the active project.",
-      "Confirm the selected site.",
+      "Confirm the Primary site.",
       "Check whether the site is production, staging, preview, or test.",
       "Review plan access and locked modules.",
       "Review storage usage and workspace notices.",
@@ -1754,7 +2363,7 @@
   blocks: [
     p(`Reports turn CavBot workspace activity into reviewable summaries. Use them when you need a clear view of what is happening on a selected site without opening every module one by one. A report should help the team understand the current state, what changed, what needs attention, and where to look next.`),
 
-    p(`A report is a snapshot. It reflects what CavBot can see at the time the report is created, based on the selected project, selected site, available signals, active plan, and connected modules. It should be used for review, explanation, handoff, and planning. It should not be treated as the only source of truth for a production fix.`),
+    p(`A report is a snapshot. It reflects what CavBot can see at the time the report is created, based on the selected site, available signals, active plan, and connected modules. It should be used for review, explanation, handoff, and planning. It should not be treated as the only source of truth for a production fix.`),
 
     p(`Reports are most useful when a team needs to share the state of a site with someone who does not want to inspect every dashboard surface manually. This can include a founder review, client update, QA handoff, release review, support investigation, investor check-in, or internal weekly summary.`),
 
@@ -1777,7 +2386,7 @@
     table(
       ["Report area", "What it can explain"],
       [
-        ["Site context", "Which project and website origin the report is reviewing."],
+        ["Site context", "Which website origin the report is reviewing."],
         ["Route activity", "Which pages or paths are being observed and whether recent activity exists."],
         ["404 activity", "Which missing routes need review, redirect decisions, or source-link fixes."],
         ["Errors", "Which browser or request issues may need developer attention."],
@@ -1791,7 +2400,7 @@
     p(`Reports should always be tied to the selected site. Before generating or reading a report, confirm that the active site is the one you intend to review. If the wrong site is selected, the report may summarize a staging environment, old domain, preview origin, or unrelated website instead of the production site.`),
 
     list([
-      "Confirm the correct project is selected.",
+      "Confirm the correct Primary site is selected.",
       "Confirm the correct site is selected.",
       "Confirm the site origin matches the live website you want to review.",
       "Check whether the report is reviewing production, staging, preview, or test activity.",
@@ -1810,7 +2419,7 @@
         ["JavaScript errors or failed requests", "Open Errors and review the grouped issue, route, timestamp, and affected context."],
         ["SEO structure concerns", "Open SEO and inspect title, description, canonical, headings, robots settings, and page structure."],
         ["Accessibility findings", "Open Accessibility and review the specific issue type, affected page, and severity."],
-        ["Storage or file notices", "Open CavCloud or CavSafe and confirm usage, file state, and access rules."],
+        ["Storage or file notices", "Open CavBot Cloud or CavBot Vault and confirm usage, file state, and access rules."],
         ["Plan or locked-module notes", "Open Billing or Plans and confirm current access, limits, and seat usage."],
         ["Setup problems", "Open Integrations and Analytics v5 to verify snippet, site ID, origin, and key setup."]
       ]
@@ -1882,7 +2491,7 @@
 
     list([
       "Open the report.",
-      "Confirm the selected project and site.",
+      "Confirm the Primary site.",
       "Read the summary for route, error, SEO, accessibility, recovery, storage, or setup concerns.",
       "Separate urgent issues from informational notes.",
       "Open the source module for anything important.",
@@ -1906,7 +2515,7 @@
 
     p(`Use CavPad when the information is important enough to keep, but does not need to become a full report, file, ticket, or code change yet. It is the place for clear written context: what happened, what was reviewed, what decision was made, who is responsible, and what should happen next.`),
 
-    p(`CavPad supports directories, notes, rich text controls, links, tables, exports, trash and restore behavior, note versions, and optional sync to CavCloud or CavSafe where enabled. This lets the workspace keep everyday notes organized without scattering important context across messages, screenshots, browser tabs, or memory.`),
+    p(`CavPad supports directories, notes, rich text controls, links, tables, exports, trash and restore behavior, note versions, and optional sync to CavBot Cloud or CavBot Vault where enabled. This lets the workspace keep everyday notes organized without scattering important context across messages, screenshots, browser tabs, or memory.`),
 
     table(
       ["Use CavPad for", "What to write"],
@@ -1977,19 +2586,19 @@
       "Use clear headings when a note has been updated more than once."
     ]),
 
-    p(`CavPad can sync notes to CavCloud or CavSafe where enabled. Use CavCloud sync when the note belongs with ordinary workspace files, project documents, shared assets, or team materials. Use CavSafe only when the note contains protected workspace material that needs stronger access control.`),
+    p(`CavPad can sync notes to CavBot Cloud or CavBot Vault where enabled. Use CavBot Cloud sync when the note belongs with ordinary workspace files, project documents, shared assets, or team materials. Use CavBot Vault only when the note contains protected workspace material that needs stronger access control.`),
 
     table(
       ["Sync location", "Use it when"],
       [
         ["CavPad only", "The note is part of everyday workspace context and does not need file storage."],
-        ["CavCloud", "The note belongs with shared files, project documents, exports, or working assets."],
-        ["CavSafe", "The note contains protected material that should have stronger access review."],
+        ["CavBot Cloud", "The note belongs with shared files, project documents, exports, or working assets."],
+        ["CavBot Vault", "The note contains protected material that should have stronger access review."],
         ["Export", "The note needs to be shared outside the workspace or saved as a standalone record."]
       ]
     ),
 
-    note("Storage rule", "Use CavCloud for normal workspace notes and shared project material. Use CavSafe only when the note contains protected information that truly needs stronger access control."),
+    note("Storage rule", "Use CavBot Cloud for normal workspace notes and shared project material. Use CavBot Vault only when the note contains protected information that truly needs stronger access control."),
 
     p(`CavPad should not be used for secrets. Do not store passwords, private keys, payment details, recovery codes, private customer data, sensitive legal material, or anything that should live in a dedicated secure system. Notes are for work context, not credential storage.`),
 
@@ -2035,7 +2644,7 @@
       "Write the site, route, file, or workspace area being reviewed.",
       "Record the decision or current status.",
       "Add the next step.",
-      "Sync to CavCloud or CavSafe only when the note belongs there.",
+      "Sync to CavBot Cloud or CavBot Vault only when the note belongs there.",
       "Archive or delete notes that no longer help the workspace."
     ]),
 
@@ -2048,8 +2657,8 @@
         ["Hard to understand later", "Add route, date, owner, decision, and next step."],
         ["Duplicate notes", "Merge the useful parts into one clear note and archive or delete the rest."],
         ["Old notes causing confusion", "Archive outdated notes or mark the current decision clearly."],
-        ["Sensitive material in a note", "Remove it, move approved protected material to CavSafe if needed, and follow workspace policy."],
-        ["Note should be shared as a file", "Export it or sync it to CavCloud when appropriate."]
+        ["Sensitive material in a note", "Remove it, move approved protected material to CavBot Vault if needed, and follow workspace policy."],
+        ["Note should be shared as a file", "Export it or sync it to CavBot Cloud when appropriate."]
       ]
     ),
 
@@ -2061,22 +2670,22 @@
 
       {
   id: "command-center",
-  title: "Command Center",
+  title: "Account home",
   summary: "Operate workspace sites, guardrails, notices, and core controls.",
   blocks: [
-    p(`Command Center is the main operating area for a CavBot workspace. It is where owners and teams manage the websites connected to the workspace, confirm the active site, review workspace notices, check plan limits, manage core controls, and open the focused modules used for deeper review.`),
+    p(`Account home is the main operating area for a CavBot workspace. It is where owners and teams manage the websites connected to the workspace, confirm the active site, review workspace notices, check plan limits, manage core controls, and open the focused modules used for deeper review.`),
 
-    p(`In the current app, the older /command-center route points users back to the main workspace home. This keeps the experience simple. Whether a user opens Command Center directly or lands on the app root, the purpose is the same: confirm the workspace context before taking action.`),
+    p(`In the current app, the older /command-center route points users back to the main workspace home. This keeps the experience simple. Whether a user opens Account home directly or lands on the app root, the purpose is the same: confirm the workspace context before taking action.`),
 
-    p(`Command Center should be the first place a user checks when something feels unclear. If the wrong site is selected, a website is missing, a plan limit blocks setup, a guardrail needs review, a module appears locked, or a workspace notice needs attention, Command Center gives the team the starting point for understanding what is happening.`),
+    p(`Account home should be the first place a user checks when something feels unclear. If the wrong site is selected, a website is missing, a plan limit blocks setup, a guardrail needs review, a module appears locked, or a workspace notice needs attention, Account home gives the team the starting point for understanding what is happening.`),
 
-    p(`A CavBot workspace can contain multiple sites. The selected site controls what many CavBot surfaces review first. If the selected site is wrong, the dashboard, reports, signal modules, and assistant context may appear empty or may point to the wrong website. Command Center helps prevent that confusion by making site context visible before the user continues into deeper tools.`),
+    p(`A CavBot workspace can contain multiple sites. The selected site controls what many CavBot surfaces review first. If the selected site is wrong, the dashboard, reports, signal modules, and assistant context may appear empty or may point to the wrong website. Account home helps prevent that confusion by making site context visible before the user continues into deeper tools.`),
 
     table(
-      ["Command Center area", "What it is used for"],
+      ["Account home area", "What it is used for"],
       [
         ["Sites", "Add, review, select, and manage the website origins connected to the workspace."],
-        ["Top site", "Choose the primary website CavBot should open and review by default."],
+        ["Primary site", "Choose the primary website CavBot should open and review by default."],
         ["Selected site", "Confirm which site is active before reading dashboards, reports, or signals."],
         ["Guardrails", "Review workspace safety settings that protect origins, alerts, deletion, and risky behavior."],
         ["Workspace notices", "Read important messages about setup, storage, access, billing, limits, or required action."],
@@ -2085,23 +2694,23 @@
       ]
     ),
 
-    p(`Use Command Center before assuming that a feature is broken. Many workspace issues are caused by simple context problems: the wrong site is active, the production origin was not added, the snippet was installed on a different domain, the plan limit has been reached, or the user is signed in with an account that does not have the right role.`),
+    p(`Use Account home before assuming that a feature is broken. Many workspace issues are caused by simple context problems: the wrong site is active, the production origin was not added, the snippet was installed on a different domain, the plan limit has been reached, or the user is signed in with an account that does not have the right role.`),
 
     list([
-      "Open Command Center when the wrong site appears in CavBot.",
-      "Open Command Center when a newly added site does not show where expected.",
-      "Open Command Center when a module looks locked or unavailable.",
-      "Open Command Center when a workspace notice appears.",
-      "Open Command Center when a teammate needs help understanding what project or site is active.",
-      "Open Command Center before changing guardrails, site settings, or workspace controls."
+      "Open Account home when the wrong site appears in CavBot.",
+      "Open Account home when a newly added site does not show where expected.",
+      "Open Account home when a module looks locked or unavailable.",
+      "Open Account home when a workspace notice appears.",
+      "Open Account home when a teammate needs help understanding what project or site is active.",
+      "Open Account home before changing guardrails, site settings, or workspace controls."
     ]),
 
-    p(`The site list is one of the most important parts of Command Center. Each saved site should represent a clean website origin, such as https://example.com, https://www.example.com, or https://app.example.com. Individual pages should not be added as sites. Pages belong inside a site as routes.`),
+    p(`The site list is one of the most important parts of Account home. Each saved site should represent a clean website origin, such as https://example.com, https://www.example.com, or https://app.example.com. Individual pages should not be added as sites. Pages belong inside a site as routes.`),
 
-    p(`When a workspace has more than one site, Command Center helps the team stay aligned. A marketing site, app domain, documentation site, and storefront may all belong to the same business, but they may need separate review. The selected site tells CavBot which website should be used as the current working context.`),
+    p(`When a workspace has more than one site, Account home helps the team stay aligned. A marketing site, app domain, documentation site, and storefront may all belong to the same business, but they may need separate review. The selected site tells CavBot which website should be used as the current working context.`),
 
     table(
-      ["If you see this", "Check this in Command Center"],
+      ["If you see this", "Check this in Account home"],
       [
         ["Dashboard looks empty", "Confirm the selected site matches the live site where the snippet is installed."],
         ["Signals appear under the wrong website", "Check whether the wrong site is selected or the snippet points to another site ID."],
@@ -2112,9 +2721,9 @@
       ]
     ),
 
-    p(`Top site selection belongs in Command Center because it affects the first view of the workspace. The Top site should usually be the public production website the team reviews most often. If the workspace includes test, staging, or preview domains, keep the production site as the primary site unless the workspace is meant only for development review.`),
+    p(`Primary site selection belongs in Account home because it affects the first view of the workspace. The Primary site should usually be the public production website the team reviews most often. If the workspace includes test, staging, or preview domains, keep the production site as the primary site unless the workspace is meant only for development review.`),
 
-    p(`Guardrails should also be reviewed from Command Center. Guardrails help keep important workspace behavior deliberate. They can protect against unknown origins, enforce allowed site origins, keep spike alerts active, and make deletion more careful. These controls matter most when the workspace is connected to a real production website.`),
+    p(`Guardrails should also be reviewed from Account home. Guardrails help keep important workspace behavior deliberate. They can protect against unknown origins, enforce allowed site origins, keep spike alerts active, and make deletion more careful. These controls matter most when the workspace is connected to a real production website.`),
 
     list([
       "Keep production origins clean and approved.",
@@ -2124,16 +2733,16 @@
       "Revisit guardrails after plan changes, team changes, or site migrations."
     ]),
 
-    p(`Command Center is also the place to review workspace notices. A notice may explain why storage is close to a limit, why a feature is unavailable, why a site needs attention, why a plan change matters, or why a workspace action should be reviewed. Do not ignore notices when setting up or operating a serious workspace.`),
+    p(`Account home is also the place to review workspace notices. A notice may explain why storage is close to a limit, why a feature is unavailable, why a site needs attention, why a plan change matters, or why a workspace action should be reviewed. Do not ignore notices when setting up or operating a serious workspace.`),
 
-    p(`Plan state matters because CavBot features are tied to the active plan. Website count, seat count, storage, protected storage, modules, and advanced tools may change depending on the plan. If something is not available, Command Center should help the user understand whether the issue is setup, access, plan limits, or missing data.`),
+    p(`Plan state matters because CavBot features are tied to the active plan. Website count, seat count, storage, protected storage, modules, and advanced tools may change depending on the plan. If something is not available, Account home should help the user understand whether the issue is setup, access, plan limits, or missing data.`),
 
     table(
       ["Review item", "Why it matters"],
       [
-        ["Selected project", "Confirms the user is working in the correct workspace container."],
+        ["Primary site", "Confirms the user is reviewing the correct website origin."],
         ["Selected site", "Controls which website CavBot reviews first."],
-        ["Top site", "Sets the default website for the workspace."],
+        ["Primary site", "Sets the default website for the workspace."],
         ["Plan limits", "Explains available sites, seats, storage, and modules."],
         ["Guardrails", "Protects important workspace behavior."],
         ["Notices", "Shows recent messages that may explain setup or access issues."],
@@ -2141,28 +2750,28 @@
       ]
     ),
 
-    p(`Command Center should be used as a starting point, not as the final diagnosis. It helps confirm the workspace state. When a specific issue needs review, open the focused module that owns the signal. Use Routes for route activity, Errors for browser or runtime problems, SEO for page structure, Reports for summaries, CavCloud for files, CavSafe for protected storage, and 404 Recovery for missing routes.`),
+    p(`Account home should be used as a starting point, not as the final diagnosis. It helps confirm the workspace state. When a specific issue needs review, open the focused module that owns the signal. Use Routes for route activity, Errors for browser or runtime problems, SEO for page structure, Reports for summaries, CavBot Cloud for files, CavBot Vault for protected storage, and 404 Recovery for missing routes.`),
 
-    p(`A strong workflow begins in Command Center. Confirm the project, confirm the selected site, review notices, check plan and module access, then open the focused surface that matches the work. This keeps the team from solving the wrong problem in the wrong place.`),
+    p(`A strong workflow begins in Account Home. Confirm the Primary site, review notices, check plan and module access, then open the focused surface that matches the work. This keeps the team from solving the wrong problem in the wrong place.`),
 
     list([
       "Confirm the correct workspace is open.",
       "Confirm the correct site is selected.",
-      "Confirm the Top site is still the main production site.",
+      "Confirm the Primary site is still the main production site.",
       "Review workspace notices before changing settings.",
       "Check plan limits if a feature, site, seat, or module is blocked.",
       "Review guardrails before risky actions.",
       "Open the correct focused module for deeper diagnosis."
     ]),
 
-    p(`For owners, Command Center is the control point for keeping the workspace organized. Owners should use it to confirm that production sites are connected, test origins are not cluttering the workspace, guardrails are set correctly, and teammates are operating from the right context.`),
+    p(`For owners, Account home is the control point for keeping the workspace organized. Owners should use it to confirm that production sites are connected, test origins are not cluttering the workspace, guardrails are set correctly, and teammates are operating from the right context.`),
 
-    p(`For admins, Command Center is the daily operating view. It helps admins understand which site is active, whether the workspace has notices, what modules are available, and where to go next when a site needs attention.`),
+    p(`For admins, Account home is the daily operating view. It helps admins understand which site is active, whether the workspace has notices, what modules are available, and where to go next when a site needs attention.`),
 
-    p(`For members, Command Center helps reduce confusion. A member may not control billing or sensitive settings, but they still need to understand which site is active and which CavBot surface should be used for the task in front of them.`),
+    p(`For members, Account home helps reduce confusion. A member may not control billing or sensitive settings, but they still need to understand which site is active and which CavBot surface should be used for the task in front of them.`),
 
     table(
-      ["Role", "How to use Command Center"],
+      ["Role", "How to use Account home"],
       [
         ["Owner", "Review workspace ownership, plan state, guardrails, sites, notices, and protected actions."],
         ["Admin", "Manage operational setup, confirm active context, review notices, and open focused modules."],
@@ -2170,27 +2779,27 @@
       ]
     ),
 
-    p(`If Command Center shows an empty or limited state, begin with the basics. Confirm that the account has access to the workspace, the project is selected, the site origin has been added, the snippet is installed on the live site, and a real browser visit has happened after publishing.`),
+    p(`If Account home shows an empty or limited state, begin with the basics. Confirm that the account has access to the workspace, the project is selected, the site origin has been added, the snippet is installed on the live site, and a real browser visit has happened after publishing.`),
 
     table(
       ["Problem", "What to check"],
       [
         ["No sites are shown", "Add a website origin or confirm the account is in the correct workspace."],
-        ["Wrong site is active", "Select the correct site or update the Top site."],
+        ["Wrong site is active", "Select the correct site or update the Primary site."],
         ["Site exists but has no signals", "Confirm the snippet is installed, published, and pointing to the correct site."],
         ["Module is locked", "Check the active plan and role access."],
         ["Action is blocked", "Review role, plan state, guardrails, and whether verification is required."],
-        ["Workspace feels out of sync", "Refresh the workspace and confirm the selected project and site again."]
+        ["Workspace feels out of sync", "Refresh Account Home and confirm the Primary site again."]
       ]
     ),
 
-    p(`Command Center should remain clean. Do not keep old test origins, duplicate sites, or unused staging records in the main workspace unless the team still needs them. A clean Command Center makes the rest of CavBot easier to trust.`),
+    p(`Account home should remain clean. Do not keep old test origins, duplicate sites, or unused staging records in the main workspace unless the team still needs them. A clean Account home makes the rest of CavBot easier to trust.`),
 
-    note("Best practice", "Start every serious review in Command Center. Confirm the workspace, selected site, notices, plan state, and guardrails before making changes elsewhere."),
+    note("Best practice", "Start every serious review in Account home. Confirm the workspace, selected site, notices, plan state, and guardrails before making changes elsewhere."),
 
-    p(`The purpose of Command Center is simple: help the team know where they are, what site they are reviewing, what controls are active, and what action is safe to take next. When Command Center is clean, the rest of the workspace becomes easier to understand.`),
+    p(`The purpose of Account home is simple: help the team know where they are, what site they are reviewing, what controls are active, and what action is safe to take next. When Account home is clean, the rest of the workspace becomes easier to understand.`),
 
-    note("Core rule", "Command Center is the workspace control room. Confirm context first, then move into the focused module that owns the work.")
+    note("Core rule", "Account home is the workspace control room. Confirm context first, then move into the focused module that owns the work.")
   ]
 },
 
@@ -3490,7 +4099,7 @@
   title: "CavAi v3",
   summary: "Use CavBot’s main assistant for writing, reasoning, planning, website review, and workspace-aware help.",
   blocks: [
-    p(`CavAi v3 is the main assistant surface inside CavBot. It is built to help users think, write, review, plan, explain, and work through problems from one place. CavAi can be used as a general assistant, but it becomes more useful inside CavBot because it can also work with project context, selected sites, workspace signals, files, code, notes, and product surfaces when those features are available.`),
+    p(`CavAi v3 is the main assistant surface inside CavBot. It is built to help users think, write, review, plan, explain, and work through problems from one place. CavAi can be used as a general assistant, but it becomes more useful inside CavBot because it can also work with the Primary site, workspace signals, files, code, notes, and product surfaces when those features are available.`),
 
     p(`CavAi is not limited to one narrow task. It can help with normal writing, product thinking, technical explanations, planning, website review, code assistance, docs review, image workflows, workspace summaries, and operational questions. The goal is to give users a clear assistant that can help with everyday work while still connecting back to CavBot’s website intelligence platform.`),
 
@@ -3503,7 +4112,7 @@
       [
         ["General assistance", "Writing, rewriting, planning, brainstorming, explaining ideas, organizing tasks, and turning rough thoughts into clearer output."],
         ["Website review", "Explaining routes, errors, SEO signals, accessibility findings, 404 activity, reports, and site health concerns."],
-        ["Workspace context", "Summarizing the selected project, selected site, recent signals, files, notes, and available workspace information when connected."],
+        ["Workspace context", "Summarizing the Primary site, recent signals, files, notes, and available workspace information when connected."],
         ["Technical work", "Explaining code, drafting fixes, reviewing snippets, preparing implementation plans, and helping with CavCode workflows."],
         ["Business work", "Drafting product copy, support notes, investor messages, launch checklists, feature plans, and internal documentation."],
         ["Creative work", "Supporting image prompts, brand direction, visual planning, content ideas, and structured creative briefs when image tools are available."]
@@ -3536,7 +4145,7 @@ Look at this code snippet, explain the problem, and suggest the smallest safe fi
 
 Turn these notes into a clean launch checklist.`),
 
-    p(`When workspace context is available, CavAi may be able to use the active project, selected site, current route, page content, uploaded files, CavPad notes, CavCloud files, CavCode files, reports, and signal summaries. The exact context depends on what the user has opened, what the workspace allows, and what the current plan supports.`),
+    p(`When workspace context is available, CavAi may be able to use the Primary site, current route, page content, uploaded files, CavPad notes, Cloud files, CavCode files, reports, and signal summaries. The exact context depends on what the user has opened, what the workspace allows, and what the current plan supports.`),
 
     p(`CavAi should not be treated as a hidden authority over the workspace. It should explain what it can see and help the user act with more clarity. If a signal is missing, stale, incomplete, or unclear, the answer should reflect that. It is better for CavAi to say that more review is needed than to pretend a weak signal is certain.`),
 
@@ -3567,9 +4176,9 @@ Turn these notes into a clean launch checklist.`),
 
     p(`CavAi can support faster work, but users should still review important output. Check legal, security, billing, account, production, and customer-facing changes before publishing or applying them. CavAi can help prepare the work, but the user remains responsible for the final decision.`),
 
-    p(`Do not paste passwords, private keys, payment details, customer secrets, private medical information, or sensitive personal data into CavAi unless the product specifically provides a secure, approved workflow for that type of information. Use CavSafe or protected workspace controls for sensitive files when available.`),
+    p(`Do not paste passwords, private keys, payment details, customer secrets, private medical information, or sensitive personal data into CavAi unless the product specifically provides a secure, approved workflow for that type of information. Use CavBot Vault or protected workspace controls for sensitive files when available.`),
 
-    p(`CavAi access may vary by plan, model, feature, file type, image tool, reasoning mode, workspace policy, or account role. Some models and tools may be limited to Premium or Premium+ users. If a feature is unavailable, check the plan, workspace access, selected model, and product surface before assuming something is broken.`),
+    p(`CavAi access may vary by plan, model, feature, file type, image tool, reasoning mode, workspace policy, or account role. Some models and tools may be limited to Pro or Plus users. If a feature is unavailable, check the plan, workspace access, selected model, and product surface before assuming something is broken.`),
 
     p(`If CavAi gives an answer that feels too broad, ask it to narrow the answer. If it gives a plan that feels too large, ask for the smallest safe next step. If it makes an assumption, ask it to separate confirmed facts from assumptions. If it is missing context, provide the exact route, file, signal, or goal.`),
 
@@ -3608,13 +4217,13 @@ Turn these notes into a clean launch checklist.`),
         ["DeepSeek Reasoner", "Step-by-step thinking, heavier planning, technical breakdowns, and careful reviews.", "Use when the answer needs more structure and deeper reasoning."],
         ["Qwen3.5-Flash", "Fast replies, lightweight questions, quick rewrites, and short summaries.", "Best when speed matters more than depth."],
         ["Qwen3.5-Plus", "Stronger writing, planning, review, and product work.", "Use for more complete answers when the task needs better quality than a quick response."],
-        ["Qwen3-Max", "Research-heavy work, complex planning, and deeper answers that need stronger model support.", "Premium+ model. Used for higher-capability workflows when available."],
+        ["Qwen3-Max", "Research-heavy work, complex planning, and deeper answers that need stronger model support.", "Plus model. Used for higher-capability workflows when available."],
         ["Caven / Qwen3-Coder", "Code explanation, debugging, refactoring, file review, patch planning, and CavCode work.", "Best for development tasks. Use inside CavCode or when the request is clearly about code."],
         ["CavBot Companion", "Guidance, support, onboarding help, and everyday product assistance.", "Designed for calmer product help and user support."],
         ["Qwen ASR", "Speech-to-text and voice input.", "Used when CavAi needs to understand spoken input."],
         ["Qwen TTS", "Text-to-speech and voice output.", "Used when CavAi needs to speak a response."],
-        ["Image Studio", "Generating new images, visuals, brand concepts, and creative assets.", "Requires Premium or Premium+. Use when the task is image generation."],
-        ["Image Edit", "Editing uploaded images, changing visual details, and refining existing assets.", "Requires Premium+. Use when the task starts from an existing image."]
+        ["Image Studio", "Generating new images, visuals, brand concepts, and creative assets.", "Requires Pro or Plus. Use when the task is image generation."],
+        ["Image Edit", "Editing uploaded images, changing visual details, and refining existing assets.", "Requires Plus. Use when the task starts from an existing image."]
       ]
     ),
 
@@ -3640,9 +4249,9 @@ Turn these notes into a clean launch checklist.`),
 {
   id: "assistant-memory",
   title: "Memory",
-  summary: "Keep useful project context available when CavAi responds.",
+  summary: "Keep useful site context available when CavAi responds.",
   blocks: [
-    p(`Memory helps CavAi remember stable project context so it can give better answers over time. It is meant for details that stay true across sessions: what the website is for, which routes matter, how the team prefers to work, what the brand should sound like, and what decisions should carry forward.`),
+    p(`Memory helps CavAi remember stable site context so it can give better answers over time. It is meant for details that stay true across sessions: what the website is for, which routes matter, how the team prefers to work, what the brand should sound like, and what decisions should carry forward.`),
 
     p(`Memory should make CavAi more useful without turning it into a place for secrets. The goal is not to store everything. The goal is to keep the right context close enough that CavAi does not have to ask the same basic questions every time you return to the workspace.`),
 
@@ -3736,7 +4345,7 @@ Turn these notes into a clean launch checklist.`),
     p(`Do not start with a broad request when the work touches production. If the change affects public pages, protected settings, files, billing, members, API keys, storage, or security, ask for a plan first. The plan should explain what will be checked, what will change, what should not change, and how the result will be verified.`),
 
     list([
-      "Start with the active project, selected site, route, file, report, or signal.",
+      "Start with the Primary site, route, file, report, or signal.",
       "State the goal clearly before asking for output.",
       "Ask for a plan before making changes that touch production.",
       "Keep the workflow focused on one issue or one workstream at a time.",
@@ -3831,7 +4440,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`For small fixes, Caven can move directly into explanation and repair. For larger work, ask for a plan first. This is especially important when a change touches multiple files, authentication, billing, workspace roles, API keys, protected routes, storage, CavSafe, CavGuard, CavVerify, or anything that can affect production behavior.`),
+    p(`For small fixes, Caven can move directly into explanation and repair. For larger work, ask for a plan first. This is especially important when a change touches multiple files, authentication, billing, workspace roles, API keys, protected routes, storage, CavBot Vault, CavGuard, CavVerify, or anything that can affect production behavior.`),
 
     list([
       "Use Caven inside CavCode when the active file or workspace files matter.",
@@ -3952,7 +4561,7 @@ Turn these notes into a clean launch checklist.`),
         ["Image Studio", "You want to create a new image from written instructions."],
         ["Image Edit", "You already have an image and want to change, improve, remove, add, or restyle something."],
         ["Caven", "You need to build the page, component, or layout where the image will be used."],
-        ["CavCloud", "You need to store, organize, preview, or share generated image files."]
+        ["CavBot Cloud", "You need to store, organize, preview, or share generated image files."]
       ]
     ),
 
@@ -3975,7 +4584,7 @@ Turn these notes into a clean launch checklist.`),
       "Do not ask Image Studio to create misleading product evidence or fake proof."
     ]),
 
-    p(`Image Studio access depends on the user’s plan. In the current app gating, Image Studio requires Premium or Premium+. Users without access may see the feature as locked or unavailable until the workspace is on a plan that supports it.`),
+    p(`Image Studio access depends on the user’s plan. In the current app gating, Image Studio requires Pro or Plus. Users without access may see the feature as locked or unavailable until the workspace is on a plan that supports it.`),
 
     p(`A good Image Studio workflow is simple: define the purpose, write a clear request, generate the image, review the result, refine the prompt if needed, save the best version, and only then use it in a public or production surface.`),
 
@@ -3987,7 +4596,7 @@ Turn these notes into a clean launch checklist.`),
         ["3. Generate", "Create the first image draft in Image Studio."],
         ["4. Review", "Check quality, brand fit, accuracy, and unwanted artifacts."],
         ["5. Refine", "Adjust the request and generate another version if needed."],
-        ["6. Save", "Keep the strongest result in the workspace or CavCloud when appropriate."],
+        ["6. Save", "Keep the strongest result in the workspace or CavBot Cloud when appropriate."],
         ["7. Publish", "Use the image only after it has been reviewed for the final context."]
       ]
     ),
@@ -4007,7 +4616,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Image Edit is different from Image Studio. Image Studio creates a new image from a written description. Image Edit starts with an uploaded source image. The source image matters. The edit should respect what the user wants to preserve, what should change, and what must not be touched.`),
 
-    p(`In the current app setup, Image Edit routes through Qwen-Image-Edit-Max and requires Premium+. Users without Premium+ access may see the feature as locked, unavailable, or blocked by the plan gate.`),
+    p(`In the current app setup, Image Edit routes through Qwen-Image-Edit-Max and requires Plus. Users without Plus access may see the feature as locked, unavailable, or blocked by the plan gate.`),
 
     table(
       ["Use Image Edit for", "What it helps with"],
@@ -4121,7 +4730,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Image Edit is strongest when the user gives a narrow instruction. Large, vague edits can create results that look polished but miss the purpose. Small, clear edits are easier to review and safer for brand, product, and public use.`),
 
-    p(`If the edit needs to become part of a website, campaign, or product surface, store the approved result in the right workspace location after review. CavCloud can be used to organize edited assets, keep final versions easy to find, and separate working drafts from approved files.`),
+    p(`If the edit needs to become part of a website, campaign, or product surface, store the approved result in the right workspace location after review. CavBot Cloud can be used to organize edited assets, keep final versions easy to find, and separate working drafts from approved files.`),
 
     note("Best use", "Use Image Edit for precise changes to uploaded images. Tell it what to preserve, what to change, and what the final image is for.")
   ]
@@ -4761,7 +5370,7 @@ Turn these notes into a clean launch checklist.`),
 
     note("Important", "Summary helps you decide where to look next. It should not be used as the only source before changing code, redirects, metadata, access settings, billing, or protected workspace configuration."),
 
-    p(`A normal Summary flow starts with the active project and selected site. CavBot reads the current workspace context, checks the latest available site signals, organizes the most useful state into a compact response, and returns that state to the dashboard, report, API layer, or CavAi workflow that requested it.`),
+    p(`A normal Summary flow starts with the Primary site. CavBot reads the current workspace context, checks the latest available site signals, organizes the most useful state into a compact response, and returns that state to the dashboard, report, API layer, or CavAi workflow that requested it.`),
 
     list([
       "Confirm the active workspace.",
@@ -4837,7 +5446,7 @@ Turn these notes into a clean launch checklist.`),
     label: "Developer tools",
     
     title: "Developer tools",
-    description: "Use CavCode, CavCloud, CavTools, HTML Viewer, and Cav commands for development and workspace operations.",
+    description: "Use CavCode, CavBot Cloud, CavBot Terminal, HTML Viewer, and Cav commands for development and workspace operations.",
     sections: [
      {
   id: "cavcode",
@@ -4882,7 +5491,7 @@ Turn these notes into a clean launch checklist.`),
       "Verify the change before moving to the next file."
     ]),
 
-    p(`CavCode can work with files stored in the CavCode workspace and, when available, files connected through CavCloud or mounted workspace storage. This helps keep code, files, previews, and assistant context close to the same project.`),
+    p(`CavCode can work with files stored in the CavCode workspace and, when available, files connected through CavBot Cloud or mounted workspace storage. This helps keep code, files, previews, and assistant context close to the same project.`),
 
     p(`Saving in CavCode should be treated as a real workspace action. Before changing a file, confirm that the active project, selected workspace, and file path are correct. Do not edit a file only because it appears open. Make sure it is the file you actually intend to change.`),
 
@@ -4977,15 +5586,15 @@ Turn these notes into a clean launch checklist.`),
 },
 
      {
-  id: "cavcloud",
+  id: "cloud",
   title: "Cloud",
   summary: "Store, organize, preview, share, and manage workspace files.",
   blocks: [
-    p(`CavCloud is CavBot’s workspace file storage. It gives each workspace a clear place to keep files, folders, uploads, documents, generated outputs, HTML files, project assets, notes, exports, and other working material connected to the project.`),
+    p(`CavBot Cloud is CavBot’s workspace file storage. It gives each workspace a clear place to keep files, folders, uploads, documents, generated outputs, HTML files, project assets, notes, exports, and other working material connected to the project.`),
 
-    p(`Use CavCloud when a file belongs to the workspace and should be easier to find, preview, organize, share, restore, or use inside CavBot. Instead of leaving important files scattered across downloads, local folders, messages, and random drives, CavCloud keeps project material close to the tools that use it.`),
+    p(`Use CavBot Cloud when a file belongs to the workspace and should be easier to find, preview, organize, share, restore, or use inside CavBot. Instead of leaving important files scattered across downloads, local folders, messages, and random drives, CavBot Cloud keeps project material close to the tools that use it.`),
 
-    p(`CavCloud supports folders, files, uploads, text editing, previews, sharing, published files, activity history, search, tree views, versions, trash restore, collaborators, and storage notices. It is designed to work with CavCode, CavCode Viewer, CavPad, CavAi, and other CavBot surfaces that need access to workspace files.`),
+    p(`CavBot Cloud supports folders, files, uploads, text editing, previews, sharing, published files, activity history, search, tree views, versions, trash restore, collaborators, and storage notices. It is designed to work with CavCode, HTML Viewer, CavPad, CavAi, and other CavBot surfaces that need access to workspace files.`),
 
     table(
       ["Area", "What it is for"],
@@ -5003,12 +5612,12 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`CavCloud is best for ordinary workspace files. Use it for brand assets, project documents, notes, exports, HTML files, generated pages, screenshots, code-related files, public assets, preview material, and files that teammates may need to review.`),
+    p(`CavBot Cloud is best for ordinary workspace files. Use it for brand assets, project documents, notes, exports, HTML files, generated pages, screenshots, code-related files, public assets, preview material, and files that teammates may need to review.`),
 
-    p(`CavCloud is not the same as CavSafe. CavCloud is the normal workspace storage layer. CavSafe is for protected files that need stronger control, owner-only access, integrity review, time locks, snapshots, or audit-focused handling. Keep normal files in CavCloud so the workspace stays easy to use. Move sensitive files into CavSafe only when they need stronger protection.`),
+    p(`CavBot Cloud is not the same as CavBot Vault. CavBot Cloud is the normal workspace storage layer. CavBot Vault is for protected files that need stronger control, owner-only access, integrity review, time locks, snapshots, or audit-focused handling. Keep normal files in CavBot Cloud so the workspace stays easy to use. Move sensitive files into CavBot Vault only when they need stronger protection.`),
 
     table(
-      ["Use CavCloud for", "Use CavSafe for"],
+      ["Use CavBot Cloud for", "Use CavBot Vault for"],
       [
         ["Working documents", "Sensitive business records"],
         ["Brand assets", "Private legal or financial material"],
@@ -5018,7 +5627,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`A clean CavCloud workspace starts with good folders. Do not drop every file into one place. Create folders that match how the work is actually reviewed: client files, brand assets, code exports, reports, screenshots, HTML previews, launch material, support files, or project notes.`),
+    p(`A clean CavBot Cloud workspace starts with good folders. Do not drop every file into one place. Create folders that match how the work is actually reviewed: client files, brand assets, code exports, reports, screenshots, HTML previews, launch material, support files, or project notes.`),
 
     list([
       "Use clear folder names.",
@@ -5026,14 +5635,14 @@ Turn these notes into a clean launch checklist.`),
       "Separate public assets from private working files.",
       "Move old files into archive folders when they are no longer active.",
       "Delete duplicates when they create confusion.",
-      "Use CavSafe for protected files instead of hiding them inside normal folders."
+      "Use CavBot Vault for protected files instead of hiding them inside normal folders."
     ]),
 
-    p(`CavCloud can support CavCode by making workspace files easier to open, preview, and edit when the file type is supported. For example, an HTML file stored in CavCloud can be opened for review, edited in a supported editor flow, or previewed through the viewer when the workspace allows it.`),
+    p(`CavBot Cloud can support CavCode by making workspace files easier to open, preview, and edit when the file type is supported. For example, an HTML file stored in CavBot Cloud can be opened for review, edited in a supported editor flow, or previewed through the viewer when the workspace allows it.`),
 
-    p(`CavCloud can also support CavAi and Caven workflows. When a file is part of the work, the assistant can be given the file context where supported. This is useful for summarizing a document, reviewing a code file, preparing a fix plan, explaining an export, or turning a file into a clearer next step.`),
+    p(`CavBot Cloud can also support CavAi and Caven workflows. When a file is part of the work, the assistant can be given the file context where supported. This is useful for summarizing a document, reviewing a code file, preparing a fix plan, explaining an export, or turning a file into a clearer next step.`),
 
-    p(`When using CavCloud with generated outputs, keep the output connected to the reason it was created. A generated report, HTML page, image, text file, or project export should have a name that makes its purpose clear. Avoid vague file names like final, new, test, or version2 when the file may be reviewed later.`),
+    p(`When using CavBot Cloud with generated outputs, keep the output connected to the reason it was created. A generated report, HTML page, image, text file, or project export should have a name that makes its purpose clear. Avoid vague file names like final, new, test, or version2 when the file may be reviewed later.`),
 
     table(
       ["Weak name", "Better name"],
@@ -5046,14 +5655,14 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`Storage limits depend on the workspace plan. Free workspaces include basic CavCloud storage. Premium and Premium+ workspaces include larger storage capacity for heavier projects, more files, and larger operating needs.`),
+    p(`Storage limits depend on the workspace plan. Free workspaces include basic CavBot Cloud storage. Pro and Plus workspaces include larger storage capacity for heavier projects, more files, and larger operating needs.`),
 
     table(
-      ["Plan", "CavCloud storage"],
+      ["Plan", "CavBot Cloud storage"],
       [
-        ["Free", "5 GB CavCloud storage"],
-        ["Premium", "50 GB CavCloud storage"],
-        ["Premium+", "500 GB CavCloud storage"]
+        ["Free", "5 GB CavBot Cloud storage"],
+        ["Pro", "50 GB CavBot Cloud storage"],
+        ["Plus", "500 GB CavBot Cloud storage"]
       ]
     ),
 
@@ -5061,13 +5670,13 @@ Turn these notes into a clean launch checklist.`),
 
     note("Storage review", "Before uploading large projects, videos, image sets, site exports, or generated file bundles, check the current workspace storage level."),
 
-    p(`CavCloud sharing should be used carefully. Only share files with people who need access. Before publishing or sharing a file, confirm that it does not contain private notes, keys, customer information, internal drafts, billing records, or protected workspace material.`),
+    p(`CavBot Cloud sharing should be used carefully. Only share files with people who need access. Before publishing or sharing a file, confirm that it does not contain private notes, keys, customer information, internal drafts, billing records, or protected workspace material.`),
 
     p(`If a file should be public, make sure the name, content, and folder location are ready for that use. If a file should stay internal, keep it private and review who has workspace access before sharing it with others.`),
 
     list([
       "Review the file before sharing it.",
-      "Confirm the file belongs in CavCloud and not CavSafe.",
+      "Confirm the file belongs in CavBot Cloud and not CavBot Vault.",
       "Check whether the file contains private information.",
       "Use clear names so shared files are easy to understand.",
       "Remove access when a file no longer needs to be shared."
@@ -5075,11 +5684,11 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Trash and restore features help prevent small mistakes from becoming permanent losses. If a file is deleted by accident, check the trash or restore area when available. Do not rely on trash as a long-term archive. Important files should be organized, backed up, or protected according to their purpose.`),
 
-    p(`Version history helps when a file changes over time. Use versions to understand what changed, recover from a bad edit, or compare a newer file against an older one. If the file is business-critical, review whether it should also be protected through CavSafe or exported for external backup.`),
+    p(`Version history helps when a file changes over time. Use versions to understand what changed, recover from a bad edit, or compare a newer file against an older one. If the file is business-critical, review whether it should also be protected through CavBot Vault or exported for external backup.`),
 
-    p(`CavCloud activity helps the workspace understand what happened around files. Activity can show uploads, changes, sharing behavior, restore actions, published files, or other file-related events when the system records them.`),
+    p(`CavBot Cloud activity helps the workspace understand what happened around files. Activity can show uploads, changes, sharing behavior, restore actions, published files, or other file-related events when the system records them.`),
 
-    p(`For teams, CavCloud should be kept clean enough that another teammate can open the workspace and understand where files belong. A messy storage space slows down every future workflow. A clean CavCloud structure makes CavCode, CavAi, previews, reports, and team review easier.`),
+    p(`For teams, CavBot Cloud should be kept clean enough that another teammate can open the workspace and understand where files belong. A messy storage space slows down every future workflow. A clean CavBot Cloud structure makes CavCode, CavAi, previews, reports, and team review easier.`),
 
     table(
       ["Problem", "What to check"],
@@ -5088,29 +5697,29 @@ Turn these notes into a clean launch checklist.`),
         ["Preview does not load", "Confirm the file type is supported and the file is not corrupted or too large."],
         ["CavCode cannot open the file", "Check whether the file type is editable and whether the workspace mount is available."],
         ["Storage is almost full", "Review large uploads, duplicate exports, videos, image sets, and old project bundles."],
-        ["Shared file should not be public", "Remove the share or publish state and move protected material to CavSafe if needed."]
+        ["Shared file should not be public", "Remove the share or publish state and move protected material to CavBot Vault if needed."]
       ]
     ),
 
-    p(`CavCloud should not become a dumping ground. It should be the workspace’s organized file layer. Store what matters, name files clearly, keep folders readable, review storage regularly, and protect sensitive material in CavSafe when stronger controls are needed.`),
+    p(`CavBot Cloud should not become a dumping ground. It should be the workspace’s organized file layer. Store what matters, name files clearly, keep folders readable, review storage regularly, and protect sensitive material in CavBot Vault when stronger controls are needed.`),
 
-    note("Core rule", "Use CavCloud for active workspace files. Keep it organized, review storage before large uploads, and move sensitive files to CavSafe when they need stronger protection.")
+    note("Core rule", "Use CavBot Cloud for active workspace files. Keep it organized, review storage before large uploads, and move sensitive files to CavBot Vault when they need stronger protection.")
   ]
 },
 
     {
-  id: "cavtools",
+  id: "terminal",
   title: "Terminal",
   summary: "Inspect workspace behavior, commands, files, previews, and developer output.",
   blocks: [
-    p(`CavTools is the developer inspection area inside CavBot. It gives builders a focused place to check what is happening inside a workspace before changing code, files, settings, or production behavior.`),
+    p(`CavBot Terminal is the developer inspection area inside CavBot. It gives builders a focused place to check what is happening inside a workspace before changing code, files, settings, or production behavior.`),
 
-    p(`Use CavTools when something needs a closer look. If a file does not open, a preview does not match the latest edit, a command returns an unexpected result, a workspace action feels stuck, or a developer surface is not behaving correctly, CavTools helps you inspect the state instead of guessing.`),
+    p(`Use the terminal when something needs a closer look. If a file does not open, a preview does not match the latest edit, a command returns an unexpected result, a workspace action feels stuck, or a developer surface is not behaving correctly, CavBot Terminal helps you inspect the state instead of guessing.`),
 
-    p(`CavTools is built for review, testing, and verification. It helps answer practical questions: what command ran, what output came back, which file was referenced, what workspace is active, which site is selected, what recent activity happened, and where the next step should happen.`),
+    p(`CavBot Terminal is built for review, testing, and verification. It helps answer practical questions: what command ran, what output came back, which file was referenced, what workspace is active, which site is selected, what recent activity happened, and where the next step should happen.`),
 
     table(
-      ["Area", "What CavTools helps with"],
+      ["Area", "What CavBot Terminal helps with"],
       [
         ["Workspace context", "Confirm the active project, selected site, current file, and related workspace state."],
         ["Command output", "Read the result of Cav commands, developer actions, checks, and tool responses."],
@@ -5118,50 +5727,50 @@ Turn these notes into a clean launch checklist.`),
         ["File behavior", "Check whether a file opened, saved, previewed, moved, or failed as expected."],
         ["Preview issues", "Investigate why a live view or preview does not match the file you expected."],
         ["Diagnostics", "Review developer-facing messages, warnings, failures, and action results."],
-        ["Safe testing", "Test a workflow before making a larger change in CavCode, CavCloud, or workspace settings."]
+        ["Safe testing", "Test a workflow before making a larger change in CavCode, CavBot Cloud, or workspace settings."]
       ]
     ),
 
-    p(`CavTools should be opened when the normal product screen does not give enough detail. A dashboard can show that something needs attention. CavTools helps you inspect the action behind the result so you can decide what to do next with more confidence.`),
+    p(`CavBot Terminal should be opened when the normal product screen does not give enough detail. A dashboard can show that something needs attention. CavBot Terminal helps you inspect the action behind the result so you can decide what to do next with more confidence.`),
 
-    p(`For example, if a preview is not showing the latest file, CavTools can help you check whether the right file is selected, whether the workspace context is correct, whether the preview action returned an error, or whether the problem belongs in CavCode, CavCloud, the viewer, or the workspace settings.`),
+    p(`For example, if a preview is not showing the latest file, CavBot Terminal can help you check whether the right file is selected, whether the workspace context is correct, whether the preview action returned an error, or whether the problem belongs in CavCode, CavBot Cloud, the viewer, or the workspace settings.`),
 
-    p(`If a command does not behave as expected, CavTools gives you a place to read the command result clearly. That matters because the answer may not be “the app is broken.” The result may point to a missing file, a wrong path, a locked feature, a permission issue, a workspace mismatch, or an action that needs to be run somewhere else.`),
+    p(`If a command does not behave as expected, CavBot Terminal gives you a place to read the command result clearly. That matters because the answer may not be “the app is broken.” The result may point to a missing file, a wrong path, a locked feature, a permission issue, a workspace mismatch, or an action that needs to be run somewhere else.`),
 
-    p(`CavTools is not the same as CavCode. CavCode is where you write, edit, review, and run code. CavTools is where you inspect the developer workflow around that code. CavCode is for changing the work. CavTools is for checking the work, reading output, and understanding what happened.`),
+    p(`CavBot Terminal is not the same as CavCode. CavCode is where you write, edit, review, and run code. The Terminal is where you inspect the developer workflow around that code. CavCode is for changing the work. CavBot Terminal is for checking the work, reading output, and understanding what happened.`),
 
-    p(`CavTools is also not a replacement for the main dashboard. The dashboard is for understanding the website and workspace at a higher level. CavTools is for developer-level inspection when you need to see the details behind a file action, command, preview, runtime message, or workspace behavior.`),
+    p(`CavBot Terminal is also not a replacement for the main dashboard. The dashboard is for understanding the website and workspace at a higher level. CavBot Terminal is for developer-level inspection when you need to see the details behind a file action, command, preview, runtime message, or workspace behavior.`),
 
     table(
       ["Use", "Open this surface"],
       [
         ["You need to edit code", "CavCode"],
-        ["You need to inspect command output", "CavTools"],
-        ["You need to organize files", "CavCloud"],
+        ["You need to inspect command output", "CavBot Terminal"],
+        ["You need to organize files", "CavBot Cloud"],
         ["You need to preview an HTML file", "HTML Viewer"],
         ["You need to review site signals", "Dashboard or focused signal modules"],
-        ["You need to understand why a developer action failed", "CavTools"]
+        ["You need to understand why a developer action failed", "CavBot Terminal"]
       ]
     ),
 
-    p(`A strong CavTools workflow is simple: inspect, confirm, act, and verify. First inspect the current state. Then confirm the project, site, file, command, or action target. Then make the smallest safe change in the correct surface. After that, return to CavTools, CavCode, CavCloud, or the dashboard to verify the result.`),
+    p(`A strong Terminal workflow is simple: inspect, confirm, act, and verify. First inspect the current state. Then confirm the project, site, file, command, or action target. Then make the smallest safe change in the correct surface. After that, return to CavBot Terminal, CavCode, CavBot Cloud, or the dashboard to verify the result.`),
 
     list([
-      "Open CavTools before changing files or settings when the issue is unclear.",
+      "Open CavBot Terminal before changing files or settings when the issue is unclear.",
       "Confirm the active project and selected site before reviewing output.",
       "Read command results carefully before taking action.",
-      "Check whether the issue belongs in CavCode, CavCloud, the viewer, dashboard, or workspace settings.",
+      "Check whether the issue belongs in CavCode, CavBot Cloud, the viewer, dashboard, or workspace settings.",
       "Use read-only checks before running actions that write, delete, restart, replace, restore, or publish.",
       "Return to the correct surface only after you understand what needs to change."
     ]),
 
-    p(`CavTools is especially useful for teams because it makes technical issues easier to explain. Instead of saying something is broken, a developer can say what was checked, what command ran, what result came back, what looks wrong, and which surface should be opened next.`),
+    p(`CavBot Terminal is especially useful for teams because it makes technical issues easier to explain. Instead of saying something is broken, a developer can say what was checked, what command ran, what result came back, what looks wrong, and which surface should be opened next.`),
 
-    p(`For solo builders, CavTools helps you move faster without making blind changes. You can check the result of a command, confirm that a file exists, verify that the right workspace is active, and understand the next step before touching the code.`),
+    p(`For solo builders, CavBot Terminal helps you move faster without making blind changes. You can check the result of a command, confirm that a file exists, verify that the right workspace is active, and understand the next step before touching the code.`),
 
-    note("Best practice", "Use CavTools as your inspection layer. Read first, confirm the target, then make the smallest safe change in the correct surface."),
+    note("Best practice", "Use CavBot Terminal as your inspection layer. Read first, confirm the target, then make the smallest safe change in the correct surface."),
 
-    p(`CavTools should be used with care around actions that can change the workspace. Reading output is safe. Changing files, deleting files, restarting sessions, replacing content, publishing previews, restoring items, or changing settings should only happen after the target is clear.`),
+    p(`CavBot Terminal should be used with care around actions that can change the workspace. Reading output is safe. Changing files, deleting files, restarting sessions, replacing content, publishing previews, restoring items, or changing settings should only happen after the target is clear.`),
 
     table(
       ["Before acting", "Confirm"],
@@ -5175,9 +5784,9 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`CavTools can help investigate preview problems. If the viewer is not showing the expected page, check whether the file was saved, whether the correct file is selected, whether linked assets are available, whether the preview route is reading the current file, and whether the output shows an error.`),
+    p(`CavBot Terminal can help investigate preview problems. If the viewer is not showing the expected page, check whether the file was saved, whether the correct file is selected, whether linked assets are available, whether the preview route is reading the current file, and whether the output shows an error.`),
 
-    p(`CavTools can also help investigate command problems. If a command returns an error, read the full result before changing anything. The command may be missing a file path, using the wrong workspace, referencing a locked feature, or expecting a task that has not been configured yet.`),
+    p(`CavBot Terminal can also help investigate command problems. If a command returns an error, read the full result before changing anything. The command may be missing a file path, using the wrong workspace, referencing a locked feature, or expecting a task that has not been configured yet.`),
 
     table(
       ["Problem", "What to check"],
@@ -5191,11 +5800,11 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`CavTools should make developer work calmer. It gives you a place to slow down, read the result, and choose the next move. That keeps the workspace from turning into guesswork when something does not behave the way you expected.`),
+    p(`CavBot Terminal should make developer work calmer. It gives you a place to slow down, read the result, and choose the next move. That keeps the workspace from turning into guesswork when something does not behave the way you expected.`),
 
-    p(`Use CavTools when the question is not just “what does the page show?” but “what happened behind this action?” That is where CavTools belongs in the workflow. It turns unclear behavior into a readable result, and a readable result into a safer next step.`),
+    p(`Use CavBot Terminal when the question is not just “what does the page show?” but “what happened behind this action?” That is where CavBot Terminal belongs in the workflow. It turns unclear behavior into a readable result, and a readable result into a safer next step.`),
 
-    note("Core rule", "CavTools is for inspection before action. Use it to understand what happened, then make the change in the right place.")
+    note("Core rule", "CavBot Terminal is for inspection before action. Use it to understand what happened, then make the change in the right place.")
   ]
 },
 
@@ -5205,9 +5814,9 @@ Turn these notes into a clean launch checklist.`),
   title: "HTML Viewer",
   summary: "Preview HTML files, assets, and generated pages before publishing.",
   blocks: [
-    p(`HTML Viewer is CavBot’s live preview surface for HTML files and related web assets. It lives at /cavcode-viewer and gives users a way to open a saved page, render it in the browser, inspect the result, and confirm that the file behaves the way it should before it is published or shared.`),
+    p(`HTML Viewer is CavBot’s live preview surface for HTML files and related web assets. It lives at /html-viewer and gives users a way to open a saved page, render it in the browser, inspect the result, and confirm that the file behaves the way it should before it is published or shared.`),
 
-    p(`Use HTML Viewer when you need to preview an HTML artifact from CavCloud, CavSafe, CavCode, or a connected workspace file. It is built for generated pages, edited HTML files, saved website sections, exported templates, preview documents, static pages, and files that need to be reviewed visually before the next step.`),
+    p(`Use HTML Viewer when you need to preview an HTML artifact from CavBot Cloud, CavBot Vault, CavCode, or a connected workspace file. It is built for generated pages, edited HTML files, saved website sections, exported templates, preview documents, static pages, and files that need to be reviewed visually before the next step.`),
 
     p(`HTML Viewer can load HTML, CSS, JavaScript, images, video, fonts, JSON, SVG, and other supported assets through CavBot’s file APIs. When a file is opened, the viewer attempts to render the page using the file and its referenced assets so the user can see the page as a working browser preview instead of reading raw source alone.`),
 
@@ -5220,7 +5829,7 @@ Turn these notes into a clean launch checklist.`),
         ["Check linked assets", "Verify that CSS, images, scripts, fonts, SVGs, and media files load correctly."],
         ["Test static artifacts", "Review static exports, landing pages, legal pages, docs pages, and HTML templates."],
         ["Support CavCode work", "Preview files edited in CavCode without leaving the CavBot workspace."],
-        ["Review protected files", "Preview eligible CavSafe files when the user has the right access."]
+        ["Review protected files", "Preview eligible CavBot Vault files when the user has the right access."]
       ]
     ),
 
@@ -5249,7 +5858,7 @@ Turn these notes into a clean launch checklist.`),
         ["Fonts are missing", "Check font paths, file type, and whether the font file was uploaded."],
         ["Layout looks different", "Confirm the preview file is the latest saved version and all CSS dependencies are present."],
         ["Preview opens the wrong file", "Confirm the selected file path and active workspace before previewing again."],
-        ["Protected file will not preview", "Check CavSafe permissions, owner-only access, and whether the file is allowed to be rendered."]
+        ["Protected file will not preview", "Check CavBot Vault permissions, owner-only access, and whether the file is allowed to be rendered."]
       ]
     ),
 
@@ -5257,9 +5866,9 @@ Turn these notes into a clean launch checklist.`),
 
     p(`For static pages, HTML Viewer is especially useful when reviewing pages such as legal documents, docs pages, landing pages, help pages, status pages, error pages, and marketing sections. These pages often depend on clean structure, stable links, readable text, and careful spacing. The viewer helps you check the result quickly.`),
 
-    p(`When previewing a file from CavCloud, confirm that the file and its assets are stored together in a way the viewer can resolve. If an HTML file references /assets/logo.svg but the asset was uploaded somewhere else, the preview may not match the intended page. Keep related page files organized in the same folder or in a predictable asset structure.`),
+    p(`When previewing a file from CavBot Cloud, confirm that the file and its assets are stored together in a way the viewer can resolve. If an HTML file references /assets/logo.svg but the asset was uploaded somewhere else, the preview may not match the intended page. Keep related page files organized in the same folder or in a predictable asset structure.`),
 
-    p(`When previewing a file from CavSafe, remember that protected storage may enforce stricter access. A user must have the right permission before the file can be opened or rendered. If the file is sensitive, review whether it should be previewed, shared, published, or moved into ordinary CavCloud storage before exposing it.`),
+    p(`When previewing a file from CavBot Vault, remember that protected storage may enforce stricter access. A user must have the right permission before the file can be opened or rendered. If the file is sensitive, review whether it should be previewed, shared, published, or moved into ordinary CavBot Cloud storage before exposing it.`),
 
     note("Safe preview rule", "Use HTML Viewer to inspect the result before publishing. Do not treat a preview as production until the page has also been tested on the real site, with the real route, real assets, and real browser behavior."),
 
@@ -5293,7 +5902,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`HTML Viewer is most valuable when it keeps users from publishing blind. Instead of guessing whether a generated or edited file works, the user can open it, see it, inspect it, and make a cleaner decision before moving forward.`),
 
-    note("Core rule", "Edit in CavCode, organize in CavCloud or CavSafe, preview in HTML Viewer, then verify on the real site before publishing.")
+    note("Core rule", "Edit in CavCode, organize in CavBot Cloud or CavBot Vault, preview in HTML Viewer, then verify on the real site before publishing.")
   ]
 },
 
@@ -5337,7 +5946,7 @@ Turn these notes into a clean launch checklist.`),
       "Review the result after a command runs."
     ]),
 
-    p(`Cav commands are especially useful inside CavTools and CavCode. CavTools helps you inspect what happened. CavCode helps you open, edit, save, and review files. The command line connects those surfaces so a user can move quickly without losing the workspace context.`),
+    p(`Cav commands are especially useful inside CavBot Terminal and CavCode. The Terminal helps you inspect what happened. CavCode helps you open, edit, save, and review files. The command line connects those surfaces so a user can move quickly without losing the workspace context.`),
 
     p(`For example, if a file preview looks wrong, you can use Cav commands to inspect the current context, list files in the folder, open the source file, search for a string, check diagnostics, and then return to the viewer after the file is corrected.`),
 
@@ -5349,7 +5958,7 @@ Turn these notes into a clean launch checklist.`),
 
     note("Important", "Typing a command should never bypass ownership, roles, protected storage, verification, or workspace safety rules. Cav commands should operate inside the same protection model as the rest of CavBot."),
 
-    p(`Paths matter. When a command asks for a path, use the exact path shown by CavBot. A codebase path, workspace path, CavCloud path, or CavSafe path may refer to different file areas. If the wrong path is used, the command may open the wrong file, fail to find the file, or return a result that does not match what you expected.`),
+    p(`Paths matter. When a command asks for a path, use the exact path shown by CavBot. A codebase path, workspace path, CavBot Cloud path, or CavBot Vault path may refer to different file areas. If the wrong path is used, the command may open the wrong file, fail to find the file, or return a result that does not match what you expected.`),
 
     table(
       ["Path or target", "How to treat it"],
@@ -5372,7 +5981,7 @@ Turn these notes into a clean launch checklist.`),
       "Open or read the target before changing it.",
       "Run the smallest command that performs the action you need.",
       "Read the command output carefully.",
-      "Verify the result in CavTools, CavCode, HTML Viewer, CavCloud, or the relevant workspace surface."
+      "Verify the result in CavBot Terminal, CavCode, HTML Viewer, CavBot Cloud, or the relevant workspace surface."
     ]),
 
     p(`Command output should be read carefully. A result may tell you that a file was not found, a command is not available, a plan does not allow the action, a session is missing, a path is invalid, a feature is locked, or a protected workflow needs a different route.`),
@@ -5412,7 +6021,7 @@ Turn these notes into a clean launch checklist.`),
     label: "Security",
 
     title: "Security",
-    description: "Use CavVerify, CavGuard, CavSafe, audit trails, and risk controls to protect workspace actions and files.",
+    description: "Use CavVerify, CavGuard, CavBot Vault, audit trails, and risk controls to protect workspace actions and files.",
     sections: [
 
      {
@@ -5529,7 +6138,7 @@ Turn these notes into a clean launch checklist.`),
         ["Billing and plans", "Restricts subscription, plan, payment, and cancellation actions to authorized users."],
         ["Workspace controls", "Prevents unsafe changes to projects, sites, primary site selection, and workspace configuration."],
         ["Security settings", "Protects guardrails, verification settings, protected actions, and sensitive platform rules."],
-        ["Files and storage", "Can restrict protected CavCloud, CavSafe, sharing, deletion, restore, and publication workflows."],
+        ["Files and storage", "Can restrict protected CavBot Cloud, CavBot Vault, sharing, deletion, restore, and publication workflows."],
         ["AI and command actions", "Can prevent restricted AI, coding, command, or automation workflows from running without permission."]
       ]
     ),
@@ -5615,7 +6224,7 @@ Turn these notes into a clean launch checklist.`),
       "Keep the message short enough to read, but specific enough to trust."
     ]),
 
-    p(`CavGuard can also help protect plan-governed features. If a user tries to access a feature that belongs to Premium or Premium+, CavGuard can prevent the action and explain that the current plan does not include it. This keeps the product honest and prevents hidden feature failures.`),
+    p(`CavGuard can also help protect plan-governed features. If a user tries to access a feature that belongs to Pro or Plus, CavGuard can prevent the action and explain that the current plan does not include it. This keeps the product honest and prevents hidden feature failures.`),
 
     p(`CavGuard should also protect destructive workflows. Deleting a site, removing a teammate, revoking a key, deleting a protected file, changing a security rule, or modifying billing should require more than a casual click. CavGuard gives CavBot a place to slow the action down and require the correct authority.`),
 
@@ -5653,133 +6262,133 @@ Turn these notes into a clean launch checklist.`),
 
     p(`CavGuard is part of CavBot’s trust system. It helps the platform stay safe as more features become connected: AI, code, files, sites, billing, teams, reports, storage, and workspace automation. The more powerful CavBot becomes, the more important it is that sensitive actions are governed clearly.`),
 
-    p(`CavBot may expand CavGuard over time. Future versions may include stronger owner policies, workspace-defined approval rules, more detailed role permissions, deeper audit records, plan-aware enforcement, action approvals, and tighter integration with CavVerify and CavSafe.`),
+    p(`CavBot may expand CavGuard over time. Future versions may include stronger owner policies, workspace-defined approval rules, more detailed role permissions, deeper audit records, plan-aware enforcement, action approvals, and tighter integration with CavVerify and CavBot Vault.`),
 
     note("Core rule", "CavGuard decides authorization. CavVerify can confirm presence, but CavGuard decides whether the action is allowed.")
   ]
 },
 
      {
-  id: "cavsafe",
-  title: "CavSafe",
+  id: "vault",
+  title: "CavBot Vault",
   summary: "Protected owner-only storage for sensitive workspace files, secured records, snapshots, and audit-ready file activity.",
   blocks: [
-    p(`CavSafe is CavBot’s protected storage area for files that need stronger control than ordinary CavCloud storage. It is built for sensitive workspace material: private business records, protected documents, important assets, security-related files, legal or compliance material, high-value project files, and anything that should not sit in normal team storage without tighter review.`),
+    p(`CavBot Vault is CavBot’s protected storage area for files that need stronger control than ordinary CavBot Cloud storage. It is built for sensitive workspace material: private business records, protected documents, important assets, security-related files, legal or compliance material, high-value project files, and anything that should not sit in normal team storage without tighter review.`),
 
-    p(`CavCloud is for everyday workspace files. CavSafe is for protected files. That difference matters. A normal design file, exported image, public document, or ordinary project asset belongs in CavCloud. A file that should only be handled by the owner, reviewed carefully, protected from casual sharing, or kept with stronger records belongs in CavSafe.`),
+    p(`CavBot Cloud is for everyday workspace files. CavBot Vault is for protected files. That difference matters. A normal design file, exported image, public document, or ordinary project asset belongs in CavBot Cloud. A file that should only be handled by the owner, reviewed carefully, protected from casual sharing, or kept with stronger records belongs in CavBot Vault.`),
 
-    p(`CavSafe is not included on the Free plan. Free users can use normal CavCloud storage, but protected CavSafe storage starts with paid plans. This keeps secured storage reserved for workspaces that need stronger controls around ownership, access, file history, and protected operations.`),
+    p(`CavBot Vault is not included on the Free plan. Free users can use normal CavBot Cloud storage, but protected CavBot Vault storage starts with paid plans. This keeps secured storage reserved for workspaces that need stronger controls around ownership, access, file history, and protected operations.`),
 
     table(
-      ["Plan", "CavSafe access"],
+      ["Plan", "CavBot Vault access"],
       [
-        ["Free", "No CavSafe access. Use CavCloud for ordinary workspace files."],
-        ["Premium", "Owner-only CavSafe access with 10 GB of secured storage."],
-        ["Premium+", "Owner-only CavSafe access with 50 GB of secured storage, integrity lock, audit log, time locks, snapshots, and CavSafe analytics."]
+        ["Free", "No CavBot Vault access. Use CavBot Cloud for ordinary workspace files."],
+        ["Pro", "Owner-only CavBot Vault access with 10 GB of secured storage."],
+        ["Plus", "Owner-only CavBot Vault access with 50 GB of secured storage, integrity lock, audit log, time locks, snapshots, and CavBot Vault analytics."]
       ]
     ),
 
-    p(`On Premium, CavSafe gives the workspace owner a protected storage area with 10 GB of secured storage. This is the right tier for a founder, solo builder, or small team that needs a private place for sensitive files without exposing those files to ordinary workspace access.`),
+    p(`On Pro, CavBot Vault gives the workspace owner a protected storage area with 10 GB of secured storage. This is the right tier for a founder, solo builder, or small team that needs a private place for sensitive files without exposing those files to ordinary workspace access.`),
 
-    p(`On Premium+, CavSafe becomes a deeper protected storage system. Premium+ includes 50 GB of secured storage and adds stronger controls such as integrity lock, audit log, time locks, snapshots, and CavSafe analytics. This is the right tier when the workspace needs more serious file protection, file history, owner oversight, and clearer records around protected activity.`),
+    p(`On Plus, CavBot Vault becomes a deeper protected storage system. Plus includes 50 GB of secured storage and adds stronger controls such as integrity lock, audit log, time locks, snapshots, and CavBot Vault analytics. This is the right tier when the workspace needs more serious file protection, file history, owner oversight, and clearer records around protected activity.`),
 
-    note("Free plan", "Free users do not receive CavSafe access. CavSafe begins on Premium because protected storage requires stronger account, owner, and workspace controls."),
+    note("Free plan", "Free users do not receive CavBot Vault access. CavBot Vault begins on Pro because protected storage requires stronger account, owner, and workspace controls."),
 
-    p(`CavSafe access is owner-only by default. That means protected files should be controlled by the workspace owner, not casually available to every member. The goal is to keep sensitive material separated from normal collaboration while still keeping it inside the CavBot workspace where it can be organized and reviewed.`),
+    p(`CavBot Vault access is owner-only by default. That means protected files should be controlled by the workspace owner, not casually available to every member. The goal is to keep sensitive material separated from normal collaboration while still keeping it inside the CavBot workspace where it can be organized and reviewed.`),
 
-    p(`Owner-only access is important because protected files can carry more risk than ordinary files. A billing document, private contract, security note, sensitive export, protected asset, or internal record should not be handled the same way as a normal image or public project file. CavSafe gives the owner a clear place to keep those files under tighter control.`),
+    p(`Owner-only access is important because protected files can carry more risk than ordinary files. A billing document, private contract, security note, sensitive export, protected asset, or internal record should not be handled the same way as a normal image or public project file. CavBot Vault gives the owner a clear place to keep those files under tighter control.`),
 
     table(
       ["Feature", "What it means"],
       [
         ["Owner-only access", "Protected files are controlled by the workspace owner instead of being open to ordinary workspace members."],
-        ["10 GB secured storage", "Premium workspaces receive 10 GB of CavSafe storage for protected files."],
-        ["50 GB secured storage", "Premium+ workspaces receive 50 GB of CavSafe storage for larger protected file needs."],
+        ["10 GB secured storage", "Pro workspaces receive 10 GB of CavBot Vault storage for protected files."],
+        ["50 GB secured storage", "Plus workspaces receive 50 GB of CavBot Vault storage for larger protected file needs."],
         ["Integrity lock", "Helps protect important files from being changed without stronger control or review."],
-        ["Audit log", "Records important CavSafe activity so the owner can review what happened."],
+        ["Audit log", "Records important CavBot Vault activity so the owner can review what happened."],
         ["Time locks", "Allows protected files or actions to be held behind a time-based restriction where supported."],
         ["Snapshots", "Keeps protected file states available for review or recovery where supported."],
-        ["CavSafe analytics", "Gives the owner visibility into protected storage usage and activity."]
+        ["CavBot Vault analytics", "Gives the owner visibility into protected storage usage and activity."]
       ]
     ),
 
-    p(`Use CavSafe when the file needs a stronger boundary. If the file would create a problem if the wrong teammate opened it, shared it, changed it, deleted it, or published it, that file belongs in CavSafe instead of normal CavCloud storage.`),
+    p(`Use CavBot Vault when the file needs a stronger boundary. If the file would create a problem if the wrong teammate opened it, shared it, changed it, deleted it, or published it, that file belongs in CavBot Vault instead of normal CavBot Cloud storage.`),
 
     list([
-      "Use CavSafe for private business records.",
-      "Use CavSafe for protected legal or policy documents.",
-      "Use CavSafe for security notes or sensitive operational files.",
-      "Use CavSafe for high-value brand, product, or company assets.",
-      "Use CavSafe for files that should remain under owner control.",
-      "Use CavSafe when audit history matters.",
-      "Use CavSafe when accidental sharing would create risk."
+      "Use CavBot Vault for private business records.",
+      "Use CavBot Vault for protected legal or policy documents.",
+      "Use CavBot Vault for security notes or sensitive operational files.",
+      "Use CavBot Vault for high-value brand, product, or company assets.",
+      "Use CavBot Vault for files that should remain under owner control.",
+      "Use CavBot Vault when audit history matters.",
+      "Use CavBot Vault when accidental sharing would create risk."
     ]),
 
-    p(`Do not use CavSafe for every file. Protected storage should stay focused. If every ordinary asset is moved into CavSafe, the workspace becomes harder to use and the protected area loses its purpose. CavSafe should be reserved for files that truly need stronger handling.`),
+    p(`Do not use CavBot Vault for every file. Protected storage should stay focused. If every ordinary asset is moved into CavBot Vault, the workspace becomes harder to use and the protected area loses its purpose. CavBot Vault should be reserved for files that truly need stronger handling.`),
 
     list([
-      "Keep ordinary images, exports, and drafts in CavCloud.",
-      "Keep public documents in CavCloud unless they need owner protection.",
-      "Keep everyday collaboration files in CavCloud.",
-      "Move a file to CavSafe only when the file needs stronger access control, review, history, or protection."
+      "Keep ordinary images, exports, and drafts in CavBot Cloud.",
+      "Keep public documents in CavBot Cloud unless they need owner protection.",
+      "Keep everyday collaboration files in CavBot Cloud.",
+      "Move a file to CavBot Vault only when the file needs stronger access control, review, history, or protection."
     ]),
 
-    p(`CavSafe can support folders, protected file organization, gallery views, tree views, private sharing controls, movement between CavCloud and CavSafe, snapshots, time locks, integrity checks, audit records, and owner visibility where the active plan allows those features.`),
+    p(`CavBot Vault can support folders, protected file organization, gallery views, tree views, private sharing controls, movement between CavBot Cloud and CavBot Vault, snapshots, time locks, integrity checks, audit records, and owner visibility where the active plan allows those features.`),
 
-    p(`Moving a file into CavSafe should be treated as a deliberate action. The owner should know why the file is protected, what it contains, whether it should remain private, and whether it needs future review. CavSafe is not just another folder. It is the protected area of the workspace.`),
+    p(`Moving a file into CavBot Vault should be treated as a deliberate action. The owner should know why the file is protected, what it contains, whether it should remain private, and whether it needs future review. CavBot Vault is not just another folder. It is the protected area of the workspace.`),
 
-    p(`Moving a file out of CavSafe should also be deliberate. If a protected file is moved back into CavCloud, it may become part of normal workspace storage again depending on the workspace’s sharing and access rules. Before moving a file out, confirm that it no longer needs owner-only protection.`),
+    p(`Moving a file out of CavBot Vault should also be deliberate. If a protected file is moved back into CavBot Cloud, it may become part of normal workspace storage again depending on the workspace’s sharing and access rules. Before moving a file out, confirm that it no longer needs owner-only protection.`),
 
     table(
       ["File type", "Recommended location"],
       [
-        ["Public brand asset", "CavCloud, unless it is unreleased or sensitive."],
-        ["Normal project image", "CavCloud."],
-        ["Draft document for team collaboration", "CavCloud."],
-        ["Private business record", "CavSafe."],
-        ["Security or access note", "CavSafe."],
-        ["Sensitive legal or policy file", "CavSafe."],
-        ["High-value internal asset", "CavSafe."],
-        ["File that needs audit history", "CavSafe, especially on Premium+."]
+        ["Public brand asset", "CavBot Cloud, unless it is unreleased or sensitive."],
+        ["Normal project image", "CavBot Cloud."],
+        ["Draft document for team collaboration", "CavBot Cloud."],
+        ["Private business record", "CavBot Vault."],
+        ["Security or access note", "CavBot Vault."],
+        ["Sensitive legal or policy file", "CavBot Vault."],
+        ["High-value internal asset", "CavBot Vault."],
+        ["File that needs audit history", "CavBot Vault, especially on Plus."]
       ]
     ),
 
     p(`Integrity lock is for files that should not be casually changed. When a protected file matters, the owner may need confidence that the file was not silently modified or replaced without notice. Integrity lock helps create a stronger boundary around important files.`),
 
-    p(`The audit log gives owners a way to review important CavSafe activity. If a protected file is uploaded, moved, opened, changed, shared, restored, locked, unlocked, or deleted where logging is supported, the audit log can help explain what happened and when.`),
+    p(`The audit log gives owners a way to review important CavBot Vault activity. If a protected file is uploaded, moved, opened, changed, shared, restored, locked, unlocked, or deleted where logging is supported, the audit log can help explain what happened and when.`),
 
     p(`Time locks are for protected files or actions that should not be immediately changed or released. A time lock can help slow down sensitive operations and reduce accidental or rushed changes. This is useful when a file should remain protected until a certain point or when a sensitive action should not happen instantly.`),
 
     p(`Snapshots help preserve protected file states. If a file changes, a snapshot can help the owner understand or recover a prior version where supported. This is especially useful for important documents, secured assets, and files that may need review after edits.`),
 
-    p(`CavSafe analytics gives the owner visibility into secured storage. This can include protected storage usage, secured file activity, owner-level review signals, and other CavSafe activity where the plan supports it. The goal is to help the owner understand how the protected storage area is being used.`),
+    p(`CavBot Vault analytics gives the owner visibility into secured storage. This can include protected storage usage, secured file activity, owner-level review signals, and other CavBot Vault activity where the plan supports it. The goal is to help the owner understand how the protected storage area is being used.`),
 
-    p(`CavSafe works best with CavGuard. CavGuard should decide who can open, move, delete, share, lock, unlock, or manage protected files. A user should not be able to access CavSafe simply because they found a route or clicked a hidden button. Protected file actions should be authorized by role, plan, workspace policy, and server-side checks.`),
+    p(`CavBot Vault works best with CavGuard. CavGuard should decide who can open, move, delete, share, lock, unlock, or manage protected files. A user should not be able to access CavBot Vault simply because they found a route or clicked a hidden button. Protected file actions should be authorized by role, plan, workspace policy, and server-side checks.`),
 
-    p(`CavSafe can also work with CavVerify when an action needs an extra confirmation step. CavGuard decides whether the user is allowed. CavVerify can confirm that a real person completed a verification step before the action continues. Passing CavVerify should not override CavSafe permissions.`),
+    p(`CavBot Vault can also work with CavVerify when an action needs an extra confirmation step. CavGuard decides whether the user is allowed. CavVerify can confirm that a real person completed a verification step before the action continues. Passing CavVerify should not override CavBot Vault permissions.`),
 
     table(
-      ["Protection layer", "Role in CavSafe"],
+      ["Protection layer", "Role in CavBot Vault"],
       [
-        ["CavSafe", "Stores protected files under stronger owner-controlled handling."],
+        ["CavBot Vault", "Stores protected files under stronger owner-controlled handling."],
         ["CavGuard", "Decides whether the user is allowed to perform the protected file action."],
-        ["CavVerify", "Can add a human verification step before a sensitive CavSafe action continues."],
+        ["CavVerify", "Can add a human verification step before a sensitive CavBot Vault action continues."],
         ["Audit log", "Records important protected storage activity for review."],
         ["Snapshots", "Help preserve protected file states for recovery or review."]
       ]
     ),
 
-    p(`For users, CavSafe should feel clear. If a file is protected, the interface should make that obvious. If access is blocked, the message should explain why. If the owner must take action, the user should know that the owner controls the protected storage area.`),
+    p(`For users, CavBot Vault should feel clear. If a file is protected, the interface should make that obvious. If access is blocked, the message should explain why. If the owner must take action, the user should know that the owner controls the protected storage area.`),
 
-    p(`For workspace owners, CavSafe is a control point. It gives the owner a place to keep protected material separate from everyday workspace files. Owners should review what belongs in CavSafe, remove files that no longer need protection, and avoid letting secured storage become cluttered.`),
+    p(`For workspace owners, CavBot Vault is a control point. It gives the owner a place to keep protected material separate from everyday workspace files. Owners should review what belongs in CavBot Vault, remove files that no longer need protection, and avoid letting secured storage become cluttered.`),
 
-    p(`For teams, CavSafe creates a cleaner division between normal collaboration and sensitive material. A team can still use CavCloud for everyday work while the owner keeps important records, secured assets, and protected files in CavSafe.`),
+    p(`For teams, CavBot Vault creates a cleaner division between normal collaboration and sensitive material. A team can still use CavBot Cloud for everyday work while the owner keeps important records, secured assets, and protected files in CavBot Vault.`),
 
-    p(`For developers, CavSafe should be treated as a protected file system. Do not rely on frontend visibility alone. Every sensitive file action should be checked by the backend before it completes. If a user does not have access, the request should fail even if the user tries to call the file endpoint directly.`),
+    p(`For developers, CavBot Vault should be treated as a protected file system. Do not rely on frontend visibility alone. Every sensitive file action should be checked by the backend before it completes. If a user does not have access, the request should fail even if the user tries to call the file endpoint directly.`),
 
     list([
-      "Check the signed-in user before allowing CavSafe access.",
-      "Check that the active plan includes CavSafe.",
+      "Check the signed-in user before allowing CavBot Vault access.",
+      "Check that the active plan includes CavBot Vault.",
       "Check that the user is the workspace owner or has the required protected access.",
       "Check the workspace and project scope.",
       "Check the exact file or folder being requested.",
@@ -5788,27 +6397,27 @@ Turn these notes into a clean launch checklist.`),
       "Use clear messages when access is denied."
     ]),
 
-    p(`A denied CavSafe request does not always mean something is broken. It may mean the user is on the Free plan, the workspace does not include CavSafe, the user is not the owner, the file is protected, the action requires a higher plan, or the workspace policy does not allow the requested operation.`),
+    p(`A denied CavBot Vault request does not always mean something is broken. It may mean the user is on the Free plan, the workspace does not include CavBot Vault, the user is not the owner, the file is protected, the action requires a higher plan, or the workspace policy does not allow the requested operation.`),
 
     table(
       ["Message or state", "What it usually means"],
       [
-        ["No CavSafe access", "The current plan does not include CavSafe."],
+        ["No CavBot Vault access", "The current plan does not include CavBot Vault."],
         ["Owner-only storage", "The protected file area is controlled by the workspace owner."],
-        ["Upgrade required", "The requested CavSafe feature belongs to a higher plan."],
+        ["Upgrade required", "The requested CavBot Vault feature belongs to a higher plan."],
         ["Action restricted", "The user does not have permission to perform that protected file action."],
         ["File locked", "The file may be protected by integrity lock, time lock, or another secured state."],
         ["Audit available", "The action may be recorded for owner review."]
       ]
     ),
 
-    p(`If a legitimate user cannot access a CavSafe file, they should first confirm the active account, workspace, plan, and role. If the user is not the owner, they should ask the owner to review the file or perform the action. If the owner still cannot access CavSafe, they should contact support with the workspace, file name, action attempted, browser, and approximate time.`),
+    p(`If a legitimate user cannot access a CavBot Vault file, they should first confirm the active account, workspace, plan, and role. If the user is not the owner, they should ask the owner to review the file or perform the action. If the owner still cannot access CavBot Vault, they should contact support with the workspace, file name, action attempted, browser, and approximate time.`),
 
-    p(`CavSafe should remain honest in the product. It should not promise that files are impossible to lose, impossible to compromise, or permanently immune from all risk. It is a stronger protected storage area with owner-only access, plan-based limits, secured workflows, and review features. It reduces risk, but it does not replace responsible account security, careful sharing, strong passwords, or good workspace management.`),
+    p(`CavBot Vault should remain honest in the product. It should not promise that files are impossible to lose, impossible to compromise, or permanently immune from all risk. It is a stronger protected storage area with owner-only access, plan-based limits, secured workflows, and review features. It reduces risk, but it does not replace responsible account security, careful sharing, strong passwords, or good workspace management.`),
 
-    p(`As CavBot grows, CavSafe can become the trusted storage layer for more serious workspace operations. The purpose should remain simple: keep protected files separate, owner-controlled, reviewable, and handled with more care than ordinary workspace files.`),
+    p(`As CavBot grows, CavBot Vault can become the trusted storage layer for more serious workspace operations. The purpose should remain simple: keep protected files separate, owner-controlled, reviewable, and handled with more care than ordinary workspace files.`),
 
-    note("Core rule", "Use CavCloud for everyday files. Use CavSafe for protected files that need owner control, stronger review, and a clearer record of activity.")
+    note("Core rule", "Use CavBot Cloud for everyday files. Use CavBot Vault for protected files that need owner control, stronger review, and a clearer record of activity.")
   ]
 },
 
@@ -5821,15 +6430,15 @@ Turn these notes into a clean launch checklist.`),
 
     p(`A workspace can change quickly. Members may be invited, roles may be adjusted, files may be moved, secured storage may be opened, settings may be changed, and protected actions may be attempted. The audit trail gives those moments a written record so the team does not have to rely on memory, screenshots, or guesswork.`),
 
-    p(`Use audit trail when you need a clear history of sensitive or important activity. It is especially useful when reviewing access changes, billing-related actions, workspace settings, CavCloud activity, CavSafe file events, protected actions, time locks, integrity updates, and security-related decisions made by CavBot.`),
+    p(`Use audit trail when you need a clear history of sensitive or important activity. It is especially useful when reviewing access changes, billing-related actions, workspace settings, CavBot Cloud activity, CavBot Vault file events, protected actions, time locks, integrity updates, and security-related decisions made by CavBot.`),
 
     table(
       ["Area", "What the audit trail helps review"],
       [
         ["Account actions", "Important changes connected to account access, profile state, sessions, or administrative activity."],
         ["Workspace actions", "Changes involving projects, sites, members, roles, invites, settings, and workspace ownership."],
-        ["CavCloud activity", "File uploads, movement, publishing, collaboration changes, and other important storage actions."],
-        ["CavSafe activity", "Protected file access attempts, secured file movement, time locks, snapshots, integrity updates, and owner-only file actions."],
+        ["CavBot Cloud activity", "File uploads, movement, publishing, collaboration changes, and other important storage actions."],
+        ["CavBot Vault activity", "Protected file access attempts, secured file movement, time locks, snapshots, integrity updates, and owner-only file actions."],
         ["Security actions", "CavGuard decisions, CavVerify-related steps, restricted actions, blocked requests, and sensitive command activity."],
         ["Plan or access changes", "Plan-related access changes, feature restrictions, seat limits, and actions that affect what the workspace can use."]
       ]
@@ -5862,7 +6471,7 @@ Turn these notes into a clean launch checklist.`),
         ["When did it happen?", "Check the timestamp on the audit entry."],
         ["Did it succeed?", "Review the result or status of the action."],
         ["Was it blocked?", "Look for CavGuard, permission, plan, role, or verification-related records."],
-        ["Was a protected file involved?", "Check CavSafe-related entries such as access attempts, moves, locks, snapshots, or integrity updates."]
+        ["Was a protected file involved?", "Check CavBot Vault-related entries such as access attempts, moves, locks, snapshots, or integrity updates."]
       ]
     ),
 
@@ -5872,12 +6481,12 @@ Turn these notes into a clean launch checklist.`),
 
     p(`For members, audit trail creates accountability around shared work. Members may not control sensitive settings, but their important workspace actions can still be part of the record when those actions affect files, collaboration, storage, or project state.`),
 
-    p(`For protected storage, the audit trail is especially important. CavSafe files may contain sensitive business, legal, security, or high-value project material. Actions around those files should be more visible to the owner than ordinary file activity.`),
+    p(`For protected storage, the audit trail is especially important. CavBot Vault files may contain sensitive business, legal, security, or high-value project material. Actions around those files should be more visible to the owner than ordinary file activity.`),
 
     list([
       "Review audit trail after changing workspace roles.",
       "Review audit trail after inviting or removing members.",
-      "Review audit trail after moving files into or out of CavSafe.",
+      "Review audit trail after moving files into or out of CavBot Vault.",
       "Review audit trail after using time locks, snapshots, or integrity lock.",
       "Review audit trail after a protected action is blocked.",
       "Review audit trail when a user reports missing access.",
@@ -5897,9 +6506,9 @@ Turn these notes into a clean launch checklist.`),
         ["Role changed", "Shows who adjusted a user’s level of control."],
         ["Site added or removed", "Shows changes to the websites connected to the workspace."],
         ["File published", "Shows when a file or artifact became available outside normal private storage."],
-        ["CavSafe access attempted", "Shows review activity around protected files."],
-        ["File moved into CavSafe", "Shows when a file became protected."],
-        ["File moved out of CavSafe", "Shows when a protected file returned to ordinary storage."],
+        ["CavBot Vault access attempted", "Shows review activity around protected files."],
+        ["File moved into CavBot Vault", "Shows when a file became protected."],
+        ["File moved out of CavBot Vault", "Shows when a protected file returned to ordinary storage."],
         ["Time lock changed", "Shows protected timing rules around a file or action."],
         ["Integrity update", "Shows changes tied to protected file trust or file state."],
         ["Security action blocked", "Shows when CavBot stopped a request before it could continue."]
@@ -5917,7 +6526,7 @@ Turn these notes into a clean launch checklist.`),
       "Read the result of the action.",
       "Look for nearby entries before and after the event.",
       "Confirm the active workspace and site.",
-      "Check whether the action involved CavGuard, CavVerify, CavCloud, CavSafe, billing, members, or settings."
+      "Check whether the action involved CavGuard, CavVerify, CavBot Cloud, CavBot Vault, billing, members, or settings."
     ]),
 
     p(`Audit trail should not expose more information than needed. The record should be useful, but it should not become a place where private file contents, passwords, full secrets, payment details, or sensitive personal data are displayed unnecessarily. The goal is to record the action, not to leak the material involved in the action.`),
@@ -5926,7 +6535,7 @@ Turn these notes into a clean launch checklist.`),
 
     list([
       "Record important owner, admin, and workspace actions.",
-      "Record protected file activity where CavSafe is involved.",
+      "Record protected file activity where CavBot Vault is involved.",
       "Record blocked sensitive actions when the block matters for review.",
       "Do not record passwords, full secrets, or unnecessary private content.",
       "Include enough context for the owner to understand what happened.",
@@ -5950,7 +6559,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Audit trail should be kept separate from ordinary notifications. A notification tells the user something happened. An audit entry preserves a record for later review. Both can be useful, but they serve different purposes. Notifications are for attention. Audit trail is for accountability and history.`),
 
-    p(`CavBot may continue expanding the audit trail as the platform grows. New product surfaces, protected actions, CavSafe features, CavCode actions, billing controls, collaboration tools, and owner settings may add new audit records over time. The goal should remain the same: important actions should be clear, reviewable, and tied to the right workspace context.`),
+    p(`CavBot may continue expanding the audit trail as the platform grows. New product surfaces, protected actions, CavBot Vault features, CavCode actions, billing controls, collaboration tools, and owner settings may add new audit records over time. The goal should remain the same: important actions should be clear, reviewable, and tied to the right workspace context.`),
 
     note("Best practice", "When something important changes, check the audit trail before guessing. The record should show who acted, what changed, what was affected, when it happened, and what CavBot did with the request.")
   ]
@@ -6015,7 +6624,7 @@ Turn these notes into a clean launch checklist.`),
     list([
       "Use strict deletion before removing production sites.",
       "Use strict deletion before deleting workspace files that may still matter.",
-      "Use strict deletion around CavSafe-protected material.",
+      "Use strict deletion around CavBot Vault-protected material.",
       "Use strict deletion before removing members, keys, or important workspace settings.",
       "Use strict deletion when a workspace has more than one teammate.",
       "Use strict deletion when the workspace contains client, business, legal, or launch-critical material."
@@ -6034,7 +6643,7 @@ Turn these notes into a clean launch checklist.`),
         ["CavGuard", "Enforces protected-action decisions based on role, plan, policy, and workspace state."],
         ["CavVerify", "Confirms user presence before a protected action continues."],
         ["Audit trail", "Records important actions so the owner can review what happened later."],
-        ["CavSafe", "Protects sensitive files with owner-only access and stronger controls."]
+        ["CavBot Vault", "Protects sensitive files with owner-only access and stronger controls."]
       ]
     ),
 
@@ -6086,7 +6695,7 @@ Turn these notes into a clean launch checklist.`),
       "Check the audit trail for the recorded decision."
     ]),
 
-    p(`Owners should review Risk Controls regularly. A good review is simple: confirm the active sites, confirm the primary site, confirm the origin allowlist, confirm active API keys, confirm member roles, confirm CavSafe access, confirm deletion rules, and confirm alerts are enabled for production.`),
+    p(`Owners should review Risk Controls regularly. A good review is simple: confirm the active sites, confirm the primary site, confirm the origin allowlist, confirm active API keys, confirm member roles, confirm CavBot Vault access, confirm deletion rules, and confirm alerts are enabled for production.`),
 
     p(`Admins should understand Risk Controls before making workspace changes. An admin may have permission to operate parts of the workspace, but owner-only settings, billing changes, protected files, key rotation, and destructive actions may still require stricter review.`),
 
@@ -6102,7 +6711,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`Risk Controls should be documented inside the team’s operating habits. If the workspace is used for a real business, everyone should know which site is production, which domains are approved, who can invite members, who can delete files, who can access CavSafe, and who can change protected settings.`),
+    p(`Risk Controls should be documented inside the team’s operating habits. If the workspace is used for a real business, everyone should know which site is production, which domains are approved, who can invite members, who can delete files, who can access CavBot Vault, and who can change protected settings.`),
 
     p(`When a new site is added, review Risk Controls immediately. Add the correct origin, confirm the snippet uses the right project key and site ID, check the allowlist, visit the live site, and confirm signals appear under the expected site profile.`),
 
@@ -6118,12 +6727,12 @@ Turn these notes into a clean launch checklist.`),
       "Review controls after suspicious activity.",
       "Review controls after rotating API keys.",
       "Review controls before giving admin access.",
-      "Review controls before moving sensitive files into or out of CavSafe."
+      "Review controls before moving sensitive files into or out of CavBot Vault."
     ]),
 
     p(`Risk Controls are strongest when they are paired with clear ownership. Someone should know who owns the workspace, who owns production, who approves new origins, who manages API keys, who controls billing, who reviews audit trail, and who can approve protected actions.`),
 
-    p(`CavBot may expand Risk Controls over time as the platform grows. New controls may be added for AI workflows, CavCode actions, CavCloud publishing, CavSafe movement, billing changes, model access, team permissions, and production-impacting operations.`),
+    p(`CavBot may expand Risk Controls over time as the platform grows. New controls may be added for AI workflows, CavCode actions, CavBot Cloud publishing, CavBot Vault movement, billing changes, model access, team permissions, and production-impacting operations.`),
 
     p(`The goal should remain simple: make the workspace safer without making normal work confusing. Risk Controls should stop obvious mistakes, slow down sensitive actions, alert the team when something unusual happens, and preserve a clear record when important actions are attempted.`),
 
@@ -6356,58 +6965,56 @@ Turn these notes into a clean launch checklist.`),
   title: "Plans",
   summary: "Compare CavBot plan tiers, limits, storage, seats, and included access.",
   blocks: [
-    p(`CavBot currently has three main plan tiers. The public plan names are CavTower, CavControl, and CavElite. In some product screens, billing logic, or internal access checks, these same tiers may also appear as Free, Premium, and Premium+. Both naming systems refer to the same plan structure.`),
+    p(`CavBot has three plan tiers: Free, Pro, and Plus. These names are used consistently across the website, app, billing, and support documentation.`),
 
-    p(`CavTower is the entry plan. CavControl is the main paid plan for growing workspaces. CavElite is the highest current plan for teams that need more capacity, more protected storage, and full access to advanced workspace modules.`),
-
-    p(`The plan names are meant to feel like CavBot products, while the tier labels help users understand access quickly. For example, CavTower maps to Free, CavControl maps to Premium, and CavElite maps to Premium+. When reading plan access inside the app, use the tier label to understand what is unlocked. When reading marketing or billing pages, use the CavBot plan name.`),
+    p(`Free is the entry plan. Pro is the main paid plan for growing workspaces. Plus is the highest current plan for teams that need more capacity, more protected storage, and full access to advanced workspace modules.`),
 
     table(
-      ["Plan name", "Tier label", "What it is"],
+      ["Plan", "What it is"],
       [
-        ["CavTower", "Free", "The starting plan for one website, basic workspace access, and early setup."],
-        ["CavControl", "Premium", "The main paid plan for teams that need more sites, more storage, protected files, and core intelligence modules."],
-        ["CavElite", "Premium+", "The highest current plan for larger workspaces that need expanded limits, full module access, and stronger storage protections."]
+        ["Free", "The starting plan for one website, basic workspace access, and early setup."],
+        ["Pro", "The main paid plan for teams that need more sites, more storage, protected files, and core intelligence modules."],
+        ["Plus", "The highest current plan for larger workspaces that need expanded limits, full module access, and stronger storage protections."]
       ]
     ),
 
     p(`Choose a plan based on the size of the workspace, the number of websites being monitored, the number of people who need access, the amount of storage required, and the level of protection the team needs around files, signals, and sensitive actions.`),
 
-    p(`A small project may only need CavTower at the beginning. A growing business with multiple sites and real operational needs should review CavControl. A serious workspace with more websites, more seats, protected storage, accessibility review, deeper insights, and stronger file controls should review CavElite.`),
+    p(`A small project may only need Free at the beginning. A growing business with multiple sites and real operational needs should review Pro. A serious workspace with more websites, more seats, protected storage, accessibility review, deeper insights, and stronger file controls should review Plus.`),
 
     table(
-      ["Plan", "Monthly", "Annual", "Websites", "Seats", "CavCloud", "CavSafe", "Included access"],
+      ["Plan", "Monthly", "Annual", "Websites", "Seats", "CavBot Cloud", "CavBot Vault", "Included access"],
       [
-        ["CavTower", "$0", "$0", "1", "4", "5 GB", "Not included", "Dashboard, routing, Control Room, and badge widgets."],
-        ["CavControl", "$19.99", "$199.99", "6", "8", "50 GB", "10 GB", "Errors, SEO, protected storage, and expanded workspace capacity."],
-        ["CavElite", "$39.99", "$399.99", "20", "16", "500 GB", "50 GB", "Errors, SEO, Accessibility, Insights, advanced CavSafe features, and the highest current workspace limits."]
+        ["Free", "$0", "$0", "1", "4", "5 GB", "Not included", "Dashboard, routing, Control Room, and badge widgets."],
+        ["Pro", "$19.99", "$199.99", "6", "8", "50 GB", "10 GB", "Errors, SEO, protected storage, and expanded workspace capacity."],
+        ["Plus", "$39.99", "$399.99", "20", "16", "500 GB", "50 GB", "Errors, SEO, Accessibility, Insights, advanced CavBot Vault features, and the highest current workspace limits."]
       ]
     ),
 
-    p(`CavTower is best for testing CavBot, connecting a first website, reviewing the dashboard, and understanding the basic workspace experience before upgrading.`),
+    p(`Free is best for testing CavBot, connecting a first website, reviewing the dashboard, and understanding the basic workspace experience before upgrading.`),
 
-    p(`CavControl is best for users who are ready to operate CavBot as a serious website intelligence workspace. It gives the team more sites, more seats, more CavCloud storage, access to CavSafe, and important signal modules such as Errors and SEO.`),
+    p(`Pro is best for users who are ready to operate CavBot as a serious website intelligence workspace. It gives the team more sites, more seats, more CavBot Cloud storage, access to CavBot Vault, and important signal modules such as Errors and SEO.`),
 
-    p(`CavElite is best for teams that need the full current CavBot experience. It increases website limits, seat limits, CavCloud storage, CavSafe storage, and unlocks the advanced modules intended for deeper review, better protection, and stronger workspace visibility.`),
+    p(`Plus is best for teams that need the full current CavBot experience. It increases website limits, seat limits, CavBot Cloud storage, CavBot Vault storage, and unlocks the advanced modules intended for deeper review, better protection, and stronger workspace visibility.`),
 
     table(
       ["Plan", "Best for"],
       [
-        ["CavTower", "A first website, early testing, personal setup, or a small workspace that is not ready for paid access yet."],
-        ["CavControl", "A growing workspace with multiple sites, team members, protected files, and core monitoring needs."],
-        ["CavElite", "A larger or more serious workspace that needs higher limits, full module access, and stronger file protection."]
+        ["Free", "A first website, early testing, personal setup, or a small workspace that is not ready for paid access yet."],
+        ["Pro", "A growing workspace with multiple sites, team members, protected files, and core monitoring needs."],
+        ["Plus", "A larger or more serious workspace that needs higher limits, full module access, and stronger file protection."]
       ]
     ),
 
-    p(`CavSafe access begins on CavControl. CavTower includes CavCloud storage, but it does not include CavSafe secured storage. CavControl includes owner-only CavSafe storage for protected workspace files. CavElite expands CavSafe capacity and includes stronger CavSafe capabilities where available.`),
+    p(`CavBot Vault access begins on Pro. Free includes CavBot Cloud storage, but it does not include CavBot Vault secured storage. Pro includes owner-only CavBot Vault storage for protected workspace files. Plus expands CavBot Vault capacity and includes stronger CavBot Vault capabilities where available.`),
 
     p(`Plan access also affects which modules are available inside the workspace. If a module is locked, the user should review the current plan, billing status, workspace role, and plan requirements before assuming the feature is broken.`),
 
     list([
-      "Use CavTower for a first website or early workspace setup.",
-      "Use CavControl when the workspace needs more sites, more seats, more storage, and core paid modules.",
-      "Use CavElite when the workspace needs the highest current limits and full advanced module access.",
-      "Review CavSafe access before storing protected files.",
+      "Use Free for a first website or early workspace setup.",
+      "Use Pro when the workspace needs more sites, more seats, more storage, and core paid modules.",
+      "Use Plus when the workspace needs the highest current limits and full advanced module access.",
+      "Review CavBot Vault access before storing protected files.",
       "Review seat limits before inviting more teammates.",
       "Review website limits before adding more monitored sites.",
       "Check billing status if a paid feature appears locked."
@@ -6415,9 +7022,9 @@ Turn these notes into a clean launch checklist.`),
 
     p(`CavBot does not currently list a separate Enterprise plan in this plan table. Enterprise access may be considered later if user needs clearly show that larger teams require custom limits, custom security review, dedicated onboarding, higher storage, advanced administration, or specialized support.`),
 
-    p(`User feedback will help determine whether CavBot should add an Enterprise plan. Until then, CavTower, CavControl, and CavElite are the three plan tiers users should compare when choosing access.`),
+    p(`User feedback will help determine whether CavBot should add an Enterprise plan. Until then, Free, Pro, and Plus are the three plan tiers users should compare when choosing access.`),
 
-    note("Plan naming", "CavTower, CavControl, and CavElite are the public CavBot plan names. Free, Premium, and Premium+ are the tier labels used to make access rules easier to understand inside the product."),
+    note("Plan naming", "Free, Pro, and Plus are the only CavBot plan names shown to users."),
 
     note("Billing check", "If the plan table and the billing screen ever disagree, use the live billing screen as the source of truth before upgrading, downgrading, or changing workspace access.")
   ]
@@ -6426,21 +7033,21 @@ Turn these notes into a clean launch checklist.`),
    {
   id: "trial",
   title: "Trial",
-  summary: "Try CavBot with full Premium+ access for 14 days.",
+  summary: "Try CavBot with full Plus access for 14 days.",
   blocks: [
-    p(`CavBot includes a 14-day trial so new users can test the platform before choosing a paid plan. During the trial, the workspace receives Premium+ access, which gives the user enough room to explore CavBot’s strongest features, connect real sites, review signals, test protected storage, and understand how the product fits their workflow.`),
+    p(`CavBot includes a 14-day trial so new users can test the platform before choosing a paid plan. During the trial, the workspace receives Plus access, which gives the user enough room to explore CavBot’s strongest features, connect real sites, review signals, test protected storage, and understand how the product fits their workflow.`),
 
-    p(`The trial is designed to be useful, not decorative. A user should not spend the trial only clicking through pages. The best trial experience comes from connecting a real website, installing the CavBot snippet, opening the dashboard, reviewing site activity, testing reports, exploring CavAi, opening CavCode, organizing files in CavCloud, and checking how the workspace behaves with real context.`),
+    p(`The trial is designed to be useful, not decorative. A user should not spend the trial only clicking through pages. The best trial experience comes from connecting a real website, installing the CavBot snippet, opening the dashboard, reviewing site activity, testing reports, exploring CavAi, opening CavCode, organizing files in CavBot Cloud, and checking how the workspace behaves with real context.`),
 
-    p(`Because the trial uses Premium+ access, users can evaluate the full CavBot experience before deciding whether CavTower, CavControl, or CavElite is the right long-term plan. This helps a user understand the difference between basic access, paid workspace access, and the highest current CavBot tier.`),
+    p(`Because the trial uses Plus access, users can evaluate the full CavBot experience before deciding whether Free, Pro, or Plus is the right long-term plan. This helps a user understand the difference between basic access, paid workspace access, and the highest current CavBot tier.`),
 
     table(
       ["Trial access", "What it gives you"],
       [
         ["Length", "14 days to explore CavBot before choosing a paid plan."],
-        ["Effective access", "Premium+ access during the trial period."],
+        ["Effective access", "Plus access during the trial period."],
         ["Best use", "Connect a real site, install the snippet, review signals, and test the main workspace flow."],
-        ["Storage review", "Explore CavCloud and CavSafe so you understand normal storage and protected storage."],
+        ["Storage review", "Explore CavBot Cloud and CavBot Vault so you understand normal storage and protected storage."],
         ["Decision point", "Use the trial to decide which plan fits the workspace after the trial ends."]
       ]
     ),
@@ -6455,13 +7062,13 @@ Turn these notes into a clean launch checklist.`),
       "Visit the public site after publishing.",
       "Confirm CavBot receives activity.",
       "Open the dashboard and review the site state.",
-      "Test reports, CavAi, CavCode, CavCloud, CavSafe, and protected workspace actions.",
+      "Test reports, CavAi, CavCode, CavBot Cloud, CavBot Vault, and protected workspace actions.",
       "Review which features matter most before choosing a plan."
     ]),
 
-    p(`Use the trial to test practical workflows. For example, review a route with missing metadata, check a broken page, inspect an error, ask CavAi for a summary, open CavCode for a file review, upload a project asset to CavCloud, and place protected material in CavSafe when the file needs stronger protection.`),
+    p(`Use the trial to test practical workflows. For example, review a route with missing metadata, check a broken page, inspect an error, ask CavAi for a summary, open CavCode for a file review, upload a project asset to CavBot Cloud, and place protected material in CavBot Vault when the file needs stronger protection.`),
 
-    p(`The trial should also help owners understand workspace limits. Invite only the people who need to test the product, review seat access, check site capacity, and confirm whether the workspace needs the higher limits available in CavElite after the trial ends.`),
+    p(`The trial should also help owners understand workspace limits. Invite only the people who need to test the product, review seat access, check site capacity, and confirm whether the workspace needs the higher limits available in Plus after the trial ends.`),
 
     table(
       ["What to test", "Why it matters"],
@@ -6472,27 +7079,27 @@ Turn these notes into a clean launch checklist.`),
         ["Reports", "Helps the team understand how CavBot summarizes site health."],
         ["CavAi", "Lets users test assistant help with real workspace context."],
         ["CavCode", "Lets builders inspect and work with code-related flows."],
-        ["CavCloud", "Tests normal workspace storage for files and assets."],
-        ["CavSafe", "Tests protected storage for sensitive workspace files."],
+        ["CavBot Cloud", "Tests normal workspace storage for files and assets."],
+        ["CavBot Vault", "Tests protected storage for sensitive workspace files."],
         ["Security features", "Shows how protected actions, verification, and audit history behave."]
       ]
     ),
 
-    p(`When the 14-day trial ends, the workspace moves back to the plan selected by the account. If no paid plan is selected, the workspace should continue on the free tier and paid features may become locked. Features that were available during the trial may require CavControl or CavElite after the trial period is over.`),
+    p(`When the 14-day trial ends, the workspace moves back to the plan selected by the account. If no paid plan is selected, the workspace should continue on the free tier and paid features may become locked. Features that were available during the trial may require Pro or Plus after the trial period is over.`),
 
     p(`Before the trial ends, review what the workspace actually used. Check the number of sites, seats, storage needs, protected files, reports, and advanced modules that mattered during testing. This makes the plan decision clearer and prevents choosing a plan based only on the plan table.`),
 
     list([
-      "Choose CavTower if the workspace only needs a basic first-site setup.",
-      "Choose CavControl if the workspace needs more sites, more seats, core paid modules, and protected storage.",
-      "Choose CavElite if the workspace needs the highest current limits, full module access, and stronger CavSafe capacity.",
+      "Choose Free if the workspace only needs a basic first-site setup.",
+      "Choose Pro if the workspace needs more sites, more seats, core paid modules, and protected storage.",
+      "Choose Plus if the workspace needs the highest current limits, full module access, and stronger CavBot Vault capacity.",
       "Review billing before the trial ends if the workspace should keep paid access.",
       "Expect paid features to lock if the trial ends without an active paid plan."
     ]),
 
     p(`A trial is not a permanent plan. It is a temporary way to understand CavBot with the strongest current access before deciding what the workspace truly needs. Use the 14 days to test the platform with real work, not empty setup.`),
 
-    note("Trial rule", "The 14-day trial gives users Premium+ access so they can test CavBot properly before choosing a long-term plan."),
+    note("Trial rule", "The 14-day trial gives users Plus access so they can test CavBot properly before choosing a long-term plan."),
 
     note("Before the trial ends", "Review sites, seats, storage, protected files, reports, and module access. Choose the plan that matches what the workspace actually needs.")
   ]
@@ -6615,14 +7222,14 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`Seats control how many people can belong to a CavBot workspace under the current plan. A seat represents a person with workspace access, whether they are an owner, admin, or member. Seat limits help keep access clear, controlled, and aligned with the plan the workspace is using.`),
 
-    p(`Each plan includes a set number of seats. Free includes 4 seats. Premium includes 8 seats. Premium+ includes 16 seats. When a workspace reaches its seat limit, new invitations may be blocked until a seat is available or the workspace moves to a plan with a higher limit.`),
+    p(`Each plan includes a set number of seats. Free includes 4 seats. Pro includes 8 seats. Plus includes 16 seats. When a workspace reaches its seat limit, new invitations may be blocked until a seat is available or the workspace moves to a plan with a higher limit.`),
 
     table(
       ["Plan", "Seat limit", "What it means"],
       [
         ["Free", "4 seats", "Best for a small team, founder setup, or early website workspace."],
-        ["Premium", "8 seats", "Best for a growing team that needs more people reviewing sites, reports, files, and settings."],
-        ["Premium+", "16 seats", "Best for a larger workspace with more team members, deeper access needs, and more protected workflows."]
+        ["Pro", "8 seats", "Best for a growing team that needs more people reviewing sites, reports, files, and settings."],
+        ["Plus", "16 seats", "Best for a larger workspace with more team members, deeper access needs, and more protected workflows."]
       ]
     ),
 
@@ -6719,8 +7326,8 @@ Turn these notes into a clean launch checklist.`),
     list([
       "Review how many websites are connected.",
       "Review how many members and pending invites exist.",
-      "Review CavCloud storage usage.",
-      "Review CavSafe storage usage, if the workspace uses protected storage.",
+      "Review CavBot Cloud storage usage.",
+      "Review CavBot Vault storage usage, if the workspace uses protected storage.",
       "Review which reports, modules, or protected areas the team depends on.",
       "Download or save anything the team needs before access changes.",
       "Tell teammates before changing the plan if their access may be affected."
@@ -6735,8 +7342,8 @@ Turn these notes into a clean launch checklist.`),
       [
         ["Websites", "The workspace may need to stay within the website limit of the lower plan."],
         ["Seats", "The workspace may need to reduce members or stop sending new invites."],
-        ["CavCloud", "Storage access may be limited by the lower plan’s storage allowance."],
-        ["CavSafe", "Protected storage access may be reduced or locked depending on the plan."],
+        ["CavBot Cloud", "Storage access may be limited by the lower plan’s storage allowance."],
+        ["CavBot Vault", "Protected storage access may be reduced or locked depending on the plan."],
         ["Reports", "Advanced reports or deeper views may no longer be available."],
         ["Modules", "Some product areas may move into a locked state."],
         ["Team access", "Teammates may keep basic access, but certain actions can become unavailable."]
@@ -6747,7 +7354,7 @@ Turn these notes into a clean launch checklist.`),
     p(`If usage is above the new plan limit, the owner should decide what stays and what can be removed. Do not wait until after the plan changes to understand the impact. Clean up the workspace first when possible, especially if the team depends on files, reports, or connected sites for active work.`),
 
 
-    p(`For storage, review both normal workspace files and protected files. CavCloud is used for general workspace storage. CavSafe is used for files that need stronger protection. If the lower plan does not support the same storage level, decide which files should be downloaded, moved, archived, deleted, or kept under a higher plan.`),
+    p(`For storage, review both normal workspace files and protected files. CavBot Cloud is used for general workspace storage. CavBot Vault is used for files that need stronger protection. If the lower plan does not support the same storage level, decide which files should be downloaded, moved, archived, deleted, or kept under a higher plan.`),
 
 
     p(`For team access, review active members and pending invites. Remove people who no longer need access before downgrading. Revoke old invites that should not remain open. A clean member list prevents confusion after the billing change takes effect.`),
@@ -6772,7 +7379,7 @@ Turn these notes into a clean launch checklist.`),
         ["Billing state", "The billing screen reflects the cancellation or downgrade."],
         ["Sites", "The connected websites match the new plan limit."],
         ["Seats", "The member list and invites are within the plan limit."],
-        ["Storage", "CavCloud and CavSafe usage are within the available allowance."],
+        ["Storage", "CavBot Cloud and CavBot Vault usage are within the available allowance."],
         ["Locked areas", "Any locked product areas match the new plan."],
         ["Team awareness", "Teammates know what access changed."]
       ]
@@ -6789,7 +7396,7 @@ Turn these notes into a clean launch checklist.`),
         ["Feature is locked after downgrade", "Check whether the feature belongs to the previous higher plan."],
         ["Invite fails after downgrade", "Review the new seat limit and pending invites."],
         ["Site cannot be added", "Review the new website limit."],
-        ["Storage warning appears", "Review CavCloud and CavSafe usage under the new plan."],
+        ["Storage warning appears", "Review CavBot Cloud and CavBot Vault usage under the new plan."],
         ["Billing page shows an error", "Contact support with the workspace, billing email, and time of the issue."]
       ]
     ),
@@ -7120,7 +7727,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Arcade has two connected roles. First, it is a playable product surface inside CavBot where users can experience the full game collection. Second, it can support broken-page recovery when a team chooses to install an Arcade experience on a live 404 page.`),
 
-    p(`Inside the CavBot platform, all six CavBot Arcade games are available to play at any time. Free, Premium, and Premium+ users can open Arcade, choose a game, test the controls, learn the pacing, compare the experience, and decide which game feels right before using it on a public website.`),
+    p(`Inside the CavBot platform, all six CavBot Arcade games are available to play at any time. Free, Pro, and Plus users can open Arcade, choose a game, test the controls, learn the pacing, compare the experience, and decide which game feels right before using it on a public website.`),
 
     p(`This matters because a 404 recovery experience should not be chosen blindly. A game that feels right for a playful product may not fit a serious business page. Arcade lets owners, admins, designers, developers, and support teams review the experience first, then decide whether it belongs on a live route.`),
 
@@ -7173,8 +7780,8 @@ Turn these notes into a clean launch checklist.`),
       ["Plan", "Arcade inside CavBot", "Live 404 game selection"],
       [
         ["Free", "All six games are playable inside Arcade.", "1 installable 404 game can be selected for a website."],
-        ["Premium", "All six games are playable inside Arcade.", "3 installable 404 games can be selected for a website."],
-        ["Premium+", "All six games are playable inside Arcade.", "All 6 installable 404 games can be selected for a website."]
+        ["Pro", "All six games are playable inside Arcade.", "3 installable 404 games can be selected for a website."],
+        ["Plus", "All six games are playable inside Arcade.", "All 6 installable 404 games can be selected for a website."]
       ]
     ),
 
@@ -7434,6 +8041,60 @@ Turn these notes into a clean launch checklist.`),
   },
 
 
+  install: {
+    path: "/docs.html/install",
+    icon: "assets/icons/docs/integrations-svgrepo-com.svg",
+    label: "How to install",
+    hiddenFromIndex: true,
+    title: "How to install",
+    description: "Choose your platform and follow the steps to add CavBot to your site.",
+    sections: [
+      {
+        id: "custom-html",
+        title: "Custom HTML",
+        summary: "Add CavBot to any HTML website",
+        blocks: platformInstallBlocks(platformInstall.customHtml)
+      },
+      {
+        id: "webflow",
+        title: "Webflow",
+        summary: "Install CavBot on Webflow for 404 recovery and site-wide scripts.",
+        blocks: platformInstallBlocks(platformInstall.webflow)
+      },
+      {
+        id: "wix",
+        title: "Wix",
+        summary: "Install CavBot scripts inside Wix custom code.",
+        blocks: platformInstallBlocks(platformInstall.wix)
+      },
+      {
+        id: "shopify",
+        title: "Shopify",
+        summary: "Install CavBot in the active Shopify theme.",
+        blocks: platformInstallBlocks(platformInstall.shopify)
+      },
+      {
+        id: "wordpress",
+        title: "WordPress",
+        summary: "Install CavBot through a WordPress plugin or theme header.",
+        blocks: platformInstallBlocks(platformInstall.wordpress)
+      },
+      {
+        id: "squarespace",
+        title: "Squarespace",
+        summary: "Install CavBot through Squarespace Code Injection.",
+        blocks: platformInstallBlocks(platformInstall.squarespace)
+      },
+      {
+        id: "framer",
+        title: "Framer",
+        summary: "Install CavBot through Framer Custom Code.",
+        blocks: platformInstallBlocks(platformInstall.framer)
+      }
+    ]
+  },
+
+
   resources: {
     path: "/docs/resources",
     icon: "assets/icons/docs/image-combiner-svgrepo-com3.svg",
@@ -7461,7 +8122,7 @@ Turn these notes into a clean launch checklist.`),
         ["Site connection", "A site will not connect, verify, publish activity, or match the expected origin."],
         ["Snippet install", "Analytics v5, SDK, badge, Arcade, or other runtime snippets do not load or verify."],
         ["Billing", "A plan, checkout, subscription, invoice, downgrade, upgrade, or payment state needs review."],
-        ["Modules", "Console, 404 Recovery, Error Intelligence, A11y, CavAi, CavCode, CavCloud, CavSafe, or another surface shows unexpected behavior."]
+        ["Modules", "Console, 404 Recovery, Error Intelligence, A11y, CavAi, CavCode, CavBot Cloud, CavBot Vault, or another surface shows unexpected behavior."]
       ]
     ),
 
@@ -7491,16 +8152,16 @@ Turn these notes into a clean launch checklist.`),
         ["Arcade or 404 recovery issue", "Missing route tested, selected game, plan, live URL, and whether recovery links appear."],
         ["CavAi or Caven issue", "Prompt goal, selected workspace or file, model or mode used, and what result looked wrong."],
         ["CavCode issue", "File path, action attempted, error shown, and whether the issue happens after refresh."],
-        ["CavCloud or CavSafe issue", "File or folder name, action attempted, access role, and whether the item is protected or time-locked."],
+        ["CavBot Cloud or CavBot Vault issue", "File or folder name, action attempted, access role, and whether the item is protected or time-locked."],
         ["Billing issue", "Plan shown, action attempted, checkout or invoice state, and approximate time of the billing event."]
       ]
     ),
 
-    p(`For access problems, confirm the user’s role before opening a support request. Some actions are owner-only. Some modules require Premium or Premium+. Some protected actions may require CavVerify or may be blocked by CavGuard until the right role, plan, or workspace state is present.`),
+    p(`For access problems, confirm the user’s role before opening a support request. Some actions are owner-only. Some modules require Pro or Plus. Some protected actions may require CavVerify or may be blocked by CavGuard until the right role, plan, or workspace state is present.`),
 
     p(`For billing problems, include what the user expected to happen and what CavBot shows now. Support should know whether the request is about upgrading, downgrading, checkout, subscription state, invoice review, payment failure, trial access, or a feature that appears locked after a plan change.`),
 
-    p(`For storage issues, identify whether the file is in CavCloud or CavSafe. CavSafe has stricter access rules and may include owner-only access, integrity protection, time locks, snapshots, audit history, or plan-specific controls. A file that behaves differently in CavSafe may not be broken; it may be protected.`),
+    p(`For storage issues, identify whether the file is in CavBot Cloud or CavBot Vault. CavBot Vault has stricter access rules and may include owner-only access, integrity protection, time locks, snapshots, audit history, or plan-specific controls. A file that behaves differently in CavBot Vault may not be broken; it may be protected.`),
 
     note("Do not send secrets", "Never include passwords, private keys, payment card data, private customer records, authentication tokens, or sensitive production secrets in a support request."),
 
@@ -7513,9 +8174,9 @@ Turn these notes into a clean launch checklist.`),
       [
         ["My site is broken.", "The site https://example.com is not showing Analytics v5 activity after publishing the snippet on /pricing at about 3:20 PM."],
         ["CavAi gave a bad answer.", "CavAi was asked to summarize the selected 404 route, but it referenced the wrong site after switching workspaces."],
-        ["The file will not open.", "The file /brand/launch.html in CavCloud opens a blank preview in HTML Viewer after the latest upload."],
-        ["Billing is wrong.", "The workspace shows Premium locked after checkout completed, and the upgrade happened around 2:00 PM."],
-        ["My teammate cannot access it.", "The invited admin can sign in but cannot open CavSafe files in the selected workspace."]
+        ["The file will not open.", "The file /brand/launch.html in CavBot Cloud opens a blank preview in HTML Viewer after the latest upload."],
+        ["Billing is wrong.", "The workspace shows Pro locked after checkout completed, and the upgrade happened around 2:00 PM."],
+        ["My teammate cannot access it.", "The invited admin can sign in but cannot open CavBot Vault files in the selected workspace."]
       ]
     ),
 
@@ -7562,9 +8223,9 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`Status is the CavBot service health surface. Use it to understand whether a problem is coming from CavBot itself, a connected CavBot service, a CDN asset, a workspace setting, a site install, or a local browser issue.`),
 
-    p(`Check Status before making changes when multiple CavBot areas appear unavailable at the same time. If CavAi, CavCode, CavCloud, Analytics v5, the HTML Viewer, Arcade, or CDN-loaded assets are all behaving unexpectedly, the issue may not be your workspace configuration. Status helps you slow down and confirm the platform condition before changing keys, snippets, files, roles, or site settings.`),
+    p(`Check Status before making changes when multiple CavBot areas appear unavailable at the same time. If CavAi, CavCode, CavBot Cloud, Analytics v5, the HTML Viewer, Arcade, or CDN-loaded assets are all behaving unexpectedly, the issue may not be your workspace configuration. Status helps you slow down and confirm the platform condition before changing keys, snippets, files, roles, or site settings.`),
 
-    p(`The Status page can cover core CavBot surfaces such as CavBot Analytics v5, CavAi v3, CavTools, CavCode, CavCode Viewer, CavCloud, CavSafe, Arcade, CDN assets, authentication, billing, and related platform routes. It gives users a clearer place to check whether CavBot is operating normally or whether a known issue is already being reviewed.`),
+    p(`The Status page can cover core CavBot surfaces such as CavBot Analytics v5, CavAi v3, CavBot Terminal, CavCode, HTML Viewer, CavBot Cloud, CavBot Vault, Arcade, CDN assets, authentication, billing, and related platform routes. It gives users a clearer place to check whether CavBot is operating normally or whether a known issue is already being reviewed.`),
 
     table(
       ["Status area", "What it helps you understand"],
@@ -7572,11 +8233,11 @@ Turn these notes into a clean launch checklist.`),
         ["CavBot app", "Whether the main CavBot platform is loading and responding normally."],
         ["Analytics v5", "Whether browser signals, route activity, and site events can reach CavBot."],
         ["CavAi v3", "Whether assistant responses, workspace context, models, and CavAi tools are available."],
-        ["CavTools", "Whether developer inspection, command output, and workspace checks are working."],
+        ["CavBot Terminal", "Whether developer inspection, command output, and workspace checks are working."],
         ["CavCode", "Whether the browser editor, file actions, diagnostics, and coding surface are available."],
-        ["CavCode Viewer", "Whether HTML previews, mounted files, and rendered assets can be viewed correctly."],
-        ["CavCloud", "Whether workspace files, folders, uploads, previews, sharing, and storage actions are working."],
-        ["CavSafe", "Whether protected storage, owner-only access, locks, snapshots, and secure file actions are working."],
+        ["HTML Viewer", "Whether HTML previews, mounted files, and rendered assets can be viewed correctly."],
+        ["CavBot Cloud", "Whether workspace files, folders, uploads, previews, sharing, and storage actions are working."],
+        ["CavBot Vault", "Whether protected storage, owner-only access, locks, snapshots, and secure file actions are working."],
         ["Arcade", "Whether CavBot Arcade games and 404 recovery experiences are available."],
         ["CDN assets", "Whether badges, body visuals, Arcade loaders, SDK files, and public assets can load from the CDN."],
         ["Billing", "Whether checkout, subscriptions, upgrades, downgrades, and plan state updates are working."],
@@ -7623,9 +8284,9 @@ Turn these notes into a clean launch checklist.`),
         ["Analytics v5 is delayed or missing", "Check Integrations, Analytics v5, API Keys, Events, and the installed snippet."],
         ["A badge, body visual, SDK, or Arcade install does not load", "Check Assets, SDK, Arcade, CDN snippet placement, and browser console output."],
         ["CavAi does not respond correctly", "Check CavAi, Models, Assistant Memory, Agent Workflows, and workspace context."],
-        ["Caven or CavCode has issues", "Check CavCode, Caven, CavTools, Cav Commands, and the active file or workspace."],
-        ["HTML preview is wrong", "Check HTML Viewer, CavCloud, CavSafe, file paths, assets, and the selected file version."],
-        ["A file cannot be opened or moved", "Check CavCloud, CavSafe, permissions, plan access, locks, and audit history."],
+        ["Caven or CavCode has issues", "Check CavCode, Caven, CavBot Terminal, Cav Commands, and the active file or workspace."],
+        ["HTML preview is wrong", "Check HTML Viewer, CavBot Cloud, CavBot Vault, file paths, assets, and the selected file version."],
+        ["A file cannot be opened or moved", "Check CavBot Cloud, CavBot Vault, permissions, plan access, locks, and audit history."],
         ["A protected action is blocked", "Check Security, CavVerify, CavGuard, Risk Controls, roles, and plan access."],
         ["Billing or plan access looks wrong", "Check Billing, plan state, checkout history, and Support if the state does not update."],
         ["A user cannot access the right workspace", "Check roles, invites, authentication, workspace selection, and Support."]
@@ -7634,7 +8295,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Status should be part of the first review step, not the last one. It can save time by showing whether the platform is already aware of a wider issue. It also helps prevent unnecessary changes that can make a clean workspace harder to diagnose.`),
 
-    p(`For example, if Analytics v5 stops showing new activity across several sites, check Status before reinstalling the script. If CDN badges disappear on multiple pages, check Status before rewriting the asset placement. If CavAi, CavCode, and CavCloud all feel unavailable, check Status before assuming the workspace is broken.`),
+    p(`For example, if Analytics v5 stops showing new activity across several sites, check Status before reinstalling the script. If CDN badges disappear on multiple pages, check Status before rewriting the asset placement. If CavAi, CavCode, and CavBot Cloud all feel unavailable, check Status before assuming the workspace is broken.`),
 
     note("Before changing configuration", "If Status shows an active incident for the affected service, wait for the next update before making major workspace, snippet, key, file, or site changes."),
 
@@ -7643,8 +8304,8 @@ Turn these notes into a clean launch checklist.`),
     list([
       "Use Integrations when a snippet, SDK, badge, or Analytics v5 install needs review.",
       "Use Security when a protected action, role, CavVerify step, or CavGuard decision needs review.",
-      "Use Developer tools when CavCode, CavTools, Cav Commands, or HTML Viewer needs review.",
-      "Use Storage docs when CavCloud or CavSafe files, folders, locks, previews, or permissions need review.",
+      "Use Developer tools when CavCode, CavBot Terminal, Cav Commands, or HTML Viewer needs review.",
+      "Use Storage docs when CavBot Cloud or CavBot Vault files, folders, locks, previews, or permissions need review.",
       "Use Billing docs when plan access, checkout, upgrades, downgrades, or invoices need review.",
       "Use Support when Status is healthy but the issue remains unclear after focused troubleshooting."
     ]),
@@ -7654,7 +8315,7 @@ Turn these notes into a clean launch checklist.`),
     table(
       ["Support detail", "Why it matters"],
       [
-        ["Affected service", "Shows whether the issue belongs to CavAi, Analytics, CavCode, CavCloud, Arcade, billing, or another area."],
+        ["Affected service", "Shows whether the issue belongs to CavAi, Analytics, CavCode, CavBot Cloud, Arcade, billing, or another area."],
         ["Workspace", "Helps identify the correct project and account context."],
         ["Site origin", "Helps compare the issue against the saved CavBot site and installed public website."],
         ["Route or file", "Shows the exact place where the problem appeared."],
@@ -7689,7 +8350,7 @@ Turn these notes into a clean launch checklist.`),
         ["What changed", "The feature, fix, setting, page, workflow, or product behavior that was updated."],
         ["Who is affected", "Whether the change applies to all users, specific plans, workspace owners, admins, members, or certain install types."],
         ["Action required", "Whether the user needs to update anything, review a setting, reconnect a site, publish again, or verify behavior."],
-        ["Plan impact", "Whether the update changes what Free, Premium, or Premium+ users can access."],
+        ["Plan impact", "Whether the update changes what Free, Pro, or Plus users can access."],
         ["Workspace impact", "Whether the change affects roles, permissions, protected actions, files, storage, reports, or team workflows."],
         ["Website impact", "Whether the change affects installed scripts, public pages, badges, recovery pages, tracking, or connected site behavior."],
         ["Known limits", "Anything that is still being improved, rolled out gradually, or not available to every workspace yet."]
@@ -7893,6 +8554,113 @@ function integrationBlocks(name, when, placement, mistakes, platformGuidance, ve
   ];
 }
 
+const lockedSnippets = [
+ {
+    id: "arcade-404",
+    title: "404 Arcade loader", 
+    description: "Serve an interactive recovery experience only on 404 routes.",
+    code: '<script\n  defer\n  src="https://cdn.cavbot.io/sdk/arcade/v1/loader.min.js"\n  data-project-key="••••••••••••••••"\n  data-site-id="••••••••-••••-••••-••••-••••••••••••"\n  data-site="••••••••-••••-••••-••••-••••••••••••"\n  data-config-origin="https://app.cavbot.io"\n  data-env="404">\n</script>'
+  },
+  {
+    id: "widget-loader",
+    title: "Widget loader",
+    description: "Show the CavBot badge with a default inline placement.",
+    code: '<script\n  defer\n  src="https://cdn.cavbot.io/sdk/widget/v1/cavbot-widget.min.js"\n  data-cavbot-widget="badge"\n  data-style="inline"\n  data-position="bottom-right"\n  data-project-key="••••••••••••••••"\n  data-site="••••••••-••••-••••-••••-••••••••••••"\n  data-config-origin="https://app.cavbot.io">\n</script>'
+  },
+  {
+    id: "analytics-script",
+    title: "Analytics v5 loader",
+    description: "Send telemetry to CavBot analytics.",
+    code: '<script>\n  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";\n  window.CAVBOT_PROJECT_KEY = "••••••••••••••••";\n  window.CAVBOT_SITE = "••••••••-••••-••••-••••-••••••••••••";\n  window.CAVBOT_SITE_ID = "••••••••-••••-••••-••••-••••••••••••";\n  window.CAVBOT_SITE_PUBLIC_ID = "••••••••-••••-••••-••••-••••••••••••";\n</script>\n<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js" defer></script>'
+  },
+  {
+    id: "brain-script",
+    title: "CavAi v3 loader",
+    description: "Boot CavBot intelligence after the page loads.",
+    code: '<script\n  defer\n  src="https://cdn.cavbot.io/sdk/cavai/v1/cavai.min.js"\n  data-api="https://app.cavbot.io/api/embed/analytics"\n  data-project-key="••••••••••••••••"\n  data-site-id="••••••••-••••-••••-••••-••••••••••••"\n  data-site="••••••••-••••-••••-••••-••••••••••••">\n</script>'
+  }
+];
+
+const currentSnippetCodes = {};
+lockedSnippets.forEach(function (snippet) {
+  currentSnippetCodes[snippet.id] = snippet.code;
+});
+
+function compactSnippetText(value) {
+  return String(value || "")
+    .replace(/\n\s*\n+/g, "\n")
+    .replace(/^\s+$/gm, "")
+    .replace(/; window\./g, ";\n  window.")
+    .replace(/<script\n\s+src=/g, "<script src=")
+    .replace(/ defer>\n<\/script>/g, " defer></script>")
+    .trim();
+}
+
+function platformInstallBlocks(config) {
+  const troubleshooting404 = config.troubleshooting404 || [
+    "Make sure your host returns a real 404 response, not a 200 shell.",
+    "Add the cavbot-page meta tag or data-cavbot-page-type=\"404\" marker."
+  ];
+
+  const blocks = [
+    p(config.intro),
+    linkp("You can manage these in", "https://app.cavbot.io/api-keys", "API & Keys", "."),
+    h2(config.sectionA, config.sectionASummary)
+  ];
+
+  if (config.bullets) {
+    blocks.push(list(config.bullets));
+  }
+
+  if (config.steps) {
+    blocks.push(steps(config.steps));
+  }
+
+  blocks.push(
+    snippets(config.snippetsTitle, config.snippetsDescription),
+    h2("Add Arcade to a custom 404 page", config.dedicated),
+    p(config.dedicatedBody),
+    contractOptionsBlock(config.dedicatedFollow)
+  );
+
+  if (config.dedicatedExtra) {
+    blocks.push(p(config.dedicatedExtra));
+  }
+
+  blocks.push(
+    h2("Test your installation", "Follow this quick verification to confirm the Arcade loader is live."),
+    ol(config.test)
+  );
+
+  (config.afterTest || [
+    "Once CavBot hits that fake path, Arcade detections will show up in CavBot within a few seconds.",
+    "While you are testing the Arcade experience, verify the widget badge loads, analytics pings your workspace, and CavAi starts behind the scenes."
+  ]).forEach(function (item) {
+    blocks.push(p(item));
+  });
+
+  blocks.push(
+    h2("Troubleshooting", "Common fixes if the snippets do not behave as expected."),
+    faq([
+      {
+        title: "If nothing loads",
+        body: [
+          "Make sure your website is listed as a trusted origin in API & Keys.",
+          "Confirm that the publishable key is active.",
+          "Make sure the data-site value matches the selected site.",
+          "Confirm that the snippets were added to the published version of the website."
+        ]
+      },
+      {
+        title: "If Arcade does not appear on the 404 page",
+        body: troubleshooting404
+      }
+    ])
+  );
+
+  return blocks;
+}
+
 
 
 
@@ -7900,6 +8668,12 @@ const pathToRoute = {};
 Object.keys(docs).forEach(function (key) {
   pathToRoute[docs[key].path] = key;
 });
+
+function visibleDocKeys() {
+  return Object.keys(docs).filter(function (key) {
+    return !docs[key].hiddenFromIndex;
+  });
+}
 
 
   const sectionToRoute = {};
@@ -7954,7 +8728,7 @@ Object.keys(docs).forEach(function (key) {
 
   function renderLanding() {
     if (!topicGrid) return;
-    topicGrid.innerHTML = Object.keys(docs).map(function (key) {
+    topicGrid.innerHTML = visibleDocKeys().map(function (key) {
       const cat = docs[key];
       return '<article class="docs-topic-card is-visible" data-docs-reveal>' +
         '<a class="docs-topic-title-link" href="' + cat.path + '">' +
@@ -7970,10 +8744,65 @@ Object.keys(docs).forEach(function (key) {
 
   function blockHtml(block) {
     if (block.type === "p") return "<p>" + escapeHtml(block.text) + "</p>";
+    if (block.type === "h2") {
+      return '<h2 class="docs-install-heading">' +
+        '<span>' + escapeHtml(block.text).replace(/\b(recommended|most reliable)\b/g, '<em>$1</em>') + '</span>' +
+        (block.info ? '<span class="docs-info-popover" tabindex="0" aria-label="' + escapeHtml(block.info) + '">' +
+          '<img src="/assets/icons/page/info-circle-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
+          '<span role="tooltip">' + escapeHtml(block.info) + '</span>' +
+        '</span>' : "") +
+      "</h2>";
+    }
+    if (block.type === "linkp") {
+      return "<p>" + escapeHtml(block.text) + ' <a href="' + escapeHtml(block.href) + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(block.label) + "</a>" + escapeHtml(block.suffix) + "</p>";
+    }
     if (block.type === "ul") return "<ul>" + block.items.map(function (item) { return "<li>" + escapeHtml(item) + "</li>"; }).join("") + "</ul>";
     if (block.type === "ol") return "<ol>" + block.items.map(function (item) { return "<li>" + escapeHtml(item) + "</li>"; }).join("") + "</ol>";
     if (block.type === "note") return '<div class="docs-note"><strong>' + escapeHtml(block.title) + ':</strong><span>' + escapeHtml(block.text) + "</span></div>";
-    if (block.type === "code") return "<pre><code>" + escapeHtml(block.text) + "</code></pre>";
+    if (block.type === "code") {
+      return '<div class="docs-code-terminal">' +
+        '<button type="button" class="docs-code-copy" aria-label="Copy code">' +
+          '<img src="/assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
+        '</button>' +
+        '<pre><code>' + escapeHtml(block.text) + "</code></pre>" +
+      "</div>";
+    }
+    if (block.type === "contract-options") {
+      return '<div class="docs-contract-options" aria-label="404 page marker options">' +
+        '<article class="docs-contract-option"><code>' + escapeHtml(contractOptions[0]) + '</code>' +
+          '<button type="button" class="docs-contract-copy" data-docs-copy-contract="0" aria-label="Copy meta option">' +
+            '<img src="/assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
+          '</button></article>' +
+        '<span class="docs-contract-or">or</span>' +
+        '<article class="docs-contract-option"><code>' + escapeHtml(contractOptions[1]) + '</code>' +
+          '<button type="button" class="docs-contract-copy" data-docs-copy-contract="1" aria-label="Copy body option">' +
+            '<img src="/assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
+          '</button></article>' +
+        '</div>' +
+        (block.text ? '<p class="docs-contract-note">' + escapeHtml(block.text) + '</p>' : "");
+    }
+    if (block.type === "steps") {
+      return '<ol class="docs-install-step-list">' + block.items.map(function (item) {
+        return '<li><strong>' + escapeHtml(item[0]) + '</strong><p>' + escapeHtml(item[1]) + '</p></li>';
+      }).join("") + "</ol>";
+    }
+    if (block.type === "snippets") {
+      return '<section class="docs-install-snippets" aria-label="Loader snippets">' +
+        '<header><h2 class="docs-install-heading"><span>' + escapeHtml(block.title) + '</span>' +
+          '<span class="docs-info-popover" tabindex="0" aria-label="' + escapeHtml(block.description) + '">' +
+            '<img src="/assets/icons/page/info-circle-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
+            '<span role="tooltip">' + escapeHtml(block.description) + '</span>' +
+          '</span></h2></header>' +
+        '<div class="docs-snippet-grid">' + lockedSnippets.map(function (snippet) {
+          return '<article class="docs-snippet-card" data-docs-snippet="' + escapeHtml(snippet.id) + '">' +
+            '<div class="docs-snippet-head"><div><h3>' + escapeHtml(snippet.title) + '</h3></div>' +
+            '<button type="button" class="docs-snippet-copy" data-docs-copy-snippet="' + escapeHtml(snippet.id) + '" aria-label="Copy ' + escapeHtml(snippet.title) + '">' +
+              '<img src="/assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
+            '</button></div>' +
+            '<pre><code>' + escapeHtml(compactSnippetText(snippet.code)) + '</code></pre>' +
+          '</article>';
+        }).join("") + "</div></section>";
+    }
     if (block.type === "table") {
       return '<table class="docs-table"><thead><tr>' + block.headers.map(function (h) { return "<th>" + escapeHtml(h) + "</th>"; }).join("") + "</tr></thead><tbody>" + block.rows.map(function (row) {
         return "<tr>" + row.map(function (cell) { return "<td>" + escapeHtml(cell) + "</td>"; }).join("") + "</tr>";
@@ -7985,6 +8814,21 @@ Object.keys(docs).forEach(function (key) {
           '<p><strong>Purpose:</strong> ' + escapeHtml(row[1]) + '</p>' +
           '<pre><code>' + escapeHtml(row[2]) + '</code></pre>' +
           '<p><strong>Returns or changes:</strong> ' + escapeHtml(row[3]) + '</p></section>';
+      }).join("") + "</div>";
+    }
+    if (block.type === "faq") {
+      return '<div class="docs-faq-stack">' + block.items.map(function (item) {
+        const body = Array.isArray(item.body)
+          ? "<ul>" + item.body.map(function (bodyItem) { return "<li>" + escapeHtml(bodyItem) + "</li>"; }).join("") + "</ul>"
+          : "<p>" + escapeHtml(item.body) + "</p>";
+        return '<details class="docs-faq-toggle">' +
+          '<summary><span>' + escapeHtml(item.title) + '</span>' +
+            '<span class="docs-faq-icons" aria-hidden="true">' +
+              '<img class="docs-faq-icon docs-faq-icon--closed" src="/assets/icons/page/arrow-right-svgrepo-com.svg" alt="" decoding="async">' +
+              '<img class="docs-faq-icon docs-faq-icon--open" src="/assets/icons/page/arrow-down-svgrepo-com.svg" alt="" decoding="async">' +
+            '</span></summary>' +
+          '<div>' + body + '</div>' +
+        '</details>';
       }).join("") + "</div>";
     }
     return "";
@@ -8033,6 +8877,7 @@ Object.keys(docs).forEach(function (key) {
         '</details>';
       }).join("");
     }
+    hydrateInstallSnippets();
   }
 
   function setHomeRoute() {
@@ -8166,6 +9011,20 @@ Object.keys(docs).forEach(function (key) {
     return Promise.resolve(false);
   }
 
+  function showCopiedIcon(button) {
+    if (!button) return;
+    const icon = button.querySelector("img");
+    if (!icon) return;
+    const originalSrc = icon.getAttribute("src") || "/assets/icons/page/copy-svgrepo-com.svg";
+    window.clearTimeout(button._docsCopiedTimer);
+    button.classList.add("is-copied");
+    icon.setAttribute("src", "/assets/icons/page/analytics/checkmark-circle-fill-svgrepo-com.svg");
+    button._docsCopiedTimer = window.setTimeout(function () {
+      button.classList.remove("is-copied");
+      icon.setAttribute("src", originalSrc);
+    }, 1200);
+  }
+
   function getCanonicalPageUrl() {
     const route = body.getAttribute("data-docs-route") || "getstarted";
     const cat = categoryForRoute(route);
@@ -8196,6 +9055,7 @@ Object.keys(docs).forEach(function (key) {
       copyPageButton.addEventListener("click", function () {
         const article = document.querySelector(".docs-article");
         copyText(article ? article.innerText : document.title).then(function (ok) {
+          if (ok) showCopiedIcon(copyPageButton);
           showCopyToast(ok ? "Page copied" : "Copy unavailable");
           if (copyMenu) copyMenu.open = false;
         });
@@ -8209,11 +9069,72 @@ Object.keys(docs).forEach(function (key) {
         if (event.key === "Escape") copyMenu.open = false;
       });
     }
+    document.addEventListener("click", function (event) {
+      const button = event.target instanceof Element ? event.target.closest("[data-docs-copy-snippet]") : null;
+      if (!button) return;
+      const id = button.getAttribute("data-docs-copy-snippet");
+      const code = currentSnippetCodes[id] || "";
+      if (!code) return;
+      copyText(code).then(function (ok) {
+        if (ok) showCopiedIcon(button);
+        showCopyToast(ok ? "Snippet copied" : "Copy unavailable");
+      });
+    });
+    document.addEventListener("click", function (event) {
+      const button = event.target instanceof Element ? event.target.closest(".docs-code-copy") : null;
+      if (!button) return;
+      const shell = button.closest(".docs-code-terminal");
+      const codeNode = shell ? shell.querySelector("code") : null;
+      copyText(codeNode ? codeNode.textContent : "").then(function (ok) {
+        if (ok) showCopiedIcon(button);
+        showCopyToast(ok ? "Code copied" : "Copy unavailable");
+      });
+    });
+    document.addEventListener("click", function (event) {
+      const button = event.target instanceof Element ? event.target.closest("[data-docs-copy-contract]") : null;
+      if (!button) return;
+      const index = Number(button.getAttribute("data-docs-copy-contract"));
+      const value = contractOptions[index] || "";
+      copyText(value).then(function (ok) {
+        if (ok) showCopiedIcon(button);
+        showCopyToast(ok ? "Code copied" : "Copy unavailable");
+      });
+    });
+  }
+
+  function hydrateInstallSnippets() {
+    if ((body.getAttribute("data-docs-route") || "") !== "install") return;
+    if (!window.fetch) return;
+
+    fetch("https://app.cavbot.io/api/public/install-snippets", {
+      method: "GET",
+      credentials: "include",
+      headers: { "Accept": "application/json" },
+      cache: "no-store"
+    }).then(function (response) {
+      if (!response.ok) return null;
+      return response.json();
+    }).then(function (payload) {
+      if (!payload || !payload.ready || !payload.snippets) return;
+      Object.keys(payload.snippets).forEach(function (id) {
+        const code = compactSnippetText(payload.snippets[id]);
+        if (!code) return;
+        currentSnippetCodes[id] = code;
+        document.querySelectorAll('[data-docs-snippet="' + id + '"] code').forEach(function (node) {
+          node.textContent = code;
+        });
+      });
+      document.querySelectorAll(".docs-snippet-card").forEach(function (card) {
+        card.classList.add("is-unlocked");
+      });
+    }).catch(function () {
+      // Public docs keep masked snippets when the app session cannot be read.
+    });
   }
 
   function initMobileMenu() {
     if (!mobileToggle || !mobilePanel) return;
-    mobilePanel.innerHTML = Object.keys(docs).map(function (key) {
+    mobilePanel.innerHTML = visibleDocKeys().map(function (key) {
       return '<a href="' + docs[key].path + '">' + escapeHtml(docs[key].label) + '</a>';
     }).join("");
     mobileToggle.addEventListener("click", function () {
@@ -8381,6 +9302,7 @@ Object.keys(docs).forEach(function (key) {
       renderArticle(route);
       openToggle(window.location.hash ? window.location.hash.slice(1) : categoryForRoute(route).sections[0].id, Boolean(window.location.hash), true);
     }
+    hydrateInstallSnippets();
     syncExternalDocLinks();
     if (hero && !reduceMotion) {
       window.addEventListener("scroll", function () {

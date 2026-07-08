@@ -247,12 +247,12 @@
                   <span class="cb-mega-link-copy">Code, inspect, and debug in CavBot’s built-in IDE.</span>
                 </a>
 
-                <a class="cb-mega-link" href="https://app.cavbot.io/cavcode-viewer">
+                <a class="cb-mega-link" href="https://app.cavbot.io/html-viewer">
                   <span class="cb-mega-link-title">HTML Viewer</span>
                   <span class="cb-mega-link-copy">View your page structure clearly.</span>
                 </a>
 
-                <a class="cb-mega-link" href="cavcloud">
+                <a class="cb-mega-link" href="cloud">
                   <span class="cb-mega-link-title">Cloud</span>
                   <span class="cb-mega-link-copy">Store files and projects directly inside CavBot.</span>
                 </a>
@@ -324,9 +324,9 @@
                   <span class="cb-mega-link-copy"> Built-in guardrails for restricted actions.</span>
                 </a>
 
-                <a class="cb-mega-link" href="/#security-cavsafe">
-                  <span class="cb-mega-link-title">CavSafe</span>
-                  <span class="cb-mega-link-copy">The private CavCloud vault for sensitive files.</span>
+                <a class="cb-mega-link" href="/#vault">
+                  <span class="cb-mega-link-title">CavBot Vault</span>
+                  <span class="cb-mega-link-copy">The private & secured vault for sensitive files.</span>
                 </a>
               </section>
 
@@ -562,7 +562,7 @@
         </div>
       </div>
 
-      <a href="/cavbot-arcade" class="nav-link">CavBot Arcade</a> 
+      <a href="/arcade" class="nav-link">CavBot Arcade</a> 
       <a href="/pricing" class="nav-link">Pricing</a>
       <a href="https://app.cavbot.io/" class="nav-link">Dashboard</a>
     </nav>
@@ -637,10 +637,10 @@
             <a href="seo-audit" class="nav-overlay-link">SEO Audit</a>
             <a href="accessibility-check" class="nav-overlay-link">Accessibility Check</a>
             <a href="/" class="nav-overlay-link">Insights</a>
-            <a href="cavbot-arcade" class="nav-overlay-link">CavBot Arcade</a>
+            <a href="arcade" class="nav-overlay-link">CavBot Arcade</a>
             <a href="cavcode" class="nav-overlay-link">Code</a>
             <a href="/" class="nav-overlay-link">HTML Viewer</a>
-            <a href="cavcloud" class="nav-overlay-link">Cloud</a>
+            <a href="cloud" class="nav-overlay-link">Cloud</a>
             <a href="terminal" class="nav-overlay-link">CavBot Terminal</a>
           </div>
         </section>
@@ -656,7 +656,7 @@
           <div class="cb-mobile-section-panel" hidden>
             <a href="/#security-cavverify" class="nav-overlay-link">Caverify</a>
             <a href="/#security-cavguard" class="nav-overlay-link">CavGuard</a>
-            <a href="/#security-cavsafe" class="nav-overlay-link">CavSafe</a>
+            <a href="/#vault" class="nav-overlay-link">CavBot Vault</a>
             <a href="/legal#data-security" class="nav-overlay-link">Data security</a>
             <a href="/legal#privacy-policy" class="nav-overlay-link">Privacy</a>
             <a href="/legal#terms-of-use" class="nav-overlay-link">Terms</a>
@@ -798,12 +798,12 @@
       <br><br>  
 
       <div class="pricing-card-pricing-grid">
-        <article class="pricing-card-pricing" aria-label="CavTower free plan">
+        <article class="pricing-card-pricing" aria-label="Free plan">
           <div class="pricing-card-pricing-ribbon" aria-hidden="true"></div>
 
 
           <div class="pricing-card-pricing-main">
-            <h2>CavTower</h2>
+            <h2>Free</h2>
 
 
             <p class="pricing-card-pricing-copy">
@@ -846,7 +846,7 @@
               <li>5 pages per scan</li>
               <li>Command Center access</li>
               <li>Dashboard access</li>
-              <li>5 GB CavCloud storage</li>
+              <li>5 GB Cloud storage</li>
               <li>4 seats included</li>
               <li>1 Arcade recovery game</li>
               <li>Badge widget</li>
@@ -859,12 +859,12 @@
         </article>
 
 
-        <article class="pricing-card-pricing" aria-label="CavControl premium plan">
+        <article class="pricing-card-pricing" aria-label="Pro plan">
           <div class="pricing-card-pricing-ribbon" aria-hidden="true"></div>
 
 
           <div class="pricing-card-pricing-main">
-            <h2>CavControl</h2>
+            <h2>Pro</h2>
 
 
             <p class="pricing-card-pricing-copy">
@@ -875,7 +875,7 @@
             <div class="pricing-price-row">
               <span
                 class="pricing-price"
-                data-price-plan="premium"
+                data-price-plan="pro"
                 data-monthly="19.99"
                 data-annual="199.99">$19.99</span>
               <span class="pricing-currency">USD</span>
@@ -884,7 +884,7 @@
 
             <p
               class="pricing-price-note"
-              data-price-note="premium"
+              data-price-note="pro"
               data-monthly="per month. Cancel anytime."
               data-annual="per year. Save 17% compared to monthly.">
               per month. Cancel anytime.
@@ -894,9 +894,9 @@
             <div class="pricing-actions">
               <a
                 class="pricing-button pricing-button-primary"
-                href="https://app.cavbot.io/settings/upgrade?plan=premium&amp;billing=monthly"
-                data-price-href="premium">
-                Upgrade to CavControl
+                href="https://app.cavbot.io/settings/upgrade?plan=pro&amp;billing=monthly"
+                data-price-href="pro">
+                Upgrade to Pro
               </a>
             </div>
           </div>
@@ -904,7 +904,7 @@
 
           <div class="pricing-card-pricing-included">
             <button class="pricing-included-title" type="button" data-pricing-feature-toggle aria-expanded="true">
-              <span>Everything in CavTower and:</span>
+              <span>Everything in Free and:</span>
               <span aria-hidden="true">⌃</span>
             </button>
 
@@ -916,7 +916,7 @@
               <li>Error Intelligence</li>
               <li>SEO Performance</li>
               <li>Proactive diagnostics and anomaly watch</li>
-              <li>50 GB CavCloud storage</li>
+              <li>50 GB Cloud storage</li>
               <li>8 seats included</li>
               <li>3 Arcade recovery games</li>
               <li>Badge and Head Orbit widgets</li>
@@ -927,7 +927,7 @@
         </article>
 
 
-        <article class="pricing-card-pricing pricing-card-pricing-recommended" aria-label="CavElite premium plus plan">
+        <article class="pricing-card-pricing pricing-card-pricing-recommended" aria-label="Plus plan">
         <div class="pricing-card-pricing-ribbon pricing-card-pricing-ribbon--icon" aria-label="Recommended plan">
   <svg
     class="pricing-card-pricing-ribbon-icon pricing-card-pricing-ribbon-star"
@@ -945,7 +945,7 @@
 
 
           <div class="pricing-card-pricing-main">
-            <h2>CavElite</h2>
+            <h2>Plus</h2>
 
 
             <p class="pricing-card-pricing-copy">
@@ -956,7 +956,7 @@
             <div class="pricing-price-row">
               <span
                 class="pricing-price"
-                data-price-plan="premium_plus"
+                data-price-plan="plus"
                 data-monthly="39.99"
                 data-annual="399.99">$39.99</span>
               <span class="pricing-currency">USD</span>
@@ -965,7 +965,7 @@
 
             <p
               class="pricing-price-note"
-              data-price-note="premium_plus"
+              data-price-note="plus"
               data-monthly="per month. Cancel anytime."
               data-annual="per year. Save 17% compared to monthly.">
               per month. Cancel anytime.
@@ -975,9 +975,9 @@
             <div class="pricing-actions">
               <a
                 class="pricing-button pricing-button-accent"
-                href="https://app.cavbot.io/settings/upgrade?plan=premium_plus&amp;billing=monthly"
-                data-price-href="premium_plus">
-                Upgrade to CavElite
+                href="https://app.cavbot.io/settings/upgrade?plan=plus&amp;billing=monthly"
+                data-price-href="plus">
+                Upgrade to Plus
               </a>
             </div>
           </div>
@@ -985,7 +985,7 @@
 
           <div class="pricing-card-pricing-included">
             <button class="pricing-included-title" type="button" data-pricing-feature-toggle aria-expanded="true">
-              <span>Everything in CavControl and:</span>
+              <span>Everything in Pro and:</span>
               <span aria-hidden="true">⌃</span>
             </button>
 
@@ -997,14 +997,14 @@
               <li>Accessibility Intelligence</li>
               <li>CavBot Insights</li>
               <li>Always-on diagnostics and incident readiness</li>
-              <li>500 GB CavCloud storage</li>
+              <li>500 GB Cloud storage</li>
               <li>16 seats included</li>
               <li>All Arcade recovery games</li>
               <li>Badge, Head, and Full Body widgets</li>
               <li>Qwen3 Max and Image Edit</li>
               <li>4,000 Caven credits per month</li>
               <li>Caven credit rollover up to one extra month</li>
-              <li>Expanded CavSafe access</li>
+              <li>Expanded CavBot Vault access</li>
             </ul>
           </div>
         </article>
@@ -1152,7 +1152,7 @@
     <div class="pricing-compare-title-row">
       <h2 id="pricing-compare-title">Compare features</h2>
       <p>
-        Review exact limits, workspace capacity, intelligence access, and platform coverage across CavTower, CavControl, and CavElite.
+        Review exact limits, workspace capacity, intelligence access, and platform coverage across Free, Pro, and Plus.
       </p>
     </div>
 
@@ -1166,7 +1166,7 @@
 
 
           <div class="pricing-compare-cell pricing-compare-plan" role="columnheader">
-            <strong>CavTower</strong>
+            <strong>Free</strong>
             <span class="pricing-compare-price">$0</span><br>
             <a class="pricing-compare-button pricing-compare-button--light" href="https://app.cavbot.io/auth?mode=signup">
               Start free
@@ -1175,30 +1175,30 @@
 
 
           <div class="pricing-compare-cell pricing-compare-plan" role="columnheader">
-            <strong>CavControl</strong>
+            <strong>Pro</strong>
             <span class="pricing-compare-price">
-              <span data-price-plan="premium" data-monthly="19.99" data-annual="199.99">$19.99</span>
-              <em data-price-note="premium" data-monthly="per month" data-annual="per year">per month</em>
+              <span data-price-plan="pro" data-monthly="19.99" data-annual="199.99">$19.99</span>
+              <em data-price-note="pro" data-monthly="per month" data-annual="per year">per month</em>
             </span><br>
             <a
               class="pricing-compare-button"
-              href="https://app.cavbot.io/settings/upgrade?plan=premium&amp;billing=monthly"
-              data-price-href="premium">
+              href="https://app.cavbot.io/settings/upgrade?plan=pro&amp;billing=monthly"
+              data-price-href="pro">
               Upgrade
             </a>
           </div>
 
 
           <div class="pricing-compare-cell pricing-compare-plan pricing-compare-plan--elite" role="columnheader">
-            <strong>CavElite</strong>
+            <strong>Plus</strong>
             <span class="pricing-compare-price">
-              <span data-price-plan="premium_plus" data-monthly="39.99" data-annual="399.99">$39.99</span>
-              <em data-price-note="premium_plus" data-monthly="per month" data-annual="per year">per month</em>
+              <span data-price-plan="plus" data-monthly="39.99" data-annual="399.99">$39.99</span>
+              <em data-price-note="plus" data-monthly="per month" data-annual="per year">per month</em>
             </span><br>
             <a
               class="pricing-compare-button"
-              href="https://app.cavbot.io/settings/upgrade?plan=premium_plus&amp;billing=monthly"
-              data-price-href="premium_plus">
+              href="https://app.cavbot.io/settings/upgrade?plan=plus&amp;billing=monthly"
+              data-price-href="plus">
               Upgrade
             </a>
           </div>
@@ -1248,7 +1248,7 @@
 
 
         <div class="pricing-compare-row" role="row">
-          <div class="pricing-compare-cell pricing-compare-feature" role="cell">CavCloud storage</div>
+          <div class="pricing-compare-cell pricing-compare-feature" role="cell">Cloud storage</div>
           <div class="pricing-compare-cell" role="cell">5 GB</div>
           <div class="pricing-compare-cell" role="cell">50 GB</div>
           <div class="pricing-compare-cell" role="cell">500 GB</div>
@@ -1256,7 +1256,7 @@
 
 
         <div class="pricing-compare-row pricing-compare-row--tall" role="row">
-          <div class="pricing-compare-cell pricing-compare-feature" role="cell">CavSafe access</div>
+          <div class="pricing-compare-cell pricing-compare-feature" role="cell">CavBot Vault access</div>
           <div class="pricing-compare-cell" role="cell">
             <span class="pricing-compare-symbol pricing-compare-symbol--lock" aria-label="Not included"></span>
           </div>
@@ -1268,7 +1268,7 @@
               <li>Owner-only + 50 GB secured storage</li>
               <li>Integrity lock + audit log</li>
               <li>Time locks + snapshots</li>
-              <li>CavSafe analytics</li>
+              <li>CavBot Vault analytics</li>
             </ul>
           </div>
         </div>
@@ -1538,7 +1538,7 @@
         <div class="pricing-faq-answer">
           <div>
             <p>
-                Yes. Our premium plans renew automatically on the monthly or yearly billing cycle you choose. 
+                Yes. our paid plans renew automatically on the monthly or yearly billing cycle you choose. 
                 You can cancel before your next renewal date from your CavBot billing settings to stop future charges.
             </p>
           </div>

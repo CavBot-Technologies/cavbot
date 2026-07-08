@@ -17,10 +17,10 @@ Today, CavBot brings together:
 - **Command Center** for coordination and visibility
 - **CavAi** for reasoning, coding, research, summaries, and speech-to-text
 - **CavCode** for implementation and active development workflows
-- **CavCode Viewer** for validation and output review
-- **CavCloud** for storage, artifacts, and publication handoffs
-- **CavSafe** for secure collaboration and protected assets
-- **CavTools** for command workflows, inspection, and operator control
+- **HTML Viewer** for validation and output review
+- **CavBot Cloud** for storage, artifacts, and publication handoffs
+- **CavBot Vault** for secure collaboration and protected assets
+- **CavBot Terminal** for command workflows, inspection, and operator control
 - **Recovery surfaces** that turn broken moments into guided, measurable outcomes
 
 CavBot is designed to help teams move through three layers of work:
@@ -52,16 +52,16 @@ The intelligence layer of CavBot. CavAi helps explain issues, reason through dec
 ### CavCode
 The development workspace inside CavBot. It keeps implementation, active files, diagnostics, and AI assistance connected.
 
-### CavCode Viewer
+### HTML Viewer
 The output validation surface for previewing rendered work, checking changes, and reviewing front-end results.
 
-### CavCloud
+### CavBot Cloud
 The storage and artifact surface for files, folders, previews, organization, and publication flows.
 
-### CavSafe
+### CavBot Vault
 The protected storage and secure collaboration layer for higher-trust workflows, stricter access control, and sensitive assets.
 
-### CavTools
+### CavBot Terminal
 The operator command plane for inspection, command execution, event workflows, and structured operational control.
 
 ### Recovery and 404 surfaces

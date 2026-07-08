@@ -278,7 +278,7 @@
     initCavCloudHero();
   }
 })();
-// CavCloud storage & capacity — billing toggle + reversible scroll motion
+// CavBot Cloud storage & capacity — billing toggle + reversible scroll motion
 (function () {
   function initCavCloudCapacity() {
     var section = document.querySelector("[data-cavcloud-capacity]");
@@ -469,7 +469,7 @@
 })();
 
 
-// CavCloud support + final CTA — scroll motion and icon animation
+// CavBot Cloud support + final CTA — scroll motion and icon animation
 (function () {
   function initCavCloudSupportSeal() {
     var support = document.querySelector("[data-cavcloud-support]");

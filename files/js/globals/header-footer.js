@@ -5306,8 +5306,8 @@ document.addEventListener("DOMContentLoaded", () => {
     var avatar = row.querySelector("[data-cavbot-app-session-avatar]");
     if (!avatar) {
       avatar = createAppSessionAvatar();
-      tryCavai.insertAdjacentElement("afterend", avatar);
     }
+    tryCavai.insertAdjacentElement("afterend", avatar);
   });
 
   function syncMobileHeaderAvatar() {
@@ -5358,7 +5358,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Account and profile", href: "/docs#profile", type: "Docs", summary: "Account, profile, sites, top site, and notifications." },
     { title: "Analytics v5", href: "/docs#analytics-v5", type: "Docs", summary: "Install and verify CavBot website analytics." },
     { title: "CavAi v3", href: "/docs#cavai-v3", type: "Docs", summary: "Use CavAi with workspace context, models, tools, and assistant memory." },
-    { title: "CavCloud", href: "/cavcloud", type: "Product", summary: "Cloud storage and workspace files for CavBot." },
+    { title: "CavBot Cloud", href: "/cloud", type: "Product", summary: "Cloud storage and workspace files for CavBot." },
     { title: "CavCode", href: "/cavcode", type: "Product", summary: "Code workspace and developer tools." },
     { title: "Caven", href: "/caven", type: "Product", summary: "CavBot coding assistant and development workflow." },
     { title: "Web Analytics", href: "/web-analytics", type: "Product", summary: "Understand website traffic and route activity." },
@@ -5368,7 +5368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Accessibility Check", href: "/accessibility-check", type: "Product", summary: "Review accessibility signals and usability issues." },
     { title: "404 Recovery", href: "/404-recovery", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and 404 Arcade recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found not found arcade recovery recovery games catch cavbot" },
     { title: "Monitored Websites", href: "/websites", type: "Product", summary: "Manage and review monitored websites." },
-    { title: "CavBot Arcade", href: "/cavbot-arcade", type: "Product", summary: "CavBot games and recovery experiences." },
+    { title: "CavBot Arcade", href: "/arcade", type: "Product", summary: "CavBot games and recovery experiences." },
     { title: "Compare CavBot", href: "/vs/google", type: "Comparison", summary: "Compare CavBot with Google Analytics for traffic, broken pages, errors, page health, and recovery.", aliases: "vs google google analytics compare cavbot cavbot vs google cavbot vs google analytics comparison analytics comparison" },
     { title: "Blog", href: "/blog", type: "Resources", summary: "Company updates, product notes, and research." },
     { title: "Help Center", href: "/help-center", type: "Support", summary: "Find help and support resources." },
