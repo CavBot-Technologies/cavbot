@@ -5359,7 +5359,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Analytics v5", href: "/docs#analytics-v5", type: "Docs", summary: "Install and verify CavBot website analytics." },
     { title: "CavAi v3", href: "/docs#cavai-v3", type: "Docs", summary: "Use CavAi with workspace context, models, tools, and assistant memory." },
     { title: "CavBot Cloud", href: "/cloud", type: "Product", summary: "Cloud storage and workspace files for CavBot." },
-    { title: "CavCode", href: "/cavcode", type: "Product", summary: "Code workspace and developer tools." },
+    { title: "Code Editor", href: "/ide", type: "Product", summary: "Code workspace and developer tools." },
     { title: "Caven", href: "/caven", type: "Product", summary: "CavBot coding assistant and development workflow." },
     { title: "Web Analytics", href: "/web-analytics", type: "Product", summary: "Understand website traffic and route activity." },
     { title: "Insights", href: "/insights", type: "Product", summary: "Search Console insights and website intelligence." },
@@ -5529,9 +5529,11 @@ document.addEventListener("DOMContentLoaded", () => {
   var SESSION_ENDPOINT = "https://app.cavbot.io/api/public/website-session";
   var ICON_SVG = "/assets/icons/page/profile-svgrepo-com.svg";
   var APP_LOGIN_URL = "https://app.cavbot.io/auth?mode=login";
+  var APP_SIGNUP_URL = "https://app.cavbot.io/auth?mode=signup";
   var APP_LOGOUT_URL = "https://app.cavbot.io/api/auth/logout";
-  var APP_PLAN_URL = "https://app.cavbot.io/plan";
   var APP_SETTINGS_PROFILE_URL = "https://app.cavbot.io/settings?tab=account";
+  var APP_SETTINGS_BILLING_URL = "https://app.cavbot.io/settings?tab=billing";
+  var APP_SETTINGS_TIME_ZONE_URL = "https://app.cavbot.io/settings?tab=account#time-zone";
   var ACCOUNT_MENU_ID = "cb-app-session-menu";
   var currentAppSession = { ok: false, authenticated: false };
   var accountMenuTrigger = null;
@@ -5626,23 +5628,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function getProfileMenuLabel(state) {
-    var user = state && state.user ? state.user : null;
-    if (!user) return "Private Profile";
-    return user.publicProfileEnabled ? "Public Profile" : "Private Profile";
-  }
-
-
-  function getProfileHref(state) {
-    var user = state && state.user ? state.user : null;
-    if (!user) return APP_LOGIN_URL;
-
-    var username = clean(user.username).replace(/^@+/, "");
-    if (username) return "https://app.cavbot.io/" + encodeURIComponent(username);
-    return APP_SETTINGS_PROFILE_URL;
-  }
-
-
   function closeAccountMenu() {
     var menu = document.getElementById(ACCOUNT_MENU_ID);
     if (!menu) return;
@@ -5727,18 +5712,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderAccountMenu(menu, state) {
     var signedIn = isSignedIn(state);
-    var authLabel = signedIn ? "Log out" : "Log in";
-    var authHref = signedIn ? "#" : APP_LOGIN_URL;
-    var profileLabel = getProfileMenuLabel(state);
-    var profileHref = getProfileHref(state);
-
-    menu.innerHTML = [
-      '<a class="cb-app-session-menu-item" role="menuitem" href="' + profileHref + '">' + profileLabel + '</a>',
-      '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_PLAN_URL + '">Upgrade Plan</a>',
-      signedIn
-        ? '<button class="cb-app-session-menu-item is-danger" type="button" role="menuitem" data-cavbot-app-session-logout>' + authLabel + '</button>'
-        : '<a class="cb-app-session-menu-item is-auth" role="menuitem" href="' + authHref + '">' + authLabel + '</a>'
-    ].join("");
+    menu.innerHTML = signedIn
+      ? [
+          '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_SETTINGS_PROFILE_URL + '">Profile</a>',
+          '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_SETTINGS_BILLING_URL + '">Billing</a>',
+          '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_SETTINGS_TIME_ZONE_URL + '">Time zone</a>',
+          '<button class="cb-app-session-menu-item is-danger" type="button" role="menuitem" data-cavbot-app-session-logout>Log out</button>'
+        ].join("")
+      : [
+          '<a class="cb-app-session-menu-item is-auth" role="menuitem" href="' + APP_LOGIN_URL + '">Log in</a>',
+          '<a class="cb-app-session-menu-item is-auth" role="menuitem" href="' + APP_SIGNUP_URL + '">Create account</a>'
+        ].join("");
   }
 
 

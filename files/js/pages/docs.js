@@ -50,7 +50,7 @@
     ["cav commands", "Lists supported Cav commands.", "cav commands", "Returns the compact command index."],
     ["cav help [namespace]", "Shows focused help for a namespace.", "cav help diag", "Returns syntax and examples for that namespace."],
     ["cav status", "Shows operator, project, origin, and surface.", "cav status", "Returns the current CavBot terminal status."],
-    ["cav ctx", "Shows active file and working directory context.", "cav ctx", "Returns current CavCode context."],
+    ["cav ctx", "Shows active file and working directory context.", "cav ctx", "Returns current Code Editor context."],
     ["cav whoami", "Shows the current operator context.", "cav whoami", "Returns identity and workspace scope."],
     ["cav clear", "Clears terminal output.", "cav clear", "Clears the terminal panel."],
     ["cav sync", "Reloads local workspace state.", "cav sync", "Forces a local storage sync."],
@@ -61,8 +61,8 @@
     ["cav events filter", "Filters events by tone.", "cav events filter bad", "Returns matching events."],
     ["cav events clear", "Clears event history.", "cav events clear", "Clears local events."],
     ["cav jump", "Opens a file at a line and column.", "cav jump /codebase/app/page.tsx:2:1", "Opens the target file."],
-    ["cav tab", "Switches a Terminal or CavCode tab.", "cav tab scm", "Changes the active panel."],
-    ["cav open codebase", "Opens the CavCode editor.", "cav open codebase", "Navigates to CavCode."],
+    ["cav tab", "Switches a Terminal or Code Editor tab.", "cav tab scm", "Changes the active panel."],
+    ["cav open codebase", "Opens the Code Editor.", "cav open codebase", "Navigates to Code Editor."],
     ["cav open --", "Opens a codebase file.", "cav open -- /codebase/styles/global.css", "Opens the file in the editor."],
     ["cav run --", "Opens a file through the run shortcut.", "cav run -- /codebase/app/page.tsx", "Opens the file."],
     ["cav live", "Opens the live viewer.", "cav live", "Navigates to the HTML viewer/live preview."],
@@ -95,16 +95,16 @@
     ["cav run stop|restart", "Stops or restarts a runtime session.", "cav run stop <sessionId>", "Changes session state."],
     ["cav project service start|status|refresh|diagnostics|logs|stop|restart", "Controls the TypeScript project service.", "cav project service diagnostics", "Returns project-service diagnostics or state."],
     ["cav task list|run|status|logs|stop|restart|history", "Runs configured workspace tasks.", "cav task run build", "Returns task session output."],
-    ["cav extension marketplace|install|update|uninstall|enable|disable|list|host|activate|api", "Manages CavCode extensions and the extension host.", "cav extension list", "Returns extension state or changes installation."],
-    ["cav collab session|presence|op|share", "Controls collaborative editing sessions.", "cav collab session start /cavcode/src/app.tsx ot", "Creates or updates collaboration state."],
+    ["cav extension marketplace|install|update|uninstall|enable|disable|list|host|activate|api", "Manages Code Editor extensions and the extension host.", "cav extension list", "Returns extension state or changes installation."],
+    ["cav collab session|presence|op|share", "Controls collaborative editing sessions.", "cav collab session start /ide/src/app.tsx ot", "Creates or updates collaboration state."],
     ["cav security status|profile|secrets|scan|audit", "Reviews and configures command security controls.", "cav security status", "Returns security profile, scans, or audit events."],
     ["cav remote provider|session|port|debug", "Manages remote workspaces, sessions, ports, and debug adapters.", "cav remote provider list", "Returns or changes remote session state."],
     ["cav reliability status|snapshots|restore|replay|budget|crash", "Reviews runtime reliability state and recovery data.", "cav reliability status", "Returns reliability summaries or changes budgets."],
-    ["cav ui palette|shortcut|view|layout", "Controls CavCode UI command surfaces.", "cav ui view list", "Returns or changes local UI state."],
-    ["cav search rg|semantic|replace-preview", "Searches and previews replacements across CavCode files.", "cav search rg \"TODO\" --path /cavcode/src --max 200", "Returns search matches or replacement preview."],
-    ["cav git status|diff|stage|unstage|commit|log|branch|checkout|remote|fetch|pull|push|sync|ahead-behind|rebase|cherry-pick|conflicts", "Runs source-control commands in the CavCode workspace.", "cav git status", "Returns Git output or changes the repository."],
-    ["cav debug start|config|attach|select|stop|status|logs|continue|pause|next|step|out|threads|frame|scopes|vars|evaluate|repl|break|watch", "Runs debugger sessions and debug actions.", "cav debug start /cavcode/app/page.tsx", "Starts or controls a debug session."],
-    ["cav index refresh|symbols|refs|calls|graph|xref|semantic", "Builds and queries the CavCode code index.", "cav index symbols", "Returns index results."],
+    ["cav ui palette|shortcut|view|layout", "Controls Code Editor UI command surfaces.", "cav ui view list", "Returns or changes local UI state."],
+    ["cav search rg|semantic|replace-preview", "Searches and previews replacements across Code Editor files.", "cav search rg \"TODO\" --path /ide/src --max 200", "Returns search matches or replacement preview."],
+    ["cav git status|diff|stage|unstage|commit|log|branch|checkout|remote|fetch|pull|push|sync|ahead-behind|rebase|cherry-pick|conflicts", "Runs source-control commands in the Code Editor workspace.", "cav git status", "Returns Git output or changes the repository."],
+    ["cav debug start|config|attach|select|stop|status|logs|continue|pause|next|step|out|threads|frame|scopes|vars|evaluate|repl|break|watch", "Runs debugger sessions and debug actions.", "cav debug start /ide/app/page.tsx", "Starts or controls a debug session."],
+    ["cav index refresh|symbols|refs|calls|graph|xref|semantic", "Builds and queries the Code Editor code index.", "cav index symbols", "Returns index results."],
     ["cav template list|init", "Lists or initializes code templates.", "cav template init website starter", "Returns templates or creates starter files."],
     ["cav loop plan|replace|checkpoint|run", "Runs structured edit-loop helpers.", "cav loop checkpoint create pre-refactor", "Creates plans, replacements, checkpoints, or loop runs."]
   ];
@@ -1278,7 +1278,7 @@
       ]
     ),
 
-    p(`After the checklist passes, CavBot can be treated as active for that site. From there, continue into Website Signals for diagnostics, Integrations for platform-specific install notes, Security for protected actions, Billing for plan access, Developer Tools for CavCode and CavBot Terminal, or Assets for badges, Arcade, and other installable surfaces.`),
+    p(`After the checklist passes, CavBot can be treated as active for that site. From there, continue into Website Signals for diagnostics, Integrations for platform-specific install notes, Security for protected actions, Billing for plan access, Developer Tools for Code Editor and CavBot Terminal, or Assets for badges, Arcade, and other installable surfaces.`),
 
     note("Do not skip verification", "A snippet can be installed but still point to the wrong site, wrong project, wrong key, or unpublished environment. Always verify the live website and the CavBot workspace together."),
 
@@ -4113,7 +4113,7 @@
         ["General assistance", "Writing, rewriting, planning, brainstorming, explaining ideas, organizing tasks, and turning rough thoughts into clearer output."],
         ["Website review", "Explaining routes, errors, SEO signals, accessibility findings, 404 activity, reports, and site health concerns."],
         ["Workspace context", "Summarizing the Primary site, recent signals, files, notes, and available workspace information when connected."],
-        ["Technical work", "Explaining code, drafting fixes, reviewing snippets, preparing implementation plans, and helping with CavCode workflows."],
+        ["Technical work", "Explaining code, drafting fixes, reviewing snippets, preparing implementation plans, and helping with Code Editor workflows."],
         ["Business work", "Drafting product copy, support notes, investor messages, launch checklists, feature plans, and internal documentation."],
         ["Creative work", "Supporting image prompts, brand direction, visual planning, content ideas, and structured creative briefs when image tools are available."]
       ]
@@ -4145,7 +4145,7 @@ Look at this code snippet, explain the problem, and suggest the smallest safe fi
 
 Turn these notes into a clean launch checklist.`),
 
-    p(`When workspace context is available, CavAi may be able to use the Primary site, current route, page content, uploaded files, CavPad notes, Cloud files, CavCode files, reports, and signal summaries. The exact context depends on what the user has opened, what the workspace allows, and what the current plan supports.`),
+    p(`When workspace context is available, CavAi may be able to use the Primary site, current route, page content, uploaded files, CavPad notes, Cloud files, Code Editor files, reports, and signal summaries. The exact context depends on what the user has opened, what the workspace allows, and what the current plan supports.`),
 
     p(`CavAi should not be treated as a hidden authority over the workspace. It should explain what it can see and help the user act with more clarity. If a signal is missing, stale, incomplete, or unclear, the answer should reflect that. It is better for CavAi to say that more review is needed than to pretend a weak signal is certain.`),
 
@@ -4157,7 +4157,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`For technical work, CavAi can help explain an error, draft a fix plan, review a file, compare approaches, or prepare a patch. When the task affects code, name the file, explain the current behavior, explain the desired behavior, and say what must not be changed. This keeps the answer focused and safer to apply.`),
 
-    p(`For CavCode workflows, CavAi should support the developer instead of taking over the project blindly. A good coding workflow is: explain the problem, inspect the file, propose a small change, review diagnostics, run or preview the result, and verify that the fix did not break the surrounding experience.`),
+    p(`For Code Editor workflows, CavAi should support the developer instead of taking over the project blindly. A good coding workflow is: explain the problem, inspect the file, propose a small change, review diagnostics, run or preview the result, and verify that the fix did not break the surrounding experience.`),
 
     p(`For image workflows, CavAi can help prepare prompts, improve visual direction, describe what needs to change, and organize creative decisions. Image generation and image editing depend on the available model, plan, and product surface. When using image tools, describe the subject, composition, style, background, lighting, format, and what should stay unchanged.`),
 
@@ -4218,7 +4218,7 @@ Turn these notes into a clean launch checklist.`),
         ["Qwen3.5-Flash", "Fast replies, lightweight questions, quick rewrites, and short summaries.", "Best when speed matters more than depth."],
         ["Qwen3.5-Plus", "Stronger writing, planning, review, and product work.", "Use for more complete answers when the task needs better quality than a quick response."],
         ["Qwen3-Max", "Research-heavy work, complex planning, and deeper answers that need stronger model support.", "Plus model. Used for higher-capability workflows when available."],
-        ["Caven / Qwen3-Coder", "Code explanation, debugging, refactoring, file review, patch planning, and CavCode work.", "Best for development tasks. Use inside CavCode or when the request is clearly about code."],
+        ["Caven / Qwen3-Coder", "Code explanation, debugging, refactoring, file review, patch planning, and Code Editor work.", "Best for development tasks. Use inside Code Editor or when the request is clearly about code."],
         ["CavBot Companion", "Guidance, support, onboarding help, and everyday product assistance.", "Designed for calmer product help and user support."],
         ["Qwen ASR", "Speech-to-text and voice input.", "Used when CavAi needs to understand spoken input."],
         ["Qwen TTS", "Text-to-speech and voice output.", "Used when CavAi needs to speak a response."],
@@ -4233,7 +4233,7 @@ Turn these notes into a clean launch checklist.`),
       "Use CavAi Auto when you want CavAi to choose for you.",
       "Use faster models for short answers, rewrites, and simple summaries.",
       "Use stronger models for planning, research, technical review, and important decisions.",
-      "Use Caven when the task involves code, files, diagnostics, or CavCode.",
+      "Use Caven when the task involves code, files, diagnostics, or Code Editor.",
       "Use Image Studio when creating a new image.",
       "Use Image Edit when changing an existing image.",
       "Use voice models only when the task involves speech input or spoken output."
@@ -4354,7 +4354,7 @@ Turn these notes into a clean launch checklist.`),
       "Write down important decisions in CavPad when the work needs team follow-up."
     ]),
 
-    p(`CavAi is best for explaining signals, summarizing reports, preparing checklists, comparing options, drafting notes, reviewing website context, and helping the team understand what should happen next. Caven is best for code-focused work: reviewing files, explaining errors, preparing patches, checking components, and helping with development inside CavCode.`),
+    p(`CavAi is best for explaining signals, summarizing reports, preparing checklists, comparing options, drafting notes, reviewing website context, and helping the team understand what should happen next. Caven is best for code-focused work: reviewing files, explaining errors, preparing patches, checking components, and helping with development inside Code Editor.`),
 
     p(`A strong workflow should have a beginning, middle, and end. The beginning defines the target. The middle reviews the context and proposes the next step. The end gives the user something usable: a checklist, summary, fix plan, code review, report, decision note, or verification steps.`),
 
@@ -4383,7 +4383,7 @@ Turn these notes into a clean launch checklist.`),
 
     list([
       "Use CavAi for summaries, plans, explanations, reports, and website review.",
-      "Use Caven for code review, file repair, debugging, and CavCode work.",
+      "Use Caven for code review, file repair, debugging, and Code Editor work.",
       "Use CavPad to save decisions, follow-ups, and release notes.",
       "Use Reports when the team needs a shareable summary.",
       "Use 404 Recovery for broken route recovery work.",
@@ -4401,11 +4401,11 @@ Turn these notes into a clean launch checklist.`),
 {
   id: "caven",
   title: "Caven",
-  summary: "Build, review, repair, and explain code inside CavCode.",
+  summary: "Build, review, repair, and explain code inside Code Editor.",
   blocks: [
-    p(`Caven is CavBot’s coding assistant for CavCode. It helps users understand files, review errors, repair broken code, plan changes, generate components, improve pages, inspect APIs, and work through development tasks without leaving the CavBot workspace.`),
+    p(`Caven is CavBot’s coding assistant for Code Editor. It helps users understand files, review errors, repair broken code, plan changes, generate components, improve pages, inspect APIs, and work through development tasks without leaving the CavBot workspace.`),
 
-    p(`Caven is built for practical coding work. It is not a general chat surface with a code label placed on top. It is meant to work beside the active file, open tabs, diagnostics, project structure, terminal output, and mounted workspace files inside CavCode. The more specific the context, the better Caven can help.`),
+    p(`Caven is built for practical coding work. It is not a general chat surface with a code label placed on top. It is meant to work beside the active file, open tabs, diagnostics, project structure, terminal output, and mounted workspace files inside Code Editor. The more specific the context, the better Caven can help.`),
 
     p(`Use Caven when you need help with a real development task: explaining why code is failing, reviewing a component, fixing a TypeScript error, cleaning up markup, improving a page, building a small feature, checking an API route, repairing CSS, writing a safer implementation plan, or understanding how files in a project connect to each other.`),
 
@@ -4443,7 +4443,7 @@ Turn these notes into a clean launch checklist.`),
     p(`For small fixes, Caven can move directly into explanation and repair. For larger work, ask for a plan first. This is especially important when a change touches multiple files, authentication, billing, workspace roles, API keys, protected routes, storage, CavBot Vault, CavGuard, CavVerify, or anything that can affect production behavior.`),
 
     list([
-      "Use Caven inside CavCode when the active file or workspace files matter.",
+      "Use Caven inside Code Editor when the active file or workspace files matter.",
       "Name the file, route, component, error, or behavior you want reviewed.",
       "Ask for the smallest safe fix when the issue is narrow.",
       "Ask for a plan first when the change touches multiple files.",
@@ -5446,18 +5446,18 @@ Turn these notes into a clean launch checklist.`),
     label: "Developer tools",
     
     title: "Developer tools",
-    description: "Use CavCode, CavBot Cloud, CavBot Terminal, HTML Viewer, and Cav commands for development and workspace operations.",
+    description: "Use Code Editor, CavBot Cloud, CavBot Terminal, HTML Viewer, and Cav commands for development and workspace operations.",
     sections: [
      {
-  id: "cavcode",
+  id: "ide",
   title: "Code",
   summary: "Open, edit, save, run, and review workspace code inside CavBot.",
   blocks: [
-    p(`CavCode is CavBot’s built-in code editor. It gives a workspace a place to open project files, read code, edit files, review problems, run commands, preview output, and use Caven for coding help without leaving the CavBot platform.`),
+    p(`CavBot Code Editor is built into CavBot. It gives a workspace a place to open files, read code, edit files, review problems, run commands, preview output, and use Caven for coding help without leaving the CavBot platform.`),
 
-    p(`Use CavCode when the work belongs close to the workspace: fixing a page, reviewing a file, checking a component, inspecting a bug, testing a small change, reading diagnostics, or preparing a safer edit before publishing.`),
+    p(`Use Code Editor when the work belongs close to the workspace: fixing a page, reviewing a file, checking a component, inspecting a bug, testing a small change, reading diagnostics, or preparing a safer edit before publishing.`),
 
-    p(`CavCode is built around a project file tree, editor tabs, diagnostics, search, source control, live preview, run tools, settings, and a terminal command plane. The goal is to make code work readable and controlled inside CavBot, not scattered across disconnected screens.`),
+    p(`Code Editor is built around a project file tree, editor tabs, diagnostics, search, source control, live preview, run tools, settings, and a terminal command plane. The goal is to make code work readable and controlled inside CavBot, not scattered across disconnected screens.`),
 
     p(`The editor is designed for real project work. You can open files, keep multiple files in tabs, edit text files, save changes, review warnings and errors, inspect the file tree, search through code, and use Cav commands for deeper workspace actions.`),
 
@@ -5476,9 +5476,9 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`CavCode should be used when you need more control than a normal dashboard gives you. A dashboard can show that something is wrong. CavCode helps you open the file, inspect the source, understand the issue, and make the smallest safe change.`),
+    p(`Code Editor should be used when you need more control than a normal dashboard gives you. A dashboard can show that something is wrong. Code Editor helps you open the file, inspect the source, understand the issue, and make the smallest safe change.`),
 
-    p(`A normal CavCode workflow starts with the file. Open the project, find the file that matters, read the surrounding code, check the Problems panel, make a focused edit, save the file, then verify the result through the preview, run output, diagnostics, or the relevant CavBot module.`),
+    p(`A normal Code Editor workflow starts with the file. Open the project, find the file that matters, read the surrounding code, check the Problems panel, make a focused edit, save the file, then verify the result through the preview, run output, diagnostics, or the relevant CavBot module.`),
 
     list([
       "Open the project or mounted workspace.",
@@ -5491,13 +5491,13 @@ Turn these notes into a clean launch checklist.`),
       "Verify the change before moving to the next file."
     ]),
 
-    p(`CavCode can work with files stored in the CavCode workspace and, when available, files connected through CavBot Cloud or mounted workspace storage. This helps keep code, files, previews, and assistant context close to the same project.`),
+    p(`Code Editor can work with files stored in the Code Editor workspace and, when available, files connected through CavBot Cloud or mounted workspace storage. This helps keep code, files, previews, and assistant context close to the same project.`),
 
-    p(`Saving in CavCode should be treated as a real workspace action. Before changing a file, confirm that the active project, selected workspace, and file path are correct. Do not edit a file only because it appears open. Make sure it is the file you actually intend to change.`),
+    p(`Saving in Code Editor should be treated as a real workspace action. Before changing a file, confirm that the active project, selected workspace, and file path are correct. Do not edit a file only because it appears open. Make sure it is the file you actually intend to change.`),
 
     note("Save carefully", "Before saving, confirm the file name, folder path, active workspace, and purpose of the change. A clean edit starts with the right file."),
 
-    p(`The Problems panel is where CavCode shows diagnostics for the current codebase when diagnostics are available. Use it to catch syntax errors, missing imports, type issues, warnings, or other problems that should be reviewed before a change is considered finished.`),
+    p(`The Problems panel is where Code Editor shows diagnostics for the current codebase when diagnostics are available. Use it to catch syntax errors, missing imports, type issues, warnings, or other problems that should be reviewed before a change is considered finished.`),
 
     p(`Diagnostics are not a replacement for testing. A file can have no visible problems and still behave incorrectly in the browser. After fixing code, also check the live page, the preview, the route, the console output, or the CavBot module related to the issue.`),
 
@@ -5524,7 +5524,7 @@ Turn these notes into a clean launch checklist.`),
       "Keep command output as part of the debugging trail when needed."
     ]),
 
-    p(`Caven is the coding assistant inside the CavCode workflow. Use Caven when you need help understanding a file, explaining an error, preparing a fix plan, reviewing a component, improving a page, or making a careful code change.`),
+    p(`Caven is the coding assistant inside the Code Editor workflow. Use Caven when you need help understanding a file, explaining an error, preparing a fix plan, reviewing a component, improving a page, or making a careful code change.`),
 
     p(`Caven works best when the request is specific. Name the file, describe the issue, explain what must not change, and ask for the smallest safe fix. A narrow request produces a better coding result than a broad request like “fix everything.”`),
 
@@ -5539,7 +5539,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`CavCode should not be used as a place for blind rewrites. If a change touches multiple files, protected settings, billing, security, storage, authentication, or production behavior, start with a plan. Review the plan, then apply changes one step at a time.`),
+    p(`Code Editor should not be used as a place for blind rewrites. If a change touches multiple files, protected settings, billing, security, storage, authentication, or production behavior, start with a plan. Review the plan, then apply changes one step at a time.`),
 
     p(`When working on public pages, keep edits small and verify the result visually. A change that looks simple in code can affect layout, mobile behavior, accessibility, SEO metadata, forms, buttons, or navigation.`),
 
@@ -5547,12 +5547,12 @@ Turn these notes into a clean launch checklist.`),
 
     note("Production rule", "For production work, plan first, edit small, save deliberately, run or preview when available, then verify in the real surface."),
 
-    p(`CavCode can also support file review and cleanup. Use it to inspect old files, compare naming patterns, review repeated code, check assets, clean small mistakes, and prepare better structure across a workspace.`),
+    p(`Code Editor can also support file review and cleanup. Use it to inspect old files, compare naming patterns, review repeated code, check assets, clean small mistakes, and prepare better structure across a workspace.`),
 
     p(`Use Live or Viewer surfaces when the file needs visual confirmation. HTML, CSS, image, and page changes should be checked in a preview whenever possible. If the preview does not match the file, confirm that the file was saved, the correct path is open, assets are linked correctly, and the preview is loading the latest version.`),
 
     table(
-      ["Task", "Recommended CavCode surface"],
+      ["Task", "Recommended Code Editor surface"],
       [
         ["Find a file", "Explorer or Terminal"],
         ["Edit code", "Editor"],
@@ -5565,9 +5565,9 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`CavCode becomes more useful when the workspace is organized. Use clear folders, readable file names, stable paths, and focused commits or save points. This makes it easier for Caven, the terminal, diagnostics, and the editor to keep the work understandable.`),
+    p(`Code Editor becomes more useful when the workspace is organized. Use clear folders, readable file names, stable paths, and focused commits or save points. This makes it easier for Caven, the terminal, diagnostics, and the editor to keep the work understandable.`),
 
-    p(`If CavCode feels out of sync, check the active workspace, the file path, the saved state, the mounted storage source, and any available command output. Most confusion comes from editing the wrong file, previewing an older version, or working in the wrong project context.`),
+    p(`If Code Editor feels out of sync, check the active workspace, the file path, the saved state, the mounted storage source, and any available command output. Most confusion comes from editing the wrong file, previewing an older version, or working in the wrong project context.`),
 
     list([
       "Confirm the active workspace before editing.",
@@ -5579,9 +5579,9 @@ Turn these notes into a clean launch checklist.`),
       "Keep production edits small and easy to review."
     ]),
 
-    p(`CavCode is strongest when it is used as a careful development surface: inspect the code, understand the issue, make the smallest safe change, verify the result, and keep the workspace clear for the next person who opens it.`),
+    p(`Code Editor is strongest when it is used as a careful development surface: inspect the code, understand the issue, make the smallest safe change, verify the result, and keep the workspace clear for the next person who opens it.`),
 
-    note("Core rule", "CavCode is for controlled code work inside CavBot. Read first, edit carefully, save deliberately, and verify before treating the change as finished.")
+    note("Core rule", "Code Editor is for controlled code work inside CavBot. Read first, edit carefully, save deliberately, and verify before treating the change as finished.")
   ]
 },
 
@@ -5594,7 +5594,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Use CavBot Cloud when a file belongs to the workspace and should be easier to find, preview, organize, share, restore, or use inside CavBot. Instead of leaving important files scattered across downloads, local folders, messages, and random drives, CavBot Cloud keeps project material close to the tools that use it.`),
 
-    p(`CavBot Cloud supports folders, files, uploads, text editing, previews, sharing, published files, activity history, search, tree views, versions, trash restore, collaborators, and storage notices. It is designed to work with CavCode, HTML Viewer, CavPad, CavAi, and other CavBot surfaces that need access to workspace files.`),
+    p(`CavBot Cloud supports folders, files, uploads, text editing, previews, sharing, published files, activity history, search, tree views, versions, trash restore, collaborators, and storage notices. It is designed to work with Code Editor, HTML Viewer, CavPad, CavAi, and other CavBot surfaces that need access to workspace files.`),
 
     table(
       ["Area", "What it is for"],
@@ -5638,7 +5638,7 @@ Turn these notes into a clean launch checklist.`),
       "Use CavBot Vault for protected files instead of hiding them inside normal folders."
     ]),
 
-    p(`CavBot Cloud can support CavCode by making workspace files easier to open, preview, and edit when the file type is supported. For example, an HTML file stored in CavBot Cloud can be opened for review, edited in a supported editor flow, or previewed through the viewer when the workspace allows it.`),
+    p(`CavBot Cloud can support Code Editor by making workspace files easier to open, preview, and edit when the file type is supported. For example, an HTML file stored in CavBot Cloud can be opened for review, edited in a supported editor flow, or previewed through the viewer when the workspace allows it.`),
 
     p(`CavBot Cloud can also support CavAi and Caven workflows. When a file is part of the work, the assistant can be given the file context where supported. This is useful for summarizing a document, reviewing a code file, preparing a fix plan, explaining an export, or turning a file into a clearer next step.`),
 
@@ -5688,14 +5688,14 @@ Turn these notes into a clean launch checklist.`),
 
     p(`CavBot Cloud activity helps the workspace understand what happened around files. Activity can show uploads, changes, sharing behavior, restore actions, published files, or other file-related events when the system records them.`),
 
-    p(`For teams, CavBot Cloud should be kept clean enough that another teammate can open the workspace and understand where files belong. A messy storage space slows down every future workflow. A clean CavBot Cloud structure makes CavCode, CavAi, previews, reports, and team review easier.`),
+    p(`For teams, CavBot Cloud should be kept clean enough that another teammate can open the workspace and understand where files belong. A messy storage space slows down every future workflow. A clean CavBot Cloud structure makes Code Editor, CavAi, previews, reports, and team review easier.`),
 
     table(
       ["Problem", "What to check"],
       [
         ["File is missing", "Check the current folder, search, trash, and whether the file was uploaded to a different workspace."],
         ["Preview does not load", "Confirm the file type is supported and the file is not corrupted or too large."],
-        ["CavCode cannot open the file", "Check whether the file type is editable and whether the workspace mount is available."],
+        ["Code Editor cannot open the file", "Check whether the file type is editable and whether the workspace mount is available."],
         ["Storage is almost full", "Review large uploads, duplicate exports, videos, image sets, and old project bundles."],
         ["Shared file should not be public", "Remove the share or publish state and move protected material to CavBot Vault if needed."]
       ]
@@ -5727,24 +5727,24 @@ Turn these notes into a clean launch checklist.`),
         ["File behavior", "Check whether a file opened, saved, previewed, moved, or failed as expected."],
         ["Preview issues", "Investigate why a live view or preview does not match the file you expected."],
         ["Diagnostics", "Review developer-facing messages, warnings, failures, and action results."],
-        ["Safe testing", "Test a workflow before making a larger change in CavCode, CavBot Cloud, or workspace settings."]
+        ["Safe testing", "Test a workflow before making a larger change in Code Editor, CavBot Cloud, or workspace settings."]
       ]
     ),
 
     p(`CavBot Terminal should be opened when the normal product screen does not give enough detail. A dashboard can show that something needs attention. CavBot Terminal helps you inspect the action behind the result so you can decide what to do next with more confidence.`),
 
-    p(`For example, if a preview is not showing the latest file, CavBot Terminal can help you check whether the right file is selected, whether the workspace context is correct, whether the preview action returned an error, or whether the problem belongs in CavCode, CavBot Cloud, the viewer, or the workspace settings.`),
+    p(`For example, if a preview is not showing the latest file, CavBot Terminal can help you check whether the right file is selected, whether the workspace context is correct, whether the preview action returned an error, or whether the problem belongs in Code Editor, CavBot Cloud, the viewer, or the workspace settings.`),
 
     p(`If a command does not behave as expected, CavBot Terminal gives you a place to read the command result clearly. That matters because the answer may not be “the app is broken.” The result may point to a missing file, a wrong path, a locked feature, a permission issue, a workspace mismatch, or an action that needs to be run somewhere else.`),
 
-    p(`CavBot Terminal is not the same as CavCode. CavCode is where you write, edit, review, and run code. The Terminal is where you inspect the developer workflow around that code. CavCode is for changing the work. CavBot Terminal is for checking the work, reading output, and understanding what happened.`),
+    p(`CavBot Terminal is not the same as Code Editor. Code Editor is where you write, edit, review, and run code. The Terminal is where you inspect the developer workflow around that code. Code Editor is for changing the work. CavBot Terminal is for checking the work, reading output, and understanding what happened.`),
 
     p(`CavBot Terminal is also not a replacement for the main dashboard. The dashboard is for understanding the website and workspace at a higher level. CavBot Terminal is for developer-level inspection when you need to see the details behind a file action, command, preview, runtime message, or workspace behavior.`),
 
     table(
       ["Use", "Open this surface"],
       [
-        ["You need to edit code", "CavCode"],
+        ["You need to edit code", "Code Editor"],
         ["You need to inspect command output", "CavBot Terminal"],
         ["You need to organize files", "CavBot Cloud"],
         ["You need to preview an HTML file", "HTML Viewer"],
@@ -5753,13 +5753,13 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`A strong Terminal workflow is simple: inspect, confirm, act, and verify. First inspect the current state. Then confirm the project, site, file, command, or action target. Then make the smallest safe change in the correct surface. After that, return to CavBot Terminal, CavCode, CavBot Cloud, or the dashboard to verify the result.`),
+    p(`A strong Terminal workflow is simple: inspect, confirm, act, and verify. First inspect the current state. Then confirm the project, site, file, command, or action target. Then make the smallest safe change in the correct surface. After that, return to CavBot Terminal, Code Editor, CavBot Cloud, or the dashboard to verify the result.`),
 
     list([
       "Open CavBot Terminal before changing files or settings when the issue is unclear.",
       "Confirm the active project and selected site before reviewing output.",
       "Read command results carefully before taking action.",
-      "Check whether the issue belongs in CavCode, CavBot Cloud, the viewer, dashboard, or workspace settings.",
+      "Check whether the issue belongs in Code Editor, CavBot Cloud, the viewer, dashboard, or workspace settings.",
       "Use read-only checks before running actions that write, delete, restart, replace, restore, or publish.",
       "Return to the correct surface only after you understand what needs to change."
     ]),
@@ -5816,7 +5816,7 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`HTML Viewer is CavBot’s live preview surface for HTML files and related web assets. It lives at /html-viewer and gives users a way to open a saved page, render it in the browser, inspect the result, and confirm that the file behaves the way it should before it is published or shared.`),
 
-    p(`Use HTML Viewer when you need to preview an HTML artifact from CavBot Cloud, CavBot Vault, CavCode, or a connected workspace file. It is built for generated pages, edited HTML files, saved website sections, exported templates, preview documents, static pages, and files that need to be reviewed visually before the next step.`),
+    p(`Use HTML Viewer when you need to preview an HTML artifact from CavBot Cloud, CavBot Vault, Code Editor, or a connected workspace file. It is built for generated pages, edited HTML files, saved website sections, exported templates, preview documents, static pages, and files that need to be reviewed visually before the next step.`),
 
     p(`HTML Viewer can load HTML, CSS, JavaScript, images, video, fonts, JSON, SVG, and other supported assets through CavBot’s file APIs. When a file is opened, the viewer attempts to render the page using the file and its referenced assets so the user can see the page as a working browser preview instead of reading raw source alone.`),
 
@@ -5824,26 +5824,26 @@ Turn these notes into a clean launch checklist.`),
       ["Use case", "How HTML Viewer helps"],
       [
         ["Preview HTML files", "Open a saved HTML file and see how it renders in the browser."],
-        ["Review generated pages", "Check pages created by CavAi, Caven, CavCode, or other workspace tools."],
+        ["Review generated pages", "Check pages created by CavAi, Caven, Code Editor, or other workspace tools."],
         ["Inspect layout changes", "Confirm spacing, structure, typography, images, and page flow before publishing."],
         ["Check linked assets", "Verify that CSS, images, scripts, fonts, SVGs, and media files load correctly."],
         ["Test static artifacts", "Review static exports, landing pages, legal pages, docs pages, and HTML templates."],
-        ["Support CavCode work", "Preview files edited in CavCode without leaving the CavBot workspace."],
+        ["Support Code Editor work", "Preview files edited in Code Editor without leaving the CavBot workspace."],
         ["Review protected files", "Preview eligible CavBot Vault files when the user has the right access."]
       ]
     ),
 
-    p(`HTML Viewer is not the same as CavCode. CavCode is where you write and edit files. HTML Viewer is where you see the result. A strong workflow is to edit in CavCode, save the file, open the file in HTML Viewer, review the page, then return to CavCode if anything needs to be corrected.`),
+    p(`HTML Viewer is not the same as Code Editor. Code Editor is where you write and edit files. HTML Viewer is where you see the result. A strong workflow is to edit in Code Editor, save the file, open the file in HTML Viewer, review the page, then return to Code Editor if anything needs to be corrected.`),
 
     p(`HTML Viewer is also not a full production deployment. A file can look correct in the viewer and still need final testing on the real website, real domain, real routing system, and real production environment. Use the viewer as a review step before publishing, not as the final proof that production is complete.`),
 
     list([
-      "Use CavCode to edit the HTML, CSS, or JavaScript.",
+      "Use Code Editor to edit the HTML, CSS, or JavaScript.",
       "Save the latest version of the file.",
       "Open the file in HTML Viewer.",
       "Confirm the page renders correctly.",
       "Check that assets load from the expected paths.",
-      "Return to CavCode if the preview shows layout, script, or asset problems.",
+      "Return to Code Editor if the preview shows layout, script, or asset problems.",
       "Test again on the real website before treating the work as finished."
     ]),
 
@@ -5902,7 +5902,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`HTML Viewer is most valuable when it keeps users from publishing blind. Instead of guessing whether a generated or edited file works, the user can open it, see it, inspect it, and make a cleaner decision before moving forward.`),
 
-    note("Core rule", "Edit in CavCode, organize in CavBot Cloud or CavBot Vault, preview in HTML Viewer, then verify on the real site before publishing.")
+    note("Core rule", "Edit in Code Editor, organize in CavBot Cloud or CavBot Vault, preview in HTML Viewer, then verify on the real site before publishing.")
   ]
 },
 
@@ -5946,7 +5946,7 @@ Turn these notes into a clean launch checklist.`),
       "Review the result after a command runs."
     ]),
 
-    p(`Cav commands are especially useful inside CavBot Terminal and CavCode. The Terminal helps you inspect what happened. CavCode helps you open, edit, save, and review files. The command line connects those surfaces so a user can move quickly without losing the workspace context.`),
+    p(`Cav commands are especially useful inside CavBot Terminal and Code Editor. The Terminal helps you inspect what happened. Code Editor helps you open, edit, save, and review files. The command line connects those surfaces so a user can move quickly without losing the workspace context.`),
 
     p(`For example, if a file preview looks wrong, you can use Cav commands to inspect the current context, list files in the folder, open the source file, search for a string, check diagnostics, and then return to the viewer after the file is corrected.`),
 
@@ -5964,7 +5964,7 @@ Turn these notes into a clean launch checklist.`),
       ["Path or target", "How to treat it"],
       [
         ["/codebase", "Use for files in the codebase command area."],
-        ["/cavcode", "Use for CavCode project files when the workspace exposes that mount."],
+        ["/ide", "Use for Code Editor files when the workspace exposes that mount."],
         ["/workspace", "Use for mounted workspace files when available."],
         ["Session ID", "Use only for runtime, task, debug, or process commands that ask for a specific session."],
         ["Task name", "Use only when running a configured workspace task."],
@@ -5981,7 +5981,7 @@ Turn these notes into a clean launch checklist.`),
       "Open or read the target before changing it.",
       "Run the smallest command that performs the action you need.",
       "Read the command output carefully.",
-      "Verify the result in CavBot Terminal, CavCode, HTML Viewer, CavBot Cloud, or the relevant workspace surface."
+      "Verify the result in CavBot Terminal, Code Editor, HTML Viewer, CavBot Cloud, or the relevant workspace surface."
     ]),
 
     p(`Command output should be read carefully. A result may tell you that a file was not found, a command is not available, a plan does not allow the action, a session is missing, a path is invalid, a feature is locked, or a protected workflow needs a different route.`),
@@ -6559,7 +6559,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Audit trail should be kept separate from ordinary notifications. A notification tells the user something happened. An audit entry preserves a record for later review. Both can be useful, but they serve different purposes. Notifications are for attention. Audit trail is for accountability and history.`),
 
-    p(`CavBot may continue expanding the audit trail as the platform grows. New product surfaces, protected actions, CavBot Vault features, CavCode actions, billing controls, collaboration tools, and owner settings may add new audit records over time. The goal should remain the same: important actions should be clear, reviewable, and tied to the right workspace context.`),
+    p(`CavBot may continue expanding the audit trail as the platform grows. New product surfaces, protected actions, CavBot Vault features, Code Editor actions, billing controls, collaboration tools, and owner settings may add new audit records over time. The goal should remain the same: important actions should be clear, reviewable, and tied to the right workspace context.`),
 
     note("Best practice", "When something important changes, check the audit trail before guessing. The record should show who acted, what changed, what was affected, when it happened, and what CavBot did with the request.")
   ]
@@ -6732,7 +6732,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Risk Controls are strongest when they are paired with clear ownership. Someone should know who owns the workspace, who owns production, who approves new origins, who manages API keys, who controls billing, who reviews audit trail, and who can approve protected actions.`),
 
-    p(`CavBot may expand Risk Controls over time as the platform grows. New controls may be added for AI workflows, CavCode actions, CavBot Cloud publishing, CavBot Vault movement, billing changes, model access, team permissions, and production-impacting operations.`),
+    p(`CavBot may expand Risk Controls over time as the platform grows. New controls may be added for AI workflows, Code Editor actions, CavBot Cloud publishing, CavBot Vault movement, billing changes, model access, team permissions, and production-impacting operations.`),
 
     p(`The goal should remain simple: make the workspace safer without making normal work confusing. Risk Controls should stop obvious mistakes, slow down sensitive actions, alert the team when something unusual happens, and preserve a clear record when important actions are attempted.`),
 
@@ -7037,7 +7037,7 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`CavBot includes a 14-day trial so new users can test the platform before choosing a paid plan. During the trial, the workspace receives Plus access, which gives the user enough room to explore CavBot’s strongest features, connect real sites, review signals, test protected storage, and understand how the product fits their workflow.`),
 
-    p(`The trial is designed to be useful, not decorative. A user should not spend the trial only clicking through pages. The best trial experience comes from connecting a real website, installing the CavBot snippet, opening the dashboard, reviewing site activity, testing reports, exploring CavAi, opening CavCode, organizing files in CavBot Cloud, and checking how the workspace behaves with real context.`),
+    p(`The trial is designed to be useful, not decorative. A user should not spend the trial only clicking through pages. The best trial experience comes from connecting a real website, installing the CavBot snippet, opening the dashboard, reviewing site activity, testing reports, exploring CavAi, opening Code Editor, organizing files in CavBot Cloud, and checking how the workspace behaves with real context.`),
 
     p(`Because the trial uses Plus access, users can evaluate the full CavBot experience before deciding whether Free, Pro, or Plus is the right long-term plan. This helps a user understand the difference between basic access, paid workspace access, and the highest current CavBot tier.`),
 
@@ -7062,11 +7062,11 @@ Turn these notes into a clean launch checklist.`),
       "Visit the public site after publishing.",
       "Confirm CavBot receives activity.",
       "Open the dashboard and review the site state.",
-      "Test reports, CavAi, CavCode, CavBot Cloud, CavBot Vault, and protected workspace actions.",
+      "Test reports, CavAi, Code Editor, CavBot Cloud, CavBot Vault, and protected workspace actions.",
       "Review which features matter most before choosing a plan."
     ]),
 
-    p(`Use the trial to test practical workflows. For example, review a route with missing metadata, check a broken page, inspect an error, ask CavAi for a summary, open CavCode for a file review, upload a project asset to CavBot Cloud, and place protected material in CavBot Vault when the file needs stronger protection.`),
+    p(`Use the trial to test practical workflows. For example, review a route with missing metadata, check a broken page, inspect an error, ask CavAi for a summary, open Code Editor for a file review, upload a project asset to CavBot Cloud, and place protected material in CavBot Vault when the file needs stronger protection.`),
 
     p(`The trial should also help owners understand workspace limits. Invite only the people who need to test the product, review seat access, check site capacity, and confirm whether the workspace needs the higher limits available in Plus after the trial ends.`),
 
@@ -7078,7 +7078,7 @@ Turn these notes into a clean launch checklist.`),
         ["Dashboard review", "Shows whether CavBot is receiving useful site context."],
         ["Reports", "Helps the team understand how CavBot summarizes site health."],
         ["CavAi", "Lets users test assistant help with real workspace context."],
-        ["CavCode", "Lets builders inspect and work with code-related flows."],
+        ["Code Editor", "Lets builders inspect and work with code-related flows."],
         ["CavBot Cloud", "Tests normal workspace storage for files and assets."],
         ["CavBot Vault", "Tests protected storage for sensitive workspace files."],
         ["Security features", "Shows how protected actions, verification, and audit history behave."]
@@ -8122,7 +8122,7 @@ Turn these notes into a clean launch checklist.`),
         ["Site connection", "A site will not connect, verify, publish activity, or match the expected origin."],
         ["Snippet install", "Analytics v5, SDK, badge, Arcade, or other runtime snippets do not load or verify."],
         ["Billing", "A plan, checkout, subscription, invoice, downgrade, upgrade, or payment state needs review."],
-        ["Modules", "Console, 404 Recovery, Error Intelligence, A11y, CavAi, CavCode, CavBot Cloud, CavBot Vault, or another surface shows unexpected behavior."]
+        ["Modules", "Console, 404 Recovery, Error Intelligence, A11y, CavAi, Code Editor, CavBot Cloud, CavBot Vault, or another surface shows unexpected behavior."]
       ]
     ),
 
@@ -8151,7 +8151,7 @@ Turn these notes into a clean launch checklist.`),
         ["Badge or visual asset missing", "Live URL, installed snippet, page placement, and whether the CDN asset loads."],
         ["Arcade or 404 recovery issue", "Missing route tested, selected game, plan, live URL, and whether recovery links appear."],
         ["CavAi or Caven issue", "Prompt goal, selected workspace or file, model or mode used, and what result looked wrong."],
-        ["CavCode issue", "File path, action attempted, error shown, and whether the issue happens after refresh."],
+        ["Code Editor issue", "File path, action attempted, error shown, and whether the issue happens after refresh."],
         ["CavBot Cloud or CavBot Vault issue", "File or folder name, action attempted, access role, and whether the item is protected or time-locked."],
         ["Billing issue", "Plan shown, action attempted, checkout or invoice state, and approximate time of the billing event."]
       ]
@@ -8223,9 +8223,9 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`Status is the CavBot service health surface. Use it to understand whether a problem is coming from CavBot itself, a connected CavBot service, a CDN asset, a workspace setting, a site install, or a local browser issue.`),
 
-    p(`Check Status before making changes when multiple CavBot areas appear unavailable at the same time. If CavAi, CavCode, CavBot Cloud, Analytics v5, the HTML Viewer, Arcade, or CDN-loaded assets are all behaving unexpectedly, the issue may not be your workspace configuration. Status helps you slow down and confirm the platform condition before changing keys, snippets, files, roles, or site settings.`),
+    p(`Check Status before making changes when multiple CavBot areas appear unavailable at the same time. If CavAi, Code Editor, CavBot Cloud, Analytics v5, the HTML Viewer, Arcade, or CDN-loaded assets are all behaving unexpectedly, the issue may not be your workspace configuration. Status helps you slow down and confirm the platform condition before changing keys, snippets, files, roles, or site settings.`),
 
-    p(`The Status page can cover core CavBot surfaces such as CavBot Analytics v5, CavAi v3, CavBot Terminal, CavCode, HTML Viewer, CavBot Cloud, CavBot Vault, Arcade, CDN assets, authentication, billing, and related platform routes. It gives users a clearer place to check whether CavBot is operating normally or whether a known issue is already being reviewed.`),
+    p(`The Status page can cover core CavBot surfaces such as CavBot Analytics v5, CavAi v3, CavBot Terminal, Code Editor, HTML Viewer, CavBot Cloud, CavBot Vault, Arcade, CDN assets, authentication, billing, and related platform routes. It gives users a clearer place to check whether CavBot is operating normally or whether a known issue is already being reviewed.`),
 
     table(
       ["Status area", "What it helps you understand"],
@@ -8234,7 +8234,7 @@ Turn these notes into a clean launch checklist.`),
         ["Analytics v5", "Whether browser signals, route activity, and site events can reach CavBot."],
         ["CavAi v3", "Whether assistant responses, workspace context, models, and CavAi tools are available."],
         ["CavBot Terminal", "Whether developer inspection, command output, and workspace checks are working."],
-        ["CavCode", "Whether the browser editor, file actions, diagnostics, and coding surface are available."],
+        ["Code Editor", "Whether the browser editor, file actions, diagnostics, and coding surface are available."],
         ["HTML Viewer", "Whether HTML previews, mounted files, and rendered assets can be viewed correctly."],
         ["CavBot Cloud", "Whether workspace files, folders, uploads, previews, sharing, and storage actions are working."],
         ["CavBot Vault", "Whether protected storage, owner-only access, locks, snapshots, and secure file actions are working."],
@@ -8284,7 +8284,7 @@ Turn these notes into a clean launch checklist.`),
         ["Analytics v5 is delayed or missing", "Check Integrations, Analytics v5, API Keys, Events, and the installed snippet."],
         ["A badge, body visual, SDK, or Arcade install does not load", "Check Assets, SDK, Arcade, CDN snippet placement, and browser console output."],
         ["CavAi does not respond correctly", "Check CavAi, Models, Assistant Memory, Agent Workflows, and workspace context."],
-        ["Caven or CavCode has issues", "Check CavCode, Caven, CavBot Terminal, Cav Commands, and the active file or workspace."],
+        ["Caven or Code Editor has issues", "Check Code Editor, Caven, CavBot Terminal, Cav Commands, and the active file or workspace."],
         ["HTML preview is wrong", "Check HTML Viewer, CavBot Cloud, CavBot Vault, file paths, assets, and the selected file version."],
         ["A file cannot be opened or moved", "Check CavBot Cloud, CavBot Vault, permissions, plan access, locks, and audit history."],
         ["A protected action is blocked", "Check Security, CavVerify, CavGuard, Risk Controls, roles, and plan access."],
@@ -8295,7 +8295,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Status should be part of the first review step, not the last one. It can save time by showing whether the platform is already aware of a wider issue. It also helps prevent unnecessary changes that can make a clean workspace harder to diagnose.`),
 
-    p(`For example, if Analytics v5 stops showing new activity across several sites, check Status before reinstalling the script. If CDN badges disappear on multiple pages, check Status before rewriting the asset placement. If CavAi, CavCode, and CavBot Cloud all feel unavailable, check Status before assuming the workspace is broken.`),
+    p(`For example, if Analytics v5 stops showing new activity across several sites, check Status before reinstalling the script. If CDN badges disappear on multiple pages, check Status before rewriting the asset placement. If CavAi, Code Editor, and CavBot Cloud all feel unavailable, check Status before assuming the workspace is broken.`),
 
     note("Before changing configuration", "If Status shows an active incident for the affected service, wait for the next update before making major workspace, snippet, key, file, or site changes."),
 
@@ -8304,7 +8304,7 @@ Turn these notes into a clean launch checklist.`),
     list([
       "Use Integrations when a snippet, SDK, badge, or Analytics v5 install needs review.",
       "Use Security when a protected action, role, CavVerify step, or CavGuard decision needs review.",
-      "Use Developer tools when CavCode, CavBot Terminal, Cav Commands, or HTML Viewer needs review.",
+      "Use Developer tools when Code Editor, CavBot Terminal, Cav Commands, or HTML Viewer needs review.",
       "Use Storage docs when CavBot Cloud or CavBot Vault files, folders, locks, previews, or permissions need review.",
       "Use Billing docs when plan access, checkout, upgrades, downgrades, or invoices need review.",
       "Use Support when Status is healthy but the issue remains unclear after focused troubleshooting."
@@ -8315,7 +8315,7 @@ Turn these notes into a clean launch checklist.`),
     table(
       ["Support detail", "Why it matters"],
       [
-        ["Affected service", "Shows whether the issue belongs to CavAi, Analytics, CavCode, CavBot Cloud, Arcade, billing, or another area."],
+        ["Affected service", "Shows whether the issue belongs to CavAi, Analytics, Code Editor, CavBot Cloud, Arcade, billing, or another area."],
         ["Workspace", "Helps identify the correct project and account context."],
         ["Site origin", "Helps compare the issue against the saved CavBot site and installed public website."],
         ["Route or file", "Shows the exact place where the problem appeared."],

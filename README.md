@@ -16,7 +16,7 @@ Today, CavBot brings together:
 
 - **Command Center** for coordination and visibility
 - **CavAi** for reasoning, coding, research, summaries, and speech-to-text
-- **CavCode** for implementation and active development workflows
+- **Code Editor** for implementation and active development workflows
 - **HTML Viewer** for validation and output review
 - **CavBot Cloud** for storage, artifacts, and publication handoffs
 - **CavBot Vault** for secure collaboration and protected assets
@@ -49,7 +49,7 @@ The coordination surface of the platform. This is where teams understand what ma
 ### CavAi
 The intelligence layer of CavBot. CavAi helps explain issues, reason through decisions, support coding workflows, run research, produce summaries, and guide next actions across the system.
 
-### CavCode
+### Code Editor
 The development workspace inside CavBot. It keeps implementation, active files, diagnostics, and AI assistance connected.
 
 ### HTML Viewer

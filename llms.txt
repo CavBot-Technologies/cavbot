@@ -25,7 +25,7 @@ Documentation index for CavBot.
 - Website signals - Dashboard, errors, routes, SEO, accessibility, and 404 Control Room.
 - CavAi - Models, memory, Caven, Image Studio, and workspace context.
 - Developers - SDK, events, API keys, webhooks, Summary API, and Analytics v5.
-- Developer tools - CavCode, CavBot Cloud, DevTools, HTML Viewer, and Cav commands.
+- Developer tools - Code Editor, CavBot Cloud, DevTools, HTML Viewer, and Cav commands.
 - Security - Privacy, audit trail, CavBot Vault, CavVerify, CavGuard, and data security.
 - Integrations - Wix, Webflow, Shopify, WordPress, GitHub, and custom HTML.
 - Billing and plans - Plans, trial, checkout, portal, seats, and cancellation.
