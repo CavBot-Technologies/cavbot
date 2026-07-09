@@ -5554,22 +5554,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   var ACCOUNT_TIME_ZONE_OPTIONS = [
-    { value: "America/Los_Angeles", label: "America/Los_Angeles (PT)" },
-    { value: "America/New_York", label: "America/New_York (ET)" },
-    { value: "America/Chicago", label: "America/Chicago (CT)" },
-    { value: "America/Denver", label: "America/Denver (MT)" },
-    { value: "America/Phoenix", label: "America/Phoenix" },
-    { value: "America/Anchorage", label: "America/Anchorage" },
-    { value: "Pacific/Honolulu", label: "Pacific/Honolulu" },
-    { value: "Europe/London", label: "Europe/London" },
-    { value: "Europe/Paris", label: "Europe/Paris" },
-    { value: "Europe/Rome", label: "Europe/Rome" },
-    { value: "Africa/Cairo", label: "Africa/Cairo" },
-    { value: "Asia/Dubai", label: "Asia/Dubai" },
-    { value: "Asia/Tokyo", label: "Asia/Tokyo" },
-    { value: "Asia/Seoul", label: "Asia/Seoul" },
-    { value: "Asia/Singapore", label: "Asia/Singapore" },
-    { value: "Australia/Sydney", label: "Australia/Sydney" },
+    { value: "America/Los_Angeles", label: "America | Los_Angeles (PT)" },
+    { value: "America/New_York", label: "America | New_York (ET)" },
+    { value: "America/Chicago", label: "America | Chicago (CT)" },
+    { value: "America/Denver", label: "America | Denver (MT)" },
+    { value: "America/Phoenix", label: "America | Phoenix" },
+    { value: "America/Anchorage", label: "America | Anchorage" },
+    { value: "Pacific/Honolulu", label: "Pacific | Honolulu" },
+    { value: "Europe/London", label: "Europe | London" },
+    { value: "Europe/Paris", label: "Europe | Paris" },
+    { value: "Europe/Rome", label: "Europe | Rome" },
+    { value: "Africa/Cairo", label: "Africa | Cairo" },
+    { value: "Asia/Dubai", label: "Asia | Dubai" },
+    { value: "Asia/Tokyo", label: "Asia | Tokyo" },
+    { value: "Asia/Seoul", label: "Asia | Seoul" },
+    { value: "Asia/Singapore", label: "Asia | Singapore" },
+    { value: "Australia/Sydney", label: "Australia | Sydney" },
     { value: "UTC", label: "UTC" }
   ];
 
