@@ -5533,8 +5533,9 @@ document.addEventListener("DOMContentLoaded", () => {
   var APP_LOGOUT_URL = "https://app.cavbot.io/api/auth/logout";
   var APP_SETTINGS_PROFILE_URL = "https://app.cavbot.io/settings?tab=account";
   var APP_SETTINGS_BILLING_URL = "https://app.cavbot.io/settings?tab=billing";
-  var APP_SETTINGS_TIME_ZONE_URL = "https://app.cavbot.io/settings?tab=account#time-zone";
+  var APP_TIME_ZONE_ENDPOINT = "https://app.cavbot.io/api/public/website-time-zone";
   var ACCOUNT_MENU_ID = "cb-app-session-menu";
+  var ACCOUNT_TIME_ZONE_STORAGE_KEY = "cb_profile_time_zone_v1";
   var currentAppSession = { ok: false, authenticated: false };
   var accountMenuTrigger = null;
 
@@ -5550,6 +5551,27 @@ document.addEventListener("DOMContentLoaded", () => {
     transparent: "rgba(247, 251, 255, 0.08)",
     clear: "rgba(247, 251, 255, 0.08)"
   };
+
+
+  var ACCOUNT_TIME_ZONE_OPTIONS = [
+    { value: "America/Los_Angeles", label: "America/Los_Angeles (PT)" },
+    { value: "America/New_York", label: "America/New_York (ET)" },
+    { value: "America/Chicago", label: "America/Chicago (CT)" },
+    { value: "America/Denver", label: "America/Denver (MT)" },
+    { value: "America/Phoenix", label: "America/Phoenix" },
+    { value: "America/Anchorage", label: "America/Anchorage" },
+    { value: "Pacific/Honolulu", label: "Pacific/Honolulu" },
+    { value: "Europe/London", label: "Europe/London" },
+    { value: "Europe/Paris", label: "Europe/Paris" },
+    { value: "Europe/Rome", label: "Europe/Rome" },
+    { value: "Africa/Cairo", label: "Africa/Cairo" },
+    { value: "Asia/Dubai", label: "Asia/Dubai" },
+    { value: "Asia/Tokyo", label: "Asia/Tokyo" },
+    { value: "Asia/Seoul", label: "Asia/Seoul" },
+    { value: "Asia/Singapore", label: "Asia/Singapore" },
+    { value: "Australia/Sydney", label: "Australia/Sydney" },
+    { value: "UTC", label: "UTC" }
+  ];
 
 
   function clean(value) {
@@ -5628,6 +5650,83 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  function readAccountTimeZone() {
+    var fromSession = clean(currentAppSession && currentAppSession.user && currentAppSession.user.timeZone);
+    if (fromSession) return fromSession;
+
+    try {
+      var stored = clean(window.localStorage && window.localStorage.getItem(ACCOUNT_TIME_ZONE_STORAGE_KEY));
+      if (stored) return stored;
+    } catch (_) {}
+
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || "America/Los_Angeles";
+    } catch (_) {
+      return "America/Los_Angeles";
+    }
+  }
+
+
+  function setAccountTimeZoneState(timeZone) {
+    var next = clean(timeZone) || "America/Los_Angeles";
+
+    try {
+      window.localStorage.setItem(ACCOUNT_TIME_ZONE_STORAGE_KEY, next);
+    } catch (_) {}
+
+    if (currentAppSession && currentAppSession.user) {
+      currentAppSession.user.timeZone = next;
+    }
+
+    try {
+      window.dispatchEvent(new CustomEvent("cb:profile", { detail: { timeZone: next } }));
+    } catch (_) {}
+  }
+
+
+  function syncAccountTimeZone(timeZone) {
+    if (!window.fetch) return;
+
+    fetch(APP_TIME_ZONE_ENDPOINT, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      cache: "no-store",
+      mode: "cors",
+      body: JSON.stringify({ timeZone: timeZone })
+    })
+      .then(function (response) {
+        if (!response.ok) throw new Error("TIME_ZONE_SAVE_FAILED");
+        return response.json().catch(function () { return null; });
+      })
+      .then(function (payload) {
+        var saved = clean(payload && payload.timeZone);
+        if (saved) setAccountTimeZoneState(saved);
+      })
+      .catch(function () {
+        return null;
+      });
+  }
+
+
+  function renderTimeZoneOptions(selected) {
+    return ACCOUNT_TIME_ZONE_OPTIONS.map(function (option) {
+      var active = selected === option.value;
+      return [
+        '<button class="cb-app-session-timezone-option',
+        active ? " is-active" : "",
+        '" type="button" role="menuitemradio" aria-checked="',
+        active ? "true" : "false",
+        '" data-cavbot-app-session-timezone-option="',
+        option.value,
+        '"><span>',
+        option.label,
+        "</span></button>"
+      ].join("");
+    }).join("");
+  }
+
+
   function closeAccountMenu() {
     var menu = document.getElementById(ACCOUNT_MENU_ID);
     if (!menu) return;
@@ -5699,6 +5798,32 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      var timeZoneToggle = event.target && event.target.closest
+        ? event.target.closest("[data-cavbot-app-session-timezone-toggle]")
+        : null;
+      if (timeZoneToggle) {
+        event.preventDefault();
+        var open = timeZoneToggle.getAttribute("aria-expanded") === "true";
+        renderAccountMenu(menu, currentAppSession, !open);
+        positionAccountMenu(menu, accountMenuTrigger);
+        return;
+      }
+
+      var timeZoneOption = event.target && event.target.closest
+        ? event.target.closest("[data-cavbot-app-session-timezone-option]")
+        : null;
+      if (timeZoneOption) {
+        event.preventDefault();
+        var nextTimeZone = clean(timeZoneOption.getAttribute("data-cavbot-app-session-timezone-option"));
+        if (nextTimeZone) {
+          setAccountTimeZoneState(nextTimeZone);
+          syncAccountTimeZone(nextTimeZone);
+          renderAccountMenu(menu, currentAppSession, true);
+          positionAccountMenu(menu, accountMenuTrigger);
+        }
+        return;
+      }
+
       var item = event.target && event.target.closest
         ? event.target.closest("a, button")
         : null;
@@ -5710,13 +5835,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  function renderAccountMenu(menu, state) {
+  function renderAccountMenu(menu, state, timeZoneOpen) {
     var signedIn = isSignedIn(state);
+    var selectedTimeZone = readAccountTimeZone();
     menu.innerHTML = signedIn
       ? [
           '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_SETTINGS_PROFILE_URL + '">Profile</a>',
           '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_SETTINGS_BILLING_URL + '">Billing</a>',
-          '<a class="cb-app-session-menu-item" role="menuitem" href="' + APP_SETTINGS_TIME_ZONE_URL + '">Time zone</a>',
+          '<button class="cb-app-session-menu-item cb-app-session-menu-item-submenu' + (timeZoneOpen ? " is-active" : "") + '" type="button" role="menuitem" aria-haspopup="menu" aria-expanded="' + (timeZoneOpen ? "true" : "false") + '" data-cavbot-app-session-timezone-toggle><span>Time zone</span><span class="cb-app-session-menu-chevrons" aria-hidden="true"><span class="cb-app-session-menu-chevron cb-app-session-menu-chevron-right"></span><span class="cb-app-session-menu-chevron cb-app-session-menu-chevron-down"></span></span></button>',
+          timeZoneOpen ? '<div class="cb-app-session-timezone-panel" role="menu" aria-label="Time zone">' + renderTimeZoneOptions(selectedTimeZone) + '</div>' : "",
           '<button class="cb-app-session-menu-item is-danger" type="button" role="menuitem" data-cavbot-app-session-logout>Log out</button>'
         ].join("")
       : [

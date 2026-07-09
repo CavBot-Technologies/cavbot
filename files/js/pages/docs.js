@@ -5450,7 +5450,7 @@ Turn these notes into a clean launch checklist.`),
     sections: [
      {
   id: "ide",
-  title: "Code",
+  title: "Code Editor",
   summary: "Open, edit, save, run, and review workspace code inside CavBot.",
   blocks: [
     p(`CavBot Code Editor is built into CavBot. It gives a workspace a place to open files, read code, edit files, review problems, run commands, preview output, and use Caven for coding help without leaving the CavBot platform.`),
@@ -5587,7 +5587,7 @@ Turn these notes into a clean launch checklist.`),
 
      {
   id: "cloud",
-  title: "Cloud",
+  title: "CavBot Cloud",
   summary: "Store, organize, preview, share, and manage workspace files.",
   blocks: [
     p(`CavBot Cloud is CavBot’s workspace file storage. It gives each workspace a clear place to keep files, folders, uploads, documents, generated outputs, HTML files, project assets, notes, exports, and other working material connected to the project.`),

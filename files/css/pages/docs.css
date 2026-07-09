@@ -917,6 +917,21 @@ body[data-docs-theme="light"] .docs-theme-icon--dark {
   letter-spacing: -0.03em;
 }
 
+.docs-topic-title-row h2 a {
+  color: inherit;
+  display: inline;
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+}
+
+.docs-topic-title-row h2 a:hover,
+.docs-topic-title-row h2 a:focus-visible {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
 .docs-topic-icon {
   width: 20px;
   height: 20px;
