@@ -5789,6 +5789,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.dataset.open = "false";
 
     menu.addEventListener("click", function (event) {
+      event.stopPropagation();
+
       var logout = event.target && event.target.closest
         ? event.target.closest("[data-cavbot-app-session-logout]")
         : null;

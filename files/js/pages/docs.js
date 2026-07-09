@@ -5587,7 +5587,7 @@ Turn these notes into a clean launch checklist.`),
 
      {
   id: "cloud",
-  title: "CavBot Cloud",
+  title: "Cloud Storage",
   summary: "Store, organize, preview, share, and manage workspace files.",
   blocks: [
     p(`CavBot Cloud is CavBot’s workspace file storage. It gives each workspace a clear place to keep files, folders, uploads, documents, generated outputs, HTML files, project assets, notes, exports, and other working material connected to the project.`),
