@@ -5614,7 +5614,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`CavBot Cloud is best for ordinary workspace files. Use it for brand assets, project documents, notes, exports, HTML files, generated pages, screenshots, code-related files, public assets, preview material, and files that teammates may need to review.`),
 
-    p(`CavBot Cloud is not the same as CavBot Vault. CavBot Cloud is the normal workspace storage layer. CavBot Vault is for protected files that need stronger control, owner-only access, integrity review, time locks, snapshots, or audit-focused handling. Keep normal files in CavBot Cloud so the workspace stays easy to use. Move sensitive files into CavBot Vault only when they need stronger protection.`),
+    p(`CavBot Cloud is the normal workspace storage layer. CavBot Vault is protected owner-only storage for sensitive files. Keep normal files in CavBot Cloud so the workspace stays easy to use, and move sensitive files into CavBot Vault when they need a stricter access boundary.`),
 
     table(
       ["Use CavBot Cloud for", "Use CavBot Vault for"],
@@ -6271,7 +6271,7 @@ Turn these notes into a clean launch checklist.`),
      {
   id: "vault",
   title: "CavBot Vault",
-  summary: "Protected owner-only storage for sensitive workspace files, secured records, snapshots, and audit-ready file activity.",
+  summary: "Protected owner-only storage for sensitive workspace files and secured records.",
   blocks: [
     p(`CavBot Vault is CavBot’s protected storage area for files that need stronger control than ordinary CavBot Cloud storage. It is built for sensitive workspace material: private business records, protected documents, important assets, security-related files, legal or compliance material, high-value project files, and anything that should not sit in normal team storage without tighter review.`),
 
@@ -6283,14 +6283,14 @@ Turn these notes into a clean launch checklist.`),
       ["Plan", "CavBot Vault access"],
       [
         ["Free", "No CavBot Vault access. Use CavBot Cloud for ordinary workspace files."],
-        ["Pro", "Owner-only CavBot Vault access with 10 GB of secured storage."],
-        ["Plus", "Owner-only CavBot Vault access with 50 GB of secured storage, integrity lock, audit log, time locks, snapshots, and CavBot Vault analytics."]
+        ["Pro", "10 GB of secured storage, owner-only CavBot Vault access, and direct HTML Viewer access for Cloud files."],
+        ["Plus", "50 GB of secured storage, owner-only CavBot Vault access, and direct HTML Viewer access for Cloud and Vault files."]
       ]
     ),
 
     p(`On Pro, CavBot Vault gives the workspace owner a protected storage area with 10 GB of secured storage. This is the right tier for a founder, solo builder, or small team that needs a private place for sensitive files without exposing those files to ordinary workspace access.`),
 
-    p(`On Plus, CavBot Vault becomes a deeper protected storage system. Plus includes 50 GB of secured storage and adds stronger controls such as integrity lock, audit log, time locks, snapshots, and CavBot Vault analytics. This is the right tier when the workspace needs more serious file protection, file history, owner oversight, and clearer records around protected activity.`),
+    p(`On Plus, CavBot Vault provides 50 GB of secured storage with owner-only access. Plus can open both Cloud and Vault files directly in HTML Viewer.`),
 
     note("Free plan", "Free users do not receive CavBot Vault access. CavBot Vault begins on Pro because protected storage requires stronger account, owner, and workspace controls."),
 
@@ -6304,11 +6304,7 @@ Turn these notes into a clean launch checklist.`),
         ["Owner-only access", "Protected files are controlled by the workspace owner instead of being open to ordinary workspace members."],
         ["10 GB secured storage", "Pro workspaces receive 10 GB of CavBot Vault storage for protected files."],
         ["50 GB secured storage", "Plus workspaces receive 50 GB of CavBot Vault storage for larger protected file needs."],
-        ["Integrity lock", "Helps protect important files from being changed without stronger control or review."],
-        ["Audit log", "Records important CavBot Vault activity so the owner can review what happened."],
-        ["Time locks", "Allows protected files or actions to be held behind a time-based restriction where supported."],
-        ["Snapshots", "Keeps protected file states available for review or recovery where supported."],
-        ["CavBot Vault analytics", "Gives the owner visibility into protected storage usage and activity."]
+        ["HTML Viewer", "Pro can open Cloud files directly; Plus can open Cloud and Vault files directly."]
       ]
     ),
 
@@ -6320,7 +6316,7 @@ Turn these notes into a clean launch checklist.`),
       "Use CavBot Vault for security notes or sensitive operational files.",
       "Use CavBot Vault for high-value brand, product, or company assets.",
       "Use CavBot Vault for files that should remain under owner control.",
-      "Use CavBot Vault when audit history matters.",
+      "Use CavBot Vault when owner-only access matters.",
       "Use CavBot Vault when accidental sharing would create risk."
     ]),
 
@@ -6333,7 +6329,7 @@ Turn these notes into a clean launch checklist.`),
       "Move a file to CavBot Vault only when the file needs stronger access control, review, history, or protection."
     ]),
 
-    p(`CavBot Vault can support folders, protected file organization, gallery views, tree views, private sharing controls, movement between CavBot Cloud and CavBot Vault, snapshots, time locks, integrity checks, audit records, and owner visibility where the active plan allows those features.`),
+    p(`CavBot Vault supports folders, protected file organization, gallery views, tree views, private sharing controls, and movement between CavBot Cloud and CavBot Vault.`),
 
     p(`Moving a file into CavBot Vault should be treated as a deliberate action. The owner should know why the file is protected, what it contains, whether it should remain private, and whether it needs future review. CavBot Vault is not just another folder. It is the protected area of the workspace.`),
 
@@ -6349,19 +6345,9 @@ Turn these notes into a clean launch checklist.`),
         ["Security or access note", "CavBot Vault."],
         ["Sensitive legal or policy file", "CavBot Vault."],
         ["High-value internal asset", "CavBot Vault."],
-        ["File that needs audit history", "CavBot Vault, especially on Plus."]
+        ["File that needs owner-only access", "CavBot Vault."]
       ]
     ),
-
-    p(`Integrity lock is for files that should not be casually changed. When a protected file matters, the owner may need confidence that the file was not silently modified or replaced without notice. Integrity lock helps create a stronger boundary around important files.`),
-
-    p(`The audit log gives owners a way to review important CavBot Vault activity. If a protected file is uploaded, moved, opened, changed, shared, restored, locked, unlocked, or deleted where logging is supported, the audit log can help explain what happened and when.`),
-
-    p(`Time locks are for protected files or actions that should not be immediately changed or released. A time lock can help slow down sensitive operations and reduce accidental or rushed changes. This is useful when a file should remain protected until a certain point or when a sensitive action should not happen instantly.`),
-
-    p(`Snapshots help preserve protected file states. If a file changes, a snapshot can help the owner understand or recover a prior version where supported. This is especially useful for important documents, secured assets, and files that may need review after edits.`),
-
-    p(`CavBot Vault analytics gives the owner visibility into secured storage. This can include protected storage usage, secured file activity, owner-level review signals, and other CavBot Vault activity where the plan supports it. The goal is to help the owner understand how the protected storage area is being used.`),
 
     p(`CavBot Vault works best with CavGuard. CavGuard should decide who can open, move, delete, share, lock, unlock, or manage protected files. A user should not be able to access CavBot Vault simply because they found a route or clicked a hidden button. Protected file actions should be authorized by role, plan, workspace policy, and server-side checks.`),
 
@@ -6373,8 +6359,7 @@ Turn these notes into a clean launch checklist.`),
         ["CavBot Vault", "Stores protected files under stronger owner-controlled handling."],
         ["CavGuard", "Decides whether the user is allowed to perform the protected file action."],
         ["CavVerify", "Can add a human verification step before a sensitive CavBot Vault action continues."],
-        ["Audit log", "Records important protected storage activity for review."],
-        ["Snapshots", "Help preserve protected file states for recovery or review."]
+        ["HTML Viewer", "Opens supported Cloud and Vault files directly on eligible plans."]
       ]
     ),
 
@@ -6393,7 +6378,7 @@ Turn these notes into a clean launch checklist.`),
       "Check the workspace and project scope.",
       "Check the exact file or folder being requested.",
       "Block direct API access when authorization is missing.",
-      "Record important protected file actions where audit logging is supported.",
+      "Keep protected files organized under the correct owner-controlled folder.",
       "Use clear messages when access is denied."
     ]),
 
@@ -6406,8 +6391,7 @@ Turn these notes into a clean launch checklist.`),
         ["Owner-only storage", "The protected file area is controlled by the workspace owner."],
         ["Upgrade required", "The requested CavBot Vault feature belongs to a higher plan."],
         ["Action restricted", "The user does not have permission to perform that protected file action."],
-        ["File locked", "The file may be protected by integrity lock, time lock, or another secured state."],
-        ["Audit available", "The action may be recorded for owner review."]
+        ["File unavailable", "Confirm owner access, plan access, and the current file location."]
       ]
     ),
 
@@ -6430,7 +6414,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`A workspace can change quickly. Members may be invited, roles may be adjusted, files may be moved, secured storage may be opened, settings may be changed, and protected actions may be attempted. The audit trail gives those moments a written record so the team does not have to rely on memory, screenshots, or guesswork.`),
 
-    p(`Use audit trail when you need a clear history of sensitive or important activity. It is especially useful when reviewing access changes, billing-related actions, workspace settings, CavBot Cloud activity, CavBot Vault file events, protected actions, time locks, integrity updates, and security-related decisions made by CavBot.`),
+    p(`Use audit trail when you need a clear history of sensitive or important account activity. It is especially useful when reviewing access changes, billing-related actions, workspace settings, and security-related decisions made by CavBot.`),
 
     table(
       ["Area", "What the audit trail helps review"],
@@ -6438,7 +6422,7 @@ Turn these notes into a clean launch checklist.`),
         ["Account actions", "Important changes connected to account access, profile state, sessions, or administrative activity."],
         ["Workspace actions", "Changes involving projects, sites, members, roles, invites, settings, and workspace ownership."],
         ["CavBot Cloud activity", "File uploads, movement, publishing, collaboration changes, and other important storage actions."],
-        ["CavBot Vault activity", "Protected file access attempts, secured file movement, time locks, snapshots, integrity updates, and owner-only file actions."],
+        ["Storage access", "Owner and member access changes that affect protected workspace files."],
         ["Security actions", "CavGuard decisions, CavVerify-related steps, restricted actions, blocked requests, and sensitive command activity."],
         ["Plan or access changes", "Plan-related access changes, feature restrictions, seat limits, and actions that affect what the workspace can use."]
       ]
@@ -6471,7 +6455,7 @@ Turn these notes into a clean launch checklist.`),
         ["When did it happen?", "Check the timestamp on the audit entry."],
         ["Did it succeed?", "Review the result or status of the action."],
         ["Was it blocked?", "Look for CavGuard, permission, plan, role, or verification-related records."],
-        ["Was a protected file involved?", "Check CavBot Vault-related entries such as access attempts, moves, locks, snapshots, or integrity updates."]
+        ["Was a protected file involved?", "Check the file location, owner access, and plan access."]
       ]
     ),
 
@@ -6487,7 +6471,7 @@ Turn these notes into a clean launch checklist.`),
       "Review audit trail after changing workspace roles.",
       "Review audit trail after inviting or removing members.",
       "Review audit trail after moving files into or out of CavBot Vault.",
-      "Review audit trail after using time locks, snapshots, or integrity lock.",
+      "Review audit trail after sensitive account or access changes.",
       "Review audit trail after a protected action is blocked.",
       "Review audit trail when a user reports missing access.",
       "Review audit trail when a file, setting, or workspace state does not look right."
@@ -8152,7 +8136,7 @@ Turn these notes into a clean launch checklist.`),
         ["Arcade or 404 recovery issue", "Missing route tested, selected game, plan, live URL, and whether recovery links appear."],
         ["CavAi or Caven issue", "Prompt goal, selected workspace or file, model or mode used, and what result looked wrong."],
         ["Code Editor issue", "File path, action attempted, error shown, and whether the issue happens after refresh."],
-        ["CavBot Cloud or CavBot Vault issue", "File or folder name, action attempted, access role, and whether the item is protected or time-locked."],
+        ["CavBot Cloud or CavBot Vault issue", "File or folder name, action attempted, access role, and current file location."],
         ["Billing issue", "Plan shown, action attempted, checkout or invoice state, and approximate time of the billing event."]
       ]
     ),
@@ -8161,7 +8145,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`For billing problems, include what the user expected to happen and what CavBot shows now. Support should know whether the request is about upgrading, downgrading, checkout, subscription state, invoice review, payment failure, trial access, or a feature that appears locked after a plan change.`),
 
-    p(`For storage issues, identify whether the file is in CavBot Cloud or CavBot Vault. CavBot Vault has stricter access rules and may include owner-only access, integrity protection, time locks, snapshots, audit history, or plan-specific controls. A file that behaves differently in CavBot Vault may not be broken; it may be protected.`),
+    p(`For storage issues, identify whether the file is in CavBot Cloud or CavBot Vault. CavBot Vault has stricter owner-only and plan access rules. A file that behaves differently in CavBot Vault may not be broken; first confirm the active account, plan, and file location.`),
 
     note("Do not send secrets", "Never include passwords, private keys, payment card data, private customer records, authentication tokens, or sensitive production secrets in a support request."),
 
@@ -8237,7 +8221,7 @@ Turn these notes into a clean launch checklist.`),
         ["Code Editor", "Whether the browser editor, file actions, diagnostics, and coding surface are available."],
         ["HTML Viewer", "Whether HTML previews, mounted files, and rendered assets can be viewed correctly."],
         ["CavBot Cloud", "Whether workspace files, folders, uploads, previews, sharing, and storage actions are working."],
-        ["CavBot Vault", "Whether protected storage, owner-only access, locks, snapshots, and secure file actions are working."],
+        ["CavBot Vault", "Whether protected storage, owner-only access, and secure file actions are working."],
         ["Arcade", "Whether CavBot Arcade games and 404 recovery experiences are available."],
         ["CDN assets", "Whether badges, body visuals, Arcade loaders, SDK files, and public assets can load from the CDN."],
         ["Billing", "Whether checkout, subscriptions, upgrades, downgrades, and plan state updates are working."],
@@ -8286,7 +8270,7 @@ Turn these notes into a clean launch checklist.`),
         ["CavAi does not respond correctly", "Check CavAi, Models, Assistant Memory, Agent Workflows, and workspace context."],
         ["Caven or Code Editor has issues", "Check Code Editor, Caven, CavBot Terminal, Cav Commands, and the active file or workspace."],
         ["HTML preview is wrong", "Check HTML Viewer, CavBot Cloud, CavBot Vault, file paths, assets, and the selected file version."],
-        ["A file cannot be opened or moved", "Check CavBot Cloud, CavBot Vault, permissions, plan access, locks, and audit history."],
+        ["A file cannot be opened or moved", "Check CavBot Cloud, CavBot Vault, permissions, plan access, and file location."],
         ["A protected action is blocked", "Check Security, CavVerify, CavGuard, Risk Controls, roles, and plan access."],
         ["Billing or plan access looks wrong", "Check Billing, plan state, checkout history, and Support if the state does not update."],
         ["A user cannot access the right workspace", "Check roles, invites, authentication, workspace selection, and Support."]
