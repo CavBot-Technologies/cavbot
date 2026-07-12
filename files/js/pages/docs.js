@@ -1778,8 +1778,8 @@
       ["Plan", "Website limit"],
       [
         ["Free", "1 website"],
-        ["Pro", "6 websites"],
-        ["Plus", "20 websites"]
+        ["Plus", "6 websites"],
+        ["Pro", "20 websites"]
       ]
     ),
 
@@ -2170,8 +2170,8 @@
       ["Plan", "Seat limit"],
       [
         ["Free", "4 seats"],
-        ["Pro", "8 seats"],
-        ["Plus", "16 seats"]
+        ["Plus", "8 seats"],
+        ["Pro", "16 seats"]
       ]
     ),
 
@@ -4178,7 +4178,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Do not paste passwords, private keys, payment details, customer secrets, private medical information, or sensitive personal data into CavAi unless the product specifically provides a secure, approved workflow for that type of information. Use CavBot Vault or protected workspace controls for sensitive files when available.`),
 
-    p(`CavAi access may vary by plan, model, feature, file type, image tool, reasoning mode, workspace policy, or account role. Some models and tools may be limited to Pro or Plus users. If a feature is unavailable, check the plan, workspace access, selected model, and product surface before assuming something is broken.`),
+    p(`CavAi access may vary by plan, model, feature, file type, image tool, reasoning mode, workspace policy, or account role. Some models and tools may be limited to Plus or Pro users. If a feature is unavailable, check the plan, workspace access, selected model, and product surface before assuming something is broken.`),
 
     p(`If CavAi gives an answer that feels too broad, ask it to narrow the answer. If it gives a plan that feels too large, ask for the smallest safe next step. If it makes an assumption, ask it to separate confirmed facts from assumptions. If it is missing context, provide the exact route, file, signal, or goal.`),
 
@@ -4222,8 +4222,8 @@ Turn these notes into a clean launch checklist.`),
         ["CavBot Companion", "Guidance, support, onboarding help, and everyday product assistance.", "Designed for calmer product help and user support."],
         ["Qwen ASR", "Speech-to-text and voice input.", "Used when CavAi needs to understand spoken input."],
         ["Qwen TTS", "Text-to-speech and voice output.", "Used when CavAi needs to speak a response."],
-        ["Image Studio", "Generating new images, visuals, brand concepts, and creative assets.", "Requires Pro or Plus. Use when the task is image generation."],
-        ["Image Edit", "Editing uploaded images, changing visual details, and refining existing assets.", "Requires Plus. Use when the task starts from an existing image."]
+        ["Image Studio", "Generating new images, visuals, brand concepts, and creative assets.", "Requires Plus or Pro. Use when the task is image generation."],
+        ["Image Edit", "Editing uploaded images, changing visual details, and refining existing assets.", "Requires Pro. Use when the task starts from an existing image."]
       ]
     ),
 
@@ -4584,7 +4584,7 @@ Turn these notes into a clean launch checklist.`),
       "Do not ask Image Studio to create misleading product evidence or fake proof."
     ]),
 
-    p(`Image Studio access depends on the user’s plan. In the current app gating, Image Studio requires Pro or Plus. Users without access may see the feature as locked or unavailable until the workspace is on a plan that supports it.`),
+    p(`Image Studio access depends on the user’s plan. In the current app gating, Image Studio requires Plus or Pro. Users without access may see the feature as locked or unavailable until the workspace is on a plan that supports it.`),
 
     p(`A good Image Studio workflow is simple: define the purpose, write a clear request, generate the image, review the result, refine the prompt if needed, save the best version, and only then use it in a public or production surface.`),
 
@@ -4616,7 +4616,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Image Edit is different from Image Studio. Image Studio creates a new image from a written description. Image Edit starts with an uploaded source image. The source image matters. The edit should respect what the user wants to preserve, what should change, and what must not be touched.`),
 
-    p(`In the current app setup, Image Edit routes through Qwen-Image-Edit-Max and requires Plus. Users without Plus access may see the feature as locked, unavailable, or blocked by the plan gate.`),
+    p(`In the current app setup, Image Edit routes through Qwen-Image-Edit-Max and requires Pro. Users without Pro access may see the feature as locked, unavailable, or blocked by the plan gate.`),
 
     table(
       ["Use Image Edit for", "What it helps with"],
@@ -5655,14 +5655,14 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`Storage limits depend on the workspace plan. Free workspaces include basic CavBot Cloud storage. Pro and Plus workspaces include larger storage capacity for heavier projects, more files, and larger operating needs.`),
+    p(`Storage limits depend on the workspace plan. Free workspaces include basic CavBot Cloud storage. Plus and Pro workspaces include larger storage capacity for heavier projects, more files, and larger operating needs.`),
 
     table(
       ["Plan", "CavBot Cloud storage"],
       [
         ["Free", "5 GB CavBot Cloud storage"],
-        ["Pro", "50 GB CavBot Cloud storage"],
-        ["Plus", "500 GB CavBot Cloud storage"]
+        ["Plus", "50 GB CavBot Cloud storage"],
+        ["Pro", "500 GB CavBot Cloud storage"]
       ]
     ),
 
@@ -6224,7 +6224,7 @@ Turn these notes into a clean launch checklist.`),
       "Keep the message short enough to read, but specific enough to trust."
     ]),
 
-    p(`CavGuard can also help protect plan-governed features. If a user tries to access a feature that belongs to Pro or Plus, CavGuard can prevent the action and explain that the current plan does not include it. This keeps the product honest and prevents hidden feature failures.`),
+    p(`CavGuard can also help protect plan-governed features. If a user tries to access a feature that belongs to Plus or Pro, CavGuard can prevent the action and explain that the current plan does not include it. This keeps the product honest and prevents hidden feature failures.`),
 
     p(`CavGuard should also protect destructive workflows. Deleting a site, removing a teammate, revoking a key, deleting a protected file, changing a security rule, or modifying billing should require more than a casual click. CavGuard gives CavBot a place to slow the action down and require the correct authority.`),
 
@@ -6283,16 +6283,16 @@ Turn these notes into a clean launch checklist.`),
       ["Plan", "CavBot Vault access"],
       [
         ["Free", "No CavBot Vault access. Use CavBot Cloud for ordinary workspace files."],
-        ["Pro", "10 GB of secured storage, owner-only CavBot Vault access, and direct HTML Viewer access for Cloud files."],
-        ["Plus", "50 GB of secured storage, owner-only CavBot Vault access, and direct HTML Viewer access for Cloud and Vault files."]
+        ["Plus", "10 GB of secured storage, owner-only CavBot Vault access, and direct HTML Viewer access for Cloud files."],
+        ["Pro", "50 GB of secured storage, owner-only CavBot Vault access, and direct HTML Viewer access for Cloud and Vault files."]
       ]
     ),
 
-    p(`On Pro, CavBot Vault gives the workspace owner a protected storage area with 10 GB of secured storage. This is the right tier for a founder, solo builder, or small team that needs a private place for sensitive files without exposing those files to ordinary workspace access.`),
+    p(`On Plus, CavBot Vault gives the workspace owner a protected storage area with 10 GB of secured storage. This is the right tier for a founder, solo builder, or small team that needs a private place for sensitive files without exposing those files to ordinary workspace access.`),
 
-    p(`On Plus, CavBot Vault provides 50 GB of secured storage with owner-only access. Plus can open both Cloud and Vault files directly in HTML Viewer.`),
+    p(`On Pro, CavBot Vault provides 50 GB of secured storage with owner-only access. Pro can open both Cloud and Vault files directly in HTML Viewer.`),
 
-    note("Free plan", "Free users do not receive CavBot Vault access. CavBot Vault begins on Pro because protected storage requires stronger account, owner, and workspace controls."),
+    note("Free plan", "Free users do not receive CavBot Vault access. CavBot Vault begins on Plus because protected storage requires stronger account, owner, and workspace controls."),
 
     p(`CavBot Vault access is owner-only by default. That means protected files should be controlled by the workspace owner, not casually available to every member. The goal is to keep sensitive material separated from normal collaboration while still keeping it inside the CavBot workspace where it can be organized and reviewed.`),
 
@@ -6302,9 +6302,9 @@ Turn these notes into a clean launch checklist.`),
       ["Feature", "What it means"],
       [
         ["Owner-only access", "Protected files are controlled by the workspace owner instead of being open to ordinary workspace members."],
-        ["10 GB secured storage", "Pro workspaces receive 10 GB of CavBot Vault storage for protected files."],
-        ["50 GB secured storage", "Plus workspaces receive 50 GB of CavBot Vault storage for larger protected file needs."],
-        ["HTML Viewer", "Pro can open Cloud files directly; Plus can open Cloud and Vault files directly."]
+        ["10 GB secured storage", "Plus workspaces receive 10 GB of CavBot Vault storage for protected files."],
+        ["50 GB secured storage", "Pro workspaces receive 50 GB of CavBot Vault storage for larger protected file needs."],
+        ["HTML Viewer", "Plus can open Cloud files directly; Pro can open Cloud and Vault files directly."]
       ]
     ),
 
@@ -6949,55 +6949,55 @@ Turn these notes into a clean launch checklist.`),
   title: "Plans",
   summary: "Compare CavBot plan tiers, limits, storage, seats, and included access.",
   blocks: [
-    p(`CavBot has three plan tiers: Free, Pro, and Plus. These names are used consistently across the website, app, billing, and support documentation.`),
+    p(`CavBot has three plan tiers: Free, Plus, and Pro. These names are used consistently across the website, app, billing, and support documentation.`),
 
-    p(`Free is the entry plan. Pro is the main paid plan for growing workspaces. Plus is the highest current plan for teams that need more capacity, more protected storage, and full access to advanced workspace modules.`),
+    p(`Free is the entry plan. Plus is the main paid plan for growing workspaces. Pro is the highest current plan for teams that need more capacity, more protected storage, and full access to advanced workspace modules.`),
 
     table(
       ["Plan", "What it is"],
       [
         ["Free", "The starting plan for one website, basic workspace access, and early setup."],
-        ["Pro", "The main paid plan for teams that need more sites, more storage, protected files, and core intelligence modules."],
-        ["Plus", "The highest current plan for larger workspaces that need expanded limits, full module access, and stronger storage protections."]
+        ["Plus", "The main paid plan for teams that need more sites, more storage, protected files, and core intelligence modules."],
+        ["Pro", "The highest current plan for larger workspaces that need expanded limits, full module access, and stronger storage protections."]
       ]
     ),
 
     p(`Choose a plan based on the size of the workspace, the number of websites being monitored, the number of people who need access, the amount of storage required, and the level of protection the team needs around files, signals, and sensitive actions.`),
 
-    p(`A small project may only need Free at the beginning. A growing business with multiple sites and real operational needs should review Pro. A serious workspace with more websites, more seats, protected storage, accessibility review, deeper insights, and stronger file controls should review Plus.`),
+    p(`A small project may only need Free at the beginning. A growing business with multiple sites and real operational needs should review Plus. A serious workspace with more websites, more seats, protected storage, accessibility review, deeper insights, and stronger file controls should review Pro.`),
 
     table(
       ["Plan", "Monthly", "Annual", "Websites", "Seats", "CavBot Cloud", "CavBot Vault", "Included access"],
       [
         ["Free", "$0", "$0", "1", "4", "5 GB", "Not included", "Dashboard, routing, Control Room, and badge widgets."],
-        ["Pro", "$19.99", "$199.99", "6", "8", "50 GB", "10 GB", "Errors, SEO, protected storage, and expanded workspace capacity."],
-        ["Plus", "$39.99", "$399.99", "20", "16", "500 GB", "50 GB", "Errors, SEO, Accessibility, Insights, advanced CavBot Vault features, and the highest current workspace limits."]
+        ["Plus", "$19.99", "$199.99", "6", "8", "50 GB", "10 GB", "Errors, SEO, protected storage, and expanded workspace capacity."],
+        ["Pro", "$39.99", "$399.99", "20", "16", "500 GB", "50 GB", "Errors, SEO, Accessibility, Insights, advanced CavBot Vault features, and the highest current workspace limits."]
       ]
     ),
 
     p(`Free is best for testing CavBot, connecting a first website, reviewing the dashboard, and understanding the basic workspace experience before upgrading.`),
 
-    p(`Pro is best for users who are ready to operate CavBot as a serious website intelligence workspace. It gives the team more sites, more seats, more CavBot Cloud storage, access to CavBot Vault, and important signal modules such as Errors and SEO.`),
+    p(`Plus is best for users who are ready to operate CavBot as a serious website intelligence workspace. It gives the team more sites, more seats, more CavBot Cloud storage, access to CavBot Vault, and important signal modules such as Errors and SEO.`),
 
-    p(`Plus is best for teams that need the full current CavBot experience. It increases website limits, seat limits, CavBot Cloud storage, CavBot Vault storage, and unlocks the advanced modules intended for deeper review, better protection, and stronger workspace visibility.`),
+    p(`Pro is best for teams that need the full current CavBot experience. It increases website limits, seat limits, CavBot Cloud storage, CavBot Vault storage, and unlocks the advanced modules intended for deeper review, better protection, and stronger workspace visibility.`),
 
     table(
       ["Plan", "Best for"],
       [
         ["Free", "A first website, early testing, personal setup, or a small workspace that is not ready for paid access yet."],
-        ["Pro", "A growing workspace with multiple sites, team members, protected files, and core monitoring needs."],
-        ["Plus", "A larger or more serious workspace that needs higher limits, full module access, and stronger file protection."]
+        ["Plus", "A growing workspace with multiple sites, team members, protected files, and core monitoring needs."],
+        ["Pro", "A larger or more serious workspace that needs higher limits, full module access, and stronger file protection."]
       ]
     ),
 
-    p(`CavBot Vault access begins on Pro. Free includes CavBot Cloud storage, but it does not include CavBot Vault secured storage. Pro includes owner-only CavBot Vault storage for protected workspace files. Plus expands CavBot Vault capacity and includes stronger CavBot Vault capabilities where available.`),
+    p(`CavBot Vault access begins on Plus. Free includes CavBot Cloud storage, but it does not include CavBot Vault secured storage. Plus includes owner-only CavBot Vault storage for protected workspace files. Pro expands CavBot Vault capacity and includes stronger CavBot Vault capabilities where available.`),
 
     p(`Plan access also affects which modules are available inside the workspace. If a module is locked, the user should review the current plan, billing status, workspace role, and plan requirements before assuming the feature is broken.`),
 
     list([
       "Use Free for a first website or early workspace setup.",
-      "Use Pro when the workspace needs more sites, more seats, more storage, and core paid modules.",
-      "Use Plus when the workspace needs the highest current limits and full advanced module access.",
+      "Use Plus when the workspace needs more sites, more seats, more storage, and core paid modules.",
+      "Use Pro when the workspace needs the highest current limits and full advanced module access.",
       "Review CavBot Vault access before storing protected files.",
       "Review seat limits before inviting more teammates.",
       "Review website limits before adding more monitored sites.",
@@ -7006,9 +7006,9 @@ Turn these notes into a clean launch checklist.`),
 
     p(`CavBot does not currently list a separate Enterprise plan in this plan table. Enterprise access may be considered later if user needs clearly show that larger teams require custom limits, custom security review, dedicated onboarding, higher storage, advanced administration, or specialized support.`),
 
-    p(`User feedback will help determine whether CavBot should add an Enterprise plan. Until then, Free, Pro, and Plus are the three plan tiers users should compare when choosing access.`),
+    p(`User feedback will help determine whether CavBot should add an Enterprise plan. Until then, Free, Plus, and Pro are the three plan tiers users should compare when choosing access.`),
 
-    note("Plan naming", "Free, Pro, and Plus are the only CavBot plan names shown to users."),
+    note("Plan naming", "Free, Plus, and Pro are the only CavBot plan names shown to users."),
 
     note("Billing check", "If the plan table and the billing screen ever disagree, use the live billing screen as the source of truth before upgrading, downgrading, or changing workspace access.")
   ]
@@ -7017,19 +7017,19 @@ Turn these notes into a clean launch checklist.`),
    {
   id: "trial",
   title: "Trial",
-  summary: "Try CavBot with full Plus access for 14 days.",
+  summary: "Try CavBot with full Pro access for 14 days.",
   blocks: [
-    p(`CavBot includes a 14-day trial so new users can test the platform before choosing a paid plan. During the trial, the workspace receives Plus access, which gives the user enough room to explore CavBot’s strongest features, connect real sites, review signals, test protected storage, and understand how the product fits their workflow.`),
+    p(`CavBot includes a 14-day trial so new users can test the platform before choosing a paid plan. During the trial, the workspace receives Pro access, which gives the user enough room to explore CavBot’s strongest features, connect real sites, review signals, test protected storage, and understand how the product fits their workflow.`),
 
     p(`The trial is designed to be useful, not decorative. A user should not spend the trial only clicking through pages. The best trial experience comes from connecting a real website, installing the CavBot snippet, opening the dashboard, reviewing site activity, testing reports, exploring CavAi, opening Code Editor, organizing files in CavBot Cloud, and checking how the workspace behaves with real context.`),
 
-    p(`Because the trial uses Plus access, users can evaluate the full CavBot experience before deciding whether Free, Pro, or Plus is the right long-term plan. This helps a user understand the difference between basic access, paid workspace access, and the highest current CavBot tier.`),
+    p(`Because the trial uses Pro access, users can evaluate the full CavBot experience before deciding whether Free, Plus, or Pro is the right long-term plan. This helps a user understand the difference between basic access, paid workspace access, and the highest current CavBot tier.`),
 
     table(
       ["Trial access", "What it gives you"],
       [
         ["Length", "14 days to explore CavBot before choosing a paid plan."],
-        ["Effective access", "Plus access during the trial period."],
+        ["Effective access", "Pro access during the trial period."],
         ["Best use", "Connect a real site, install the snippet, review signals, and test the main workspace flow."],
         ["Storage review", "Explore CavBot Cloud and CavBot Vault so you understand normal storage and protected storage."],
         ["Decision point", "Use the trial to decide which plan fits the workspace after the trial ends."]
@@ -7052,7 +7052,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Use the trial to test practical workflows. For example, review a route with missing metadata, check a broken page, inspect an error, ask CavAi for a summary, open Code Editor for a file review, upload a project asset to CavBot Cloud, and place protected material in CavBot Vault when the file needs stronger protection.`),
 
-    p(`The trial should also help owners understand workspace limits. Invite only the people who need to test the product, review seat access, check site capacity, and confirm whether the workspace needs the higher limits available in Plus after the trial ends.`),
+    p(`The trial should also help owners understand workspace limits. Invite only the people who need to test the product, review seat access, check site capacity, and confirm whether the workspace needs the higher limits available in Pro after the trial ends.`),
 
     table(
       ["What to test", "Why it matters"],
@@ -7069,21 +7069,21 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`When the 14-day trial ends, the workspace moves back to the plan selected by the account. If no paid plan is selected, the workspace should continue on the free tier and paid features may become locked. Features that were available during the trial may require Pro or Plus after the trial period is over.`),
+    p(`When the 14-day trial ends, the workspace moves back to the plan selected by the account. If no paid plan is selected, the workspace should continue on the free tier and paid features may become locked. Features that were available during the trial may require Plus or Pro after the trial period is over.`),
 
     p(`Before the trial ends, review what the workspace actually used. Check the number of sites, seats, storage needs, protected files, reports, and advanced modules that mattered during testing. This makes the plan decision clearer and prevents choosing a plan based only on the plan table.`),
 
     list([
       "Choose Free if the workspace only needs a basic first-site setup.",
-      "Choose Pro if the workspace needs more sites, more seats, core paid modules, and protected storage.",
-      "Choose Plus if the workspace needs the highest current limits, full module access, and stronger CavBot Vault capacity.",
+      "Choose Plus if the workspace needs more sites, more seats, core paid modules, and protected storage.",
+      "Choose Pro if the workspace needs the highest current limits, full module access, and stronger CavBot Vault capacity.",
       "Review billing before the trial ends if the workspace should keep paid access.",
       "Expect paid features to lock if the trial ends without an active paid plan."
     ]),
 
     p(`A trial is not a permanent plan. It is a temporary way to understand CavBot with the strongest current access before deciding what the workspace truly needs. Use the 14 days to test the platform with real work, not empty setup.`),
 
-    note("Trial rule", "The 14-day trial gives users Plus access so they can test CavBot properly before choosing a long-term plan."),
+    note("Trial rule", "The 14-day trial gives users Pro access so they can test CavBot properly before choosing a long-term plan."),
 
     note("Before the trial ends", "Review sites, seats, storage, protected files, reports, and module access. Choose the plan that matches what the workspace actually needs.")
   ]
@@ -7206,14 +7206,14 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`Seats control how many people can belong to a CavBot workspace under the current plan. A seat represents a person with workspace access, whether they are an owner, admin, or member. Seat limits help keep access clear, controlled, and aligned with the plan the workspace is using.`),
 
-    p(`Each plan includes a set number of seats. Free includes 4 seats. Pro includes 8 seats. Plus includes 16 seats. When a workspace reaches its seat limit, new invitations may be blocked until a seat is available or the workspace moves to a plan with a higher limit.`),
+    p(`Each plan includes a set number of seats. Free includes 4 seats. Plus includes 8 seats. Pro includes 16 seats. When a workspace reaches its seat limit, new invitations may be blocked until a seat is available or the workspace moves to a plan with a higher limit.`),
 
     table(
       ["Plan", "Seat limit", "What it means"],
       [
         ["Free", "4 seats", "Best for a small team, founder setup, or early website workspace."],
-        ["Pro", "8 seats", "Best for a growing team that needs more people reviewing sites, reports, files, and settings."],
-        ["Plus", "16 seats", "Best for a larger workspace with more team members, deeper access needs, and more protected workflows."]
+        ["Plus", "8 seats", "Best for a growing team that needs more people reviewing sites, reports, files, and settings."],
+        ["Pro", "16 seats", "Best for a larger workspace with more team members, deeper access needs, and more protected workflows."]
       ]
     ),
 
@@ -7711,7 +7711,7 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Arcade has two connected roles. First, it is a playable product surface inside CavBot where users can experience the full game collection. Second, it can support broken-page recovery when a team chooses to install an Arcade experience on a live 404 page.`),
 
-    p(`Inside the CavBot platform, all six CavBot Arcade games are available to play at any time. Free, Pro, and Plus users can open Arcade, choose a game, test the controls, learn the pacing, compare the experience, and decide which game feels right before using it on a public website.`),
+    p(`Inside the CavBot platform, all six CavBot Arcade games are available to play at any time. Free, Plus, and Pro users can open Arcade, choose a game, test the controls, learn the pacing, compare the experience, and decide which game feels right before using it on a public website.`),
 
     p(`This matters because a 404 recovery experience should not be chosen blindly. A game that feels right for a playful product may not fit a serious business page. Arcade lets owners, admins, designers, developers, and support teams review the experience first, then decide whether it belongs on a live route.`),
 
@@ -7764,8 +7764,8 @@ Turn these notes into a clean launch checklist.`),
       ["Plan", "Arcade inside CavBot", "Live 404 game selection"],
       [
         ["Free", "All six games are playable inside Arcade.", "1 installable 404 game can be selected for a website."],
-        ["Pro", "All six games are playable inside Arcade.", "3 installable 404 games can be selected for a website."],
-        ["Plus", "All six games are playable inside Arcade.", "All 6 installable 404 games can be selected for a website."]
+        ["Plus", "All six games are playable inside Arcade.", "3 installable 404 games can be selected for a website."],
+        ["Pro", "All six games are playable inside Arcade.", "All 6 installable 404 games can be selected for a website."]
       ]
     ),
 
@@ -8141,7 +8141,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`For access problems, confirm the user’s role before opening a support request. Some actions are owner-only. Some modules require Pro or Plus. Some protected actions may require CavVerify or may be blocked by CavGuard until the right role, plan, or workspace state is present.`),
+    p(`For access problems, confirm the user’s role before opening a support request. Some actions are owner-only. Some modules require Plus or Pro. Some protected actions may require CavVerify or may be blocked by CavGuard until the right role, plan, or workspace state is present.`),
 
     p(`For billing problems, include what the user expected to happen and what CavBot shows now. Support should know whether the request is about upgrading, downgrading, checkout, subscription state, invoice review, payment failure, trial access, or a feature that appears locked after a plan change.`),
 
