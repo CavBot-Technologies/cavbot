@@ -1079,6 +1079,12 @@ body.cb-has-fixed-header {
   -webkit-appearance: none;
 }
 
+.cb-app-session-timezone-separator {
+  margin: 0 5px;
+  color: rgba(154, 164, 184, 0.52);
+  font-weight: 500;
+}
+
 .cb-app-session-timezone-option:hover,
 .cb-app-session-timezone-option:focus-visible,
 .cb-app-session-timezone-option.is-active {

@@ -5709,6 +5709,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
+  function renderTimeZoneOptionLabel(label) {
+    var parts = String(label || "").split(" | ");
+    if (parts.length < 2) return '<span>' + parts[0] + '</span>';
+    return [
+      '<span>',
+      parts[0],
+      '<span class="cb-app-session-timezone-separator" aria-hidden="true">|</span>',
+      parts.slice(1).join(" | "),
+      '</span>'
+    ].join("");
+  }
+
+
   function renderTimeZoneOptions(selected) {
     return ACCOUNT_TIME_ZONE_OPTIONS.map(function (option) {
       var active = selected === option.value;
@@ -5719,9 +5732,9 @@ document.addEventListener("DOMContentLoaded", () => {
         active ? "true" : "false",
         '" data-cavbot-app-session-timezone-option="',
         option.value,
-        '"><span>',
-        option.label,
-        "</span></button>"
+        '">',
+        renderTimeZoneOptionLabel(option.label),
+        "</button>"
       ].join("");
     }).join("");
   }
