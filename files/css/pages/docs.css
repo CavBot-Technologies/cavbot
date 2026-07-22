@@ -170,15 +170,15 @@ svg {
 .docs-brand-text {
   display: inline-flex;
   align-items: baseline;
-  gap: 6px;
-  font-size: 19px;
+  gap: 5px;
+  font-size: 18px;
   line-height: 1;
   letter-spacing: -0.045em;
   white-space: nowrap;
 }
 
 .docs-brand-text strong {
-  font-weight: 760;
+  font-weight: 650;
 }
 
 .docs-brand-docs-link {
