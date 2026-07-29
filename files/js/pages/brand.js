@@ -8,6 +8,12 @@
     return Array.prototype.slice.call((root || document).querySelectorAll(selector));
   }
 
+  function getBrandMainScroller() {
+    var main = qs(".brand-main");
+    var isDesktop = window.matchMedia && window.matchMedia("(min-width: 981px)").matches;
+    return isDesktop && main ? main : null;
+  }
+
 
   function setNavGroupOpen(group, isOpen) {
     if (!group) return;
@@ -425,6 +431,11 @@
 
     function getScrollSpyItems() {
       var seen = {};
+      var scroller = getBrandMainScroller();
+      var scrollerRect = scroller ? scroller.getBoundingClientRect() : null;
+      var scrollTop = scroller
+        ? scroller.scrollTop
+        : (window.pageYOffset || document.documentElement.scrollTop || 0);
 
 
       return navLinks.map(function (link) {
@@ -443,7 +454,9 @@
         return {
           href: href,
           target: target,
-          top: target.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0)
+          top: scroller && scrollerRect
+            ? target.getBoundingClientRect().top - scrollerRect.top + scrollTop
+            : target.getBoundingClientRect().top + scrollTop
         };
       }).filter(Boolean).sort(function (a, b) {
         return a.top - b.top;
@@ -462,8 +475,14 @@
 
 
       var items = getScrollSpyItems();
-      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var activationOffset = Math.min(260, Math.max(120, (window.innerHeight || 0) * 0.28));
+      var scroller = getBrandMainScroller();
+      var scrollTop = scroller
+        ? scroller.scrollTop
+        : (window.pageYOffset || document.documentElement.scrollTop || 0);
+      var viewportHeight = scroller
+        ? scroller.clientHeight
+        : (window.innerHeight || document.documentElement.clientHeight || 0);
+      var activationOffset = Math.min(260, Math.max(120, viewportHeight * 0.28));
       var activeItem = items[0];
 
 
@@ -520,7 +539,11 @@
     });
 
 
+    var mainScroller = qs(".brand-main");
     window.addEventListener("scroll", requestScrollSpySync, { passive: true });
+    if (mainScroller) {
+      mainScroller.addEventListener("scroll", requestScrollSpySync, { passive: true });
+    }
     window.addEventListener("resize", requestScrollSpySync);
     window.addEventListener("pageshow", requestScrollSpySync);
     window.setTimeout(syncActiveNavFromScroll, 120);
@@ -816,6 +839,10 @@
 
     render();
     window.addEventListener("scroll", requestRender, { passive: true });
+    var mainScroller = qs(".brand-main");
+    if (mainScroller) {
+      mainScroller.addEventListener("scroll", requestRender, { passive: true });
+    }
     window.addEventListener("resize", requestRender);
   }
 
@@ -1065,6 +1092,10 @@
 
 
     window.addEventListener("scroll", requestRender, { passive: true });
+    var mainScroller = document.querySelector(".brand-main");
+    if (mainScroller) {
+      mainScroller.addEventListener("scroll", requestRender, { passive: true });
+    }
     window.addEventListener("resize", requestRender);
   }
 
