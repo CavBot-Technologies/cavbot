@@ -556,14 +556,6 @@ button {
 }
 
 
-.brand-theme-label {
-  color: var(--text-soft);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-
 .brand-theme-toggle:hover,
 .brand-theme-toggle:focus-visible,
 .brand-sidebar-collapse:hover,
@@ -608,7 +600,7 @@ button {
 .brand-shell.is-collapsed .brand-nav-toggle,
 .brand-shell.is-collapsed .brand-nav-state,
 .brand-shell.is-collapsed .brand-nav-sub,
-.brand-shell.is-collapsed .brand-theme-label {
+.brand-shell.is-collapsed {
   display: none !important;
 }
 
