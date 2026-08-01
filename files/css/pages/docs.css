@@ -2997,3 +2997,42 @@ body[data-docs-theme="light"] .docs-feedback-icon {
     opacity: 1 !important;
   }
 }
+
+/* Mobile docs: keep the article wide, the copy actions right-aligned, and
+   remove the redundant compact-menu trigger. */
+@media (max-width: 860px) {
+  .docs-header-inner {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .docs-header-actions {
+    grid-column: 3;
+  }
+
+  .docs-mobile-toggle {
+    display: none !important;
+  }
+
+  .docs-copy-menu {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 640px) {
+  .docs-mobile-panel,
+  .docs-hero-stage,
+  .docs-index-inner,
+  .docs-help-inner,
+  .docs-footer-inner {
+    width: calc(100% - 20px);
+    max-width: 680px;
+  }
+
+  .docs-article {
+    width: 100%;
+  }
+
+  .docs-copy-menu {
+    justify-self: end;
+  }
+}
