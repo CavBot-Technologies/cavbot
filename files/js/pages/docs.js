@@ -8876,6 +8876,22 @@ function visibleDocKeys() {
     return Math.ceil((header ? header.getBoundingClientRect().height : 72) + 18);
   }
 
+  function scrollArticleTo(target) {
+    if (!target) return;
+
+    const article = document.querySelector(".docs-article");
+    if (article && window.matchMedia("(min-width: 961px)").matches) {
+      article.scrollTo({
+        top: Math.max(0, target.offsetTop - article.offsetTop - 24),
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
+      return;
+    }
+
+    const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerOffset());
+    window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
+  }
+
   function setActive(id) {
     Array.from(document.querySelectorAll("[data-docs-open]")).forEach(function (link) {
       link.classList.toggle("is-active", link.getAttribute("data-docs-open") === id);
@@ -8893,10 +8909,7 @@ function visibleDocKeys() {
       }
       if (shouldScroll) {
         const target = document.querySelector(".docs-article-header") || document.querySelector(".docs-article");
-        if (target) {
-          const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerOffset());
-          window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
-        }
+        scrollArticleTo(target);
       }
       syncExternalDocLinks();
       return;
@@ -8918,10 +8931,7 @@ function visibleDocKeys() {
     }
     if (shouldScroll) {
       const target = document.getElementById(safeId);
-      if (target) {
-        const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerOffset());
-        window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
-      }
+      scrollArticleTo(target);
     }
     syncExternalDocLinks();
   }
@@ -8941,10 +8951,7 @@ function visibleDocKeys() {
     openToggle(id, Boolean(parsed.hash), true);
     if (!parsed.hash) {
       const target = document.querySelector(".docs-article-header") || document.querySelector(".docs-article");
-      if (target) {
-        const top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerOffset());
-        window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
-      }
+      scrollArticleTo(target);
     }
   }
 

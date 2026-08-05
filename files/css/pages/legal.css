@@ -651,6 +651,31 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   color: var(--ethics-text-soft);
 }
 
+/* Desktop legal reader: navigation remains anchored while the document reads
+   independently in the right column. */
+@media (min-width: 961px) {
+  .ethics-reader-shell {
+    height: min(900px, calc(100vh - 112px));
+    min-height: 620px;
+    overflow: hidden;
+  }
+
+  .ethics-sidebar {
+    position: relative;
+    top: auto;
+    height: 100%;
+    max-height: none;
+  }
+
+  .ethics-document {
+    height: 100%;
+    padding-right: clamp(10px, 1.7vw, 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+}
+
 
 .legal-document-panel[hidden],
 .ethics-hero-copy[hidden] {
@@ -1223,5 +1248,4 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   color: var(--ethics-text);
   background: rgba(78, 168, 255, 0.12);
 }
-
 

@@ -182,6 +182,15 @@ var sections = [];
     if (!target) return;
 
 
+    var documentPane = document.querySelector(".ethics-document");
+    if (documentPane && window.matchMedia("(min-width: 961px)").matches) {
+      documentPane.scrollTo({
+        top: Math.max(0, target.offsetTop - documentPane.offsetTop - 2),
+        behavior: "smooth"
+      });
+      return;
+    }
+
     target.scrollIntoView({
       block: "start",
       inline: "nearest"

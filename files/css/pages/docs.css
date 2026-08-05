@@ -1101,6 +1101,33 @@ body[data-docs-theme="light"] .docs-topic-icon {
   overflow: hidden;
 }
 
+/* Full documentation uses an application-style reader on desktop: the left
+   navigation stays in place and only the article column scrolls. */
+@media (min-width: 961px) {
+  body[data-cavbot-page-type="docs-article"] {
+    overflow: hidden;
+  }
+
+  body[data-cavbot-page-type="docs-article"] .docs-article-shell {
+    height: calc(100vh - 72px);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-cavbot-page-type="docs-article"] .docs-left-panel,
+  body[data-cavbot-page-type="docs-article"] .docs-right-panel {
+    overflow-y: hidden;
+  }
+
+  body[data-cavbot-page-type="docs-article"] .docs-article {
+    height: 100%;
+    padding-right: clamp(16px, 2vw, 30px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+  }
+}
+
 
 .docs-article-header {
   margin-bottom: 34px;
