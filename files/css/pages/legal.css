@@ -651,28 +651,26 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   color: var(--ethics-text-soft);
 }
 
-/* Desktop legal reader: navigation remains anchored while the document reads
-   independently in the right column. */
-@media (min-width: 961px) {
-  .ethics-reader-shell {
-    height: min(900px, calc(100vh - 112px));
-    min-height: 620px;
-    overflow: hidden;
-  }
-
+/* The legal document remains a full, natural page. The sidebar becomes fixed
+   only while its corresponding document is alongside it, then releases at
+   the end of the reader. */
+@media (min-width: 1041px) {
   .ethics-sidebar {
-    position: relative;
-    top: auto;
-    height: 100%;
-    max-height: none;
+    --ethics-rail-top: clamp(132px, 21vh, 220px);
+    top: var(--ethics-rail-top);
+    height: calc(100vh - var(--ethics-rail-top) - 16px);
+    max-height: calc(100vh - var(--ethics-rail-top) - 16px);
+    overflow: visible;
   }
 
-  .ethics-document {
-    height: 100%;
-    padding-right: clamp(10px, 1.7vw, 24px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    scrollbar-gutter: stable;
+  .ethics-sidebar::after {
+    top: -72px;
+    bottom: -72px;
+  }
+
+  .ethics-sidebar-bottom {
+    padding-bottom: 0;
+    transform: translateY(-16px);
   }
 }
 
@@ -1248,4 +1246,3 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   color: var(--ethics-text);
   background: rgba(78, 168, 255, 0.12);
 }
-
