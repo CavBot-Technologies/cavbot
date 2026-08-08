@@ -319,7 +319,7 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   border: 1px solid var(--ethics-line-strong);
   border-radius: 2px;
   background: color-mix(in srgb, var(--ethics-bg) 94%, var(--ethics-surface) 6%);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.32);
+  
 }
 
 .legal-copy-action {
