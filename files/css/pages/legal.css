@@ -674,6 +674,25 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   }
 }
 
+/* CavBot legal reader: once the reader reaches the header, this rail is
+   fixed to the viewport. The document continues in its own grid column. */
+@media (min-width: 1041px) {
+  .ethics-sidebar-slot {
+    min-width: 0;
+  }
+
+  body.is-reading-legal .ethics-sidebar-slot > .ethics-sidebar {
+    position: fixed !important;
+    top: 96px !important;
+    left: max(32px, calc((100vw - 1460px) / 2));
+    width: var(--ethics-sidebar-width);
+    height: calc(100vh - 112px);
+    max-height: calc(100vh - 112px);
+    overflow: hidden;
+    background: var(--ethics-bg);
+    z-index: 70;
+  }
+}
 
 .legal-document-panel[hidden],
 .ethics-hero-copy[hidden] {

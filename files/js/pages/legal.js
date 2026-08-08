@@ -815,6 +815,34 @@ function setupLegalCopyMenu() {
   syncLegalCopyLinks();
 }
 
+function setupLegalReaderRail() {
+  var shell = document.querySelector("[data-ethics-shell]");
+  var header = document.querySelector(".site-header");
+  var footer = document.querySelector(".site-footer");
+  var desktop = window.matchMedia("(min-width: 1041px)");
+
+  if (!shell) return;
+
+  function updateRail() {
+    if (!desktop.matches) {
+      document.body.classList.remove("is-reading-legal");
+      return;
+    }
+
+    var headerHeight = header ? header.getBoundingClientRect().height : 72;
+    var hasReachedFooter = footer && footer.getBoundingClientRect().top <= window.innerHeight;
+    document.body.classList.toggle(
+      "is-reading-legal",
+      shell.getBoundingClientRect().top <= headerHeight && !hasReachedFooter
+    );
+  }
+
+  window.addEventListener("scroll", updateRail, { passive: true });
+  window.addEventListener("resize", updateRail);
+  desktop.addEventListener("change", updateRail);
+  updateRail();
+}
+
 
   function boot() {
     var initialHash = window.location.hash;
@@ -831,6 +859,7 @@ function setupLegalCopyMenu() {
 setupPrint();
 setupShare();
 setupLegalCopyMenu();
+setupLegalReaderRail();
 
 
 
