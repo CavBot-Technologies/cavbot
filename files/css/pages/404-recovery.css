@@ -4550,3 +4550,42 @@ body {
     transform: none !important;
   }
 }
+
+/* Keep the recovery product visual clean at its edge without removing its internal UI lines. */
+.recovery-wa-window {
+  border: 0 !important;
+}
+
+/* Borderless app surfaces keep their hierarchy through tone, not card chrome.
+   Route and table row dividers intentionally remain untouched. */
+.recovery-preview-stage :is(
+  .recovery-score,
+  .recovery-route-panel,
+  .recovery-priority-panel,
+  .recovery-source-panel,
+  .recovery-result-panel
+),
+.recovery-wa-window :is(
+  .recovery-wa-trend-panel,
+  .recovery-wa-cause-path,
+  .recovery-wa-cause-list,
+  .recovery-wa-source-summary,
+  .recovery-wa-source-flow,
+  .recovery-wa-game-stage,
+  .recovery-wa-game-metrics,
+  .recovery-wa-leaderboard
+) {
+  border: 0 !important;
+  background: rgba(7, 14, 32, 0.98) !important;
+}
+
+.recovery-wa-window :is(
+  .recovery-wa-metric-strip > div,
+  .recovery-wa-cause-path article,
+  .recovery-wa-explanation-card > div,
+  .recovery-wa-source-flow article,
+  .recovery-wa-report-note
+) {
+  border: 0 !important;
+  background: rgba(11, 20, 42, 0.94) !important;
+}

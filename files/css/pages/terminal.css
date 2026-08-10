@@ -1431,3 +1431,15 @@ body {
     font-size: clamp(38px, 11vw, 56px) !important;
   }
 }
+
+/* The terminal remains the visual boundary; remove only its presentation-frame contour. */
+.terminal-window {
+  border: 0 !important;
+}
+
+/* Keep the terminal mockup legible against the site without restoring a frame. */
+.terminal-window,
+.terminal-screen {
+  border: 0 !important;
+  background: rgba(5, 11, 27, 0.98) !important;
+}

@@ -1848,3 +1848,21 @@
     animation: none !important;
   }
 }
+
+/* CavCloud's rendered app stays dimensional through dark surfaces, not borders. */
+.cavcloud-folder-target {
+  background: #0d1628;
+}
+
+.cavcloud-folder-icon,
+.cavcloud-folder-stack span {
+  border: 0;
+  background: #091120;
+}
+
+.cavcloud-file-card,
+.cavcloud-storage-stats span,
+.cavcloud-quick-actions,
+.cavcloud-storage-trend {
+  background: #0b1425;
+}

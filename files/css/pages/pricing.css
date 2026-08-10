@@ -387,9 +387,9 @@ html body .pricing-button {
 
 html body .pricing-button-primary,
 html body .pricing-button-accent {
-  color: var(--pricing-soft) !important;
-  background: transparent !important;
-  border-color: var(--pricing-blue) !important;
+  
+  background: var(--faq-black)!important;
+ 
   outline: none;
   border-radius: 4px;
 }
@@ -398,7 +398,7 @@ html body .pricing-button-accent {
 html body .pricing-button-secondary {
   color: var(--pricing-text) !important;
   background: rgba(255, 255, 255, 0.055) !important;
-  border-color: rgba(255, 255, 255, 0.10) !important;
+  
   border-radius: 4px;
 }
 
@@ -407,7 +407,7 @@ html body .pricing-button:hover,
 html body .pricing-button:focus-visible {
   color: var(--pricing-text) !important;
   background: rgba(255, 255, 255, 0.055) !important;
-  border-color:  rgba(185, 200, 90, 0.22)!important;
+  
   border-radius: 4px;
 }
 

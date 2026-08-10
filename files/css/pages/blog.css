@@ -1905,3 +1905,32 @@ html {
   }
 }
 
+/* Keep coded preview cards distinct with tonal depth instead of outline chrome. */
+.cb-thumb::before {
+  display: none;
+}
+
+.cb-thumb-route-panel,
+.cb-thumb-route-state,
+.cb-thumb-route-grid div,
+.cb-thumb-actions span,
+.cb-thumb-model-ui,
+.cb-thumb-search,
+.cb-thumb-model-row,
+.cb-thumb-layer-card {
+  border: 0;
+}
+
+.cb-thumb-route-panel,
+.cb-thumb-model-ui,
+.cb-thumb-layer-card {
+  background: rgba(1, 3, 15, 0.44);
+}
+
+.cb-thumb-route-state,
+.cb-thumb-route-grid div,
+.cb-thumb-actions span,
+.cb-thumb-search,
+.cb-thumb-model-row {
+  background: rgba(1, 3, 15, 0.28);
+}

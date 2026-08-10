@@ -3360,3 +3360,46 @@ body[data-cavbot-page-type="why-cavbot-page"] .site-footer {
     transition: none !important;
   }
 }
+
+/* Remove only the outer decorative contour from the product illustrations.
+   Their top bars, row rules, and app-level separators remain as working visual structure. */
+.why-product-board,
+.why-impact-visual,
+.why-impact-window,
+.why-solution-board,
+.why-compare-frame {
+  border: 0 !important;
+}
+
+/* Product artwork uses layered dark surfaces rather than decorative card borders.
+   Existing row rules and tab-control separators remain as app structure. */
+.why-product-board :is(
+  .why-product-topbar,
+  .why-product-pill,
+  .why-route-card,
+  .why-profile-panel,
+  .why-signal-dock
+),
+.why-impact-visual :is(
+  .why-impact-window,
+  .why-impact-step,
+  .why-impact-ticket
+),
+.why-solution-board :is(
+  .why-solution-board-top,
+  .why-solution-status,
+  .why-solution-controls,
+  .why-solution-signal,
+  .why-solution-result,
+  .why-solution-core,
+  .why-solution-footer
+) {
+  border: 0 !important;
+  background: rgba(6, 12, 29, 0.98) !important;
+}
+
+.why-product-board :is(.why-route-card, .why-profile-panel),
+.why-impact-visual :is(.why-impact-step, .why-impact-ticket),
+.why-solution-board :is(.why-solution-signal, .why-solution-result, .why-solution-core) {
+  background: rgba(9, 18, 39, 0.98) !important;
+}

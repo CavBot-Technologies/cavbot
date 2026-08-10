@@ -4028,3 +4028,9 @@ body {
     transition: none;
   }
 }
+
+/* The moving issue pills sit on a darker tonal surface instead of outlines. */
+.error-pill-row span {
+  border: 0;
+  background: rgba(1, 3, 15, 0.30);
+}

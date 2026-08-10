@@ -1980,14 +1980,9 @@
   color: inherit;
   border-radius: 4px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(1, 3, 15, 0.98);
 }
 
-
-.arcade-slide.is-active .arcade-cover-link {
-  border-color: var(--lime-soft);
-}
 
 .arcade-cover,
 .arcade-preview-video {
@@ -4768,6 +4763,149 @@
   display: none !important;
 }
 
+/* ==============================
+   BORDERLESS COLLABORATION PREVIEW
+   ============================== */
+
+/* The workspace now reads as an app surface through tonal depth instead of
+   stacked outlines.  Table and editor dividers intentionally remain above. */
+.cavbot-collab .collab-preview-window,
+.cavbot-collab .collab-preview-board,
+.cavbot-collab .collab-side-card,
+.cavbot-collab .collab-highlight-row,
+.cavbot-collab .collab-activity-link,
+.cavbot-collab .collab-module-window,
+.cavbot-collab .collab-cloud-row,
+.cavbot-collab .collab-dash-row,
+.cavbot-collab .collab-tools-steps div,
+.cavbot-collab .collab-dash-metric,
+.cavbot-collab .collab-dash-chart,
+.cavbot-collab .collab-tools-toolbar span,
+.cavbot-collab .collab-tools-card,
+.cavbot-collab .collab-cloud-chip,
+.cavbot-collab .collab-preview-share,
+.cavbot-collab .collab-preview-icon-btn,
+.cavbot-collab .avatar-chip,
+.cavbot-collab .collab-owner i,
+.cavbot-collab .collab-owner small,
+.cavbot-collab .collab-file-pills i,
+.cavbot-collab .collab-sync-dots i {
+  border: 0 !important;
+}
+
+.cavbot-collab .collab-preview-window {
+  background: linear-gradient(180deg, rgba(11, 16, 38, 0.99), rgba(2, 5, 18, 0.99));
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.28);
+}
+
+.cavbot-collab .collab-preview-board {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.cavbot-collab .collab-side-card {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.cavbot-collab .collab-highlight-row,
+.cavbot-collab .collab-activity-link {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.cavbot-collab .collab-preview-share,
+.cavbot-collab .collab-preview-icon-btn {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.cavbot-collab .collab-preview-share:hover,
+.cavbot-collab .collab-preview-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.cavbot-collab .avatar-chip {
+  box-shadow: none;
+}
+
+.cavbot-collab .collab-file-pills i {
+  background: rgba(78, 168, 255, 0.12);
+}
+
+.cavbot-collab .collab-sync-dots i {
+  background: rgba(2, 6, 18, 0.94);
+}
+
+.cavbot-collab .collab-connected-grid,
+.cavbot-collab .collab-cell,
+.cavbot-collab .collab-cell:nth-child(odd),
+.cavbot-collab .collab-feature {
+  border: 0 !important;
+}
+
+.cavbot-collab .collab-connected-grid {
+  background: rgba(1, 3, 15, 0.8);
+}
+
+.cavbot-collab .collab-cell--quote,
+.cavbot-collab .collab-cell--list {
+  background: rgba(0, 0, 0, 0.11);
+}
+
+.cavbot-collab .collab-module-window {
+  background: linear-gradient(180deg, rgba(13, 19, 43, 0.99), rgba(2, 5, 17, 0.99));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+}
+
+.cavbot-collab .collab-cloud-row,
+.cavbot-collab .collab-dash-row,
+.cavbot-collab .collab-tools-steps div,
+.cavbot-collab .collab-dash-metric,
+.cavbot-collab .collab-dash-chart,
+.cavbot-collab .collab-tools-card {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.cavbot-collab .collab-tools-toolbar span {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cavbot-collab .collab-cloud-chip {
+  min-width: 28px;
+  display: inline-grid;
+  place-items: center;
+  padding-inline: 8px;
+  background: rgba(78, 168, 255, 0.13);
+}
+
+/* Route recovery is actively working: use the product loader without a chip. */
+.cavbot-collab .collab-tools-status {
+  width: 17px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  display: grid;
+  place-items: center;
+  background: transparent !important;
+  color: transparent;
+}
+
+.cavbot-collab .collab-tools-spinner {
+  width: 17px;
+  height: 17px;
+  display: block;
+  background: rgba(203, 211, 225, 0.72);
+  -webkit-mask: url("../../../assets/icons/page/analytics/loading-svgrepo-com.svg") center / contain no-repeat;
+  mask: url("../../../assets/icons/page/analytics/loading-svgrepo-com.svg") center / contain no-repeat;
+  transform-origin: 50% 50%;
+  animation: cavbot-collab-spinner 1.05s linear infinite;
+}
+
+@keyframes cavbot-collab-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 
 
@@ -6794,7 +6932,6 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standa
   gap: 12px;
 
   border-radius: 4px !important;
-  border: 1px solid rgba(0, 0, 0, 0.72);
 
   background: rgba(247, 251, 255, 0.96);
   opacity: 1;
@@ -7914,6 +8051,17 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 }
 
 
+/* Give the 404 recovery panel enough air without pushing its final action out of frame. */
+.cavbot-ui-body--broken {
+  gap: clamp(16px, 1.7vw, 20px);
+}
+
+
+.cavbot-ui-body--broken .cavbot-ui-hero-row {
+  margin-bottom: 0;
+}
+
+
 .cavbot-ui-hero-row {
   display: flex;
   justify-content: space-between;
@@ -7944,7 +8092,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   border-radius: 4px;
   display: inline-flex;
   align-items: center;
-  border: 1px solid rgba(78, 168, 255, 0.20);
+  border: 0;
   background: rgba(78, 168, 255, 0.055);
   color: var(--ink-soft);
   font-size: 11px;
@@ -7953,7 +8101,6 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 
 /* Keep lime status only for non-action screens */
 .cavbot-ui-status--lime {
-  border-color: rgba(185, 200, 90, 0.22);
   background: rgba(185, 200, 90, 0.075);
   color: var(--lime);
 }
@@ -7962,7 +8109,6 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 /* Remove lime feel from Action Feed */
 .cavbot-ui-body--actions .cavbot-ui-status,
 .cavbot-ui-body--actions .cavbot-ui-status--lime {
-  border-color: rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.035);
   color: var(--ink-soft);
 }
@@ -7986,7 +8132,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   display: grid;
   align-content: center;
   gap: 7px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
   background: rgba(255, 255, 255, 0.025);
 }
 
@@ -8014,7 +8160,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   border-radius: 4px;
   overflow: hidden;
   min-width: 0;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
 }
 
 
@@ -8065,7 +8211,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   border-radius: 4px;
   display: grid;
   gap: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 0;
   background: rgba(255, 255, 255, 0.035);
 }
 
@@ -8094,7 +8240,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   height: clamp(152px, 17vw, 174px);
   min-height: 0;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
   background:
     linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
@@ -8115,7 +8261,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   color: var(--ink);
   font-size: 11px;
   font-weight: 900;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 0;
   background: rgba(7, 11, 30, 0.96);
 }
 
@@ -8164,7 +8310,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   left: 50%;
   top: 28%;
   transform: translate(-50%, -50%);
-  border-color: rgba(78, 168, 255, 0.36);
+  background: rgba(78, 168, 255, 0.14);
 }
 
 
@@ -8172,7 +8318,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   left: 82%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border-color: rgba(185, 200, 90, 0.34);
+  background: rgba(185, 200, 90, 0.14);
 }
 
 
@@ -8180,7 +8326,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   left: 50%;
   top: 72%;
   transform: translate(-50%, -50%);
-  border-color: rgba(139, 92, 255, 0.36);
+  background: rgba(139, 92, 255, 0.14);
 }
 
 
@@ -8229,7 +8375,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
   background: rgba(255, 255, 255, 0.025);
 }
 
@@ -8259,7 +8405,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 .cavbot-seo-card,
 .cavbot-seo-checks div {
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -8361,7 +8507,7 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   display: flex;
   align-items: end;
   gap: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
   background: rgba(255, 255, 255, 0.025);
 }
 
@@ -8394,13 +8540,12 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   grid-template-columns: 34px minmax(0, 1fr) auto;
   gap: 13px;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 0;
   background: rgba(255, 255, 255, 0.03);
 }
 
 
 .cavbot-action-list > div.is-priority {
-  border-color: rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -8414,7 +8559,8 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
   color: var(--ink);
   font-size: 11px;
   font-weight: 700;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 
@@ -8517,6 +8663,70 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 
   .cavbot-ui-body {
     padding: 18px;
+  }
+
+
+  .cavbot-ui-body--broken {
+    padding: 14px;
+    gap: 12px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-metrics div {
+    min-height: 0;
+    padding: 10px 8px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-metrics strong {
+    font-size: 20px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-metrics span {
+    font-size: 10px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-table-head,
+  .cavbot-ui-body--broken .cavbot-ui-table-row {
+    grid-template-columns: minmax(0, 1.35fr) minmax(50px, 74px) minmax(60px, 82px);
+    min-height: 34px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-table-head {
+    font-size: 9px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-table-row {
+    font-size: 11px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-note {
+    padding: 8px 10px;
+    gap: 3px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-note strong {
+    font-size: 12px;
+  }
+
+
+  .cavbot-ui-body--broken .cavbot-ui-note span {
+    font-size: 11px;
+    line-height: 1.3;
   }
 
 
@@ -9581,7 +9791,7 @@ body,
   body.page-shell .page-inner > section.hero.hero-home-surface .hero-copy-block br,
   body.page-shell main.page-inner > section.hero.hero-home-surface .hero-lede br,
   body.page-shell .page-inner > section.hero.hero-home-surface .hero-lede br {
-    display: block !important;
+    display: none !important;
   }
 
   body.page-shell main.page-inner > section.hero.hero-home-surface .hero-lede,
@@ -10378,9 +10588,10 @@ body,
 
   body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-orbit::before,
   body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-orbit::before {
-    display: block !important;
-    inset: 7% !important;
-    border-radius: 50% !important;
+    /* The remote head component already carries its own circular silhouette.
+       On phones the additional decorative orbit crowds it and makes the head
+       look off-center, so keep that contour desktop-only. */
+    display: none !important;
   }
 
   body.page-shell main.page-inner > section.hero.hero-home-surface .hero-cavbot-standalone .cavbot-cdn-slot[data-cavbot-cdn-slot="head"],

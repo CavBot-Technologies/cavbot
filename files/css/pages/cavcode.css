@@ -6327,3 +6327,37 @@ button.cavcode-demo-tree-row {
   opacity: 0.76;
   mix-blend-mode: screen;
 }
+
+/* Keep the product mockups app-led: their internal workspace dividers remain,
+   while the decorative perimeter contour is intentionally removed. */
+.cavcode-demo-frame,
+.cavcode-ui-window,
+.caven-ide-window {
+  border: 0 !important;
+}
+
+/* App-preview cards stay visible by using deeper surfaces, not outlines. */
+.cavcode-demo-section :is(
+  .cavcode-demo-card,
+  .cavcode-demo-surface-row
+),
+.cavcode-workspace-right :is(
+  .cavcode-ui-window,
+  .cavcode-terminal-box,
+  .cavcode-git-summary > div,
+  .cavcode-commit-box,
+  .cavcode-run-grid > div,
+  .cavcode-run-status > div,
+  .cavcode-stack-card,
+  .cavcode-flow-board > div,
+  .cavcode-flow-footer > div
+),
+.caven-flow-stage :is(
+  .caven-ide-window,
+  .caven-ide-plan-card,
+  .caven-ide-task-card,
+  .caven-ide-change-card
+) {
+  border: 0 !important;
+  background: rgba(6, 12, 29, 0.98) !important;
+}

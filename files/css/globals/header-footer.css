@@ -13,6 +13,7 @@
 }
 
 .cb-cookie-root {
+  --cb-cookie-cotton: #f7fbff;
   position: fixed;
   inset: 0;
   z-index: 10000;
@@ -37,10 +38,10 @@
   align-content: center;
   justify-items: center;
   gap: 16px;
-  background: #ffffff;
+  background: var(--cb-cookie-cotton);
   color: #101116;
   border: 0;
-  border-radius: 0;
+  border-radius: 4px;
   box-shadow: 0 20px 54px rgba(5, 7, 17, 0.18);
   pointer-events: auto;
 }
@@ -102,7 +103,7 @@
   border-radius: 4px;
   display: grid;
   place-items: center;
-  background: rgba(5, 7, 17, 0.05);
+  background: transparent;
   color: rgba(16, 17, 22, 0.64);
   font-size: 26px;
   line-height: 1;
@@ -111,9 +112,13 @@
 
 .cb-cookie-close:hover,
 .cb-cookie-close:focus-visible {
-  background: rgba(78, 168, 255, 0.10);
+  background: transparent;
   color: #101116;
-  outline: none;
+}
+
+.cb-cookie-close:focus-visible {
+  outline: 2px solid rgba(78, 168, 255, 0.72);
+  outline-offset: 2px;
 }
 
 .cb-cookie-actions,
@@ -157,7 +162,7 @@
 
 .cb-cookie-secondary {
   border: 1px solid rgba(16, 17, 22, 0.18);
-  background: #ffffff;
+  background: var(--cb-cookie-cotton);
   color: #101116;
 }
 
@@ -208,7 +213,7 @@
 .cb-cookie-secondary:hover,
 .cb-cookie-secondary:focus-visible {
   border-color: rgba(78, 168, 255, 0.62);
-  background: #ffffff;
+  background: var(--cb-cookie-cotton);
   color: #101116;
   outline: none;
 }
@@ -246,10 +251,10 @@
   grid-template-rows: minmax(0, 1fr) auto;
   gap: 24px;
   transform: translate(-50%, -50%);
-  background: #ffffff;
+  background: var(--cb-cookie-cotton);
   color: #101116;
   border: 0;
-  border-radius: 0;
+  border-radius: 4px;
   box-shadow: 0 28px 90px rgba(5, 7, 17, 0.28);
   pointer-events: auto;
 }
@@ -533,9 +538,22 @@ body.cb-has-fixed-header {
 .cb-nav-chevron {
   width: 14px;
   height: 14px;
+  display: block;
+  flex: 0 0 14px;
+  align-self: center;
+  position: relative;
+  top: 1px;
+  margin: 0;
+  background-color: currentColor;
+  -webkit-mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
+  mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
   color: currentColor;
   opacity: 0.7;
   transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.cb-nav-chevron path {
+  display: none;
 }
 
 .cb-nav-trigger[aria-expanded="true"] .cb-nav-chevron {
@@ -578,7 +596,7 @@ body.cb-has-fixed-header {
 .cb-mega-inner {
   overflow: hidden;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  border: 0;
   background: rgba(1, 3, 15, 0.98);
 
 }
@@ -1544,9 +1562,20 @@ body.cb-has-fixed-header {
   width: 14px;
   height: 14px;
   display: block;
+  background-color: currentColor;
+  -webkit-mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
+  mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
   color: rgba(247, 251, 255, 0.9);
   opacity: 0;
   transition: opacity 140ms ease, color 140ms ease;
+}
+
+svg.cb-try-cavai-caret-icon path {
+  display: none;
+}
+
+.cb-try-cavai-caret-icon-open {
+  transform: rotate(180deg);
 }
 
 .cb-try-cavai-caret-icon-closed {
@@ -2843,5 +2872,657 @@ iframe {
   .footer-bottom-links,
   .footer-social-links {
     gap: 12px;
+  }
+}
+
+/* ==========================================================
+   CAVBOT PRIMARY CTA SYSTEM
+   ========================================================== */
+
+:root {
+  --cb-primary-action-lime: #b9c85a;
+  --cb-primary-action-dark: #01030f;
+  --cb-primary-action-surface: #f7fbff;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+) {
+  position: relative !important;
+  box-sizing: border-box !important;
+  min-height: 52px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 0 62px 0 18px !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  appearance: none !important;
+  border: 0 !important;
+  border-left: 4px solid var(--cb-primary-action-lime) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: var(--cb-primary-action-surface) !important;
+  background-image: linear-gradient(var(--cb-primary-action-lime), var(--cb-primary-action-lime)) !important;
+  background-position: right top !important;
+  background-repeat: no-repeat !important;
+  background-size: 0 100% !important;
+  color: var(--cb-primary-action-dark) !important;
+  -webkit-text-fill-color: currentColor !important;
+  font-size: 0.78rem !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1 !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  transition:
+    transform 180ms ease,
+    background-size 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    background-color 180ms ease,
+    color 180ms ease,
+    border-left-color 180ms ease !important;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+)::before,
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+)::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: 8px !important;
+  width: 36px !important;
+  height: 36px !important;
+  pointer-events: none !important;
+  transform: translateY(-50%) !important;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+)::before {
+  z-index: 1 !important;
+  background: var(--cb-primary-action-lime) !important;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+)::after {
+  z-index: 2 !important;
+  background: var(--cb-primary-action-dark) !important;
+  display: block !important;
+  opacity: 1 !important;
+  -webkit-mask-image: url("../../../assets/icons/page/go-svgrepo-com.svg") !important;
+  -webkit-mask-position: center !important;
+  -webkit-mask-repeat: no-repeat !important;
+  -webkit-mask-size: 18px 18px !important;
+  mask-image: url("../../../assets/icons/page/go-svgrepo-com.svg") !important;
+  mask-mode: alpha !important;
+  mask-position: center !important;
+  mask-repeat: no-repeat !important;
+  mask-size: 18px 18px !important;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+):is(:hover, :focus-visible) {
+  transform: translateY(-2px) !important;
+  background-size: 100% 100% !important;
+  border-left-color: var(--cb-primary-action-surface) !important;
+  color: var(--cb-primary-action-dark) !important;
+  outline: none !important;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+):is(:hover, :focus-visible)::before {
+  background: var(--cb-primary-action-surface) !important;
+}
+
+html body :is(
+  .btn.btn-primary,
+  .seal-button.seal-button--primary,
+  .pricing-hero-cta,
+  .pricing-button.pricing-button-primary,
+  .terminal-button.terminal-button--primary,
+  .cavcode-button.cavcode-button--primary,
+  .cavcloud-button.cavcloud-button--primary,
+  .cavcloud-final-button,
+  .team-final-button.team-final-button--primary,
+  .cavai-final-button.cavai-final-button--primary,
+  .blog-closing-button.blog-closing-button--primary,
+  .help-support-button.help-support-button--primary,
+  .websites-cta,
+  .route-error-button.route-error-button--primary,
+  .route-primary-link,
+  .route-compare-button,
+  .route-scan-button,
+  .seo-primary-link,
+  .seo-scan-button,
+  .insights-primary-link,
+  .error-primary-link,
+  .recovery-primary-link,
+  .a11y-primary-link,
+  .comparison-ga-primary-link,
+  .comparison-ga-table-button
+):is(:hover, :focus-visible)::after {
+  background: var(--cb-primary-action-lime) !important;
+}
+
+@media (max-width: 720px) {
+  html body :is(
+    .btn.btn-primary,
+    .seal-button.seal-button--primary,
+    .pricing-hero-cta,
+    .pricing-button.pricing-button-primary,
+    .terminal-button.terminal-button--primary,
+    .cavcode-button.cavcode-button--primary,
+    .cavcloud-button.cavcloud-button--primary,
+    .cavcloud-final-button,
+    .team-final-button.team-final-button--primary,
+    .cavai-final-button.cavai-final-button--primary,
+    .blog-closing-button.blog-closing-button--primary,
+    .help-support-button.help-support-button--primary,
+    .websites-cta,
+    .route-error-button.route-error-button--primary,
+    .route-primary-link,
+    .route-compare-button,
+    .route-scan-button,
+    .seo-primary-link,
+    .seo-scan-button,
+    .insights-primary-link,
+    .error-primary-link,
+    .recovery-primary-link,
+    .a11y-primary-link,
+    .comparison-ga-primary-link,
+    .comparison-ga-table-button
+  ) {
+    min-height: 46px !important;
+    padding: 0 53px 0 14px !important;
+    font-size: 0.72rem !important;
+  }
+
+  html body :is(
+    .btn.btn-primary,
+    .seal-button.seal-button--primary,
+    .pricing-hero-cta,
+    .pricing-button.pricing-button-primary,
+    .terminal-button.terminal-button--primary,
+    .cavcode-button.cavcode-button--primary,
+    .cavcloud-button.cavcloud-button--primary,
+    .cavcloud-final-button,
+    .team-final-button.team-final-button--primary,
+    .cavai-final-button.cavai-final-button--primary,
+    .blog-closing-button.blog-closing-button--primary,
+    .help-support-button.help-support-button--primary,
+    .websites-cta,
+    .route-error-button.route-error-button--primary,
+    .route-primary-link,
+    .route-compare-button,
+    .route-scan-button,
+    .seo-primary-link,
+    .seo-scan-button,
+    .insights-primary-link,
+    .error-primary-link,
+    .recovery-primary-link,
+    .a11y-primary-link,
+    .comparison-ga-primary-link,
+    .comparison-ga-table-button
+  )::before,
+  html body :is(
+    .btn.btn-primary,
+    .seal-button.seal-button--primary,
+    .pricing-hero-cta,
+    .pricing-button.pricing-button-primary,
+    .terminal-button.terminal-button--primary,
+    .cavcode-button.cavcode-button--primary,
+    .cavcloud-button.cavcloud-button--primary,
+    .cavcloud-final-button,
+    .team-final-button.team-final-button--primary,
+    .cavai-final-button.cavai-final-button--primary,
+    .blog-closing-button.blog-closing-button--primary,
+    .help-support-button.help-support-button--primary,
+    .websites-cta,
+    .route-error-button.route-error-button--primary,
+    .route-primary-link,
+    .route-compare-button,
+    .route-scan-button,
+    .seo-primary-link,
+    .seo-scan-button,
+    .insights-primary-link,
+    .error-primary-link,
+    .recovery-primary-link,
+    .a11y-primary-link,
+    .comparison-ga-primary-link,
+    .comparison-ga-table-button
+  )::after {
+    right: 6px !important;
+    width: 31px !important;
+    height: 31px !important;
+  }
+
+  html body :is(
+    .btn.btn-primary,
+    .seal-button.seal-button--primary,
+    .pricing-hero-cta,
+    .pricing-button.pricing-button-primary,
+    .terminal-button.terminal-button--primary,
+    .cavcode-button.cavcode-button--primary,
+    .cavcloud-button.cavcloud-button--primary,
+    .cavcloud-final-button,
+    .team-final-button.team-final-button--primary,
+    .cavai-final-button.cavai-final-button--primary,
+    .blog-closing-button.blog-closing-button--primary,
+    .help-support-button.help-support-button--primary,
+    .websites-cta,
+    .route-error-button.route-error-button--primary,
+    .route-primary-link,
+    .route-compare-button,
+    .route-scan-button,
+    .seo-primary-link,
+    .seo-scan-button,
+    .insights-primary-link,
+    .error-primary-link,
+    .recovery-primary-link,
+    .a11y-primary-link,
+    .comparison-ga-primary-link,
+    .comparison-ga-table-button
+  )::after {
+    -webkit-mask-size: 16px 16px !important;
+    mask-size: 16px 16px !important;
+  }
+}
+
+/* ==========================================================
+   CAVBOT SECONDARY CTA SYSTEM
+   ========================================================== */
+
+html body .cb-secondary-action.cb-secondary-action {
+  position: relative !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 52px !important;
+  padding: 0 22px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
+  color: var(--cb-primary-action-surface) !important;
+  -webkit-text-fill-color: currentColor !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  letter-spacing: normal !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  transition: color 180ms ease !important;
+}
+
+html body .cb-secondary-action.cb-secondary-action::after {
+  display: none !important;
+}
+
+html body .cb-secondary-action.cb-secondary-action:is(:hover, :focus-visible) {
+  border: 0 !important;
+  background: none !important;
+  color: var(--cb-primary-action-surface) !important;
+}
+
+html body .cb-secondary-action.cb-secondary-action > span {
+  position: relative !important;
+  display: inline-block !important;
+  line-height: 1.2 !important;
+}
+
+html body .cb-secondary-action.cb-secondary-action > span::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: -3px !important;
+  width: 100% !important;
+  height: 1px !important;
+  background: currentColor !important;
+  transform: scaleX(0.28) !important;
+  transform-origin: left !important;
+  transition: transform 180ms ease !important;
+}
+
+html body .cb-secondary-action.cb-secondary-action:is(:hover, :focus-visible) > span::after {
+  transform: scaleX(1) !important;
+}
+
+html body .cb-secondary-action.cb-secondary-action:focus-visible {
+  outline: 2px solid var(--cb-primary-action-lime) !important;
+  outline-offset: 5px !important;
+}
+
+@media (max-width: 720px) {
+  html body .cb-secondary-action.cb-secondary-action {
+    min-height: 46px !important;
+    padding: 0 14px !important;
+  }
+}
+
+/* On phones, allow real text flow to choose the line wrapping.  Adjacent
+   breaks are intentional spacer groups and stay intact. */
+@media (max-width: 720px) {
+  html body main :is(h1, h2, h3, h4, h5, h6, p)
+    br:not(:has(+ br)):not(br + br) {
+    content: "" !important;
+  }
+
+  html body main :is(h1, h2, h3, h4, h5, h6, p)
+    br:not(:has(+ br)):not(br + br)::after {
+    content: " " !important;
+  }
+}
+
+/* ==========================================================
+   CAVBOT DEMO BOOKING
+   ========================================================== */
+
+body.cavbot-demo-booking-open {
+  overflow: hidden !important;
+  overscroll-behavior: none;
+}
+
+.cavbot-demo-booking[hidden] {
+  display: none !important;
+}
+
+.cavbot-demo-booking {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 3vw, 42px);
+  overflow-y: auto;
+  background: rgba(1, 3, 15, 0.78);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.cavbot-demo-booking__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  cursor: default;
+}
+
+.cavbot-demo-booking__panel {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: min(100%, 1100px);
+  max-height: calc(100svh - 32px);
+  overflow: hidden;
+  background: var(--cb-primary-action-dark);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.58);
+}
+
+.cavbot-demo-booking__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 78px;
+  padding: 16px 20px 16px 24px;
+  border-left: 4px solid var(--cb-primary-action-lime);
+  border-bottom: 1px solid rgba(247, 251, 255, 0.12);
+  background: rgba(247, 251, 255, 0.035);
+}
+
+.cavbot-demo-booking__header h2 {
+  margin: 0;
+  color: var(--cb-primary-action-surface);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.cavbot-demo-booking__close {
+  display: grid;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--cb-primary-action-surface);
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.cavbot-demo-booking__close:is(:hover, :focus-visible) {
+  background: var(--cb-primary-action-surface);
+  color: var(--cb-primary-action-lime);
+}
+
+.cavbot-demo-booking__close:focus-visible {
+  outline: 2px solid var(--cb-primary-action-lime);
+  outline-offset: 3px;
+}
+
+.cavbot-demo-booking__frame {
+  display: block;
+  width: 100%;
+  height: min(600px, calc(100svh - 112px));
+  border: 0;
+  background: #fff;
+}
+
+@media (max-width: 720px) {
+  .cavbot-demo-booking {
+    place-items: start center;
+    padding: 10px;
+  }
+
+  .cavbot-demo-booking__panel {
+    width: 100%;
+    max-height: calc(100svh - 20px);
+  }
+
+  .cavbot-demo-booking__header {
+    min-height: 64px;
+    padding: 12px 12px 12px 16px;
+  }
+
+  .cavbot-demo-booking__close {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cavbot-demo-booking__frame {
+    height: calc(100svh - 84px);
   }
 }

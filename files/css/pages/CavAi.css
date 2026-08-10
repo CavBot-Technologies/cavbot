@@ -7376,3 +7376,62 @@ body.cavai-shell {
     font-size: 13px;
   }
 }
+
+/* Product mockups should read like the app itself, not cards placed around it.
+   The functional bars, panes, and content dividers inside each visual stay in place. */
+.cavai-model-picker,
+.cavai-context-console,
+.cavai-agent-board,
+.cavai-flow-window,
+.caven-code-window,
+.caven-debug-panel,
+.caven-ship-panel {
+  border: 0 !important;
+}
+
+/* The product illustrations use tonal depth instead of decorative outlines.
+   Functional tab, list, and control rules remain owned by their local styles. */
+.cavai-card-visual :is(
+  .cavai-model-picker,
+  .cavai-context-console,
+  .cavai-agent-board,
+  .cavai-model-row,
+  .cavai-agent-row,
+  .cavai-context-tile
+),
+.cavai-action-flow :is(
+  .cavai-flow-window,
+  .cavai-flow-signal-main,
+  .cavai-flow-agent-card,
+  .cavai-flow-result-card,
+  .cavai-flow-message,
+  .cavai-flow-mini-row,
+  .cavai-flow-agent-step,
+  .cavai-flow-output-row
+),
+.caven-feature-visual :is(
+  .caven-code-window,
+  .caven-debug-panel,
+  .caven-ship-panel,
+  .caven-debug-header,
+  .caven-debug-row,
+  .caven-ship-row
+) {
+  border: 0 !important;
+  background: rgba(6, 12, 29, 0.98) !important;
+}
+
+.cavai-agents-shell,
+.cavai-agent-tile,
+.cavai-custom-agent-mock,
+.cavai-custom-field > div,
+.cavai-custom-surface-row,
+.cavai-art-card,
+.cavai-art-copy-block,
+.cavai-art-status-row,
+.cavai-ticket,
+.cavai-reply-card,
+.cavai-ops-tile {
+  border: 0 !important;
+  background: rgba(7, 14, 32, 0.98) !important;
+}

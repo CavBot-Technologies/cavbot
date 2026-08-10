@@ -65,6 +65,8 @@
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">
   <!-- Page styles -->
   <link rel="stylesheet" href="files/css/globals/main.css">
+  <!-- Homepage security product preview refinements -->
+  <link rel="stylesheet" href="files/css/pages/security.css">
 
   <style>
     html,
@@ -90,6 +92,17 @@
       .badge-visual .cavbot-cdn-slot[data-cavbot-cdn-slot="badge"]
     ) * {
       pointer-events: none !important;
+    }
+
+    /* Let the homepage product visuals read as the app itself.  This removes
+       only their exterior presentation contours; internal UI dividers remain. */
+    body[data-cavbot-page-type="home-page"] .hero-demo-frame::before,
+    body[data-cavbot-page-type="home-page"] .hero-demo-video,
+    body[data-cavbot-page-type="home-page"] .cavbot-ui-window,
+    body[data-cavbot-page-type="home-page"] .collab-preview-window,
+    body[data-cavbot-page-type="home-page"] .collab-module-window,
+    body[data-cavbot-page-type="home-page"] .security-product-window {
+      border: 0 !important;
     }
   </style>
 
@@ -781,17 +794,22 @@
 
   <div class="hero-copy-block">
     <h1 class="cavai-main-title">
-  <span class="hero-title-line">Make your website<br>stronger — in search,</span><br>
+  <span class="hero-title-line">Make your website <br>stronger — in search,</span> <br>
   <span class="hero-title-line">performance, and <br>beyond</span>
 </h1><br>
 
     <p class="hero-lede">
       Built for developers, startups, and businesses that want clearer visibility. <br> Monitor your website, catch issues faster, and understand what needs <br> attention next.
-      <br>
+      <br><br>
     </p>
 
     <div class="hero-cta-row">
       <a href="https://app.cavbot.io/auth?mode=signup" class="btn btn-primary">Start 14-Day Free Trial</a>
+      <a
+        href="https://calendar.app.google/3KsBJ65brkXTAAMS8"
+        class="cb-secondary-action"
+        data-cavbot-demo-open
+      ><span>Book a demo</span></a>
     </div>
   </div>
 
@@ -993,7 +1011,6 @@
                 </div>
                
               </div>
-<br>
 
               <div class="cavbot-ui-metrics">
                 <div>
@@ -1037,7 +1054,7 @@
                   <span>/blog/launch</span>
                   <span>Low</span>
                   <span>Watch</span>
-                </div><br>
+                </div>
               </div>
             
 
@@ -1479,7 +1496,7 @@ Understand why. Act faster.</span>
 
         <div class="hero-cta-row pricing-actions" style="margin-top: 8px;">
           <a href="https://app.cavbot.io/auth?mode=signup" class="btn btn-primary">Start 14-Day Free Trial</a>
-          <a href="pricing" class="btn btn-ghost">Find Your Plan</a>
+          <a href="pricing" class="btn btn-ghost cb-secondary-action"><span>Find Your Plan</span></a>
         </div>
       </div>
     </article>
@@ -2298,7 +2315,7 @@ Understand why. Act faster.</span>
 
                     <h4>Launch files</h4>
                   </div>
-                  <div class="collab-cloud-chip">8 files</div>
+                  <div class="collab-cloud-chip">8</div>
                 </div>
 
 <br>
@@ -2383,7 +2400,9 @@ Understand why. Act faster.</span>
 
                       <h4>Route recovery plan</h4>
                     </div>
-                    <div class="collab-tools-status">In progress</div>
+                    <div class="collab-tools-status" role="status" aria-label="In progress">
+                      <span class="collab-tools-spinner" aria-hidden="true"></span>
+                    </div>
                   </div>
 <br>
 
@@ -2981,7 +3000,7 @@ Understand why. Act faster.</span>
         </a>
 
 
-        <a class="seal-button seal-button--ghost" href="https://app.cavbot.io/auth?mode=signup">
+        <a class="seal-button seal-button--ghost cb-secondary-action" href="https://app.cavbot.io/auth?mode=signup">
           <span>Sign up for CavBot</span>
         </a>
       </div>
@@ -2992,6 +3011,47 @@ Understand why. Act faster.</span>
 
 
   </main>
+
+<!-- CAVBOT DEMO BOOKING -->
+<section
+  class="cavbot-demo-booking"
+  id="cavbot-demo-booking"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cavbot-demo-booking-title"
+  aria-hidden="true"
+  hidden
+>
+  <button
+    class="cavbot-demo-booking__backdrop"
+    type="button"
+    data-cavbot-demo-close
+    aria-label="Close booking calendar"
+  ></button>
+
+  <div class="cavbot-demo-booking__panel" role="document">
+    <div class="cavbot-demo-booking__header">
+      <div>
+        <h2 id="cavbot-demo-booking-title">Book a demo</h2>
+      </div>
+      <button
+        class="cavbot-demo-booking__close"
+        type="button"
+        data-cavbot-demo-close
+        aria-label="Close booking calendar"
+      ><span aria-hidden="true">&times;</span></button>
+    </div>
+
+    <iframe
+      class="cavbot-demo-booking__frame"
+      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1rMZrHvoUQolL3xUGdIepLKQ1LJgvv4DJpQBV0t72NJEEekjnOk7YBSLRFDqBRPcnooHE2-ODa?gv=true"
+      title="Book a CavBot demo"
+      width="100%"
+      height="600"
+      frameborder="0"
+    ></iframe>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -3007,7 +3067,7 @@ Understand why. Act faster.</span>
       </a>
 
       <p class="footer-statement">
-        Built for developers, startups, and businesses <br> that want clearer visibility.
+        CavBot is a health monitor for every website.
       </p>
     </div>
 
@@ -3127,5 +3187,51 @@ Understand why. Act faster.</span>
   <script src="files/js/globals/header-footer.js"></script>
   <!-- CavBot mains.js -->
   <script src="files/js/globals/main.js"></script>
+  <script>
+    (function () {
+      const bookingDialog = document.getElementById('cavbot-demo-booking');
+      const demoOpeners = document.querySelectorAll('[data-cavbot-demo-open]');
+
+      if (!bookingDialog || !demoOpeners.length) return;
+
+      const closeButtons = bookingDialog.querySelectorAll('[data-cavbot-demo-close]');
+      const closeButton = bookingDialog.querySelector('.cavbot-demo-booking__close');
+      let lastTrigger = null;
+
+      function openBooking(trigger) {
+        lastTrigger = trigger;
+        bookingDialog.hidden = false;
+        bookingDialog.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('cavbot-demo-booking-open');
+
+        window.requestAnimationFrame(function () {
+          if (closeButton) closeButton.focus({ preventScroll: true });
+        });
+      }
+
+      function closeBooking() {
+        bookingDialog.hidden = true;
+        bookingDialog.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('cavbot-demo-booking-open');
+
+        if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+      }
+
+      demoOpeners.forEach(function (opener) {
+        opener.addEventListener('click', function (event) {
+          event.preventDefault();
+          openBooking(opener);
+        });
+      });
+
+      closeButtons.forEach(function (button) {
+        button.addEventListener('click', closeBooking);
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !bookingDialog.hidden) closeBooking();
+      });
+    })();
+  </script>
 </body>
 </html>

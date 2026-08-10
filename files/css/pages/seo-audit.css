@@ -4510,3 +4510,9 @@ body {
     transition: none;
   }
 }
+
+/* Preserve report-row dividers while removing the ornamental report frame. */
+.seo-ps-report-window,
+.seo-ps-report-table {
+  border: 0;
+}

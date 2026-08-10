@@ -6869,6 +6869,15 @@ body {
 
 
 
+/* The accessibility mockup keeps its row separators but drops outer box chrome. */
+.a11y-window,
+.a11y-labels-window,
+.a11y-contrast-window,
+.a11y-keyboard-browser,
+.a11y-labels-report-table,
+.a11y-contrast-report-table {
+  border: 0;
+}
 
 
 

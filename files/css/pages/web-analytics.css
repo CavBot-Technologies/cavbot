@@ -4090,3 +4090,21 @@ body {
     transition: none;
   }
 }
+
+/* Keep the analytics product mockups legible through dark tonal panels. */
+.route-window,
+.route-wa-window,
+.route-wa-traffic-board,
+.route-wa-report-table {
+  border: 0;
+}
+
+.route-origin-card,
+.route-metrics div,
+.route-priority-panel,
+.route-flow-panel,
+.route-flow-node,
+.route-path-health,
+.route-window-footer div {
+  background: #0a1328;
+}

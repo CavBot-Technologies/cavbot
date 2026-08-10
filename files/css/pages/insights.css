@@ -4369,3 +4369,20 @@ body {
     transition: none;
   }
 }
+
+/* Product-preview surfaces: retain hierarchy through depth, not framed borders. */
+.insights-window,
+.insights-google-window,
+.insights-google-priority-table,
+.insights-google-access-table {
+  border: 0;
+}
+
+.insights-signal-panel,
+.insights-priority-panel,
+.insights-coverage-panel,
+.insights-google-priority-summary > div,
+.insights-google-recovery-card,
+.insights-google-recovery-metrics > div {
+  background: #0a1328;
+}
