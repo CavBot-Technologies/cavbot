@@ -20,7 +20,7 @@
       --ink-subtle: #8890aa;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --pff-panel-bg:
-    linear-gradient(180deg, #070c20; 0%, #07041d 54%, #070c20; 100%);
+    linear-gradient(180deg, #070c20 0%, #07041d 54%, #070c20 100%);
 
       --panel-radius-lg: 20px;
       --panel-radius-md: 16px;
@@ -313,11 +313,6 @@
     .cavbot-cdn-slot[data-cavbot-cdn-slot="head"] {
       min-width: 132px;
       min-height: 132px;
-    }
-
-    .cavbot-cdn-slot[data-cavbot-cdn-slot="body"] {
-      min-width: 152px;
-      min-height: 216px;
     }
 
     .cavbot-cdn-slot [id^="cavbot-widget-root-"] {
@@ -1669,6 +1664,10 @@
   min-width: 0;
   width: min(100%, 30ch);
   max-width: 30ch;
+  display: grid;
+  grid-template-rows: auto minmax(4.75em, auto);
+  align-content: start;
+  justify-items: center;
   overflow: hidden;
   text-align: center;
 }
@@ -1690,6 +1689,10 @@
 .setup-step-copy {
   width: 100%;
   max-width: 30ch;
+  min-height: 4.75em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   color: var(--ink-soft);
   text-align: center;
   font-size: clamp(13px, 1vw, 16px);
@@ -1842,509 +1845,6 @@
   }
 }
 
-
-  /* ==============================
-  CAVBOT 404 ARCADE (COVERS)
-  =============================== */
-.arcade-logo-stage {
-  width: 100%;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  overflow: visible;
-}
-
-
-.arcade-logo {
-  display: block;
-  width: min(480px, 76vw);
-  height: auto;
-  object-fit: contain;
-  opacity: 0;
-  transform: translateY(-42px) scale(0.96);
-
-  will-change: transform, opacity;
-  transition:
-    transform 1050ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 850ms ease,
-    filter 1050ms ease;
-}
-
-
-.arcade-logo-stage.is-visible .arcade-logo {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-
-}
-
-
-@media (max-width: 700px) {
-  .arcade-logo {
-    width: min(280px, 76vw);
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .arcade-logo {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-.arcade-strip {
-  position: relative;
-  width: 100%;
-  max-width: 1220px;
-  margin: 0 auto;
-  padding: 0 56px 30px;
-}
-
-
-.arcade-viewport {
-  width: 100%;
-  overflow: visible;
-}
-
-
-.arcade-track {
-  --arcade-gap: clamp(22px, 2.2vw, 30px);
-
-
-  display: flex;
-  gap: var(--arcade-gap);
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-
-
-  /*
-    This padding is important.
-    It gives the center card room to breathe so nothing clips at the top.
-  */
-  padding: 28px 0 78px;
-}
-
-
-.arcade-track::-webkit-scrollbar {
-  display: none;
-}
-
-
-.arcade-slide {
-  flex: 0 0 calc((100% - (var(--arcade-gap) * 2)) / 3);
-  min-width: 0;
-  scroll-snap-align: center;
-  transform: translateY(30px) scale(0.92);
-  opacity: 0.76;
-  z-index: 1;
-  transition:
-    transform 700ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 500ms ease,
-    filter 500ms ease;
-  will-change: transform, opacity;
-}
-
-
-.arcade-slide.is-near {
-  transform: translateY(22px) scale(0.96);
-  opacity: 0.9;
-  z-index: 2;
-}
-
-
-.arcade-slide.is-active {
-  transform: translateY(0) scale(1.02);
-  opacity: 1;
-  z-index: 5;
-}
-
-
-.arcade-slide.is-far {
-  transform: translateY(38px) scale(0.88);
-  opacity: 0.48;
-  z-index: 1;
-}
-
-
-.arcade-cover-link {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  text-decoration: none;
-  color: inherit;
-  border-radius: 4px;
-  overflow: hidden;
-  background: rgba(1, 3, 15, 0.98);
-}
-
-
-.arcade-cover,
-.arcade-preview-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
-}
-
-.arcade-cover {
-  z-index: 1;
-  opacity: 1;
-  transition:
-    opacity 260ms ease,
-    filter 320ms ease;
-}
-
-
-.arcade-preview-video {
-  z-index: 2;
-  opacity: 0;
-  pointer-events: none;
-  background: transparent;
-  transition: opacity 260ms ease;
-}
-
-
-.arcade-slide.is-active:hover {
-  transform: translateY(10px) scale(1.02);
-}
-
-
-.arcade-slide.is-active .arcade-cover-link.is-previewing .arcade-preview-video {
-  opacity: 1;
-}
-
-
-.arcade-slide.is-active .arcade-cover-link.is-previewing .arcade-cover {
-  opacity: 0;
-}
-
-
-
-.arcade-slide:not(.is-active):hover {
-  transform: inherit;
-}
-
-
-/* Arcade chevrons */
-.arcade-nav {
-  position: absolute;
-  top: 50%;
-  z-index: 20;
-  width: 42px;
-  height: 42px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(7, 11, 30, 0.66);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transform: translateY(-50%);
-  transition:
-    transform 220ms ease,
-    border-color 220ms ease,
-    background 220ms ease,
-    opacity 220ms ease;
-}
-
-
-.arcade-nav:hover {
-  transform: translateY(-50%) scale(1.06);
-  border-color: rgba(255, 255, 255, 0.48);
-  background: rgba(10, 15, 38, 0.92);
-}
-
-
-.arcade-nav img {
-  width: 18px;
-  height: 18px;
-  display: block;
-  object-fit: contain;
-  opacity: 1;
-  filter:
-    brightness(0)
-    invert(1);
-}
-
-
-.arcade-nav--prev {
-  left: 0;
-}
-
-
-.arcade-nav--next {
-  right: 0;
-}
-
-
-.arcade-nav--prev img {
-  transform: rotate(180deg);
-}
-
-
-.arcade-nav.is-disabled {
-  opacity: 0.34;
-  pointer-events: none;
-}
-
-
-@media (max-width: 900px) {
-  .arcade-strip {
-    padding: 0 46px 26px;
-  }
-
-
-  .arcade-slide {
-    flex-basis: calc((100% - var(--arcade-gap)) / 2);
-  }
-}
-
-
-@media (max-width: 700px) {
-  .arcade-strip {
-    padding: 0 38px 24px;
-  }
-
-
-  .arcade-track {
-    --arcade-gap: 16px;
-    padding: 22px 0 48px;
-  }
-
-
-  .arcade-slide {
-    flex-basis: 100%;
-  }
-
-
-  .arcade-slide,
-  .arcade-slide.is-near,
-  .arcade-slide.is-active,
-  .arcade-slide.is-far {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-
-
-  .arcade-slide.is-active:hover {
-    transform: translateY(8px) scale(1);
-  }
-
-
-  .arcade-nav {
-    width: 34px;
-    height: 34px;
-  }
-
-
-  .arcade-nav img {
-    width: 15px;
-    height: 15px;
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .arcade-slide,
-  .arcade-slide.is-near,
-  .arcade-slide.is-active,
-  .arcade-slide.is-far,
-  .arcade-nav,
-  .arcade-cover,
-  .arcade-preview-video {
-    transition: none;
-  }
-
-
-  .arcade-slide,
-  .arcade-slide.is-near,
-  .arcade-slide.is-active,
-  .arcade-slide.is-far {
-    transform: none;
-    opacity: 1;
-  }
-}
-
-
-/* ==============================
-   404 ARCADE EXPLAINER
-   ============================== */
-
-
-.arcade-guide {
-  margin-top: var(--space-xxl);
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-  gap: clamp(42px, 7vw, 110px);
-  align-items: start;
-  padding-top: 18px;
-}
-
-.arcade-guide-left,
-.arcade-guide-faq {
-  opacity: 0;
-  transform: translateY(42px);
-  will-change: transform, opacity;
-  transition:
-    transform 850ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 620ms ease;
-}
-
-.arcade-guide.is-visible .arcade-guide-left,
-.arcade-guide.is-visible .arcade-guide-faq {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.arcade-guide.is-visible .arcade-guide-faq {
-  transition-delay: 90ms;
-}
-
-
-.arcade-guide-left {
-  display: grid;
-  gap: 22px;
-  align-content: start;
-}
-
-
-.arcade-guide-title {
-  margin: 0;
-  max-width: 760px;
-  font-family: var(--font-display);
-  font-size: clamp(30px, 4.0vw, 66px);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-
-
-.arcade-guide-copy {
-  margin: 0;
-  max-width: 620px;
-  font-size: clamp(12px, 1.4vw, 20px);
-  line-height: 1.45;
-  color: var(--ink-soft);
-}
-
-
-.arcade-guide-cta {
-  margin-top: 10px;
-}
-
-
-.arcade-guide-faq {
-  display: grid;
-  border-top: 1px solid rgba(255, 255, 255, 0.13);
-}
-
-
-.arcade-guide-faq .faq-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-}
-
-
-.arcade-faq-q {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  padding: 22px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  cursor: pointer;
-  text-align: left;
-  font-family: var(--font-display);
-  font-size: clamp(14px, 1.4vw, 20px);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-
-
-.arcade-faq-q span {
-  display: block;
-}
-
-
-.arcade-faq-chevron {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-  color: #ffffff;
-  stroke: currentColor;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
-  opacity: 0.92;
-  transition:
-    transform 220ms ease,
-    opacity 220ms ease;
-}
-
-
-.faq-item.is-open .arcade-faq-chevron {
-  transform: rotate(180deg);
-  opacity: 1;
-}
-
-
-.arcade-faq-a {
-  margin: -6px 0 22px;
-  max-width: 620px;
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--ink-soft);
-}
-
-
-.arcade-faq-q:hover .arcade-faq-chevron {
-  opacity: 1;
-}
-
-
-@media (max-width: 900px) {
-  .arcade-guide {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-
-  .arcade-guide-title {
-    font-size: clamp(38px, 11vw, 64px);
-  }
-
-
-  .arcade-guide-copy {
-    font-size: 16px;
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .arcade-guide-left,
-  .arcade-guide-faq {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .arcade-faq-chevron {
-    transition: none;
-  }
-}
 
  /* ==============================
   PILOT / LOGO MARQUEE STRIP
@@ -7640,7 +7140,6 @@ body.page-shell .page-inner > section.hero.hero-home-surface ~ section:not(.pric
 .collab-preview-window,
 .releases-shell,
 .seal-shell,
-.arcade-strip,
 .security-visual-stage,
 .collab-visual-stage {
   max-width: min(1420px, calc(100vw - 40px));
@@ -8884,7 +8383,6 @@ footer.site-footer {
       }
 
       .why-grid,
-      .arcade-grid,
       .impact-graph-grid,
       .seo-metrics-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -8930,7 +8428,6 @@ footer.site-footer {
       .pff-grid,
       .seo-grid,
       .why-grid,
-      .arcade-grid,
       .impact-graph-grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -9097,123 +8594,6 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-cta-row a {
 .hero-demo-button {
   pointer-events: auto !important;
 }
-/* ==============================
-   ARCADE LOGO CLICK TARGET FIX
-   Keeps the visible logo and clickable area aligned
-   ============================== */
-
-
-#arcade {
-  position: relative !important;
-  z-index: 40 !important;
-}
-
-
-.arcade-logo-stage {
-  position: relative !important;
-  z-index: 50 !important;
-  width: 100% !important;
-  display: grid !important;
-  place-items: center !important;
-  text-align: center !important;
-  overflow: visible !important;
-  pointer-events: auto !important;
-}
-
-
-.arcade-logo-link {
-  position: relative !important;
-  z-index: 60 !important;
-
-
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-
-  width: fit-content !important;
-  max-width: 100% !important;
-
-
-  line-height: 0 !important;
-  text-decoration: none !important;
-
-
-  cursor: pointer !important;
-  pointer-events: auto !important;
-
-
-  opacity: 0;
-  transform: translateY(-42px) scale(0.96);
-  transform-origin: center center;
-
-
-  will-change: transform, opacity;
-
-
-  transition:
-    transform 1050ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 850ms ease;
-}
-
-
-.arcade-logo-stage.is-visible .arcade-logo-link {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-
-.arcade-logo {
-  display: block !important;
-  width: min(480px, 76vw) !important;
-  height: auto !important;
-  object-fit: contain !important;
-
-
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-
-
-  pointer-events: none !important;
-}
-
-
-.arcade-logo-link:hover,
-.arcade-logo-link:focus-visible {
-  cursor: pointer !important;
-}
-
-
-.arcade-logo-link:focus-visible {
-  outline: 2px solid var(--lime);
-  outline-offset: 10px;
-  border-radius: 4px;
-}
-
-
-@media (max-width: 700px) {
-  .arcade-logo {
-    width: min(280px, 76vw) !important;
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .arcade-logo-link {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-
-  .arcade-logo {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
 /* Force the right system cards to center inside their existing boxes. */
 .system-right .system-spec-card {
   display: flex !important;
@@ -9329,8 +8709,7 @@ body,
   .brain-copy,
   .pff-header-copy,
   .system-left-copy,
-  .pricing-note,
-  .arcade-guide-copy {
+  .pricing-note {
     font-size: 13px !important;
     line-height: 1.55 !important;
   }
@@ -9365,8 +8744,7 @@ body,
   .hero-title,
   .pff-type-title,
   .system-title,
-  .pricing-headline,
-  .arcade-guide-title {
+  .pricing-headline {
     font-size: clamp(25px, 7.8vw, 42px) !important;
     line-height: 1.04 !important;
     letter-spacing: -0.035em !important;
@@ -9430,13 +8808,11 @@ body,
   .brain-museum,
   .pff-museum,
   .system-role,
-  .pricing-docs,
-  .arcade-guide {
+  .pricing-docs {
     margin-top: 44px;
   }
 
-  .cavai-top,
-  .arcade-guide {
+  .cavai-top {
     grid-template-columns: 1fr !important;
     gap: 18px;
   }
@@ -9582,11 +8958,6 @@ body,
     line-height: 1.5 !important;
   }
 
-  .arcade-strip {
-    max-width: 100%;
-    padding-inline: 34px;
-    overflow: hidden;
-  }
 }
 
 @media (max-width: 640px) {
@@ -9611,8 +8982,7 @@ body,
   .hero-title,
   .pff-type-title,
   .system-title,
-  .pricing-headline,
-  .arcade-guide-title {
+  .pricing-headline {
     font-size: clamp(22px, 7.2vw, 32px) !important;
     line-height: 1.08 !important;
   }
@@ -9623,7 +8993,6 @@ body,
   .pff-header-copy,
   .system-left-copy,
   .pricing-note,
-  .arcade-guide-copy,
   .cavai-top-copy {
     font-size: 12.5px !important;
     line-height: 1.5 !important;
@@ -9689,10 +9058,6 @@ body,
     padding-inline: 14px !important;
   }
 
-  .arcade-strip {
-    padding-inline: 28px;
-  }
-
   .code-block {
     font-size: 10px;
     line-height: 1.55;
@@ -9708,8 +9073,7 @@ body,
   .hero-title,
   .pff-type-title,
   .system-title,
-  .pricing-headline,
-  .arcade-guide-title {
+  .pricing-headline {
     font-size: clamp(20px, 6.8vw, 28px) !important;
   }
 
@@ -10000,8 +9364,6 @@ body,
    ============================== */
 
 @media (max-width: 700px) {
-  .arcade-guide-left,
-  .arcade-guide-faq,
   .collab-hero-icon-wrap,
   .collab-title,
   .collab-lede,
@@ -10016,56 +9378,6 @@ body,
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
-  }
-
-  .arcade-guide {
-    margin-top: 34px !important;
-    padding: 28px 18px 0 !important;
-    gap: 24px !important;
-    overflow: hidden !important;
-  }
-
-  .arcade-guide-left {
-    gap: 14px !important;
-  }
-
-  .arcade-guide-title {
-    max-width: 100% !important;
-    font-size: clamp(25px, 8.2vw, 34px) !important;
-    line-height: 1.06 !important;
-    letter-spacing: -0.035em !important;
-    text-wrap: balance;
-  }
-
-  .arcade-guide-copy {
-    max-width: 100% !important;
-    font-size: 13.5px !important;
-    line-height: 1.55 !important;
-  }
-
-  .arcade-guide-cta {
-    margin-top: 2px !important;
-  }
-
-  .arcade-faq-q {
-    min-height: 54px !important;
-    padding: 14px 0 !important;
-    gap: 12px !important;
-    font-size: 15px !important;
-    line-height: 1.25 !important;
-  }
-
-  .arcade-faq-chevron {
-    width: 18px !important;
-    height: 18px !important;
-    flex-basis: 18px !important;
-  }
-
-  .arcade-faq-a {
-    margin: -2px 0 16px !important;
-    max-width: 100% !important;
-    font-size: 13px !important;
-    line-height: 1.55 !important;
   }
 
   .collab-connected-grid {
@@ -10644,4 +9956,35 @@ body,
     font-size: 13.5px !important;
     line-height: 1.55 !important;
   }
+}
+
+/* Keep the homepage demo fully inside its available screen width.  The frame
+   has internal padding, so border-box sizing prevents that padding from
+   making a 100% frame wider than its hero column.  The source is 8:5; keeping
+   that native ratio with contain ensures no part of the recording is cropped. */
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-demo-section,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-demo-section {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-demo-frame,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-demo-frame {
+  box-sizing: border-box;
+  width: min(1220px, 100%) !important;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+body.page-shell main.page-inner > section.hero.hero-home-surface .hero-demo-video,
+body.page-shell .page-inner > section.hero.hero-home-surface .hero-demo-video {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  aspect-ratio: 8 / 5;
+  object-fit: contain;
+  object-position: center;
 }

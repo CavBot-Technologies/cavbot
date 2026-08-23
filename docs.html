@@ -29,7 +29,6 @@
 <!-- Open Graph -->
   <meta name="msapplication-TileColor" content="#01030f">
 
-
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CavBot">
   <meta property="og:title" content="CavBot Docs · Guides and references · CavBot">
@@ -158,15 +157,10 @@
       "events": "developers",
       "summary": "developers",
       "seo": "signals",
-      "404-control-room": "signals",
+      "404-recovery": "signals",
       "cavai-v3": "cavai",
       "assistant-memory": "cavai",
       "agent-workflows": "cavai",
-      "arcade-404": "assets",
-      "arcade-games": "assets",
-      "cavbot-badge": "assets",
-      "cavbot-head": "assets",
-      "cavbot-body": "assets",
       "team-access": "account",
       "security": "security",
       "caverify": "security",
@@ -228,7 +222,7 @@
 
       <div class="docs-version" aria-label="Documentation version">
         <span class="docs-version-label">Version:</span>
-        <strong>2.5</strong>
+        <strong>2.5.1</strong>
       </div>
 
 
@@ -261,10 +255,13 @@
           <img src="assets/icons/page/close-sm-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">
         </button>
         <button class="docs-search-button" type="submit" aria-label="Search">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="10.8" cy="10.8" r="6.4"></circle>
-            <path d="M16 16l4 4"></path>
-          </svg>
+          <img
+            class="docs-search-cavai-mark"
+            src="assets/icons/docs/smart-optimization-svgrepo-com.svg"
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+          >
         </button>
         <div class="docs-search-results" role="listbox" aria-label="Search results" hidden></div>
       </form>
@@ -506,21 +503,6 @@
 
           <article class="docs-topic-card" data-docs-reveal>
             <div class="docs-topic-title-row">
-              <img class="docs-topic-icon" src="assets/logo/cavbot-logomark.svg" alt="" aria-hidden="true" decoding="async">
-              <h2>CavBot assets</h2>
-            </div>
-            <ul>
-              <li><a href="/docs/assets#cavbot-badge">Badge</a></li>
-              <li><a href="/docs/assets#cavbot-head">Head</a></li>
-              <li><a href="/docs/assets#cavbot-body">Body</a></li>
-              <li><a href="/docs/assets#arcade-404">CavBot Arcade</a></li>
-              <li><a href="/docs/assets#brand-resources">Brand resources</a></li>
-            </ul>
-          </article>
-
-
-          <article class="docs-topic-card" data-docs-reveal>
-            <div class="docs-topic-title-row">
               <img class="docs-topic-icon" src="assets/icons/docs/image-combiner-svgrepo-com3.svg" alt="" aria-hidden="true" decoding="async">
               <h2>More docs</h2>
             </div>
@@ -529,6 +511,7 @@
               <li><a href="/docs/resources#status">Status</a></li>
               <li><a href="/docs/resources#releases">Releases</a></li>
               <li><a href="/docs/resources#community">Community</a></li>
+              <li><a href="https://brand.cavbot.io">Brand resources</a></li>
             </ul>
           </article>
         </div>
@@ -634,13 +617,7 @@
           </div>
 
 
-          <div class="docs-nav-group" data-docs-nav-section="assets" hidden>
-            <p>CavBot assets</p>
-            <a href="/docs/assets#arcade-404" data-docs-open="arcade-404">404 Arcade</a>
-            <a href="/docs/assets#cavbot-badge" data-docs-open="cavbot-badge">CavBot Badge</a>
-            <a href="/docs/assets#cavbot-head" data-docs-open="cavbot-head">CavBot Head</a>
-            <a href="/docs/assets#cavbot-body" data-docs-open="cavbot-body">CavBot Body</a>
-          </div>
+       
         </nav>
       </div>
     </aside>
@@ -1303,135 +1280,6 @@ Turn the latest dashboard signals into a short status update.</code></pre>
         </details>
 
 
-        <details class="docs-doc-toggle" id="arcade-404" data-docs-title="404 Arcade" data-docs-summary="Install interactive 404 games for broken pages." hidden>
-          <summary>
-            <span>404 Arcade</span>
-            <em>Install interactive 404 games for broken pages.</em>
-          </summary>
-
-
-          <div class="docs-toggle-body">
-            <p>
-              404 Arcade gives a broken page a better recovery moment. Instead of leaving visitors on a dead end, a site can show an interactive game or recovery surface while guiding the visitor back to a useful route.
-            </p>
-
-            <h2>When to use it</h2>
-            <p>
-              Use 404 Arcade when a site has public routes that may be mistyped, moved, outdated, or linked from old campaigns. It is not a replacement for fixing broken links. It is a recovery layer for visitors who still reach a missing page.
-            </p>
-
-            <h2>What to configure</h2>
-            <ul>
-              <li>The game or recovery experience shown on the 404 page.</li>
-              <li>The primary route visitors should return to.</li>
-              <li>Any helpful links, such as home, pricing, docs, support, or search.</li>
-              <li>Analytics v5 tracking so CavBot can see the recovery moment.</li>
-            </ul>
-
-            <h2>Measure recovery</h2>
-            <p>
-              After installing 404 Arcade, review whether visitors continue to another page, repeat the missing route, or leave. The goal is to protect the path and then repair the source of the broken route.
-            </p>
-          </div>
-        </details>
-
-
-        <details class="docs-doc-toggle" id="cavbot-badge" data-docs-title="CavBot Badge" data-docs-summary="Show visible trust on your website." hidden>
-          <summary>
-            <span>CavBot Badge</span>
-            <em>Show visible trust on your website.</em>
-          </summary>
-
-
-          <div class="docs-toggle-body">
-            <p>
-              The CavBot Badge is a compact trust marker that can appear on a website when CavBot is connected. It gives visitors a visible CavBot presence without taking over the page.
-            </p>
-
-            <h2>Where it belongs</h2>
-            <p>
-              Use the badge in low-friction places such as a footer, support surface, status area, or bottom corner. It should not block content, cover important buttons, or compete with the main page action.
-            </p>
-
-            <h2>Basic embed</h2>
-            <pre><code>&lt;link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css"&gt;
-
-&lt;span data-cavbot-badge data-cavbot-badge-inline data-cavbot-badge-theme="auto"&gt;&lt;/span&gt;</code></pre>
-
-            <h2>Implementation notes</h2>
-            <ul>
-              <li>Use the inline badge when it should sit inside an existing layout.</li>
-              <li>Use a floating slot only when it will not cover product controls.</li>
-              <li>Keep the badge visible, but do not make it the main call to action.</li>
-            </ul>
-          </div>
-        </details>
-
-
-        <details class="docs-doc-toggle" id="cavbot-head" data-docs-title="CavBot Head" data-docs-summary="Add a compact CavBot presence to your product." hidden>
-          <summary>
-            <span>CavBot Head</span>
-            <em>Add a compact CavBot presence to your product.</em>
-          </summary>
-
-
-          <div class="docs-toggle-body">
-            <p>
-              CavBot Head is a compact visual component for product moments where a small CavBot presence is useful. It can support onboarding, empty states, status surfaces, or guided moments without requiring a full assistant panel.
-            </p>
-
-            <h2>Common placements</h2>
-            <ul>
-              <li>Dashboard empty states.</li>
-              <li>Setup confirmation screens.</li>
-              <li>Help surfaces that need a small branded signal.</li>
-              <li>Product areas where CavBot is watching or explaining a state.</li>
-            </ul>
-
-            <h2>Basic asset</h2>
-            <pre><code>&lt;link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css"&gt;
-
-&lt;div data-cavbot-head-orbit&gt;&lt;/div&gt;</code></pre>
-
-            <p>
-              Keep the component small and leave enough spacing around it. It should support the message on the page, not distract from the task.
-            </p>
-          </div>
-        </details>
-
-
-        <details class="docs-doc-toggle" id="cavbot-body" data-docs-title="CavBot Body" data-docs-summary="Use CavBot for guided product moments." hidden>
-          <summary>
-            <span>CavBot Body</span>
-            <em>Use CavBot for guided product moments.</em>
-          </summary>
-
-
-          <div class="docs-toggle-body">
-            <p>
-              CavBot Body is the larger CavBot visual presence for guided product moments. Use it when the page needs a stronger assistant identity, such as onboarding, a launch state, a recovery screen, or a branded support moment.
-            </p>
-
-            <h2>When to use the full body</h2>
-            <ul>
-              <li>A first-run experience needs a clear CavBot guide.</li>
-              <li>A recovery page needs a friendly but useful visual anchor.</li>
-              <li>A help screen needs a branded assistant presence.</li>
-              <li>A product moment benefits from more visual emphasis than the badge or head.</li>
-            </ul>
-
-            <h2>Basic asset</h2>
-            <pre><code>&lt;link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-full-body.css"&gt;
-
-&lt;div data-cavbot-full-body&gt;&lt;/div&gt;</code></pre>
-
-            <p>
-              Use CavBot Body with restraint. It should be reserved for guided moments where the visitor needs orientation, recovery, or support.
-            </p>
-          </div>
-        </details>
-
-
         <details class="docs-doc-toggle" id="go-deeper" data-docs-title="Go deeper" data-docs-summary="Where to continue after setup." hidden>
           <summary>
             <span>Go deeper</span>
@@ -1505,10 +1353,6 @@ Turn the latest dashboard signals into a short status update.</code></pre>
           <a href="/docs/cavai#cavai-v3" data-docs-open="cavai-v3">CavAi v3</a>
           <a href="/docs/cavai#assistant-memory" data-docs-open="assistant-memory">Assistant memory</a>
           <a href="/docs/cavai#agent-workflows" data-docs-open="agent-workflows">Agent workflows</a>
-          <a href="/docs/assets#arcade-404" data-docs-open="arcade-404">404 Arcade</a>
-          <a href="/docs/assets#cavbot-badge" data-docs-open="cavbot-badge">CavBot Badge</a>
-          <a href="/docs/assets#cavbot-head" data-docs-open="cavbot-head">CavBot Head</a>
-          <a href="/docs/assets#cavbot-body" data-docs-open="cavbot-body">CavBot Body</a>
           <a href="/docs/getstarted#launch-checklist" data-docs-open="go-deeper">Go deeper</a>
         </nav>
       </div>
@@ -1546,7 +1390,7 @@ Turn the latest dashboard signals into a short status update.</code></pre>
   </script>
 
 
-  <script src="/cavai/cavai-analytics-v5.js" defer></script>
+  <script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js" defer></script>
 
 
   <div
@@ -1558,7 +1402,7 @@ Turn the latest dashboard signals into a short status update.</code></pre>
 
   <script
     defer
-    src="/cavai/cavai.js"
+    src="https://cdn.cavbot.io/sdk/cavai/v1/cavai.min.js"
     data-api="https://app.cavbot.io/api/embed/analytics"
     data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
   data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"

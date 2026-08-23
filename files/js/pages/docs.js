@@ -120,611 +120,91 @@
   function linkp(text, href, label, suffix) { return { type: "linkp", text: text, href: href, label: label, suffix: suffix || "" }; }
   function steps(items) { return { type: "steps", items: items }; }
   function snippets(title, description) { return { type: "snippets", title: title, description: description }; }
-  function contractOptionsBlock(text) { return { type: "contract-options", text: text }; }
-
- const contractOptions = [
-  '<meta name="cavbot-page" content="404" />',
-  '<body data-cavbot-page-type="404">'
- ];
-
- const platformInstall = {
-  customHtml: {
-    title: "Custom HTML",
-    intro: "Use the snippets below to add Arcade, widgets, analytics, and CavAi to your site.",
-    sectionA: "Before you begin, make sure you have:",
-    sectionASummary: "Dropping scripts before the closing </head> keeps Arcade, widgets, analytics, and CavAi fast and reliable.",
-    bullets: [
-      "Added your website as a trusted origin",
-      "Created an active publishable key",
-      "Selected the correct site"
-    ],
-    snippetsTitle: "Installation snippets",
-    snippetsDescription: "Add the Widget, Analytics, and CavAi snippets inside the <head> of every page where you want CavBot to run. If your website has a custom 404 page, add the Arcade loader to that page.",
-    dedicated: "If your hosting platform allows a custom 404.html, add the Arcade loader there so missing routes show the recovery experience.",
-    dedicatedBody: "If your hosting provider supports a custom 404.html page, add the Arcade loader to that page. This makes sure Arcade loads when someone visits a missing route. You can also mark the page as a CavBot 404 page by adding either of the following:",
-    dedicatedFollow: "",
-    test: [
-      "Add the snippets to your website.",
-      "Publish or redeploy the site.",
-      "Open a missing route, such as: https://YOURDOMAIN.com/this-route-does-not-exist.",
-      "Confirm that CavBot Arcade appears on the 404 page.",
-      "Check CavBot to confirm the visit was recorded.",
-      "Confirm that the widget, analytics, and CavAi are also loading on the site."
-    ],
-    
-    troubleshooting404: [
-      "Make sure your hosting provider returns a real 404 response for missing routes.",
-      "Add the CavBot 404 meta tag or body attribute shown above.",
-       "Confirm that the Arcade loader is included on the custom 404 page.",
-        "Publish the site again and test a new missing route.",
-         "Add the CavBot 404 meta tag or body attribute shown above."
-    ]
-  },
- webflow: {
-  title: "Webflow",
-  intro: "Add CavBot to your Webflow site.",
-
-
-  sectionA: "Before you begin",
-  sectionASummary:
-    "Use the snippets below to add Arcade, widgets, Analytics v5, and CavAi to your Webflow site. You can manage your website, publishable key, and installation details in API & Keys.",
-
-
-  requirements: [
-    "Add your published Webflow domain as a trusted origin.",
-    "Create an active publishable key.",
-    "Select the correct site in CavBot."
-  ],
-
-
-  steps: [
-    [
-      "Open your Webflow project",
-      "Sign in to Webflow and open the project where you want to install CavBot."
-    ],
-    [
-      "Open Site settings",
-      "From the Webflow Dashboard, open the settings for the selected site."
-    ],
-    [
-      "Open Custom code",
-      "In Site settings, select Custom code."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Paste the Widget, Analytics v5, and CavAi v3 snippets into Head code. These snippets should load across your published website."
-    ],
-    [
-      "Save and publish",
-      "Save your changes, choose the domains you want to update, and publish the site. Custom code will not appear on the live website until the site is published."
-    ]
-  ],
-
-
-  snippetsTitle: "Installation snippets",
-  snippetsDescription:
-    "Add the Widget, Analytics v5, and CavAi v3 snippets to your site-wide Head code. Add the 404 Arcade loader to your Webflow 404 page.",
-
-
-  dedicated: "Add Arcade to your Webflow 404 page",
-  dedicatedBody:
-    "Webflow includes a separate page for visitors who open a URL that does not exist. Add the 404 Arcade loader to this page so Arcade appears on missing routes.",
-
-
-  dedicatedSteps: [
-    "Open your Webflow project.",
-    "Open the Pages panel.",
-    "Find the 404 page under Utility Pages.",
-    "Open the page settings.",
-    "Add the 404 Arcade loader to the page Head code.",
-    "Save your changes.",
-    "Publish the site."
-  ],
-
-
-  dedicatedFollow:
-    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page Head code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
-
-
-  testTitle: "Test your installation",
-  testIntro:
-    "Test the published website after saving and publishing your changes.",
-
-
-  test: [
-    "Open your published Webflow website.",
-    "Visit a route that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist.",
-    "Confirm that CavBot Arcade appears on the 404 page.",
-    "Open CavBot and confirm that the missing-page visit was recorded.",
-    "Visit a normal page on your website.",
-    "Confirm that the CavBot widget appears.",
-    "Check CavBot to confirm that Analytics v5 is receiving activity.",
-    "Confirm that CavAi is connected to the selected site."
-  ],
-
-
-  testNote:
-    "Always test the published website. Scripts may not run the same way inside the Webflow Designer.",
-
-
-  troubleshootingTitle: "Troubleshooting",
-  troubleshootingIntro:
-    "Check the following if CavBot does not load or activity does not appear in your account.",
-
-
-  troubleshooting: [
-    {
-      title: "If nothing loads",
-      items: [
-        "Make sure your published Webflow domain is listed as a trusted origin in API & Keys.",
-        "Confirm that your publishable key is active.",
-        "Make sure the selected site matches the site used in each snippet.",
-        "Confirm that the data-site and data-site-id values are correct.",
-        "Make sure the Widget, Analytics v5, and CavAi snippets are in the site-wide Head code.",
-        "Save your changes and publish the site again.",
-        "Refresh the published website after the new version is live."
+  const platformInstall = {
+    customHtml: {
+      title: "Custom HTML",
+      intro: "Install CavBot Analytics v5 and CavAi v3 directly in your site’s shared HTML.",
+      placement: "Add both installation snippets to the shared <head> so they load on every monitored page.",
+      verify: [
+        "Publish or redeploy the website.",
+        "Open the live website in a new browser tab.",
+        "Visit a few important routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
       ]
     },
-    {
-      title: "If Arcade does not appear on the 404 page",
-      items: [
-        "Confirm that the Arcade loader was added to the Webflow 404 page.",
-        "Make sure the site was published after the loader was added.",
-        "Add either the CavBot 404 meta tag or the body attribute shown above.",
-        "Test a URL that does not exist on the site.",
-        "Make sure the URL opens Webflow’s 404 page.",
-        "Confirm that the published domain matches the trusted origin in API & Keys.",
-        "Check that the publishable key and site values in the Arcade loader are correct."
+    webflow: {
+      title: "Webflow",
+      intro: "Install CavBot Analytics v5 and CavAi v3 through Webflow custom code.",
+      placement: "In Site settings, open Custom code and add both snippets to the Head code field.",
+      verify: [
+        "Save the custom code changes and publish the Webflow site.",
+        "Open the published website, not the Designer preview.",
+        "Visit a few important routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
       ]
     },
-    {
-      title: "If visits do not appear in CavBot",
-      items: [
-        "Confirm that the Analytics v5 loader is in the site-wide Head code.",
-        "Open the published website and visit several pages.",
-        "Make sure the correct site is selected in CavBot.",
-        "Confirm that the published domain is listed as a trusted origin.",
-        "Publish the Webflow site again after making any changes."
+    wix: {
+      title: "Wix",
+      intro: "Install CavBot Analytics v5 and CavAi v3 through Wix custom code.",
+      placement: "In Settings, open Custom code and add both snippets to the Head on all pages.",
+      verify: [
+        "Apply the custom code to all pages and publish the Wix site.",
+        "Open the published website in a new browser tab.",
+        "Visit a few important routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
+      ]
+    },
+    shopify: {
+      title: "Shopify",
+      intro: "Install CavBot Analytics v5 and CavAi v3 in the active Shopify theme.",
+      placement: "Open the theme code, edit layout/theme.liquid, and add both snippets before </head>.",
+      verify: [
+        "Save the theme file and open the live storefront.",
+        "Visit a few important storefront routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
+      ]
+    },
+    wordpress: {
+      title: "WordPress",
+      intro: "Install CavBot Analytics v5 and CavAi v3 through your site’s shared header.",
+      placement: "Use the theme or header-code tool your WordPress setup already uses and add both snippets before </head>.",
+      verify: [
+        "Save the header change and clear any page cache.",
+        "Open the public website in a new browser tab.",
+        "Visit a few important routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
+      ]
+    },
+    squarespace: {
+      title: "Squarespace",
+      intro: "Install CavBot Analytics v5 and CavAi v3 through Squarespace code injection.",
+      placement: "Open Code Injection and add both snippets to the Header field.",
+      verify: [
+        "Save the code injection settings.",
+        "Open the public website in a new browser tab.",
+        "Visit a few important routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
+      ]
+    },
+    framer: {
+      title: "Framer",
+      intro: "Install CavBot Analytics v5 and CavAi v3 through Framer custom code.",
+      placement: "Open the site’s Custom Code settings and add both snippets to the End of head field.",
+      verify: [
+        "Save the custom code and publish the Framer site.",
+        "Open the published website, not the editor preview.",
+        "Visit a few important routes.",
+        "Confirm Analytics v5 is receiving activity in CavBot.",
+        "Confirm CavAi is connected to the selected site."
       ]
     }
-  ]
-},
-
- wix: {
-  title: "Wix",
-  intro: "Add CavBot to your Wix site.",
-
-
-  sectionA: "Before you begin",
-  sectionASummary:
-    "Make sure your Wix domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
-
-
-  steps: [
-    [
-      "Open your Wix Dashboard",
-      "Sign in to Wix and open the website where you want to install CavBot."
-    ],
-    [
-      "Open Custom Code",
-      "In the left menu, open Settings, then Advanced Settings, then Custom Code. If Advanced Settings is not shown, open Settings, then Custom Code."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Select + Add Custom Code. Add the Widget, Analytics v5, and CavAi v3 snippets below. Apply each one to All pages and choose Head as the placement."
-    ],
-    [
-      "Save your changes",
-      "Give each custom code entry a clear name, confirm that it is enabled, and save it."
-    ],
-    [
-      "Publish your website",
-      "Publish the Wix site after adding the snippets. New custom code will not appear on the live website until the site is published."
-    ],
-    [
-      "Test a missing page",
-      "Open your published website in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
-    ],
-    [
-      "Confirm the connection",
-      "Open CavBot, go to Integrations, then select Wix. Confirm that CavBot has received activity from the published website."
-    ]
-  ],
-
-
-  snippetsTitle: "Installation snippets",
-  snippetsDescription:
-    "Add the Widget, Analytics v5, and CavAi v3 snippets to your site-wide Custom Code. Add the 404 Arcade loader to your Wix 404 page when that page can be edited.",
-
-
-  dedicated: "Add Arcade to your Wix 404 page",
-  dedicatedBody:
-    "If Wix allows you to edit your website’s 404 page, add the Arcade loader to that page. This makes sure Arcade appears when someone visits a URL that does not exist.",
-
-
-  dedicatedFollow:
-    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page Head code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
-
-
-  test: [
-    "Save each custom code entry and publish the Wix website.",
-    "Open the published website and visit a URL that does not exist.",
-    "Confirm that CavBot Arcade appears on the 404 page.",
-    "Visit a normal page and confirm that the CavBot widget appears.",
-    "Open CavBot and confirm that Analytics v5 recorded the visit.",
-    "Confirm that CavAi is connected to the selected site.",
-    "If nothing appears, check that the published Wix domain is listed as a trusted origin in API & Keys.",
-    "Confirm that the publishable key is active and that the site values in each snippet match the selected site.",
-    "Publish the Wix website again after making any changes."
-  ]
-},
-
-
- shopify: {
-  title: "Shopify",
-  intro: "Add CavBot to your Shopify store.",
-
-
-  sectionA: "Before you begin",
-  sectionASummary:
-    "Make sure your Shopify domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
-
-
-  steps: [
-    [
-      "Open Shopify Admin",
-      "Sign in to Shopify and open the store where you want to install CavBot."
-    ],
-    [
-      "Open your theme code",
-      "In the left menu, open Online Store, then Themes. Open the menu for your active theme and select Edit code."
-    ],
-    [
-      "Open theme.liquid",
-      "In the file list, open Layout, then select theme.liquid. This file loads across the storefront."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Paste the Widget, Analytics v5, and CavAi v3 snippets before the closing </head> tag in theme.liquid."
-    ],
-    [
-      "Add the Arcade loader",
-      "Paste the 404 Arcade loader before the closing </head> tag. You can also add it directly to the 404 template if your theme lets you edit that page."
-    ],
-    [
-      "Save your changes",
-      "Select Save after adding the snippets. Changes made to the published theme will appear on the live store after they are saved."
-    ],
-    [
-      "Test a missing page",
-      "Open your live store in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
-    ],
-    [
-      "Confirm the connection",
-      "Open CavBot, go to Integrations, then select Shopify. Confirm that CavBot has received activity from the store."
-    ]
-  ],
-
-
-  snippetsTitle: "Installation snippets",
-  snippetsDescription:
-    "Add the Widget, Analytics v5, and CavAi v3 snippets to theme.liquid. Add the 404 Arcade loader to theme.liquid or directly to your store’s 404 template.",
-
-
-  dedicated: "Add Arcade to your Shopify 404 page",
-  dedicatedBody:
-    "If your Shopify theme lets you edit the 404 template, add the Arcade loader there. This makes sure Arcade appears when someone visits a URL that does not exist.",
-
-
-  dedicatedFollow:
-    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag before the closing </head> tag or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
-
-
-  test: [
-    "Save the theme changes after adding the snippets.",
-    "If you edited a draft theme, publish it before testing.",
-    "Open the live Shopify store and visit a URL that does not exist.",
-    "Confirm that CavBot Arcade appears on the 404 page.",
-    "Visit a normal storefront page and confirm that the CavBot widget appears.",
-    "Open CavBot and confirm that Analytics v5 recorded the visit.",
-    "Confirm that CavAi is connected to the selected site.",
-    "If nothing loads, make sure the Shopify domain is listed as a trusted origin in API & Keys.",
-    "Confirm that the publishable key is active and that the site values in each snippet match the selected site.",
-    "Make sure the snippets were added to the published theme.",
-    "Save the theme again and refresh the live store after making any changes."
-  ]
-},
-
-
-
- wordpress: {
-  title: "WordPress",
-  intro: "Add CavBot to your WordPress site.",
-
-
-  sectionA: "Before you begin",
-  sectionASummary:
-    "Make sure your WordPress domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot. You can install CavBot with a code plugin or through your theme files.",
-
-
-  steps: [
-    [
-      "Choose an installation method",
-      "Use a code plugin if you do not want to edit your theme files. Use the theme method if you manage the site yourself and can edit the active theme."
-    ],
-    [
-      "Method 1 — Use a code plugin",
-      "Sign in to WordPress Admin, open Plugins, then select Add New."
-    ],
-    [
-      "Install a code plugin",
-      "Search for WPCode or Insert Headers and Footers. Install and activate the plugin you want to use."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Open the plugin settings and paste the Widget, Analytics v5, and CavAi v3 snippets into the Header section."
-    ],
-    [
-      "Add the Arcade loader",
-      "Paste the 404 Arcade loader into the Header section. You can also add it directly to your 404 template if your theme lets you edit that page."
-    ],
-    [
-      "Save your changes",
-      "Save each code entry and make sure it is enabled."
-    ],
-    [
-      "Method 2 — Edit the active theme",
-      "In WordPress Admin, open Appearance, then Theme File Editor."
-    ],
-    [
-      "Open header.php",
-      "Select the active theme, open header.php, and find the closing </head> tag. If your theme does not include header.php, use the code plugin method."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Paste the Widget, Analytics v5, and CavAi v3 snippets before the closing </head> tag."
-    ],
-    [
-      "Add the Arcade loader",
-      "Paste the 404 Arcade loader before the closing </head> tag. You can also add it directly to the theme’s 404.php file."
-    ],
-    [
-      "Save the theme file",
-      "Select Update File after adding the snippets."
-    ],
-    [
-      "Test a missing page",
-      "Open your live WordPress site in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
-    ],
-    [
-      "Confirm the connection",
-      "Open CavBot, go to Integrations, then select WordPress. Confirm that CavBot has received activity from the site."
-    ]
-  ],
-
-
-  snippetsTitle: "Installation snippets",
-  snippetsDescription:
-    "Add the Widget, Analytics v5, and CavAi v3 snippets to your site header. Add the 404 Arcade loader to the site header or directly to your WordPress 404 template.",
-
-
-  dedicated: "Add Arcade to your WordPress 404 page",
-  dedicatedBody:
-    "If your theme includes a 404.php file, add the Arcade loader there. This makes sure Arcade appears when someone visits a URL that does not exist.",
-
-
-  dedicatedFollow:
-    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag before the closing </head> tag or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
-
-
-  test: [
-    "Save the plugin settings or theme changes.",
-    "Clear your WordPress cache if your site uses a caching plugin.",
-    "Open the live website and visit a URL that does not exist.",
-    "Confirm that CavBot Arcade appears on the 404 page.",
-    "Visit a normal page and confirm that the CavBot widget appears.",
-    "Open CavBot and confirm that Analytics v5 recorded the visit.",
-    "Confirm that CavAi is connected to the selected site.",
-    "If nothing appears, make sure the WordPress domain is listed as a trusted origin in API & Keys.",
-    "Confirm that the publishable key is active and that the site values in each snippet match the selected site."
-  ],
-
-
-  afterTest: [
-    "Some WordPress caching plugins, hosting providers, and CDNs may continue showing an older version of the page. Clear the site cache and refresh the live page after making changes."
-  ],
-
-
-  troubleshooting404: [
-    "Confirm that the Arcade loader was added to the site header or the 404.php file.",
-    "Make sure the missing URL opens your WordPress 404 page.",
-    "Add either the CavBot 404 meta tag or body attribute shown above.",
-    "Clear any WordPress, hosting, or CDN cache.",
-    "Refresh the page and test a different missing URL.",
-    "Confirm that the published domain matches the trusted origin in API & Keys.",
-    "Check that the publishable key and site values in the Arcade loader are correct."
-  ]
-},
-
-
-
- squarespace: {
-  title: "Squarespace",
-  intro: "Add CavBot to your Squarespace site.",
-
-
-  sectionA: "Before you begin",
-  sectionASummary:
-    "Make sure your Squarespace domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
-
-
-  steps: [
-    [
-      "Open your Squarespace site",
-      "Sign in to Squarespace and open the website where you want to install CavBot."
-    ],
-    [
-      "Open Code Injection",
-      "Open the Pages panel, scroll to Custom Code, then select Code Injection. On some older Squarespace sites, you may need to open Website Tools first."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Paste the Widget, Analytics v5, and CavAi v3 snippets into the Header field."
-    ],
-    [
-      "Save your changes",
-      "Select Save after adding the snippets."
-    ],
-    [
-      "Test the live website",
-      "Open your website in a new tab and visit several normal pages to confirm that CavBot is loading."
-    ],
-    [
-      "Confirm the connection",
-      "Open CavBot, go to Integrations, then select Squarespace. Confirm that CavBot has received activity from the website."
-    ]
-  ],
-
-
-  snippetsTitle: "Installation snippets",
-  snippetsDescription:
-    "Add the Widget, Analytics v5, and CavAi v3 snippets to the Header field in Code Injection. Add the 404 Arcade loader to your custom 404 page.",
-
-
-  dedicated: "Add Arcade to your Squarespace 404 page",
-  dedicatedBody:
-    "Create a page for your 404 message and place it in the Not linked section of the Pages panel. Open the current 404 page settings and select your new page as the custom 404 page. Then add the Arcade loader to that page’s header code.",
-
-
-  dedicatedFollow:
-    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page header code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
-
-
-  test: [
-    "Save the Code Injection changes.",
-    "Open the live Squarespace website in a new tab.",
-    "Visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist.",
-    "Confirm that your custom 404 page opens.",
-    "Confirm that CavBot Arcade appears on the page.",
-    "Visit a normal page and confirm that the CavBot widget appears.",
-    "Open CavBot and confirm that Analytics v5 recorded the visit.",
-    "Confirm that CavAi is connected to the selected site."
-  ],
-
-
-  afterTest: [
-    "Always test the live website rather than the Squarespace editor. If an older version of the page appears, refresh the page or open it in a private browser window."
-  ],
-
-
-  troubleshooting404: [
-    "Confirm that the Arcade loader was added to the custom 404 page.",
-    "Make sure the correct page is selected as the Squarespace 404 page.",
-    "Add either the CavBot 404 meta tag or body attribute shown above.",
-    "Test a URL that does not exist on the website.",
-    "Make sure the missing URL opens the custom 404 page.",
-    "Confirm that the Squarespace domain is listed as a trusted origin in API & Keys.",
-    "Confirm that the publishable key is active.",
-    "Check that the data-site and data-site-id values match the selected site.",
-    "Save the changes and test the page again in a private browser window."
-  ]
-},
-
-
-
-  framer: {
-  title: "Framer",
-  intro: "Add CavBot to your Framer site.",
-
-
-  sectionA: "Before you begin",
-  sectionASummary:
-    "Make sure your Framer domain is added as a trusted origin, your publishable key is active, and the correct site is selected in CavBot.",
-
-
-  steps: [
-    [
-      "Open your Framer project",
-      "Sign in to Framer and open the project where you want to install CavBot."
-    ],
-    [
-      "Open Project Settings",
-      "In the Framer editor, select the settings icon in the top-right corner."
-    ],
-    [
-      "Open Custom Code",
-      "In Project Settings, open General and scroll to the Custom Code section."
-    ],
-    [
-      "Add the site-wide snippets",
-      "Paste the Widget, Analytics v5, and CavAi v3 snippets into the End of head tag field."
-    ],
-    [
-      "Add the Arcade loader",
-      "Paste the 404 Arcade loader into the End of head tag field. You can also add it directly to your Framer 404 page."
-    ],
-    [
-      "Save and publish",
-      "Save your changes and publish the site. Custom code will not appear on the live website until the new version is published."
-    ],
-    [
-      "Test a missing page",
-      "Open your published website in a new tab and visit a URL that does not exist, such as https://YOURDOMAIN.com/this-route-does-not-exist."
-    ],
-    [
-      "Confirm the connection",
-      "Open CavBot, go to Integrations, then select Framer. Confirm that CavBot has received activity from the published website."
-    ]
-  ],
-
-
-  snippetsTitle: "Installation snippets",
-  snippetsDescription:
-    "Add the Widget, Analytics v5, and CavAi v3 snippets to the End of head tag field. Add the 404 Arcade loader there or directly to your Framer 404 page.",
-
-
-  dedicated: "Add Arcade to your Framer 404 page",
-  dedicatedBody:
-    "If your Framer project includes a custom 404 page, add the Arcade loader to that page. This makes sure Arcade appears when someone visits a URL that does not exist.",
-
-
-  dedicatedFollow:
-    "You can also mark the page as a CavBot 404 page. Add either the <meta name=\"cavbot-page\" content=\"404\" /> tag to the page Head code or the data-cavbot-page-type=\"404\" attribute to the opening <body> tag. You only need one of these options.",
-
-
-  dedicatedExtra:
-    "To add CavBot to one page only, open that page’s settings, add the required snippet to its End of head tag field, save your changes, and publish the site again.",
-
-
-  test: [
-    "Save the Custom Code changes and publish the Framer website.",
-    "Open the published website in a new tab.",
-    "Visit a URL that does not exist.",
-    "Confirm that CavBot Arcade appears on the 404 page.",
-    "Visit a normal page and confirm that the CavBot widget appears.",
-    "Open CavBot and confirm that Analytics v5 recorded the visit.",
-    "Confirm that CavAi is connected to the selected site."
-  ],
-
-
-  afterTest: [
-    "Always test the published website rather than the Framer editor. If an older version appears, refresh the page or open the site in a private browser window."
-  ],
-
-
-  troubleshooting404: [
-    "Confirm that the Arcade loader was added to the End of head tag field or directly to the Framer 404 page.",
-    "Make sure the site was published after the code was added.",
-    "Add either the CavBot 404 meta tag or body attribute shown above.",
-    "Test a URL that does not exist on the website.",
-    "Make sure the missing URL opens the Framer 404 page.",
-    "Confirm that the published domain is listed as a trusted origin in API & Keys.",
-    "Confirm that the publishable key is active.",
-    "Check that the data-site and data-site-id values match the selected site.",
-    "Publish the site again and test the page in a private browser window."
-  ]
-}
-};
+  };
 
 
 
@@ -749,7 +229,7 @@
 
     p(`The purpose of CavBot is not to replace every tool a team already uses. The purpose is to bring the most important website signals into one account workspace so the team can see them together. A route issue, a browser error, a missing page, a weak metadata setup, and a recovery experience should not feel like five disconnected problems. CavBot keeps them attached to the correct site and account home.`),
 
-    p(`CavBot Account Home is organized around connected sites. A site is a saved website origin, such as https://example.com. The Primary site is the active site CavBot uses for dashboards, reports, assistant help, routing, errors, SEO, accessibility, 404 recovery, Arcade, and other workspace surfaces.`),
+    p(`CavBot Account Home is organized around connected sites. A site is a saved website origin, such as https://example.com. The Primary site is the active site CavBot uses for dashboards, reports, assistant help, routing, errors, SEO, accessibility, 404 recovery, and other workspace surfaces.`),
 
     table(
       ["Term", "Meaning"],
@@ -782,7 +262,7 @@
 
     p(`CavBot is most useful when the team treats it as a review layer, not just a setup screen. After the snippet is installed, the real value comes from checking what CavBot is showing: which routes are active, which pages are missing, which errors are repeating, which pages need SEO review, which accessibility signals need attention, and whether visitors have a clear recovery path when something breaks.`),
 
-    p(`Each CavBot surface has a specific job. The dashboard gives a broad view. Routes helps review page movement and path activity. Errors helps identify browser and runtime problems. SEO helps review page structure and visibility basics. A11y helps review accessibility signals. 404 Recovery focuses on missing routes. Arcade can improve broken-page recovery. Reports help summarize current site state. CavAi can explain, organize, and help plan next steps from the context the workspace already has.`),
+    p(`Each CavBot surface has a specific job. The dashboard gives a broad view. Routes helps review page movement and path activity. Errors helps identify browser and runtime problems. SEO helps review page structure and visibility basics. A11y helps review accessibility signals. 404 Recovery focuses on missing routes. Reports help summarize current site state. CavAi can explain, organize, and help plan next steps from the context the workspace already has.`),
 
     table(
       ["Surface", "Use it for"],
@@ -793,7 +273,6 @@
         ["SEO", "Check page titles, descriptions, canonical structure, headings, and basic visibility signals."],
         ["A11y", "Review accessibility signals that may affect usability and page quality."],
         ["404 Recovery", "Find missing routes, repeated broken paths, and recovery opportunities."],
-        ["Arcade", "Play CavBot games inside the platform and use selected games for better 404 recovery."],
         ["Reports", "Read a structured snapshot of the selected site and its current condition."],
         ["CavAi", "Ask for explanations, summaries, plans, checklists, and next-step guidance."]
       ]
@@ -824,7 +303,7 @@
         ["Are missing routes repeating?", "404 Recovery."],
         ["Does page structure need review?", "SEO."],
         ["Are accessibility signals healthy?", "A11y."],
-        ["Can visitors recover from a missing page?", "Arcade and 404 Recovery."],
+        ["Can visitors recover from a missing page?", "404 Recovery."],
         ["What should I do next?", "Reports, CavAi, and the focused module connected to the issue."]
       ]
     ),
@@ -1111,7 +590,7 @@
     p(`Good site setup keeps CavBot accurate. The workspace should have one clear profile for each website origin that matters. Routes should flow into those profiles naturally. Reports should be tied to the correct site. Team members should know which site they are reviewing before they make decisions.`),
 
 
-    p(`Do not rush this step. A clean site profile makes every other CavBot surface easier to trust: routes, errors, SEO, accessibility, reports, 404 recovery, Arcade, assistant context, storage references, and developer tools all become clearer when the selected site is correct.`),
+    p(`Do not rush this step. A clean site profile makes every other CavBot surface easier to trust: routes, errors, SEO, accessibility, reports, 404 recovery, assistant context, storage references, and developer tools all become clearer when the selected site is correct.`),
 
 
     note("Core rule", "Create sites for website origins, not individual pages. Save the exact production origin, install the snippet once in the shared layout, then confirm CavBot receives signals from the live website.")
@@ -1278,7 +757,7 @@
       ]
     ),
 
-    p(`After the checklist passes, CavBot can be treated as active for that site. From there, continue into Website Signals for diagnostics, Integrations for platform-specific install notes, Security for protected actions, Billing for plan access, Developer Tools for Code Editor and CavBot Terminal, or Assets for badges, Arcade, and other installable surfaces.`),
+    p(`After the checklist passes, CavBot can be treated as active for that site. From there, continue into Website Signals for diagnostics, Integrations for Analytics v5 and CavAi v3 install notes, Security for protected actions, Billing for plan access, or Developer Tools for Code Editor and CavBot Terminal.`),
 
     note("Do not skip verification", "A snippet can be installed but still point to the wrong site, wrong project, wrong key, or unpublished environment. Always verify the live website and the CavBot workspace together."),
 
@@ -1765,7 +1244,6 @@
         ["Accessibility", "Organizes accessibility findings by selected site."],
         ["Reports", "Builds exports and summaries around the current site context."],
         ["404 Recovery", "Shows missing routes and recovery activity for the selected origin."],
-        ["Arcade installs", "Connects public recovery installs to the right website."],
         ["CavAi", "Uses the selected site as context when explaining workspace activity."]
       ]
     ),
@@ -1870,7 +1348,7 @@
         ["Confirm it is not the production origin", "Avoid removing the main website by mistake."],
         ["Check whether the snippet is still installed", "A live snippet may continue sending requests from that origin."],
         ["Review reports and history", "The team may still need past context."],
-        ["Check Arcade or badge installs", "Public assets may still be connected to that site."],
+        ["Check current installations", "Analytics v5 or CavAi v3 may still be connected to that site."],
         ["Confirm team ownership", "Another teammate may still rely on the saved site."],
         ["Update the primary site if needed", "The workspace should still open to the correct default origin."]
       ]
@@ -3171,7 +2649,7 @@
         ["A route with repeated browser issues", "Open Errors."],
         ["A route with weak title or page structure", "Open SEO."],
         ["A route with accessibility concerns", "Open A11y."],
-        ["A route tied to a recovery experience", "Open Arcade or 404 Recovery."],
+        ["A route tied to a recovery experience", "Open 404 Recovery."],
         ["A route that needs a team summary", "Open Reports or CavPad."]
       ]
     ),
@@ -3763,7 +3241,7 @@
         ["A repeated browser issue", "Open Errors."],
         ["Weak page metadata", "Open SEO and inspect the live page."],
         ["Accessibility barriers", "Open A11y and test the page manually."],
-        ["A broken recovery path", "Open 404 Recovery and Arcade settings."],
+        ["A broken recovery path", "Open 404 Recovery."],
         ["A confusing page pattern", "Open the live route and review the page experience."],
         ["A team decision is needed", "Create a CavPad note with the route, issue, owner, and next step."],
         ["A wider review is needed", "Generate or open a Report for the selected site."]
@@ -3864,221 +3342,64 @@
 },
 
       {
-  id: "404-control-room",
+  id: "404-recovery",
   title: "404 Recovery",
   summary: "Investigate missing routes, recovery behavior, and broken-page patterns.",
   blocks: [
-    p(`404 Recovery is the review surface for missing routes. It helps the team understand which URLs visitors are reaching that the site cannot find, how often those paths appear, and what should happen next.`),
+    p(`404 Recovery is the review surface for missing routes. It helps the team understand which URLs visitors reached that the site could not find, how often those paths appear, and what should happen next.`),
 
-    p(`A 404 is not only a technical status. It is a visitor reaching a dead end. Sometimes that dead end is harmless, like a one-time typo. Other times it points to a real problem, such as a missing pricing page, a broken campaign link, a deleted product route, a moved docs article, a failed redirect, or an old URL that people still use.`),
-
-    p(`Use 404 Recovery when you need to separate random noise from broken paths that matter. The goal is to decide whether a missing route should be redirected, restored, corrected at the source link, supported with Arcade recovery, or left alone because it does not deserve action.`),
-
-    p(`Open 404 Recovery after launches, redesigns, site migrations, pricing changes, campaign updates, product route changes, docs changes, and any release that touches navigation or routing. These are the moments when broken paths are most likely to appear.`),
+    p(`Use 404 Recovery after launches, redesigns, migrations, campaign updates, pricing changes, and any release that changes navigation or routing. Start with repeated routes and routes tied to important visitor flows.`),
 
     table(
       ["404 area", "What it helps you understand"],
       [
         ["Missing route", "The path a visitor reached that the website could not find."],
         ["Frequency", "Whether the path appeared once or keeps repeating."],
-        ["Business value", "Whether the missing route is tied to pricing, signup, checkout, docs, support, login, or another important flow."],
-        ["Likely source", "Whether the path may come from navigation, an old campaign, a search result, a bookmark, an email, or an external link."],
-        ["Recovery option", "Whether the route should be redirected, restored, fixed at the source, supported with Arcade, or left unavailable."],
-        ["Follow-up work", "Whether the team needs to repair a link, update a sitemap, add a redirect, restore content, or review a recent release."]
+        ["Likely source", "Whether the path came from navigation, a campaign, search, a bookmark, email, or an external link."],
+        ["Business impact", "Whether the route affects pricing, signup, checkout, docs, support, login, or another important flow."],
+        ["Next action", "Whether the route should be redirected, restored, fixed at the source, watched, or intentionally left unavailable."]
       ]
     ),
-
-    p(`Start with repeated routes. One strange path may come from a typo, a bot, a copied URL, or a visitor testing something. A route that appears again and again deserves more attention because it may be connected to a real source that is still sending people to the wrong place.`),
 
     list([
-      "Identify which missing routes are repeated.",
-      "Check whether the path should exist.",
-      "Review whether the route supports an important business flow.",
+      "Identify which missing routes repeat.",
+      "Check whether each path should exist.",
       "Look for the source of the broken path.",
-      "Add a redirect when the content moved.",
+      "Redirect when content moved to a clear replacement.",
       "Restore the page when the route still matters.",
       "Fix internal links that point to the wrong path.",
-      "Use Arcade when the recovery moment should feel designed.",
-      "Leave invalid paths alone when they do not deserve a destination."
+      "Leave meaningless bot or typo paths alone."
     ]),
 
-    p(`Priority matters. A missing checkout path is not the same as a random mistyped URL. A broken docs route used by customers may matter more than an old test path. A missing campaign page may waste paid traffic. A deleted product route may lose visitors who were ready to buy or learn more.`),
-
-    table(
-      ["Priority", "When to treat it this way"],
-      [
-        ["Critical", "The missing route affects checkout, payment, login, signup, account access, security, or another core action."],
-        ["High", "The route supports pricing, product pages, docs, support, campaigns, lead capture, or customer-facing content."],
-        ["Medium", "The route looks meaningful but does not clearly block a key action."],
-        ["Low", "The route appears once, looks random, or does not connect to an important page."],
-        ["Watch", "The route is not urgent yet, but should be reviewed again if it repeats or grows."]
-      ]
-    ),
-
-    p(`A good 404 review begins with the route itself. Read the path carefully. Ask whether the route looks like a real page, an old page, a mistyped URL, a missing asset, a campaign link, a bot request, or a route created by a recent site change.`),
-
-    p(`Then review the context. Look at how often the route appears, whether it started after a release, whether it resembles a known page, whether it belongs to a campaign, and whether the missing path could interrupt a visitor who had a real goal.`),
-
-    table(
-      ["404 pattern", "What it may mean"],
-      [
-        ["One random missing route", "A visitor may have typed the URL incorrectly, or the request may not matter."],
-        ["Repeated pricing route", "A pricing page may have moved, or an old link may still be sending traffic."],
-        ["Repeated product route", "A product page may have been deleted, renamed, or moved without a redirect."],
-        ["Repeated docs route", "Documentation may have moved, or internal docs links may be outdated."],
-        ["Campaign-style path", "An ad, email, launch post, QR code, or social link may be wrong."],
-        ["Missing asset path", "An image, script, stylesheet, font, or file reference may be broken."],
-        ["Many similar paths", "A migration, slug change, route rule, or framework change may need review."]
-      ]
-    ),
-
-    p(`Not every missing route should be fixed the same way. The right action depends on whether the content still exists, whether visitors still need it, whether the route has a useful replacement, and whether the broken path is coming from a source the team controls.`),
+    p(`A strong 404 page should explain that the route was not found and provide useful ways forward. Keep a clear Home link visible and add Search, Docs, Support, Pricing, Dashboard, or another relevant destination when it helps visitors continue.`),
 
     table(
       ["Action", "Use it when"],
       [
-        ["Redirect", "The content moved to a new route and visitors should be sent there automatically."],
-        ["Restore", "The route was removed but the page still matters to visitors or the business."],
-        ["Fix the source link", "The website, campaign, email, docs page, or external reference points to the wrong URL."],
-        ["Use Arcade recovery", "The missing-page experience should feel more designed while the team reviews or repairs the path."],
-        ["Leave unavailable", "The path is invalid, unsafe, meaningless, or not worth sending anywhere."],
-        ["Watch", "The route is unclear and should be reviewed again if it repeats."]
+        ["Redirect", "The content moved to a clear replacement route."],
+        ["Restore", "The removed page still matters to visitors or the business."],
+        ["Fix the source link", "Navigation, a campaign, email, docs, or another controlled source points to the wrong URL."],
+        ["Watch", "The route is unclear and should be reviewed again if it repeats."],
+        ["Leave unavailable", "The path is invalid, unsafe, meaningless, or not worth routing elsewhere."]
       ]
     ),
 
-    p(`Redirects should be used when there is a clear replacement page. If /old-pricing moved to /pricing, visitors should not land on a dead end. If an old product page moved to a new product route, send visitors to the best matching destination. A redirect should help the visitor continue without confusion.`),
+    p(`Missing paths can also be assets such as images, scripts, stylesheets, fonts, videos, JSON files, or downloads. Review the live page and deployment output when an asset path appears in 404 Recovery.`),
 
-    p(`Restoring a page is the better choice when the route still deserves its own content. If people keep reaching an old docs article, product page, support guide, or landing page, the team should decide whether the content should exist again instead of forcing everyone to a less helpful page.`),
-
-    p(`Fixing the source link is the right choice when the broken route comes from a place the team controls. If the navigation, footer, dashboard, email template, docs page, blog post, or campaign link points to the wrong path, correct the source so new visitors stop being sent to the missing route.`),
-
-    p(`Arcade recovery is useful when the 404 page should feel more intentional. It can give visitors a short, branded recovery moment while still giving them a clear way back to the site. Arcade should support recovery. It should not hide the fact that a route needs review.`),
-
-    note("Recovery rule", "Arcade can improve the broken-page experience, but repeated missing routes still need a decision: redirect, restore, fix the source link, or leave unavailable on purpose."),
-
-    p(`A strong 404 page should not trap the visitor. Whether Arcade is installed or not, the page should explain that the route was not found and provide useful ways forward. The visitor should be able to return home, search, open docs, contact support, go to pricing, sign in, or continue to another important page.`),
-
-    list([
-      "Keep a clear Home link visible.",
-      "Include Search or Docs when the site has searchable content.",
-      "Include Support or Contact when visitors may need help.",
-      "Include Pricing, Product, Dashboard, or Account links when those routes matter.",
-      "Keep recovery actions near the missing-page message.",
-      "Do not make a game, animation, or visual element the only way forward."
-    ]),
-
-    p(`404 Recovery should also be used after migrations. Site migrations often create broken paths because old slugs, old folders, old CMS routes, and old platform URLs may continue to receive visits. A clean migration review should include redirects for important old paths and a check for repeated missing routes after launch.`),
-
-    table(
-      ["After this change", "Review 404s for"],
-      [
-        ["Website launch", "Unpublished pages, wrong links, missing core routes, and early visitor confusion."],
-        ["Redesign", "Changed navigation, deleted pages, renamed sections, and broken internal links."],
-        ["Migration", "Old slugs, missing redirects, changed platform routes, and lost content."],
-        ["Pricing update", "Old pricing pages, plan routes, checkout paths, and signup links."],
-        ["Docs update", "Moved guides, renamed categories, deleted articles, and outdated links."],
-        ["Campaign launch", "Landing page paths, ad links, QR codes, launch posts, and email URLs."]
-      ]
-    ),
-
-    p(`When a missing route appears after a release, compare the first seen time with the release time. If the 404 started immediately after a deployment, content update, route change, or platform migration, review that change first. The cause may be closer than it looks.`),
-
-    p(`Missing asset paths should be handled carefully. A 404 is not always a page. It can be an image, script, stylesheet, font, video, JSON file, or download path that the page expects to load. Missing assets can break layout, visuals, performance, or functionality even when the main page appears to load.`),
-
-    table(
-      ["If the missing path looks like", "Check this"],
-      [
-        ["/pricing-old", "Old page, campaign link, redirect rule, or renamed route."],
-        ["/docs/getting-started", "Moved documentation, sidebar link, search result, or stale docs link."],
-        ["/products/item-name", "Deleted product, changed slug, storefront route, or inventory page."],
-        ["/assets/file.png", "Image path, deployment output, CDN upload, or broken reference."],
-        ["/_next/static/...", "Build output, deployment cache, framework asset path, or stale client bundle."],
-        ["/campaign/spring", "Ad URL, email link, QR code, or launch material."],
-        ["/wp-content/...", "Bot traffic, old WordPress path, migrated site residue, or external request."]
-      ]
-    ),
-
-    p(`404 Recovery should be compared with Routes, Errors, SEO, Reports, and Arcade. A missing route may also create browser errors, weak metadata, bad recovery behavior, or a confusing visitor path. If the same page or path appears in multiple surfaces, treat it as a larger site-quality issue.`),
-
-    table(
-      ["If 404 Recovery shows", "Open this next"],
-      [
-        ["Repeated missing page", "Open Routes and decide whether the path should exist."],
-        ["Missing asset path", "Open the live page and inspect the broken asset reference."],
-        ["Broken page with visitor complaints", "Open Reports or CavPad to document the issue and next step."],
-        ["Missing route with errors nearby", "Open Errors and check whether the route caused runtime failures."],
-        ["Missing route tied to search or metadata", "Open SEO and inspect related page structure."],
-        ["404 page with Arcade installed", "Open Arcade settings and verify recovery links are visible."]
-      ]
-    ),
-
-    p(`For developers, a 404 review should lead to a concrete fix. Check route files, framework routing rules, redirects, middleware, platform rewrites, CMS slugs, asset paths, deployment output, and any code that generates links. The fix should be made where the route is created or referenced.`),
-
-    p(`For owners and operators, a 404 review should focus on visitor impact. Ask whether the missing route affects sales, signup, support, trust, onboarding, documentation, account access, or a public campaign. If it does, move it higher in the queue.`),
-
-    p(`For marketing teams, 404 Recovery is especially useful after campaigns. Old links can live inside emails, social posts, partner pages, ads, QR codes, pitch decks, and search results. If those links continue to send visitors to missing pages, the campaign experience is weaker than it should be.`),
-
-    table(
-      ["Team", "How 404 Recovery helps"],
-      [
-        ["Owner", "Shows which missing routes may affect trust, sales, or customer experience."],
-        ["Developer", "Points to broken paths, missing redirects, route rules, and asset references that need repair."],
-        ["Marketing", "Helps catch old campaign links, wrong landing pages, and broken launch URLs."],
-        ["Support", "Helps explain why users may be reaching missing help, docs, or account pages."],
-        ["Designer", "Helps review whether the recovery page gives visitors a clear way forward."],
-        ["SEO reviewer", "Helps identify missing content, bad redirects, and old pages that may still receive traffic."]
-      ]
-    ),
-
-    p(`A useful handoff should include the missing route, how often it appears, when it started, why it matters, the likely source, the chosen action, and the person responsible for the fix. This keeps 404 work practical and prevents the same broken route from being rediscovered later.`),
-
-    table(
-      ["Handoff detail", "What to include"],
-      [
-        ["Missing route", "The exact path that visitors reached."],
-        ["Frequency", "Whether the route appeared once, repeated, or spiked."],
-        ["First seen", "When the missing route started appearing."],
-        ["Impact", "Whether the route affects pricing, signup, checkout, docs, support, account access, or campaigns."],
-        ["Likely source", "Navigation, campaign, old page, external link, migration, asset path, or unknown."],
-        ["Decision", "Redirect, restore, fix source link, use Arcade, watch, or leave unavailable."],
-        ["Owner", "Who will make the change or approve the decision."],
-        ["Verification", "How the team will confirm the route is handled correctly."]
-      ]
-    ),
-
-    p(`After fixing a missing route, test it from the visitor side. Open the old path directly, confirm the redirect or restored page works, check the destination, and make sure the visitor has a clear next step. If the issue came from a source link, test the source link too.`),
-
-    list([
-      "Open the missing route directly after the fix.",
-      "Confirm the route redirects, restores, or remains unavailable intentionally.",
-      "Test the destination page and its main action.",
-      "Check desktop and mobile when the route matters.",
-      "Verify internal links no longer point to the old path.",
-      "Review 404 Recovery again after traffic returns.",
-      "Document major fixes in CavPad or a report when the route affected an important flow."
-    ]),
-
-    p(`If 404 Recovery looks empty, confirm setup before assuming there are no missing routes. Check the selected site, saved origin, snippet install, public page visits, route activity, and whether the site has received enough traffic for meaningful review.`),
+    p(`After a fix, open the old path directly, confirm the redirect or restored page works, test the destination’s main action, and verify that source links no longer point to the missing route.`),
 
     table(
       ["Problem", "What to check"],
       [
-        ["No 404 data appears", "Confirm the selected site, snippet install, public origin, and recent visits."],
+        ["No 404 data appears", "Confirm the selected site, Analytics v5 install, public origin, and recent visits."],
         ["Wrong 404s appear", "Check whether the wrong site, subdomain, project, or environment is selected."],
         ["Old routes keep appearing", "Review redirects, search results, external links, bookmarks, emails, ads, and social posts."],
         ["Missing route continues after redirect", "Confirm the redirect is deployed, live, and matches the exact path."],
-        ["Arcade does not show on 404", "Confirm the approved loader, selected game, plan access, and live recovery route."],
         ["Many missing routes appear at once", "Review recent migration, release, rewrite rule, navigation change, or deployment output."]
       ]
     ),
 
-    p(`Some missing routes should be ignored. Bots, random scans, fake WordPress paths, old admin paths, and meaningless requests may not deserve redirects. A redirect should help real visitors. It should not turn random noise into unnecessary routing rules.`),
-
-    note("Redirect rule", "Redirect routes that help real visitors continue. Do not create redirects for every random bot path or meaningless request."),
-
-    p(`404 Recovery should make the team calmer and more precise. It shows where visitors hit dead ends, which missing paths matter, and what kind of recovery or repair should happen. Used well, it turns broken routes into clear decisions.`),
-
-    note("Core rule", "Review frequency, source, and business value before acting. Fix important repeated routes, support visitors with clear recovery paths, and keep watching the routes that may grow after launches, migrations, and campaigns.")
+    note("Core rule", "Review frequency, source, and business value before acting. Fix important repeated routes, give visitors clear recovery paths, and verify every change on the live website.")
   ]
 }
 
@@ -4860,101 +4181,45 @@ Turn these notes into a clean launch checklist.`),
      {
   id: "sdk",
   title: "SDK",
-  summary: "Use CavBot runtime scripts safely and correctly.",
+  summary: "Install CavBot Analytics v5 and CavAi v3 safely.",
   blocks: [
-    p(`The CavBot SDK is the set of browser scripts that connect a website to CavBot features. These scripts can power Analytics v5, CavAi embed behavior, CavBot widgets, visual surfaces, badges, Arcade installs, recovery experiences, and other CavBot website tools.`),
-
-    p(`Use the SDK when a CavBot feature needs to run on a live website. The script gives CavBot a safe way to load the correct feature, connect it to the correct workspace, and keep the website tied to the right project and site profile.`),
-
-    p(`Most users should not hand-build SDK snippets from memory. Use the generated snippets from CavBot Settings, Integrations, or the setup flow whenever possible. Generated snippets reduce mistakes with project keys, site IDs, API URLs, script order, CDN paths, and feature-specific settings.`),
+    p(`The CavBot website SDK consists of two current customer installations: Analytics v5 for website monitoring and CavAi v3 for website intelligence. Use the generated snippets from CavBot Settings, Integrations, or onboarding so the project key, site ID, API URL, and script version stay correct.`),
 
     table(
-      ["SDK surface", "Where it belongs"],
+      ["Installation", "Where it belongs"],
       [
-        ["Analytics v5", "Install globally so CavBot can observe the pages and routes you want monitored."],
-        ["CavAi embed", "Install where the website needs CavAi or CavBot assistant behavior."],
-        ["CavBot Badge", "Place in a footer, trust area, or floating slot where it will not block page controls."],
-        ["CavBot Head", "Use in onboarding, empty states, setup screens, or small guided moments."],
-        ["CavBot Body", "Use for stronger branded guidance, support, launch, or recovery moments."],
-        ["Arcade loader", "Use on the approved Arcade surface or a documented 404 recovery route."],
-        ["Widgets", "Place only where the page actually needs that CavBot feature."]
+        ["Analytics v5", "Install globally across the public pages and routes CavBot should monitor."],
+        ["CavAi v3", "Install in the shared head wherever CavAi should use the selected site context."]
       ]
     ),
 
-    p(`Each SDK install should have a clear purpose. Analytics belongs across the site because it collects website signals. A badge belongs where the visitor should see a small trust marker. Arcade belongs on a recovery route or approved game surface. Visual components belong in the exact product moment where they support the page.`),
-
-    p(`Avoid installing every script everywhere. A clean website should only load the CavBot scripts it needs. Loading unused scripts can make the page heavier, make debugging harder, and create confusion about which feature is responsible for a behavior.`),
-
-    p(`The project key and site ID connect the SDK to the correct CavBot workspace. The public website origin, the saved CavBot site origin, and the API key allowlist should all match. If they do not match, CavBot may reject the request, separate the signal, or show activity under the wrong site context.`),
-
     list([
-      "Use generated snippets whenever CavBot provides them.",
-      "Install Analytics v5 globally when the whole site should be monitored.",
-      "Install feature scripts only where the feature is needed.",
-      "Keep the configuration values above the script that uses them.",
-      "Use the project key and site ID from the matching CavBot workspace.",
-      "Do not copy SDK settings from another website unless that is intentional.",
-      "Review the page on desktop and mobile after installing any visible SDK surface."
+      "Use the snippets generated for the selected CavBot site.",
+      "Keep configuration values before the script that uses them.",
+      "Install each current script once in the shared layout.",
+      "Publish after changing an installation.",
+      "Test the live public website instead of relying on an editor preview.",
+      "Confirm the public origin matches the saved site and key allowlist."
     ]),
-
-    p(`Script order matters. Configuration values should load before the feature script that depends on them. For example, Analytics v5 needs the API URL, project key, and site ID before the runtime starts. If those values are missing or loaded too late, the script may not know where to send the signal.`),
 
     code('<script>\n  window.CAVBOT_API_URL = "https://app.cavbot.io/api/embed/analytics";\n  window.CAVBOT_PROJECT_KEY = "YOUR_PROJECT_KEY";\n  window.CAVBOT_SITE = "YOUR_SITE_ID";\n  window.CAVBOT_SITE_ID = "YOUR_SITE_ID";\n  window.CAVBOT_SITE_PUBLIC_ID = "YOUR_SITE_ID";\n</script>\n<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js" defer></script>'),
 
-    p(`For platform installs, place SDK scripts in the site-wide custom-code area when the feature should run on every page. This is usually the right path for Webflow, Wix, Squarespace, Framer, Shopify, WordPress, and similar website builders. For custom apps, place the SDK in the shared layout or root template used by the public routes.`),
+    p(`For Webflow, Wix, Squarespace, Framer, Shopify, WordPress, and similar builders, use the site-wide head or custom-code area. For custom applications, use the root layout or shared document template used by every monitored public route.`),
 
-    p(`For page-specific features, keep the script close to the page purpose. Do not load Arcade on every page if it is only meant for a 404 route. Do not load a floating badge if the page already has another trust or support widget in the same corner. Do not load visual components where they may cover forms, checkout buttons, menus, or accessibility controls.`),
-
-    table(
-      ["Install type", "Recommended placement"],
-      [
-        ["Global analytics", "Shared layout, root template, global footer, or site-wide custom code."],
-        ["CavAi surface", "The page or layout where CavAi should be available."],
-        ["Floating badge", "A safe corner or footer area that does not cover important controls."],
-        ["Inline badge", "Inside an existing footer, trust row, status area, or support section."],
-        ["404 Arcade", "The 404 page, missing-route template, or documented recovery route."],
-        ["Visual components", "The exact product moment where the visual guide supports the user."]
-      ]
-    ),
-
-    p(`SDK scripts should be treated as production code. Review what each script does before publishing. Confirm that the script path is correct, the feature is approved for the page, the project key belongs to the right workspace, and the public website origin is allowed.`),
-
-    p(`Do not paste private keys, passwords, billing details, private customer information, sensitive messages, or internal workspace notes into SDK configuration. Public runtime configuration should only include the values needed for CavBot to identify the project, site, API destination, and selected feature.`),
-
-    note("Security rule", "Use SDK configuration for public runtime identity only. Keep secrets, private keys, passwords, and sensitive user data out of browser scripts."),
-
-    p(`When updating SDK scripts, avoid mixing old and new versions on the same page unless CavBot explicitly documents that setup. A clean version setup makes the website easier to debug and keeps signals easier to trust.`),
-
-    p(`After installing or changing an SDK script, publish the website and test the live page. Open the public site in a browser, check that the visible feature appears correctly, move through the expected route, and confirm CavBot receives the right signal or shows the right surface.`),
-
-    list([
-      "Publish the website after adding or changing an SDK script.",
-      "Open the live public page, not only the editor preview.",
-      "Check the browser console for errors.",
-      "Check the network tab if a signal or feature does not load.",
-      "Confirm the script is present in the live page source.",
-      "Confirm the feature appears only where it should.",
-      "Return to CavBot and verify the matching site profile."
-    ]),
+    note("Security rule", "Keep secrets, private keys, passwords, payment details, and sensitive user data out of browser configuration and event payloads."),
 
     table(
       ["Problem", "What to check"],
       [
-        ["Feature does not appear", "Confirm the script is present on the live page and the CDN path is correct."],
-        ["Analytics does not send activity", "Confirm the API URL, project key, site ID, and saved site origin match."],
-        ["Feature appears twice", "Look for the same SDK script or widget markup installed more than once."],
-        ["Wrong workspace receives signals", "Check that the project key and site ID belong to the correct CavBot workspace."],
-        ["Badge covers page controls", "Move the badge to a safer position or use an inline badge instead."],
-        ["Arcade loads on the wrong page", "Move the Arcade loader to the approved 404 or recovery route only."],
-        ["The script works in preview but not production", "Confirm the snippet was published to the production domain and the production origin is allowlisted."]
+        ["Analytics does not send activity", "Confirm the API URL, project key, site ID, saved origin, and live script placement."],
+        ["CavAi does not connect", "Confirm the CavAi v3 script is present once and uses the selected site values."],
+        ["Signals appear twice", "Look for the same current script installed in more than one shared template."],
+        ["Wrong workspace receives signals", "Check that the project key and site ID belong to the intended workspace."],
+        ["Works in preview but not production", "Confirm the code was published and the production origin is allowlisted."]
       ]
     ),
 
-    p(`Use SDK scripts with restraint. CavBot features should strengthen the website, not crowd it. A clean install loads the right script, on the right page, for the right reason, with the right project and site values.`),
-
-    p(`The best SDK setup is simple: install Analytics v5 globally, add visible CavBot surfaces only where they help the page, keep Arcade tied to recovery or game surfaces, and verify every install from the live production website.`),
-
-    note("SDK baseline", "Start with the generated snippet, install only what the page needs, publish the site, then verify the feature from the live domain.")
+    note("SDK baseline", "Install Analytics v5 and CavAi v3 once, publish the site, then verify both from the live domain.")
   ]
 },
 
@@ -4963,7 +4228,7 @@ Turn these notes into a clean launch checklist.`),
   title: "Events",
   summary: "Send important website actions into CavBot.",
   blocks: [
-    p(`Events are named actions sent from your website into CavBot. They help CavBot understand what visitors actually did beyond a normal page view. A page view can show that someone reached a route. An event can show that they clicked a pricing button, started signup, submitted a form, opened checkout, used search, clicked a recovery link, or started an Arcade game.`),
+    p(`Events are named actions sent from your website into CavBot. They help CavBot understand what visitors actually did beyond a normal page view. A page view can show that someone reached a route. An event can show that they clicked a pricing button, started signup, submitted a form, opened checkout, used search, or clicked a recovery link.`),
 
     p(`Use events for actions that matter to the business, the product, or the visitor journey. The goal is not to track every small click. The goal is to give CavBot the important moments that explain where users move forward, where they hesitate, and where something may need review.`),
 
@@ -4979,7 +4244,6 @@ Turn these notes into a clean launch checklist.`),
         ["Visitor submits a contact form", "contact_form_submitted"],
         ["Visitor uses docs search", "docs_search_used"],
         ["Visitor clicks a recovery link", "recovery_link_clicked"],
-        ["Visitor starts a CavBot Arcade game", "arcade_game_started"],
         ["Visitor completes an onboarding step", "onboarding_step_completed"]
       ]
     ),
@@ -4996,7 +4260,7 @@ Turn these notes into a clean launch checklist.`),
       "Document important event names so the team knows what they mean."
     ]),
 
-    p(`Every event can include small details that help CavBot understand the action. These details should explain the moment without exposing sensitive information. Good details include the plan selected, route path, button label, form step, recovery target, game name, or product area.`),
+    p(`Every event can include small details that help CavBot understand the action. These details should explain the moment without exposing sensitive information. Good details include the plan selected, route path, button label, form step, recovery target, or product area.`),
 
     code('window.CavBot?.track?.("pricing_cta_clicked", {\n  plan: "pro",\n  route: window.location.pathname\n});'),
 
@@ -5012,7 +4276,6 @@ Turn these notes into a clean launch checklist.`),
         ["Button label", "Private message content"],
         ["Form step name", "Full form submission with personal details"],
         ["Recovery target", "Access token or private key"],
-        ["Game name", "Sensitive customer record"]
       ]
     ),
 
@@ -5026,8 +4289,7 @@ Turn these notes into a clean launch checklist.`),
       "Track checkout starts and important payment flow moments.",
       "Track form submissions without sending private form content.",
       "Track search use when search matters to the page.",
-      "Track recovery actions from 404 pages or broken routes.",
-      "Track Arcade starts, resets, and completion moments when useful."
+      "Track recovery actions from 404 pages or broken routes."
     ]),
 
     p(`Events become more useful when the team can compare them with routes, errors, SEO, accessibility, and recovery signals. For example, if users reach the pricing page but do not click the pricing button, the team may review the page copy or layout. If users start signup but do not complete it, the team may review the form. If users click recovery links from a 404 page, the team can see which missing routes still need repair.`),
@@ -5041,7 +4303,7 @@ Turn these notes into a clean launch checklist.`),
         ["Checkout", "checkout_started, checkout_step_completed, checkout_completed"],
         ["Contact", "contact_form_started, contact_form_submitted"],
         ["Docs", "docs_search_used, docs_result_clicked"],
-        ["404 recovery", "recovery_link_clicked, arcade_game_started"],
+        ["404 recovery", "recovery_link_clicked"],
         ["Onboarding", "onboarding_started, onboarding_step_completed, onboarding_completed"]
       ]
     ),
@@ -5090,7 +4352,7 @@ Turn these notes into a clean launch checklist.`),
   title: "API keys",
   summary: "Connect CavBot sites, embeds, and protected requests.",
   blocks: [
-    p(`API keys connect a CavBot workspace project to the websites, embeds, widgets, and requests that are allowed to send information into CavBot. They help CavBot know which project a request belongs to, which site should receive the signal, and whether the request is coming from an approved origin.`),
+    p(`API keys connect a CavBot workspace project to the websites and requests that are allowed to send information into CavBot. They help CavBot know which project a request belongs to, which site should receive the signal, and whether the request is coming from an approved origin.`),
 
     p(`In CavBot, an API key is not just a random string copied into a page. It is part of the trust boundary between a workspace, a site profile, and the public website using CavBot. The key helps CavBot separate one project from another and prevents signals from being mixed between unrelated websites.`),
 
@@ -5107,7 +4369,7 @@ Turn these notes into a clean launch checklist.`),
       ]
     ),
 
-    p(`Use API keys when installing Analytics v5, loading CavBot embeds, connecting site widgets, using CavBot runtime scripts, or sending approved browser-side requests into the platform. The key should match the workspace and site you are actually installing CavBot on.`),
+    p(`Use API keys when installing Analytics v5, connecting CavAi v3, or sending approved browser-side requests into the platform. The key should match the workspace and site you are actually installing CavBot on.`),
 
     p(`A normal website install should use the public project key generated for that site or workspace. This is the kind of key that can appear in browser-side configuration because it is meant to identify the public website install. Even then, it should still be scoped carefully and limited to the correct origin.`),
 
@@ -5649,7 +4911,7 @@ Turn these notes into a clean launch checklist.`),
       [
         ["final.html", "pricing-page-final-2026-05.html"],
         ["new-doc.txt", "seo-review-homepage-notes.txt"],
-        ["image.png", "cavbot-arcade-preview-card.png"],
+        ["image.png", "homepage-health-overview.png"],
         ["export.zip", "website-export-may-2026.zip"],
         ["notes.md", "launch-checklist-cavbot-docs.md"]
       ]
@@ -6969,7 +6231,7 @@ Turn these notes into a clean launch checklist.`),
     table(
       ["Plan", "Monthly", "Annual", "Websites", "Seats", "CavBot Cloud", "CavBot Vault", "Included access"],
       [
-        ["Free", "$0", "$0", "1", "4", "5 GB", "Not included", "Dashboard, routing, Control Room, and badge widgets."],
+        ["Free", "$0", "$0", "1", "4", "5 GB", "Not included", "Dashboard, routing, and basic website monitoring."],
         ["Plus", "$19.99", "$199.99", "6", "8", "50 GB", "10 GB", "Errors, SEO, protected storage, and expanded workspace capacity."],
         ["Pro", "$39.99", "$399.99", "20", "16", "500 GB", "50 GB", "Errors, SEO, Accessibility, Insights, advanced CavBot Vault features, and the highest current workspace limits."]
       ]
@@ -7401,630 +6663,6 @@ Turn these notes into a clean launch checklist.`),
   },
 
 
-  assets: {
-    path: "/docs/assets",
-    icon: "assets/logo/cavbot-logomark.svg",
-    label: "CavBot assets",
-    
-    title: "CavBot assets",
-    description: "Install CavBot visual surfaces for badges, compact CavBot presence, guided moments, Arcade recovery, and brand resources.",
-    sections: [
-     {
-  id: "cavbot-badge",
-  title: "Badge",
-  summary: "Show a compact CavBot trust marker.",
-  blocks: [
-    p(`The CavBot Badge is a compact trust marker that can be added to a website when CavBot is present. It gives visitors a small, visible sign that the site is connected to CavBot without changing the main page flow, blocking content, or turning the page into a support widget.`),
-
-    p(`Use the badge when a website should show a quiet CavBot presence. It is best for pages where trust, support, reliability, or product confidence matters, but where the visitor still needs to focus on the page itself.`),
-
-    p(`The badge is loaded from the CavBot CDN. This keeps the install lightweight and makes the badge easier to update without copying the full component into a customer website. The page only needs the badge stylesheet and the badge slot.`),
-
-    code('<link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">\n\n<div\n  data-cavbot-cdn-floating-badge="1"\n  data-cavbot-cdn-slot="badge"\n  aria-hidden="true"\n  style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>'),
-
-    p(`The floating badge appears near the bottom-right corner of the page by default. This placement works well for many marketing sites, dashboards, help pages, docs pages, and recovery pages because it stays visible without interrupting the primary content.`),
-
-    p(`Before using the floating version, check the page on desktop, tablet, and mobile. A badge that looks fine on a wide screen can cover important controls on a small screen if the page already has chat widgets, cookie banners, checkout controls, sticky buttons, support launchers, or mobile navigation.`),
-
-    table(
-      ["Placement", "Use it when"],
-      [
-        ["Floating bottom-right", "The page has enough clear space and no important controls in that corner."],
-        ["Footer", "The badge should feel like a trust mark instead of a persistent overlay."],
-        ["Support area", "The page already has help, contact, status, or support content."],
-        ["Status surface", "The site wants to show CavBot presence near reliability or trust information."],
-        ["Recovery page", "The badge supports a 404, fallback, or guided recovery experience."]
-      ]
-    ),
-
-    p(`The badge should support the page, not compete with it. It should not cover forms, payment buttons, checkout steps, login fields, navigation, accessibility controls, cookie consent controls, chat launchers, or any element a visitor needs in order to complete the page.`),
-
-    list([
-      "Use the badge where it can remain visible without blocking important content.",
-      "Keep the badge away from checkout, login, signup, and form controls.",
-      "Review the page on mobile after install.",
-      "Avoid placing the badge on top of another floating widget.",
-      "Use a footer or inline placement when the page is already crowded.",
-      "Keep the badge small and stable so it feels trustworthy, not distracting."
-    ]),
-
-    p(`The badge should be treated as a trust marker, not the main call to action. The visitor should still understand the page’s real purpose first, whether that is reading a document, starting a trial, completing checkout, contacting support, or returning from a broken route.`),
-
-    p(`Do not use the badge as a replacement for clear support links, privacy information, security statements, or status pages. It can point to CavBot presence, but the website should still provide the information visitors need in the correct page areas.`),
-
-    p(`For accessibility, the badge slot in the basic floating example is marked aria-hidden because it is decorative in that placement. If you turn the badge into an interactive link or support entry point, update the markup so screen readers receive a clear label and keyboard users can reach it properly.`),
-
-    note("Accessibility", "Decorative badge placements can stay hidden from assistive technology. Interactive badge placements must have a clear label, keyboard focus, and a real destination or action."),
-
-    p(`The badge should also respect the visual tone of the website. On a serious business page, it should feel calm and restrained. On a docs page, it should not distract from reading. On a recovery page, it can help show that CavBot is part of the experience, but it should not make the page feel crowded.`),
-
-    table(
-      ["Do", "Avoid"],
-      [
-        ["Place the badge in a clean, low-friction area.", "Placing it over buttons, inputs, menus, or consent controls."],
-        ["Use the CDN install when available.", "Copying internal badge source into the website manually."],
-        ["Review mobile placement after publishing.", "Assuming desktop placement works everywhere."],
-        ["Keep it quiet and consistent.", "Turning the badge into a loud visual element."],
-        ["Use inline placement when the page is crowded.", "Stacking the badge on top of other floating widgets."]
-      ]
-    ),
-
-    p(`After installing the badge, publish the site and open the live page. Confirm that the stylesheet loads, the badge appears in the intended place, the page layout does not shift, and no important control is blocked.`),
-
-    list([
-      "Open the live page after publishing.",
-      "Confirm the badge appears.",
-      "Confirm the badge does not cover key controls.",
-      "Test desktop and mobile widths.",
-      "Check pages with cookie banners, chat widgets, sticky CTAs, and mobile menus.",
-      "Move the badge to an inline or footer position if the floating placement creates friction."
-    ]),
-
-    p(`If the badge does not appear, confirm that the CDN stylesheet URL is correct, the badge slot is present in the page HTML, the page was published, the browser is not blocking the asset, and the badge container is not hidden by page CSS.`),
-
-    table(
-      ["Problem", "What to check"],
-      [
-        ["Badge does not show", "Confirm the stylesheet and badge slot are both present on the live page."],
-        ["Badge appears unstyled", "Confirm the CDN stylesheet loaded successfully."],
-        ["Badge covers another widget", "Move the badge, reduce the overlap, or use an inline/footer placement."],
-        ["Badge is hidden behind content", "Review z-index, parent overflow, and page stacking context."],
-        ["Badge looks wrong on mobile", "Adjust placement or avoid the floating badge on small screens."]
-      ]
-    ),
-
-    p(`Use the CavBot Badge with restraint. Its purpose is to show CavBot presence clearly and quietly. The best badge placement gives visitors confidence without asking them to think about the badge at all.`),
-
-    note("Core rule", "The badge should be visible, calm, and out of the way. It should support trust without interrupting the visitor’s task.")
-  ]
-},
-
-    {
-  id: "cavbot-head",
-  title: "Head",
-  summary: "Use a compact CavBot visual for guidance, setup, status, and empty states.",
-  blocks: [
-    p(`CavBot Head is the compact CavBot visual component. It gives a page a small CavBot presence without using the larger full-body character. Use it when the page needs a calm visual anchor for onboarding, setup confirmation, empty states, guidance moments, success states, waiting states, or lightweight status surfaces.`),
-
-    p(`The component is meant to support the page state. It should help the interface feel clearer, warmer, and more connected to CavBot, but it should never replace the actual instructions, labels, forms, buttons, warnings, or next steps the user needs.`),
-
-    p(`CavBot Head works best in moments where the user needs reassurance or orientation. For example, it can appear when a workspace has no sites yet, when a setup step has been completed, when a user needs to connect a site, when a page is waiting for data, or when CavBot is giving a small status cue.`),
-
-    table(
-      ["Use case", "How CavBot Head helps"],
-      [
-        ["Onboarding", "Adds a small CavBot presence while the user sets up the workspace."],
-        ["Empty states", "Makes a blank or unused area feel intentional instead of unfinished."],
-        ["Setup confirmation", "Supports success messages after a site, file, key, or workspace action is completed."],
-        ["Guidance moments", "Helps draw attention to instructions without turning the page into a full assistant screen."],
-        ["Status surfaces", "Gives lightweight visual feedback when a page is loading, waiting, or ready for review."]
-      ]
-    ),
-
-    code('<link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-head-orbit.css">\n\n<div data-cavbot-head-orbit></div>'),
-
-    p(`The component is loaded from the CavBot CDN. Use the documented stylesheet and component slot when adding CavBot Head to a public page or supported product surface. This keeps the install clean and avoids copying internal visual source files into a website.`),
-
-    p(`CavBot Head should be placed near the message it supports. If the page is explaining an empty state, place it close to the empty-state copy. If the page is confirming setup, place it near the confirmation message. If the page is guiding a user toward the next action, keep it close enough that the user understands why the visual is there.`),
-
-    list([
-      "Use CavBot Head for small guidance and status moments.",
-      "Place it near the message or state it supports.",
-      "Keep the main instructions and buttons clear.",
-      "Keep enough spacing around the component.",
-      "Test the layout on desktop and mobile.",
-      "Use CavBot Body instead when the page needs a larger branded visual presence."
-    ]),
-
-    p(`CavBot Head should not compete with the primary action. It should not sit on top of buttons, forms, navigation, menus, checkout controls, login fields, cookie banners, support widgets, or accessibility controls. If the page already has several visual elements, keep the component smaller or remove it.`),
-
-    table(
-      ["Good placement", "Avoid"],
-      [
-        ["Beside an empty-state message.", "Over a form field or button."],
-        ["Above a short setup confirmation.", "Inside a crowded toolbar."],
-        ["Near onboarding instructions.", "On top of mobile navigation."],
-        ["Inside a calm status card.", "Competing with charts, tables, or dense dashboard content."],
-        ["In a centered guidance section.", "Floating without a clear reason."]
-      ]
-    ),
-
-    p(`Use CavBot Head when the page benefits from a compact CavBot identity. Do not add it only to decorate the page. If the visual does not help the user understand the page, confirm a state, or feel guided through a moment, the page may not need it.`),
-
-    p(`For accessibility, do not rely on the visual component to communicate important information. Any important message must also appear as real text. A user should be able to understand the page even if the visual does not load, is hidden, or is not announced by assistive technology.`),
-
-    note("Accessibility", "CavBot Head can support a message, but the message itself must be written in text. Do not make the visual the only source of meaning."),
-
-    p(`On small screens, review the component carefully. A visual that feels balanced on desktop may crowd the page on mobile. Keep the component away from sticky buttons, mobile menus, sign-in controls, and any action the user needs to complete the flow.`),
-
-    p(`If the component is used on a loading or waiting state, make sure the page also explains what is happening. The user should know whether CavBot is loading data, checking a workspace, preparing a preview, confirming setup, or waiting for an action to finish.`),
-
-    table(
-      ["State", "Recommended page copy"],
-      [
-        ["Loading", "Explain what CavBot is loading."],
-        ["Empty state", "Explain what is missing and what the user should do next."],
-        ["Success", "Confirm what was completed."],
-        ["Setup", "Explain the next step clearly."],
-        ["Waiting", "Tell the user what CavBot is waiting for."]
-      ]
-    ),
-
-    p(`CavBot Head is different from CavBot Body. CavBot Head is compact and should be used for smaller moments. CavBot Body is larger and should be reserved for stronger branded scenes, launch states, guided recovery screens, and pages where the visual is meant to be a major part of the layout.`),
-
-    p(`If CavBot Head does not appear after installation, confirm that the CDN stylesheet is loading, the component slot is present, the page was published, the browser is not blocking the asset, and local page CSS is not hiding the component.`),
-
-    table(
-      ["Problem", "What to check"],
-      [
-        ["Component does not show", "Confirm the stylesheet and component slot are both present on the live page."],
-        ["Component appears unstyled", "Confirm the CDN stylesheet loaded successfully."],
-        ["Component crowds the layout", "Add spacing, reduce the surrounding content, or move it to a calmer section."],
-        ["Component overlaps controls", "Move it away from forms, buttons, navigation, and sticky page elements."],
-        ["Component looks wrong on mobile", "Adjust placement or remove it from the small-screen layout."]
-      ]
-    ),
-
-    p(`Use CavBot Head with restraint. It should make the page feel more intentional, not heavier. The strongest use is simple: a compact CavBot presence, a clear message, and an obvious next step.`),
-
-    note("Layout", "Keep enough space around the component so it does not crowd the page or compete with primary actions.")
-  ]
-},
-
-{
-  id: "cavbot-body",
-  title: "Body",
-  summary: "Use the larger CavBot visual.",
-  blocks: [
-    p(`CavBot Body is the larger CavBot visual presence for pages that need a stronger guide, recovery anchor, or branded product moment. It is designed for moments where a small badge or compact head is not enough to support the message on the page.`),
-
-    p(`Use CavBot Body when the page needs CavBot to feel present as a guide, not just as a quiet trust marker. It can support onboarding, launch states, recovery screens, empty states, help pages, product walkthroughs, 404 experiences, and moments where the user needs orientation.`),
-
-    p(`CavBot Body should not be placed on every page. It is a heavier visual asset than the badge or head, so it should be used only when the page has enough space and the experience benefits from a clear CavBot presence.`),
-
-    code('<link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-full-body.css">\n\n<div data-cavbot-full-body></div>'),
-
-    p(`The basic install loads the CavBot Body stylesheet from the CavBot CDN and places the body component where the page should render it. The component should be placed inside a section with enough room around it, not squeezed into a crowded layout or placed over important content.`),
-
-    p(`CavBot Body works best when it supports a clear message. For example, it can appear beside a setup instruction, above a recovery action, inside a helpful empty state, or near a page that explains what the user should do next.`),
-
-    table(
-      ["Placement", "Use it when"],
-      [
-        ["Onboarding section", "A new user needs guidance before connecting a website or starting setup."],
-        ["Empty state", "A workspace, dashboard, or tool has no data yet and needs a clear next step."],
-        ["Recovery page", "A broken route, 404 page, or fallback state needs a stronger CavBot presence."],
-        ["Support page", "The page is guiding a user toward help, contact, status, or troubleshooting."],
-        ["Launch state", "A feature, site, or workspace has just been created and the user needs orientation."],
-        ["Product walkthrough", "The page is explaining how CavBot helps the user move through a task."]
-      ]
-    ),
-
-    p(`Do not use CavBot Body as decoration only. If the page does not need a guide, use the Badge or CavBot Head instead. CavBot Body should earn its space by helping the user understand the page, recover from a problem, or continue a workflow.`),
-
-    list([
-      "Use CavBot Body when the page needs a stronger CavBot guide.",
-      "Keep enough space around the visual.",
-      "Place it near useful copy, buttons, or recovery actions.",
-      "Avoid using it on dense pages where it crowds the content.",
-      "Review the layout on desktop, tablet, and mobile.",
-      "Use CavBot Head or Badge when the page only needs a smaller presence."
-    ]),
-
-    p(`CavBot Body should not hide the main action. If the page asks the user to connect a site, install a snippet, contact support, return home, open a dashboard, or complete setup, that action should remain easier to notice than the visual.`),
-
-    p(`On smaller screens, CavBot Body needs extra care. A large visual can quickly crowd text, buttons, forms, cards, menus, or sticky navigation. If the component makes the page harder to read or use on mobile, reduce its size, move it lower on the page, or replace it with CavBot Head.`),
-
-    note("Mobile review", "Always check CavBot Body on mobile. If it crowds the page, use a smaller placement or switch to CavBot Head."),
-
-    p(`CavBot Body is different from the badge, head, and Arcade. The badge is a small trust marker. CavBot Head is a compact guide for lighter moments. CavBot Body is for stronger guided moments. Arcade is for playable or recovery experiences.`),
-
-    table(
-      ["Asset", "Best use"],
-      [
-        ["Badge", "Small CavBot trust marker."],
-        ["CavBot Head", "Compact guidance, onboarding, empty states, or small product moments."],
-        ["CavBot Body", "Larger guided moments, recovery screens, launch states, and stronger branded surfaces."],
-        ["Arcade", "Playable experiences and 404 recovery moments."]
-      ]
-    ),
-
-    p(`When using CavBot Body on a recovery page, pair it with clear recovery links. A visitor should always have a simple way to return home, search, contact support, open docs, visit pricing, or continue to another useful route.`),
-
-    p(`When using CavBot Body in onboarding, keep the instructions direct. The visual should make the page feel guided, but the text still needs to explain exactly what the user should do next.`),
-
-    p(`When using CavBot Body in a product surface, avoid placing it where it competes with the actual tool. A dashboard, editor, report, or settings page should keep the work area clear. CavBot Body belongs in states where guidance is needed, not where the user is already working inside a dense interface.`),
-
-    table(
-      ["Do", "Avoid"],
-      [
-        ["Use it beside clear guidance or recovery copy.", "Using it as decoration without a purpose."],
-        ["Keep the main action visible.", "Letting the visual overpower the button or instruction."],
-        ["Use it on onboarding, support, launch, and recovery pages.", "Adding it to every page by default."],
-        ["Test mobile layout after publishing.", "Assuming the desktop layout works on small screens."],
-        ["Switch to CavBot Head when space is tight.", "Forcing the full body into crowded sections."]
-      ]
-    ),
-
-    p(`For accessibility, the visual should not replace real text. The page still needs readable headings, clear instructions, visible buttons, and proper link text. If CavBot Body is decorative, it can remain hidden from assistive technology. If it becomes interactive, it must have a clear label, keyboard focus, and a real action.`),
-
-    note("Accessibility", "CavBot Body can support the experience visually, but the page still needs clear text, proper buttons, and usable navigation."),
-
-    p(`After installing CavBot Body, publish the page and review the live version. Check that the stylesheet loads, the visual appears in the correct place, the layout does not shift unexpectedly, and the component does not cover or crowd important controls.`),
-
-    list([
-      "Open the live page after publishing.",
-      "Confirm the CavBot Body stylesheet loads.",
-      "Confirm the visual appears where expected.",
-      "Check that the main action is still clear.",
-      "Test desktop, tablet, and mobile widths.",
-      "Confirm the visual does not cover text, buttons, forms, or navigation.",
-      "Use CavBot Head instead if the full body feels too heavy."
-    ]),
-
-    p(`If CavBot Body does not appear, confirm that the CDN stylesheet URL is correct, the component slot is present in the page HTML, the page has been published, and no page CSS is hiding or overriding the component.`),
-
-    table(
-      ["Problem", "What to check"],
-      [
-        ["Body does not show", "Confirm the stylesheet and component slot are both present on the live page."],
-        ["Body appears unstyled", "Confirm the CDN stylesheet loaded successfully."],
-        ["Body is too large", "Move it to a wider section, reduce the placement size, or use CavBot Head."],
-        ["Body crowds mobile content", "Change the mobile layout or replace it with a smaller CavBot asset."],
-        ["Body covers a button or form", "Move the component away from the primary action."],
-        ["Body feels distracting", "Use Badge or CavBot Head instead."]
-      ]
-    ),
-
-    p(`Use CavBot Body with restraint. It should make a page feel guided, clear, and intentional. It should never make the page feel crowded, heavy, or harder to use.`),
-
-    note("Use carefully", "CavBot Body should strengthen the page. It should not hide the main action, crowd the layout, or make the experience feel heavy.")
-  ]
-},
-
-   {
-  id: "arcade-404",
-  title: "CavBot Arcade",
-  summary: "Play CavBot Arcade games inside the platform and use selected games for better 404 recovery.",
-  blocks: [
-    p(`CavBot Arcade is the interactive game hub inside CavBot. It gives users a place to open, explore, preview, and play CavBot Arcade games directly from the platform without installing anything on a website first.`),
-
-    p(`Arcade has two connected roles. First, it is a playable product surface inside CavBot where users can experience the full game collection. Second, it can support broken-page recovery when a team chooses to install an Arcade experience on a live 404 page.`),
-
-    p(`Inside the CavBot platform, all six CavBot Arcade games are available to play at any time. Free, Plus, and Pro users can open Arcade, choose a game, test the controls, learn the pacing, compare the experience, and decide which game feels right before using it on a public website.`),
-
-    p(`This matters because a 404 recovery experience should not be chosen blindly. A game that feels right for a playful product may not fit a serious business page. Arcade lets owners, admins, designers, developers, and support teams review the experience first, then decide whether it belongs on a live route.`),
-
-    table(
-      ["Arcade use", "What it means"],
-      [
-        ["Play inside CavBot", "Users can open Arcade and play the full game collection directly from the platform."],
-        ["Preview before install", "Teams can test the experience before choosing a game for a public 404 page."],
-        ["Demo for teammates", "Owners, admins, developers, designers, and support teams can review the game flow together."],
-        ["404 recovery", "A selected Arcade game can be used on a missing page to help visitors recover."],
-        ["Product discovery", "Users can understand what CavBot Arcade offers before using it on a live site."]
-      ]
-    ),
-
-    p(`Arcade should be understood as a product surface first. It is a place to play, test, and understand the games. The 404 recovery use case is an extension of that experience, not the only reason Arcade exists.`),
-
-    p(`When Arcade is used for broken-page recovery, the goal is to improve a moment that would otherwise feel like a dead end. A visitor who reaches a missing route should not be left with only a cold “Page Not Found” message and no clear path forward. Arcade can make that moment feel more intentional while still helping the visitor return to the site.`),
-
-    p(`A 404 page appears when a visitor reaches a route the website cannot find. This can happen because a page was deleted, a link was typed wrong, a campaign URL changed, a product route moved, a redirect was missed, or an old link still exists somewhere on the internet.`),
-
-    p(`Most broken-page experiences end the visitor’s path too quickly. Arcade gives teams a way to soften that moment without pretending the problem does not exist. The page can still say the route was not found, but it can also give the visitor something useful, branded, and clear to do next.`),
-
-    p(`A strong Arcade recovery page has three parts: a clear message, a useful recovery path, and an optional game experience. The message explains that the page could not be found. The recovery path gives visitors somewhere useful to go. The Arcade experience makes the broken moment feel designed instead of abandoned.`),
-
-    table(
-      ["404 recovery part", "Purpose"],
-      [
-        ["Clear message", "Tell the visitor that the page was not found without blaming them."],
-        ["Recovery links", "Give the visitor a direct path back to a useful page."],
-        ["Arcade game", "Add a short, branded interaction that makes the broken moment feel more intentional."],
-        ["Tracking context", "Let CavBot understand that the visitor reached a missing route."],
-        ["Follow-up review", "Help the team decide whether the route needs a redirect, restore, or link fix."]
-      ]
-    ),
-
-    p(`The game should never become a wall. Visitors should not feel trapped, confused, or forced to play before they can continue. Recovery links should stay visible, the page should still explain that the route was not found, and the visitor should always have a simple way back.`),
-
-    list([
-      "Use Arcade inside CavBot to play and preview the full game collection.",
-      "Use Arcade before installation to decide which game fits a website.",
-      "Use Arcade on a 404 page when a missing route needs a better recovery moment.",
-      "Use clear recovery links so visitors can return home, search, contact support, or continue to another page.",
-      "Use 404 Recovery after launch to review which missing routes still need repair.",
-      "Do not use Arcade as a replacement for fixing important broken links."
-    ]),
-
-    p(`Plan access affects which Arcade games can be selected for a live website recovery install. The in-platform Arcade play area stays open to the full game collection, but public 404 installs follow plan limits.`),
-
-    table(
-      ["Plan", "Arcade inside CavBot", "Live 404 game selection"],
-      [
-        ["Free", "All six games are playable inside Arcade.", "1 installable 404 game can be selected for a website."],
-        ["Plus", "All six games are playable inside Arcade.", "3 installable 404 games can be selected for a website."],
-        ["Pro", "All six games are playable inside Arcade.", "All 6 installable 404 games can be selected for a website."]
-      ]
-    ),
-
-    note("Plan rule", "All six games are playable inside CavBot Arcade. Plan limits apply to which games can be selected for a public 404 recovery install."),
-
-    p(`The difference is important. Playing games inside Arcade is always available across plans. Selecting which games can be installed publicly on a live 404 page depends on the active plan.`),
-
-    p(`Use Arcade inside CavBot when you want to test controls, compare game styles, review pacing, show teammates the experience, or decide whether a game fits a public website before installing it.`),
-
-    p(`Use Arcade on a public website when a broken page needs a stronger recovery experience. This is useful for websites with old links, campaign URLs, moved content, deleted routes, mistyped URLs, product pages that changed, or support links that still receive traffic.`),
-
-    table(
-      ["Situation", "How Arcade helps"],
-      [
-        ["Old links still receive visits", "The visitor gets a better recovery moment while the team reviews the route."],
-        ["Campaign URLs are mistyped", "The page can guide visitors back to the right destination."],
-        ["Content was moved", "Arcade can protect the experience until a redirect is added."],
-        ["A product route no longer exists", "The visitor can recover instead of landing on a dead end."],
-        ["A team wants a branded 404 page", "The missing-page experience feels intentional instead of unfinished."]
-      ]
-    ),
-
-    p(`Arcade should never be used to ignore broken routes. If a missing URL receives repeated visits, the team should still decide whether to restore the page, add a redirect, fix the internal link, update a campaign URL, or remove the source of the bad path.`),
-
-    p(`The best recovery experience combines Arcade with clear navigation. The visitor should always have a direct way to return home, open search, visit pricing, contact support, view docs, open the dashboard, or continue to another important page.`),
-
-    list([
-      "Add a clear Home link.",
-      "Add a useful Search or Docs link when the site has documentation.",
-      "Add Support or Contact when the visitor may need help.",
-      "Add Pricing, Dashboard, Product, or Account links when those routes matter to the business.",
-      "Keep the recovery actions visible near the game.",
-      "Do not make the game the only way forward."
-    ]),
-
-    p(`The right game depends on the website. A playful brand may use a faster or more expressive game. A serious business page may need a calmer game, more direct copy, and stronger recovery links. The best choice is the one that helps the visitor recover without making the website feel careless.`),
-
-    table(
-      ["Website type", "Arcade direction"],
-      [
-        ["Startup or product site", "Use a clear recovery layout with a game that feels modern and light."],
-        ["Developer product", "Keep the copy direct and include docs, dashboard, or support links."],
-        ["Storefront", "Keep product search, collections, cart, and support paths easy to reach."],
-        ["Portfolio or brand site", "Use Arcade as a polished branded moment with simple return links."],
-        ["Serious business site", "Use a calmer Arcade experience and keep recovery actions clear."]
-      ]
-    ),
-
-    p(`When using Arcade as a website recovery surface, install it through the approved CavBot runtime or CDN loader. This keeps the public install cleaner and avoids copying the full game runtime directly into customer-facing source files when the production setup is meant to load the experience remotely.`),
-
-    p(`After installing Arcade on a 404 route, open the live missing-page URL and test the experience as a visitor would. Confirm that the game loads, the controls work, the layout does not break on mobile, the recovery links are visible, and CavBot records the recovery context.`),
-
-    table(
-      ["After install", "What to verify"],
-      [
-        ["Game loads", "The selected Arcade experience appears on the live 404 page."],
-        ["Controls work", "The visitor can play, reset, or continue without confusion."],
-        ["Recovery links are visible", "The visitor has a clear way back to a useful route."],
-        ["Mobile layout works", "The game does not crowd the page or hide buttons on small screens."],
-        ["CavBot records context", "The recovery moment can be reviewed inside CavBot."],
-        ["404 route still gets reviewed", "The team checks whether the missing path needs a redirect or repair."]
-      ]
-    ),
-
-    p(`After launch, review 404 Recovery. Arcade improves the visitor experience, but 404 Recovery helps the team understand which broken routes are still happening, how often they appear, and whether the route deserves a fix.`),
-
-    p(`A route that appears once may be a typo. A route that appears repeatedly may point to a real problem. It may be linked from a menu, old campaign, search result, email, social post, third-party page, or saved bookmark. Repeated 404s should be reviewed instead of ignored.`),
-
-    table(
-      ["404 pattern", "What it may mean"],
-      [
-        ["One random missing route", "A visitor may have typed the URL incorrectly."],
-        ["Repeated missing product page", "A product route may have been moved or deleted without a redirect."],
-        ["Repeated campaign path", "A campaign link may be wrong or outdated."],
-        ["Old blog or docs route", "Content may have moved without a redirect."],
-        ["Missing asset path", "An image, script, stylesheet, or file may be referenced incorrectly."],
-        ["Many similar broken routes", "A site migration, slug change, or routing rule may need review."]
-      ]
-    ),
-
-    p(`When 404 Recovery shows repeated activity, decide what the route deserves. Some routes should be redirected. Some should be restored. Some should be fixed at the source link. Some should remain as 404s if the path is invalid and not useful.`),
-
-    list([
-      "Redirect the route when the content moved to a new location.",
-      "Restore the route when the page still matters.",
-      "Fix the source link when the website is pointing visitors to the wrong URL.",
-      "Update campaign URLs when ads, emails, or social posts are sending bad traffic.",
-      "Leave the route as a 404 when it is clearly invalid and does not deserve a destination.",
-      "Keep Arcade active when the missing-page experience should remain polished."
-    ]),
-
-    p(`Arcade and 404 Recovery work best together. Arcade protects the visitor experience in the moment. 404 Recovery helps the team understand what needs to be repaired after the visit happens.`),
-
-    note("Recovery rule", "Arcade improves the broken-page experience, but the team should still fix repeated missing routes through redirects, restored pages, or corrected links."),
-
-    p(`If Arcade does not appear on the live 404 page, check that the website was published, the correct recovery route is being tested, the Arcade loader is present, the browser is not blocking the asset, and the selected game is allowed for the workspace plan.`),
-
-    table(
-      ["Problem", "What to check"],
-      [
-        ["Arcade does not show", "Confirm the approved runtime or CDN loader is present on the live recovery page."],
-        ["Wrong game appears", "Check the selected game in the CavBot Arcade or 404 recovery settings."],
-        ["Game appears but controls fail", "Test the page in another browser and confirm scripts are not blocked."],
-        ["Game crowds mobile layout", "Adjust the 404 page layout or choose a simpler recovery placement."],
-        ["Recovery links are missing", "Add clear links back to useful pages."],
-        ["Repeated broken route continues", "Review the route in 404 Recovery and decide whether to redirect, restore, or fix the source link."]
-      ]
-    ),
-
-    p(`For developers, the 404 page should be treated like a real route. It should load reliably, work on mobile, include the approved Arcade loader, preserve recovery links, avoid blocking navigation, and send enough context for CavBot to understand that a recovery moment happened.`),
-
-    p(`For owners and admins, the 404 page should be reviewed as part of site quality. A polished 404 page protects trust, but it does not remove the need to keep links, redirects, campaigns, and important routes clean.`),
-
-    p(`For visitors, the experience should be simple. They reached a page that does not exist, but the site gives them a clear way forward. Arcade can make that moment feel less frustrating, but the recovery path should always stay obvious.`),
-
-    table(
-      ["Audience", "What Arcade should provide"],
-      [
-        ["Visitor", "A clear, low-friction way to recover from a missing page."],
-        ["Owner", "A more polished 404 experience and a signal that the route needs review."],
-        ["Developer", "A controlled recovery surface that can be installed, tested, and verified."],
-        ["Support team", "A cleaner page to send visitors back from when links fail."],
-        ["Marketing team", "A safer fallback when old campaign links still receive traffic."]
-      ]
-    ),
-
-    p(`Arcade also supports product demos and team review. A founder, developer, designer, or support lead can open Arcade inside CavBot, play through the games, and decide which experience feels appropriate before it ever touches a production page.`),
-
-    p(`Arcade should feel designed, not random. The game should match the page, the recovery links should be clear, and the visitor should understand how to leave the broken moment without friction.`),
-
-    p(`When using Arcade only inside CavBot, no install is required. Open the Arcade, choose a game, and start playing. This is the simplest way to explore the full CavBot Arcade collection.`),
-
-    p(`When using Arcade on a public 404 page, treat it like part of the website experience. Test it carefully, keep recovery actions visible, review 404 Recovery after launch, and repair any route that continues to receive meaningful traffic.`),
-
-    note("Core rule", "Arcade should make broken moments feel intentional, but the real goal is recovery: help visitors continue, help teams see what happened, and help the website stay easier to trust.")
-  ]
-},
-
-  {
-  id: "brand-resources",
-  title: "Brand resources",
-  summary: "Use approved CavBot brand files and follow CavBot brand usage rules.",
-  blocks: [
-    p(`Brand resources are the approved CavBot files, marks, visuals, and usage guidance made available for public and product-facing use. These resources help keep CavBot’s identity consistent across websites, documents, product surfaces, press materials, demos, integrations, and partner references.`),
-
-    p(`The approved CavBot brand resource location is brand.cavbot.io. Use that site as the primary source for CavBot marks, logotypes, product visuals, brand files, and brand guidance. When an approved CDN asset or documented brand resource exists, use that version instead of copying internal source files, screenshots, draft files, design exports, or private app assets into a public website.`),
-
-    p(`CavBot brand assets should be treated as controlled brand materials. They may be used to identify CavBot, show that a website uses CavBot, present CavBot in a product integration, reference CavBot in documentation, or display approved trust and platform visuals. They should not be changed, distorted, misrepresented, or used in a way that creates confusion about CavBot, its ownership, its products, or its relationship to another company.`),
-
-    table(
-      ["Resource", "Approved use"],
-      [
-        ["CavBot marks", "Use approved logos and logotypes to identify CavBot clearly."],
-        ["Product visuals", "Use approved product images or screenshots when showing CavBot in context."],
-        ["CDN assets", "Use documented CDN badge, body, and product surfaces when available."],
-        ["Press and media files", "Use approved files for articles, founder materials, demos, and public mentions."],
-        ["Developer assets", "Use documented assets for integrations, embeds, badges, and installation surfaces."]
-      ]
-    ),
-
-    p(`All public use of CavBot brand resources should be accurate. A CavBot mark should only appear where CavBot is actually being referenced, integrated, installed, discussed, documented, or represented. Do not use CavBot marks to suggest sponsorship, certification, partnership, approval, security review, or official endorsement unless CavBot has clearly granted that relationship.`),
-
-    p(`When using CavBot marks publicly, keep the mark clear, readable, and aligned with approved brand usage. Do not stretch, compress, skew, recolor, crop, outline, rotate, add effects, place the mark inside a different shape, cover part of the mark, or place it on backgrounds that make it hard to read.`),
-
-    list([
-      "Use approved files from brand.cavbot.io.",
-      "Use documented CDN assets when a CDN version exists.",
-      "Keep CavBot marks clear and readable.",
-      "Do not stretch, recolor, distort, crop, or modify the mark.",
-      "Do not copy private source files into public websites.",
-      "Do not imply partnership, certification, or endorsement without approval.",
-      "Do not use CavBot brand assets in a misleading, harmful, or confusing way."
-    ]),
-
-    p(`The CavBot Badge, CavBot Body, Arcade surfaces, and other documented visual installs should be loaded through the approved CDN or runtime path when available. This keeps public installs cleaner, reduces version drift, and prevents teams from pasting internal implementation files into customer-facing websites.`),
-
-    p(`Do not use internal CavBot source files as brand resources. Internal files may contain development paths, private naming, unfinished visuals, implementation details, or assets that were not approved for public use. Public brand usage should come from the brand site, approved CDN paths, or documented install snippets.`),
-
-    note("Approved source", "Use brand.cavbot.io and documented CDN assets as the source of truth for public CavBot brand usage."),
-
-    p(`CavBot brand resources may be used in documentation, integration pages, partner references, press materials, launch posts, product walkthroughs, customer implementation pages, and internal team materials when the use is clear, accurate, and respectful of the CavBot identity.`),
-
-    table(
-      ["Use case", "Guidance"],
-      [
-        ["Website integration", "Use approved badge or documented CavBot visual surfaces."],
-        ["Documentation", "Use the CavBot name and approved marks when explaining an integration or workflow."],
-        ["Press or media", "Use approved brand files and avoid editing the mark."],
-        ["Product screenshots", "Use current visuals that accurately represent the product state."],
-        ["Partner reference", "Only imply partnership if that relationship has been approved."],
-        ["Internal decks", "Use approved assets so team materials stay consistent."]
-      ]
-    ),
-
-    p(`Do not use CavBot brand resources in a way that damages trust, creates confusion, or presents CavBot as something it is not. Do not use the brand in connection with unlawful activity, deceptive products, impersonation, malware, spam, abusive automation, misleading claims, or products that falsely suggest CavBot is monitoring, securing, verifying, or approving something it does not actually support.`),
-
-    p(`Do not combine CavBot marks with another company’s name, logo, icon, mascot, slogan, or product identity in a way that creates a new joint mark unless CavBot has approved that use. The CavBot mark should remain separate, recognizable, and clearly tied to CavBot.`),
-
-    table(
-      ["Do", "Avoid"],
-      [
-        ["Use the official CavBot files.", "Using screenshots, drafts, or private source exports as public assets."],
-        ["Keep the mark readable.", "Placing the logo on busy, low-contrast, or unclear backgrounds."],
-        ["Use the CDN badge when documented.", "Copying internal badge code into a public site."],
-        ["Describe the integration accurately.", "Claiming CavBot endorsement without approval."],
-        ["Keep CavBot visually separate from other marks.", "Creating a combined logo or fake partnership mark."],
-        ["Review public pages after install.", "Publishing brand assets without checking placement and readability."]
-      ]
-    ),
-
-    p(`When showing CavBot inside a product, do not make the brand appear larger than the actual relationship. If CavBot is installed as a badge, show it as a badge. If CavBot is used as an analytics, monitoring, recovery, or assistant layer, describe that role clearly. Do not present CavBot as the owner of another website, the operator of another company, or the final authority over a third-party service unless that is formally true.`),
-
-    p(`When using screenshots, product previews, or interface visuals, make sure the image reflects a real or approved CavBot product state. Do not publish outdated, broken, misleading, unfinished, or private admin views unless they are clearly approved for that purpose.`),
-
-    p(`Screenshots should not expose private data, user emails, API keys, workspace secrets, billing details, customer records, private project names, unreleased features, or internal staff tools. Redact sensitive information before using any CavBot product image publicly.`),
-
-    list([
-      "Check screenshots for private data before publishing.",
-      "Remove API keys, emails, billing data, and customer details.",
-      "Do not show private admin surfaces unless they are approved.",
-      "Use current product visuals when possible.",
-      "Avoid screenshots that misrepresent what CavBot currently offers."
-    ]),
-
-    p(`Brand resources should also be used with accessibility in mind. Marks should have enough contrast against the background. Text inside brand visuals should remain readable. Interactive brand placements should have clear labels, keyboard access, and a real destination or action when they are used as links or controls.`),
-
-    note("Accessibility", "A decorative CavBot mark can stay visually quiet. An interactive CavBot mark must be clear, labeled, reachable by keyboard, and understandable to assistive technology."),
-
-    p(`CavBot brand resources should not replace required legal, privacy, security, or support information. A CavBot Badge can show presence, but it should not be used as a substitute for clear terms, privacy notices, security pages, help links, status information, or customer support paths.`),
-
-    p(`For developer installs, use generated snippets and documented CDN references whenever possible. Generated snippets reduce mistakes in asset paths, project keys, site IDs, placement, script order, and version handling. Manual asset use should be reserved for cases where the platform requires manual placement.`),
-
-    table(
-      ["Problem", "What to check"],
-      [
-        ["Logo looks stretched", "Use the original file and preserve its proportions."],
-        ["Logo is hard to read", "Move it to a cleaner background or use an approved version with better contrast."],
-        ["Badge does not match the docs", "Confirm the CDN path and install snippet are the documented version."],
-        ["Asset looks outdated", "Return to brand.cavbot.io and download the current approved file."],
-        ["Public page implies endorsement", "Rewrite the copy so the relationship is accurate."],
-        ["Screenshot exposes private data", "Remove the image, redact the information, and republish only after review."]
-      ]
-    ),
-
-    p(`If a use case is not clearly covered by the approved brand resources, use restraint. Do not invent new CavBot logos, unofficial color systems, unapproved mascots, altered icons, fake badges, partner seals, certification marks, or trust labels. If the public page needs a CavBot mark, use the approved asset closest to the purpose.`),
-
-    p(`CavBot may update its brand resources over time. Logos, product visuals, CDN paths, badge styles, screenshots, and usage guidance may change as the platform grows. Teams should review brand assets before major launches, public announcements, integration releases, investor materials, or customer-facing documentation updates.`),
-
-    p(`The safest rule is simple: use the approved CavBot asset, keep it clear, describe CavBot honestly, and do not modify the brand to fit a use that has not been approved.`),
-
-    note("Core rule", "CavBot brand resources must stay approved, accurate, readable, and honest. Use the official source, preserve the mark, and do not imply a relationship CavBot has not granted.")
-  ]
-},
-
-
-    ]
-  },
-
-
   install: {
     path: "/docs.html/install",
     icon: "assets/icons/docs/integrations-svgrepo-com.svg",
@@ -8104,7 +6742,7 @@ Turn these notes into a clean launch checklist.`),
         ["Account access", "A user cannot sign in, cannot reach the right workspace, or sees the wrong account state."],
         ["Workspace access", "A teammate cannot access the correct project, role, module, file, or setting."],
         ["Site connection", "A site will not connect, verify, publish activity, or match the expected origin."],
-        ["Snippet install", "Analytics v5, SDK, badge, Arcade, or other runtime snippets do not load or verify."],
+        ["Snippet install", "Analytics v5 or CavAi v3 does not load or verify."],
         ["Billing", "A plan, checkout, subscription, invoice, downgrade, upgrade, or payment state needs review."],
         ["Modules", "Console, 404 Recovery, Error Intelligence, A11y, CavAi, Code Editor, CavBot Cloud, CavBot Vault, or another surface shows unexpected behavior."]
       ]
@@ -8132,8 +6770,8 @@ Turn these notes into a clean launch checklist.`),
       [
         ["Site will not verify", "Site origin, installed route, publish status, browser, and any verification message."],
         ["Analytics not appearing", "Site origin, install page, snippet type, time tested, and whether requests appear in the network panel."],
-        ["Badge or visual asset missing", "Live URL, installed snippet, page placement, and whether the CDN asset loads."],
-        ["Arcade or 404 recovery issue", "Missing route tested, selected game, plan, live URL, and whether recovery links appear."],
+        ["Analytics v5 install issue", "Live URL, installed snippet, page placement, and whether the analytics request loads."],
+        ["404 Recovery issue", "Missing route tested, plan, live URL, and whether recovery links appear."],
         ["CavAi or Caven issue", "Prompt goal, selected workspace or file, model or mode used, and what result looked wrong."],
         ["Code Editor issue", "File path, action attempted, error shown, and whether the issue happens after refresh."],
         ["CavBot Cloud or CavBot Vault issue", "File or folder name, action attempted, access role, and current file location."],
@@ -8207,9 +6845,9 @@ Turn these notes into a clean launch checklist.`),
   blocks: [
     p(`Status is the CavBot service health surface. Use it to understand whether a problem is coming from CavBot itself, a connected CavBot service, a CDN asset, a workspace setting, a site install, or a local browser issue.`),
 
-    p(`Check Status before making changes when multiple CavBot areas appear unavailable at the same time. If CavAi, Code Editor, CavBot Cloud, Analytics v5, the HTML Viewer, Arcade, or CDN-loaded assets are all behaving unexpectedly, the issue may not be your workspace configuration. Status helps you slow down and confirm the platform condition before changing keys, snippets, files, roles, or site settings.`),
+    p(`Check Status before making changes when multiple CavBot areas appear unavailable at the same time. If CavAi, Code Editor, CavBot Cloud, Analytics v5, the HTML Viewer, or CDN-loaded assets are all behaving unexpectedly, the issue may not be your workspace configuration. Status helps you slow down and confirm the platform condition before changing keys, snippets, files, roles, or site settings.`),
 
-    p(`The Status page can cover core CavBot surfaces such as CavBot Analytics v5, CavAi v3, CavBot Terminal, Code Editor, HTML Viewer, CavBot Cloud, CavBot Vault, Arcade, CDN assets, authentication, billing, and related platform routes. It gives users a clearer place to check whether CavBot is operating normally or whether a known issue is already being reviewed.`),
+    p(`The Status page can cover core CavBot surfaces such as CavBot Analytics v5, CavAi v3, CavBot Terminal, Code Editor, HTML Viewer, CavBot Cloud, CavBot Vault, 404 Recovery, CDN assets, authentication, billing, and related platform routes. It gives users a clearer place to check whether CavBot is operating normally or whether a known issue is already being reviewed.`),
 
     table(
       ["Status area", "What it helps you understand"],
@@ -8222,8 +6860,8 @@ Turn these notes into a clean launch checklist.`),
         ["HTML Viewer", "Whether HTML previews, mounted files, and rendered assets can be viewed correctly."],
         ["CavBot Cloud", "Whether workspace files, folders, uploads, previews, sharing, and storage actions are working."],
         ["CavBot Vault", "Whether protected storage, owner-only access, and secure file actions are working."],
-        ["Arcade", "Whether CavBot Arcade games and 404 recovery experiences are available."],
-        ["CDN assets", "Whether badges, body visuals, Arcade loaders, SDK files, and public assets can load from the CDN."],
+        ["404 Recovery", "Whether broken-route monitoring and recovery reporting are available."],
+        ["CDN assets", "Whether current SDK files and public assets can load from the CDN."],
         ["Billing", "Whether checkout, subscriptions, upgrades, downgrades, and plan state updates are working."],
         ["Authentication", "Whether sign in, sessions, account access, and protected routes are working."]
       ]
@@ -8266,7 +6904,7 @@ Turn these notes into a clean launch checklist.`),
       ["If this is affected", "Review next"],
       [
         ["Analytics v5 is delayed or missing", "Check Integrations, Analytics v5, API Keys, Events, and the installed snippet."],
-        ["A badge, body visual, SDK, or Arcade install does not load", "Check Assets, SDK, Arcade, CDN snippet placement, and browser console output."],
+        ["Analytics v5 or CavAi v3 does not load", "Check Integrations, SDK placement, the browser console, and the selected site values."],
         ["CavAi does not respond correctly", "Check CavAi, Models, Assistant Memory, Agent Workflows, and workspace context."],
         ["Caven or Code Editor has issues", "Check Code Editor, Caven, CavBot Terminal, Cav Commands, and the active file or workspace."],
         ["HTML preview is wrong", "Check HTML Viewer, CavBot Cloud, CavBot Vault, file paths, assets, and the selected file version."],
@@ -8279,14 +6917,14 @@ Turn these notes into a clean launch checklist.`),
 
     p(`Status should be part of the first review step, not the last one. It can save time by showing whether the platform is already aware of a wider issue. It also helps prevent unnecessary changes that can make a clean workspace harder to diagnose.`),
 
-    p(`For example, if Analytics v5 stops showing new activity across several sites, check Status before reinstalling the script. If CDN badges disappear on multiple pages, check Status before rewriting the asset placement. If CavAi, Code Editor, and CavBot Cloud all feel unavailable, check Status before assuming the workspace is broken.`),
+    p(`For example, if Analytics v5 stops showing new activity across several sites, check Status before reinstalling the script. If current CDN scripts fail on multiple pages, check Status before rewriting the installation. If CavAi, Code Editor, and CavBot Cloud all feel unavailable, check Status before assuming the workspace is broken.`),
 
     note("Before changing configuration", "If Status shows an active incident for the affected service, wait for the next update before making major workspace, snippet, key, file, or site changes."),
 
     p(`If Status is operational and the issue only affects one workspace, one site, one file, one browser, one route, or one user, the next step is focused troubleshooting. Open the docs for the affected area and verify the configuration there.`),
 
     list([
-      "Use Integrations when a snippet, SDK, badge, or Analytics v5 install needs review.",
+      "Use Integrations when an Analytics v5 or CavAi v3 installation needs review.",
       "Use Security when a protected action, role, CavVerify step, or CavGuard decision needs review.",
       "Use Developer tools when Code Editor, CavBot Terminal, Cav Commands, or HTML Viewer needs review.",
       "Use Storage docs when CavBot Cloud or CavBot Vault files, folders, locks, previews, or permissions need review.",
@@ -8299,7 +6937,7 @@ Turn these notes into a clean launch checklist.`),
     table(
       ["Support detail", "Why it matters"],
       [
-        ["Affected service", "Shows whether the issue belongs to CavAi, Analytics, Code Editor, CavBot Cloud, Arcade, billing, or another area."],
+        ["Affected service", "Shows whether the issue belongs to CavAi, Analytics, Code Editor, CavBot Cloud, 404 Recovery, billing, or another area."],
         ["Workspace", "Helps identify the correct project and account context."],
         ["Site origin", "Helps compare the issue against the saved CavBot site and installed public website."],
         ["Route or file", "Shows the exact place where the problem appeared."],
@@ -8336,7 +6974,7 @@ Turn these notes into a clean launch checklist.`),
         ["Action required", "Whether the user needs to update anything, review a setting, reconnect a site, publish again, or verify behavior."],
         ["Plan impact", "Whether the update changes what Free, Pro, or Plus users can access."],
         ["Workspace impact", "Whether the change affects roles, permissions, protected actions, files, storage, reports, or team workflows."],
-        ["Website impact", "Whether the change affects installed scripts, public pages, badges, recovery pages, tracking, or connected site behavior."],
+        ["Website impact", "Whether the change affects current scripts, public pages, recovery pages, tracking, or connected site behavior."],
         ["Known limits", "Anything that is still being improved, rolled out gradually, or not available to every workspace yet."]
       ]
     ),
@@ -8469,7 +7107,7 @@ function integrationBlocks(name, when, placement, mistakes, platformGuidance, ve
 
     p(`Install CavBot in the shared area that loads across the pages you want to monitor. For most websites, this means the global footer, body area, shared theme layout, project custom-code field, root layout, or platform-wide code injection area. Avoid installing the same base snippet in multiple places unless the platform requires separate templates and you understand the result.`),
 
-    note("Install rule", "Use one clean global install first. Add page-specific badges, widgets, or Arcade recovery surfaces only after the base CavBot signal is verified."),
+    note("Install rule", "Use one clean global install for Analytics v5 and CavAi v3, then verify both on the published website."),
 
     p(`A clean install has two parts. First, the configuration values must be present so CavBot knows which project and site the page belongs to. Second, the CavBot runtime script must load after those values. If the runtime loads before the configuration, CavBot may not know where to send the activity.`),
 
@@ -8530,27 +7168,15 @@ function integrationBlocks(name, when, placement, mistakes, platformGuidance, ve
       ]
     ),
 
-    p(`For teams, the safest pattern is simple: install once, publish, visit the live site, confirm activity, then add optional surfaces. Do not start with every badge, widget, Arcade install, and custom surface at the same time. Base signal verification should come first.`),
+    p(`For teams, the safest pattern is simple: install Analytics v5 and CavAi v3 once, publish, visit the live site, and confirm activity before changing the integration again.`),
 
     note("Verification rule", "The public site origin, the saved CavBot site origin, the snippet site ID, and the API key allowlist must agree before CavBot can reliably connect activity to the right site."),
 
-    p(`Once the base install is verified, continue with Website signals to review activity, Assets to add badges or visual surfaces, Arcade to configure 404 recovery, and Security to review API keys, origins, and protected workspace controls.`)
+    p(`Once the installation is verified, continue with Website signals to review activity, 404 Recovery to inspect broken routes, and Security to review API keys, origins, and protected workspace controls.`)
   ];
 }
 
 const lockedSnippets = [
- {
-    id: "arcade-404",
-    title: "404 Arcade loader", 
-    description: "Serve an interactive recovery experience only on 404 routes.",
-    code: '<script\n  defer\n  src="https://cdn.cavbot.io/sdk/arcade/v1/loader.min.js"\n  data-project-key="••••••••••••••••"\n  data-site-id="••••••••-••••-••••-••••-••••••••••••"\n  data-site="••••••••-••••-••••-••••-••••••••••••"\n  data-config-origin="https://app.cavbot.io"\n  data-env="404">\n</script>'
-  },
-  {
-    id: "widget-loader",
-    title: "Widget loader",
-    description: "Show the CavBot badge with a default inline placement.",
-    code: '<script\n  defer\n  src="https://cdn.cavbot.io/sdk/widget/v1/cavbot-widget.min.js"\n  data-cavbot-widget="badge"\n  data-style="inline"\n  data-position="bottom-right"\n  data-project-key="••••••••••••••••"\n  data-site="••••••••-••••-••••-••••-••••••••••••"\n  data-config-origin="https://app.cavbot.io">\n</script>'
-  },
   {
     id: "analytics-script",
     title: "Analytics v5 loader",
@@ -8581,50 +7207,14 @@ function compactSnippetText(value) {
 }
 
 function platformInstallBlocks(config) {
-  const troubleshooting404 = config.troubleshooting404 || [
-    "Make sure your host returns a real 404 response, not a 200 shell.",
-    "Add the cavbot-page meta tag or data-cavbot-page-type=\"404\" marker."
-  ];
-
   const blocks = [
     p(config.intro),
     linkp("You can manage these in", "https://app.cavbot.io/api-keys", "API & Keys", "."),
-    h2(config.sectionA, config.sectionASummary)
-  ];
-
-  if (config.bullets) {
-    blocks.push(list(config.bullets));
-  }
-
-  if (config.steps) {
-    blocks.push(steps(config.steps));
-  }
-
-  blocks.push(
-    snippets(config.snippetsTitle, config.snippetsDescription),
-    h2("Add Arcade to a custom 404 page", config.dedicated),
-    p(config.dedicatedBody),
-    contractOptionsBlock(config.dedicatedFollow)
-  );
-
-  if (config.dedicatedExtra) {
-    blocks.push(p(config.dedicatedExtra));
-  }
-
-  blocks.push(
-    h2("Test your installation", "Follow this quick verification to confirm the Arcade loader is live."),
-    ol(config.test)
-  );
-
-  (config.afterTest || [
-    "Once CavBot hits that fake path, Arcade detections will show up in CavBot within a few seconds.",
-    "While you are testing the Arcade experience, verify the widget badge loads, analytics pings your workspace, and CavAi starts behind the scenes."
-  ]).forEach(function (item) {
-    blocks.push(p(item));
-  });
-
-  blocks.push(
-    h2("Troubleshooting", "Common fixes if the snippets do not behave as expected."),
+    h2("Install Analytics v5 and CavAi v3", config.placement),
+    snippets("Installation snippets", "Add both snippets in the shared head area so CavBot can monitor the website and CavAi can use the selected site context."),
+    h2("Test your installation", "Verify the published website rather than an editor preview."),
+    ol(config.verify),
+    h2("Troubleshooting", "Common fixes if Analytics v5 or CavAi does not connect."),
     faq([
       {
         title: "If nothing loads",
@@ -8632,15 +7222,11 @@ function platformInstallBlocks(config) {
           "Make sure your website is listed as a trusted origin in API & Keys.",
           "Confirm that the publishable key is active.",
           "Make sure the data-site value matches the selected site.",
-          "Confirm that the snippets were added to the published version of the website."
+          "Confirm that both snippets were added to the published version of the website."
         ]
-      },
-      {
-        title: "If Arcade does not appear on the 404 page",
-        body: troubleshooting404
       }
     ])
-  );
+  ];
 
   return blocks;
 }
@@ -8750,20 +7336,6 @@ function visibleDocKeys() {
         '</button>' +
         '<pre><code>' + escapeHtml(block.text) + "</code></pre>" +
       "</div>";
-    }
-    if (block.type === "contract-options") {
-      return '<div class="docs-contract-options" aria-label="404 page marker options">' +
-        '<article class="docs-contract-option"><code>' + escapeHtml(contractOptions[0]) + '</code>' +
-          '<button type="button" class="docs-contract-copy" data-docs-copy-contract="0" aria-label="Copy meta option">' +
-            '<img src="/assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
-          '</button></article>' +
-        '<span class="docs-contract-or">or</span>' +
-        '<article class="docs-contract-option"><code>' + escapeHtml(contractOptions[1]) + '</code>' +
-          '<button type="button" class="docs-contract-copy" data-docs-copy-contract="1" aria-label="Copy body option">' +
-            '<img src="/assets/icons/page/copy-svgrepo-com.svg" alt="" aria-hidden="true" decoding="async">' +
-          '</button></article>' +
-        '</div>' +
-        (block.text ? '<p class="docs-contract-note">' + escapeHtml(block.text) + '</p>' : "");
     }
     if (block.type === "steps") {
       return '<ol class="docs-install-step-list">' + block.items.map(function (item) {
@@ -9081,16 +7653,6 @@ function visibleDocKeys() {
         showCopyToast(ok ? "Code copied" : "Copy unavailable");
       });
     });
-    document.addEventListener("click", function (event) {
-      const button = event.target instanceof Element ? event.target.closest("[data-docs-copy-contract]") : null;
-      if (!button) return;
-      const index = Number(button.getAttribute("data-docs-copy-contract"));
-      const value = contractOptions[index] || "";
-      copyText(value).then(function (ok) {
-        if (ok) showCopiedIcon(button);
-        showCopyToast(ok ? "Code copied" : "Copy unavailable");
-      });
-    });
   }
 
   function hydrateInstallSnippets() {
@@ -9251,7 +7813,7 @@ function visibleDocKeys() {
     cavaiPanel = document.createElement("section");
     cavaiPanel.className = "docs-cavai-panel";
     cavaiPanel.hidden = true;
-    cavaiPanel.innerHTML = '<div class="docs-cavai-panel-head"><span><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> CavAi</span><a data-docs-cavai-open-full target="_blank" rel="noopener noreferrer">Open full CavAi</a><button type="button" data-docs-cavai-close aria-label="Close CavAi">×</button></div><form class="docs-cavai-panel-body" data-docs-cavai-panel-form><label for="docs-cavai-panel-prompt">Prompt</label><textarea id="docs-cavai-panel-prompt" name="prompt" rows="5" placeholder="Ask CavAi about these docs"></textarea><p>CavAi opens in the CavBot app with this docs context so the browser does not block it.</p><div class="docs-cavai-panel-actions"><button type="submit">Open CavAi</button></div></form>';
+    cavaiPanel.innerHTML = '<div class="docs-cavai-panel-head"><span><img src="assets/logo/CavAi Official Logo-svg/2.png" alt="" aria-hidden="true" decoding="async"> CavAi</span><a data-docs-cavai-open-full target="_blank" rel="noopener noreferrer">Open full CavAi</a><button type="button" data-docs-cavai-close aria-label="Close CavAi">×</button></div><form class="docs-cavai-panel-body" data-docs-cavai-panel-form><label for="docs-cavai-panel-prompt">Prompt</label><textarea id="docs-cavai-panel-prompt" name="prompt" rows="5" placeholder="Ask CavAi about these docs"></textarea><p></p><div class="docs-cavai-panel-actions"><button type="submit">Open CavAi</button></div></form>';
     document.body.appendChild(cavaiPanel);
     cavaiPanel.querySelector("[data-docs-cavai-close]").addEventListener("click", function () { cavaiPanel.hidden = true; });
     cavaiPanel.querySelector("[data-docs-cavai-panel-form]").addEventListener("submit", function (event) {

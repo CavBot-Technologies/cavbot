@@ -314,7 +314,7 @@
       label: "Native CavBot",
       icon: "assets/logo/cavbot-logomark.svg",
       title: "Connect CavBot to your own workspace.",
-      copy: "Use CavBot’s own widgets, intelligence, and recovery surfaces across your site."
+      copy: "Connect Analytics v5 and CavAi v3 to keep website health signals in one workspace."
     },
     "custom-html": {
       label: "Custom HTML",

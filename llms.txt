@@ -21,15 +21,14 @@ Documentation index for CavBot.
 
 ## Product areas
 
-- Workspace - Dashboard, reports, CavPad, Arcade, Command Center, members, and roles.
-- Website signals - Dashboard, errors, routes, SEO, accessibility, and 404 Control Room.
+- Workspace - Dashboard, reports, CavPad, Command Center, members, and roles.
+- Website signals - Dashboard, errors, routes, SEO, accessibility, and 404 Recovery.
 - CavAi - Models, memory, Caven, Image Studio, and workspace context.
 - Developers - SDK, events, API keys, webhooks, Summary API, and Analytics v5.
 - Developer tools - Code Editor, CavBot Cloud, DevTools, HTML Viewer, and Cav commands.
 - Security - Privacy, audit trail, CavBot Vault, CavVerify, CavGuard, and data security.
 - Integrations - Wix, Webflow, Shopify, WordPress, GitHub, and custom HTML.
 - Billing and plans - Plans, trial, checkout, portal, seats, and cancellation.
-- CavBot assets - Badge, Head, Body, Arcade, brand resources, and 404 games.
 
 ## Developer menu pages
 
@@ -39,7 +38,3 @@ Documentation index for CavBot.
 - [CavAi v3](https://cavbot.io/docs/getstarted#cavai-v3) - Use CavAi to explain CavBot signals and turn context into next steps.
 - [Assistant memory](https://cavbot.io/docs/getstarted#assistant-memory) - Keep durable project context available for CavAi responses.
 - [Agent workflows](https://cavbot.io/docs/getstarted#agent-workflows) - Run repeatable tasks for reviews, reports, and launch checks.
-- [404 Arcade](https://cavbot.io/docs/getstarted#arcade-404) - Add an interactive recovery surface to broken pages.
-- [CavBot Badge](https://cavbot.io/docs/getstarted#cavbot-badge) - Show a compact CavBot trust marker on a website.
-- [CavBot Head](https://cavbot.io/docs/getstarted#cavbot-head) - Add a small CavBot visual presence to product moments.
-- [CavBot Body](https://cavbot.io/docs/getstarted#cavbot-body) - Use the full CavBot visual presence for guided support or recovery moments.

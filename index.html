@@ -75,7 +75,7 @@
       overscroll-behavior: auto;
     }
 
-    /* Homepage widgets are decorative only and must never steal scroll/pointer input. */
+    /* Homepage visuals are decorative only and must never steal scroll/pointer input. */
     body[data-cavbot-page-type="home-page"] :is(
       .hero-robot-avatar-wrap,
       .badge-visual,
@@ -191,8 +191,7 @@
 
 <body class="page-shell"
       data-cavbot-page-type="home-page"
-      data-cavbot-component="home-shell"
-      data-cavbot-disable-arcade-loader="1">
+      data-cavbot-component="home-shell">
 
 <header class="site-header cb-company-header">
   <div class="site-header-inner">
@@ -463,29 +462,7 @@
                 </a>
               </section>
 
-              <section class="cb-mega-column">
-                <p class="cb-mega-kicker">CavBot Assets</p>
-
-                <a class="cb-mega-link" href="/docs#arcade-404">
-                  <span class="cb-mega-link-title">404 Arcade</span>
-                  <span class="cb-mega-link-copy">Install interactive 404 games for broken pages.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/docs#cavbot-badge">
-                  <span class="cb-mega-link-title">CavBot Badge</span>
-                  <span class="cb-mega-link-copy"> Show visible trust on your website.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/docs#cavbot-head">
-                  <span class="cb-mega-link-title">CavBot Head</span>
-                  <span class="cb-mega-link-copy">Add a compact CavBot presence to your product.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/docs#cavbot-body">
-                  <span class="cb-mega-link-title">CavBot Body</span>
-                  <span class="cb-mega-link-copy">Use CavBot for guided product moments.</span>
-                </a>
-              </section>
+           
             </div>
 
             <a class="cb-mega-bottom-link" href="https://cavbot.io/docs">
@@ -596,7 +573,7 @@
         </div>
       </div>
 
-      <a href="arcade" class="nav-link">CavBot Arcade</a>
+      
       <a href="/pricing" class="nav-link">Pricing</a>
       <a href="https://app.cavbot.io/" class="nav-link">Dashboard</a>
 
@@ -672,7 +649,7 @@
             <a href="seo-audit" class="nav-overlay-link">SEO Audit</a>
             <a href="accessibility-check" class="nav-overlay-link">Accessibility Check</a>
             <a href="/insights" class="nav-overlay-link">Insights</a>
-            <a href="arcade" class="nav-overlay-link">CavBot Arcade</a>
+            
             <a href="ide" class="nav-overlay-link">Code Editor</a>
             <a href="https://app.cavbot.io/html-viewer" target="_blank" rel="noopener noreferrer" class="nav-overlay-link">HTML Viewer</a>
             <a href="cloud" class="nav-overlay-link">Cloud Storage</a>
@@ -713,10 +690,6 @@
             <a href="/docs#cavai-v3" class="nav-overlay-link">CavAi V3</a>
             <a href="/docs#assistant-memory" class="nav-overlay-link">Assistant memory</a>
             <a href="/docs#agent-workflows" class="nav-overlay-link">Agent workflows</a>
-            <a href="/docs#arcade-404" class="nav-overlay-link">404 Arcade</a>
-            <a href="/docs#cavbot-badge" class="nav-overlay-link">CavBot Badge</a>
-            <a href="/docs#cavbot-head" class="nav-overlay-link">CavBot Head</a>
-            <a href="/docs#cavbot-body" class="nav-overlay-link">CavBot Body</a>
           </div>
         </section>
 
@@ -862,7 +835,7 @@
         <span class="pilot-logo-item">
           <img
             class="pilot-logo-img"
-            src="assets/pilots/cmpl-workspace.svg"
+            src="assets/pilots/cavai.png"
             alt=""
             aria-hidden="true"
             loading="eager"
@@ -884,7 +857,18 @@
         <span class="pilot-logo-item">
           <img
             class="pilot-logo-img"
-            src="assets/pilots/Cavendish Pierre-Louis Logo Mark.png"
+            src="assets/pilots/daryna-logo-mark-dark.png"
+            alt=""
+            aria-hidden="true"
+            loading="eager"
+            onerror="this.style.visibility='hidden';"
+          />
+        </span>
+
+         <span class="pilot-logo-item">
+          <img
+            class="pilot-logo-img"
+            src="assets/pilots/lions-jungle-logo-type-dark.png"
             alt=""
             aria-hidden="true"
             loading="eager"
@@ -1528,227 +1512,6 @@ Understand why. Act faster.</span>
         </div>
       </article>
     </aside>
-  </div>
-</section>
-
-<br><br>
-
-   <!-- =======================
-        CAVBOT 404 ARCADE
-        ======================= -->
-<section id="arcade" class="section" aria-label="CavBot Arcade">
-  <br>
-  <div class="arcade-logo-stage" data-arcade-logo-stage>
-    <a class="arcade-logo-link" href="arcade" aria-label="Open CavBot Arcade">
-      <img
-        src="assets/cavbot-arcade/assets/logo/cavbot-arcade-logo-type.png"
-        alt="CavBot Arcade"
-        class="arcade-logo"
-        data-arcade-logo
-      />
-    </a>
-  </div>
-
-
-<br>
-  <br>
-<div class="arcade-strip" data-arcade-strip>
-  <button class="arcade-nav arcade-nav--prev" type="button" data-arcade-prev aria-label="Previous arcade game">
-    <img src="assets/icons/page/chevron-right-svgrepo-com.svg" alt="" aria-hidden="true" />
-  </button>
-
-
-  <div class="arcade-viewport">
-    <div class="arcade-track" data-arcade-track>
-
-
-      <article class="arcade-slide">
-        <a class="arcade-cover-link" href="https://app.cavbot.io/arcade" aria-label="Play Fútbol CavBot in Arcade">
-          <img
-            class="arcade-cover"
-            src="assets/cavbot-arcade/images/thumbnails/cavbot-fc-thumbnail.png"
-            alt="Fútbol CavBot arcade cover"
-            loading="lazy"
-          />
-          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
-            <source src="assets/cavbot-arcade/videos/futbol-cavbot-demo-preview.mp4" type="video/mp4" />
-          </video>
-        </a>
-      </article>
-
-
-      <article class="arcade-slide">
-        <a class="arcade-cover-link" href="https://app.cavbot.io/arcade" aria-label="Play Catch CavBot in Arcade">
-          <img
-            class="arcade-cover"
-            src="assets/cavbot-arcade/images/thumbnails/catch-cavbot-thumbnail.png"
-            alt="Catch CavBot arcade cover"
-            loading="lazy"
-          />
-          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
-            <source src="assets/cavbot-arcade/videos/catch-cavbot-demo-preview.mp4" type="video/mp4" />
-          </video>
-        </a>
-      </article>
-
-
-      <article class="arcade-slide">
-        <a class="arcade-cover-link" href="https://app.cavbot.io/arcade" aria-label="Play Pick the Imposter in Arcade">
-          <img
-            class="arcade-cover"
-            src="assets/cavbot-arcade/images/thumbnails/cavbot-imposter-thumbnail.png"
-            alt="Pick the Imposter arcade cover"
-            loading="lazy"
-          />
-          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
-            <source src="assets/cavbot-arcade/videos/cavbot-imposter-demo-preview.mp4" type="video/mp4" />
-          </video>
-        </a>
-      </article>
-
-
-      <article class="arcade-slide">
-        <a class="arcade-cover-link" href="https://app.cavbot.io/arcade" aria-label="Play Signal Chase in Arcade">
-          <img
-            class="arcade-cover"
-            src="assets/cavbot-arcade/images/thumbnails/cavbot-signal-chase-thumbnail.png"
-            alt="Signal Chase arcade cover"
-            loading="lazy"
-          />
-          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
-            <source src="assets/cavbot-arcade/videos/cavbot-signal-chase-demo-preview.mp4" type="video/mp4" />
-          </video>
-        </a>
-      </article>
-
-
-      <article class="arcade-slide">
-        <a class="arcade-cover-link" href="https://app.cavbot.io/arcade" aria-label="Play Cache Sweep in Arcade">
-          <img
-            class="arcade-cover"
-            src="assets/cavbot-arcade/images/thumbnails/cavbot-cache-sweep-thumbnail.png"
-            alt="Cache Sweep arcade cover"
-            loading="lazy"
-          />
-          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
-            <source src="assets/cavbot-arcade/videos/cavbot-cache-sweep-demo-preview.mp4" type="video/mp4" />
-          </video>
-        </a>
-      </article>
-
-
-      <article class="arcade-slide">
-        <a class="arcade-cover-link" href="https://app.cavbot.io/arcade" aria-label="Play CavBot Tennis in Arcade">
-          <img
-            class="arcade-cover"
-            src="assets/cavbot-arcade/images/thumbnails/cavbot-tennis-thumbnail.png"
-            alt="CavBot Tennis arcade cover"
-            loading="lazy"
-          />
-          <video class="arcade-preview-video" muted loop playsinline preload="metadata">
-            <source src="assets/cavbot-arcade/videos/tennis-cavbot-demo-preview.mp4" type="video/mp4" />
-          </video>
-        </a>
-      </article>
-
-
-    </div>
-  </div>
-
-
-  <button class="arcade-nav arcade-nav--next" type="button" data-arcade-next aria-label="Next arcade game">
-    <img src="assets/icons/page/chevron-right-svgrepo-com.svg" alt="" aria-hidden="true" />
-  </button>
-</div>
-
-
-</section>
-<br><br>
-  <!-- =======================
-     404 ARCADE EXPLAINER
-     ======================= -->
-<section id="arcade-guide" class="arcade-guide section" aria-labelledby="arcade-guide-title">
-  <div class="arcade-guide-left">
-    <h2 id="arcade-guide-title" class="arcade-guide-title">
-      Turn lost pages into guided recovery
-    </h2>
-<br>
-
-    <p class="arcade-guide-copy">
-      A broken link should not end the visit. CavBot Arcade turns the standard 404 screen into an interactive recovery experience that helps visitors stay oriented and find their way back.
-    </p>
-
-<br>
-    <div class="arcade-guide-cta">
-      <a href="what's-a-404" class="btn btn-primary">Read the 404 Guide</a>
-    </div>
-  </div>
-
-
-  <div class="arcade-guide-faq" data-cavbot-accordion="single">
-    <article class="faq-item is-open">
-      <button class="faq-q arcade-faq-q" type="button" aria-expanded="true">
-        <span>What is CavBot Arcade?</span>
-        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 10l4 4 4-4" />
-        </svg>
-      </button>
-      <div class="faq-a arcade-faq-a">
-        A set of interactive 404 experiences for broken or missing pages.
-      </div>
-    </article>
-
-
-    <article class="faq-item">
-      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
-        <span>Why use a game on a 404 page?</span>
-        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 10l4 4 4-4" />
-        </svg>
-      </button>
-      <div class="faq-a arcade-faq-a" hidden>
-        Because the user is already interrupted. Arcade turns that interruption into a branded moment instead of a dead end.
-      </div>
-    </article>
-
-
-    <article class="faq-item">
-      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
-        <span>What happens when someone lands there?</span>
-        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 10l4 4 4-4" />
-        </svg>
-      </button>
-      <div class="faq-a arcade-faq-a" hidden>
-        They can play, recover, and continue back into the site instead of leaving immediately.
-      </div>
-    </article>
-
-
-    <article class="faq-item">
-      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
-        <span>Does it replace a normal 404 page?</span>
-        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 10l4 4 4-4" />
-        </svg>
-      </button>
-      <div class="faq-a arcade-faq-a" hidden>
-        Yes, it can replace the empty “page not found” screen with something more useful and memorable.
-      </div>
-    </article>
-
-
-    <article class="faq-item">
-      <button class="faq-q arcade-faq-q" type="button" aria-expanded="false">
-        <span>Why does it matter?</span>
-        <svg class="arcade-faq-chevron" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M8 10l4 4 4-4" />
-        </svg>
-      </button>
-      <div class="faq-a arcade-faq-a" hidden>
-        Broken links hurt trust. CavBot Arcade gives teams a better way to handle those moments.
-      </div>
-    </article>
   </div>
 </section>
 
@@ -2890,7 +2653,7 @@ Understand why. Act faster.</span>
 
       <path d="M0 0H1600V1000H0V0Z" fill="url(#sealCavaiCyan)"></path>
       <path d="M0 0H1600V1000H0V0Z" fill="url(#sealCavaiBlue)"></path>
-      <path d="M0 0H1600V1000H0V0Z" fill="url(#sealCavaiViolet)"></path>
+      <path d="M0 0H1600V1000H0V0Z" fill="url(#sealCavaiSignal)"></path>
       <path d="M0 0H1600V1000H0V0Z" fill="url(#sealCavaiLime)"></path>
 
 
@@ -2935,7 +2698,7 @@ Understand why. Act faster.</span>
         </radialGradient>
 
 
-        <radialGradient id="sealCavaiViolet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1295 330) rotate(145) scale(900 690)">
+        <radialGradient id="sealCavaiSignal" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1295 330) rotate(145) scale(900 690)">
           <stop offset="0" stop-color="#8B5CFF" stop-opacity="0.86"></stop>
           <stop offset="0.48" stop-color="#3158FF" stop-opacity="0.46"></stop>
           <stop offset="1" stop-color="#3158FF" stop-opacity="0"></stop>
@@ -3170,7 +2933,7 @@ Understand why. Act faster.</span>
   window.CAVBOT_SITE_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
   window.CAVBOT_SITE_PUBLIC_ID = "cece1ca3-212c-46c5-b54f-e69dd2f8f061";
 </script>
-<script src="/cavai/cavai-analytics-v5.js" defer></script>
+<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js" defer></script>
 <div
   data-cavbot-cdn-floating-badge="1"
   data-cavbot-cdn-slot="badge"
@@ -3178,7 +2941,7 @@ Understand why. Act faster.</span>
   style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
 <script
   defer
-  src="/cavai/cavai.js"
+  src="https://cdn.cavbot.io/sdk/cavai/v1/cavai.min.js"
   data-api="https://app.cavbot.io/api/embed/analytics"
   data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
   data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"

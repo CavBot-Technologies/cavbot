@@ -405,7 +405,7 @@ body:has(.ethics-book-page[data-ethics-theme="dark"]) {
   padding: 12px 14px;
   color: #01030f;
   background: var(--deep-blue);
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 13px;
   line-height: 1;
   font-weight: 760;

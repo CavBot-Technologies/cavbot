@@ -3614,26 +3614,15 @@ const APP_HOST = "app.cavbot.io";
   // ============================
   (() => {
     const ASSET_ORIGIN = "https://cdn.cavbot.io";
-    const pageType = String(document.body?.getAttribute("data-cavbot-page-type") || "").trim().toLowerCase();
-    const isHomePage = pageType === "home-page";
-    const arcadeLoaderSrc = `${ASSET_ORIGIN}/sdk/arcade/v1/loader.min.js`;
     const slotSelector = "[data-cavbot-cdn-slot]";
     const snippetUrlsBySlot = {
       badge: [`${ASSET_ORIGIN}/sdk/badge-snippet`, `${ASSET_ORIGIN}/sdk/badge-snippet.html`],
       head: [`${ASSET_ORIGIN}/sdk/head-snippet`, `${ASSET_ORIGIN}/sdk/head-snippet.html`],
-      body: [`${ASSET_ORIGIN}/sdk/body-snippet`, `${ASSET_ORIGIN}/sdk/body-snippet.html`],
     };
     const cssBySlot = {
       badge: [`${ASSET_ORIGIN}/sdk/ui/v1/cavbot-badge-inline.css`],
       head: [`${ASSET_ORIGIN}/sdk/ui/v1/cavbot-head-orbit.css`],
-      body: [
-        `${ASSET_ORIGIN}/sdk/ui/v1/cavbot-head-orbit.css`,
-        `${ASSET_ORIGIN}/sdk/ui/v1/cavbot-full-body.css`,
-      ],
     };
-    const projectKey = String(window.CAVBOT_PROJECT_KEY || "").trim();
-    const siteId =
-      String(window.CAVBOT_SITE_ID || window.CAVBOT_SITE || "cavbot.io").trim() || "cavbot.io";
     const disableLiveTracking =
       String(document.body?.getAttribute("data-cavbot-disable-live-tracking") || "").trim() === "1";
     const disableFloatingBadge =
@@ -3877,21 +3866,6 @@ const APP_HOST = "app.cavbot.io";
       (document.head || document.documentElement).appendChild(style);
     };
 
-    const ensureScript = (src, attrs = {}) => {
-      if (!src) return null;
-      const existing = document.querySelector(`script[src="${src}"]`);
-      if (existing) return existing;
-      const script = document.createElement("script");
-      script.src = src;
-      script.defer = true;
-      Object.entries(attrs).forEach(([key, value]) => {
-        if (value == null || value === "") return;
-        script.setAttribute(key, String(value));
-      });
-      document.body.appendChild(script);
-      return script;
-    };
-
     const ensureCss = (href) => {
       if (!href) return;
       const loaded = window.__cavbotCdnSlotCssLoaded || (window.__cavbotCdnSlotCssLoaded = new Set());
@@ -4010,7 +3984,7 @@ const APP_HOST = "app.cavbot.io";
               </article>
             </div>
             <div class="cb-badge-passport-actions">
-              <a class="cb-badge-passport-link" href="/docs#cavbot-badge">How It Works</a>
+              <a class="cb-badge-passport-link" href="/docs">How It Works</a>
               <button type="button" class="cb-badge-passport-close-btn" data-cb-badge-passport-close>Close</button>
             </div>
           </section>
@@ -4200,29 +4174,6 @@ const APP_HOST = "app.cavbot.io";
       }
     });
 
-    // Dogfood arcade loader install path. Keep this opt-in so marketing pages
-    // that mention Arcade or 404 recovery do not append the 404 game.
-    const enableArcadeLoader =
-      pageType === "404" ||
-      String(document.body?.getAttribute("data-cavbot-enable-arcade-loader") || "").trim() === "1";
-    const disableArcadeLoader =
-      isHomePage ||
-      String(document.body?.getAttribute("data-cavbot-disable-arcade-loader") || "").trim() === "1";
-    const arcadeCandidate =
-      enableArcadeLoader &&
-      !disableArcadeLoader;
-    if (arcadeCandidate) {
-      const hasArcadeLoader = document.querySelector('script[src*="/sdk/arcade/"]');
-      if (!hasArcadeLoader) {
-        ensureScript(arcadeLoaderSrc, {
-          "data-config-origin": "https://app.cavbot.io",
-          "data-project-key": projectKey,
-          "data-site-id": siteId,
-          "data-site": siteId,
-          "data-env": "404",
-        });
-      }
-    }
   })();
 
   // ============================
@@ -5366,9 +5317,8 @@ document.addEventListener("DOMContentLoaded", () => {
     { title: "Error Tracking", href: "/error-tracking", type: "Product", summary: "Find browser errors and runtime issues." },
     { title: "SEO Audit", href: "/seo-audit", type: "Product", summary: "Review titles, descriptions, metadata, and page structure." },
     { title: "Accessibility Check", href: "/accessibility-check", type: "Product", summary: "Review accessibility signals and usability issues." },
-    { title: "404 Recovery", href: "/404-recovery", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and 404 Arcade recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found not found arcade recovery recovery games catch cavbot" },
+    { title: "404 Recovery", href: "/404-recovery", type: "Product", summary: "Find missing pages, broken routes, recovery sources, and visitor recovery activity.", aliases: "404-recovery 404 recovery broken routes broken paths missing pages missing routes dead ends page not found recovery" },
     { title: "Monitored Websites", href: "/websites", type: "Product", summary: "Manage and review monitored websites." },
-    { title: "CavBot Arcade", href: "/arcade", type: "Product", summary: "CavBot games and recovery experiences." },
     { title: "Compare CavBot", href: "/vs/google", type: "Comparison", summary: "Compare CavBot with Google Analytics for traffic, broken pages, errors, page health, and recovery.", aliases: "vs google google analytics compare cavbot cavbot vs google cavbot vs google analytics comparison analytics comparison" },
     { title: "Blog", href: "/blog", type: "Resources", summary: "Company updates, product notes, and research." },
     { title: "Help Center", href: "/help-center", type: "Support", summary: "Find help and support resources." },

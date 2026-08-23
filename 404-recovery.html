@@ -59,7 +59,7 @@
 
   <!-- CavBot header-footer styles -->
   <link rel="stylesheet" href="files/css/globals/header-footer.css">
-  <!-- CavBot head + badge + body -->
+  <!-- CavBot head + badge -->
   <link rel="stylesheet" href="https://cdn.cavbot.io/sdk/ui/v1/cavbot-badge-inline.css">
   
   <link rel="stylesheet" href="files/css/globals/main.css">
@@ -159,7 +159,6 @@
   class="page-shell"
   data-cavbot-page-type="about-page"
   data-cavbot-component="about-shell"
-  data-cavbot-disable-arcade-loader="1"
 >
   <!-- DO NOT add data-cavbot-disable-floating-badge="1" on this page. -->
   <header class="site-header cb-company-header">
@@ -431,29 +430,7 @@
                 </a>
               </section>
 
-              <section class="cb-mega-column">
-                <p class="cb-mega-kicker">CavBot Assets</p>
-
-                <a class="cb-mega-link" href="/docs#arcade-404">
-                  <span class="cb-mega-link-title">404 Arcade</span>
-                  <span class="cb-mega-link-copy">Install interactive 404 games for broken pages.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/docs#cavbot-badge">
-                  <span class="cb-mega-link-title">CavBot Badge</span>
-                  <span class="cb-mega-link-copy"> Show visible trust on your website.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/docs#cavbot-head">
-                  <span class="cb-mega-link-title">CavBot Head</span>
-                  <span class="cb-mega-link-copy">Add a compact CavBot presence to your product.</span>
-                </a>
-
-                <a class="cb-mega-link" href="/docs#cavbot-body">
-                  <span class="cb-mega-link-title">CavBot Body</span>
-                  <span class="cb-mega-link-copy">Use CavBot for guided product moments.</span>
-                </a>
-              </section>
+           
             </div>
 
             <a class="cb-mega-bottom-link" href="https://cavbot.io/docs">
@@ -564,7 +541,7 @@
         </div>
       </div>
 
-      <a href="/arcade" class="nav-link">CavBot Arcade</a> 
+      
       <a href="/pricing" class="nav-link">Pricing</a>
       <a href="https://app.cavbot.io/" class="nav-link">Dashboard</a>
     </nav>
@@ -639,7 +616,7 @@
             <a href="seo-audit" class="nav-overlay-link">SEO Audit</a>
             <a href="accessibility-check" class="nav-overlay-link">Accessibility Check</a>
             <a href="/insights" class="nav-overlay-link">Insights</a>
-            <a href="arcade" class="nav-overlay-link">CavBot Arcade</a>
+            
             <a href="ide" class="nav-overlay-link">Code Editor</a>
             <a href="https://app.cavbot.io/html-viewer" target="_blank" rel="noopener noreferrer" class="nav-overlay-link">HTML Viewer</a>
             <a href="cloud" class="nav-overlay-link">Cloud Storage</a>
@@ -680,10 +657,6 @@
             <a href="/docs#cavai-v3" class="nav-overlay-link">CavAi V3</a>
             <a href="/docs#assistant-memory" class="nav-overlay-link">Assistant memory</a>
             <a href="/docs#agent-workflows" class="nav-overlay-link">Agent workflows</a>
-            <a href="/docs#arcade-404" class="nav-overlay-link">404 Arcade</a>
-            <a href="/docs#cavbot-badge" class="nav-overlay-link">CavBot Badge</a>
-            <a href="/docs#cavbot-head" class="nav-overlay-link">CavBot Head</a>
-            <a href="/docs#cavbot-body" class="nav-overlay-link">CavBot Body</a>
           </div>
         </section>
 
@@ -735,7 +708,6 @@
       <a href="/" class="nav-overlay-link">Product</a>
       <a href="/docs#how-to-use-cavbot" class="nav-overlay-link">How it works</a>
       <a href="pricing" class="nav-overlay-link">Pricing</a>
-      <a href="/docs#arcade-404" class="nav-overlay-link">404 Arcade</a>
       <a href="https://app.cavbot.io/" class="nav-overlay-link">Platform</a>
 
        <div class="nav-cta-row">
@@ -795,7 +767,7 @@
     <br><br><br><br>
 
     <!-- ==============================
-      404 CONTROL ROOM PREVIEW
+      404 RECOVERY PREVIEW
     ============================== -->
     <div
       class="recovery-preview-stage"
@@ -807,7 +779,7 @@
       >
         <div
           class="recovery-window"
-          aria-label="CavBot 404 Control Room product preview"
+          aria-label="CavBot 404 Recovery product preview"
         >
           <div class="recovery-window-bar">
             <div
@@ -820,7 +792,7 @@
             </div>
 
             <div class="recovery-window-title">
-              <span>404 Control Room</span>
+              <span>404 Recovery</span>
               <strong>cavbot.io</strong>
             </div>
           </div>
@@ -1098,16 +1070,16 @@
                   <div class="recovery-result-copy">
                   
                     <p>
-                    See how many people played, how many 
-                    finished, and the scores they reached.
+                    See how many visitors continued, which recovery
+                    links they used, and where they went next.
                     </p>
 
                     <div class="recovery-result-options">
-                      <span>Arcade</span>
-                      <span>Sessions</span>
-                      <span>Plays</span>
-                      <span>Average score</span>
-                      <span>High score</span>
+                      <span>Recovery clicks</span>
+                      <span>Suggested routes</span>
+                      <span>Return rate</span>
+                      <span>Top destination</span>
+                      <span>Last action</span>
                     </div>
                   </div>
                 </div>
@@ -1136,12 +1108,12 @@
               </div>
 
               <div>
-                <span>Game plays</span>
+                <span>Recovery clicks</span>
                 <strong>28</strong>
               </div>
 
               <div>
-                <span>Completion</span>
+                <span>Continued</span>
                 <strong>61%</strong>
               </div>
 
@@ -1251,25 +1223,6 @@
             role="tab"
             data-recovery-wa-tab="3"
             aria-controls="recovery-wa-panel-3"
-            aria-selected="false"
-            tabindex="-1"
-          >
-            <span class="recovery-wa-tab-title">
-              Recovery games
-            </span>
-
-            <span class="recovery-wa-tab-copy">
-              Measure plays, scores, and completion.
-            </span>
-          </button>
-
-          <button
-            class="recovery-wa-tab"
-            id="recovery-wa-tab-4"
-            type="button"
-            role="tab"
-            data-recovery-wa-tab="4"
-            aria-controls="recovery-wa-panel-4"
             aria-selected="false"
             tabindex="-1"
           >
@@ -1722,7 +1675,7 @@
         </figure>
 
         <!-- ==============================
-          SCREEN 4 — RECOVERY GAMES
+          SCREEN 4 — CLEAR REPORT
         ============================== -->
         <figure
           class="recovery-wa-screen"
@@ -1731,129 +1684,6 @@
           aria-labelledby="recovery-wa-tab-3"
           aria-hidden="true"
           data-recovery-wa-screen="3"
-        >
-          <div class="recovery-wa-stage">
-            <div class="recovery-wa-window">
-              <div class="recovery-wa-window-top">
-                <div
-                  class="recovery-wa-window-dots"
-                  aria-hidden="true"
-                >
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-
-                <p>Recovery games</p>
-              </div>
-
-              <div class="recovery-wa-window-body">
-                <div class="recovery-wa-visual-head">
-                  <div>
-                   
-                    <strong>CavBot Arcade</strong>
-                  </div>
-
-                  <em>active</em>
-                </div>
-
-                <div class="recovery-wa-arcade-layout">
-                  <div
-                    class="recovery-wa-game-stage"
-                    aria-hidden="true"
-                  >
-                    <div class="recovery-wa-game-head">
-                      <span>404</span>
-                      <strong>Catch CavBot</strong>
-                      <em>Score 640</em>
-                    </div>
-
-                    <div class="recovery-wa-game-field">
-                      <video
-                        class="recovery-wa-game-video"
-                        src="assets/cavbot-arcade/videos/catch-cavbot-demo-preview.mp4"
-                        autoplay
-                        muted
-                        loop
-                        playsinline
-                        preload="metadata"
-                        aria-label="Catch CavBot arcade preview"
-                      ></video>
-                    </div>
-
-                    <div class="recovery-wa-game-actions">
-                      <span>Play again</span>
-                      <span>Return home</span>
-                      <span>Search the site</span>
-                    </div>
-                  </div>
-
-                  <div class="recovery-wa-game-metrics">
-                    <article>
-                      <span>Game sessions</span>
-                      <strong>34</strong>
-                      <small>28 started playing</small>
-                    </article>
-
-                    <article>
-                      <span>Completion</span>
-                      <strong>61%</strong>
-                      <small>17 completed a round</small>
-                    </article>
-
-                    <article>
-                      <span>Average score</span>
-                      <strong>640</strong>
-                      <small>High score 1,240</small>
-                    </article>
-
-                    <article>
-                      <span>Continued</span>
-                      <strong>74%</strong>
-                      <small>Left the 404 page</small>
-                    </article>
-                  </div>
-                </div>
-
-                <div class="recovery-wa-leaderboard">
-                  <div class="recovery-wa-leaderboard-head">
-                    <span>Leaderboard</span>
-                    <strong>Today</strong>
-                  </div>
-
-                  <div class="recovery-wa-leaderboard-row">
-                    <span>01</span>
-                    <strong>Skyline</strong>
-                    <em>1,240</em>
-                  </div>
-
-                  <div class="recovery-wa-leaderboard-row">
-                    <span>02</span>
-                    <strong>Nova</strong>
-                    <em>980</em>
-                  </div>
-
-                  <div class="recovery-wa-leaderboard-row">
-                    <span>03</span>
-                    <strong>Guest 184</strong>
-                    <em>820</em>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </figure>
-
-        <!-- ==============================
-          SCREEN 5 — CLEAR REPORT
-        ============================== -->
-        <figure
-          class="recovery-wa-screen"
-          id="recovery-wa-panel-4"
-          role="tabpanel"
-          aria-labelledby="recovery-wa-tab-4"
-          aria-hidden="true"
-          data-recovery-wa-screen="4"
         >
           <div class="recovery-wa-stage">
             <div class="recovery-wa-window">
@@ -1985,7 +1815,7 @@
     >
       <article class="recovery-diff-card recovery-diff-card--violet recovery-diff-card--path">
         <div class="recovery-diff-copy">
-          <h3>Most tools stop at the error. <span>CavBot follows <br> the visit</span></h3>
+          <h3>Most tools stop at the error. <span>CavBot follows the visit</span></h3>
         </div>
 
         <div class="recovery-diff-icon-orbit" aria-hidden="true">
@@ -2013,7 +1843,7 @@
 
       <article class="recovery-diff-card recovery-diff-card--blue recovery-diff-card--live">
         <div class="recovery-diff-copy">
-          <h3>Live traffic. Catch missing routes as <br> visits happen</h3>
+          <h3>Live traffic. Catch missing routes as visits happen</h3>
         </div>
 
         <div class="recovery-diff-line-chart" aria-hidden="true">
@@ -2064,7 +1894,7 @@
               <li>Installing Analytics v5 on the live website;</li>
               <li>Testing a real missing route after publishing.</li>
             </ul>
-            <a href="https://cavbot.io/docs#404-control-room">Learn more</a>
+            <a href="https://cavbot.io/docs#404-recovery">Learn more</a>
           </div>
         </div>
 
@@ -2077,7 +1907,7 @@
 
       <article class="recovery-diff-card recovery-diff-card--deep-blue recovery-diff-card--setup">
         <div class="recovery-diff-copy">
-          <h3>Simple setup. <span>Add the arcade loader to your 404 page</span></h3>
+          <h3>Simple setup. <span> Add the JavaScript snippet and see traffic by page</span></h3>
         </div>
 
         <div class="recovery-diff-js-badge" aria-hidden="true">
@@ -2098,12 +1928,12 @@
 
       <article class="recovery-diff-card recovery-diff-card--black recovery-diff-card--speed">
         <div class="recovery-diff-copy">
-          <h3>06 Recovery games</h3>
+          <h3>Missing routes</h3>
         </div>
 
         <div class="recovery-diff-pill">
-          <img src="assets/icons/page/play-svgrepo-com.svg" alt="" decoding="async">
-          <span>install</span>
+          <img src="assets/icons/page/analytics/speedometer-svgrepo-com.svg" alt="" decoding="async">
+          <span>watch</span>
         </div>
       </article>
     </div>
@@ -2140,21 +1970,21 @@
         <article class="recovery-setup-step">
           <span class="recovery-setup-number">2</span>
           <p>
-            <strong>Choose a recovery game</strong>
-            <span>from CavBot Arcade.</span>
+            <strong>Verify the website</strong>
+            <span>so CavBot can confirm ownership.</span>
           </p>
         </article>
 
         <article class="recovery-setup-step">
           <span class="recovery-setup-number">3</span>
           <p>
-            <strong>Publish the game</strong>
-            <span>and test it on a missing page.</span>
+            <strong>See live traffic update</strong>
+            <span>as visitors move through your pages.</span>
           </p>
         </article>
       </div>
 
-      <a class="recovery-setup-learn" href="https://cavbot.io/docs#arcade-404">
+      <a class="recovery-setup-learn" href="https://cavbot.io/docs#404-recovery">
         Learn more <span aria-hidden="true">↗</span>
       </a>
     </div>
@@ -2343,7 +2173,7 @@
   </script>
 
 
-  <script src="/cavai/cavai-analytics-v5.js" defer></script>
+  <script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js" defer></script>
   <div
     data-cavbot-cdn-floating-badge="1"
     data-cavbot-cdn-slot="badge"
@@ -2351,7 +2181,7 @@
     style="position:fixed;right:24px;bottom:24px;z-index:9999;"></div>
   <script
     defer
-    src="/cavai/cavai.js"
+    src="https://cdn.cavbot.io/sdk/cavai/v1/cavai.min.js"
     data-api="https://app.cavbot.io/api/embed/analytics"
     data-project-key="cavbot_pk_web_63f7e8d534b9947268967a1244c18622f5089b4dd5481db1"
   data-site-id="cece1ca3-212c-46c5-b54f-e69dd2f8f061"

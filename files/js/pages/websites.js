@@ -2,7 +2,7 @@
   "use strict";
 
   var API_URL = window.CAVBOT_MONITORED_SITES_API || "https://app.cavbot.io/api/public/monitored-sites";
-  var FALLBACK_ICON = "/assets/icons/favicon-32x32.png";
+  var FALLBACK_ICON = "/assets/logo/cavbot-logomark.svg";
   var DEFAULT_PAYLOAD = {
     ok: true,
     generatedAt: "2026-06-15T00:00:00-04:00",

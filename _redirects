@@ -11,9 +11,6 @@
 /brand.html /brand 301
 /careers.html /careers 301
 /cavai.html /cavai 301
-/cavbot-arcade.html /arcade 301
-/cavbot-arcade /arcade 301
-/arcade.html /arcade 301
 /cavbot-vs-google-analytics.html /vs/google 301
 /cavbot-vs-google-analytics /vs/google 301
 /vs/google.html /vs/google 301
@@ -25,6 +22,8 @@
 /caven.html /caven 301
 /deepseek-cavbot.html /deepseek-cavbot 301
 /docs.html /docs 301
+/docs/getstarted.md /getstarted.md 200
+/docs/llms.txt /llms.txt 200
 /docs/getstarted /docs#getstarted 301
 /docs/account /docs#account 301
 /docs/workspace /docs#workspace 301
@@ -35,7 +34,6 @@
 /docs/security /docs#security 301
 /docs/integrations /docs#integrations 301
 /docs/billing /docs#billing 301
-/docs/assets /docs#assets 301
 /docs/install /docs#custom-html 301
 /docs.html/install /docs#custom-html 301
 /install /docs#custom-html 301

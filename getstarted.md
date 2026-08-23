@@ -36,7 +36,7 @@ CavBot starts with a site profile. The profile gives CavBot a stable place to or
 - Signals: events and snapshots CavBot uses to understand the site.
 - Modules: focused views for errors, SEO, routes, accessibility, reports, and site operations.
 
-The site profile is the anchor. The Analytics v5 snippet sends browser-side activity to CavBot, including page visits, route changes, runtime errors, and selected context about the active site. CavBot stores those signals under the workspace and connects them to modules such as Dashboard, Errors, Routes, SEO, A11y, Reports, and 404 Control Room.
+The site profile is the anchor. The Analytics v5 snippet sends browser-side activity to CavBot, including page visits, route changes, runtime errors, and selected context about the active site. CavBot stores those signals under the workspace and connects them to modules such as Dashboard, Errors, Routes, SEO, A11y, Reports, and 404 Recovery.
 
 ## Choose an entrypoint
 
@@ -97,7 +97,7 @@ The Analytics v5 snippet connects your live website to CavBot. Install it near t
   window.CAVBOT_PROJECT_KEY = "YOUR_PROJECT_KEY";
   window.CAVBOT_SITE_ID = "YOUR_SITE_ID";
 </script>
-<script src="/cavai/cavai-analytics-v5.js" defer></script>
+<script src="https://cdn.cavbot.io/sdk/v5/cavai-analytics-v5.min.js" defer></script>
 ```
 
 Replace `YOUR_PROJECT_KEY` and `YOUR_SITE_ID` with the values shown in your CavBot workspace.
@@ -151,28 +151,10 @@ Agent workflows are repeatable tasks that use CavBot context to help with site o
 
 A good workflow has a clear input, a clear output, and a clear stopping point. Sensitive actions should still be confirmed by a person.
 
-## 404 Arcade
-
-404 Arcade gives a broken page a better recovery moment. Instead of leaving visitors on a dead end, a site can show an interactive game or recovery surface while guiding the visitor back to a useful route.
-
-It is not a replacement for fixing broken links. It is a recovery layer for visitors who still reach a missing page.
-
-## CavBot Badge
-
-The CavBot Badge is a compact trust marker that can appear on a website when CavBot is connected. Use it in low-friction places such as a footer, support surface, status area, or bottom corner.
-
-## CavBot Head
-
-CavBot Head is a compact visual component for product moments where a small CavBot presence is useful, such as dashboard empty states, setup confirmation screens, and help surfaces.
-
-## CavBot Body
-
-CavBot Body is the larger CavBot visual presence for guided product moments. Use it for onboarding, launch states, recovery screens, or branded support moments where the visitor needs orientation.
-
 ## Go deeper
 
 - Review error tracking.
 - Read Analytics v5 docs.
 - Use the Command Center.
-- Open 404 Control Room.
+- Open 404 Recovery.
 - Use CavAi with workspace context.
