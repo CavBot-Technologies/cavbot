@@ -544,16 +544,13 @@ body.cb-has-fixed-header {
   position: relative;
   top: 1px;
   margin: 0;
-  background-color: currentColor;
-  -webkit-mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
-  mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
   color: currentColor;
   opacity: 0.7;
   transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .cb-nav-chevron path {
-  display: none;
+  display: block;
 }
 
 .cb-nav-trigger[aria-expanded="true"] .cb-nav-chevron {
