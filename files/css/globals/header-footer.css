@@ -1563,16 +1563,13 @@ body.cb-has-fixed-header {
   width: 14px;
   height: 14px;
   display: block;
-  background-color: currentColor;
-  -webkit-mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
-  mask: url("../../../assets/icons/page/down-arrow-backup-2-svgrepo-com.svg") center / 16px 16px no-repeat;
   color: rgba(247, 251, 255, 0.9);
   opacity: 0;
   transition: opacity 140ms ease, color 140ms ease;
 }
 
 svg.cb-try-cavai-caret-icon path {
-  display: none;
+  display: block;
 }
 
 .cb-try-cavai-caret-icon-open {

@@ -802,17 +802,30 @@ primaryLink.textContent = "Try CavAi";
     caret.className = "cb-try-cavai-caret";
     caret.setAttribute("aria-hidden", "true");
 
-    const caretClosed = document.createElement("img");
-    caretClosed.className = "cb-try-cavai-caret-icon cb-try-cavai-caret-icon-closed";
-    caretClosed.src = "/assets/icons/page/down-arrow-backup-2-svgrepo-com.svg";
-    caretClosed.alt = "";
-    caretClosed.decoding = "async";
+    const createTryCavaiCaretIcon = (pathData, className) => {
+      const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      icon.setAttribute("class", className);
+      icon.setAttribute("viewBox", "0 0 16 16");
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", pathData);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "currentColor");
+      path.setAttribute("stroke-width", "1.7");
+      path.setAttribute("stroke-linecap", "round");
+      path.setAttribute("stroke-linejoin", "round");
+      icon.appendChild(path);
+      return icon;
+    };
 
-    const caretOpen = document.createElement("img");
-    caretOpen.className = "cb-try-cavai-caret-icon cb-try-cavai-caret-icon-open";
-    caretOpen.src = "/assets/icons/page/down-arrow-backup-3-svgrepo-com.svg";
-    caretOpen.alt = "";
-    caretOpen.decoding = "async";
+    const caretClosed = createTryCavaiCaretIcon(
+      "M4.25 6.25L8 10l3.75-3.75",
+      "cb-try-cavai-caret-icon cb-try-cavai-caret-icon-closed",
+    );
+
+    const caretOpen = createTryCavaiCaretIcon(
+      "M4.25 9.75L8 6l3.75 3.75",
+      "cb-try-cavai-caret-icon cb-try-cavai-caret-icon-open",
+    );
 
     caret.append(caretClosed, caretOpen);
     toggle.appendChild(caret);
