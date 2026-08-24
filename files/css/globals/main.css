@@ -6412,7 +6412,8 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-cavbot-standa
   border-radius: 4px !important;
   border: 1px solid rgba(255, 255, 255, 0.16);
 
-  background: rgba(1, 3, 15, 0.96);
+  /* Let the violet demo frame show while the browser decodes its first frame. */
+  background: transparent;
 }
 
 .hero-demo-button {
@@ -7108,7 +7109,8 @@ body.page-shell .page-inner > section.hero.hero-home-surface .hero-lede {
   object-fit: cover;
   border-radius: 4px !important;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(1, 3, 15, 0.96);
+  /* Preserve the violet frame while the first video frame is decoding. */
+  background: transparent;
 }
 
 /* Restore all sections after hero back to normal alignment */
