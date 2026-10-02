@@ -916,17 +916,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   const observer = new IntersectionObserver(
-    function (entries) {
+    function (entries, currentObserver) {
       entries.forEach(function (entry) {
-        section.classList.toggle("is-visible", entry.isIntersecting);
+        if (!entry.isIntersecting) return;
+        section.classList.add("is-visible");
+        currentObserver.unobserve(entry.target);
       });
     },
     {
-      threshold: 0.18,
-      rootMargin: "0px 0px -8% 0px"
+      threshold: 0.12,
+      rootMargin: "0px 0px -7% 0px"
     }
   );
-
 
   observer.observe(section);
 })();
@@ -954,14 +955,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const observer = new IntersectionObserver(
-    function (entries) {
+    function (entries, currentObserver) {
       entries.forEach(function (entry) {
-        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        currentObserver.unobserve(entry.target);
       });
     },
     {
-      threshold: 0.16,
-      rootMargin: "0px 0px -8% 0px"
+      threshold: 0.12,
+      rootMargin: "0px 0px -7% 0px"
     }
   );
 

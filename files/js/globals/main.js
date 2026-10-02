@@ -973,7 +973,7 @@
   observer.observe(section);
 })();
 
-// Reversible reveal animations for collaboration and security sections
+// Reveal animations for collaboration and security sections
 (function () {
   const sections = [
     document.querySelector('.cavbot-collab'),
@@ -995,14 +995,16 @@
   }
 
   const observer = new IntersectionObserver(
-    (entries) => {
+    (entries, currentObserver) => {
       entries.forEach((entry) => {
-        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        currentObserver.unobserve(entry.target);
       });
     },
     {
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px'
+      threshold: 0.12,
+      rootMargin: '0px 0px -7% 0px'
     }
   );
 

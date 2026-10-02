@@ -46,7 +46,7 @@
       min-height: 100%;
       width: 100%;
       max-width: 100%;
-      scroll-behavior: auto;
+      scroll-behavior: smooth;
       overscroll-behavior: auto;
       background-color: var(--navy-950);
       color-scheme: dark;
@@ -107,6 +107,10 @@
 	    }
 
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
       .page-shell {
         animation: none;
         opacity: 1;
@@ -2283,11 +2287,11 @@
   padding: clamp(28px, 5vw, 66px) clamp(22px, 6vw, 92px);
   overflow: hidden;
   opacity: 0;
-  transform: translateY(72px);
+  transform: translateY(14px);
   will-change: transform, opacity;
   transition:
-    transform 960ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 620ms ease;
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 450ms ease;
 }
 
 .collab-showcase.is-visible {
@@ -2297,11 +2301,11 @@
 
 .collab-showcase .collab-cell {
   opacity: 0;
-  transform: translateY(34px);
+  transform: translateY(12px);
   will-change: transform, opacity;
   transition:
-    transform 760ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 500ms ease;
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 450ms ease;
 }
 
 .collab-showcase.is-visible .collab-cell {
@@ -4474,11 +4478,11 @@
 .security-title,
 .security-lede {
   opacity: 0;
-  transform: translateY(-38px);
+  transform: translateY(14px);
   will-change: transform, opacity;
   transition:
-    transform 860ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 620ms ease;
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 450ms ease;
 }
 
 .cavbot-security.is-visible .security-hero-mark,
@@ -4563,29 +4567,30 @@
   padding: clamp(30px, 4.4vw, 54px);
   border-right: 1px solid var(--security-line);
   opacity: 0;
+  transform: translateY(14px);
   will-change: transform, opacity;
   transition:
-    transform 880ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 620ms ease;
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 450ms ease;
 }
 
 .security-copy {
-  transform: translateX(-52px);
+  transform: translateY(14px);
 }
 
 .security-switcher {
-  transform: translateY(52px);
+  transform: translateY(14px);
 }
 
 .security-visual {
-  transform: translateX(52px);
+  transform: translateY(14px);
 }
 
 .security-grid.is-visible .security-copy,
 .security-grid.is-visible .security-switcher,
 .security-grid.is-visible .security-visual {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translateY(0);
 }
 
 .security-grid.is-visible .security-copy {
@@ -5881,11 +5886,11 @@
   display: grid;
   align-content: center;
   opacity: 0;
-  transform: translateY(-46px);
+  transform: translateY(14px);
   will-change: transform, opacity;
   transition:
-    transform 860ms cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 560ms ease;
+    transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 450ms ease;
 }
 
 
